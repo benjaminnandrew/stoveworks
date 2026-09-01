@@ -74,6 +74,7 @@ export const nav: NavItem[] = [
     ],
   },
   { label: "Facings", href: "/facings" },
+  { label: "Visualizer", href: "/visualizer" },
   { label: "Home & Cabin Decor", href: "/home-cabin-decor" },
   { label: "Contact Us", href: "/contact-us" },
 ];

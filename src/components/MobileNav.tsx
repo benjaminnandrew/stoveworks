@@ -112,6 +112,9 @@ export function MobileNav({ pathname }: { pathname: string }) {
         </ul>
 
         <div className="drawer-contact">
+          <Link href="/account" className="drawer-account">
+            My Account
+          </Link>
           <a href={business.phoneHref}>{business.phone}</a>
           <br />
           <a href={mailtoHref}>Email Us</a>

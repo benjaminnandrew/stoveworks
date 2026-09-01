@@ -7,6 +7,7 @@ import { business } from "@/content/site";
 import { siteUrl } from "@/lib/site-url";
 
 import "./globals.css";
+import "./app.css";
 
 const notoSans = Noto_Sans({
   subsets: ["latin"],

@@ -7,6 +7,14 @@ import { usePathname } from "next/navigation";
 import { business, nav } from "@/content/site";
 import { MobileNav } from "./MobileNav";
 
+function UserIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.5-8 5.5V21a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-1.5c0-3-3.6-5.5-8-5.5Z" />
+    </svg>
+  );
+}
+
 function PinIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -29,9 +37,15 @@ export function SiteHeader() {
             <PinIcon />
             {business.streetShort} ~ {business.city}, {business.state}
           </span>
-          <a className="topbar-phone" href={business.phoneHref}>
-            CALL US! {business.phoneDisplay}
-          </a>
+          <span className="topbar-right">
+            <Link href="/account" className="topbar-account">
+              <UserIcon />
+              My Account
+            </Link>
+            <a className="topbar-phone" href={business.phoneHref}>
+              CALL US! {business.phoneDisplay}
+            </a>
+          </span>
         </div>
       </div>
 
