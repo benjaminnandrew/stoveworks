@@ -8,6 +8,7 @@ import { siteUrl } from "@/lib/site-url";
 
 import "./globals.css";
 import "./app.css";
+import "./veneer.css";
 
 const notoSans = Noto_Sans({
   subsets: ["latin"],

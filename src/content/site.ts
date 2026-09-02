@@ -74,7 +74,14 @@ export const nav: NavItem[] = [
     ],
   },
   { label: "Facings", href: "/facings" },
-  { label: "Visualizer", href: "/visualizer" },
+  {
+    label: "Visualizer",
+    href: "/visualizer",
+    children: [
+      { label: "Stove & Fireplace", href: "/visualizer" },
+      { label: "Stone Veneer", href: "/veneer" },
+    ],
+  },
   { label: "Home & Cabin Decor", href: "/home-cabin-decor" },
   { label: "Contact Us", href: "/contact-us" },
 ];

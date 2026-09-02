@@ -116,3 +116,27 @@ export async function storeProductCutout(slug: string, file: File): Promise<stri
   await writeFile(path.join(/* turbopackIgnore: true */ PRODUCT_CUTOUT_DIR, name), out);
   return `/products/${name}`;
 }
+
+/**
+ * Stone swatches are catalogue assets like cutouts, but must tile seamlessly —
+ * so unlike a cutout they are never trimmed or padded, only re-encoded and
+ * capped in size. Cropping one would break the repeat.
+ */
+export const STONE_SWATCH_DIR = path.join(process.cwd(), "public", "stone");
+
+export async function storeStoneSwatch(slug: string, file: File): Promise<string> {
+  const sharp = (await import("sharp")).default;
+
+  await mkdir(STONE_SWATCH_DIR, { recursive: true });
+  const input = Buffer.from(await file.arrayBuffer());
+
+  const out = await sharp(input)
+    .rotate()
+    .resize({ width: 1600, height: 1600, fit: "inside", withoutEnlargement: true })
+    .jpeg({ quality: 88, mozjpeg: true })
+    .toBuffer();
+
+  const name = `${slug}-${randomUUID().slice(0, 8)}.jpg`;
+  await writeFile(path.join(/* turbopackIgnore: true */ STONE_SWATCH_DIR, name), out);
+  return `/stone/${name}`;
+}

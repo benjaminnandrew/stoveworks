@@ -4,6 +4,7 @@ Next.js rebuild of [stoveworksinc.com](https://stoveworksinc.com) — The Stove 
 
 **Phase 1** replicated every page of the live WordPress site on a modern, server-rendered stack.
 **Phase 2** added customer accounts, a product inventory, and a room visualizer.
+**Phase 3** added a stone veneer mock-up studio with material estimating.
 
 ## Stack
 
@@ -24,12 +25,14 @@ Next.js rebuild of [stoveworksinc.com](https://stoveworksinc.com) — The Stove 
 npm install
 cp .env.example .env.local
 npm run db:migrate
-npm run db:seed
-npm run dev        # http://localhost:3014
+npm run db:seed        # hearth brands + catalogue
+npm run db:seed:stone  # Cultured Stone profiles
+npm run dev            # http://localhost:3014
 ```
 
 Other scripts: `npm run build`, `npm start`, `npm run typecheck`, `npm run lint`,
-`npm run db:reset`, `npm run db:grant <email> [role]`.
+`npm run db:reset`, `npm run db:seed:stone`, `npm run db:grant <email> [role]`,
+`npm run stone:tiles` (regenerates the placeholder stone textures).
 
 ### The database in development
 
@@ -56,24 +59,30 @@ npm run db:grant -- you@example.com admin
 ## Layout
 
 ```
-db/schema.sql               all eight tables, idempotent
-scripts/                    migrate, seed, reset, grant  (plain node, no Next)
+db/schema.sql               all ten tables, idempotent
+scripts/                    migrate, seed, seed-stone, reset, grant, tile generator
 src/
   app/
     layout.tsx              chrome, metadata, LocalBusiness JSON-LD
     page.tsx                home
     [...slug]/page.tsx      every marketing page, from src/content/pages.ts
     contact-us/             hand-built: structured address, hours, map
-    visualizer/             the tool — public, works signed out
+    visualizer/             the stove tool — public, works signed out
+    veneer/                 the stone veneer tool — public, works signed out
     sign-in/, auth/verify/  magic-link request and redemption
-    account/                saved designs, profile, design editor
+    account/                saved designs and mock-ups, profile, both editors
     admin/                  staff inventory: products, cutouts, dimensions
+    admin/stone/            staff catalogue: profiles, swatches, coverage
     d/[slug]/               read-only shared design
-    api/photos, api/designs upload + serve photos, persist designs
+    api/photos              upload + serve private room photos
+    api/designs, api/veneer-designs   persist each tool's work
   components/visualizer/    Visualizer, ProductPicker, DesignPreview, export, stash
+  components/veneer/        VeneerStudio, StoneRegion, StonePicker, EstimatePanel, export
   content/                  site.ts (business info + nav), pages.ts, home.ts
-  lib/                      db, auth, storage, products, designs, design-types
+  lib/                      db, auth, storage, products, designs, stone, veneer,
+                            homography (the projective maths both tools share)
 public/products/            product cutouts + category placeholder silhouettes
+public/stone/               stone swatches + generated placeholder tiles
 var/                        pgdata + uploads (gitignored)
 _source/                    the scrape and parser that generated content/
 ```
@@ -104,11 +113,46 @@ Any product with no `cutout_path` renders a category silhouette from `public/pro
 badged "Photo coming" in the picker, with a notice on the page. The tool is usable from day
 one and never pretends a placeholder is the real unit.
 
+## How the veneer studio works
+
+Veneer is a *surface*, not an object, so the mechanic is different from the stove tool.
+
+The customer drags four corners onto the wall face. Those corners define a **homography** —
+a projective map from a rectangle onto that quadrilateral — and the stone texture is pushed
+through it, so courses converge with the wall instead of sitting flat on top of it. The
+solver is in `src/lib/homography.ts` and has one job, which means the live editor and the
+PNG export cannot disagree:
+
+- **On screen**, the matrix goes to CSS `matrix3d`. The browser rasterises it on the GPU, so
+  dragging a corner stays smooth and the texture stays sharp.
+- **On export**, the same matrix drives a triangle mesh on a 2D canvas (a 2D context can only
+  do affine transforms, so the quad is subdivided until the error is sub-pixel). Triangles are
+  grown a hair before clipping, or antialiasing leaves a grid of seams across the wall.
+
+**Scale comes from the customer, not from guesswork.** They enter how wide and tall the area
+really is. That single pair of numbers does three jobs: it sizes the stone courses correctly
+(each swatch declares the real area one tile covers), it sets the region's internal aspect,
+and it is what the material estimate is computed from.
+
+**Openings** — a firebox, a mantel, a window — are punched with a CSS mask on screen and
+`destination-out` on export, both applied *before* the warp, so a hole rides the perspective
+and the room shows through it.
+
+### The material estimate
+
+From the entered dimensions: gross area, minus openings, minus the flat area that outside-corner
+pieces will cover (the usual half a square foot per linear foot), plus a 10% cutting allowance,
+divided by the per-box coverage on each profile. It is a starting point for a quote and the UI
+says so; staff confirm against the current coverage chart before anything is ordered.
+
 ## Data model
 
 `users` → `login_tokens`, `sessions` — magic-link auth; only token *hashes* are stored.
-`brands` → `products` — the inventory the visualizer draws from.
-`room_photos` → `designs` → `design_enquiries` — customer work, all scoped by `user_id`.
+`brands` → `products` — the hearth inventory the stove visualizer draws from.
+`brands` → `stone_products` — the veneer catalogue.
+`room_photos` → `designs` / `veneer_designs` → `design_enquiries` — customer work, all scoped
+by `user_id`. The two tools save into separate tables for now; `/d/[slug]` resolves either, so
+links a customer has already sent keep working when the editors eventually merge.
 
 Access rules, all enforced server-side:
 
@@ -144,6 +188,15 @@ it is not reconstructible.
 
 - **Product photography.** All 42 catalog rows need transparent cutouts and real widths
   before the visualizer is truthful. Staff upload both at `/admin`.
+- **Stone swatches.** The 10 seeded Cultured Stone profiles all render a generic placeholder
+  tile, labelled as a sample. Each needs a seamlessly tiling photograph of the real product and
+  the real area that image covers, uploaded at `/admin/stone`.
+- **The rest of the stone catalogue.** Cultured Stone publishes 21+ textures and 100+ colours;
+  only the profile families are seeded, with no colour variants, and coverage figures are
+  typical rather than published. All of it wants confirming against the current catalogue.
+- **Merging the two tools.** A customer doing a full fireplace currently mocks the facing and
+  the insert separately and cannot see them together. `veneer_designs` becomes a layer type on
+  `designs` when that happens.
 - **Real model names.** The seeded rows are honest placeholders at the "we carry Jotul gas
   stoves" level, taken from what the site already says. They want replacing with actual SKUs.
 - **Design enquiries.** The `design_enquiries` table exists and is wired into the schema, but

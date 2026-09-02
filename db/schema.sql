@@ -142,3 +142,63 @@ CREATE TABLE IF NOT EXISTS design_enquiries (
 );
 
 CREATE INDEX IF NOT EXISTS design_enquiries_status_idx ON design_enquiries (status, created_at DESC);
+
+-- ---------------------------------------------------------------------------
+-- Stone veneer
+--
+-- Manufacturers live in `brands` alongside the hearth brands — Cultured Stone,
+-- TriLite and Environmental StoneWorks are all already there.
+-- ---------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS stone_products (
+  id          uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  brand_id    integer     REFERENCES brands (id) ON DELETE SET NULL,
+  slug        text        NOT NULL UNIQUE,
+  name        text        NOT NULL,
+  -- Cultured Stone organises its catalogue as texture (profile) x colour.
+  texture     text        NOT NULL,
+  color       text,
+  summary     text,
+  -- A seamlessly tiling image of the stone. Null until staff upload one.
+  swatch_path text,
+  -- The real-world area one tile of that image covers. This is what makes the
+  -- courses come out the right size on a wall.
+  swatch_width_in  numeric(6, 2) NOT NULL DEFAULT 24,
+  swatch_height_in numeric(6, 2) NOT NULL DEFAULT 16,
+  -- Manufacturer coverage figures, used for the material estimate.
+  flat_sqft_per_box   numeric(6, 2),
+  corner_lnft_per_box numeric(6, 2),
+  product_url text,
+  is_active   boolean     NOT NULL DEFAULT true,
+  sort        integer     NOT NULL DEFAULT 0,
+  created_at  timestamptz NOT NULL DEFAULT now(),
+  updated_at  timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS stone_browse_idx ON stone_products (is_active, texture, sort);
+CREATE INDEX IF NOT EXISTS stone_brand_idx ON stone_products (brand_id);
+
+-- A veneer mock-up: one room photo plus the stoned areas marked on it.
+--
+-- `regions` is a JSON array of
+--   { id, stoneProductId, corners: [{xPct,yPct} x4], realWidthIn, realHeightIn,
+--     holes: [{xPct,yPct,wPct,hPct}], brightness, contrast, opacity,
+--     cornerEdges: {top,right,bottom,left} }
+-- Corners are ordered top-left, top-right, bottom-right, bottom-left and stored
+-- as percentages of the photo, so a region survives any render size.
+--
+-- Kept in its own table rather than folded into `designs`: the stove tool ships
+-- and works, and this mechanic is different enough to prove separately. When the
+-- two editors merge, this becomes a layer type and the rows migrate across.
+CREATE TABLE IF NOT EXISTS veneer_designs (
+  id            uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id       uuid        NOT NULL REFERENCES users (id) ON DELETE CASCADE,
+  room_photo_id uuid        NOT NULL REFERENCES room_photos (id) ON DELETE CASCADE,
+  title         text        NOT NULL DEFAULT 'Untitled mock-up',
+  regions       jsonb       NOT NULL DEFAULT '[]'::jsonb,
+  share_slug    text UNIQUE,
+  created_at    timestamptz NOT NULL DEFAULT now(),
+  updated_at    timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS veneer_designs_user_idx ON veneer_designs (user_id, updated_at DESC);
