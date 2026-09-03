@@ -193,13 +193,12 @@ p:last-child { margin-bottom: 0; }
 
 .masthead-logo { display: inline-block; line-height: 0; }
 
-/* The mark is near-square (1.83:1), so it is sized by height — driving it from
-   width would make the masthead balloon on wide screens.
+/* Sized by height, pinned to match the business-hours block beside it: four
+   lines at 14px/21.7px comes to 87px. A fixed height rather than a vw clamp,
+   because the hours block is itself a fixed height — anything viewport-relative
+   would only line up at one window width.
 
-   Pinned to match the business-hours block beside it: four lines at 14px/21.7px
-   comes to 87px. A fixed height rather than a vw clamp, because the hours block
-   is itself a fixed height — anything viewport-relative would only line up at
-   one window width. */
+   The nameplate is 2.27:1, so 88px tall lands at 200px wide. */
 .masthead-logo img {
   height: 88px;
   width: auto;

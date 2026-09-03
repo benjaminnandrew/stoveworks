@@ -97,8 +97,8 @@ export function SiteHeader() {
               src="/images/logo-hayward-stoveworks.png"
               alt={`${business.name} — ${business.tagline}`}
               width={1200}
-              height={655}
-              sizes="(max-width: 640px) 190px, 300px"
+              height={528}
+              sizes="(max-width: 640px) 200px, 210px"
               priority
             />
           </Link>

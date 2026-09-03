@@ -15,8 +15,8 @@ export function SiteFooter() {
                 src="/images/logo-hayward-stoveworks.png"
                 alt={business.name}
                 width={1200}
-                height={655}
-                sizes="240px"
+                height={528}
+                sizes="220px"
               />
             </div>
 

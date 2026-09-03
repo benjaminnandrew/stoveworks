@@ -1,5 +1,9 @@
 /**
- * Enlarges the "- Since 1975 -" tagline inside the Hayward Stoveworks logo.
+ * Enlarges the "- Since 1975 -" tagline inside the pencil-sketch fireplace logo.
+ *
+ * NOTE: that logo is not currently in use — the site uses the cast nameplate
+ * instead. The pixel bounds below are measured against the sketch artwork and
+ * mean nothing for any other image. Kept for if the sketch mark comes back.
  *
  * The tagline is baked into the raster artwork, so it is scaled rather than
  * re-typeset — that keeps the letterforms exactly as the designer drew them,

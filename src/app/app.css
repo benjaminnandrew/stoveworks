@@ -536,10 +536,10 @@
 
 /* ---------- footer logo ---------- */
 
-/* Same near-square mark as the masthead, so height-driven here too. The PNG is
-   transparent, which lets the pencil sketch sit on the grey footer as well as
-   on white. */
+/* Width-driven here rather than height: the footer is a four-column grid and a
+   height-driven 2.27:1 plate overflows its column on narrower screens. */
 .footer-logo {
-  height: 104px;
-  width: auto;
+  width: 100%;
+  max-width: 220px;
+  height: auto;
 }

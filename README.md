@@ -272,12 +272,18 @@ it is not reconstructible.
 The name, logo and all on-site copy are done. These sit outside the codebase or need a
 decision:
 
-The masthead logo is pinned to 88px so it matches the business-hours block beside it. Both
-are fixed pixel heights — a viewport-relative logo size would only line up at one window
-width. `scripts/logo-resize-tagline.mjs` regenerates the asset with the "Since 1975" tagline
-scaled (currently 1.45x): it lifts the tagline off the artwork, inpaints the hole so the
-pencil-sketch flames survive, and composites it back larger on the same centre. Scaling the
-existing glyphs rather than re-typesetting keeps the letterforms exactly as drawn.
+The logo is the cast nameplate — a solid dark plate with reversed type, which sits equally
+well on the white masthead and the grey footer.
+
+The masthead logo is pinned to 88px so it matches the business-hours block beside it. Both are
+fixed pixel heights: a viewport-relative logo size would only line up at one window width. The
+plate is 2.27:1, so that lands at 200px wide. The footer copy is width-driven instead
+(`max-width: 220px`) because a height-driven plate overflows its column in the four-column
+footer grid on narrower screens.
+
+`scripts/logo-resize-tagline.mjs` belongs to the earlier pencil-sketch mark, which is not
+currently in use — its pixel bounds are measured against that artwork and mean nothing for
+the nameplate.
 
 | Item | State |
 | --- | --- |
