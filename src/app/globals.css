@@ -226,9 +226,11 @@ p:last-child { margin-bottom: 0; }
 /* ---------- primary nav ---------- */
 
 .primary-nav {
+  position: relative;
   background: var(--accent);
   font-family: var(--font-sans);
   font-weight: 600;
+  z-index: 30;
 }
 
 .primary-nav > .wrap {
@@ -246,7 +248,9 @@ p:last-child { margin-bottom: 0; }
   padding: 0;
 }
 
-.nav-item { position: relative; }
+/* Static, so the mega panel's containing block is the nav bar and it can span
+   the full width. The old narrow dropdown needed this to be relative. */
+.nav-item { position: static; }
 
 .nav-link {
   display: block;
@@ -274,40 +278,130 @@ p:last-child { margin-bottom: 0; }
   transform: translateY(2px);
 }
 
-.subnav {
+/* ---------- mega menus ---------- */
+
+/* Anchored to the nav bar rather than the item, so the panel can span the
+   content width instead of hanging off one link. */
+.mega {
   position: absolute;
   top: 100%;
   left: 0;
+  right: 0;
   z-index: 40;
-  min-width: 15rem;
-  margin: 0;
-  padding: 0.35rem 0;
-  list-style: none;
-  background: #1a1a1a;
-  box-shadow: var(--shadow-md);
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-6px);
-  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  transform: translateY(-8px);
+  transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s;
 }
 
-.nav-item:hover > .subnav,
-.nav-item:focus-within > .subnav {
+.mega.is-open {
   opacity: 1;
   visibility: visible;
   transform: none;
 }
 
-.subnav a {
-  display: block;
-  padding: 0.6rem 1.1rem;
-  color: #fff;
-  font-size: 0.9375rem;
-  text-decoration: none;
+.mega-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  padding: 1.5rem 0 1.35rem;
+  align-items: start;
 }
 
-.subnav a:hover,
-.subnav a:focus-visible { background: var(--accent); color: var(--highlight); }
+.mega.has-feature .mega-inner {
+  grid-template-columns: minmax(0, 1fr) 12rem;
+}
+
+.mega-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 0.4rem 1.25rem;
+}
+
+.mega-link {
+  display: grid;
+  gap: 0.2rem;
+  align-content: start;
+  padding: 0.7rem 0.9rem;
+  border-radius: 3px;
+  text-decoration: none;
+  color: var(--ink);
+  border-left: 3px solid transparent;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.mega-link:hover,
+.mega-link:focus-visible {
+  background: var(--accent-wash-soft);
+  border-left-color: var(--accent);
+  color: var(--ink);
+}
+
+.mega-link-label {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+/* The manufacturers carried on that page — the substance of the menu. */
+.mega-link-brands,
+.mega-link-blurb {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--ink-muted);
+}
+
+.mega-feature {
+  display: grid;
+  gap: 0.75rem;
+  padding-left: clamp(1rem, 2vw, 2rem);
+  border-left: 1px solid var(--rule);
+}
+/* Cropped to landscape so a two-child menu is not held open by a square
+   image with nothing beside it. */
+.mega-feature img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 2px;
+}
+.mega-feature p {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.mega-foot {
+  background: #f4f1ee;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+}
+.mega-foot .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+}
+.mega-foot a { text-decoration: none; font-weight: 600; }
+.mega-foot a:hover { text-decoration: underline; }
+.mega-all { color: var(--accent); }
+.mega-cta { color: var(--ink-soft); }
+
+/* Below the desktop nav breakpoint the drawer takes over entirely. */
+@media (max-width: 992px) {
+  .mega { display: none; }
+}
 
 /* Tighten the bar before giving up on it, so the full menu survives to 992px. */
 @media (max-width: 1240px) {

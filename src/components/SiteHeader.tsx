@@ -3,8 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { business, nav } from "@/content/site";
+import { MegaMenu } from "./MegaMenu";
 import { MobileNav } from "./MobileNav";
 
 function UserIcon() {
@@ -25,9 +27,48 @@ function PinIcon() {
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const [openHref, setOpenHref] = useState<string | null>(null);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+
+  const cancelClose = useCallback(() => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = null;
+  }, []);
+
+  const open = useCallback(
+    (href: string) => {
+      cancelClose();
+      setOpenHref(href);
+    },
+    [cancelClose],
+  );
+
+  // A small delay, so crossing the gap between the nav item and its panel does
+  // not snap the menu shut under the pointer.
+  const scheduleClose = useCallback(() => {
+    cancelClose();
+    closeTimer.current = setTimeout(() => setOpenHref(null), 160);
+  }, [cancelClose]);
+
+  // Any navigation closes whatever was open.
+  useEffect(() => {
+    cancelClose();
+    setOpenHref(null);
+  }, [pathname, cancelClose]);
+
+  useEffect(() => () => cancelClose(), [cancelClose]);
+
+  useEffect(() => {
+    if (!openHref) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpenHref(null);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [openHref]);
 
   return (
     <>
@@ -80,32 +121,46 @@ export function SiteHeader() {
       <nav className="primary-nav" aria-label="Main">
         <div className="wrap">
           <ul className="nav-list">
-            {nav.map((item) => (
-              <li key={item.href} className={`nav-item${item.children ? " has-children" : ""}`}>
-                <Link
-                  href={item.href}
-                  className={`nav-link${isActive(item.href) ? " is-active" : ""}`}
-                  aria-current={pathname === item.href ? "page" : undefined}
-                >
-                  {item.label}
-                </Link>
+            {nav.map((item) => {
+              const hasMenu = Boolean(item.children?.length);
+              const menuId = `mega-${item.href.replace(/\W+/g, "-")}`;
+              const isOpen = hasMenu && openHref === item.href;
 
-                {item.children ? (
-                  <ul className="subnav">
-                    {item.children.map((child) => (
-                      <li key={child.href}>
-                        <Link
-                          href={child.href}
-                          aria-current={pathname === child.href ? "page" : undefined}
-                        >
-                          {child.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </li>
-            ))}
+              return (
+                <li
+                  key={item.href}
+                  className={`nav-item${hasMenu ? " has-children" : ""}${isOpen ? " is-open" : ""}`}
+                  onPointerEnter={hasMenu ? () => open(item.href) : undefined}
+                  onPointerLeave={hasMenu ? scheduleClose : undefined}
+                  // Opening on focus keeps the menu usable by keyboard without
+                  // turning the parent link into a button. React maps onFocus /
+                  // onBlur to focusin / focusout, which bubble from the links
+                  // inside — the capture variants do not reach here.
+                  onFocus={hasMenu ? () => open(item.href) : undefined}
+                  onBlur={
+                    hasMenu
+                      ? (e) => {
+                          if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+                            scheduleClose();
+                          }
+                        }
+                      : undefined
+                  }
+                >
+                  <Link
+                    href={item.href}
+                    className={`nav-link${isActive(item.href) ? " is-active" : ""}`}
+                    aria-current={pathname === item.href ? "page" : undefined}
+                    aria-expanded={hasMenu ? isOpen : undefined}
+                    aria-controls={hasMenu ? menuId : undefined}
+                  >
+                    {item.label}
+                  </Link>
+
+                  {hasMenu ? <MegaMenu item={item} open={isOpen} id={menuId} /> : null}
+                </li>
+              );
+            })}
             <li className="nav-item">
               <Link
                 href="/"

@@ -150,6 +150,31 @@ pieces will cover (the usual half a square foot per linear foot), plus a 10% cut
 divided by the per-box coverage on each profile. It is a starting point for a quote and the UI
 says so; staff confirm against the current coverage chart before anything is ordered.
 
+## Navigation
+
+The five top-level items with children open **mega menus** — a full-width panel under the nav
+bar rather than a narrow dropdown.
+
+The substance is the manufacturers carried on each child page ("Wood Stoves — Pacific Energy ·
+HearthStone · Jotul · Blaze King · Thelin · Morso · Kuma"). Those are **derived from the page
+content itself** in `src/content/nav-data.ts`, not kept in a second list — a hand-maintained
+copy would drift from the pages the moment anyone edited one. It is computed at module load
+from the same static `pages.ts` the pages render from, so there is no database call and the
+marketing pages stay statically prerendered.
+
+Behaviour worth knowing:
+
+- Hover opens, with a short close delay so crossing the gap to the panel does not snap it shut.
+- Keyboard: tabbing onto a parent opens its panel, tabbing continues into it, Escape closes.
+  `onFocus`/`onBlur` rather than the capture variants — React maps those to `focusin`/`focusout`,
+  which bubble from the links inside.
+- Closed panels are `inert`, so the tab order does not run through every hidden menu.
+- `.nav-item` is `position: static` on purpose: the panel's containing block has to be the nav
+  bar for it to span the full width.
+- The footer strip is dropped when a menu's parent page is also one of its children — that is
+  the Visualizer, where "All Visualizer" would be meaningless.
+- Below 992px the mega menus are hidden entirely; the mobile drawer takes over.
+
 ## Colour
 
 Tokens at the top of `globals.css`. The accent is **oxblood `#96382c`** — warmer and far less

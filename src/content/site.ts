@@ -32,13 +32,35 @@ export const business = {
 
 export const mailtoHref = `mailto:${business.email}?subject=${encodeURIComponent(business.emailSubject)}`;
 
-export type NavItem = { label: string; href: string; children?: NavItem[] };
+export type NavFeature = {
+  src: string;
+  width: number;
+  height: number;
+  /** One line about the category. Reused from the home page tiles. */
+  blurb: string;
+};
+
+export type NavItem = {
+  label: string;
+  href: string;
+  children?: NavItem[];
+  /** Shown under the link in a mega menu, where there is something true to say. */
+  blurb?: string;
+  /** Illustrated panel alongside the child links. Parent items only. */
+  feature?: NavFeature;
+};
 
 export const nav: NavItem[] = [
   { label: "Services", href: "/services" },
   {
     label: "Stoves",
     href: "/stoves",
+    feature: {
+      src: "/images/feature-stoves.jpg",
+      width: 281,
+      height: 281,
+      blurb: "A stove is a freestanding heating unit that can go just about anywhere in your home.",
+    },
     children: [
       { label: "Gas Stoves", href: "/stoves/gas-stoves" },
       { label: "Wood Stoves", href: "/stoves/wood-stoves" },
@@ -47,6 +69,12 @@ export const nav: NavItem[] = [
   {
     label: "Inserts",
     href: "/inserts",
+    feature: {
+      src: "/images/feature-inserts.jpg",
+      width: 281,
+      height: 281,
+      blurb: "A fireplace insert is a device inserted into an existing masonry (real) fireplace.",
+    },
     children: [
       { label: "Gas Inserts", href: "/inserts/gas-inserts" },
       { label: "Wood Inserts", href: "/inserts/wood-inserts" },
@@ -55,6 +83,12 @@ export const nav: NavItem[] = [
   {
     label: "Fireplaces",
     href: "/fireplaces",
+    feature: {
+      src: "/images/feature-fireplaces.jpg",
+      width: 281,
+      height: 281,
+      blurb: "A fireplace can vary in size from 20 inches wide to 54 inches wide.",
+    },
     children: [
       { label: "Gas Fireplaces", href: "/fireplaces/gas-fireplaces" },
       { label: "Wood Fireplaces", href: "/fireplaces/wood-fireplaces" },
@@ -78,8 +112,16 @@ export const nav: NavItem[] = [
     label: "Visualizer",
     href: "/visualizer",
     children: [
-      { label: "Stove & Fireplace", href: "/visualizer" },
-      { label: "Stone Veneer", href: "/veneer" },
+      {
+        label: "Stove & Fireplace",
+        href: "/visualizer",
+        blurb: "Drop a stove, insert or fireplace into a photo of your own room, at true scale.",
+      },
+      {
+        label: "Stone Veneer",
+        href: "/veneer",
+        blurb: "Mark out a wall and try Cultured Stone on it, with a square-footage estimate.",
+      },
     ],
   },
   { label: "Home & Cabin Decor", href: "/home-cabin-decor" },
