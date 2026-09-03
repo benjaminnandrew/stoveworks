@@ -333,7 +333,7 @@ export function Visualizer({ products, isSignedIn, initial }: Props) {
     if (!photo) return;
     setBusy("Building your image…");
     try {
-      await exportDesign(photo, design, byId, title || "stove-works-design");
+      await exportDesign(photo, design, byId, title || "hayward-stoveworks-design");
     } catch {
       setNotice("We couldn't build that image. Try again.");
     } finally {

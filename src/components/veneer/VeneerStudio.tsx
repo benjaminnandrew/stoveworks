@@ -256,7 +256,7 @@ export function VeneerStudio({ stones, isSignedIn, initial }: Props) {
     if (!photo) return;
     setBusy("Building your image…");
     try {
-      await exportVeneer(photo, state, byId, title || "stone-works-mockup");
+      await exportVeneer(photo, state, byId, title || "hayward-stoveworks-mockup");
     } catch {
       setNotice("We couldn't build that image. Try again.");
     } finally {

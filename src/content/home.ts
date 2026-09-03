@@ -2,11 +2,11 @@ export const hero = {
   src: "/images/home-hero-rev.jpg",
   width: 1920,
   height: 653,
-  alt: "The Stove Works showroom in Hayward, Wisconsin",
+  alt: "The Hayward Stoveworks showroom in Hayward, Wisconsin",
 };
 
 export const intro = {
-  heading: "Welcome to Stove Works, Northwest Wisconsin's Most Complete Fireplace Center!",
+  heading: "Welcome to Hayward Stoveworks, Northwest Wisconsin's Most Complete Fireplace Center!",
   body: "We are proud to offer you an excellent selection of top quality products by the best manufacturers in the industry, and an experienced, knowledgeable staff to assist you with any of your heating questions. Click below to learn about our main product lines.",
 };
 
@@ -44,13 +44,13 @@ export const history = {
     src: "/images/stove-works-sign.jpg",
     width: 1801,
     height: 1200,
-    alt: "The Stove Works sign outside the Hayward, Wisconsin store",
+    alt: "The Stoveworks sign outside the Hayward, Wisconsin store",
   },
-  columnHtml: `<p>The Stove Works began in the energy crisis of the 1970’s and has changed with the passing decades. New technologies have emerged and we have grown and narrowed our choices of heating appliances. Today we carry only what we have found to be the most reliable lines, with highest in quality being our top priority.</p>
+  columnHtml: `<p>Hayward Stoveworks began in the energy crisis of the 1970’s and has changed with the passing decades. New technologies have emerged and we have grown and narrowed our choices of heating appliances. Today we carry only what we have found to be the most reliable lines, with highest in quality being our top priority.</p>
 <p>We are more than just a fireplace store.</p>
 <p>We have <a href="/specialty-hearth/refrigerators-cook-stoves">cook stoves</a>, <a href="/specialty-hearth/outdoor-rings-grills">barbeques</a>, <a href="/facings">manufactured stone/brick</a>, <a href="/facings">mantels</a>, and many more hearth accessories like gas &amp; electric logs, fireplace screens, tool sets and wood holders.</p>`,
   bodyHtml: `<p>We also carry a wide selection of home and cabin decor including lamps, art work for above mantels, and so much more.</p>
-<p>The Stove Works carries top name brands like Mendota, Jotul, Pacific Energy, RSF, Hearthstone, Morso, Kozy Heat, Majestic, Heartland, Wilkening, Blazeking, Enviro, and many more.</p>
+<p>Hayward Stoveworks carries top name brands like Mendota, Jotul, Pacific Energy, RSF, Hearthstone, Morso, Kozy Heat, Majestic, Heartland, Wilkening, Blazeking, Enviro, and many more.</p>
 <p>If you find yourself in the Hayward area, we invite you to stop in and see what we have to offer. Our friendly and very knowledgeable staff is ready to help you find the right stove or fireplace to fit your needs and as well as your home.</p>`,
 };
 
@@ -71,4 +71,4 @@ export const gallery = [
   { src: "/images/fb12.jpg", width: 720, height: 960 },
   { src: "/images/fb14.jpg", width: 720, height: 960 },
   { src: "/images/fb2.jpg", width: 960, height: 580 },
-].map((g, i) => ({ ...g, alt: `Stove Works showroom photo ${i + 1}` }));
+].map((g, i) => ({ ...g, alt: `Hayward Stoveworks showroom photo ${i + 1}` }));

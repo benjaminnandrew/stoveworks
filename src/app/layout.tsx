@@ -61,7 +61,7 @@ const localBusinessJsonLd = {
   telephone: business.phone,
   faxNumber: business.fax,
   email: business.email,
-  image: `${siteUrl}/images/logo-stove-works.jpg`,
+  image: `${siteUrl}/images/logo-hayward-stoveworks.png`,
   address: {
     "@type": "PostalAddress",
     streetAddress: business.street,

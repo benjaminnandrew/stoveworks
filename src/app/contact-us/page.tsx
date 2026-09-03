@@ -5,7 +5,7 @@ import { business, mailtoHref } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: `Visit The Stove Works at ${business.street}, ${business.city}, ${business.state} ${business.zip}. Call ${business.phone} or stop in — hours, directions and map.`,
+  description: `Visit ${business.name} at ${business.street}, ${business.city}, ${business.state} ${business.zip}. Call ${business.phone} or stop in — hours, directions and map.`,
   alternates: { canonical: "/contact-us" },
 };
 
@@ -40,7 +40,7 @@ export default function ContactPage() {
             <section className="contact-card">
               <h2>Get In Touch</h2>
               <address>
-                <strong>{business.name.replace(/, Inc\.$/, ", Inc")}</strong>
+                <strong>{business.name}</strong>
                 <br />
                 {business.street}
                 <br />

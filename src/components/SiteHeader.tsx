@@ -53,10 +53,11 @@ export function SiteHeader() {
         <div className="wrap">
           <Link href="/" className="masthead-logo" aria-label={`${business.name} home`}>
             <Image
-              src="/images/logo-stove-works.jpg"
+              src="/images/logo-hayward-stoveworks.png"
               alt={`${business.name} — ${business.tagline}`}
-              width={380}
-              height={131}
+              width={1200}
+              height={655}
+              sizes="(max-width: 640px) 190px, 300px"
               priority
             />
           </Link>

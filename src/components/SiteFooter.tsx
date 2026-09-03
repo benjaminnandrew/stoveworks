@@ -11,17 +11,19 @@ export function SiteFooter() {
           <div className="footer-grid">
             <div>
               <Image
-                src="/images/logo-sw-footer-2.jpg"
+                className="footer-logo"
+                src="/images/logo-hayward-stoveworks.png"
                 alt={business.name}
-                width={263}
-                height={91}
+                width={1200}
+                height={655}
+                sizes="240px"
               />
             </div>
 
             <div>
               <h2 className="footer-title">Get In Touch</h2>
               <address>
-                <strong>{business.name.replace(/, Inc\.$/, ", Inc")}</strong>
+                <strong>{business.name}</strong>
                 <br />
                 {business.street}
                 <br />

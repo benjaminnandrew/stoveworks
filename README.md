@@ -1,10 +1,15 @@
-# Stove Works
+# Hayward Stoveworks
 
-Next.js rebuild of [stoveworksinc.com](https://stoveworksinc.com) — The Stove Works, Inc., Hayward WI.
+Next.js rebuild of [stoveworksinc.com](https://stoveworksinc.com) — Hayward Stoveworks, Hayward WI.
+
+The business rebranded from "The Stove Works, Inc." to **Hayward Stoveworks** during the
+rebuild. The display name lives in one place, `business.name` in `src/content/site.ts`, and
+flows from there into the header, footer, page titles, sign-in emails and JSON-LD.
 
 **Phase 1** replicated every page of the live WordPress site on a modern, server-rendered stack.
 **Phase 2** added customer accounts, a product inventory, and a room visualizer.
 **Phase 3** added a stone veneer mock-up studio with material estimating.
+**Phase 4** applied the Hayward Stoveworks rebrand.
 
 ## Stack
 
@@ -197,6 +202,20 @@ it is not reconstructible.
 - **Merging the two tools.** A customer doing a full fireplace currently mocks the facing and
   the insert separately and cannot see them together. `veneer_designs` becomes a layer type on
   `designs` when that happens.
+
+### Rebrand loose ends
+
+The name, logo and all on-site copy are done. These sit outside the codebase or need a
+decision:
+
+| Item | State |
+| --- | --- |
+| Favicon / apple-touch icon | **Still the old brand's.** `src/app/icon.ico` and `apple-icon.png` came from the previous site. A new one needs the fireplace glyph isolated from the wordmark — a design call, not a crop. |
+| Domain (`SITE_URL`) | Still `stoveworksinc.com`. Unchanged deliberately; the site lives there and the links work. |
+| Email address | Still `stoveworksstorefront@gmail.com`. Renaming a business does not rename its mailbox. |
+| Google Business Profile | The map embed on the footer and contact page shows "Stove Works & Fireplace Center" — that is Google's listing data and has to be changed in the Business Profile, not here. |
+| Home-page sign photo | `stove-works-sign.jpg` is a real photo of the **old** sign outside the store. Wants reshooting once the new sign is up. |
+| Legal entity | Copy uses "Hayward Stoveworks" throughout, including the copyright line. If the registered entity is still "The Stove Works, Inc.", the footer and JSON-LD may want the legal name alongside the trading name. |
 - **Real model names.** The seeded rows are honest placeholders at the "we carry Jotul gas
   stoves" level, taken from what the site already says. They want replacing with actual SKUs.
 - **Design enquiries.** The `design_enquiries` table exists and is wired into the schema, but

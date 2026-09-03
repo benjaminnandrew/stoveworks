@@ -1,4 +1,4 @@
--- Stove Works — customer accounts, product inventory, room visualizer.
+-- Hayward Stoveworks — customer accounts, product inventory, room visualizer.
 -- Written for PostgreSQL 14+. Applied by `npm run db:migrate`, which runs this
 -- file inside a transaction; every statement is idempotent so it is safe to
 -- re-run against an existing database.

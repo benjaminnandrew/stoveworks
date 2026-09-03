@@ -245,7 +245,7 @@ export const pages: Page[] = [
     "sections": [
       {
         "type": "prose",
-        "html": "<p>The Stove Works has a wide variety of fireplace accessories and home &amp; cabin decor available. We are the perfect place to find just the right gift you were looking for. With new inventory in all the time, please stop in and see the latest that Stove Works has to offer!</p>"
+        "html": "<p>Hayward Stoveworks has a wide variety of fireplace accessories and home &amp; cabin decor available. We are the perfect place to find just the right gift you were looking for. With new inventory in all the time, please stop in and see the latest that Hayward Stoveworks has to offer!</p>"
       },
       {
         "type": "media-grid",
@@ -415,7 +415,7 @@ export const pages: Page[] = [
     "sections": [
       {
         "type": "prose-aside",
-        "html": "<p>Stove Works has a very knowledgeable staff here to assist you with any of your heating questions.</p>\n<p>All of our installers are factory trained. This guarantees that you are in the very best hands when it comes to installing your new stove or fireplace.</p>\n<p>We are also members of the NAHB – National Association of Home Builders, the NCHPBA – North Central Hearth Patio and Barbeque Association, and the NABA – Northland Area Builders Association.</p>\n<p>Our employees attend conferences every year to make sure they are up to date with the latest information and technology in the hearth industry.</p>",
+        "html": "<p>Hayward Stoveworks has a very knowledgeable staff here to assist you with any of your heating questions.</p>\n<p>All of our installers are factory trained. This guarantees that you are in the very best hands when it comes to installing your new stove or fireplace.</p>\n<p>We are also members of the NAHB – National Association of Home Builders, the NCHPBA – North Central Hearth Patio and Barbeque Association, and the NABA – Northland Area Builders Association.</p>\n<p>Our employees attend conferences every year to make sure they are up to date with the latest information and technology in the hearth industry.</p>",
         "aside": [
           {
             "src": "/images/logo-naba.png",
@@ -448,7 +448,7 @@ export const pages: Page[] = [
     "sections": [
       {
         "type": "prose-aside",
-        "html": "<p>Stove Works has a wide variety of specialty hearth products like <a href=\"/specialty-hearth/gas-logs\">gas and electric logs</a> and <a href=\"/specialty-hearth/glass-doors\">glass doors</a>. We also have products you would need for maintenance on your stove, fireplace, or insert. In addition we carry log/wood racks, tool sets, cleaning supplies and fire starters.</p>",
+        "html": "<p>Hayward Stoveworks has a wide variety of specialty hearth products like <a href=\"/specialty-hearth/gas-logs\">gas and electric logs</a> and <a href=\"/specialty-hearth/glass-doors\">glass doors</a>. We also have products you would need for maintenance on your stove, fireplace, or insert. In addition we carry log/wood racks, tool sets, cleaning supplies and fire starters.</p>",
         "aside": [
           {
             "src": "/images/pilgrim-logo.png",

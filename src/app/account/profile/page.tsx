@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { business } from "@/content/site";
 import { requireUser } from "@/lib/auth";
 import { AccountNav } from "../AccountNav";
 import { ProfileForm } from "./ProfileForm";
@@ -19,7 +20,7 @@ export default async function ProfilePage({
     <>
       <div className="page-title">
         <div className="wrap">
-          <h1>{welcome ? "Welcome to Stove Works" : "Profile"}</h1>
+          <h1>{welcome ? `Welcome to ${business.shortName}` : "Profile"}</h1>
           <AccountNav />
         </div>
       </div>

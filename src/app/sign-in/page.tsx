@@ -8,7 +8,7 @@ import { SignInForm } from "./SignInForm";
 export const metadata: Metadata = {
   title: "Sign in",
   description:
-    "Sign in to your Stove Works account to save room photos and stove designs from the visualizer.",
+    "Sign in to your Hayward Stoveworks account to save room photos and stove designs from the visualizer.",
   robots: { index: false },
 };
 

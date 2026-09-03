@@ -1,6 +1,6 @@
 export const business = {
-  name: "The Stove Works, Inc.",
-  shortName: "Stove Works",
+  name: "Hayward Stoveworks",
+  shortName: "Hayward Stoveworks",
   tagline: "Northwest Wisconsin's Most Complete Fireplace Center",
   street: "15593 County Road B",
   streetShort: "15593 County Rd. B",
@@ -12,7 +12,7 @@ export const business = {
   phoneDisplay: "715-634-2360",
   fax: "(715) 634-2360",
   email: "stoveworksstorefront@gmail.com",
-  emailSubject: "Stove Works Website Request",
+  emailSubject: "Hayward Stoveworks Website Request",
   facebook: "https://www.facebook.com/profile.php?id=100063251977232",
   geo: { lat: 46.0043449, lng: -91.4747434 },
   mapEmbed:

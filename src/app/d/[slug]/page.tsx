@@ -55,7 +55,7 @@ async function SharedStove({
   const products = new Map([...productRows].map(([id, p]) => [id, toPlaceable(p)]));
 
   return (
-    <Shell title={design.title} lede="A room design shared from the Stove Works visualizer.">
+    <Shell title={design.title} lede={`A room design shared from the ${business.shortName} visualizer.`}>
       <DesignPreview
         photoUrl={`/api/photos/${photo.id}?share=${encodeURIComponent(slug)}`}
         photoWidth={photo.width}
@@ -103,7 +103,7 @@ async function SharedVeneer({
   const total = totalEstimate(regions, stones);
 
   return (
-    <Shell title={design.title} lede="A stone veneer mock-up shared from the Stove Works studio.">
+    <Shell title={design.title} lede={`A stone veneer mock-up shared from the ${business.shortName} studio.`}>
       <VeneerPreview
         photoUrl={`/api/photos/${photo.id}?share=${encodeURIComponent(slug)}`}
         photoWidth={photo.width}

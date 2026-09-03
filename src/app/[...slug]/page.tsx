@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 function descriptionFor(slug: string, title: string) {
-  return `${title} from The Stove Works in Hayward, Wisconsin — quality brands, expert advice and factory-trained installation.`.replace(
+  return `${title} from Hayward Stoveworks in Hayward, Wisconsin — quality brands, expert advice and factory-trained installation.`.replace(
     /\s+/g,
     " ",
   );

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Stove Works - design tokens
+   Hayward Stoveworks - design tokens
    Values mirror the previous The7 theme so the rebuild reads as the same site.
    ========================================================================== */
 
@@ -160,7 +160,13 @@ p:last-child { margin-bottom: 0; }
 }
 
 .masthead-logo { display: inline-block; line-height: 0; }
-.masthead-logo img { width: clamp(220px, 26vw, 380px); }
+
+/* The mark is near-square (1.83:1), so it is sized by height — driving it from
+   width would make the masthead balloon on wide screens. */
+.masthead-logo img {
+  height: clamp(82px, 12.5vw, 152px);
+  width: auto;
+}
 
 .masthead-hours {
   font-size: 0.875rem;
