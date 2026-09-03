@@ -79,11 +79,6 @@ export function SiteFooter() {
           <span>
             &copy; Copyright {new Date().getFullYear()} - {business.name}
           </span>
-          <span>
-            <a href="https://ccsdirect.net" target="_blank" rel="noopener noreferrer">
-              Web Design by CCS, Inc.
-            </a>
-          </span>
         </div>
       </div>
 
