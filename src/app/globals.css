@@ -162,10 +162,20 @@ p:last-child { margin-bottom: 0; }
 .masthead-logo { display: inline-block; line-height: 0; }
 
 /* The mark is near-square (1.83:1), so it is sized by height — driving it from
-   width would make the masthead balloon on wide screens. */
+   width would make the masthead balloon on wide screens.
+
+   Pinned to match the business-hours block beside it: four lines at 14px/21.7px
+   comes to 87px. A fixed height rather than a vw clamp, because the hours block
+   is itself a fixed height — anything viewport-relative would only line up at
+   one window width. */
 .masthead-logo img {
-  height: clamp(82px, 12.5vw, 152px);
+  height: 88px;
   width: auto;
+}
+
+/* Below this the hours are hidden, so the logo is free to take the room it needs. */
+@media (max-width: 860px) {
+  .masthead-logo img { height: clamp(74px, 21vw, 92px); }
 }
 
 .masthead-hours {

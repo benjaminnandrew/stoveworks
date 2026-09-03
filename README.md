@@ -65,7 +65,7 @@ npm run db:grant -- you@example.com admin
 
 ```
 db/schema.sql               all ten tables, idempotent
-scripts/                    migrate, seed, seed-stone, reset, grant, tile generator
+scripts/                    migrate, seed, seed-stone, reset, grant, tile + logo tooling
 src/
   app/
     layout.tsx              chrome, metadata, LocalBusiness JSON-LD
@@ -207,6 +207,13 @@ it is not reconstructible.
 
 The name, logo and all on-site copy are done. These sit outside the codebase or need a
 decision:
+
+The masthead logo is pinned to 88px so it matches the business-hours block beside it. Both
+are fixed pixel heights — a viewport-relative logo size would only line up at one window
+width. `scripts/logo-resize-tagline.mjs` regenerates the asset with the "Since 1975" tagline
+scaled (currently 1.45x): it lifts the tagline off the artwork, inpaints the hole so the
+pencil-sketch flames survive, and composites it back larger on the same centre. Scaling the
+existing glyphs rather than re-typesetting keeps the letterforms exactly as drawn.
 
 | Item | State |
 | --- | --- |
