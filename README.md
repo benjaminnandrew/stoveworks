@@ -9,7 +9,7 @@ flows from there into the header, footer, page titles, sign-in emails and JSON-L
 **Phase 1** replicated every page of the live WordPress site on a modern, server-rendered stack.
 **Phase 2** added customer accounts, a product inventory, and a room visualizer.
 **Phase 3** added a stone veneer mock-up studio with material estimating.
-**Phase 4** applied the Hayward Stoveworks rebrand.
+**Phase 4** applied the Hayward Stoveworks rebrand — name, logo and type scheme.
 
 ## Stack
 
@@ -18,7 +18,7 @@ flows from there into the header, footer, page titles, sign-in emails and JSON-L
 | Framework | Next.js 16, App Router, TypeScript | Server components, no client framework tax |
 | Marketing pages | Prerendered at build | Fast and cacheable; the app routes stay dynamic |
 | Styling | Plain CSS + custom properties | `globals.css` = marketing, `app.css` = signed-in surface |
-| Fonts | `next/font` (Merriweather, Noto Sans, Open Sans) | Self-hosted, no third-party requests |
+| Fonts | `next/font` (Calistoga, Source Serif 4, Source Sans 3) | Self-hosted, no third-party requests, no layout shift |
 | Database | Postgres | PGlite in dev so nothing needs installing |
 | Auth | Magic links, own sessions | No passwords to forget, no third-party dependency |
 | Images | `sharp` | Re-encodes uploads, which also strips EXIF/GPS |
@@ -149,6 +149,26 @@ From the entered dimensions: gross area, minus openings, minus the flat area tha
 pieces will cover (the usual half a square foot per linear foot), plus a 10% cutting allowance,
 divided by the per-box coverage on each profile. It is a starting point for a quote and the UI
 says so; staff confirm against the current coverage chart before anything is ordered.
+
+## Typography
+
+Three faces, no others — the scheme is in [docs/type-scheme.md](docs/type-scheme.md) and the
+tokens live at the top of `globals.css`:
+
+| Token | Face | Used for |
+| --- | --- | --- |
+| `--font-display` | Calistoga | Hero words and short display lines only. Never body, nav, buttons or forms, and never italic — Calistoga has no italic. On this site: the home hero line, the two dark-band headings, and the feature-tile titles. |
+| `--font-serif` | Source Serif 4 | Page titles and all reading copy. This is the `body` default. |
+| `--font-sans` | Source Sans 3 | Nav, buttons, labels, prices, forms, captions, tables. |
+
+Two things worth knowing before editing:
+
+- **Body copy is serif.** `body` is Source Serif 4 at 1rem/1.6. Any UI control that wants the
+  sans face has to say so — `font: inherit` on a button now inherits the *serif*, which is why
+  every control sets `font-family: var(--font-sans)` explicitly.
+- **Labels are a style, not just a size.** Uppercase, 0.75rem, weight 600, tracking 0.2em.
+  Form field labels, the contact-page section headings and admin table headers all use it.
+  There is a `.label` utility in `globals.css` for new cases.
 
 ## Data model
 

@@ -100,9 +100,9 @@
   border-radius: 3px;
   font-size: 0.75rem;
 }
-.hole-row label { display: grid; gap: 0.15rem; color: var(--ink-soft); }
+.hole-row label { display: grid; gap: 0.15rem; font-family: var(--font-sans); color: var(--ink-soft); }
 .hole-row input[type="range"] { width: 100%; accent-color: var(--accent); }
-.hole-label { font-weight: 700; color: var(--ink-muted); }
+.hole-label { font-family: var(--font-sans); font-weight: 600; color: var(--ink-muted); }
 
 @media (max-width: 700px) {
   .hole-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -115,7 +115,8 @@
   border: 1px solid #c9c9c9;
   border-radius: 2px;
   background: #fff;
-  font: inherit;
+  font-family: var(--font-sans);
+  font-size: 1rem;
 }
 .dims select {
   width: 100%;
@@ -123,7 +124,7 @@
   border: 1px solid #c9c9c9;
   border-radius: 2px;
   background: #fff;
-  font: inherit;
+  font-family: var(--font-sans);
   font-size: 0.8125rem;
 }
 
@@ -148,7 +149,7 @@
   border: 1px solid transparent;
   border-radius: 3px;
   background: none;
-  font: inherit;
+  font-family: var(--font-sans);
   text-align: left;
   cursor: pointer;
 }
@@ -166,8 +167,8 @@
 }
 
 .stone-meta { display: grid; gap: 0.1rem; min-width: 0; }
-.stone-name { font-weight: 600; font-size: 0.8125rem; line-height: 1.25; }
-.stone-sub { font-size: 0.6875rem; color: var(--ink-muted); }
+.stone-name { font-family: var(--font-sans); font-weight: 600; font-size: 0.8125rem; line-height: 1.25; }
+.stone-sub { font-family: var(--font-sans); font-size: 0.6875rem; color: var(--ink-muted); }
 
 /* ---------- material estimate ---------- */
 
@@ -195,8 +196,8 @@
   padding-bottom: 0.3rem;
   border-bottom: 1px dotted var(--rule);
 }
-.estimate-figures dt { color: var(--ink-soft); }
-.estimate-figures dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; }
+.estimate-figures dt { color: var(--ink-soft); font-family: var(--font-sans); }
+.estimate-figures dd { margin: 0; font-family: var(--font-sans); font-weight: 600; font-variant-numeric: tabular-nums; }
 
 .estimate-waste,
 .estimate-boxes {
@@ -218,6 +219,7 @@
   border-top: 1px solid var(--rule);
   display: grid;
   gap: 0.3rem;
+  font-family: var(--font-sans);
   font-size: 0.8125rem;
   color: var(--ink-soft);
 }
@@ -225,6 +227,7 @@
 
 .estimate-caveat {
   margin: 0;
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   line-height: 1.55;
   color: var(--ink-muted);

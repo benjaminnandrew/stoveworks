@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Merriweather, Noto_Sans, Open_Sans } from "next/font/google";
+import { Calistoga, Source_Sans_3, Source_Serif_4 } from "next/font/google";
 
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -10,24 +10,32 @@ import "./globals.css";
 import "./app.css";
 import "./veneer.css";
 
-const notoSans = Noto_Sans({
+/**
+ * Three faces, per the Hayward Stoveworks type scheme — display, reading, UI.
+ * Self-hosted through next/font, so no third-party request and no layout shift.
+ */
+
+/** Show: hero words and short display lines only. Never body, nav or forms. */
+const calistoga = Calistoga({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-noto-sans",
+  weight: ["400"],
+  variable: "--font-calistoga",
   display: "swap",
 });
 
-const merriweather = Merriweather({
+/** Story: page titles and all reading copy. Variable, with an italic. */
+const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-merriweather",
+  style: ["normal", "italic"],
+  variable: "--font-source-serif",
   display: "swap",
 });
 
-const openSans = Open_Sans({
+/** Shop: nav, buttons, labels, prices, forms, captions. */
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
-  variable: "--font-open-sans",
+  style: ["normal", "italic"],
+  variable: "--font-source-sans",
   display: "swap",
 });
 
@@ -86,7 +94,10 @@ const localBusinessJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-US" className={`${notoSans.variable} ${merriweather.variable} ${openSans.variable}`}>
+    <html
+      lang="en-US"
+      className={`${calistoga.variable} ${sourceSerif.variable} ${sourceSans.variable}`}
+    >
       <body>
         <script
           type="application/ld+json"

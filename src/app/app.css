@@ -18,7 +18,9 @@
   margin: 0.5rem 0 0;
   max-width: 62ch;
   color: var(--ink-soft);
-  font-size: 1rem;
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.55;
 }
 
 /* ---------- forms ---------- */
@@ -38,8 +40,15 @@
 .auth-form { display: grid; gap: 1.15rem; justify-items: start; }
 
 .field { display: grid; gap: 0.35rem; width: 100%; }
-.field-label { font-weight: 600; font-size: 0.9375rem; }
-.field-note { font-size: 0.8125rem; color: var(--ink-muted); line-height: 1.5; }
+.field-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+.field-note { font-family: var(--font-sans); font-size: 0.8125rem; color: var(--ink-muted); line-height: 1.5; }
 
 .field input,
 .field textarea,
@@ -52,7 +61,8 @@
   border: 1px solid #c9c9c9;
   border-radius: 2px;
   background: #fff;
-  font: inherit;
+  font-family: var(--font-sans);
+  font-size: 1rem;
   color: inherit;
 }
 .field input:focus-visible,
@@ -63,9 +73,9 @@
 .field-row { border: 0; margin: 0; padding: 0; display: grid; gap: 0.35rem; width: 100%; }
 .field-row legend { padding: 0; }
 .dims { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; margin-top: 0.4rem; }
-.dims label { display: grid; gap: 0.25rem; font-size: 0.8125rem; color: var(--ink-soft); }
+.dims label { display: grid; gap: 0.25rem; font-family: var(--font-sans); font-size: 0.8125rem; color: var(--ink-soft); }
 
-.checkbox { display: flex; align-items: center; gap: 0.6rem; font-size: 0.9375rem; }
+.checkbox { display: flex; align-items: center; gap: 0.6rem; font-family: var(--font-sans); font-size: 0.9375rem; }
 .checkbox input { width: 18px; height: 18px; accent-color: var(--accent); }
 
 .honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
@@ -85,7 +95,9 @@
   border: 0;
   background: none;
   padding: 0;
-  font: inherit;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
   color: var(--accent);
   cursor: pointer;
   text-decoration: underline;
@@ -102,7 +114,8 @@
   align-items: center;
   gap: 0.35rem 1.25rem;
   margin-top: 0.75rem;
-  font-family: var(--font-nav);
+  font-family: var(--font-sans);
+  font-weight: 600;
   font-size: 0.9375rem;
 }
 .account-nav a { text-decoration: none; }
@@ -160,7 +173,7 @@
 .design-body h3 { margin: 0; font-size: 1.0625rem; }
 .design-body h3 a { text-decoration: none; color: var(--ink); }
 .design-body h3 a:hover { color: var(--accent); }
-.design-meta { margin: 0; font-size: 0.8125rem; color: var(--ink-muted); }
+.design-meta { margin: 0; font-family: var(--font-sans); font-size: 0.8125rem; color: var(--ink-muted); }
 .design-share { margin: 0; font-size: 0.8125rem; }
 .design-actions { display: flex; gap: 1rem; margin-top: 0.35rem; font-size: 0.875rem; }
 
@@ -213,7 +226,8 @@
   padding: 0.55rem 0.7rem;
   border: 1px solid #c9c9c9;
   border-radius: 2px;
-  font: inherit;
+  font-family: var(--font-sans);
+  font-size: 1rem;
   font-weight: 600;
 }
 .viz-tools { display: flex; gap: 0.5rem; flex-wrap: wrap; }
@@ -226,7 +240,8 @@
   border: 1px solid #c4c4c4;
   border-radius: 2px;
   background: #fff;
-  font: inherit;
+  font-family: var(--font-sans);
+  font-weight: 600;
   font-size: 0.875rem;
   color: var(--ink);
   cursor: pointer;
@@ -303,7 +318,7 @@
 .cal-controls label { display: inline-flex; align-items: center; gap: 0.5rem; }
 .cal-controls input { width: 6rem; }
 
-.viz-hint { margin: 0; font-size: 0.9375rem; color: var(--ink-muted); }
+.viz-hint { margin: 0; font-family: var(--font-sans); font-size: 0.9375rem; color: var(--ink-muted); }
 
 .viz-busy,
 .viz-notice {
@@ -325,11 +340,11 @@
   gap: 0.9rem;
 }
 .item-controls-head { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: baseline; }
-.item-size { font-size: 0.875rem; color: var(--ink-muted); }
+.item-size { font-family: var(--font-sans); font-size: 0.875rem; color: var(--ink-muted); }
 
 .control-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; }
 @media (max-width: 640px) { .control-grid { grid-template-columns: 1fr; } }
-.control-grid label { display: grid; gap: 0.3rem; font-size: 0.8125rem; color: var(--ink-soft); }
+.control-grid label { display: grid; gap: 0.3rem; font-family: var(--font-sans); font-size: 0.8125rem; color: var(--ink-soft); }
 .control-grid input[type="range"] { width: 100%; accent-color: var(--accent); }
 
 .item-buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -359,7 +374,8 @@
   border: 1px solid #c9c9c9;
   border-radius: 999px;
   background: #fff;
-  font: inherit;
+  font-family: var(--font-sans);
+  font-weight: 600;
   font-size: 0.8125rem;
   cursor: pointer;
 }
@@ -386,7 +402,7 @@
   border: 1px solid transparent;
   border-radius: 3px;
   background: none;
-  font: inherit;
+  font-family: var(--font-sans);
   text-align: left;
   cursor: pointer;
 }
@@ -418,8 +434,8 @@
 }
 
 .product-meta { display: grid; gap: 0.15rem; min-width: 0; }
-.product-name { font-weight: 600; font-size: 0.9375rem; line-height: 1.3; }
-.product-sub { font-size: 0.75rem; color: var(--ink-muted); }
+.product-name { font-family: var(--font-sans); font-weight: 600; font-size: 0.9375rem; line-height: 1.3; }
+.product-sub { font-family: var(--font-sans); font-size: 0.75rem; color: var(--ink-muted); }
 
 /* ---------- shared design ---------- */
 
@@ -461,22 +477,24 @@
   display: grid;
   gap: 0.15rem;
 }
-.admin-stat strong { font-size: 1.5rem; font-family: var(--font-heading); }
+.admin-stat strong { font-size: 1.5rem; font-family: var(--font-serif); }
 .admin-stat span { font-size: 0.8125rem; color: var(--ink-muted); }
 
 .admin-table {
   width: 100%;
   border-collapse: collapse;
   background: var(--surface);
+  font-family: var(--font-sans);
   font-size: 0.9375rem;
 }
 .admin-table th,
 .admin-table td { text-align: left; padding: 0.7rem 0.85rem; border-bottom: 1px solid var(--rule); }
 .admin-table th {
-  font-family: var(--font-nav);
-  font-size: 0.8125rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.2em;
   color: var(--ink-muted);
 }
 .admin-table tbody tr:hover { background: #fafafa; }
@@ -486,6 +504,7 @@
   padding: 0.15rem 0.5rem;
   border-radius: 999px;
   background: #eee;
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   color: var(--ink-soft);
 }
