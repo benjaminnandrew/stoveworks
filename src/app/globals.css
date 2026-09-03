@@ -4,8 +4,16 @@
    ========================================================================== */
 
 :root {
-  --accent: #d63d45;
-  --accent-dark: #b32c33;
+  /* Oxblood. Warmer and far less bright than the old theme red, and it takes
+     white-on-accent contrast from 4.55:1 to 7.24:1. */
+  --accent: #96382c;
+  --accent-dark: #7b2d23;
+  /* Destructive actions, kept distinct from the accent now that the accent is
+     itself a red. */
+  --danger: #8a2318;
+  /* Warm tints of the accent, for error panels and hover fills. */
+  --accent-wash: #f9ece8;
+  --accent-wash-soft: #faf3f0;
   --highlight: #fedf32;
   --ink: #111;
   --ink-soft: #4a4a4a;

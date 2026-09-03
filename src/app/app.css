@@ -86,7 +86,7 @@
   margin: 0;
   padding: 0.75rem 1rem;
   border-left: 4px solid var(--accent);
-  background: #fdeced;
+  background: var(--accent-wash);
   font-size: 0.9375rem;
 }
 .form-ok { border-left-color: #2e7d32; background: #eaf5ea; }
@@ -104,7 +104,7 @@
   text-underline-offset: 2px;
 }
 .linklike:hover { color: #000; }
-.linklike.danger { color: #a0242c; }
+.linklike.danger { color: var(--danger); }
 
 /* ---------- account ---------- */
 
@@ -250,7 +250,7 @@
 .tool:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
 .tool:disabled { opacity: 0.45; cursor: not-allowed; }
 .tool.is-on { background: var(--accent); border-color: var(--accent); color: #fff; }
-.tool-danger:hover:not(:disabled) { border-color: #a0242c; color: #a0242c; }
+.tool-danger:hover:not(:disabled) { border-color: var(--danger); color: var(--danger); }
 .tool-file { position: relative; overflow: hidden; }
 .tool-file input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 
@@ -406,7 +406,7 @@
   text-align: left;
   cursor: pointer;
 }
-.product-card:hover:not(:disabled) { border-color: var(--accent); background: #fdf4f4; }
+.product-card:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-wash-soft); }
 .product-card:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .product-thumb {

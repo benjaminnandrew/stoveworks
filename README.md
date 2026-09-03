@@ -150,6 +150,25 @@ pieces will cover (the usual half a square foot per linear foot), plus a 10% cut
 divided by the per-box coverage on each profile. It is a starting point for a quote and the UI
 says so; staff confirm against the current coverage chart before anything is ordered.
 
+## Colour
+
+Tokens at the top of `globals.css`. The accent is **oxblood `#96382c`** — warmer and far less
+bright than the `#d63d45` inherited from the old WordPress theme, and it takes white-on-accent
+contrast from 4.55:1 (only just AA) to 7.24:1 (AAA), which matters because the nav bar is white
+text on a solid accent fill.
+
+| Token | Value | Used for |
+| --- | --- | --- |
+| `--accent` | `#96382c` | Top bar and nav fill, page titles, buttons, links, focus rings |
+| `--accent-dark` | `#7b2d23` | Hover on accent-filled controls |
+| `--danger` | `#8a2318` | Destructive actions only — deliberately distinct now the accent is itself a red |
+| `--accent-wash` | `#f9ece8` | Error panel fill |
+| `--accent-wash-soft` | `#faf3f0` | Card hover fill |
+| `--highlight` | `#fedf32` | Nav hover/active, the dark-band headings, editor handles |
+
+Emails cannot use custom properties, so `src/lib/mail.ts` inlines the accent — change it in
+both places if the accent moves again.
+
 ## Typography
 
 Three faces, no others — the scheme is in [docs/type-scheme.md](docs/type-scheme.md) and the

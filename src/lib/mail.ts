@@ -73,10 +73,10 @@ export function signInEmail(link: string, isNew: boolean): Omit<Message, "to"> {
 <div style="font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#111;max-width:520px">
   <p style="margin:0 0 18px">${greeting}</p>
   <p style="margin:0 0 24px">
-    <a href="${link}" style="display:inline-block;background:#d63d45;color:#fff;padding:12px 22px;font-weight:700;text-decoration:none">Sign in</a>
+    <a href="${link}" style="display:inline-block;background:#96382c;color:#fff;padding:12px 22px;font-weight:700;text-decoration:none">Sign in</a>
   </p>
   <p style="margin:0 0 6px;color:#666;font-size:13px">Or paste this into your browser:</p>
-  <p style="margin:0 0 24px;word-break:break-all;font-size:13px"><a href="${link}" style="color:#d63d45">${link}</a></p>
+  <p style="margin:0 0 24px;word-break:break-all;font-size:13px"><a href="${link}" style="color:#96382c">${link}</a></p>
   <p style="margin:0 0 24px;color:#666;font-size:13px">
     This link works once and expires in 15 minutes.<br>
     If you didn't ask for it, you can ignore this email.
