@@ -11,6 +11,10 @@ flows from there into the header, footer, page titles, sign-in emails and JSON-L
 **Phase 3** added a stone veneer mock-up studio with material estimating.
 **Phase 4** applied the Hayward Stoveworks rebrand — name, logo and type scheme.
 
+Picking this up cold? Start with **[HANDOFF.md](HANDOFF.md)** — project state, the
+decisions behind it, what's unfinished, and the things that will bite you. This file is the
+reference manual.
+
 ## Stack
 
 | Piece | Choice | Why |
