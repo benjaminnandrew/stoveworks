@@ -10,6 +10,8 @@ flows from there into the header, footer, page titles, sign-in emails and JSON-L
 **Phase 2** added customer accounts, a product inventory, and a room visualizer.
 **Phase 3** added a stone veneer mock-up studio with material estimating.
 **Phase 4** applied the Hayward Stoveworks rebrand — name, logo and type scheme.
+**Phase 5** merged the two visual tools into **Room Studio**: stove and stone in one photo,
+with an A/B comparison, a sample room to start on, and a shop mode for the showroom.
 
 Picking this up cold? Start with **[HANDOFF.md](HANDOFF.md)** — project state, the
 decisions behind it, what's unfinished, and the things that will bite you. This file is the
@@ -41,7 +43,10 @@ npm run dev            # http://localhost:3014
 
 Other scripts: `npm run build`, `npm start`, `npm run typecheck`, `npm run lint`,
 `npm run db:reset`, `npm run db:seed:stone`, `npm run db:grant <email> [role]`,
-`npm run stone:tiles` (regenerates the placeholder stone textures).
+`npm run stone:tiles` (regenerates the placeholder stone textures),
+`node scripts/make-seamless-tile.mjs <photo> <out.jpg> --width-in N` (turns a stone photo
+into a seamless swatch — see [docs/stone-swatches.md](docs/stone-swatches.md)), and
+`npx tsx scripts/check-studio.ts` (Room Studio's rule checks; `npx` fetches tsx on first run).
 
 ### The database in development
 
@@ -68,7 +73,7 @@ npm run db:grant -- you@example.com admin
 ## Layout
 
 ```
-db/schema.sql               all ten tables, idempotent
+db/schema.sql               all ten tables, idempotent (incl. the Room Studio migration)
 scripts/                    migrate, seed, seed-stone, reset, grant, tile + logo tooling
 src/
   app/
@@ -77,45 +82,105 @@ src/
     page.tsx                home
     [...slug]/page.tsx      every marketing page, from src/content/pages.ts
     contact-us/             hand-built: structured address, hours, map
-    visualizer/             the stove tool — public, works signed out
-    veneer/                 the stone veneer tool — public, works signed out
+    visualizer/             Room Studio — stove and stone; public, works signed out
+                            (/veneer/ redirects here, opening on the stone)
     sign-in/, auth/verify/  magic-link request and redemption
-    account/                saved designs and mock-ups, profile, both editors
+    account/                saved designs, profile, the studio for a saved design
     admin/                  staff inventory: products, cutouts, dimensions
     admin/stone/            staff catalogue: profiles, swatches, coverage
     d/[slug]/               read-only shared design
     api/photos              upload + serve private room photos
-    api/designs, api/veneer-designs   persist each tool's work
-  components/visualizer/    Visualizer, ProductPicker, DesignPreview, export, stash
-  components/veneer/        VeneerStudio, StoneRegion, StonePicker, EstimatePanel, export
+    api/designs             persist a design (products, stone, comparison)
+  components/studio/        RoomStudio (the editor), Scene (draws one view), Controls,
+                            StoneRegion, ProductPicker, StonePicker, EstimatePanel,
+                            ScenePreview (share page), export, stash
   content/                  site.ts (business info + nav), pages.ts, home.ts
-  lib/                      db, auth, storage, products, designs, stone, veneer,
-                            homography (the projective maths both tools share)
+  lib/                      db, auth, storage, products, designs, stone,
+                            studio (editing rules), sample-room, design-types,
+                            veneer-types (stone areas + estimate), homography
 public/products/            product cutouts + category placeholder silhouettes
 public/stone/               stone swatches + generated placeholder tiles
+public/visualizer/          the sample room picture
 var/                        pgdata + uploads (gitignored)
 _source/                    the scrape and parser that generated content/
 ```
 
-## How the visualizer works
+## How Room Studio works
 
-A customer uploads a room photo. It is downscaled in the browser before it ever hits the
-network, then re-encoded server-side by sharp — which drops the GPS coordinates phones
-attach by default.
+`/visualizer/` is one editor for the whole hearth. It opens on an **illustrated sample cabin**
+(the approved prototype's room) with a stove on the hearth pad and stone behind it, so there is
+something to try before anyone has a photo to hand. "Upload your room" swaps in the customer's
+own photo and carries their choices across.
 
-Products are placed as transparent cutouts, anchored at their **bottom centre** so scaling
-grows a stove upward off the floor rather than through it. Every position is stored as a
-**percentage of the photo**, so a design renders identically in the editor, in a 480px
-thumbnail, and in a full-resolution PNG export.
+Each view is drawn in the order a hearth is built (`components/studio/Scene.tsx`):
 
-**Scale** is the part that makes it honest. The customer drags a line across something they
-know the size of — a door is 80″ tall, 32″ wide — and enters that measurement. From then on
-every product is sized from its real width in the database, and the panel reports what the
-customer is actually looking at ("28″ wide in the room"). Uncalibrated, sizes are a sensible
-guess and nothing claims otherwise.
+1. the room photo;
+2. **stone areas** on the wall — the veneer mechanics below;
+3. **"in front" shapes**: parts of the photo re-painted over the stone, so the stone reads as
+   behind them. The sample room has hand-set shapes for its sofa, lamp, window and floor
+   (`lib/sample-room.ts`); customer photos have none yet — drawing them is on the list;
+4. **products** — transparent cutouts anchored at their bottom centre, hearth pads first so a
+   stove always stands on its pad.
 
-Signing in mid-design does not lose the work: the photo and placement are stashed in
-`sessionStorage` before the redirect and restored on return.
+Tapping a product or the stone selects it and switches the side panel to its layer (Stove /
+Stone). Stone is dragged by its surface — hit-testing is done in `lib/studio.ts`, and a tap in
+an opening falls through to the room — and shaped by its four corners, which refuse to fold or
+collapse. Keyboard: arrow keys move the selection (Shift for bigger steps), `+`/`-` and `[`/`]`
+size and turn a product, arrow keys on a focused corner move that corner, Escape deselects.
+
+With a product selected, tapping a model in the picker **swaps** it (keeping the position and
+the ratio of real widths); with nothing selected it **adds** one. The picker says which.
+
+**Compare** adds view B beside A. Placement is linked — one stove position, one stone shape —
+and only the choices differ: B can carry a different product on each item and a different
+stone, or the bare wall, on each area. Its sizes follow its own products' real widths. Saved
+with the design and shown as Option A / Option B on the share page; "Download A and B" exports
+them side by side.
+
+**Shop mode** is for a shared screen in the showroom: bigger controls, remembered on that
+device, no saving to accounts, and "New customer" clears everything — the design, any stashed
+work, and any signed-in account.
+
+### One scale for both layers
+
+The customer drags a line across something they know the size of — a door is 80″ tall, 32″
+wide — and enters it. From then on every product is sized from its real width in the database
+and the panel reports what they're looking at ("28″ wide in the room"). The same scale reads
+the **stone areas' real sizes off the photo**, which sets the size of the stone courses and the
+material estimate. A size the customer types in wins over the one read off the photo; typing
+one side keeps the other in proportion with the shape until it's typed too.
+
+Before any scale is set, sizes are read off a rough guess (a room photo shows about ten feet top
+to bottom — `GUESSED_PHOTO_HEIGHT_IN`), which keeps stove and stone in believable proportion.
+Everything derived from it is labelled as a guess, in the editor, the estimate and the share
+page. The sample room's scale is set by hand: its wall is taken as 8 ft.
+
+### Stone areas
+
+Veneer is a *surface*, not an object. Four corners on the wall define a **homography** — a
+projective map from a rectangle onto that quadrilateral — and the stone texture is pushed
+through it, so courses converge with the wall instead of sitting flat on top of it. The solver
+is in `src/lib/homography.ts`:
+
+- **On screen**, the matrix goes to CSS `matrix3d`. The browser rasterises it on the GPU, so
+  dragging stays smooth and the texture stays sharp.
+- **On export**, the same matrix drives a triangle mesh on a 2D canvas (a 2D context can only
+  do affine transforms, so the quad is subdivided until the error is sub-pixel). Triangles are
+  grown a hair before clipping, or antialiasing leaves a grid of seams across the wall.
+
+Each swatch declares the real area one tile covers, so courses come out the right size.
+"Accent panel" and "Full wall" give starting shapes. **Openings** — a firebox, a mantel, a
+window — are punched with a CSS mask on screen and `destination-out` on export, both applied
+*before* the warp, so a hole rides the perspective and the room shows through it.
+
+### The material estimate
+
+From each area's size: gross area, minus openings, minus the flat area that outside-corner
+pieces will cover (the usual half a square foot per linear foot), plus a 10% cutting allowance,
+divided by the per-box coverage on each profile where there is one (natural thin veneer like
+Buechel's is sold by the pallet, so it gets square footage only). It is a starting point for a
+quote and the UI says so — including whether the sizes were entered, read off the scale, or
+guessed.
 
 ### Products without photography
 
@@ -123,37 +188,23 @@ Any product with no `cutout_path` renders a category silhouette from `public/pro
 badged "Photo coming" in the picker, with a notice on the page. The tool is usable from day
 one and never pretends a placeholder is the real unit.
 
-## How the veneer studio works
+### Saving, signing in, sharing
 
-Veneer is a *surface*, not an object, so the mechanic is different from the stove tool.
+Photos are downscaled in the browser before they leave it, then re-encoded server-side by sharp
+— which drops the GPS coordinates phones attach. A design saves products, stone areas, "in
+front" shapes and the comparison together (`designs` table). Every position is a percentage
+of the photo, so the editor, a thumbnail and a full-resolution export all agree.
 
-The customer drags four corners onto the wall face. Those corners define a **homography** —
-a projective map from a rectangle onto that quadrilateral — and the stone texture is pushed
-through it, so courses converge with the wall instead of sitting flat on top of it. The
-solver is in `src/lib/homography.ts` and has one job, which means the live editor and the
-PNG export cannot disagree:
+Signing in mid-design keeps the work. "Sign in to save" stashes the design (and a small copy of
+the photo) in `localStorage` under a one-time id, and the emailed sign-in link brings that id
+back (`/sign-in/?next=…` → link → `/auth/verify` → `/visualizer/?resume=<id>`). It has to be
+`localStorage`: the link opens in a new tab. The stash is only restored by the matching id —
+never for whoever uses the device next — is cleared once restored, and expires after two
+hours. `safeNextPath` (`lib/site-url.ts`) only lets sign-in return to `/visualizer/…` or
+`/account/…`.
 
-- **On screen**, the matrix goes to CSS `matrix3d`. The browser rasterises it on the GPU, so
-  dragging a corner stays smooth and the texture stays sharp.
-- **On export**, the same matrix drives a triangle mesh on a 2D canvas (a 2D context can only
-  do affine transforms, so the quad is subdivided until the error is sub-pixel). Triangles are
-  grown a hair before clipping, or antialiasing leaves a grid of seams across the wall.
-
-**Scale comes from the customer, not from guesswork.** They enter how wide and tall the area
-really is. That single pair of numbers does three jobs: it sizes the stone courses correctly
-(each swatch declares the real area one tile covers), it sets the region's internal aspect,
-and it is what the material estimate is computed from.
-
-**Openings** — a firebox, a mantel, a window — are punched with a CSS mask on screen and
-`destination-out` on export, both applied *before* the warp, so a hole rides the perspective
-and the room shows through it.
-
-### The material estimate
-
-From the entered dimensions: gross area, minus openings, minus the flat area that outside-corner
-pieces will cover (the usual half a square foot per linear foot), plus a 10% cutting allowance,
-divided by the per-box coverage on each profile. It is a starting point for a quote and the UI
-says so; staff confirm against the current coverage chart before anything is ordered.
+`/d/[slug]` is the read-only share page. Mock-ups saved by the old veneer tool were copied into
+`designs` under their original ids and slugs, so old edit and share links still work.
 
 ## Navigation
 
@@ -222,11 +273,13 @@ Two things worth knowing before editing:
 ## Data model
 
 `users` → `login_tokens`, `sessions` — magic-link auth; only token *hashes* are stored.
-`brands` → `products` — the hearth inventory the stove visualizer draws from.
-`brands` → `stone_products` — the veneer catalogue.
-`room_photos` → `designs` / `veneer_designs` → `design_enquiries` — customer work, all scoped
-by `user_id`. The two tools save into separate tables for now; `/d/[slug]` resolves either, so
-links a customer has already sent keep working when the editors eventually merge.
+`brands` → `products` — the hearth inventory Room Studio draws from.
+`brands` → `stone_products` — the stone catalogue (Cultured Stone profiles, the Buechel sample).
+`room_photos` → `designs` → `design_enquiries` — customer work, all scoped by `user_id`. A
+design holds `items` (products), `regions` (stone areas), `occluders` ("in front" shapes),
+`compare` (view B's choices, or null) and `pct_per_inch` (the scale, or null).
+`veneer_designs` is the old veneer tool's table: its rows were copied into `designs` and
+stamped `migrated_at`, and it can be dropped once the merge has shipped.
 
 Access rules, all enforced server-side:
 
@@ -261,16 +314,19 @@ it is not reconstructible.
 ## Still to do
 
 - **Product photography.** All 42 catalog rows need transparent cutouts and real widths
-  before the visualizer is truthful. Staff upload both at `/admin`.
+  before Room Studio is truthful. Staff upload both at `/admin`. The Brain's catalogue
+  (`brain/data/models.json`) already has a product photo *and* real dimensions for 104 current
+  models — the quickest route to real stoves (see HANDOFF).
 - **Stone swatches.** The 10 seeded Cultured Stone profiles all render a generic placeholder
   tile, labelled as a sample. Each needs a seamlessly tiling photograph of the real product and
   the real area that image covers, uploaded at `/admin/stone`.
 - **The rest of the stone catalogue.** Cultured Stone publishes 21+ textures and 100+ colours;
   only the profile families are seeded, with no colour variants, and coverage figures are
   typical rather than published. All of it wants confirming against the current catalogue.
-- **Merging the two tools.** A customer doing a full fireplace currently mocks the facing and
-  the insert separately and cannot see them together. `veneer_designs` becomes a layer type on
-  `designs` when that happens.
+- **"In front" shapes on customers' own photos.** The mechanism exists (the sample room uses
+  it); customers need a way to draw them, so a sofa or mantel isn't covered by stone.
+- **The Buechel sample.** Product name, profile and real size are unconfirmed; the swatch size
+  is an estimate (docs/stone-swatches.md).
 
 ### Rebrand loose ends
 

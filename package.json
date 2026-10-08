@@ -13,7 +13,9 @@
     "db:reset": "node scripts/reset.mjs",
     "db:grant": "node scripts/grant.mjs",
     "db:seed:stone": "node scripts/seed-stone.mjs",
-    "stone:tiles": "node scripts/generate-stone-tiles.mjs"
+    "stone:tiles": "node scripts/generate-stone-tiles.mjs",
+    "stone:seamless": "node scripts/make-seamless-tile.mjs",
+    "check:studio": "npx tsx scripts/check-studio.ts"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.8",

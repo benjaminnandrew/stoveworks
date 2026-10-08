@@ -1,6 +1,7 @@
 # Hayward Stoveworks — handoff
 
-Written 2026-10-02, at the end of the build sessions of 1–3 September 2026.
+Written 2026-10-02, at the end of the build sessions of 1–3 September 2026. Updated
+2026-10-08 for Room Studio (phase 5).
 Repo: `~/Projects/stoveworks`. Dev preview: **port 3014**.
 
 This is the "pick it up cold" document. [README.md](README.md) is the reference manual —
@@ -12,8 +13,8 @@ what will bite you.
 
 ## Where it stands
 
-Four phases, ten commits, working tree clean, `tsc` and `next build` both pass with zero
-warnings. **No git remote** — this has never been pushed anywhere.
+Five phases. `tsc` and `next build` pass. **No git remote** — this has never been pushed
+anywhere.
 
 | Phase | What | State |
 | --- | --- | --- |
@@ -21,6 +22,7 @@ warnings. **No git remote** — this has never been pushed anywhere.
 | 2 | Customer accounts, product inventory, room visualizer | Done |
 | 3 | Stone veneer mock-up studio + material estimating | Done |
 | 4 | Hayward Stoveworks rebrand — name, logo, type, colour | Done |
+| 5 | Room Studio: the two visual tools merged into one, with compare, sample room, shop mode | Done (branch `room-studio`) |
 
 Nothing is deployed. Nothing is live. The old WordPress site is still what the public sees
 at stoveworksinc.com.
@@ -57,9 +59,20 @@ nobody can sign in at all.** That's the single biggest go-live blocker.
 installing. See the PGlite warning below — it is not a toy, but it is single-process and it
 has already lost a write.
 
-**Veneer tool = separate route now, merge later.** `/visualizer` and `/veneer` are separate
-editors with separate tables. `/d/[slug]` already resolves either kind, so share links
-customers have sent will survive the eventual merge.
+**Room Studio = the two tools merged, built on what was here** (Ben, 8 Oct 2026). Ben
+prototyped the merged experience in ChatGPT in September (stove and stone in one scene, A/B
+compare, shop mode — the "Stoveworks-Visualizer-Handoff" package). That prototype was a design
+reference, not a base: its stoves were drawn in code at no real size and its stone scale was
+arbitrary. Room Studio keeps this repo's cutouts, calibration, homography, estimate, accounts
+and sharing, and takes the prototype's interaction design. `/veneer/` redirects into it.
+
+**Buechel Stone is a line Stoveworks sells** (Ben, 8 Oct 2026), so it's in the stone catalogue
+with the prototype's sample photo, made seamless. Its product name, profile and real size are
+**not** known yet and it is labelled that way; see `docs/stone-swatches.md`.
+
+**Compare keeps placement linked.** One stove position, one stone shape; view B differs only
+in which products and stones it shows. That's what makes A and B comparable, and it's the
+prototype's behaviour. Independent placement per view would be a later change if staff ask.
 
 **Stone swatches = staff upload, not scraped.** I deliberately did **not** scrape Cultured
 Stone's product photography into the repo. Whether the dealer agreement covers marketing
@@ -110,6 +123,19 @@ a redirect and crawlers see the slashless URL, so write `/visualizer/`. Don't ad
 `/api/...` or `/auth/...`. Watch out for `NextURL`: `request.nextUrl.clone()` drops a slash you
 add to `pathname`, which made the proxy loop until it was switched to a plain `URL`.
 
+### Sign-in now returns to where it started
+
+`/sign-in/?next=…` carries through the emailed link to `/auth/verify`, which redirects there.
+`safeNextPath` (`src/lib/site-url.ts`) only allows `/visualizer/…` and `/account/…` — keep it
+an allow-list, or it becomes an open redirect. Room Studio's stash moved to `localStorage`
+(the link opens in a new tab) and is only restored for the matching `?resume=` id.
+
+### The sample room is hand-fitted
+
+Its scale (wall = 8 ft), the starting shapes and the "in front" shapes for the sofa, lamp,
+window and floor are all set in `src/lib/sample-room.ts` for that one picture. Replacing the
+image means redoing those numbers.
+
 ### `.nav-item` must stay `position: static`
 
 The mega menu panel spans the nav bar. If `.nav-item` goes back to `position: relative`,
@@ -154,9 +180,20 @@ Ordered by what blocks going live.
    UI for a customer to send a design to Steve or for staff to work the queue. This is the
    natural next piece and was deliberately left for a decision: email, an inbox in `/admin`,
    or both.
-10. **Merging the two visual tools.** A customer doing a full fireplace mocks the facing and
-    the insert separately and can't see them together. `veneer_designs` becomes a layer type
-    on `designs` when that happens.
+10. **Room Studio, next steps** (in order of what makes it truthful):
+    - **Real stoves from the Brain.** `brain/data/models.json` has a product photo *and* real
+      width × height for 104 current, US-available models (56 stoves, 32 fireplaces, 15
+      inserts). Download with `node brain/scripts/ingest-assets.mjs --images --out
+      var/brain-assets`, check each cutout's background, and replace the 42 placeholder rows —
+      filtered to what Steve confirms is carried, and only once the dealer agreement is
+      confirmed to cover manufacturer imagery.
+    - **"In front" shapes on customers' photos.** Sample-room only today; customers need to
+      draw them so stone doesn't cover a sofa or a mantel.
+    - **Hearth pad on the floor plane**, so the pad moves with the stove (the sample room's is
+      painted in).
+    - **Design enquiries** (item 9) — the natural end of the studio: send A/B to Steve, with
+      the stone estimate attached and the location qualified early.
+    - **Drop `veneer_designs`** once the merge has shipped; its rows are already in `designs`.
 
 ### Rebrand loose ends
 
@@ -178,7 +215,7 @@ Ordered by what blocks going live.
 
 17. **The highlight yellow (`#fedf32`) is now conspicuous.** It was picked against the old
     bright red; against oxblood it reads neon. It's used for nav hover/active, the dark-band
-    headings, the gallery scrollbar and the veneer editor's corner handles. Something like
+    headings, the gallery scrollbar and Room Studio's corner handles. Something like
     `#e0b64a` would sit better. One-token change; left alone because Ben only asked about
     the red.
 18. **Brand name spellings vary across pages** — "KozyHeat" vs "Kozy Heat", "Morsø" vs
@@ -215,8 +252,29 @@ outside corners → 14 lin ft, which is (72+96)÷12.
 proved unreliable — tab opens, tab again enters the panel, Escape closes, closed panels are
 `inert`.
 
-**Not tested:** anything on real Postgres, anything with real SMTP, any touch device, any
-browser other than the Chromium in the preview pane, and any load beyond one user.
+**Room Studio (8 Oct 2026)**, driven in headless Chromium against the dev server:
+- Stove and stone drag independently; corners can't fold; keyboard moves the selection and
+  single corners; Escape on a corner leaves focus on the stage.
+- Compare: B swaps only its own choices, shows its own products' sizes (34″ insert vs 26″
+  stove), bare wall works, "Download A and B" exports both side by side.
+- Upload of a 4032×3024 photo: downscaled, choices carried over, sizes re-read at the guessed
+  scale; Set scale re-sizes products and re-reads stone sizes.
+- Signed out → "Sign in to save" → emailed link opened **in a new tab** → back in the studio
+  with the work restored; a plain visit to `/visualizer/` in between does **not** restore it.
+- Saved design reopens with compare; re-save updates it; share link renders both options;
+  the photo loads with the share slug and 404s without it.
+- An old veneer mock-up copied by the migration opens from its old edit URL and share link.
+- The migration on a fresh database: re-runs copy nothing twice, a slug clash is dropped to
+  null, and a copied design deleted afterwards stays deleted.
+- Shop mode: no save button, remembered across reloads, "New customer" signs out.
+- Phone (390px) and tablet (820px): no sideways scroll.
+- `npx tsx scripts/check-studio.ts`: 13 checks on the editing rules.
+- An independent review of the whole change; its findings were fixed.
+
+**Not tested:** anything on real Postgres, anything with real SMTP, a real touch device
+(touch was emulated), any browser other than Chromium, and any load beyond one user. The
+production build was checked with webpack and stand-in fonts, because the sandbox it was
+built in can't reach Google Fonts; run `npm run build` once on a normal connection.
 
 ---
 
@@ -243,9 +301,11 @@ Where things live:
 - `src/content/` — all copy and business info. `site.ts` is the single source for the
   business name, nav and NAP; change it there and the header, footer, titles, emails and
   JSON-LD all follow.
-- `src/lib/` — db, auth, storage, products, designs, stone, veneer, and `homography.ts`
-  (the projective maths both visual tools share).
-- `db/schema.sql` — all ten tables, idempotent.
+- `src/lib/` — db, auth, storage, products, designs, stone, `studio.ts` (Room Studio's
+  editing rules, checked by `scripts/check-studio.ts`), `sample-room.ts`, and
+  `homography.ts` (the projective maths behind the stone).
+- `src/components/studio/` — Room Studio.
+- `db/schema.sql` — all ten tables, idempotent, including the Room Studio migration.
 - `_source/` — the original scrape and the parser that generated `pages.ts`. Not shipped.
 - `docs/type-scheme.md` — the three-face type scheme as supplied.
 - `brain/` — Ben's in-progress company-brain knowledge base (verified brand and model
