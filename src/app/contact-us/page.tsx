@@ -6,7 +6,7 @@ import { business, mailtoHref } from "@/content/site";
 export const metadata: Metadata = {
   title: "Contact Us",
   description: `Visit ${business.name} at ${business.street}, ${business.city}, ${business.state} ${business.zip}. Call ${business.phone} or stop in — hours, directions and map.`,
-  alternates: { canonical: "/contact-us" },
+  alternates: { canonical: "/contact-us/" },
 };
 
 export default function ContactPage() {
@@ -47,8 +47,6 @@ export default function ContactPage() {
                 {business.city}, {business.state} {business.zip}
                 <br />
                 Phone: <a href={business.phoneHref}>{business.phone}</a>
-                <br />
-                Fax: {business.fax}
                 <br />
                 <a href={mailtoHref}>Email Us</a>
                 {" | "}

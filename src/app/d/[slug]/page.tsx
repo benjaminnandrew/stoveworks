@@ -179,13 +179,13 @@ function Cta() {
       <p>
         Want to see it in person? We&rsquo;re at {business.street}, {business.city}.
       </p>
-      <Link className="btn" href="/contact-us">
+      <Link className="btn" href="/contact-us/">
         Get in touch
       </Link>
       <p className="share-cta">
-        <Link href="/visualizer">Try a stove in your room →</Link>
+        <Link href="/visualizer/">Try a stove in your room →</Link>
         <br />
-        <Link href="/veneer">Try stone on your wall →</Link>
+        <Link href="/veneer/">Try stone on your wall →</Link>
       </p>
     </>
   );

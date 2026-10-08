@@ -15,7 +15,7 @@ export default function NotFound() {
           <div className="prose">
             <p>
               Sorry — we couldn&rsquo;t find that page. It may have moved. Try one of our main
-              sections, or <Link href="/contact-us">get in touch</Link> and we&rsquo;ll point you in
+              sections, or <Link href="/contact-us/">get in touch</Link> and we&rsquo;ll point you in
               the right direction.
             </p>
             <ul>

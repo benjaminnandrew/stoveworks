@@ -61,7 +61,7 @@ export default async function AdminPage() {
               {products.map((p) => (
                 <tr key={p.id}>
                   <td>
-                    <Link href={`/admin/products/${p.id}`}>{p.name}</Link>
+                    <Link href={`/admin/products/${p.id}/`}>{p.name}</Link>
                   </td>
                   <td>
                     {FUEL_LABEL[p.fuel]} {CATEGORY_LABEL[p.category].toLowerCase()}

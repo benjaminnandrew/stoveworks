@@ -33,7 +33,7 @@ export function DesignCard({
 
   return (
     <article className="design-card">
-      <Link href={`${copy.href}/${design.id}`} className="design-thumb">
+      <Link href={`${copy.href}/${design.id}/`} className="design-thumb">
         {/* Room photos are private and served through the authenticated route,
             so next/image's optimizer is the wrong tool here. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -42,7 +42,7 @@ export function DesignCard({
 
       <div className="design-body">
         <h3>
-          <Link href={`${copy.href}/${design.id}`}>{design.title}</Link>
+          <Link href={`${copy.href}/${design.id}/`}>{design.title}</Link>
         </h3>
         <p className="design-meta">
           {design.count} {design.count === 1 ? copy.noun : copy.nouns} · updated {updated}
@@ -50,7 +50,7 @@ export function DesignCard({
 
         {design.share_slug ? (
           <p className="design-share">
-            Shared: <Link href={`/d/${design.share_slug}`}>/d/{design.share_slug.slice(0, 8)}…</Link>
+            Shared: <Link href={`/d/${design.share_slug}/`}>/d/{design.share_slug.slice(0, 8)}…</Link>
           </p>
         ) : null}
 

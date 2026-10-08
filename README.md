@@ -73,6 +73,7 @@ scripts/                    migrate, seed, seed-stone, reset, grant, tile + logo
 src/
   app/
     layout.tsx              chrome, metadata, LocalBusiness JSON-LD
+    (src/proxy.ts)          trailing-slash redirect, pages only
     page.tsx                home
     [...slug]/page.tsx      every marketing page, from src/content/pages.ts
     contact-us/             hand-built: structured address, hours, map
@@ -304,8 +305,15 @@ the nameplate.
 
 ## Notes on the phase-1 migration
 
-- Legacy trailing-slash URLs (`/services/`) 308-redirect to the clean path.
-- Two pages the old nav never linked — Refrigerators & Cook Stoves, Hot Tubs / Sauna Stoves —
-  are now in the Specialty Hearth menu.
+- **URLs end in a slash**, as they did on WordPress (`/services/`). `trailingSlash: true` is set
+  in `next.config.ts`; the redirect from the slashless form is done in `src/proxy.ts` for pages
+  only, so `/api/` and `/auth/` calls don't take a 308 hop. Write every internal link with the
+  trailing slash, because `<Link>` does not add it.
+- Pages renamed per `docs/seo-plan.md` (8 Oct 2026) 301 from their old URLs (`redirects()` in
+  `next.config.ts`): `specialty-hearth/*` → `hearth-accessories/*`, `/outdoor/`,
+  `/cook-stoves/`, `/sauna-stoves/` + `/wood-fired-hot-tubs/` (split), and `facings` →
+  `stonework-mantels`. The old WordPress hello-world post returns 410.
+- Two pages the old nav never linked (cook stoves and the hot tub / sauna page) are in the
+  Specialty Hearth menu.
 - The old Stoves page linked to `/stoves/gas/` and `/stoves/wood/`, which 404'd. Fixed.
-- Refrigerators & Cook Stoves is image-only on the live site and remains thin here.
+- Cook Stoves & Refrigerators is image-only on the live site and remains thin here.

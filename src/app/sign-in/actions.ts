@@ -17,7 +17,7 @@ export async function requestSignInLink(
   // Bots fill hidden fields; people do not.
   const trap = String(formData.get("company") ?? "");
 
-  if (trap) redirect("/sign-in?sent=1");
+  if (trap) redirect("/sign-in/?sent=1");
   if (!isValidEmail(email)) return { error: "Please enter a valid email address." };
 
   const head = await headers();
@@ -42,5 +42,5 @@ export async function requestSignInLink(
     return { error: "We couldn't send that email just now. Please try again in a moment." };
   }
 
-  redirect("/sign-in?sent=1");
+  redirect("/sign-in/?sent=1");
 }

@@ -185,7 +185,7 @@ export async function signOut(): Promise<void> {
 
 export async function requireUser(): Promise<User> {
   const user = await currentUser();
-  if (!user) redirect("/sign-in");
+  if (!user) redirect("/sign-in/");
   return user;
 }
 

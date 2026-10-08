@@ -75,7 +75,7 @@ export function MegaMenu({
             <Link href={item.href} className="mega-all">
               All {item.label} &rarr;
             </Link>
-            <Link href="/visualizer" className="mega-cta">
+            <Link href="/visualizer/" className="mega-cta">
               See it in your own room &rarr;
             </Link>
           </div>

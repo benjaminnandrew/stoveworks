@@ -63,9 +63,9 @@ function brandsOn(slug: string): string[] {
 
 const cache = new Map<string, string[]>();
 
-/** Brands carried on a page, by href (e.g. "/stoves/gas-stoves"). */
+/** Brands carried on a page, by href (e.g. "/stoves/gas-stoves/"). */
 export function brandsForHref(href: string): string[] {
-  const slug = href.replace(/^\//, "");
+  const slug = href.replace(/^\/|\/$/g, "");
   if (!cache.has(slug)) cache.set(slug, brandsOn(slug));
   return cache.get(slug)!;
 }

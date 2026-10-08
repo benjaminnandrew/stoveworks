@@ -23,7 +23,13 @@ export type Page = {
   /** Path without leading slash, e.g. "fireplaces/gas-fireplaces". */
   slug: string;
   title: string;
-  /** Optional override for the <title>/meta description. */
+  /**
+   * The <title>, before " | Hayward Stoveworks" is appended. Defaults to
+   * "{title} in Hayward, WI": people searching from the Cities for their cabin
+   * type the town, and Google can't infer it from where they are.
+   */
+  metaTitle?: string;
+  /** Optional override for the meta description. */
   description?: string;
   sections: Section[];
 };

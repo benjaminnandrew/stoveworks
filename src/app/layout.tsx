@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Calistoga, Source_Sans_3, Source_Serif_4 } from "next/font/google";
 
 import { SiteFooter } from "@/components/SiteFooter";
+import { JsonLd } from "@/components/JsonLd";
 import { SiteHeader } from "@/components/SiteHeader";
 import { business } from "@/content/site";
 import { siteUrl } from "@/lib/site-url";
@@ -42,16 +43,15 @@ const sourceSans = Source_Sans_3({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${business.name} – ${business.city}, Wisconsin – ${business.tagline}`,
-    template: `%s – ${business.name}`,
+    default: `Fireplace & Stove Store in ${business.city}, ${business.state} | ${business.name}`,
+    template: `%s | ${business.name}`,
   },
-  description: `${business.name} in ${business.city}, Wisconsin. Gas, wood and electric stoves, fireplaces, inserts, facings and specialty hearth products, with factory-trained installers.`,
+  description: `${business.name} in ${business.city}, Wisconsin. Gas, wood and electric stoves, fireplaces, inserts, fireplace stone, mantels and hearth accessories, with factory-trained installers.`,
   openGraph: {
     type: "website",
     siteName: `${business.name} – ${business.city}, Wisconsin`,
     locale: "en_US",
   },
-  alternates: { canonical: "/" },
 };
 
 export const viewport: Viewport = {
@@ -67,7 +67,6 @@ const localBusinessJsonLd = {
   description: business.tagline,
   url: siteUrl,
   telephone: business.phone,
-  faxNumber: business.fax,
   email: business.email,
   image: `${siteUrl}/images/logo-hayward-stoveworks.png`,
   address: {
@@ -99,10 +98,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${calistoga.variable} ${sourceSerif.variable} ${sourceSans.variable}`}
     >
       <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
-        />
+        <JsonLd data={localBusinessJsonLd} />
         <a className="skip-link" href="#content">
           Skip to content
         </a>

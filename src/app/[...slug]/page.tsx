@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { JsonLd } from "@/components/JsonLd";
 import { PageSections } from "@/components/PageSections";
+import { brandsForHref } from "@/content/nav-data";
 import { pageBySlug, pages } from "@/content/pages";
-import { nav } from "@/content/site";
+import { business } from "@/content/site";
+import type { Page } from "@/content/types";
+import { siteUrl } from "@/lib/site-url";
 
 type Props = { params: Promise<{ slug: string[] }> };
 
@@ -20,36 +24,51 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = pageBySlug.get(slug.join("/"));
   if (!page) return {};
 
+  const title = page.metaTitle ?? `${page.title} in ${business.city}, ${business.state}`;
+
   return {
-    title: page.title,
-    description: page.description ?? descriptionFor(page.slug, page.title),
-    alternates: { canonical: `/${page.slug}` },
-    openGraph: { title: page.title, url: `/${page.slug}` },
+    title,
+    description: page.description ?? descriptionFor(page),
+    alternates: { canonical: `/${page.slug}/` },
+    openGraph: { title, url: `/${page.slug}/` },
   };
 }
 
-function descriptionFor(slug: string, title: string) {
-  return `${title} from Hayward Stoveworks in Hayward, Wisconsin — quality brands, expert advice and factory-trained installation.`.replace(
-    /\s+/g,
-    " ",
-  );
+/**
+ * Names the brands the page actually carries, which is what the searcher wants to
+ * know. Hub pages (/stoves/) carry none themselves, so they borrow their children's.
+ */
+function descriptionFor(page: Page) {
+  const own = brandsForHref(page.slug);
+  const brands = own.length
+    ? own
+    : [
+        ...new Set(
+          pages.filter((p) => p.slug.startsWith(`${page.slug}/`)).flatMap((p) => brandsForHref(p.slug)),
+        ),
+      ];
+  const list =
+    brands.length > 4
+      ? `${brands.slice(0, 4).join(", ")} and more`
+      : brands.length > 1
+        ? `${brands.slice(0, -1).join(", ")} and ${brands.at(-1)}`
+        : brands[0];
+  const from = list ? ` from ${list}` : "";
+
+  return `${page.title}${from} at ${business.name} in ${business.city}, Wisconsin. Stop in or call ${business.phoneDisplay}.`;
 }
 
-/** Walk the nav tree to build a breadcrumb trail for the current path. */
+/**
+ * Breadcrumbs follow the URL, one crumb per path segment that is a real page.
+ * /hearth-accessories/gas-logs/ → Hearth Accessories › Gas Logs.
+ */
 function trailFor(slug: string) {
-  const trail: { label: string; href: string }[] = [];
-  for (const item of nav) {
-    if (item.href === `/${slug}`) {
-      trail.push({ label: item.label, href: item.href });
-      return trail;
-    }
-    const child = item.children?.find((c) => c.href === `/${slug}`);
-    if (child) {
-      trail.push({ label: item.label, href: item.href }, { label: child.label, href: child.href });
-      return trail;
-    }
-  }
-  return trail;
+  const segments = slug.split("/");
+  return segments.flatMap((_, i) => {
+    const path = segments.slice(0, i + 1).join("/");
+    const page = pageBySlug.get(path);
+    return page ? [{ label: page.title, href: `/${path}/` }] : [];
+  });
 }
 
 export default async function ContentPage({ params }: Props) {
@@ -59,8 +78,20 @@ export default async function ContentPage({ params }: Props) {
 
   const trail = trailFor(page.slug);
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [{ label: "Home", href: "/" }, ...trail].map((crumb, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: crumb.label,
+      item: `${siteUrl}${crumb.href}`,
+    })),
+  };
+
   return (
     <>
+      <JsonLd data={breadcrumbJsonLd} />
       <div className="page-title">
         <div className="wrap">
           <h1>{page.title}</h1>

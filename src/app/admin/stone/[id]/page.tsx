@@ -25,7 +25,7 @@ export default async function AdminStoneProductPage({
         <div className="wrap">
           <h1>{stone.texture}</h1>
           <p className="page-lede">
-            <Link href="/admin/stone">← Back to the stone catalogue</Link>
+            <Link href="/admin/stone/">← Back to the stone catalogue</Link>
           </p>
         </div>
       </div>

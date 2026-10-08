@@ -31,8 +31,6 @@ export function SiteFooter() {
                 <br />
                 Phone: <a href={business.phoneHref}>{business.phone}</a>
                 <br />
-                Fax: {business.fax}
-                <br />
                 <a href={mailtoHref}>Email Us</a>{" | "}
                 <a href={business.facebook} target="_blank" rel="noopener noreferrer">
                   Facebook

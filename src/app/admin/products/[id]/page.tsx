@@ -25,7 +25,7 @@ export default async function AdminProductPage({
         <div className="wrap">
           <h1>{product.name}</h1>
           <p className="page-lede">
-            <Link href="/admin">← Back to inventory</Link>
+            <Link href="/admin/">← Back to inventory</Link>
           </p>
         </div>
       </div>

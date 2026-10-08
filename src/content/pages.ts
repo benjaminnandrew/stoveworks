@@ -6,60 +6,20 @@ import type { Page } from "./types";
  */
 export const pages: Page[] = [
   {
-    "slug": "facings",
-    "title": "Facings",
+    "slug": "cook-stoves",
+    "title": "Cook Stoves & Refrigerators",
     "sections": [
       {
-        "type": "prose",
-        "html": "<h2>Stonework &amp; Mantels</h2>"
-      },
-      {
-        "type": "brand",
-        "name": "St. Croix Stone by Environmental StoneWorks",
-        "body": "<p>Fireplaces, both masonry design and zero clearance applications are of the most common uses of St. Croix Stone. It is also a great solution for freestanding stove applications. Fireplace companies throughout the Midwest have been recommending St. Croix Stone for over 18 years.</p>",
-        "logo": {
-          "src": "/images/environmental-stone-works.jpg",
-          "alt": "Environmental Stone Works",
-          "width": 320,
-          "height": 105,
-          "href": "https://www.estoneworks.com/site/products/midwest"
-        }
-      },
-      {
-        "type": "brand",
-        "name": "Cultured Stone",
-        "body": "<p>Cultured Stone® manufactured stone veneers meet AC-51 criteria, the strictest requirements in the industry. Products are available in more than 21 textures and more than 100 colors.</p>",
-        "logo": {
-          "src": "/images/cultured-stone.jpg",
-          "alt": "Cultured Stone",
-          "width": 320,
-          "height": 65,
-          "href": "https://www.culturedstone.com/"
-        }
-      },
-      {
-        "type": "brand",
-        "name": "TriLite Stone Company",
-        "body": "<p>TriLite Stone Company employs a process for manufactured stone that is superior to other systems because of our full color integration – not just facial coating. We invite you to tour our selections and imagine the possibilities for yourself.</p>",
-        "logo": {
-          "src": "/images/trilite.jpg",
-          "alt": "TriLite Stone Company",
-          "width": 320,
-          "height": 119,
-          "href": "https://trilitestone.com/"
-        }
-      },
-      {
-        "type": "brand",
-        "name": "Dressy Log Furniture",
-        "body": "<p>A local Hayward, WI business, Dressy Log Furniture was established in 1999. They make custom handcrafted mantels from lodgepole pine or northern white cedar logs.</p>",
-        "logo": {
-          "src": "/images/dressy-log.jpg",
-          "alt": "Dressy Log",
-          "width": 320,
-          "height": 130,
-          "href": "https://dressylog.com/mantels/"
-        }
+        "type": "media-grid",
+        "cols": 1,
+        "items": [
+          {
+            "src": "/images/heartland-stove.jpg",
+            "alt": "A green and chrome Heartland range on the showroom floor",
+            "width": 348,
+            "height": 467
+          }
+        ]
       }
     ]
   },
@@ -69,7 +29,7 @@ export const pages: Page[] = [
     "sections": [
       {
         "type": "prose",
-        "html": "<h2>What is a fireplace?</h2>\n<p>A fireplace can vary in size from 20 inches wide to 54 inches wide.</p>\n<p>We specialize in zero clearance fireplaces, whether open or closed with doors. Your zero clearance fireplaces require a chimney, either air cooled or class A.</p>\n<p>Fireplaces can be either <a href=\"/fireplaces/gas-fireplaces\">Gas</a>, <a href=\"/fireplaces/wood-fireplaces\">Wood</a>, or <a href=\"/fireplaces/electric-fireplaces\">Electric</a>.</p>"
+        "html": "<h2>What is a fireplace?</h2>\n<p>A fireplace can vary in size from 20 inches wide to 54 inches wide.</p>\n<p>We specialize in zero clearance fireplaces, whether open or closed with doors. Your zero clearance fireplaces require a chimney, either air cooled or class A.</p>\n<p>Fireplaces can be either <a href=\"/fireplaces/gas-fireplaces/\">Gas</a>, <a href=\"/fireplaces/wood-fireplaces/\">Wood</a>, or <a href=\"/fireplaces/electric-fireplaces/\">Electric</a>.</p>"
       },
       {
         "type": "media-grid",
@@ -240,6 +200,123 @@ export const pages: Page[] = [
     ]
   },
   {
+    "slug": "hearth-accessories",
+    "title": "Hearth Accessories",
+    "sections": [
+      {
+        "type": "prose-aside",
+        "html": "<p>Hayward Stoveworks has a wide variety of specialty hearth products like <a href=\"/hearth-accessories/gas-logs/\">gas and electric logs</a> and <a href=\"/hearth-accessories/glass-doors/\">glass doors</a>. We also have products you would need for maintenance on your stove, fireplace, or insert. In addition we carry log/wood racks, tool sets, cleaning supplies and fire starters.</p>",
+        "aside": [
+          {
+            "src": "/images/pilgrim-logo.png",
+            "alt": "Pilgrim Home and Hearth",
+            "width": 320,
+            "height": 142,
+            "href": "https://www.pilgrimhearth.com/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "hearth-accessories/gas-logs",
+    "title": "Gas Logs",
+    "sections": [
+      {
+        "type": "media-grid",
+        "cols": 3,
+        "items": [
+          {
+            "src": "/images/napoleon-logo-2015.png",
+            "alt": "Napoleon",
+            "width": 320,
+            "height": 139,
+            "href": "https://www.napoleon.com/en/ca/fireplaces"
+          },
+          {
+            "src": "/images/hargrove.jpg",
+            "alt": "Hargrove",
+            "width": 320,
+            "height": 222,
+            "href": "https://www.hargrovegaslogs.com/"
+          },
+          {
+            "src": "/images/peterson-firelogs.jpg",
+            "alt": "Peterson Firelogs",
+            "width": 320,
+            "height": 90,
+            "href": "https://www.petersonfirelogs.com/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "hearth-accessories/glass-doors",
+    "title": "Glass Doors",
+    "metaTitle": "Fireplace Glass Doors in Hayward, WI",
+    "sections": [
+      {
+        "type": "brand",
+        "name": "Wilkening",
+        "body": "<p>Manufactured in Walker, Minnesota, each Wilkening Fireplace Product is individually hand-crafted by skilled personnel to assure you years of trouble-free service.</p>",
+        "logo": {
+          "src": "/images/logo-wilkening-fireplace.jpg",
+          "alt": "Wilkening Fireplace",
+          "width": 320,
+          "height": 82,
+          "href": "https://www.wilkeningfireplace.com/"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "hearth-accessories/hearth-pads",
+    "title": "Hearth Pads",
+    "sections": [
+      {
+        "type": "prose",
+        "html": "<p>A stove often sits on a hearth pad. This pad must be fire resistant and able to withstand the weight of the stove. The hearth pad can be as simple as a metal shield or even a concrete slab, but the stove must sit on a non-combustible surface.</p>\n<p>If you sit your stove on carpet, wood, vinyl or some other combustible material, the heat from the stove can damage, and even worse, ignite the floor materials. A hearth pad, if made well, can add beauty to your home.</p>"
+      },
+      {
+        "type": "brand",
+        "name": "Hearth Classics",
+        "body": "<p>Hearth ClassicsTM tile and stone hearth pads are hand-crafted to provide the ideal foundation for your free-standing gas, wood, pellet, corn, coal or oil stove. To deliver the best protection on the market, all our pads are fully non-combustible using ThermaShieldTM technology.</p>",
+        "logo": {
+          "src": "/images/Hearth-Classics-logo.jpg",
+          "alt": "Hearth Classics",
+          "width": 320,
+          "height": 84,
+          "href": "https://www.hearthclassics.com/"
+        }
+      },
+      {
+        "type": "brand",
+        "name": "American Panel",
+        "body": "<p>Accent your home with a quality hearth pad from American Panel. Our hearth products are crafted from a variety of quality stone and ceramics – expertly finished for maximum durability.</p>",
+        "logo": {
+          "src": "/images/american-panel.png",
+          "alt": "American Panel",
+          "width": 320,
+          "height": 141,
+          "href": "https://americanpanelhearth.com/"
+        }
+      },
+      {
+        "type": "brand",
+        "name": "AJ Originals",
+        "body": "<p>AJ Manufacturing is your east coast source for premium-quality floor protectors (also known as hearth pads, hearth boards or stove boards). Our home hearth products are made with pride in Thompson, Connecticut. We offer a wide range of product options to fit every installation type.</p>",
+        "logo": {
+          "src": "/images/aj-manufacturing-logo.png",
+          "alt": "AJ Manufacturing",
+          "width": 320,
+          "height": 46,
+          "href": "https://ajhearthoriginals.com/products/hearth-originals/"
+        }
+      }
+    ]
+  },
+  {
     "slug": "home-cabin-decor",
     "title": "Home & Cabin Decor",
     "sections": [
@@ -270,10 +347,11 @@ export const pages: Page[] = [
   {
     "slug": "inserts",
     "title": "Inserts",
+    "metaTitle": "Fireplace Inserts in Hayward, WI",
     "sections": [
       {
         "type": "prose",
-        "html": "<h2>What is an insert?</h2>\n<p>A fireplace insert is a device inserted into an existing masonry (real) fireplace.</p>\n<p>Fireplace inserts are made from cast iron or steel and now have self-cleaning glass doors that allow the flames of the fire to be viewed while the insulated doors remain closed, making the fire more efficient.</p>\n<p>We offer inserts in either <a href=\"/inserts/gas-inserts\">Gas</a> or <a href=\"/inserts/wood-inserts\">Wood</a>.</p>"
+        "html": "<h2>What is an insert?</h2>\n<p>A fireplace insert is a device inserted into an existing masonry (real) fireplace.</p>\n<p>Fireplace inserts are made from cast iron or steel and now have self-cleaning glass doors that allow the flames of the fire to be viewed while the insulated doors remain closed, making the fire more efficient.</p>\n<p>We offer inserts in either <a href=\"/inserts/gas-inserts/\">Gas</a> or <a href=\"/inserts/wood-inserts/\">Wood</a>.</p>"
       },
       {
         "type": "media-grid",
@@ -410,8 +488,47 @@ export const pages: Page[] = [
     ]
   },
   {
+    "slug": "outdoor",
+    "title": "Outdoor Fire Rings & Grills",
+    "sections": [
+      {
+        "type": "brand",
+        "name": "Pilot Rock",
+        "body": "<p>Pilot Rock products have been designed and manufactured in the United States since 1959. Nothing compares to our innovative styles, quality fabrication and diverse product line.</p>",
+        "logo": {
+          "src": "/images/pilot-rock-logo.jpg",
+          "alt": "Pilot Rock",
+          "width": 320,
+          "height": 120,
+          "href": "https://www.pilotrock.com/product/campfire-rings/"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "sauna-stoves",
+    "title": "Wood-Fired Sauna Stoves",
+    "sections": [
+      {
+        "type": "prose-aside",
+        "html": "<h3>Nippa</h3>\n<p>The heart of a good sauna is a good stove. The Original Nippa is made to be the strongest and most durable on the market.</p>\n<p>Looking for a hot tub to go with it? See our <a href=\"/wood-fired-hot-tubs/\">wood-fired hot tubs</a>.</p>",
+        "aside": [
+          {
+            "src": "/images/nippa.jpg",
+            "alt": "Nippa",
+            "width": 320,
+            "height": 88,
+            "href": "https://nippa.com/"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "services",
     "title": "Services",
+    "metaTitle": "Stove & Fireplace Installation in Hayward, WI",
+    "description": "Factory-trained installation of stoves, inserts and fireplaces by Hayward Stoveworks in Hayward, Wisconsin, members of the NAHB, NCHPBA and NABA. Call 715-634-2360.",
     "sections": [
       {
         "type": "prose-aside",
@@ -443,196 +560,68 @@ export const pages: Page[] = [
     ]
   },
   {
-    "slug": "specialty-hearth",
-    "title": "Specialty Hearth",
-    "sections": [
-      {
-        "type": "prose-aside",
-        "html": "<p>Hayward Stoveworks has a wide variety of specialty hearth products like <a href=\"/specialty-hearth/gas-logs\">gas and electric logs</a> and <a href=\"/specialty-hearth/glass-doors\">glass doors</a>. We also have products you would need for maintenance on your stove, fireplace, or insert. In addition we carry log/wood racks, tool sets, cleaning supplies and fire starters.</p>",
-        "aside": [
-          {
-            "src": "/images/pilgrim-logo.png",
-            "alt": "Pilgrim Home and Hearth",
-            "width": 320,
-            "height": 142,
-            "href": "https://www.pilgrimhearth.com/"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "specialty-hearth/gas-logs",
-    "title": "Gas Logs",
-    "sections": [
-      {
-        "type": "media-grid",
-        "cols": 3,
-        "items": [
-          {
-            "src": "/images/napoleon-logo-2015.png",
-            "alt": "Napoleon",
-            "width": 320,
-            "height": 139,
-            "href": "https://www.napoleon.com/en/ca/fireplaces"
-          },
-          {
-            "src": "/images/hargrove.jpg",
-            "alt": "Hargrove",
-            "width": 320,
-            "height": 222,
-            "href": "https://www.hargrovegaslogs.com/"
-          },
-          {
-            "src": "/images/peterson-firelogs.jpg",
-            "alt": "Peterson Firelogs",
-            "width": 320,
-            "height": 90,
-            "href": "https://www.petersonfirelogs.com/"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "specialty-hearth/glass-doors",
-    "title": "Glass Doors",
+    "slug": "stonework-mantels",
+    "title": "Stonework & Mantels",
+    "metaTitle": "Fireplace Stone & Mantels in Hayward, WI",
     "sections": [
       {
         "type": "brand",
-        "name": "Wilkening",
-        "body": "<p>Manufactured in Walker, Minnesota, each Wilkening Fireplace Product is individually hand-crafted by skilled personnel to assure you years of trouble-free service.</p>",
+        "name": "St. Croix Stone by Environmental StoneWorks",
+        "body": "<p>Fireplaces, both masonry design and zero clearance applications are of the most common uses of St. Croix Stone. It is also a great solution for freestanding stove applications. Fireplace companies throughout the Midwest have been recommending St. Croix Stone for over 18 years.</p>",
         "logo": {
-          "src": "/images/logo-wilkening-fireplace.jpg",
-          "alt": "Wilkening Fireplace",
+          "src": "/images/environmental-stone-works.jpg",
+          "alt": "Environmental Stone Works",
           "width": 320,
-          "height": 82,
-          "href": "https://www.wilkeningfireplace.com/"
-        }
-      }
-    ]
-  },
-  {
-    "slug": "specialty-hearth/hearth-pads",
-    "title": "Hearth Pads",
-    "sections": [
-      {
-        "type": "prose",
-        "html": "<p>A stove often sits on a hearth pad. This pad must be fire resistant and able to withstand the weight of the stove. The hearth pad can be as simple as a metal shield or even a concrete slab, but the stove must sit on a non-combustible surface.</p>\n<p>If you sit your stove on carpet, wood, vinyl or some other combustible material, the heat from the stove can damage, and even worse, ignite the floor materials. A hearth pad, if made well, can add beauty to your home.</p>"
-      },
-      {
-        "type": "brand",
-        "name": "Hearth Classics",
-        "body": "<p>Hearth ClassicsTM tile and stone hearth pads are hand-crafted to provide the ideal foundation for your free-standing gas, wood, pellet, corn, coal or oil stove. To deliver the best protection on the market, all our pads are fully non-combustible using ThermaShieldTM technology.</p>",
-        "logo": {
-          "src": "/images/Hearth-Classics-logo.jpg",
-          "alt": "Hearth Classics",
-          "width": 320,
-          "height": 84,
-          "href": "https://www.hearthclassics.com/"
+          "height": 105,
+          "href": "https://www.estoneworks.com/site/products/midwest"
         }
       },
       {
         "type": "brand",
-        "name": "American Panel",
-        "body": "<p>Accent your home with a quality hearth pad from American Panel. Our hearth products are crafted from a variety of quality stone and ceramics – expertly finished for maximum durability.</p>",
+        "name": "Cultured Stone",
+        "body": "<p>Cultured Stone® manufactured stone veneers meet AC-51 criteria, the strictest requirements in the industry. Products are available in more than 21 textures and more than 100 colors.</p>",
         "logo": {
-          "src": "/images/american-panel.png",
-          "alt": "American Panel",
+          "src": "/images/cultured-stone.jpg",
+          "alt": "Cultured Stone",
           "width": 320,
-          "height": 141,
-          "href": "https://americanpanelhearth.com/"
+          "height": 65,
+          "href": "https://www.culturedstone.com/"
         }
       },
       {
         "type": "brand",
-        "name": "AJ Originals",
-        "body": "<p>AJ Manufacturing is your east coast source for premium-quality floor protectors (also known as hearth pads, hearth boards or stove boards). Our home hearth products are made with pride in Thompson, Connecticut. We offer a wide range of product options to fit every installation type.</p>",
+        "name": "TriLite Stone Company",
+        "body": "<p>TriLite Stone Company employs a process for manufactured stone that is superior to other systems because of our full color integration – not just facial coating. We invite you to tour our selections and imagine the possibilities for yourself.</p>",
         "logo": {
-          "src": "/images/aj-manufacturing-logo.png",
-          "alt": "AJ Manufacturing",
+          "src": "/images/trilite.jpg",
+          "alt": "TriLite Stone Company",
           "width": 320,
-          "height": 46,
-          "href": "https://ajhearthoriginals.com/products/hearth-originals/"
+          "height": 119,
+          "href": "https://trilitestone.com/"
         }
-      }
-    ]
-  },
-  {
-    "slug": "specialty-hearth/hot-tubs-sauna-stoves",
-    "title": "Hot Tubs / Sauna Stoves",
-    "sections": [
-      {
-        "type": "prose-aside",
-        "html": "<h3>Wood Fired Hot Tubs</h3>\n<h3>Snorkel</h3>\n<p>Snorkel Hot Tubs are 100% manufactured in the USA using premium-quality all heart, clear Western Red Cedar from the forests of Canada. Some of our owners say their Snorkel Hot Tub is therapeutic; some say it’s fun, relaxing, economical and revitalizing. Still others say it’s an “experience.” Most people eventually find it’s all these things and more.</p>",
-        "aside": [
-          {
-            "src": "/images/snorkel-hot-tubs-logo.png",
-            "alt": "Snorkel Hot Tubs",
-            "width": 320,
-            "height": 136,
-            "href": "https://snorkel.com/"
-          }
-        ]
       },
       {
-        "type": "prose-aside",
-        "html": "<h3>Wood Fired Sauna Stoves &amp; Heaters</h3>\n<h3>Nippa</h3>\n<p>The heart of a good sauna is a good stove. The Original Nippa is made to be the strongest and most durable on the market.</p>",
-        "aside": [
-          {
-            "src": "/images/nippa.jpg",
-            "alt": "Nippa",
-            "width": 320,
-            "height": 88,
-            "href": "https://nippa.com/"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "specialty-hearth/outdoor-rings-grills",
-    "title": "Outdoor Rings & Grills",
-    "sections": [
-      {
         "type": "brand",
-        "name": "Pilot Rock",
-        "body": "<p>Pilot Rock products have been designed and manufactured in the United States since 1959. Nothing compares to our innovative styles, quality fabrication and diverse product line.</p>",
+        "name": "Dressy Log Furniture",
+        "body": "<p>A local Hayward, WI business, Dressy Log Furniture was established in 1999. They make custom handcrafted mantels from lodgepole pine or northern white cedar logs.</p>",
         "logo": {
-          "src": "/images/pilot-rock-logo.jpg",
-          "alt": "Pilot Rock",
+          "src": "/images/dressy-log.jpg",
+          "alt": "Dressy Log",
           "width": 320,
-          "height": 120,
-          "href": "https://www.pilotrock.com/product/campfire-rings/"
+          "height": 130,
+          "href": "https://dressylog.com/mantels/"
         }
-      }
-    ]
-  },
-  {
-    "slug": "specialty-hearth/refrigerators-cook-stoves",
-    "title": "Refrigerators & Cook Stoves",
-    "sections": [
-      {
-        "type": "media-grid",
-        "cols": 1,
-        "items": [
-          {
-            "src": "/images/heartland-stove.jpg",
-            "alt": "heartland-stove",
-            "width": 348,
-            "height": 467
-          }
-        ]
       }
     ]
   },
   {
     "slug": "stoves",
     "title": "Stoves",
+    "metaTitle": "Wood, Gas & Pellet Stoves in Hayward, WI",
     "sections": [
       {
         "type": "prose",
-        "html": "<h2>What is a stove?</h2>\n<p>A stove is a freestanding heating unit that can go just about anywhere in your home.</p>\n<p>We have a wide variety in stoves in either <a href=\"/stoves/gas-stoves\">Gas</a>, <a href=\"/stoves/wood-stoves\">Wood</a>, or Pellet in many different sizes to heat large or small spaces.</p>"
+        "html": "<h2>What is a stove?</h2>\n<p>A stove is a freestanding heating unit that can go just about anywhere in your home.</p>\n<p>We have a wide variety in stoves in either <a href=\"/stoves/gas-stoves/\">Gas</a>, <a href=\"/stoves/wood-stoves/\">Wood</a>, or Pellet in many different sizes to heat large or small spaces.</p>"
       },
       {
         "type": "media-grid",
@@ -793,6 +782,25 @@ export const pages: Page[] = [
           "height": 202,
           "href": "https://www.kumastoves.com/Content/Page/wood-stoves"
         }
+      }
+    ]
+  },
+  {
+    "slug": "wood-fired-hot-tubs",
+    "title": "Wood-Fired Hot Tubs",
+    "sections": [
+      {
+        "type": "prose-aside",
+        "html": "<h3>Snorkel</h3>\n<p>Snorkel Hot Tubs are 100% manufactured in the USA using premium-quality all heart, clear Western Red Cedar from the forests of Canada. Some of our owners say their Snorkel Hot Tub is therapeutic; some say it’s fun, relaxing, economical and revitalizing. Still others say it’s an “experience.” Most people eventually find it’s all these things and more.</p>\n<p>Building a sauna as well? See our <a href=\"/sauna-stoves/\">wood-fired sauna stoves</a>.</p>",
+        "aside": [
+          {
+            "src": "/images/snorkel-hot-tubs-logo.png",
+            "alt": "Snorkel Hot Tubs",
+            "width": 320,
+            "height": 136,
+            "href": "https://snorkel.com/"
+          }
+        ]
       }
     ]
   }

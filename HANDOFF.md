@@ -101,6 +101,15 @@ when adding components.
 Swapping the logo file without changing its filename serves the stale image. Clear `.next`
 and restart. This cost me a confused ten minutes; it'll cost you the same.
 
+### Every internal link needs its trailing slash
+
+Page URLs end in `/` to match the old WordPress URLs exactly (8 Oct 2026). Next's own slash
+redirect is off (`skipTrailingSlashRedirect`) and `src/proxy.ts` adds the slash for pages
+only, so API calls don't take a 308 hop. `<Link href="/visualizer">` still works, but it costs
+a redirect and crawlers see the slashless URL, so write `/visualizer/`. Don't add slashes to
+`/api/...` or `/auth/...`. Watch out for `NextURL`: `request.nextUrl.clone()` drops a slash you
+add to `pathname`, which made the proxy loop until it was switched to a plain `URL`.
+
 ### `.nav-item` must stay `position: static`
 
 The mega menu panel spans the nav bar. If `.nav-item` goes back to `position: relative`,
@@ -239,6 +248,14 @@ Where things live:
 - `db/schema.sql` — all ten tables, idempotent.
 - `_source/` — the original scrape and the parser that generated `pages.ts`. Not shipped.
 - `docs/type-scheme.md` — the three-face type scheme as supplied.
+- `brain/` — Ben's in-progress company-brain knowledge base (verified brand and model
+  catalogue, manuals, guides). It's the source the brand, model and guide pages should build
+  from. Ben owns it, so read from it but don't edit it. **It is never public:** no `/brain`
+  route, nothing under `public/`. It's the base layer that compare tools, the visualizer and
+  installation guides are built from.
+- `docs/seo-plan.md` — SEO and AI-search guidelines for URLs, keywords, content and schema
+  (Ben, 8 Oct 2026), with a gap analysis against the build. Work from it and test against
+  it, and push back where it doesn't fit.
 
 One script is a trap and is labelled as such: `scripts/logo-resize-tagline.mjs` belongs to
 the **earlier pencil-sketch logo**, which is no longer in use. Its hardcoded pixel bounds

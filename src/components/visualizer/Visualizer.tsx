@@ -288,7 +288,7 @@ export function Visualizer({ products, isSignedIn, initial }: Props) {
       } finally {
         setBusy(null);
       }
-      window.location.href = "/sign-in?next=/visualizer";
+      window.location.href = "/sign-in/?next=/visualizer/";
       return;
     }
 

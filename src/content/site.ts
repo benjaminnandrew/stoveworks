@@ -10,7 +10,8 @@ export const business = {
   phone: "(715) 634-2360",
   phoneHref: "tel:+17156342360",
   phoneDisplay: "715-634-2360",
-  fax: "(715) 634-2360",
+  // No fax: the old site listed the phone number as the fax. Add one here only
+  // once Steve confirms a real fax line.
   email: "stoveworksstorefront@gmail.com",
   emailSubject: "Hayward Stoveworks Website Request",
   facebook: "https://www.facebook.com/profile.php?id=100063251977232",
@@ -51,10 +52,10 @@ export type NavItem = {
 };
 
 export const nav: NavItem[] = [
-  { label: "Services", href: "/services" },
+  { label: "Services", href: "/services/" },
   {
     label: "Stoves",
-    href: "/stoves",
+    href: "/stoves/",
     feature: {
       src: "/images/feature-stoves.jpg",
       width: 281,
@@ -62,13 +63,13 @@ export const nav: NavItem[] = [
       blurb: "A stove is a freestanding heating unit that can go just about anywhere in your home.",
     },
     children: [
-      { label: "Gas Stoves", href: "/stoves/gas-stoves" },
-      { label: "Wood Stoves", href: "/stoves/wood-stoves" },
+      { label: "Gas Stoves", href: "/stoves/gas-stoves/" },
+      { label: "Wood Stoves", href: "/stoves/wood-stoves/" },
     ],
   },
   {
     label: "Inserts",
-    href: "/inserts",
+    href: "/inserts/",
     feature: {
       src: "/images/feature-inserts.jpg",
       width: 281,
@@ -76,13 +77,13 @@ export const nav: NavItem[] = [
       blurb: "A fireplace insert is a device inserted into an existing masonry (real) fireplace.",
     },
     children: [
-      { label: "Gas Inserts", href: "/inserts/gas-inserts" },
-      { label: "Wood Inserts", href: "/inserts/wood-inserts" },
+      { label: "Gas Inserts", href: "/inserts/gas-inserts/" },
+      { label: "Wood Inserts", href: "/inserts/wood-inserts/" },
     ],
   },
   {
     label: "Fireplaces",
-    href: "/fireplaces",
+    href: "/fireplaces/",
     feature: {
       src: "/images/feature-fireplaces.jpg",
       width: 281,
@@ -90,42 +91,43 @@ export const nav: NavItem[] = [
       blurb: "A fireplace can vary in size from 20 inches wide to 54 inches wide.",
     },
     children: [
-      { label: "Gas Fireplaces", href: "/fireplaces/gas-fireplaces" },
-      { label: "Wood Fireplaces", href: "/fireplaces/wood-fireplaces" },
-      { label: "Electric Fireplaces", href: "/fireplaces/electric-fireplaces" },
+      { label: "Gas Fireplaces", href: "/fireplaces/gas-fireplaces/" },
+      { label: "Wood Fireplaces", href: "/fireplaces/wood-fireplaces/" },
+      { label: "Electric Fireplaces", href: "/fireplaces/electric-fireplaces/" },
     ],
   },
   {
     label: "Specialty Hearth",
-    href: "/specialty-hearth",
+    href: "/hearth-accessories/",
     children: [
-      { label: "Glass Doors", href: "/specialty-hearth/glass-doors" },
-      { label: "Hearth Pads", href: "/specialty-hearth/hearth-pads" },
-      { label: "Gas Logs", href: "/specialty-hearth/gas-logs" },
-      { label: "Outdoor Rings & Grills", href: "/specialty-hearth/outdoor-rings-grills" },
-      { label: "Refrigerators & Cook Stoves", href: "/specialty-hearth/refrigerators-cook-stoves" },
-      { label: "Hot Tubs / Sauna Stoves", href: "/specialty-hearth/hot-tubs-sauna-stoves" },
+      { label: "Glass Doors", href: "/hearth-accessories/glass-doors/" },
+      { label: "Hearth Pads", href: "/hearth-accessories/hearth-pads/" },
+      { label: "Gas Logs", href: "/hearth-accessories/gas-logs/" },
+      { label: "Outdoor Fire Rings & Grills", href: "/outdoor/" },
+      { label: "Cook Stoves & Refrigerators", href: "/cook-stoves/" },
+      { label: "Sauna Stoves", href: "/sauna-stoves/" },
+      { label: "Wood-Fired Hot Tubs", href: "/wood-fired-hot-tubs/" },
     ],
   },
-  { label: "Facings", href: "/facings" },
+  { label: "Stonework & Mantels", href: "/stonework-mantels/" },
   {
     label: "Visualizer",
-    href: "/visualizer",
+    href: "/visualizer/",
     children: [
       {
         label: "Stove & Fireplace",
-        href: "/visualizer",
+        href: "/visualizer/",
         blurb: "Drop a stove, insert or fireplace into a photo of your own room, at true scale.",
       },
       {
         label: "Stone Veneer",
-        href: "/veneer",
+        href: "/veneer/",
         blurb: "Mark out a wall and try Cultured Stone on it, with a square-footage estimate.",
       },
     ],
   },
-  { label: "Home & Cabin Decor", href: "/home-cabin-decor" },
-  { label: "Contact Us", href: "/contact-us" },
+  { label: "Home & Cabin Decor", href: "/home-cabin-decor/" },
+  { label: "Contact Us", href: "/contact-us/" },
 ];
 
 export const associations = [

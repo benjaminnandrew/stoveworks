@@ -61,10 +61,10 @@ export default async function AccountPage() {
                 real thing.
               </p>
               <div className="empty-actions">
-                <Link className="btn" href="/visualizer">
+                <Link className="btn" href="/visualizer/">
                   Try a stove
                 </Link>
-                <Link className="tool" href="/veneer">
+                <Link className="tool" href="/veneer/">
                   Try stone veneer
                 </Link>
               </div>
@@ -75,7 +75,7 @@ export default async function AccountPage() {
                 <section>
                   <div className="section-head">
                     <h2>Stove &amp; fireplace designs</h2>
-                    <Link className="btn" href="/visualizer">
+                    <Link className="btn" href="/visualizer/">
                       New design
                     </Link>
                   </div>
@@ -92,13 +92,13 @@ export default async function AccountPage() {
               <section className={stoves.length > 0 ? "account-section" : undefined}>
                 <div className="section-head">
                   <h2>Stone veneer mock-ups</h2>
-                  <Link className="btn" href="/veneer">
+                  <Link className="btn" href="/veneer/">
                     New mock-up
                   </Link>
                 </div>
                 {veneers.length === 0 ? (
                   <p className="viz-hint">
-                    None yet — <Link href="/veneer">try stone on a wall</Link>.
+                    None yet — <Link href="/veneer/">try stone on a wall</Link>.
                   </p>
                 ) : (
                   <ul className="design-grid">

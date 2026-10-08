@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Stone Veneer Mock-up",
   description:
     "See Cultured Stone veneer on your own wall. Mark out the area, pick a profile, and get a square-footage estimate for the job.",
-  alternates: { canonical: "/veneer" },
+  alternates: { canonical: "/veneer/" },
 };
 
 export const dynamic = "force-dynamic";
@@ -36,14 +36,14 @@ export default async function VeneerPage() {
           {stones.length === 0 ? (
             <p className="notice">
               <strong>No stone profiles yet.</strong> Ask us to add them, or{" "}
-              <Link href="/facings">see the facings we carry</Link>.
+              <Link href="/stonework-mantels/">see the stonework we carry</Link>.
             </p>
           ) : !anyRealSwatches ? (
             <p className="notice">
               <strong>These are sample textures, not the real stone.</strong> The profiles listed
               are the Cultured Stone lines we carry, shown for now with generic stone images at
               the correct scale so you can judge proportion and layout. Come in and see the actual
-              sample boards, or <Link href="/contact-us">give us a call</Link>.
+              sample boards, or <Link href="/contact-us/">give us a call</Link>.
             </p>
           ) : null}
 

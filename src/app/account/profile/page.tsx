@@ -39,7 +39,7 @@ export default async function ProfilePage({
               email={user.email}
               name={user.name ?? ""}
               phone={user.phone ?? ""}
-              redirectTo={welcome ? "/visualizer" : null}
+              redirectTo={welcome ? "/visualizer/" : null}
             />
           </div>
         </div>

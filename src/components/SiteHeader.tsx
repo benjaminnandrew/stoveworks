@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { business, nav } from "@/content/site";
+import { business, nav, type NavItem } from "@/content/site";
 import { MegaMenu } from "./MegaMenu";
 import { MobileNav } from "./MobileNav";
 
@@ -30,8 +30,13 @@ export function SiteHeader() {
   const [openHref, setOpenHref] = useState<string | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+  // Nav hrefs end in a slash (next.config trailingSlash), so a prefix match covers
+  // the page and everything under it. Children are checked too, because some menu
+  // entries (/outdoor/, /sauna-stoves/) sit at the top level of the URL tree.
+  const isActive = (item: NavItem) =>
+    [item.href, ...(item.children?.map((c) => c.href) ?? [])].some((href) =>
+      href === "/" ? pathname === "/" : pathname.startsWith(href),
+    );
 
   const cancelClose = useCallback(() => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -79,7 +84,7 @@ export function SiteHeader() {
             {business.streetShort} ~ {business.city}, {business.state}
           </span>
           <span className="topbar-right">
-            <Link href="/account" className="topbar-account">
+            <Link href="/account/" className="topbar-account">
               <UserIcon />
               My Account
             </Link>
@@ -149,7 +154,7 @@ export function SiteHeader() {
                 >
                   <Link
                     href={item.href}
-                    className={`nav-link${isActive(item.href) ? " is-active" : ""}`}
+                    className={`nav-link${isActive(item) ? " is-active" : ""}`}
                     aria-current={pathname === item.href ? "page" : undefined}
                     aria-expanded={hasMenu ? isOpen : undefined}
                     aria-controls={hasMenu ? menuId : undefined}

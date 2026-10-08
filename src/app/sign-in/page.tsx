@@ -20,7 +20,7 @@ export default async function SignInPage({
   searchParams: Promise<{ sent?: string; next?: string; expired?: string }>;
 }) {
   const user = await currentUser();
-  if (user) redirect("/account");
+  if (user) redirect("/account/");
 
   const { sent, expired } = await searchParams;
 
@@ -43,7 +43,7 @@ export default async function SignInPage({
                 </p>
                 <p>
                   Nothing arrived? Check your spam folder, then{" "}
-                  <Link href="/sign-in">try again</Link>.
+                  <Link href="/sign-in/">try again</Link>.
                 </p>
               </div>
             ) : (
@@ -64,7 +64,7 @@ export default async function SignInPage({
                 <p className="auth-note">
                   New here? Entering your email creates your account — no extra steps. Your account
                   keeps the room photos and stove designs you make in the{" "}
-                  <Link href="/visualizer">visualizer</Link>.
+                  <Link href="/visualizer/">visualizer</Link>.
                 </p>
               </>
             )}

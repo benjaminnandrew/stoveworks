@@ -1,7 +1,9 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
 import { Gallery } from "@/components/Gallery";
+import { JsonLd } from "@/components/JsonLd";
 import {
   featureTiles,
   gallery,
@@ -10,10 +12,24 @@ import {
   history,
   intro,
 } from "@/content/home";
+import { business } from "@/content/site";
+import { siteUrl } from "@/lib/site-url";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: business.name,
+  url: `${siteUrl}/`,
+};
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={websiteJsonLd} />
       <div className="hero">
         <Image
           src={hero.src}

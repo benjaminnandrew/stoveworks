@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: "Room Visualizer",
   description:
     "See how a stove, insert or fireplace will look in your own room. Upload a photo, drop in a model from our lineup, and set it to true scale.",
-  alternates: { canonical: "/visualizer" },
+  alternates: { canonical: "/visualizer/" },
 };
 
 export const dynamic = "force-dynamic";
@@ -37,7 +37,7 @@ export default async function VisualizerPage() {
             <p className="notice">
               <strong>Product photography is on the way.</strong> The lineup below is our real
               catalog, shown for now with placeholder shapes at each model&rsquo;s true size. Come
-              in or <Link href="/contact-us">give us a call</Link> and we&rsquo;ll walk you through
+              in or <Link href="/contact-us/">give us a call</Link> and we&rsquo;ll walk you through
               the actual units.
             </p>
           ) : null}

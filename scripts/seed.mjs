@@ -30,12 +30,13 @@ const CATALOG = {
   "fireplaces/gas-fireplaces": { category: "fireplace", fuel: "gas", label: "Gas Fireplaces" },
   "fireplaces/wood-fireplaces": { category: "fireplace", fuel: "wood", label: "Wood Fireplaces" },
   "fireplaces/electric-fireplaces": { category: "fireplace", fuel: "electric", label: "Electric Fireplaces" },
-  "specialty-hearth/glass-doors": { category: "hearth", fuel: "multi", label: "Glass Doors" },
-  "specialty-hearth/hearth-pads": { category: "hearth", fuel: "multi", label: "Hearth Pads" },
-  "specialty-hearth/gas-logs": { category: "hearth", fuel: "gas", label: "Gas Logs" },
-  "specialty-hearth/outdoor-rings-grills": { category: "hearth", fuel: "wood", label: "Outdoor Rings & Grills" },
-  "specialty-hearth/hot-tubs-sauna-stoves": { category: "hearth", fuel: "wood", label: "Hot Tubs & Sauna Stoves" },
-  "specialty-hearth/refrigerators-cook-stoves": { category: "hearth", fuel: "multi", label: "Cook Stoves" },
+  "hearth-accessories/glass-doors": { category: "hearth", fuel: "multi", label: "Glass Doors" },
+  "hearth-accessories/hearth-pads": { category: "hearth", fuel: "multi", label: "Hearth Pads" },
+  "hearth-accessories/gas-logs": { category: "hearth", fuel: "gas", label: "Gas Logs" },
+  "outdoor": { category: "hearth", fuel: "wood", label: "Outdoor Rings & Grills" },
+  "sauna-stoves": { category: "hearth", fuel: "wood", label: "Sauna Stoves" },
+  "wood-fired-hot-tubs": { category: "hearth", fuel: "wood", label: "Wood-Fired Hot Tubs" },
+  "cook-stoves": { category: "hearth", fuel: "multi", label: "Cook Stoves" },
 };
 
 /** The same manufacturer is spelled a few different ways across the pages. */

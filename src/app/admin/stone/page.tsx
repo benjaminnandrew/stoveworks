@@ -24,7 +24,7 @@ export default async function AdminStonePage() {
           <p className="page-lede">
             What the veneer mock-up tool offers. A profile needs a seamlessly tiling swatch image
             and the real area that image covers before it looks right on a wall.{" "}
-            <Link href="/admin">Hearth inventory →</Link>
+            <Link href="/admin/">Hearth inventory →</Link>
           </p>
         </div>
       </div>
@@ -70,7 +70,7 @@ export default async function AdminStonePage() {
               {stones.map((s) => (
                 <tr key={s.id}>
                   <td>
-                    <Link href={`/admin/stone/${s.id}`}>{s.texture}</Link>
+                    <Link href={`/admin/stone/${s.id}/`}>{s.texture}</Link>
                   </td>
                   <td>{s.color ?? <span className="muted">—</span>}</td>
                   <td>

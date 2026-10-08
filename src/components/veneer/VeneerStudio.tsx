@@ -211,7 +211,7 @@ export function VeneerStudio({ stones, isSignedIn, initial }: Props) {
       } finally {
         setBusy(null);
       }
-      window.location.href = "/sign-in?next=/veneer";
+      window.location.href = "/sign-in/?next=/veneer/";
       return;
     }
 
