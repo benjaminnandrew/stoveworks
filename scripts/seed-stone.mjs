@@ -87,6 +87,43 @@ try {
 
   console.log(`✓ ${n} stone profiles seeded for ${BRAND}`);
 
+  // --- Buechel Stone ---------------------------------------------------------
+  //
+  // Ben confirmed on 8 Oct 2026 that Stoveworks sells Buechel natural stone. The
+  // one image to hand is the sample photo from the Room Studio prototype; its
+  // product name, profile and real size are not known yet, so it goes in as a
+  // clearly named sample, and the swatch size is an estimate (the photo taken as
+  // about 36" across; see docs/stone-swatches.md). Natural thin veneer is sold
+  // by the pallet or crate rather than the box, so no coverage figures — the
+  // estimate gives square footage and stops there.
+  const buechel = await db.query(
+    `INSERT INTO brands (slug, name, website_url, sort)
+     VALUES ('buechel-stone', 'Buechel Stone', 'https://www.buechelstone.com/', 900)
+     ON CONFLICT (slug) DO UPDATE
+       SET website_url = COALESCE(brands.website_url, EXCLUDED.website_url)
+     RETURNING id`,
+  );
+
+  await db.query(
+    `INSERT INTO stone_products
+       (brand_id, slug, name, texture, color, summary, swatch_path,
+        swatch_width_in, swatch_height_in,
+        flat_sqft_per_box, corner_lnft_per_box, product_url, sort)
+     VALUES ($1, 'buechel-supplied-sample', 'Buechel Stone — supplied sample', 'Supplied sample', NULL,
+             $2, '/stone/buechel-supplied-sample-tile.jpg', 29.5, 43, NULL, NULL,
+             'https://www.buechelstone.com/', 0)
+     ON CONFLICT (slug) DO UPDATE
+       SET brand_id = EXCLUDED.brand_id,
+           swatch_path = COALESCE(stone_products.swatch_path, EXCLUDED.swatch_path),
+           updated_at = now()`,
+    [
+      buechel.rows[0].id,
+      "Natural stone sample supplied for the Room Studio prototype. Product name, profile and " +
+        "real size still to confirm with Buechel; the scale shown is approximate.",
+    ],
+  );
+  console.log(`✓ Buechel Stone supplied sample seeded (name and real size still to confirm)`);
+
   const { rows: missing } = await db.query(
     `SELECT count(*)::int AS n FROM stone_products WHERE swatch_path IS NULL`,
   );
