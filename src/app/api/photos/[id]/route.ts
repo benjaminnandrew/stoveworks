@@ -2,7 +2,6 @@ import { NextResponse, type NextRequest } from "next/server";
 
 import { currentUser, isStaff } from "@/lib/auth";
 import { getDesignByShareSlug, getRoomPhoto } from "@/lib/designs";
-import { getVeneerDesignByShareSlug } from "@/lib/veneer";
 import { readRoomPhoto } from "@/lib/storage";
 
 /**
@@ -29,13 +28,9 @@ export async function GET(
   if (!allowed) {
     const share = request.nextUrl.searchParams.get("share");
     if (share) {
-      // Either tool's share link grants access to the photo it is built on.
-      const [stove, veneer] = await Promise.all([
-        getDesignByShareSlug(share),
-        getVeneerDesignByShareSlug(share),
-      ]);
-      allowed =
-        stove?.room_photo_id === photo.id || veneer?.room_photo_id === photo.id;
+      // A design's share link grants access to the photo it is built on.
+      const design = await getDesignByShareSlug(share);
+      allowed = design?.room_photo_id === photo.id;
     }
   }
 

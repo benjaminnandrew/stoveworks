@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 
 import type { StoneSwatch } from "@/lib/veneer-types";
 
@@ -9,11 +9,22 @@ export function StonePicker({
   onAdd,
   disabled,
   disabledReason,
+  heading = "Choose a stone",
+  note,
+  currentId,
+  before,
 }: {
   stones: StoneSwatch[];
   onAdd: (stone: StoneSwatch) => void;
   disabled: boolean;
   disabledReason?: string;
+  heading?: string;
+  /** A line under the heading — what a tap will do right now. */
+  note?: ReactNode;
+  /** The stone on the selected area, marked as chosen. */
+  currentId?: string | null;
+  /** Shown above the list, e.g. the bare-wall choice when comparing. */
+  before?: ReactNode;
 }) {
   const [search, setSearch] = useState("");
   const [brand, setBrand] = useState<string>("all");
@@ -35,7 +46,8 @@ export function StonePicker({
   return (
     <section className="picker" aria-label="Choose a stone">
       <div className="picker-head">
-        <h2>Choose a stone</h2>
+        <h2>{heading}</h2>
+        {note ? <p className="picker-note">{note}</p> : null}
         <input
           type="search"
           className="picker-search"
@@ -72,6 +84,8 @@ export function StonePicker({
 
       {disabled ? <p className="picker-hint">{disabledReason}</p> : null}
 
+      {before}
+
       {visible.length === 0 ? (
         <p className="picker-hint">No stone matches that search.</p>
       ) : (
@@ -83,7 +97,8 @@ export function StonePicker({
                 className="stone-card"
                 onClick={() => onAdd(s)}
                 disabled={disabled}
-                title={disabled ? disabledReason : `Mark an area in ${s.texture}`}
+                aria-pressed={currentId !== undefined ? s.id === currentId : undefined}
+                title={disabled ? disabledReason : undefined}
               >
                 <span
                   className="stone-swatch"

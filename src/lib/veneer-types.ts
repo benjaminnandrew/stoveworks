@@ -41,6 +41,12 @@ export type Region = {
   /** How big the marked area is in reality. Drives both scale and the estimate. */
   realWidthIn: number;
   realHeightIn: number;
+  /**
+   * True once the customer has typed the size in. Until then the size follows
+   * the shape on the photo, read off the design's scale (or a rough guess at
+   * one), so the stone keeps its size on screen while the corners move.
+   */
+  measured: boolean;
   holes: Hole[];
   cornerEdges: CornerEdges;
   /** Lighting match, so the stone sits in the room's own light. */
@@ -48,8 +54,6 @@ export type Region = {
   contrast: number;
   opacity: number;
 };
-
-export type VeneerState = { regions: Region[] };
 
 export const MAX_REGIONS = 4;
 export const MAX_HOLES = 3;
@@ -74,6 +78,7 @@ export function newRegion(stoneId: string): Region {
     ],
     realWidthIn: DEFAULT_REAL_WIDTH_IN,
     realHeightIn: DEFAULT_REAL_HEIGHT_IN,
+    measured: false,
     holes: [],
     cornerEdges: { top: false, right: false, bottom: false, left: false },
     brightness: 1,
@@ -219,7 +224,7 @@ export function parseRegions(value: unknown): Region[] {
 
     return [
       {
-        id: typeof r.id === "string" ? r.id : base.id,
+        id: typeof r.id === "string" && /^[A-Za-z0-9_-]{1,64}$/.test(r.id) ? r.id : base.id,
         stoneId: r.stoneId,
         corners: [
           parsePoint(corners[0], base.corners[0]),
@@ -229,13 +234,18 @@ export function parseRegions(value: unknown): Region[] {
         ],
         realWidthIn: clamp(num(r.realWidthIn, DEFAULT_REAL_WIDTH_IN), 6, 1200),
         realHeightIn: clamp(num(r.realHeightIn, DEFAULT_REAL_HEIGHT_IN), 6, 1200),
+        // Mock-ups saved before this flag existed were always typed in by hand.
+        measured: r.measured === undefined ? true : r.measured === true,
         holes: Array.isArray(r.holes)
           ? r.holes.slice(0, MAX_HOLES).flatMap((h): Hole[] => {
               if (typeof h !== "object" || h === null) return [];
               const hole = h as Record<string, unknown>;
               return [
                 {
-                  id: typeof hole.id === "string" ? hole.id : `h-${Math.random().toString(36).slice(2, 9)}`,
+                  id:
+                    typeof hole.id === "string" && /^[A-Za-z0-9_-]{1,64}$/.test(hole.id)
+                      ? hole.id
+                      : `h-${Math.random().toString(36).slice(2, 9)}`,
                   xPct: clamp(num(hole.xPct, 25), 0, 100),
                   yPct: clamp(num(hole.yPct, 45), 0, 100),
                   wPct: clamp(num(hole.wPct, 50), 1, 100),

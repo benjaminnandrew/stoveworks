@@ -32,6 +32,12 @@ const nextConfig: NextConfig = {
       ["/specialty-hearth/hot-tubs-sauna-stoves/", "/sauna-stoves/"],
       ["/facings/", "/stonework-mantels/"],
     ];
+    // The stove visualizer and the veneer studio became one Room Studio (Oct 2026).
+    // Veneer mock-ups moved into designs under the same ids (db/schema.sql).
+    moved.push(
+      ["/veneer/", "/visualizer/?layer=stone"],
+      ["/account/veneer/:id/", "/account/designs/:id/"],
+    );
     return moved.map(([source, destination]) => ({ source, destination, statusCode: 301 }));
   },
 };

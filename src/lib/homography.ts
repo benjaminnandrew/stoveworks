@@ -92,6 +92,51 @@ export function project(m: Matrix3, u: number, v: number): Point {
   };
 }
 
+/** Inverse of a 3x3 homography, or null when it is singular. */
+export function invert(m: Matrix3): Matrix3 | null {
+  const [a, b, c, d, e, f, g, h, i] = m;
+  const A = e * i - f * h;
+  const B = -(d * i - f * g);
+  const C = d * h - e * g;
+  const det = a * A + b * B + c * C;
+  if (Math.abs(det) < 1e-12) return null;
+  const k = 1 / det;
+  return [
+    A * k,
+    -(b * i - c * h) * k,
+    (b * f - c * e) * k,
+    B * k,
+    (a * i - c * g) * k,
+    -(a * f - c * d) * k,
+    C * k,
+    -(a * h - b * g) * k,
+    (a * e - b * d) * k,
+  ];
+}
+
+/**
+ * Where a point on the photo lands in the quad's own unit square — the inverse
+ * of `project`. Used to tell whether a tap falls on stone or in an opening.
+ */
+export function unproject(quad: Quad, x: number, y: number): Point | null {
+  const inv = invert(unitSquareToQuad(quad));
+  if (!inv) return null;
+  return project(inv, x, y);
+}
+
+/** Even-odd point-in-polygon test; works for any simple polygon. */
+export function pointInPolygon(points: readonly Point[], x: number, y: number): boolean {
+  let inside = false;
+  for (let i = 0, j = points.length - 1; i < points.length; j = i, i += 1) {
+    const a = points[i];
+    const b = points[j];
+    if (a.y > y !== b.y > y && x < ((b.x - a.x) * (y - a.y)) / (b.y - a.y) + a.x) {
+      inside = !inside;
+    }
+  }
+  return inside;
+}
+
 /**
  * CSS `matrix3d(...)` for the same transform, in the column-major order the
  * spec expects. Apply to an element sized 1x1 with `transform-origin: 0 0`.

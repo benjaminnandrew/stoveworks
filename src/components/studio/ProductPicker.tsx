@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 
 import {
   CATEGORY_LABEL,
@@ -13,11 +13,24 @@ type Props = {
   onAdd: (product: PlaceableProduct) => void;
   disabled: boolean;
   disabledReason?: string;
+  heading?: string;
+  /** A line under the heading — what a tap will do right now. */
+  note?: ReactNode;
+  /** The product currently shown on the selected item, marked as chosen. */
+  currentId?: string;
 };
 
 type CategoryFilter = PlaceableProduct["category"] | "all";
 
-export function ProductPicker({ products, onAdd, disabled, disabledReason }: Props) {
+export function ProductPicker({
+  products,
+  onAdd,
+  disabled,
+  disabledReason,
+  heading = "Add to the room",
+  note,
+  currentId,
+}: Props) {
   const [category, setCategory] = useState<CategoryFilter>("all");
   const [search, setSearch] = useState("");
 
@@ -38,7 +51,8 @@ export function ProductPicker({ products, onAdd, disabled, disabledReason }: Pro
   return (
     <section className="picker" aria-label="Choose a product">
       <div className="picker-head">
-        <h2>Add to the room</h2>
+        <h2>{heading}</h2>
+        {note ? <p className="picker-note">{note}</p> : null}
         <input
           type="search"
           className="picker-search"
@@ -84,7 +98,8 @@ export function ProductPicker({ products, onAdd, disabled, disabledReason }: Pro
                 className="product-card"
                 onClick={() => onAdd(p)}
                 disabled={disabled}
-                title={disabled ? disabledReason : `Add ${p.name} to the room`}
+                aria-pressed={currentId ? p.id === currentId : undefined}
+                title={disabled ? disabledReason : undefined}
               >
                 <span className="product-thumb">
                   {/* Cutouts and placeholders are both plain images; next/image

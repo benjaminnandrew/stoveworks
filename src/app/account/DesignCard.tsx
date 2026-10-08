@@ -8,23 +8,20 @@ export type CardDesign = {
   room_photo_id: string;
   share_slug: string | null;
   updated_at: Date;
-  /** Products placed, or areas marked. */
-  count: number;
+  itemCount: number;
+  regionCount: number;
+  isCompare: boolean;
 };
 
-const COPY = {
-  stove: { href: "/account/designs", noun: "product", nouns: "products" },
-  veneer: { href: "/account/veneer", noun: "area", nouns: "areas" },
-} as const;
+const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
 
-export function DesignCard({
-  design,
-  kind,
-}: {
-  design: CardDesign;
-  kind: keyof typeof COPY;
-}) {
-  const copy = COPY[kind];
+export function DesignCard({ design }: { design: CardDesign }) {
+  const href = `/account/designs/${design.id}/`;
+  const contents = [
+    design.itemCount ? plural(design.itemCount, "product", "products") : null,
+    design.regionCount ? plural(design.regionCount, "stone area", "stone areas") : null,
+    design.isCompare ? "A/B compare" : null,
+  ].filter(Boolean);
   const updated = new Intl.DateTimeFormat("en-US", {
     month: "short",
     day: "numeric",
@@ -33,7 +30,7 @@ export function DesignCard({
 
   return (
     <article className="design-card">
-      <Link href={`${copy.href}/${design.id}/`} className="design-thumb">
+      <Link href={href} className="design-thumb">
         {/* Room photos are private and served through the authenticated route,
             so next/image's optimizer is the wrong tool here. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -42,10 +39,10 @@ export function DesignCard({
 
       <div className="design-body">
         <h3>
-          <Link href={`${copy.href}/${design.id}/`}>{design.title}</Link>
+          <Link href={href}>{design.title}</Link>
         </h3>
         <p className="design-meta">
-          {design.count} {design.count === 1 ? copy.noun : copy.nouns} · updated {updated}
+          {[...contents, `updated ${updated}`].join(" · ")}
         </p>
 
         {design.share_slug ? (
@@ -57,7 +54,6 @@ export function DesignCard({
         <div className="design-actions">
           <form action={toggleShareAction}>
             <input type="hidden" name="id" value={design.id} />
-            <input type="hidden" name="kind" value={kind} />
             <input type="hidden" name="shared" value={String(Boolean(design.share_slug))} />
             <button type="submit" className="linklike">
               {design.share_slug ? "Stop sharing" : "Get share link"}
@@ -66,7 +62,6 @@ export function DesignCard({
 
           <form action={deleteDesignAction}>
             <input type="hidden" name="id" value={design.id} />
-            <input type="hidden" name="kind" value={kind} />
             <button type="submit" className="linklike danger">
               Delete
             </button>

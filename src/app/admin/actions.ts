@@ -136,7 +136,7 @@ export async function saveStoneAction(
 
   revalidatePath("/admin/stone");
   revalidatePath(`/admin/stone/${id}`);
-  revalidatePath("/veneer");
+  revalidatePath("/visualizer");
   return { ok: true };
 }
 

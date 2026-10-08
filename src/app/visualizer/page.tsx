@@ -1,48 +1,68 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { Visualizer } from "@/components/visualizer/Visualizer";
+import { RoomStudio } from "@/components/studio/RoomStudio";
 import { currentUser } from "@/lib/auth";
 import { listPlaceableProducts } from "@/lib/placeable";
+import { listSwatches } from "@/lib/stone";
 
 export const metadata: Metadata = {
-  title: "Room Visualizer",
+  title: "Room Studio — Stove & Stone Visualizer",
   description:
-    "See how a stove, insert or fireplace will look in your own room. Upload a photo, drop in a model from our lineup, and set it to true scale.",
+    "See a stove, insert or fireplace and a stone wall together in a photo of your own room. Set it to true scale, compare two options side by side, and get a square-footage estimate for the stone.",
   alternates: { canonical: "/visualizer/" },
 };
 
 export const dynamic = "force-dynamic";
 
-export default async function VisualizerPage() {
-  const [user, products] = await Promise.all([currentUser(), listPlaceableProducts()]);
-  const anyRealCutouts = products.some((p) => !p.isPlaceholder);
+export default async function VisualizerPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const [user, products, stones, params] = await Promise.all([
+    currentUser(),
+    listPlaceableProducts(),
+    listSwatches(),
+    searchParams,
+  ]);
+  // Say plainly what isn't real yet, and only what isn't.
+  const caveats = [
+    products.some((p) => !p.isPlaceholder) ? null : "stoves show as placeholder shapes at their true size",
+    stones.some((s) => s.isPlaceholder)
+      ? "stone marked “sample image” is a generic texture at the right scale"
+      : null,
+  ].filter(Boolean);
+  const caveat = caveats.join(", and ");
 
   return (
     <>
       <div className="page-title">
         <div className="wrap">
-          <h1>Room Visualizer</h1>
+          <h1>Room Studio</h1>
           <p className="page-lede">
-            Upload a photo of your room, drop in a stove, insert or fireplace, and set it to true
-            scale. {user ? "Save it to your account" : "Sign in to save your work"} or download the
-            image to bring in with you.
+            Bring the whole hearth together — your room, your stove, your stone. Try it on our sample
+            cabin, then upload a photo of your own room.
           </p>
         </div>
       </div>
 
       <div className="page-body">
         <div className="wrap">
-          {!anyRealCutouts ? (
-            <p className="notice">
-              <strong>Product photography is on the way.</strong> The lineup below is our real
-              catalog, shown for now with placeholder shapes at each model&rsquo;s true size. Come
-              in or <Link href="/contact-us/">give us a call</Link> and we&rsquo;ll walk you through
-              the actual units.
+          {caveat ? (
+            <p className="notice studio-notice">
+              <strong>Photography is on the way:</strong> {caveat}.{" "}
+              <Link href="/contact-us/">Ask us</Link> about the real thing.
             </p>
           ) : null}
 
-          <Visualizer products={products} isSignedIn={Boolean(user)} />
+          <RoomStudio
+            products={products}
+            stones={stones}
+            isSignedIn={Boolean(user)}
+            initialLayer={params.layer === "stone" ? "stone" : "stove"}
+            resumeId={typeof params.resume === "string" ? params.resume.slice(0, 64) : null}
+          />
         </div>
       </div>
     </>

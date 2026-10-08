@@ -1,0 +1,463 @@
+/* ==========================================================================
+   Room Studio — the stove and stone visualizer
+   The stage, product items and pickers it shares with the rest of the signed-in
+   surface live in app.css; this file has the stone layer and the studio layout.
+   ========================================================================== */
+
+/* ---------- the stoned area itself ---------- */
+
+.stone-region {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  pointer-events: none;
+  /* The homography is a projective transform; without this the browser is free
+     to flatten it back to an affine approximation. */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+.stone-fill {
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat;
+  background-position: 0 0;
+}
+
+/* Corners have been dragged into a bow-tie; the texture would fold back on
+   itself, so say so rather than rendering nonsense. */
+.stone-region.is-folded { outline: 2px dashed var(--accent); outline-offset: -2px; }
+
+/* ---------- handles ---------- */
+
+.region-grip,
+.corner-handle {
+  position: absolute;
+  padding: 0;
+  border-radius: 50%;
+  cursor: grab;
+  z-index: 5;
+  transform: translate(-50%, -50%);
+  touch-action: none;
+}
+
+.region-grip {
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.45);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+.region-grip::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.85;
+}
+.region-grip:hover { background: rgba(214, 61, 69, 0.75); }
+.region-grip.is-selected { background: rgba(214, 61, 69, 0.85); }
+.region-grip:active { cursor: grabbing; }
+
+.corner-handle {
+  width: 22px;
+  height: 22px;
+  border: 3px solid #1c1c1c;
+  background: var(--highlight);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.55);
+  cursor: crosshair;
+  z-index: 6;
+}
+.corner-handle:hover { background: #fff; }
+
+/* ---------- controls specific to a region ---------- */
+
+.edge-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 0.4rem;
+}
+.edge-toggles .checkbox span { text-transform: capitalize; }
+
+.holes { display: grid; gap: 0.5rem; }
+
+.holes-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hole-row {
+  display: grid;
+  grid-template-columns: auto repeat(4, minmax(0, 1fr)) auto;
+  gap: 0.5rem 0.75rem;
+  align-items: center;
+  padding: 0.6rem 0.7rem;
+  background: #f4f4f4;
+  border-radius: 3px;
+  font-size: 0.75rem;
+}
+.hole-row label { display: grid; gap: 0.15rem; font-family: var(--font-sans); color: var(--ink-soft); }
+.hole-row input[type="range"] { width: 100%; accent-color: var(--accent); }
+.hole-label { font-family: var(--font-sans); font-weight: 600; color: var(--ink-muted); }
+
+@media (max-width: 700px) {
+  .hole-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hole-label { grid-column: 1 / -1; }
+}
+
+.field select {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid #c9c9c9;
+  border-radius: 2px;
+  background: #fff;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+}
+.dims select {
+  width: 100%;
+  padding: 0.6rem 0.5rem;
+  border: 1px solid #c9c9c9;
+  border-radius: 2px;
+  background: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+}
+
+/* ---------- stone picker ---------- */
+
+.stone-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.stone-card {
+  display: grid;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0.4rem;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: none;
+  font-family: var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+}
+.stone-card:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-wash-soft); }
+.stone-card:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.stone-swatch {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  border-radius: 2px;
+  border: 1px solid var(--rule);
+  background-size: 130% auto;
+  background-position: center;
+}
+
+.stone-meta { display: grid; gap: 0.1rem; min-width: 0; }
+.stone-name { font-family: var(--font-sans); font-weight: 600; font-size: 0.8125rem; line-height: 1.25; }
+.stone-sub { font-family: var(--font-sans); font-size: 0.6875rem; color: var(--ink-muted); }
+
+/* ---------- material estimate ---------- */
+
+.estimate {
+  margin-top: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 1.15rem;
+  display: grid;
+  gap: 0.85rem;
+}
+.estimate h2 { margin: 0; font-size: 1.0625rem; }
+
+.estimate-figures {
+  margin: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+.estimate-figures > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9375rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px dotted var(--rule);
+}
+.estimate-figures dt { color: var(--ink-soft); font-family: var(--font-sans); }
+.estimate-figures dd { margin: 0; font-family: var(--font-sans); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+.estimate-waste,
+.estimate-boxes {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+.estimate-boxes {
+  background: #fff8d8;
+  border: 1px solid #e8d475;
+  border-radius: 3px;
+  padding: 0.7rem 0.85rem;
+}
+
+.estimate-breakdown {
+  list-style: none;
+  margin: 0;
+  padding: 0.6rem 0 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  gap: 0.3rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+.estimate-breakdown li { display: flex; justify-content: space-between; gap: 1rem; }
+
+.estimate-caveat {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1.55;
+  color: var(--ink-muted);
+}
+
+/* ---------- admin swatch preview ---------- */
+
+.swatch-preview {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background-repeat: repeat;
+}
+.swatch-preview.is-placeholder { opacity: 0.55; }
+
+/* ---------- account ---------- */
+
+.account-section { margin-top: 3rem; }
+
+.empty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   Room Studio layout
+   ========================================================================== */
+
+.studio {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 22rem;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+}
+@media (max-width: 1000px) { .studio { grid-template-columns: 1fr; } }
+
+.studio-main { display: grid; gap: 1rem; min-width: 0; }
+
+/* One line above the tool rather than a panel, so the room stays near the top. */
+.notice.studio-notice { max-width: none; margin-bottom: 1.25rem; padding: 0.6rem 0.9rem; font-size: 0.9375rem; }
+
+.studio-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+}
+.studio-upload { padding: 0.55rem 1rem; font-size: 0.875rem; }
+
+.studio-room-label {
+  margin: -0.25rem 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+}
+.studio-room-label strong { color: var(--ink); font-weight: 600; }
+
+/* ---------- the views ---------- */
+
+.studio-views { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
+.studio-views.is-compare { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 700px) { .studio-views.is-compare { grid-template-columns: minmax(0, 1fr); } }
+
+.studio-view { display: grid; min-width: 0; }
+.studio-views.is-compare .studio-view {
+  border: 2px solid transparent;
+  border-radius: 4px;
+  background: var(--surface);
+}
+.studio-views.is-compare .studio-view.is-active { border-color: var(--accent); }
+
+.studio-view-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.6rem;
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 0;
+  background: var(--surface);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  text-align: left;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.studio-view-foot strong { font-size: 1rem; color: var(--ink); }
+.studio-view-foot span { flex: 1 1 10rem; min-width: 0; }
+.studio-view-foot em { font-style: normal; font-weight: 600; color: var(--ink-muted); }
+.studio-view.is-active .studio-view-foot em { color: var(--accent); }
+
+/* On a phone the picture fills the width, so a swipe across it has to scroll the
+   page until the customer has picked something to move. Products and handles
+   always take the gesture; the stage does once something is selected. */
+.studio-stage { touch-action: pan-y; }
+.studio-stage.is-engaged,
+.studio-stage.is-calibrating,
+.studio-stage .viz-item { touch-action: none; }
+
+.studio-in-front,
+.studio-outline {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.studio-outline polygon {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-dasharray: 7 5;
+  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.8));
+}
+
+.studio-under {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.studio-reset.is-confirming { border-color: var(--danger); color: var(--danger); }
+
+/* ---------- side column ---------- */
+
+.studio-side {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+.studio-side .picker { position: static; max-height: none; }
+.studio-side .product-list,
+.studio-side .stone-list { overflow: visible; }
+@media (max-width: 1000px) {
+  .studio-side { position: static; max-height: none; overflow: visible; }
+}
+
+.studio-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--page-bg);
+  padding-bottom: 0.25rem;
+}
+.studio-tab {
+  padding: 0.65rem 0.75rem;
+  border: 1px solid #c4c4c4;
+  border-radius: 2px;
+  background: #fff;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--ink);
+  cursor: pointer;
+}
+.studio-tab:hover { border-color: var(--accent); color: var(--accent); }
+.studio-tab.is-on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* :not([hidden]) — a display rule would otherwise beat the hidden attribute and
+   leave the stone panel showing under the stove tab. */
+.studio-stone-panel:not([hidden]) { display: grid; gap: 1rem; }
+.studio-stone-panel .estimate { margin-top: 0; }
+
+.picker-note { margin: 0; font-family: var(--font-sans); font-size: 0.8125rem; color: var(--ink-muted); }
+
+.studio-placed {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.studio-shape h2 { margin: 0; font-size: 1.125rem; }
+.studio-shape-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.studio-shape-buttons .tool { justify-content: center; }
+
+.product-card[aria-pressed="true"],
+.stone-card[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent-wash-soft);
+}
+
+.studio-bare-wall {
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: center;
+  border: 1px dashed #c4c4c4;
+}
+.studio-bare-swatch {
+  aspect-ratio: 1;
+  background: repeating-linear-gradient(90deg, #d7cab0 0 10px, #c9b994 10px 11px);
+}
+
+.dims.dims-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+/* ---------- shop mode: a shared screen in the showroom ---------- */
+
+.studio.is-shop .tool,
+.studio.is-shop .btn,
+.studio.is-shop .chip,
+.studio.is-shop .studio-tab { min-height: 48px; font-size: 1rem; }
+.studio.is-shop .product-card { min-height: 76px; }
+.studio.is-shop .product-name { font-size: 1.0625rem; }
+.studio.is-shop .corner-handle { width: 40px; height: 40px; }
+.studio.is-shop .viz-handle { width: 32px; height: 32px; right: -16px; bottom: -16px; }
+.studio.is-shop .control-grid input[type="range"] { height: 32px; }
+
+@media (pointer: coarse) {
+  .studio .corner-handle { width: 34px; height: 34px; }
+  .studio .viz-handle { width: 28px; height: 28px; right: -14px; bottom: -14px; }
+}
+
+/* ---------- shared design page ---------- */
+
+.share-views { display: grid; gap: 1.25rem; min-width: 0; }
+.share-view { margin: 0; display: grid; gap: 0.4rem; }
+.share-view figcaption { font-family: var(--font-sans); font-weight: 600; font-size: 0.9375rem; }
+.share-option { display: grid; gap: 0.6rem; width: 100%; }
+.share-option + .share-option { padding-top: 1rem; border-top: 1px solid var(--rule); }
+.share-note { font-size: 0.8125rem; }

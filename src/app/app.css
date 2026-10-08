@@ -250,6 +250,8 @@
 .tool:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
 .tool:disabled { opacity: 0.45; cursor: not-allowed; }
 .tool.is-on { background: var(--accent); border-color: var(--accent); color: #fff; }
+/* Without this the hover colour (accent) lands on the accent fill and the label vanishes. */
+.tool.is-on:hover:not(:disabled) { background: var(--accent-dark); border-color: var(--accent-dark); color: #fff; }
 .tool-danger:hover:not(:disabled) { border-color: var(--danger); color: var(--danger); }
 .tool-file { position: relative; overflow: hidden; }
 .tool-file input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { Visualizer } from "@/components/visualizer/Visualizer";
+import { RoomStudio } from "@/components/studio/RoomStudio";
 import { requireUser } from "@/lib/auth";
-import { parseItems } from "@/lib/design-types";
-import { getDesign, getRoomPhoto } from "@/lib/designs";
+import { designStateOf, getDesign, getRoomPhoto } from "@/lib/designs";
 import { listPlaceableProducts } from "@/lib/placeable";
+import { listSwatches } from "@/lib/stone";
 import { AccountNav } from "../../AccountNav";
 
 export const metadata: Metadata = { title: "Edit design", robots: { index: false } };
@@ -22,11 +22,14 @@ export default async function EditDesignPage({
   const design = await getDesign(id);
   if (!design || design.user_id !== user.id) notFound();
 
-  const [photo, products] = await Promise.all([
+  const [photo, products, stones] = await Promise.all([
     getRoomPhoto(design.room_photo_id),
     listPlaceableProducts(),
+    listSwatches(),
   ]);
   if (!photo) notFound();
+
+  const state = designStateOf(design);
 
   return (
     <>
@@ -39,9 +42,11 @@ export default async function EditDesignPage({
 
       <div className="page-body">
         <div className="wrap">
-          <Visualizer
+          <RoomStudio
             products={products}
+            stones={stones}
             isSignedIn
+            initialLayer={state.items.length === 0 && state.regions.length > 0 ? "stone" : "stove"}
             initial={{
               designId: design.id,
               title: design.title,
@@ -50,11 +55,10 @@ export default async function EditDesignPage({
                 width: photo.width,
                 height: photo.height,
                 roomPhotoId: photo.id,
+                label: design.title,
+                isSample: false,
               },
-              state: {
-                items: parseItems(design.items),
-                pctPerInch: design.pct_per_inch ? Number(design.pct_per_inch) : null,
-              },
+              state,
             }}
           />
         </div>

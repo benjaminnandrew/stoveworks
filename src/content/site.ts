@@ -121,8 +121,8 @@ export const nav: NavItem[] = [
       },
       {
         label: "Stone Veneer",
-        href: "/veneer/",
-        blurb: "Mark out a wall and try Cultured Stone on it, with a square-footage estimate.",
+        href: "/visualizer/?layer=stone",
+        blurb: "Try stone on the wall behind it, with a square-footage estimate for the job.",
       },
     ],
   },

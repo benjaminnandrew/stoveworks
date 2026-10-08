@@ -1,37 +1,75 @@
+import type { Occluder } from "@/lib/design-types";
 import { project, rectToQuad, type Quad } from "@/lib/homography";
-import type { Region, StoneSwatch, VeneerState } from "@/lib/veneer-types";
+import type { ResolvedItem, ResolvedRegion } from "@/lib/studio";
+import type { Region, StoneSwatch } from "@/lib/veneer-types";
 
 type Photo = { url: string; width: number; height: number };
 
+export type ExportView = { label: string | null; items: ResolvedItem[]; regions: ResolvedRegion[] };
+
 /**
- * Renders the mock-up to a full-resolution PNG.
+ * Renders the design to a full-resolution PNG and hands it to the browser as a
+ * download — one picture, or A and B side by side when comparing.
  *
- * A 2D canvas can only do affine transforms, so the projective mapping is
- * approximated by subdividing the region into a grid and drawing each cell as
- * two affine-textured triangles. With enough cells the error is far below a
+ * Each view is drawn the way the editor stacks it: the room, the stone, the
+ * parts of the photo that stand in front of the wall, then the products.
+ * Everything is in the same percentage space the editor uses, scaled to the
+ * photo's real pixel size, so what the customer arranged is what they get.
+ *
+ * A 2D canvas can only do affine transforms, so each stone area's projective
+ * mapping is approximated by subdividing it into a grid and drawing each cell
+ * as two affine-textured triangles. With enough cells the error is far below a
  * pixel, and the result matches what CSS `matrix3d` put on screen — both are
  * driven by the same homography from src/lib/homography.ts.
  */
 const GRID = 24;
+const GAP = 24;
+const LABEL_H = 56;
 
-export async function exportVeneer(
+export async function exportDesign(
   photo: Photo,
-  state: VeneerState,
-  stones: Map<string, StoneSwatch>,
+  views: ExportView[],
+  occluders: Occluder[],
   filename: string,
 ): Promise<void> {
+  const room = await loadImage(photo.url);
+  const images = new Map<string, HTMLImageElement>();
+  const image = async (src: string) => {
+    if (!images.has(src)) images.set(src, await loadImage(src));
+    return images.get(src)!;
+  };
+
+  const labelled = views.length > 1;
   const canvas = document.createElement("canvas");
-  canvas.width = photo.width;
-  canvas.height = photo.height;
+  canvas.width = photo.width * views.length + GAP * (views.length - 1);
+  canvas.height = photo.height + (labelled ? LABEL_H : 0);
   const ctx = canvas.getContext("2d")!;
+  ctx.fillStyle = "#fff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  ctx.drawImage(await loadImage(photo.url), 0, 0, canvas.width, canvas.height);
+  for (const [i, view] of views.entries()) {
+    const panel = document.createElement("canvas");
+    panel.width = photo.width;
+    panel.height = photo.height;
+    const pctx = panel.getContext("2d")!;
+    pctx.drawImage(room, 0, 0, panel.width, panel.height);
 
-  for (const region of state.regions) {
-    const stone = stones.get(region.stoneId);
-    if (!stone) continue;
-    const tile = await loadImage(stone.image);
-    drawRegion(ctx, canvas.width, canvas.height, region, stone, tile);
+    for (const { region, stone } of view.regions) {
+      drawRegion(pctx, panel.width, panel.height, region, stone, await image(stone.image));
+    }
+    if (view.regions.length > 0) drawInFront(pctx, room, occluders);
+    for (const { item, product } of view.items) {
+      drawItem(pctx, panel.width, panel.height, item, await image(product.image));
+    }
+
+    const x = i * (photo.width + GAP);
+    ctx.drawImage(panel, x, 0);
+    if (labelled && view.label) {
+      ctx.fillStyle = "#111";
+      ctx.font = `600 ${Math.round(LABEL_H * 0.42)}px "Source Sans 3", system-ui, sans-serif`;
+      ctx.textBaseline = "middle";
+      ctx.fillText(view.label, x + 4, photo.height + LABEL_H / 2);
+    }
   }
 
   const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/png"));
@@ -44,7 +82,59 @@ export async function exportVeneer(
   document.body.appendChild(a);
   a.click();
   a.remove();
+  // Give the browser a beat to start the download before revoking.
   setTimeout(() => URL.revokeObjectURL(url), 10_000);
+}
+
+/** Re-paints the parts of the photo that stand in front of the wall. */
+function drawInFront(ctx: CanvasRenderingContext2D, room: HTMLImageElement, occluders: Occluder[]) {
+  if (occluders.length === 0) return;
+  const { width, height } = ctx.canvas;
+  ctx.save();
+  ctx.beginPath();
+  for (const o of occluders) {
+    o.points.forEach((p, i) => {
+      const x = (p.x / 100) * width;
+      const y = (p.y / 100) * height;
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.closePath();
+  }
+  // Nonzero: overlapping shapes add up rather than cancelling each other out.
+  ctx.clip("nonzero");
+  ctx.drawImage(room, 0, 0, width, height);
+  ctx.restore();
+}
+
+/** A product, bottom-centre anchored, with its contact shadow drawn first. */
+function drawItem(
+  ctx: CanvasRenderingContext2D,
+  stageW: number,
+  stageH: number,
+  item: ResolvedItem["item"],
+  img: HTMLImageElement,
+) {
+  const width = (item.widthPct / 100) * stageW;
+  const height = width * (img.naturalHeight / img.naturalWidth || 1);
+  ctx.save();
+  ctx.translate((item.xPct / 100) * stageW, (item.yPct / 100) * stageH);
+  ctx.rotate((item.rotation * Math.PI) / 180);
+
+  if (item.shadow > 0) {
+    ctx.save();
+    ctx.globalAlpha = item.shadow * 0.55;
+    ctx.filter = `blur(${Math.max(2, width * 0.045)}px)`;
+    ctx.fillStyle = "#000";
+    ctx.beginPath();
+    ctx.ellipse(0, -height * 0.012, width * 0.52, width * 0.07, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  if (item.flipped) ctx.scale(-1, 1);
+  ctx.drawImage(img, -width / 2, -height, width, height);
+  ctx.restore();
 }
 
 function drawRegion(
@@ -190,4 +280,4 @@ const slugify = (s: string) =>
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "")
-    .slice(0, 60) || "mockup";
+    .slice(0, 60) || "design";

@@ -9,7 +9,7 @@ import { siteUrl } from "@/lib/site-url";
  * carries genuine dates (e.g. /learn/ articles).
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "contact-us", "visualizer", "veneer", ...pages.map((p) => p.slug)];
+  const routes = ["", "contact-us", "visualizer", ...pages.map((p) => p.slug)];
 
   return routes.map((route) => ({
     url: route ? `${siteUrl}/${route}/` : `${siteUrl}/`,

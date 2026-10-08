@@ -202,3 +202,40 @@ CREATE TABLE IF NOT EXISTS veneer_designs (
 );
 
 CREATE INDEX IF NOT EXISTS veneer_designs_user_idx ON veneer_designs (user_id, updated_at DESC);
+
+-- ---------------------------------------------------------------------------
+-- Room Studio (October 2026): one design holds the whole hearth
+--
+-- The stove visualizer and the veneer studio merged into a single editor, so a
+-- design now carries, alongside its products:
+--   regions   — stone areas, in the shape described for veneer_designs above
+--   occluders — [{ id, points: [{x, y}, ...] }]: parts of the photo kept in
+--               front of the stone (a sofa, a window frame), as percentages
+--   compare   — view B of a comparison, or null:
+--               { products: { itemId: productId }, stones: { regionId: stoneId | null } }
+--               Placement is shared with view A; only the choices differ.
+-- ---------------------------------------------------------------------------
+
+ALTER TABLE designs ADD COLUMN IF NOT EXISTS regions   jsonb NOT NULL DEFAULT '[]'::jsonb;
+ALTER TABLE designs ADD COLUMN IF NOT EXISTS occluders jsonb NOT NULL DEFAULT '[]'::jsonb;
+ALTER TABLE designs ADD COLUMN IF NOT EXISTS compare   jsonb;
+
+-- Veneer mock-ups saved before the merge are copied across under the same id
+-- and share slug, so /account/veneer/<id>/ (redirected in next.config.ts) and
+-- /d/<slug>/ keep working. A slug that collides with an existing design's is
+-- dropped rather than failing the copy. Each copied row is stamped
+-- `migrated_at`, so a re-run never copies it again — a design the customer
+-- deletes afterwards stays deleted — while the original row stays put, in case
+-- the release has to be rolled back. Drop veneer_designs in a later release.
+ALTER TABLE veneer_designs ADD COLUMN IF NOT EXISTS migrated_at timestamptz;
+
+INSERT INTO designs (id, user_id, room_photo_id, title, items, regions, share_slug, created_at, updated_at)
+SELECT v.id, v.user_id, v.room_photo_id, v.title, '[]'::jsonb, v.regions,
+       CASE WHEN EXISTS (SELECT 1 FROM designs d WHERE d.share_slug = v.share_slug)
+            THEN NULL ELSE v.share_slug END,
+       v.created_at, v.updated_at
+  FROM veneer_designs v
+ WHERE v.migrated_at IS NULL
+   AND NOT EXISTS (SELECT 1 FROM designs d WHERE d.id = v.id);
+
+UPDATE veneer_designs SET migrated_at = now() WHERE migrated_at IS NULL;

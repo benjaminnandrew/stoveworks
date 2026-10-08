@@ -9,7 +9,7 @@ import { siteUrl } from "@/lib/site-url";
 
 import "./globals.css";
 import "./app.css";
-import "./veneer.css";
+import "./studio.css";
 
 /**
  * Three faces, per the Hayward Stoveworks type scheme — display, reading, UI.

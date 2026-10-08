@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 
 import { isConvex, rectToQuad, toCssMatrix3d, type Quad } from "@/lib/homography";
-import { asQuad, type Region, type StoneSwatch } from "@/lib/veneer-types";
+import type { Region, StoneSwatch } from "@/lib/veneer-types";
 
 /**
  * Reference resolution of a region's own coordinate space. Its aspect follows

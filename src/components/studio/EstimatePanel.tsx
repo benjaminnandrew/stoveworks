@@ -14,18 +14,33 @@ const lnft = (n: number) => `${n.toFixed(n < 10 ? 1 : 0)} lin ft`;
 /**
  * Turns the marked areas into a material list.
  *
- * Everything here follows from the real width and height the customer entered
- * for each area, so it is only as good as those measurements — which the copy
- * says plainly. It is a starting point for a quote, not a quote.
+ * Everything here follows from each area's real width and height — typed in by
+ * the customer, read off their scale, or (before either) guessed from the
+ * photo — so it is only as good as those sizes, and the copy says which they
+ * are. It is a starting point for a quote, not a quote.
  */
+export type SizeBasis = "measured" | "scale" | "guess";
+
+const CAVEAT: Record<SizeBasis, string> = {
+  measured: "An estimate from the sizes you entered, using typical coverage figures.",
+  scale: "An estimate from sizes read off your photo's scale, using typical coverage figures — measure the wall to firm it up.",
+  guess:
+    "A rough estimate: these sizes are guessed from the photo until you set the scale or enter measurements.",
+};
+
 export function EstimatePanel({
   total,
   regions,
   stones,
+  areaNumbers,
+  basis,
 }: {
   total: Estimate & { regions: number };
   regions: Region[];
   stones: Map<string, StoneSwatch>;
+  /** Each area's number in the design, so a view that skips one still labels the rest right. */
+  areaNumbers: Map<string, number>;
+  basis: SizeBasis;
 }) {
   const anyBoxes = total.flatBoxes !== null || total.cornerBoxes !== null;
 
@@ -94,7 +109,7 @@ export function EstimatePanel({
             return (
               <li key={region.id}>
                 <span>
-                  Area {i + 1} — {stone?.texture ?? "stone"}
+                  Area {areaNumbers.get(region.id) ?? i + 1} — {stone?.texture ?? "stone"}
                 </span>
                 <span>{sqft(e.netSqft)}</span>
               </li>
@@ -104,8 +119,8 @@ export function EstimatePanel({
       ) : null}
 
       <p className="estimate-caveat">
-        An estimate from the sizes you entered, using typical coverage figures. We&rsquo;ll confirm
-        quantities against the current coverage chart before anything is ordered.
+        {CAVEAT[basis]} We&rsquo;ll confirm quantities against the current coverage chart before
+        anything is ordered.
       </p>
     </section>
   );

@@ -7,8 +7,7 @@ export function AccountNav() {
     <nav className="account-nav" aria-label="Account">
       <Link href="/account/">Designs</Link>
       <Link href="/account/profile/">Profile</Link>
-      <Link href="/visualizer/">Stove visualizer</Link>
-      <Link href="/veneer/">Stone veneer</Link>
+      <Link href="/visualizer/">Room Studio</Link>
       <form action={signOutAction}>
         <button type="submit" className="linklike">
           Sign out
