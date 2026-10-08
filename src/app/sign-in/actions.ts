@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
 import { createSignInToken, isValidEmail } from "@/lib/auth";
 import { sendMail, signInEmail } from "@/lib/mail";
-import { siteUrl } from "@/lib/site-url";
+import { safeNextPath, siteUrl } from "@/lib/site-url";
 
 export type SignInState = { error?: string };
 
@@ -33,7 +33,11 @@ export async function requestSignInLink(
     };
   }
 
-  const link = `${siteUrl}/auth/verify?token=${encodeURIComponent(result.token)}`;
+  // Someone signing in to save a design goes straight back to it.
+  const next = safeNextPath(formData.get("next"));
+  const link =
+    `${siteUrl}/auth/verify?token=${encodeURIComponent(result.token)}` +
+    (next ? `&next=${encodeURIComponent(next)}` : "");
 
   try {
     await sendMail({ to: email.trim(), ...signInEmail(link, result.isNewUser) });

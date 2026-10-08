@@ -16,3 +16,15 @@ if (!configured && process.env.NODE_ENV === "production") {
 }
 
 export const siteUrl = configured || "https://stoveworksinc.com";
+
+/**
+ * Where a sign-in link may send someone afterwards. Only the customer's own
+ * tools, as a same-site path — never a full URL, `//host` or a backslash trick —
+ * so the parameter can't be turned into an open redirect.
+ */
+export function safeNextPath(value: unknown): string | null {
+  if (typeof value !== "string" || value.length > 200) return null;
+  if (!/^\/(visualizer|account)\//.test(value)) return null;
+  if (value.includes("//") || value.includes("\\")) return null;
+  return value;
+}

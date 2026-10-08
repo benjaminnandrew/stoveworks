@@ -14,7 +14,7 @@ function Submit() {
   );
 }
 
-export function SignInForm() {
+export function SignInForm({ next }: { next?: string | null }) {
   const [state, action] = useActionState<SignInState, FormData>(requestSignInLink, {});
 
   return (
@@ -37,6 +37,8 @@ export function SignInForm() {
           placeholder="you@example.com"
         />
       </label>
+
+      {next ? <input type="hidden" name="next" value={next} /> : null}
 
       {/* Honeypot — hidden from people, irresistible to bots. */}
       <div className="honeypot" aria-hidden="true">

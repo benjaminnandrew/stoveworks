@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import { safeNextPath } from "@/lib/site-url";
+
 import { currentUser } from "@/lib/auth";
 import { SignInForm } from "./SignInForm";
 
@@ -19,10 +21,11 @@ export default async function SignInPage({
 }: {
   searchParams: Promise<{ sent?: string; next?: string; expired?: string }>;
 }) {
-  const user = await currentUser();
-  if (user) redirect("/account/");
+  const { sent, expired, next: rawNext } = await searchParams;
+  const next = safeNextPath(rawNext);
 
-  const { sent, expired } = await searchParams;
+  const user = await currentUser();
+  if (user) redirect(next ?? "/account/");
 
   return (
     <>
@@ -43,7 +46,7 @@ export default async function SignInPage({
                 </p>
                 <p>
                   Nothing arrived? Check your spam folder, then{" "}
-                  <Link href="/sign-in/">try again</Link>.
+                  <Link href={next ? `/sign-in/?next=${encodeURIComponent(next)}` : "/sign-in/"}>try again</Link>.
                 </p>
               </div>
             ) : (
@@ -59,7 +62,7 @@ export default async function SignInPage({
                   that signs you straight in.
                 </p>
 
-                <SignInForm />
+                <SignInForm next={next} />
 
                 <p className="auth-note">
                   New here? Entering your email creates your account — no extra steps. Your account
