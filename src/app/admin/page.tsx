@@ -26,6 +26,10 @@ export default async function AdminPage() {
             What the visualizer offers customers. A product needs a transparent cutout image and a
             real width before it can be placed to scale.
           </p>
+          <p className="admin-crosslinks">
+            <Link href="/admin/carry/">What we carry &rarr;</Link>
+            <Link href="/admin/stone/">Stone catalogue &rarr;</Link>
+          </p>
         </div>
       </div>
 

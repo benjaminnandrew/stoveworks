@@ -26,7 +26,8 @@ reference manual.
 | Database | Postgres | PGlite in dev so nothing needs installing |
 | Auth | Magic links, own sessions | No passwords to forget, no third-party dependency |
 | Images | `sharp` | Re-encodes uploads, which also strips EXIF/GPS |
-| Output | `output: "standalone"` | Self-contained bundle for the reserved VM |
+| Files | Local folders, or Replit App Storage | One interface (`src/lib/file-store.ts`); a published Replit app has no lasting disk |
+| Hosting | Replit Reserved VM, run with `npm run start:live` | Brings the database up to date, then serves; see [docs/replit.md](docs/replit.md) |
 
 ## Running it
 
@@ -34,13 +35,16 @@ reference manual.
 npm install
 cp .env.example .env.local
 npm run db:migrate
-npm run db:seed        # hearth brands + catalogue
+npm run db:seed        # the site's brands
 npm run db:seed:stone  # Cultured Stone profiles
+npm run brain:load     # the manufacturer catalog, its guides and the visualizer's products
 npm run dev            # http://localhost:3014
 ```
 
-Other scripts: `npm run build`, `npm start`, `npm run typecheck`, `npm run lint`,
+Other scripts: `npm run build`, `npm start`, `npm run start:live` (the published site: brings
+the database up to date, then starts), `npm run typecheck`, `npm run lint`,
 `npm run db:reset`, `npm run db:seed:stone`, `npm run db:grant <email> [role]`,
+`npm run brain:load -- --dry-run` (shows what a catalog load would change),
 `npm run stone:tiles` (regenerates the placeholder stone textures).
 
 ### The database in development
@@ -68,8 +72,11 @@ npm run db:grant -- you@example.com admin
 ## Layout
 
 ```
-db/schema.sql               all ten tables, idempotent
-scripts/                    migrate, seed, seed-stone, reset, grant, tile + logo tooling
+db/schema.sql               the site's tables, idempotent
+db/catalog.sql              the catalog's tables (filled by brain:load), idempotent
+scripts/                    migrate, seed, seed-stone, reset, grant, tile + logo tooling,
+                            load-brain (the catalog loader) + store-driver
+brain/                      the manufacturer catalog: data, photo/PDF lists, guides
 src/
   app/
     layout.tsx              chrome, metadata, LocalBusiness JSON-LD
@@ -83,17 +90,22 @@ src/
     account/                saved designs and mock-ups, profile, both editors
     admin/                  staff inventory: products, cutouts, dimensions
     admin/stone/            staff catalogue: profiles, swatches, coverage
+    admin/carry/            staff mark which catalog models the store carries
+    brands/, brands/[slug]/ brand hub + each maker's current lineup, from the catalog
     d/[slug]/               read-only shared design
     api/photos              upload + serve private room photos
+    guides/[id]/            owner & installer guides, served from the database in the site theme
+    files/[...key]/         catalog photos + PDFs, staff cutouts + swatches
     api/designs, api/veneer-designs   persist each tool's work
   components/visualizer/    Visualizer, ProductPicker, DesignPreview, export, stash
   components/veneer/        VeneerStudio, StoneRegion, StonePicker, EstimatePanel, export
-  content/                  site.ts (business info + nav), pages.ts, home.ts
-  lib/                      db, auth, storage, products, designs, stone, veneer,
-                            homography (the projective maths both tools share)
-public/products/            product cutouts + category placeholder silhouettes
-public/stone/               stone swatches + generated placeholder tiles
-var/                        pgdata + uploads (gitignored)
+  content/                  site.ts (business info + nav), pages.ts, home.ts,
+                            brands.ts (the brands sold: one spelling each, slugs, sites)
+  lib/                      db, auth, storage, file-store, catalog, products, designs,
+                            stone, veneer, homography (the projective maths both tools share)
+public/products/            category placeholder silhouettes
+public/stone/               generated placeholder stone tiles
+var/                        pgdata, uploads, brain-assets (gitignored)
 _source/                    the scrape and parser that generated content/
 ```
 
@@ -127,14 +139,20 @@ one and never pretends a placeholder is the real unit.
 
 Veneer is a *surface*, not an object, so the mechanic is different from the stove tool.
 
-The customer drags four corners onto the wall face. Those corners define a **homography** —
-a projective map from a rectangle onto that quadrilateral — and the stone texture is pushed
-through it, so courses converge with the wall instead of sitting flat on top of it. The
-solver is in `src/lib/homography.ts` and has one job, which means the live editor and the
-PNG export cannot disagree:
+The customer places an upright box over the wall and resizes it from its sides and corners,
+like any image editor. (Until 8 Oct 2026 they dragged four free corners to match the wall's
+perspective; Ben found the warping off-putting and asked for plain resize handles. Both
+tools now share the same eight-handle frame.)
+
+A region is still stored as four corners, and the stone is still drawn through a
+**homography**, a projective map from a rectangle onto that quadrilateral. For an upright
+box that map is a plain scale, so nothing warps. Keeping the mechanism means saved mock-ups
+and the export path didn't change, and perspective could come back as an option without a
+data migration. The solver is in `src/lib/homography.ts` and has one job, which means the
+live editor and the PNG export cannot disagree:
 
 - **On screen**, the matrix goes to CSS `matrix3d`. The browser rasterises it on the GPU, so
-  dragging a corner stays smooth and the texture stays sharp.
+  resizing stays smooth and the texture stays sharp.
 - **On export**, the same matrix drives a triangle mesh on a 2D canvas (a 2D context can only
   do affine transforms, so the quad is subdivided until the error is sub-pixel). Triangles are
   grown a hair before clipping, or antialiasing leaves a grid of seams across the wall.
@@ -157,11 +175,18 @@ says so; staff confirm against the current coverage chart before anything is ord
 
 ## Navigation
 
-The five top-level items with children open **mega menus** — a full-width panel under the nav
-bar rather than a narrow dropdown.
+The bar has five items: **Shop** and **Visualize** open panels, and Services, Cabin Decor and
+Visit are plain links. The menus are defined in `src/content/site.ts` (`primaryNav`, `shopMenu`,
+`visualizeMenu`) and drawn by `src/components/MegaMenu.tsx`.
 
-The substance is the manufacturers carried on each child page ("Wood Stoves — Pacific Energy ·
-HearthStone · Jotul · Blaze King · Thelin · Morso · Kuma"). Those are **derived from the page
+- **Shop** is a full-width panel organised the way people arrive: the situation they're in
+  ("What are you working with?", four picture links), then stoves, inserts and fireplaces by
+  fuel, then hearth, sauna and outdoor, then the tools ("Plan it": the visualizer, the stone
+  studio and the showroom). Shop has no page of its own, so its bar item is a button.
+- **Visualize** is a small panel under its own item, with the two tools.
+
+Each stove, insert and fireplace link carries the brands stocked on that page (under "Wood
+stoves": "Pacific Energy · True North · HearthStone +4"). Those are **derived from the page
 content itself** in `src/content/nav-data.ts`, not kept in a second list — a hand-maintained
 copy would drift from the pages the moment anyone edited one. It is computed at module load
 from the same static `pages.ts` the pages render from, so there is no database call and the
@@ -170,31 +195,35 @@ marketing pages stay statically prerendered.
 Behaviour worth knowing:
 
 - Hover opens, with a short close delay so crossing the gap to the panel does not snap it shut.
-- Keyboard: tabbing onto a parent opens its panel, tabbing continues into it, Escape closes.
+- Keyboard: focus on a menu item opens its panel, tabbing continues into it, Escape closes.
   `onFocus`/`onBlur` rather than the capture variants — React maps those to `focusin`/`focusout`,
   which bubble from the links inside.
 - Closed panels are `inert`, so the tab order does not run through every hidden menu.
-- `.nav-item` is `position: static` on purpose: the panel's containing block has to be the nav
-  bar for it to span the full width.
-- The footer strip is dropped when a menu's parent page is also one of its children — that is
-  the Visualizer, where "All Visualizer" would be meaningless.
-- Below 992px the mega menus are hidden entirely; the mobile drawer takes over.
+- `.nav-item` is `position: static` on purpose: the Shop panel's containing block has to be the
+  header bar for it to span the full width. `.menu-visualize` is `position: relative`, so the
+  small Visualize panel sits under its own item.
+- Below 992px the panels are hidden entirely; the mobile drawer takes over.
 
 ## Colour
 
 Tokens at the top of `globals.css`. The accent is **oxblood `#96382c`** — warmer and far less
 bright than the `#d63d45` inherited from the old WordPress theme, and it takes white-on-accent
-contrast from 4.55:1 (only just AA) to 7.24:1 (AAA), which matters because the nav bar is white
-text on a solid accent fill.
+contrast from 4.55:1 (only just AA) to 7.24:1 (AAA), which matters wherever white text sits on
+an accent fill, such as the header's "Visit the showroom" button.
 
 | Token | Value | Used for |
 | --- | --- | --- |
-| `--accent` | `#96382c` | Top bar and nav fill, page titles, buttons, links, focus rings |
+| `--accent` | `#96382c` | Links, buttons (the header's call to action), focus outlines, small accents |
 | `--accent-dark` | `#7b2d23` | Hover on accent-filled controls |
 | `--danger` | `#8a2318` | Destructive actions only — deliberately distinct now the accent is itself a red |
-| `--accent-wash` | `#f9ece8` | Error panel fill |
-| `--accent-wash-soft` | `#faf3f0` | Card hover fill |
-| `--highlight` | `#fedf32` | Nav hover/active, the dark-band headings, editor handles |
+| `--accent-wash` | `#f6e7e2` | Error panel fill, the Shop menu's showroom card, the selected tile in the home chooser |
+| `--accent-wash-soft` | `#faf1ec` | Card hover fill |
+| `--gold` | `#e0b64a` | Link hover in the top bar and footer, the mobile drawer's current page, the back-to-top button |
+| `--highlight` | `var(--gold)` | Kept as an alias; nothing uses it directly now |
+
+The redesign added a paper-and-pine palette around these: `--paper` (the page background),
+`--birch` (surfaces), `--pine` (the top bar), `--gold` and the `--ink` greys. The top of
+`globals.css` has the full set.
 
 Emails cannot use custom properties, so `src/lib/mail.ts` inlines the accent — change it in
 both places if the accent moves again.
@@ -219,11 +248,105 @@ Two things worth knowing before editing:
   Form field labels, the contact-page section headings and admin table headers all use it.
   There is a `.label` utility in `globals.css` for new cases.
 
+## The manufacturer catalog
+
+`brain/` is the verified manufacturer catalog: 200 US-sold models from 13 brands, every
+published spec, the photos and PDFs, and an owner & installer guide per manual set (see
+`brain/README.md`). `npm run brain:load` loads it into the `catalog_*` tables. It's safe to
+re-run: it creates its tables if needed (`db/catalog.sql`), brings them in line with the brain
+inside one transaction without changing any table's structure outside its own, and never overwrites a
+`carry_status` staff have set. A model staff have marked is kept, with `retired_at` set, if it
+drops out of the brain; `listCatalogModels` skips those.
+
+The photos and PDFs themselves live in the file store, at the brain's storage keys
+(`images/<brand>/…`, `documents/<brand>/…`): `var/brain-assets` locally, App Storage on
+Replit. The loader records which files are actually there (`object_path`); when one isn't,
+pages fall back to the maker's URL.
+
+| URL | Serves |
+| --- | --- |
+| `/guides/<id>/` | A guide page, from `catalog_guides`, with its manual links pointed at `/files/` |
+| `/files/documents/…`, `/files/images/…` | Catalog PDFs (inline, byte ranges locally, so `#page=N` works) and photos |
+| `/files/media/products/…`, `/files/media/stone/…` | Cutouts and swatches staff upload at `/admin` |
+
+`src/lib/catalog.ts` has typed queries (`listCatalogModels`, `getCatalogModel`, `fileUrl`,
+`listPublicLineup`) for building pages on the catalog.
+
+### Brand pages and what we carry
+
+`/brands/` lists the 14 brands sold (`src/content/brands.ts`: the brain's 13 plus Majestic,
+which is sold but isn't in the catalog). `/brands/<slug>/` shows the maker's **current US
+lineup** from the catalog (Ben, 20 Oct: show the lineups now, worded as the maker's lineup, not
+as stock), grouped by type, with the maker's own figures: heating area, efficiency with its
+basis, wood burn time. No BTU and no prices. Each card links to the model's owner & installer
+guide, the maker's page and an "Ask about it" email. The intro and logo come from the brand's
+card on the product pages; Majestic gets an "ask us" note instead of a lineup.
+
+Which models the store actually has is Steve's call, never inferred. Staff mark it at
+**`/admin/carry/`**: *On our showroom floor*, *We carry it*, *Not carried* or unmarked
+(`catalog_models.carry_status`, with who set it and when). Floor and carried models get a badge
+and list first; *Not carried* takes a model off the public site; unmarked models show as part of
+the lineup. Discontinued models and ones the maker doesn't sell in the US never show.
+`brain:load` never overwrites a mark.
+
+**The product pages list the models too.** `LINEUP_TYPES` in `src/app/[...slug]/page.tsx` maps
+each product page to the catalog types it shows (Wood Stoves → wood stoves; Pellet Stoves →
+pellet stoves and inserts; Electric Fireplaces → electric fireplaces and inserts…). Each brand's
+models sit under its card, with a jump strip of maker logos above. A brand's models fold after
+ten, and brands with models but no card on the page get one built from their other pages. The
+content route is `force-dynamic` for this; without the database a page renders its copy without
+the models. Cook Stoves & Refrigerators is left out: it's Heartland ranges, not the catalog's
+wood cook stove.
+
+**Navigation:** Brands is a top-nav item with a logo panel (`BrandsMenu` in `MegaMenu.tsx`), and
+the mobile drawer has a Brands group.
+
+**The guides wear the site's theme.** `/guides/<id>/` serves the brain's guide page through
+`themeGuide()` (`src/lib/guide-theme.ts`): site fonts, `public/styles/guide-theme.css` after the
+guide's own styles, favicon, title, and the badge linking home. The brain's files are never
+edited; see HANDOFF for what the theme depends on.
+
+## Site search
+
+One search behind every box: the home page hero (type or talk), the header button, the mobile
+drawer and `/search/`. It all goes through `POST /api/search` or the same function. Phase 1 has
+no AI.
+
+- **Names:** names and model numbers are generated from the catalog, the brand list and
+  `src/content/search-terms.ts`. Typos, plain letters ("jotul") and unfinished names
+  ("bellin") are handled.
+- **Answers:** these come from `catalog_guide_sections` and `catalog_manual_pages`, which
+  `brain:load` builds from the guides. Each one cites the manual page. Clearance, venting and gas
+  sections are linked, never quoted.
+- **Safety screen:** gas smells, CO alarms, chimney fires and smoke get a fixed message first.
+- **Tests:** run `npm run dev`, then `npm run test:search`. They're generated from the brain and
+  checked against the marks in docs/smart-search-plan.md.
+
+The rules the search keeps are in [CLAUDE.md](CLAUDE.md). The plan and the results are in
+[docs/smart-search-plan.md](docs/smart-search-plan.md).
+
+`src/content/brands.ts` is also where brand names are spelled: the mega-menu brand lines and
+the "See the … lineup" links on product pages resolve the pages' older spellings through it.
+
+**The visualizer's products are the catalog's models** (Ben, 13 Oct: the 200 real models
+replace the old placeholder rows). The loader keeps `products` in step: one row per model
+(`products.catalog_model_id`), named "Brand Model". It updates the name, type, brand and
+maker link on every run. It never touches what staff own: the cutout, whether it's live, and
+the summary and sizes once set. Discontinued models start hidden. A product whose model leaves
+the catalog is hidden, never deleted, so saved designs keep working. Sizes come from the
+catalog only for freestanding stoves that publish a width (56 of the 83); staff enter the rest
+with the cutout. For inserts and fireplaces the catalog gives the unit or framing width, not
+the visible front, so staff enter that too.
+Moving everything to Replit: [docs/replit.md](docs/replit.md).
+
 ## Data model
 
 `users` → `login_tokens`, `sessions` — magic-link auth; only token *hashes* are stored.
-`brands` → `products` — the hearth inventory the stove visualizer draws from.
+`brands` → `products` — the hearth inventory the stove visualizer draws from: one row per
+catalog model (`catalog_model_id`), kept in step by `npm run brain:load`.
 `brands` → `stone_products` — the veneer catalogue.
+`catalog_brands` → `catalog_models` → photos, documents and guides (`catalog_*`) — the
+manufacturer catalog, loaded from `brain/` by `npm run brain:load`.
 `room_photos` → `designs` / `veneer_designs` → `design_enquiries` — customer work, all scoped
 by `user_id`. The two tools save into separate tables for now; `/d/[slug]` resolves either, so
 links a customer has already sent keep working when the editors eventually merge.
@@ -240,28 +363,38 @@ Access rules, all enforced server-side:
 
 ```bash
 npm run build
-SITE_URL=https://stoveworksinc.com DATABASE_URL=... SMTP_URL=... \
-  node .next/standalone/server.js
+npm run start:live
 ```
 
-Copy `public/` and `.next/static/` next to `.next/standalone/` — Next does not bundle them.
+`start:live` is the published site's run command. It brings the tables up to date, starts the
+site on port 3014, then loads the brands, the stone profiles (first time only) and the
+manufacturer catalog. With Postgres those data steps run in the background once the site
+answers, because Replit marks an app live as soon as its homepage responds. Every step is safe
+to repeat. `npm start` starts the site without the database steps.
 
 Required environment (see `.env.example`):
 
 | Variable | Needed | Notes |
 | --- | --- | --- |
 | `SITE_URL` | Yes | Sign-in links are built from this. Deliberately **not** taken from request headers — a forged Host header would otherwise mint links pointing at an attacker's domain. |
-| `DATABASE_URL` | Yes | Without it the app silently runs PGlite against local disk. |
+| `DATABASE_URL` | Yes | Without it the app runs PGlite against local disk (on Replit it refuses to start instead). |
 | `SMTP_URL`, `MAIL_FROM` | Yes | Without `SMTP_URL`, sign-in emails go to the console and **nobody can sign in**. |
-| `UPLOAD_DIR` | Recommended | Point at a persistent volume; defaults to `var/uploads` inside the app directory. |
+| `FILE_STORE` | On Replit, automatic | `replit` keeps every file in App Storage (the default on Replit); `local` uses the folders below (the default elsewhere). |
+| `UPLOAD_DIR` | Recommended with `local` | Point at a persistent volume; defaults to `var/uploads` inside the app directory. |
+| `BRAIN_ASSETS_DIR` | With `local` | The catalog's photos and PDFs; defaults to `var/brain-assets`. |
 
 `var/uploads` holds customer photos and must be on persistent, backed-up storage —
-it is not reconstructible.
+it is not reconstructible. With `FILE_STORE=replit` they live in App Storage instead.
+
+On Replit, follow [docs/replit.md](docs/replit.md): database, App Storage, loading the
+catalog, and publishing.
 
 ## Still to do
 
-- **Product photography.** All 42 catalog rows need transparent cutouts and real widths
-  before the visualizer is truthful. Staff upload both at `/admin`.
+- **Product photography.** All 200 products (the catalog's models) need transparent cutouts
+  before the visualizer shows the real unit. Inserts and fireplaces need their visible width,
+  and 27 freestanding stoves need a width (their makers publish none). Staff upload both at
+  `/admin`.
 - **Stone swatches.** The 10 seeded Cultured Stone profiles all render a generic placeholder
   tile, labelled as a sample. Each needs a seamlessly tiling photograph of the real product and
   the real area that image covers, uploaded at `/admin/stone`.
@@ -277,29 +410,23 @@ it is not reconstructible.
 The name, logo and all on-site copy are done. These sit outside the codebase or need a
 decision:
 
-The logo is the cast nameplate — a solid dark plate with reversed type, which sits equally
-well on the white masthead and the grey footer.
-
-The masthead logo is pinned to 88px so it matches the business-hours block beside it. Both are
-fixed pixel heights: a viewport-relative logo size would only line up at one window width. The
-plate is 2.27:1, so that lands at 200px wide. The footer copy is width-driven instead
-(`max-width: 220px`) because a height-driven plate overflows its column in the four-column
-footer grid on narrower screens.
+The logo is the round badge (`public/images/logo-badge.png`, 19 Oct 2026), which replaced the
+cast nameplate in the header, footer, JSON-LD, share image and favicon. Its sizes are set in
+`globals.css` (`.header-logo`, `.footer-logo`). The showroom-card plates are still styled after
+the nameplate and work as plain black plates.
 
 `scripts/logo-resize-tagline.mjs` belongs to the earlier pencil-sketch mark, which is not
 currently in use — its pixel bounds are measured against that artwork and mean nothing for
-the nameplate.
+the round badge.
 
 | Item | State |
 | --- | --- |
-| Favicon / apple-touch icon | **Still the old brand's.** `src/app/icon.ico` and `apple-icon.png` came from the previous site. A new one needs the fireplace glyph isolated from the wordmark — a design call, not a crop. |
+| Favicon / apple-touch icon | **Done (19 Oct).** `src/app/icon.ico` and `apple-icon.png` are the round badge's stove-and-flame glyph. |
 | Domain (`SITE_URL`) | Still `stoveworksinc.com`. Unchanged deliberately; the site lives there and the links work. |
 | Email address | Still `stoveworksstorefront@gmail.com`. Renaming a business does not rename its mailbox. |
 | Google Business Profile | The map embed on the footer and contact page shows "Stove Works & Fireplace Center" — that is Google's listing data and has to be changed in the Business Profile, not here. |
-| Home-page sign photo | `stove-works-sign.jpg` is a real photo of the **old** sign outside the store. Wants reshooting once the new sign is up. |
+| Home-page sign photo | **Closed.** Nothing on the site uses `stove-works-sign.jpg` (the old sign) any more; the file is still in `public/images/`. |
 | Legal entity | Copy uses "Hayward Stoveworks" throughout, including the copyright line. If the registered entity is still "The Stove Works, Inc.", the footer and JSON-LD may want the legal name alongside the trading name. |
-- **Real model names.** The seeded rows are honest placeholders at the "we carry Jotul gas
-  stoves" level, taken from what the site already says. They want replacing with actual SKUs.
 - **Design enquiries.** The `design_enquiries` table exists and is wired into the schema, but
   there is no UI yet for a customer to send a design to Steve or for staff to work the queue.
 
@@ -312,8 +439,9 @@ the nameplate.
 - Pages renamed per `docs/seo-plan.md` (8 Oct 2026) 301 from their old URLs (`redirects()` in
   `next.config.ts`): `specialty-hearth/*` → `hearth-accessories/*`, `/outdoor/`,
   `/cook-stoves/`, `/sauna-stoves/` + `/wood-fired-hot-tubs/` (split), and `facings` →
-  `stonework-mantels`. The old WordPress hello-world post returns 410.
-- Two pages the old nav never linked (cook stoves and the hot tub / sauna page) are in the
-  Specialty Hearth menu.
+  `fireplace-walls-mantels` (it was `stonework-mantels` from 8 to 19 Oct, and that URL
+  redirects too). The old WordPress hello-world post returns 410.
+- Two pages the old nav never linked (cook stoves and the hot tub / sauna page, since split
+  into sauna stoves and hot tubs) are in the Shop menu's "Hearth, sauna & outdoor" column.
 - The old Stoves page linked to `/stoves/gas/` and `/stoves/wood/`, which 404'd. Fixed.
 - Cook Stoves & Refrigerators is image-only on the live site and remains thin here.

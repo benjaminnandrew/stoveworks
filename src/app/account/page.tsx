@@ -8,7 +8,7 @@ import { AccountNav } from "./AccountNav";
 import { DesignCard, type CardDesign } from "./DesignCard";
 
 export const metadata: Metadata = {
-  title: "My account",
+  title: "My designs",
   robots: { index: false },
 };
 
@@ -45,7 +45,7 @@ export default async function AccountPage() {
     <>
       <div className="page-title">
         <div className="wrap">
-          <h1>{user.name ? `Welcome back, ${user.name.split(" ")[0]}` : "My account"}</h1>
+          <h1>{user.name ? `Welcome back, ${user.name.split(" ")[0]}` : "My designs"}</h1>
           <AccountNav />
         </div>
       </div>

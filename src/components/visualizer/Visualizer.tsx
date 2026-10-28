@@ -2,6 +2,9 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { DemoBanner, usePhotoDrop } from "@/components/RoomPhoto";
+import { DEMO_ROOM, DEMO_ROOM_ALT } from "@/lib/demo-room";
+
 import {
   clamp,
   MAX_ITEMS,
@@ -14,20 +17,33 @@ import { loadStash, saveStash, clearStash, type Stash } from "./stash";
 import { exportDesign } from "./export";
 import { ProductPicker } from "./ProductPicker";
 
-export type Photo = { url: string; width: number; height: number; roomPhotoId?: string };
+export type Photo = {
+  url: string;
+  width: number;
+  height: number;
+  roomPhotoId?: string;
+  /** The built-in sample room, shown until someone uploads their own. */
+  demo?: boolean;
+};
 
 type Props = {
   products: PlaceableProduct[];
   isSignedIn: boolean;
   /** Reopening a saved design. */
   initial?: { designId: string; title: string; photo: Photo; state: DesignState };
+  /** A product to place on arrival: "See it in your room" on a model's page. */
+  startWith?: string;
 };
 
 const MAX_EDGE = 2400;
 const STASH_EDGE = 1500;
 
-export function Visualizer({ products, isSignedIn, initial }: Props) {
-  const [photo, setPhoto] = useState<Photo | null>(initial?.photo ?? null);
+/** Resize handles: four corners and four sides, by compass point. */
+const HANDLES = ["nw", "n", "ne", "e", "se", "s", "sw", "w"] as const;
+type Handle = (typeof HANDLES)[number];
+
+export function Visualizer({ products, isSignedIn, initial, startWith }: Props) {
+  const [photo, setPhoto] = useState<Photo | null>(initial?.photo ?? DEMO_ROOM);
   const [photoBlob, setPhotoBlob] = useState<Blob | null>(null);
   const [title, setTitle] = useState(initial?.title ?? "");
   const [design, setDesign] = useState<DesignState>(
@@ -46,7 +62,8 @@ export function Visualizer({ products, isSignedIn, initial }: Props) {
   // --- restore work stashed before a sign-in round trip ---------------------
 
   useEffect(() => {
-    if (initial || photo) return;
+    // The sample room yields to stashed work; a real photo never does.
+    if (initial || (photo && !photo.demo)) return;
     const stash = loadStash();
     if (!stash) return;
     setPhoto({ url: stash.dataUrl, width: stash.width, height: stash.height });
@@ -86,6 +103,8 @@ export function Visualizer({ products, isSignedIn, initial }: Props) {
     }
   }, []);
 
+  const { over, dropProps } = usePhotoDrop(acceptPhoto);
+
   // --- item manipulation ----------------------------------------------------
 
   const update = useCallback((id: string, patch: Partial<PlacedItem>) => {
@@ -107,6 +126,15 @@ export function Visualizer({ products, isSignedIn, initial }: Props) {
     },
     [photo, design.items.length, design.pctPerInch],
   );
+
+  // From a model's page: that model starts in the room, once.
+  const started = useRef(false);
+  useEffect(() => {
+    if (started.current || initial || !startWith) return;
+    started.current = true;
+    const product = byId.get(startWith);
+    if (product && design.items.length === 0) addProduct(product);
+  }, [startWith, initial, byId, addProduct, design.items.length]);
 
   const removeItem = useCallback((id: string) => {
     setDesign((d) => ({ ...d, items: d.items.filter((i) => i.id !== id) }));
@@ -155,23 +183,45 @@ export function Visualizer({ products, isSignedIn, initial }: Props) {
     [calibrating, pointerToPct, update],
   );
 
-  const startScale = useCallback(
-    (e: React.PointerEvent, item: PlacedItem) => {
+  /**
+   * Resize from any side or corner. Always in proportion: a stretched stove would
+   * misrepresent the model, which is the one thing this tool mustn't do. The
+   * opposite side or corner stays where it is.
+   */
+  const startResize = useCallback(
+    (e: React.PointerEvent, item: PlacedItem, handle: Handle) => {
       e.preventDefault();
       e.stopPropagation();
       setSelectedId(item.id);
 
-      const startPct = pointerToPct(e.clientX, e.clientY);
-      // Distance from the item's own centre line drives the width.
-      const startHalf = Math.max(Math.abs(startPct.xPct - item.xPct), 0.5);
-      const startWidth = item.widthPct;
       const target = e.currentTarget as HTMLElement;
+      const box = target.parentElement as HTMLElement;
+      const { rect } = pointerToPct(e.clientX, e.clientY);
+
+      // The item is positioned by its bottom-centre; work in its box instead.
+      const w0 = item.widthPct;
+      const h0 = (box.offsetHeight / rect.height) * 100;
+      const left0 = item.xPct - w0 / 2;
+      const top0 = item.yPct - h0;
+
+      const horizontal = handle.includes("e") || handle.includes("w");
+      const anchorX = handle.includes("w") ? left0 + w0 : handle.includes("e") ? left0 : left0 + w0 / 2;
+      const anchorY = handle.includes("n") ? top0 + h0 : handle.includes("s") ? top0 : top0 + h0 / 2;
+
       target.setPointerCapture(e.pointerId);
 
       const move = (ev: PointerEvent) => {
         const p = pointerToPct(ev.clientX, ev.clientY);
-        const half = Math.max(Math.abs(p.xPct - item.xPct), 0.5);
-        update(item.id, { widthPct: clamp(startWidth * (half / startHalf), 3, 150) });
+        const scale = horizontal
+          ? (handle.includes("e") ? p.xPct - anchorX : anchorX - p.xPct) / w0
+          : (handle.includes("s") ? p.yPct - anchorY : anchorY - p.yPct) / h0;
+        const w = clamp(w0 * scale, 3, 150);
+        const h = h0 * (w / w0);
+
+        const left = handle.includes("w") ? anchorX - w : handle.includes("e") ? anchorX : anchorX - w / 2;
+        const top = handle.includes("n") ? anchorY - h : handle.includes("s") ? anchorY : anchorY - h / 2;
+
+        update(item.id, { widthPct: w, xPct: left + w / 2, yPct: top + h });
       };
       const stop = () => {
         target.releasePointerCapture(e.pointerId);
@@ -348,11 +398,10 @@ export function Visualizer({ products, isSignedIn, initial }: Props) {
 
   return (
     <div className="viz">
-      <div className="viz-stage-col">
-        {!photo ? (
-          <PhotoDrop onFile={acceptPhoto} />
-        ) : (
+      <div className={`viz-stage-col${over ? " is-drop-over" : ""}`} {...dropProps}>
+        {photo ? (
           <>
+            {photo.demo ? <DemoBanner onFile={acceptPhoto} /> : null}
             <div className="viz-toolbar">
               <label className="viz-title-field">
                 <span className="visually-hidden">Design name</span>
@@ -379,7 +428,7 @@ export function Visualizer({ products, isSignedIn, initial }: Props) {
                   {design.pctPerInch ? "Re-set scale" : "Set scale"}
                 </button>
                 <label className="tool tool-file">
-                  Replace photo
+                  {photo.demo ? "Use your own photo" : "Replace photo"}
                   <input
                     type="file"
                     accept="image/*"
@@ -444,7 +493,7 @@ export function Visualizer({ products, isSignedIn, initial }: Props) {
               aria-label="Room preview — select a product, then use the arrow keys to move it"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="viz-room" src={photo.url} alt="Your room" draggable={false} />
+              <img className="viz-room" src={photo.url} alt={photo.demo ? DEMO_ROOM_ALT : "Your room"} draggable={false} />
 
               {design.items.map((item) => {
                 const product = byId.get(item.productId);
@@ -475,13 +524,16 @@ export function Visualizer({ products, isSignedIn, initial }: Props) {
                       draggable={false}
                       style={{ transform: item.flipped ? "scaleX(-1)" : undefined }}
                     />
-                    {isSelected ? (
-                      <span
-                        className="viz-handle"
-                        onPointerDown={(e) => startScale(e, item)}
-                        aria-hidden="true"
-                      />
-                    ) : null}
+                    {isSelected
+                      ? HANDLES.map((h) => (
+                          <span
+                            key={h}
+                            className={`resize-handle is-${h}`}
+                            onPointerDown={(e) => startResize(e, item, h)}
+                            aria-hidden="true"
+                          />
+                        ))
+                      : null}
                   </div>
                 );
               })}
@@ -510,7 +562,7 @@ export function Visualizer({ products, isSignedIn, initial }: Props) {
             ) : (
               <p className="viz-hint">
                 {design.items.length
-                  ? "Tap a product in the photo to move or resize it."
+                  ? "Tap a product to move it, or drag a side or corner to resize it."
                   : "Now pick a stove, insert or fireplace to drop into the room."}
               </p>
             )}
@@ -534,7 +586,7 @@ export function Visualizer({ products, isSignedIn, initial }: Props) {
               </button>
             </div>
           </>
-        )}
+        ) : null}
 
         {busy ? (
           <p className="viz-busy" role="status">
@@ -636,38 +688,6 @@ function ItemControls({
         </button>
       </div>
     </div>
-  );
-}
-
-function PhotoDrop({ onFile }: { onFile: (file: File) => void }) {
-  const [over, setOver] = useState(false);
-
-  return (
-    <label
-      className={`photo-drop${over ? " is-over" : ""}`}
-      onDragOver={(e) => {
-        e.preventDefault();
-        setOver(true);
-      }}
-      onDragLeave={() => setOver(false)}
-      onDrop={(e) => {
-        e.preventDefault();
-        setOver(false);
-        const file = e.dataTransfer.files?.[0];
-        if (file) onFile(file);
-      }}
-    >
-      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-        <path d="M3 16.5V19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2.5M12 3v13m0-13 4.5 4.5M12 3 7.5 7.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      <strong>Add a photo of your room</strong>
-      <span>Drag one here, or tap to choose. Straight-on shots of the wall work best.</span>
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => e.target.files?.[0] && onFile(e.target.files[0])}
-      />
-    </label>
   );
 }
 

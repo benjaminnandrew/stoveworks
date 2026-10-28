@@ -45,6 +45,17 @@ const slugify = (s) =>
 const db = await connect();
 console.log(`→ ${db.label}`);
 
+// `--if-empty` (used by `npm run start:live`): seed only a database that has no
+// stone profiles yet, so a restart never undoes staff edits.
+if (process.argv.includes("--if-empty")) {
+  const { rows } = await db.query(`SELECT count(*)::int AS n FROM stone_products`);
+  if (rows[0].n > 0) {
+    console.log(`✓ ${rows[0].n} stone profiles already there; leaving them as they are`);
+    await db.close();
+    process.exit(0);
+  }
+}
+
 try {
   const brand = await db.query(`SELECT id FROM brands WHERE name = $1`, [BRAND]);
   const brandId = brand.rows[0]?.id ?? null;

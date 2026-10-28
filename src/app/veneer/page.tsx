@@ -6,7 +6,7 @@ import { currentUser } from "@/lib/auth";
 import { listSwatches } from "@/lib/stone";
 
 export const metadata: Metadata = {
-  title: "Stone Veneer Mock-up",
+  title: "Stone Veneer Mock-up, Hayward WI",
   description:
     "See Cultured Stone veneer on your own wall. Mark out the area, pick a profile, and get a square-footage estimate for the job.",
   alternates: { canonical: "/veneer/" },
@@ -24,8 +24,8 @@ export default async function VeneerPage() {
         <div className="wrap">
           <h1>Stone Veneer Mock-up</h1>
           <p className="page-lede">
-            Photograph the wall or fireplace, drag the corners onto it, and try Cultured Stone
-            profiles on for size. Tell us how big the area really is and we&rsquo;ll work out the
+            Start with our sample cabin or photograph your own wall or fireplace, drag the corners
+            onto it, and try Cultured Stone profiles on for size. Tell us how big the area really is and we&rsquo;ll work out the
             square footage as you go.
           </p>
         </div>
@@ -36,7 +36,7 @@ export default async function VeneerPage() {
           {stones.length === 0 ? (
             <p className="notice">
               <strong>No stone profiles yet.</strong> Ask us to add them, or{" "}
-              <Link href="/stonework-mantels/">see the stonework we carry</Link>.
+              <Link href="/fireplace-walls-mantels/">see the stone and wall panels we carry</Link>.
             </p>
           ) : !anyRealSwatches ? (
             <p className="notice">

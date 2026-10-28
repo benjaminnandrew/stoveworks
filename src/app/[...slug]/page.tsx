@@ -3,21 +3,69 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { JsonLd } from "@/components/JsonLd";
-import { PageSections } from "@/components/PageSections";
+import type { HubFuel } from "@/components/FuelCards";
+import { PageSections, type PageLineup } from "@/components/PageSections";
+import { brandBySlug, brandForName } from "@/content/brands";
 import { brandsForHref } from "@/content/nav-data";
 import { pageBySlug, pages } from "@/content/pages";
 import { business } from "@/content/site";
 import type { Page } from "@/content/types";
+import { HUB_FORMS, LINEUP_GROUPS, LINEUP_TYPES, pageForType } from "@/content/lineup";
+import { listPublicLineup } from "@/lib/catalog";
+import { SHARE_IMAGE } from "@/lib/share-image";
 import { siteUrl } from "@/lib/site-url";
 
 type Props = { params: Promise<{ slug: string[] }> };
 
-/** Pre-render every known page at build time; unknown paths still 404. */
-export function generateStaticParams() {
-  return pages.map((page) => ({ slug: page.slug.split("/") }));
+/**
+ * Rendered per request: the product pages list the makers' current models from
+ * the catalog, and what Steve marks at /admin/carry/ should show straight away.
+ */
+export const dynamic = "force-dynamic";
+
+/** The page's models by brand. Without the database the page still renders its copy. */
+async function lineupFor(slug: string): Promise<PageLineup | undefined> {
+  const types = LINEUP_TYPES[slug];
+  if (!types) return undefined;
+  try {
+    const models = (await listPublicLineup()).filter((m) =>
+      types.some((t) => t.form === m.form && t.fuel === m.fuel),
+    );
+    const byBrand = new Map<string, typeof models>();
+    for (const m of models) byBrand.set(m.brand_slug, [...(byBrand.get(m.brand_slug) ?? []), m]);
+    return { byBrand };
+  } catch (err) {
+    console.error(`[lineup] ${slug}:`, err);
+    return undefined;
+  }
 }
 
-export const dynamicParams = false;
+/**
+ * A hub page's fuels, for its "fuels" section: each fuel's product page, its models
+ * of the hub's form, and its makers in that page's order (its brand cards, then
+ * the catalog's other makers). Without the database the section is left out.
+ */
+async function fuelsFor(page: Page): Promise<HubFuel[] | undefined> {
+  const form = HUB_FORMS[page.slug];
+  if (!form || !page.sections.some((s) => s.type === "fuels")) return undefined;
+  try {
+    const all = await listPublicLineup();
+    return LINEUP_GROUPS.filter((g) => g.form === form).flatMap((g) => {
+      const href = pageForType(g.form, g.fuel);
+      const target = href ? pageBySlug.get(href.slice(1, -1)) : undefined;
+      if (!href || !target) return [];
+      const models = all.filter((m) => m.form === g.form && m.fuel === g.fuel);
+      const carded = target.sections.flatMap((s) => (s.type === "brand" ? [brandForName(s.name)?.slug] : []));
+      const makers = [...new Set([...carded, ...models.map((m) => m.brand_slug)])].filter(
+        (slug): slug is string => !!slug && !!brandBySlug(slug),
+      );
+      return [{ label: g.label, href, page: target.title, own: target.slug.startsWith(`${page.slug}/`), models, makers }];
+    });
+  } catch (err) {
+    console.error(`[fuels] ${page.slug}:`, err);
+    return undefined;
+  }
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -30,7 +78,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description: page.description ?? descriptionFor(page),
     alternates: { canonical: `/${page.slug}/` },
-    openGraph: { title, url: `/${page.slug}/` },
+    openGraph: { title, url: `/${page.slug}/`, images: [SHARE_IMAGE] },
   };
 }
 
@@ -94,7 +142,6 @@ export default async function ContentPage({ params }: Props) {
       <JsonLd data={breadcrumbJsonLd} />
       <div className="page-title">
         <div className="wrap">
-          <h1>{page.title}</h1>
           <nav aria-label="Breadcrumb">
             <ol className="breadcrumbs">
               <li>
@@ -111,12 +158,13 @@ export default async function ContentPage({ params }: Props) {
               ))}
             </ol>
           </nav>
+          <h1>{page.title}</h1>
         </div>
       </div>
 
       <div className="page-body">
         <div className="wrap">
-          <PageSections sections={page.sections} />
+          <PageSections sections={page.sections} lineup={await lineupFor(page.slug)} fuels={await fuelsFor(page)} />
         </div>
       </div>
     </>

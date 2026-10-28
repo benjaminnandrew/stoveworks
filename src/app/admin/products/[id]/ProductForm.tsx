@@ -17,6 +17,9 @@ function Submit() {
 
 export function ProductForm({ product }: { product: Product }) {
   const [state, action] = useActionState<AdminState, FormData>(saveProductAction, {});
+  // Products tied to a catalog model take their name and maker link from the
+  // catalog; `npm run brain:load` keeps them current.
+  const fromCatalog = Boolean(product.catalog_model_id);
 
   return (
     <div className="admin-edit">
@@ -37,11 +40,12 @@ export function ProductForm({ product }: { product: Product }) {
 
         <label className="field">
           <span className="field-label">Name</span>
-          <input type="text" name="name" defaultValue={product.name} required />
-          <span className="field-note">
-            Replace the seeded placeholder with the real model, e.g. &ldquo;Jotul F 500
-            Oslo&rdquo;.
-          </span>
+          <input type="text" name="name" defaultValue={product.name} required readOnly={fromCatalog} />
+          {fromCatalog ? (
+            <span className="field-note">
+              From the manufacturer catalog, along with the maker&rsquo;s page below.
+            </span>
+          ) : null}
         </label>
 
         <label className="field">
@@ -99,6 +103,7 @@ export function ProductForm({ product }: { product: Product }) {
             name="product_url"
             defaultValue={product.product_url ?? ""}
             placeholder="https://"
+            readOnly={fromCatalog}
           />
         </label>
 

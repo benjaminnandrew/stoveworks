@@ -4,7 +4,7 @@ import Link from "next/link";
 import { business, mailtoHref } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Hours & Directions in Hayward, WI",
   description: `Visit ${business.name} at ${business.street}, ${business.city}, ${business.state} ${business.zip}. Call ${business.phone} or stop in — hours, directions and map.`,
   alternates: { canonical: "/contact-us/" },
 };
@@ -14,7 +14,6 @@ export default function ContactPage() {
     <>
       <div className="page-title">
         <div className="wrap">
-          <h1>Contact Us</h1>
           <nav aria-label="Breadcrumb">
             <ol className="breadcrumbs">
               <li>
@@ -25,6 +24,7 @@ export default function ContactPage() {
               </li>
             </ol>
           </nav>
+          <h1>Contact Us</h1>
         </div>
       </div>
 

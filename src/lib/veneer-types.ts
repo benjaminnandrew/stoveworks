@@ -2,7 +2,10 @@
  * Shared between server and browser — no server-only imports.
  *
  * A veneer mock-up is a list of regions. Each region is a quadrilateral marked
- * on the room photo, plus the real-world size of the area it covers. That real
+ * on the room photo, plus the real-world size of the area it covers. The editor
+ * keeps it an upright rectangle (Ben's call, 8 Oct 2026: plain resize handles,
+ * no perspective dragging); the quad storage stays so saved mock-ups and the
+ * export path are unchanged. That real
  * size does double duty: it scales the stone courses truthfully, and it is what
  * the material estimate is calculated from.
  */
@@ -65,7 +68,7 @@ export function newRegion(stoneId: string): Region {
     id: `r-${Math.random().toString(36).slice(2, 9)}`,
     stoneId,
     // Opens as an upright rectangle in the middle of the photo; the customer
-    // drags the corners onto the actual wall from there.
+    // moves and resizes it onto the actual wall from there.
     corners: [
       { x: 32, y: 24 },
       { x: 68, y: 24 },
@@ -87,6 +90,25 @@ export function newHole(): Hole {
 }
 
 export const asQuad = (region: Region): Quad => region.corners as unknown as Quad;
+
+export type Bounds = { left: number; top: number; right: number; bottom: number };
+
+/** The upright box around a region, in photo percentages. */
+export function regionBounds(region: Region): Bounds {
+  const xs = region.corners.map((c) => c.x);
+  const ys = region.corners.map((c) => c.y);
+  return { left: Math.min(...xs), top: Math.min(...ys), right: Math.max(...xs), bottom: Math.max(...ys) };
+}
+
+/** Corners (TL, TR, BR, BL) of an upright box. */
+export function cornersFromBounds(b: Bounds): Region["corners"] {
+  return [
+    { x: b.left, y: b.top },
+    { x: b.right, y: b.top },
+    { x: b.right, y: b.bottom },
+    { x: b.left, y: b.bottom },
+  ];
+}
 
 // ---------------------------------------------------------------------------
 // Material estimate

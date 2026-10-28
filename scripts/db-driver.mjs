@@ -31,8 +31,27 @@ function devServerListening(port = 3014) {
   });
 }
 
+/** Same test as scripts/store-driver.mjs and src/lib/file-store.ts. */
+const onReplit = () =>
+  Boolean(process.env.REPLIT_DEPLOYMENT || process.env.REPLIT_DEV_DOMAIN || process.env.REPL_ID);
+
 export async function connect() {
   const url = process.env.DATABASE_URL;
+
+  // On Replit the PGlite fallback would quietly write a throwaway database to the
+  // app's own disk, which a published app loses on every redeploy.
+  if (!url && onReplit() && !process.env.ALLOW_PGLITE) {
+    console.error(
+      [
+        "✗ DATABASE_URL isn't set.",
+        "",
+        "  On Replit, add the PostgreSQL database to this app (the Database tool);",
+        "  Replit then sets DATABASE_URL for you. To load the published app's",
+        "  database instead, run this with DATABASE_URL set to its connection string.",
+      ].join("\n"),
+    );
+    process.exit(1);
+  }
 
   if (!url && !process.argv.includes("--force") && (await devServerListening())) {
     console.error(

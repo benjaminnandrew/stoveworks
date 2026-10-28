@@ -6,7 +6,7 @@ import { currentUser } from "@/lib/auth";
 import { listPlaceableProducts } from "@/lib/placeable";
 
 export const metadata: Metadata = {
-  title: "Room Visualizer",
+  title: "Room Visualizer, Hayward WI",
   description:
     "See how a stove, insert or fireplace will look in your own room. Upload a photo, drop in a model from our lineup, and set it to true scale.",
   alternates: { canonical: "/visualizer/" },
@@ -14,8 +14,12 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default async function VisualizerPage() {
-  const [user, products] = await Promise.all([currentUser(), listPlaceableProducts()]);
+type Props = { searchParams: Promise<{ model?: string }> };
+
+export default async function VisualizerPage({ searchParams }: Props) {
+  const [{ model }, user, products] = await Promise.all([searchParams, currentUser(), listPlaceableProducts()]);
+  // From a model's page, "See it in your room": that model starts in the room.
+  const startWith = model ? products.find((p) => p.catalogModelId === model)?.id : undefined;
   const anyRealCutouts = products.some((p) => !p.isPlaceholder);
 
   return (
@@ -24,8 +28,8 @@ export default async function VisualizerPage() {
         <div className="wrap">
           <h1>Room Visualizer</h1>
           <p className="page-lede">
-            Upload a photo of your room, drop in a stove, insert or fireplace, and set it to true
-            scale. {user ? "Save it to your account" : "Sign in to save your work"} or download the
+            Start with our sample cabin or upload a photo of your own room, drop in a stove, insert or
+            fireplace, and set it to true scale. {user ? "Save it to your account" : "Sign in to save your work"} or download the
             image to bring in with you.
           </p>
         </div>
@@ -42,7 +46,7 @@ export default async function VisualizerPage() {
             </p>
           ) : null}
 
-          <Visualizer products={products} isSignedIn={Boolean(user)} />
+          <Visualizer products={products} isSignedIn={Boolean(user)} startWith={startWith} />
         </div>
       </div>
     </>

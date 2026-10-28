@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { nav } from "@/content/site";
+import { shopMenu } from "@/content/site";
 
 export default function NotFound() {
   return (
@@ -19,7 +19,12 @@ export default function NotFound() {
               the right direction.
             </p>
             <ul>
-              {nav.map((item) => (
+              {[
+                ...shopMenu.heat,
+                ...shopMenu.more,
+                { label: "Services", href: "/services/" },
+                { label: "Home & cabin decor", href: "/home-cabin-decor/" },
+              ].map((item) => (
                 <li key={item.href}>
                   <Link href={item.href}>{item.label}</Link>
                 </li>

@@ -1,0 +1,409 @@
+/*
+ * Hayward Stoveworks theme for the owner & installer guides (/guides/<id>/).
+ *
+ * The guides are built in the brain as self-contained pages with their own
+ * placeholder look. The site doesn't edit them: it serves each one with this
+ * sheet linked after the guide's own styles (src/lib/guide-theme.ts), so a
+ * rebuilt guide picks the theme up unchanged. It re-points the guide's colour
+ * and type tokens at the site's, then restyles what the tokens can't reach:
+ * the dark header and landing, the rounded pills, the monospace labels.
+ *
+ * Owner side = oxblood (the site's accent), installer side = pine.
+ */
+
+:root {
+  --iron: #223629;
+  --iron-2: #2f4a3a;
+  --iron-3: #3d5a48;
+  --ember: #96382c;
+  --ember-2: #7b2d23;
+  --amber: #e0b64a;
+  --pilot: #2f4a3a;
+  --pilot-deep: #223629;
+  --paper: #f5efe4;
+  --paper-2: #fffdf8;
+  --card: #fffdf8;
+  --ink: #2a211c;
+  --ink-soft: #54473e;
+  --hair: rgba(42, 33, 28, 0.14);
+  --line: rgba(42, 33, 28, 0.14);
+  --ok: #3f6b4f;
+  --warn: #9a5b12;
+  --shadow: 0 1px 3px rgba(42, 33, 28, 0.1);
+  /* The site's type, Trail + serif (22 Oct 2026). */
+  --display: "Literata", Georgia, serif;
+  --body: "Barlow", "Segoe UI", system-ui, sans-serif;
+  /* No monospace: figures use tabular numbers in the body face instead. */
+  --mono: "Barlow", "Segoe UI", system-ui, sans-serif;
+  --signage: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --sw-wash-ember: #f6e7e2;
+  --sw-wash-pine: #e3ebe5;
+}
+
+body {
+  background: var(--paper) url("/images/paper-grain.png");
+  font-size: 16px;
+}
+.mono,
+.spec .row .v,
+.kv,
+.ritem .pg,
+.code .cd,
+.step .num { font-variant-numeric: tabular-nums; }
+
+/* ---------- header: light, like the site's ---------- */
+
+header {
+  background: var(--paper-2);
+  color: var(--ink);
+  border-bottom: 1px solid var(--hair);
+  box-shadow: 0 2px 10px rgba(42, 33, 28, 0.06);
+}
+.sw-home { display: flex; flex: none; line-height: 0; }
+.sw-home img { height: 46px; width: auto; }
+.sw-home:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+
+.brand { font-family: var(--body); font-weight: 700; letter-spacing: 0.08em; font-size: 14px; color: var(--ink); }
+.brand small { color: var(--ink-soft); font-size: 12px; letter-spacing: 0.01em; }
+.flame { color: var(--ember); }
+
+.toggle { background: var(--paper); border: 1px solid var(--hair); border-radius: 3px; }
+.toggle button { color: var(--ink-soft); border-radius: 2px; font-size: 13.5px; }
+.toggle button:hover { color: var(--ink); }
+.toggle button[aria-pressed="true"] { color: #fff; }
+.toggle button.home[aria-pressed="true"] { background: var(--ember); box-shadow: none; }
+.toggle button.inst[aria-pressed="true"] { background: var(--pilot); box-shadow: none; }
+
+.search { background: #fff; border: 1px solid var(--hair); border-radius: 3px; }
+.search input { color: var(--ink); font-size: 14px; }
+.search input::placeholder { color: #8a7c70; }
+.search:focus-within { border-color: var(--ember); }
+
+.pdf { background: #fff; border: 1px solid var(--hair); color: var(--ink); border-radius: 3px; font-size: 13.5px; }
+.pdf:hover { border-color: var(--ember); color: var(--ember); }
+.qbtn { border: 1px solid var(--hair); color: var(--ink); border-radius: 3px; background: #fff; }
+.qbtn[aria-expanded="true"] { border-color: var(--ember); color: var(--ember); }
+
+/* ---------- landing ---------- */
+
+.gate {
+  background: var(--paper) url("/images/paper-grain.png");
+  color: var(--ink);
+}
+.gate .kicker {
+  font-family: var(--body);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ember);
+  margin-bottom: 10px;
+}
+.gate h1 { font-family: var(--signage); font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; color: var(--ink); }
+.gate .sub { color: var(--ink-soft); font-size: clamp(16px, 2vw, 18px); }
+.gate .model { font-family: var(--body); color: var(--ink-soft); font-size: 14px; letter-spacing: 0; }
+
+.ignite {
+  background: var(--paper-2);
+  border: 1px solid var(--hair);
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(42, 33, 28, 0.06), 0 10px 26px rgba(42, 33, 28, 0.1);
+}
+.ignite:hover { border-color: var(--ember); box-shadow: 0 16px 34px rgba(42, 33, 28, 0.16); }
+.ignite.cool:hover { border-color: var(--pilot); }
+/* The firelight under the card, as on the showroom cards, faint on a light card. */
+.ignite::after { background: radial-gradient(closest-side, rgba(150, 56, 44, 0.14), transparent); }
+.ignite.cool::after { background: radial-gradient(closest-side, rgba(47, 74, 58, 0.14), transparent); }
+.ignite h2 { font-family: var(--display); font-weight: 600; color: var(--ink); letter-spacing: 0; }
+.ignite p { color: var(--ink-soft); font-size: 15px; }
+.ignite .go { font-size: 14px; font-weight: 700; }
+.gate .foot { color: var(--ink-soft); font-size: 14px; }
+.gate .foot a { color: var(--ember); }
+.gate .fine { border-top-color: var(--hair); color: var(--ink-soft); }
+
+/* ---------- owner and installer views ---------- */
+
+.vhead .eyebrow {
+  font-family: var(--body);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-soft);
+}
+.vhead .eyebrow .pip { border-radius: 0; width: 8px; height: 8px; }
+.vhead h1 { font-family: var(--signage); font-weight: 700; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1; }
+.vhead p { font-size: 16px; }
+
+/* Section labels become headings, as on the site. */
+.seclabel {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  margin: 38px 0 14px;
+}
+
+.tile { border-radius: 3px; background: var(--paper-2); }
+.tile:hover { border-color: var(--ember); }
+.tile h3 { font-family: var(--display); font-weight: 600; font-size: 18px; letter-spacing: 0; }
+.tile p { font-size: 14px; }
+
+.spec { border-radius: 3px; background: var(--paper-2); }
+.spec .lab { font-family: var(--body); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; text-transform: none; color: var(--ink-soft); }
+.spec .row { font-size: 14px; }
+.spec .row .v { font-family: var(--body); font-size: 15px; }
+
+.checklist { border-radius: 3px; background: var(--paper-2); }
+.step:hover { background: var(--paper); }
+.step .num { border-radius: 2px; font-family: var(--body); font-size: 13px; }
+.step .body h4 { font-family: var(--display); font-weight: 600; font-size: 16px; }
+.step .body p { font-size: 14px; }
+.step .check { border-radius: 2px; }
+
+.panel { border-radius: 3px; background: var(--paper-2); }
+.panel h3 { font-family: var(--display); font-weight: 600; font-size: 17px; }
+.panel li { font-size: 14.5px; }
+.panel li::before { border-radius: 0; }
+
+.code { border-radius: 3px; }
+.code .t { font-family: var(--body); font-weight: 700; }
+.code .d { color: #b9c7bd; }
+.code .b { background: #3d5a48; }
+
+.secnav { background: var(--paper); }
+.secnav button { border-radius: 3px; background: var(--paper-2); font-size: 14.5px; }
+.secnav button:hover { border-color: var(--pilot); }
+.secnav button[aria-current="true"] { background: var(--pilot); border-color: var(--pilot); }
+
+/* ---------- drawer, search, menus ---------- */
+
+.drawer { background: var(--paper-2); }
+.drawer .dh { background: var(--pilot); }
+.drawer .dh .tag { font-family: var(--body); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; text-transform: none; color: var(--amber); }
+.drawer .dh h2 { font-family: var(--display); font-weight: 600; letter-spacing: 0; }
+.drawer .dh .x { background: rgba(0, 0, 0, 0.18); border-color: rgba(255, 255, 255, 0.22); color: #fff; border-radius: 3px; }
+.dcontent h4 { font-family: var(--display); font-weight: 600; font-size: 16px; }
+.dcontent p, .dcontent ol li, .dcontent ul li { font-size: 15px; }
+.dcontent ol li::before { border-radius: 2px; font-family: var(--body); font-size: 12.5px; }
+.dcontent ul li::before { border-radius: 0; }
+.note { border-radius: 3px; font-size: 14.5px; }
+.kv { font-family: var(--body); background: var(--paper); border-radius: 3px; font-size: 14.5px; }
+
+.results .rl, .rgroup, .pdfmenu .ml {
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+.rgroup .ct { border-radius: 2px; }
+.ritem { border-radius: 3px; }
+.ritem:hover { background: var(--paper-2); }
+.ritem h4 { font-family: var(--display); font-weight: 600; }
+.ritem .badge { font-family: var(--body); font-weight: 700; letter-spacing: 0.04em; border-radius: 2px; }
+.badge.h { background: var(--sw-wash-ember); color: var(--ember); }
+.badge.i { background: var(--sw-wash-pine); color: var(--pilot); }
+.ritem .pg { font-family: var(--body); border-radius: 2px; }
+
+.manlink { border-radius: 3px; background: var(--sw-wash-ember); border-color: #e6c9c0; color: var(--ember-2); }
+.manlink:hover { box-shadow: 0 7px 20px rgba(150, 56, 44, 0.15); }
+.manlink.cool { background: var(--sw-wash-pine); border-color: #c5d4ca; color: var(--pilot); }
+.manlink.cool:hover { border-color: var(--pilot); box-shadow: 0 7px 20px rgba(47, 74, 58, 0.15); }
+.manlink .ic { border-radius: 2px; }
+.manlink b { font-family: var(--display); font-weight: 600; font-size: 15px; }
+.manlink small { font-family: var(--body); font-size: 12.5px; }
+
+.ms-bar, .os-bar { border-radius: 3px; background: #fff; }
+.ms-results .ritem:hover, .os-results .ritem:hover { background: var(--paper-2); }
+
+.pdfmenu { border-radius: 3px; }
+.pdfmenu a { border-radius: 2px; }
+.pdfmenu a:hover { background: var(--paper); }
+.pdfmenu b { font-family: var(--display); font-weight: 600; }
+.pdfmenu small { font-family: var(--body); font-size: 12px; }
+
+/* Back to top: the site's own. */
+.totop { background: var(--ember); color: #fff; border: 0; width: 46px; height: 46px; }
+.totop:hover { background: var(--amber); color: var(--ink); }
+
+/* Phones: once a side is picked the bar is the switch and the tools, so the badge steps aside. */
+@media (max-width: 720px) {
+  .sw-home img { height: 40px; }
+  .has-role .sw-home { display: none; }
+}
+
+/* Buttons don't inherit the page's face, and the landing cards are buttons. */
+button { font-family: var(--body); }
+
+/* ---------- the installer's search box (Ben, 22 Oct 2026) ----------
+   Injected at the top of the installer view by src/lib/guide-theme.ts and
+   wired up by public/scripts/guide-installer-search.js. Big, obvious, easy to
+   type into with a gloved finger, and a Talk button that can't be missed. */
+
+.sw-isearch {
+  margin: 4px 0 22px;
+  padding: 18px;
+  background: var(--card);
+  border: 2px solid var(--pilot);
+  box-shadow: var(--shadow);
+}
+.sw-isearch-label {
+  display: block;
+  margin: 0 0 10px;
+  font-family: var(--signage);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--pilot-deep);
+}
+.sw-isearch-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 62px;
+  padding: 0 7px 0 14px;
+  background: #fff;
+  border: 1px solid var(--hair);
+}
+.sw-isearch-bar:focus-within { border-color: var(--pilot); box-shadow: 0 0 0 3px var(--sw-wash-pine); }
+.sw-isearch-bar > svg { flex: none; color: var(--ink-soft); }
+.sw-isearch-bar input {
+  flex: 1;
+  min-width: 0;
+  height: 58px;
+  border: 0;
+  background: none;
+  outline: none;
+  font-family: var(--body);
+  font-size: 20px;
+  color: var(--ink);
+}
+.sw-isearch-bar input::placeholder { color: #8a7d72; }
+.sw-italk {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  height: 48px;
+  padding: 0 18px;
+  border: 0;
+  background: var(--pilot);
+  color: #fff;
+  font-family: var(--body);
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.sw-italk:hover { background: var(--pilot-deep); }
+.sw-italk:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+.sw-italk.is-listening { background: var(--ember); animation: sw-listen 1.2s ease-in-out infinite; }
+@keyframes sw-listen {
+  50% { box-shadow: 0 0 0 7px rgba(150, 56, 44, 0.22); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sw-italk.is-listening { animation: none; }
+}
+
+.sw-isearch-try { margin: 10px 0 0; font-family: var(--body); font-size: 15px; color: var(--ink-soft); }
+.sw-isearch-try:empty { display: none; }
+.sw-itry {
+  margin: 0 4px 4px 2px;
+  padding: 4px 10px;
+  border: 1px solid var(--hair);
+  background: var(--paper);
+  color: var(--pilot-deep);
+  font-family: var(--body);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sw-itry:hover { border-color: var(--pilot); }
+
+.sw-isearch-results:not(:empty) { display: grid; gap: 8px; margin-top: 14px; }
+.sw-ir-looking { margin: 0; font-family: var(--body); font-size: 14px; color: var(--ink-soft); }
+.sw-ir-group { margin: 8px 0 0; font-family: var(--body); font-size: 16px; font-weight: 700; color: var(--ink); }
+.sw-ir-group span { font-weight: 400; color: var(--ink-soft); }
+.sw-ri {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 3px 12px;
+  width: 100%;
+  padding: 11px 12px;
+  background: var(--paper-2);
+  border: 1px solid var(--hair);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+}
+.sw-ri:hover,
+.sw-ri:focus-visible { border-color: var(--pilot); background: var(--sw-wash-pine); outline: none; }
+.sw-ri-kind { grid-row: span 2; font-size: 14px; font-weight: 700; color: var(--pilot); }
+.sw-ri strong { font-family: var(--display); font-size: 17px; font-weight: 600; }
+.sw-ri mark { padding: 0 1px; background: #fde9a6; color: inherit; }
+.sw-ir-none { margin: 0; font-family: var(--body); font-size: 16px; color: var(--ink-soft); }
+
+@media (max-width: 600px) {
+  .sw-isearch { padding: 14px 12px; }
+  .sw-isearch-label { font-size: 19px; }
+  .sw-isearch-bar { padding-left: 10px; gap: 6px; }
+  .sw-isearch-bar > svg { display: none; }
+  .sw-italk { padding: 0 13px; }
+  .sw-ri { grid-template-columns: minmax(0, 1fr); }
+  .sw-ri-kind { grid-row: auto; }
+}
+
+/* ---------- the owner's yearly-care card, first and highlighted (Ben, 22 Oct 2026) ----------
+   Moved to the front of "Start here" by public/scripts/guide-owner-service.js,
+   with the offer to book it beside it, and again at the end of its detail. */
+
+.sw-service {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  border: 2px solid var(--ember);
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+.sw-service .sw-service-tile {
+  border: 0;
+  border-right: 1px solid var(--hair);
+  border-radius: 0;
+  background: var(--sw-wash-ember);
+  box-shadow: none;
+}
+.sw-service .sw-service-tile:hover { background: #f2dcd5; }
+.sw-service .sw-service-tile h3 { font-size: 21px; }
+.sw-service .sw-service-tile p { font-size: 15px; }
+
+.sw-service-cta { display: grid; align-content: center; gap: 12px; padding: 18px 20px; }
+.sw-service-cta p { margin: 0; font-family: var(--body); font-size: 16px; line-height: 1.45; color: var(--ink); }
+.sw-service-cta strong { font-family: var(--display); font-size: 17px; font-weight: 600; }
+.sw-service-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; font-family: var(--body); font-size: 15px; font-weight: 600; }
+.sw-service-actions a { color: var(--ember); text-decoration: none; }
+.sw-service-actions a:hover { text-decoration: underline; }
+.sw-service-actions .sw-call {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 18px;
+  background: var(--ember);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}
+.sw-service-actions .sw-call:hover { background: var(--ember-2); text-decoration: none; }
+
+/* At the end of the card's detail. */
+.dcontent .sw-service-cta { margin-top: 18px; padding: 16px; border: 2px solid var(--ember); background: var(--sw-wash-ember); }
+
+@media (max-width: 700px) {
+  .sw-service { grid-template-columns: minmax(0, 1fr); }
+  .sw-service .sw-service-tile { border-right: 0; border-bottom: 1px solid var(--hair); }
+}

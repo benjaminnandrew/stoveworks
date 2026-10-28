@@ -6,6 +6,7 @@
     "dev": "next dev -p 3014",
     "build": "next build",
     "start": "next start -p 3014",
+    "start:live": "node scripts/start-live.mjs",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "db:migrate": "node scripts/migrate.mjs",
@@ -13,10 +14,13 @@
     "db:reset": "node scripts/reset.mjs",
     "db:grant": "node scripts/grant.mjs",
     "db:seed:stone": "node scripts/seed-stone.mjs",
-    "stone:tiles": "node scripts/generate-stone-tiles.mjs"
+    "stone:tiles": "node scripts/generate-stone-tiles.mjs",
+    "brain:load": "node scripts/load-brain.mjs",
+    "test:search": "node --test --test-concurrency=1 \"tests/search/*.test.mjs\""
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.5.8",
+    "@replit/object-storage": "^1.0.0",
     "next": "^16.3.4",
     "nodemailer": "^9.1.1",
     "pg": "^8.23.0",

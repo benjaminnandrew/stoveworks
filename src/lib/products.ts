@@ -18,6 +18,8 @@ export type Product = {
   cutout_path: string | null;
   product_url: string | null;
   is_active: boolean;
+  /** The manufacturer catalog's model this product is (catalog_models.id). */
+  catalog_model_id: string | null;
   brand_id: number | null;
   brand_name: string | null;
   brand_slug: string | null;
@@ -35,7 +37,7 @@ export type Brand = {
 const SELECT = `
   SELECT p.id, p.slug, p.name, p.category, p.fuel, p.summary,
          p.width_in, p.height_in, p.depth_in, p.cutout_path, p.product_url,
-         p.is_active, p.brand_id,
+         p.is_active, p.catalog_model_id, p.brand_id,
          b.name AS brand_name, b.slug AS brand_slug, b.logo_path AS brand_logo
     FROM products p
     LEFT JOIN brands b ON b.id = p.brand_id`;

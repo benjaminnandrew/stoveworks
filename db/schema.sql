@@ -86,6 +86,13 @@ CREATE TABLE IF NOT EXISTS products (
 CREATE INDEX IF NOT EXISTS products_browse_idx ON products (is_active, category, fuel, sort);
 CREATE INDEX IF NOT EXISTS products_brand_idx ON products (brand_id);
 
+-- Each product is one of the manufacturer catalog's models (catalog_models.id).
+-- `npm run brain:load` keeps the list in step with the catalog: it adds new
+-- models and updates names, types, brands and links, but never what staff own
+-- (the cutout, whether it's live, and the summary and sizes once set).
+ALTER TABLE products ADD COLUMN IF NOT EXISTS catalog_model_id text;
+CREATE UNIQUE INDEX IF NOT EXISTS products_catalog_model_key ON products (catalog_model_id);
+
 -- ---------------------------------------------------------------------------
 -- Visualizer
 -- ---------------------------------------------------------------------------
@@ -202,3 +209,32 @@ CREATE TABLE IF NOT EXISTS veneer_designs (
 );
 
 CREATE INDEX IF NOT EXISTS veneer_designs_user_idx ON veneer_designs (user_id, updated_at DESC);
+
+-- ---------------------------------------------------------------------------
+-- Site search (docs/smart-search-plan.md).
+
+-- What visitors searched, for the staff "found nothing" list. Kept 30 days, no
+-- visitor ids, no addresses.
+CREATE TABLE IF NOT EXISTS search_log (
+  id         bigserial PRIMARY KEY,
+  phrase     text        NOT NULL,
+  surface    text        NOT NULL,             -- home | header | page | drawer | test
+  outcome    text        NOT NULL,             -- results | answer | clarify | nothing | refused | failed
+  results    integer,
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS search_log_created_idx ON search_log (created_at);
+
+-- Other names for things the search already holds (old names, nicknames,
+-- misspellings confirmed from the log), added by staff. kind and ref name the
+-- held thing: kind 'model' with a model id, 'brand' with a brand slug, 'page'
+-- with a path.
+CREATE TABLE IF NOT EXISTS search_aliases (
+  alias    text        NOT NULL,
+  kind     text        NOT NULL,
+  ref      text        NOT NULL,
+  added_by text,
+  added_at timestamptz NOT NULL DEFAULT now(),
+  PRIMARY KEY (alias, kind, ref)
+);

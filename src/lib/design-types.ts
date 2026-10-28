@@ -42,6 +42,8 @@ export type PlaceableProduct = {
   widthIn: number | null;
   heightIn: number | null;
   productUrl: string | null;
+  /** The Big Brain model this is, so a model's page can open the visualizer with it in the room. */
+  catalogModelId: string | null;
 };
 
 export const PLACEHOLDER_BY_CATEGORY: Record<PlaceableProduct["category"], string> = {

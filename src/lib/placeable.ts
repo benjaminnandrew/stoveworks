@@ -1,5 +1,7 @@
 import "server-only";
 
+import { NOT_SOLD_FUELS } from "@/content/lineup";
+
 import { PLACEHOLDER_BY_CATEGORY, type PlaceableProduct } from "./design-types";
 import { listProducts, type Product } from "./products";
 
@@ -21,9 +23,11 @@ export function toPlaceable(p: Product): PlaceableProduct {
     widthIn: p.width_in ? Number(p.width_in) : null,
     heightIn: p.height_in ? Number(p.height_in) : null,
     productUrl: p.product_url,
+    catalogModelId: p.catalog_model_id,
   };
 }
 
+/** What the visualizer offers: not the fuels Stoveworks doesn't sell (NOT_SOLD_FUELS). */
 export async function listPlaceableProducts(): Promise<PlaceableProduct[]> {
-  return (await listProducts()).map(toPlaceable);
+  return (await listProducts()).filter((p) => !NOT_SOLD_FUELS.has(p.fuel)).map(toPlaceable);
 }

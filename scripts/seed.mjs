@@ -1,11 +1,10 @@
 /**
- * Seeds brands and a starting catalog from the site's own content.
+ * Seeds the site's brands from its own content: the manufacturers
+ * stoveworksinc.com names, with their logos and links. Nothing is invented.
  *
- * Everything here is derived from what stoveworksinc.com already says — the
- * manufacturers it names and the categories it lists them under. Nothing is
- * invented. The catalog rows are placeholders at the "we carry Jotul gas
- * stoves" level; staff replace them with real models (and upload cutouts)
- * through /admin.
+ * Products are not seeded here any more. The visualizer's products are the
+ * manufacturer catalog's real models, added by `npm run brain:load` (Ben,
+ * Oct 13: the 200 real models replace the old placeholder rows).
  *
  * Idempotent: re-running updates rather than duplicates.
  */
@@ -19,25 +18,6 @@ import { connect } from "./db-driver.mjs";
 const source = readFileSync(new URL("../src/content/pages.ts", import.meta.url), "utf8");
 const body = source.split("export const pages: Page[] = [")[1].split("\n];")[0];
 const pages = JSON.parse(`[${body}]`);
-
-// --- which page means which kind of product ---------------------------------
-
-const CATALOG = {
-  "stoves/gas-stoves": { category: "stove", fuel: "gas", label: "Gas Stoves" },
-  "stoves/wood-stoves": { category: "stove", fuel: "wood", label: "Wood Stoves" },
-  "inserts/gas-inserts": { category: "insert", fuel: "gas", label: "Gas Inserts" },
-  "inserts/wood-inserts": { category: "insert", fuel: "wood", label: "Wood Inserts" },
-  "fireplaces/gas-fireplaces": { category: "fireplace", fuel: "gas", label: "Gas Fireplaces" },
-  "fireplaces/wood-fireplaces": { category: "fireplace", fuel: "wood", label: "Wood Fireplaces" },
-  "fireplaces/electric-fireplaces": { category: "fireplace", fuel: "electric", label: "Electric Fireplaces" },
-  "hearth-accessories/glass-doors": { category: "hearth", fuel: "multi", label: "Glass Doors" },
-  "hearth-accessories/hearth-pads": { category: "hearth", fuel: "multi", label: "Hearth Pads" },
-  "hearth-accessories/gas-logs": { category: "hearth", fuel: "gas", label: "Gas Logs" },
-  "outdoor": { category: "hearth", fuel: "wood", label: "Outdoor Rings & Grills" },
-  "sauna-stoves": { category: "hearth", fuel: "wood", label: "Sauna Stoves" },
-  "wood-fired-hot-tubs": { category: "hearth", fuel: "wood", label: "Wood-Fired Hot Tubs" },
-  "cook-stoves": { category: "hearth", fuel: "multi", label: "Cook Stoves" },
-};
 
 /** The same manufacturer is spelled a few different ways across the pages. */
 const CANONICAL = {
@@ -60,10 +40,9 @@ const slugify = (s) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 
-// --- collect brands and their category placements ---------------------------
+// --- collect brands ---------------------------------------------------------
 
 const brands = new Map(); // name -> { name, slug, url, logo }
-const placements = []; // { brandName, slug, category, fuel, label, summary }
 
 function noteBrand(rawName, logo) {
   const name = CANONICAL[rawName] ?? rawName;
@@ -79,18 +58,10 @@ function noteBrand(rawName, logo) {
 }
 
 for (const page of pages) {
-  const entry = CATALOG[page.slug];
-
   for (const section of page.sections) {
     if (section.type === "brand") {
-      const name = noteBrand(section.name, section.logo);
-      if (entry) {
-        placements.push({
-          brandName: name,
-          ...entry,
-          summary: section.body.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(),
-        });
-      }
+      // A brand without a logo file yet still records its website.
+      noteBrand(section.name, section.logo ?? (section.website ? { href: section.website } : undefined));
       continue;
     }
 
@@ -110,8 +81,7 @@ for (const page of pages) {
       // Skip the trade-association logos on /services.
       if (/^(NABA|NAHB|NCHPBA)/i.test(name)) continue;
 
-      const brandName = noteBrand(name, m);
-      if (entry) placements.push({ brandName, ...entry, summary: null });
+      noteBrand(name, m);
     }
   }
 }
@@ -136,52 +106,14 @@ try {
     brandCount += 1;
   }
 
-  const { rows: brandRows } = await db.query(`SELECT id, slug, name FROM brands`);
-  const brandId = new Map(brandRows.map((r) => [r.name, r.id]));
+  console.log(`✓ ${brandCount} brands`);
 
-  // Dedupe: one catalog row per brand + category + fuel.
-  const seen = new Set();
-  let productCount = 0;
-
-  for (const p of placements) {
-    const slug = `${slugify(p.brandName)}-${slugify(p.label)}`;
-    if (seen.has(slug)) continue;
-    seen.add(slug);
-
-    await db.query(
-      `INSERT INTO products (brand_id, slug, name, category, fuel, summary, sort)
-       VALUES ($1, $2, $3, $4, $5, $6, $7)
-       ON CONFLICT (slug) DO UPDATE
-         SET brand_id = EXCLUDED.brand_id,
-             name = EXCLUDED.name,
-             category = EXCLUDED.category,
-             fuel = EXCLUDED.fuel,
-             summary = COALESCE(products.summary, EXCLUDED.summary),
-             updated_at = now()`,
-      [
-        brandId.get(p.brandName) ?? null,
-        slug,
-        `${p.brandName} — ${p.label}`,
-        p.category,
-        p.fuel,
-        p.summary,
-        productCount,
-      ],
-    );
-    productCount += 1;
+  const { rows: products } = await db.query(
+    `SELECT count(*)::int AS n FROM products WHERE catalog_model_id IS NOT NULL`,
+  );
+  if (!products[0].n) {
+    console.log("\n  Products come from the manufacturer catalog: run `npm run brain:load` next.");
   }
-
-  console.log(`✓ ${brandCount} brands, ${productCount} catalog entries`);
-
-  const { rows: summary } = await db.query(
-    `SELECT category, fuel, count(*)::int AS n FROM products GROUP BY 1, 2 ORDER BY 1, 2`,
-  );
-  for (const r of summary) console.log(`    ${r.category.padEnd(10)} ${r.fuel.padEnd(9)} ${r.n}`);
-
-  const { rows: missing } = await db.query(
-    `SELECT count(*)::int AS n FROM products WHERE cutout_path IS NULL`,
-  );
-  console.log(`\n  ${missing[0].n} products still need a cutout image — upload via /admin.`);
 } catch (err) {
   console.error("✗ seed failed:", err);
   process.exitCode = 1;

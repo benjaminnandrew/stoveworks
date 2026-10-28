@@ -2,27 +2,38 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { DemoBanner, usePhotoDrop } from "@/components/RoomPhoto";
+import { DEMO_ROOM, DEMO_ROOM_ALT } from "@/lib/demo-room";
+
 import {
-  asQuad,
   clamp,
+  cornersFromBounds,
   estimateRegion,
   MAX_HOLES,
   MAX_REGIONS,
   newHole,
   newRegion,
+  regionBounds,
   totalEstimate,
+  type Bounds,
   type Region,
   type StoneSwatch,
   type VeneerState,
 } from "@/lib/veneer-types";
-import { isConvex } from "@/lib/homography";
 import { exportVeneer } from "./export";
 import { EstimatePanel } from "./EstimatePanel";
 import { StonePicker } from "./StonePicker";
 import { StoneRegion } from "./StoneRegion";
 import { clearStash, loadStash, saveStash, type VeneerStash } from "./stash";
 
-export type Photo = { url: string; width: number; height: number; roomPhotoId?: string };
+export type Photo = {
+  url: string;
+  width: number;
+  height: number;
+  roomPhotoId?: string;
+  /** The built-in sample room, shown until someone uploads their own. */
+  demo?: boolean;
+};
 
 type Props = {
   stones: StoneSwatch[];
@@ -32,10 +43,15 @@ type Props = {
 
 const MAX_EDGE = 2400;
 const STASH_EDGE = 1500;
-const CORNER_LABELS = ["top-left", "top-right", "bottom-right", "bottom-left"] as const;
+/** Resize handles: four corners and four sides, by compass point. */
+const HANDLES = ["nw", "n", "ne", "e", "se", "s", "sw", "w"] as const;
+type Handle = (typeof HANDLES)[number];
+
+/** Smallest a region can be dragged down to, in percent of the photo. */
+const MIN_SIZE = 3;
 
 export function VeneerStudio({ stones, isSignedIn, initial }: Props) {
-  const [photo, setPhoto] = useState<Photo | null>(initial?.photo ?? null);
+  const [photo, setPhoto] = useState<Photo | null>(initial?.photo ?? DEMO_ROOM);
   const [photoBlob, setPhotoBlob] = useState<Blob | null>(null);
   const [title, setTitle] = useState(initial?.title ?? "");
   const [state, setState] = useState<VeneerState>(initial?.state ?? { regions: [] });
@@ -64,7 +80,8 @@ export function VeneerStudio({ stones, isSignedIn, initial }: Props) {
   // --- restore work stashed before a sign-in round trip ---------------------
 
   useEffect(() => {
-    if (initial || photo) return;
+    // The sample room yields to stashed work; a real photo never does.
+    if (initial || (photo && !photo.demo)) return;
     const stash = loadStash();
     if (!stash) return;
     setPhoto({ url: stash.dataUrl, width: stash.width, height: stash.height });
@@ -104,6 +121,8 @@ export function VeneerStudio({ stones, isSignedIn, initial }: Props) {
     }
   }, []);
 
+  const { over, dropProps } = usePhotoDrop(acceptPhoto);
+
   // --- regions --------------------------------------------------------------
 
   const update = useCallback((id: string, patch: Partial<Region>) => {
@@ -116,7 +135,7 @@ export function VeneerStudio({ stones, isSignedIn, initial }: Props) {
       const region = newRegion(stone.id);
       setState((s) => ({ regions: [...s.regions, region] }));
       setSelectedId(region.id);
-      setNotice("Drag the four corners onto the wall you want stoned.");
+      setNotice("Drag the box over the wall you want stoned, then pull its sides or corners to fit.");
     },
     [photo, state.regions.length],
   );
@@ -134,21 +153,28 @@ export function VeneerStudio({ stones, isSignedIn, initial }: Props) {
     };
   }, []);
 
-  /** Drag one corner of a region. */
-  const startCornerDrag = useCallback(
-    (e: React.PointerEvent, region: Region, index: number) => {
+  /** Resize from a side or corner, keeping the region an upright rectangle. */
+  const startResize = useCallback(
+    (e: React.PointerEvent, region: Region, handle: Handle) => {
       e.preventDefault();
       e.stopPropagation();
       setSelectedId(region.id);
 
+      const start = pointerToPct(e.clientX, e.clientY);
+      const from = regionBounds(region);
       const target = e.currentTarget as HTMLElement;
       target.setPointerCapture(e.pointerId);
 
       const move = (ev: PointerEvent) => {
         const p = pointerToPct(ev.clientX, ev.clientY);
-        const corners = [...region.corners] as Region["corners"];
-        corners[index] = { x: clamp(p.x, -20, 120), y: clamp(p.y, -20, 120) };
-        update(region.id, { corners });
+        const dx = p.x - start.x;
+        const dy = p.y - start.y;
+        const next: Bounds = { ...from };
+        if (handle.includes("w")) next.left = clamp(from.left + dx, -20, from.right - MIN_SIZE);
+        if (handle.includes("e")) next.right = clamp(from.right + dx, from.left + MIN_SIZE, 120);
+        if (handle.includes("n")) next.top = clamp(from.top + dy, -20, from.bottom - MIN_SIZE);
+        if (handle.includes("s")) next.bottom = clamp(from.bottom + dy, from.top + MIN_SIZE, 120);
+        update(region.id, { corners: cornersFromBounds(next) });
       };
       const stop = () => {
         target.releasePointerCapture(e.pointerId);
@@ -161,7 +187,34 @@ export function VeneerStudio({ stones, isSignedIn, initial }: Props) {
     [pointerToPct, update],
   );
 
-  /** Drag the whole region by its centre. */
+  /** Arrow keys nudge the selected region; Shift moves it further. */
+  const nudge = useCallback(
+    (e: React.KeyboardEvent, region: Region) => {
+      const step = e.shiftKey ? 5 : 1;
+      const delta: Record<string, [number, number]> = {
+        ArrowLeft: [-step, 0],
+        ArrowRight: [step, 0],
+        ArrowUp: [0, -step],
+        ArrowDown: [0, step],
+      };
+      const d = delta[e.key];
+      if (!d) return;
+      e.preventDefault();
+      setSelectedId(region.id);
+      const b = regionBounds(region);
+      update(region.id, {
+        corners: cornersFromBounds({
+          left: b.left + d[0],
+          right: b.right + d[0],
+          top: b.top + d[1],
+          bottom: b.bottom + d[1],
+        }),
+      });
+    },
+    [update],
+  );
+
+  /** Drag the whole region. */
   const startRegionDrag = useCallback(
     (e: React.PointerEvent, region: Region) => {
       e.preventDefault();
@@ -268,11 +321,10 @@ export function VeneerStudio({ stones, isSignedIn, initial }: Props) {
 
   return (
     <div className="viz">
-      <div className="viz-stage-col">
-        {!photo ? (
-          <PhotoDrop onFile={acceptPhoto} />
-        ) : (
+      <div className={`viz-stage-col${over ? " is-drop-over" : ""}`} {...dropProps}>
+        {photo ? (
           <>
+            {photo.demo ? <DemoBanner onFile={acceptPhoto} /> : null}
             <div className="viz-toolbar">
               <label className="viz-title-field">
                 <span className="visually-hidden">Mock-up name</span>
@@ -286,7 +338,7 @@ export function VeneerStudio({ stones, isSignedIn, initial }: Props) {
               </label>
               <div className="viz-tools">
                 <label className="tool tool-file">
-                  Replace photo
+                  {photo.demo ? "Use your own photo" : "Replace photo"}
                   <input
                     type="file"
                     accept="image/*"
@@ -303,7 +355,7 @@ export function VeneerStudio({ stones, isSignedIn, initial }: Props) {
               onPointerDown={() => setSelectedId(null)}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="viz-room" src={photo.url} alt="Your room" draggable={false} />
+              <img className="viz-room" src={photo.url} alt={photo.demo ? DEMO_ROOM_ALT : "Your room"} draggable={false} />
 
               {state.regions.map((region) => (
                 <StoneRegion
@@ -316,33 +368,39 @@ export function VeneerStudio({ stones, isSignedIn, initial }: Props) {
                 />
               ))}
 
-              {/* Handles live above the stone so they stay grabbable. */}
+              {/* A plain frame over each region carries the move and resize
+                  handles; the stone itself never takes pointer events. */}
               {state.regions.map((region) => {
                 const isSelected = region.id === selectedId;
-                const centre = {
-                  x: region.corners.reduce((t, c) => t + c.x, 0) / 4,
-                  y: region.corners.reduce((t, c) => t + c.y, 0) / 4,
-                };
+                const b = regionBounds(region);
+                const name = byId.get(region.stoneId)?.name ?? "stone";
                 return (
-                  <div key={`${region.id}-handles`}>
-                    <button
-                      type="button"
-                      className={`region-grip${isSelected ? " is-selected" : ""}`}
-                      style={{ left: `${centre.x}%`, top: `${centre.y}%` }}
-                      onPointerDown={(e) => startRegionDrag(e, region)}
-                      aria-label={`Move the ${byId.get(region.stoneId)?.name ?? "stone"} area`}
-                    />
-                    {isSelected &&
-                      region.corners.map((corner, i) => (
-                        <button
-                          key={CORNER_LABELS[i]}
-                          type="button"
-                          className="corner-handle"
-                          style={{ left: `${corner.x}%`, top: `${corner.y}%` }}
-                          onPointerDown={(e) => startCornerDrag(e, region, i)}
-                          aria-label={`Drag the ${CORNER_LABELS[i]} corner`}
-                        />
-                      ))}
+                  <div
+                    key={`${region.id}-frame`}
+                    className={`region-frame${isSelected ? " is-selected" : ""}`}
+                    style={{
+                      left: `${b.left}%`,
+                      top: `${b.top}%`,
+                      width: `${b.right - b.left}%`,
+                      height: `${b.bottom - b.top}%`,
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`${name} area. Drag to move, or use the arrow keys.`}
+                    aria-pressed={isSelected}
+                    onPointerDown={(e) => startRegionDrag(e, region)}
+                    onKeyDown={(e) => nudge(e, region)}
+                  >
+                    {isSelected
+                      ? HANDLES.map((h) => (
+                          <span
+                            key={h}
+                            className={`resize-handle is-${h}`}
+                            onPointerDown={(e) => startResize(e, region, h)}
+                            aria-hidden="true"
+                          />
+                        ))
+                      : null}
                   </div>
                 );
               })}
@@ -359,7 +417,7 @@ export function VeneerStudio({ stones, isSignedIn, initial }: Props) {
             ) : (
               <p className="viz-hint">
                 {state.regions.length
-                  ? "Tap a stoned area to adjust its corners, size or stone."
+                  ? "Tap a stoned area to move it, resize it from its sides or corners, or change the stone."
                   : "Pick a stone on the right to mark your first area."}
               </p>
             )}
@@ -383,7 +441,7 @@ export function VeneerStudio({ stones, isSignedIn, initial }: Props) {
               </button>
             </div>
           </>
-        )}
+        ) : null}
 
         {busy ? (
           <p className="viz-busy" role="status">
@@ -433,7 +491,6 @@ function RegionControls({
   onRemove: () => void;
 }) {
   const estimate = estimateRegion(region, stone);
-  const folded = !isConvex(asQuad(region));
 
   return (
     <div className="item-controls">
@@ -444,13 +501,6 @@ function RegionControls({
           {estimate.netSqft.toFixed(0)} sq ft
         </span>
       </div>
-
-      {folded ? (
-        <p className="form-error" role="alert">
-          Those corners cross over each other. Drag them back into a normal
-          four-sided shape — top-left, top-right, bottom-right, bottom-left.
-        </p>
-      ) : null}
 
       <fieldset className="field-row">
         <legend className="field-label">How big is this area, really?</legend>
@@ -615,38 +665,6 @@ function RegionControls({
         </button>
       </div>
     </div>
-  );
-}
-
-function PhotoDrop({ onFile }: { onFile: (file: File) => void }) {
-  const [over, setOver] = useState(false);
-
-  return (
-    <label
-      className={`photo-drop${over ? " is-over" : ""}`}
-      onDragOver={(e) => {
-        e.preventDefault();
-        setOver(true);
-      }}
-      onDragLeave={() => setOver(false)}
-      onDrop={(e) => {
-        e.preventDefault();
-        setOver(false);
-        const file = e.dataTransfer.files?.[0];
-        if (file) onFile(file);
-      }}
-    >
-      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-        <path d="M3 16.5V19a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2.5M12 3v13m0-13 4.5 4.5M12 3 7.5 7.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      <strong>Add a photo of the wall or fireplace</strong>
-      <span>Drag one here, or tap to choose. Shoot square-on to the wall if you can.</span>
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => e.target.files?.[0] && onFile(e.target.files[0])}
-      />
-    </label>
   );
 }
 

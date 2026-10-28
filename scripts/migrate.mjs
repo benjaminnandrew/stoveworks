@@ -6,9 +6,12 @@ const db = await connect();
 console.log(`→ ${db.label}`);
 
 const sql = readFileSync(new URL("../db/schema.sql", import.meta.url), "utf8");
+// The manufacturer catalog's tables (filled by `npm run brain:load`).
+const catalogSql = readFileSync(new URL("../db/catalog.sql", import.meta.url), "utf8");
 
 try {
   await db.exec(sql);
+  await db.exec(catalogSql);
   const { rows } = await db.query(`
     SELECT table_name FROM information_schema.tables
     WHERE table_schema = 'public' ORDER BY table_name

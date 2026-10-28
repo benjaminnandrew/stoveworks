@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { requireStaff } from "@/lib/auth";
+import { isCarryStatus, setCarryStatus } from "@/lib/catalog";
 import { query } from "@/lib/db";
 import { storeProductCutout, storeStoneSwatch } from "@/lib/storage";
 
@@ -39,14 +40,15 @@ export async function saveProductAction(
     }
   }
 
+  // Name and maker link come from the catalog for products tied to a model.
   await query(
     `UPDATE products
-        SET name = $2,
+        SET name = CASE WHEN catalog_model_id IS NULL THEN $2 ELSE name END,
             summary = $3,
             width_in = $4,
             height_in = $5,
             depth_in = $6,
-            product_url = $7,
+            product_url = CASE WHEN catalog_model_id IS NULL THEN $7 ELSE product_url END,
             is_active = $8,
             cutout_path = COALESCE($9, cutout_path),
             updated_at = now()
@@ -146,4 +148,14 @@ export async function clearSwatchAction(formData: FormData) {
   await query(`UPDATE stone_products SET swatch_path = NULL, updated_at = now() WHERE id = $1`, [id]);
   revalidatePath(`/admin/stone/${id}`);
   revalidatePath("/admin/stone");
+}
+
+/** Steve's mark on a catalog model: what Stoveworks carries. */
+export async function setCarryAction(formData: FormData): Promise<void> {
+  const user = await requireStaff();
+  const id = String(formData.get("id") ?? "");
+  const status = String(formData.get("status") ?? "");
+  if (!id || !isCarryStatus(status)) return;
+  await setCarryStatus(id, status, user.id);
+  revalidatePath("/admin/carry/");
 }

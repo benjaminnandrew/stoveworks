@@ -33,101 +33,92 @@ export const business = {
 
 export const mailtoHref = `mailto:${business.email}?subject=${encodeURIComponent(business.emailSubject)}`;
 
-export type NavFeature = {
-  src: string;
-  width: number;
-  height: number;
-  /** One line about the category. Reused from the home page tiles. */
-  blurb: string;
-};
-
-export type NavItem = {
+export type NavLink = {
   label: string;
   href: string;
-  children?: NavItem[];
-  /** Shown under the link in a mega menu, where there is something true to say. */
+  /** One true line under the link, where there is something to say. */
   blurb?: string;
-  /** Illustrated panel alongside the child links. Parent items only. */
-  feature?: NavFeature;
 };
 
-export const nav: NavItem[] = [
-  { label: "Services", href: "/services/" },
+/** A "what are you working with?" entry: a situation, not a product name. */
+export type NeedLink = NavLink & { image: string };
+
+/**
+ * The Shop menu, organised the way people arrive: by the situation they're in,
+ * then by product, then by the tools that help them decide. Every entry is an
+ * existing page; brand lists under product links come from the pages themselves
+ * (see nav-data.ts), so the menu can't drift from the content.
+ */
+export const shopMenu = {
+  needs: [
+    { label: "An open fireplace", href: "/inserts/", blurb: "Inserts · gas & wood", image: "/images/feature-inserts.jpg" },
+    { label: "A room with no fireplace", href: "/stoves/", blurb: "Stoves · wood & gas", image: "/images/feature-stoves.jpg" },
+    { label: "Building or remodeling", href: "/fireplaces/", blurb: "Fireplaces · gas, wood & electric", image: "/images/feature-fireplaces.jpg" },
+    { label: "Re-doing the look", href: "/fireplace-walls-mantels/", blurb: "Stone, wall panels & mantels", image: "/images/fb14.jpg" },
+  ] satisfies NeedLink[],
+  heat: [
+    { label: "Wood stoves", href: "/stoves/wood-stoves/" },
+    { label: "Gas stoves", href: "/stoves/gas-stoves/" },
+    { label: "Wood inserts", href: "/inserts/wood-inserts/" },
+    { label: "Gas inserts", href: "/inserts/gas-inserts/" },
+    { label: "Wood fireplaces", href: "/fireplaces/wood-fireplaces/" },
+    { label: "Gas fireplaces", href: "/fireplaces/gas-fireplaces/" },
+    { label: "Electric fireplaces", href: "/fireplaces/electric-fireplaces/" },
+  ] satisfies NavLink[],
+  more: [
+    { label: "Fireplace walls & mantels", href: "/fireplace-walls-mantels/" },
+    { label: "Glass doors", href: "/hearth-accessories/glass-doors/" },
+    { label: "Hearth pads", href: "/hearth-accessories/hearth-pads/" },
+    { label: "Gas logs", href: "/hearth-accessories/gas-logs/" },
+    { label: "Outdoor fire rings & grills", href: "/outdoor/" },
+    { label: "Cook stoves & refrigerators", href: "/cook-stoves/" },
+    { label: "Sauna stoves", href: "/sauna-stoves/" },
+    { label: "Wood-fired hot tubs", href: "/wood-fired-hot-tubs/" },
+  ] satisfies NavLink[],
+  tools: [
+    { label: "Room visualizer", href: "/visualizer/", blurb: "Your photo, a real model, true scale" },
+    { label: "Stone mock-up studio", href: "/veneer/", blurb: "Cultured Stone on your wall, with an estimate" },
+  ] satisfies NavLink[],
+};
+
+export const visualizeMenu: NavLink[] = [
   {
-    label: "Stoves",
-    href: "/stoves/",
-    feature: {
-      src: "/images/feature-stoves.jpg",
-      width: 281,
-      height: 281,
-      blurb: "A stove is a freestanding heating unit that can go just about anywhere in your home.",
-    },
-    children: [
-      { label: "Gas Stoves", href: "/stoves/gas-stoves/" },
-      { label: "Wood Stoves", href: "/stoves/wood-stoves/" },
-    ],
-  },
-  {
-    label: "Inserts",
-    href: "/inserts/",
-    feature: {
-      src: "/images/feature-inserts.jpg",
-      width: 281,
-      height: 281,
-      blurb: "A fireplace insert is a device inserted into an existing masonry (real) fireplace.",
-    },
-    children: [
-      { label: "Gas Inserts", href: "/inserts/gas-inserts/" },
-      { label: "Wood Inserts", href: "/inserts/wood-inserts/" },
-    ],
-  },
-  {
-    label: "Fireplaces",
-    href: "/fireplaces/",
-    feature: {
-      src: "/images/feature-fireplaces.jpg",
-      width: 281,
-      height: 281,
-      blurb: "A fireplace can vary in size from 20 inches wide to 54 inches wide.",
-    },
-    children: [
-      { label: "Gas Fireplaces", href: "/fireplaces/gas-fireplaces/" },
-      { label: "Wood Fireplaces", href: "/fireplaces/wood-fireplaces/" },
-      { label: "Electric Fireplaces", href: "/fireplaces/electric-fireplaces/" },
-    ],
-  },
-  {
-    label: "Specialty Hearth",
-    href: "/hearth-accessories/",
-    children: [
-      { label: "Glass Doors", href: "/hearth-accessories/glass-doors/" },
-      { label: "Hearth Pads", href: "/hearth-accessories/hearth-pads/" },
-      { label: "Gas Logs", href: "/hearth-accessories/gas-logs/" },
-      { label: "Outdoor Fire Rings & Grills", href: "/outdoor/" },
-      { label: "Cook Stoves & Refrigerators", href: "/cook-stoves/" },
-      { label: "Sauna Stoves", href: "/sauna-stoves/" },
-      { label: "Wood-Fired Hot Tubs", href: "/wood-fired-hot-tubs/" },
-    ],
-  },
-  { label: "Stonework & Mantels", href: "/stonework-mantels/" },
-  {
-    label: "Visualizer",
+    label: "Stove & fireplace visualizer",
     href: "/visualizer/",
-    children: [
-      {
-        label: "Stove & Fireplace",
-        href: "/visualizer/",
-        blurb: "Drop a stove, insert or fireplace into a photo of your own room, at true scale.",
-      },
-      {
-        label: "Stone Veneer",
-        href: "/veneer/",
-        blurb: "Mark out a wall and try Cultured Stone on it, with a square-footage estimate.",
-      },
-    ],
+    blurb: "Drop a stove, insert or fireplace into a photo of your own room, at true scale.",
   },
-  { label: "Home & Cabin Decor", href: "/home-cabin-decor/" },
-  { label: "Contact Us", href: "/contact-us/" },
+  {
+    label: "Stone mock-up studio",
+    href: "/veneer/",
+    blurb: "Mark out a wall and try Cultured Stone on it, with a square-footage estimate.",
+  },
+];
+
+/**
+ * The Services menu (Ben, 27 Oct 2026): the service page, and the owner & installer guides,
+ * which owners know as manuals. Blurbs come from the pages' own copy.
+ */
+export const servicesMenu: NavLink[] = [
+  {
+    label: "Service & installation",
+    href: "/services/",
+    blurb: "Yearly service, repairs, genuine parts and warranty help, from our crew in Hayward.",
+  },
+  {
+    label: "Manuals",
+    href: "/guides/",
+    blurb: "Your model's owner guide: lighting, everyday care and troubleshooting.",
+  },
+];
+
+/** The top-level bar. Shop, Brands, Visualize and Services open panels; the rest are plain links. */
+export const primaryNav: (NavLink & { menu?: "shop" | "brands" | "visualize" | "services" })[] = [
+  { label: "Shop", href: "/stoves/", menu: "shop" },
+  { label: "Brands", href: "/brands/", menu: "brands" },
+  { label: "Visualize", href: "/visualizer/", menu: "visualize" },
+  { label: "Services", href: "/services/", menu: "services" },
+  { label: "Cabin Decor", href: "/home-cabin-decor/" },
+  { label: "Visit", href: "/contact-us/" },
 ];
 
 export const associations = [

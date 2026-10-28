@@ -1,14 +1,29 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Self-contained server bundle for the reserved VM deploy.
-  output: "standalone",
+  // Run from the project with `next start` (on Replit: `npm run start:live`), so
+  // no standalone bundle is needed.
   reactStrictMode: true,
   poweredByHeader: false,
   // These ship their own native/WASM binaries and resolve them relative to their
   // own files. Bundling them breaks that resolution, so keep them as plain
-  // runtime requires.
-  serverExternalPackages: ["@electric-sql/pglite", "sharp"],
+  // runtime requires. The App Storage client (and the Google Cloud library under
+  // it) is only loaded on Replit, so it stays a runtime require too.
+  serverExternalPackages: ["@electric-sql/pglite", "sharp", "@replit/object-storage"],
+  // Keep local data out of the build's file traces: var/ holds gigabytes of PDFs
+  // and photos, and the brain is read by `npm run brain:load`, not at runtime.
+  outputFileTracingExcludes: {
+    "*": ["./var/**/*", "./brain/**/*"],
+  },
+  experimental: {
+    serverActions: {
+      // Staff upload cutouts and stone swatches through server actions, which
+      // refuse bodies over 1 MB by default; the forms allow 8 MB images. 20 MB
+      // leaves room for the form's other fields, so anything between 8 and 20 MB
+      // gets the form's own "keep it under 8 MB" message instead of an error page.
+      bodySizeLimit: "20mb",
+    },
+  },
   images: {
     // All imagery is served from /public; no remote loaders needed.
     formats: ["image/avif", "image/webp"],
@@ -30,7 +45,10 @@ const nextConfig: NextConfig = {
       ["/specialty-hearth/outdoor-rings-grills/", "/outdoor/"],
       ["/specialty-hearth/refrigerators-cook-stoves/", "/cook-stoves/"],
       ["/specialty-hearth/hot-tubs-sauna-stoves/", "/sauna-stoves/"],
-      ["/facings/", "/stonework-mantels/"],
+      ["/facings/", "/fireplace-walls-mantels/"],
+      ["/stonework-mantels/", "/fireplace-walls-mantels/"],
+      // Stoveworks doesn't sell pellet stoves (Ben, 26 Oct 2026).
+      ["/stoves/pellet-stoves/", "/stoves/"],
     ];
     return moved.map(([source, destination]) => ({ source, destination, statusCode: 301 }));
   },

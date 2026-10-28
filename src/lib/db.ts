@@ -65,9 +65,22 @@ async function createPgliteDriver(): Promise<Driver> {
  */
 const globalForDb = globalThis as unknown as { __swDriver?: Promise<Driver> };
 
+/** Same test as src/lib/file-store.ts and the CLI scripts. */
+const ON_REPLIT = Boolean(
+  process.env.REPLIT_DEPLOYMENT || process.env.REPLIT_DEV_DOMAIN || process.env.REPL_ID,
+);
+
 function driver(): Promise<Driver> {
   if (!globalForDb.__swDriver) {
     const url = process.env.DATABASE_URL;
+    // On Replit, falling back to PGlite would keep accounts and designs on the
+    // app's own disk, which a published app loses on every redeploy. Refuse
+    // loudly instead of losing data quietly.
+    if (!url && ON_REPLIT && !process.env.ALLOW_PGLITE) {
+      throw new Error(
+        "DATABASE_URL is not set. Add Replit's PostgreSQL database to this app; Replit then sets DATABASE_URL.",
+      );
+    }
     globalForDb.__swDriver = url ? createPgDriver(url) : createPgliteDriver();
   }
   return globalForDb.__swDriver;

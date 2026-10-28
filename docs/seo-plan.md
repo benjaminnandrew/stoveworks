@@ -11,7 +11,7 @@ Two things changed after the brief was written, and they override it:
 - **The name is Hayward Stoveworks**, not "The Stove Works". Wherever the brief says
   "The Stove Works", read "Hayward Stoveworks".
 - **No invented content** (see HANDOFF.md). The brief calls for prices, staff names,
-  founding year, project photos, reviews and FAQs. All of that has to come from Steve. Don't
+  founding year, project photos, reviews and FAQs. All of that has to come from the business. Don't
   ship a page type until there's real content to put on it. An empty shell is worse than no
   page.
 
@@ -229,9 +229,46 @@ Skip:
 - The root layout had `canonical: "/"`, which every page without its own canonical inherited
   (pointing them at the home page). It's now set on the home page only.
 
+### Done on 19 Oct 2026
+
+- **Titles all fit**, at most 59 characters including " | Hayward Stoveworks". Where "in Hayward,
+  WI" pushed one over, the shorter ", Hayward WI" is used, or no location at all, because the store
+  name already says Hayward (Services: "Stove & Fireplace Installation").
+- **Every page has its own written description** (125–154 characters), built from that page's
+  copy and brands instead of the "[Page] from [brands]… Stop in or call" template, which is now only
+  a fallback for new pages. They live in `description` in `src/content/pages.ts`.
+- **Contact and both tools name the town**: "Hours & Directions in Hayward, WI", "Room Visualizer,
+  Hayward WI", "Stone Veneer Mock-up, Hayward WI".
+- **Share image** on every page: `public/images/share-storefront.jpg` (storefront + round badge,
+  1200×630), set through `src/lib/share-image.ts`. Pages that set their own Open Graph fields must
+  pass it in, because Next replaces inherited Open Graph wholesale.
+- **Stonework & Mantels → Fireplace Walls & Mantels** (`/fireplace-walls-mantels/`), after Stoll
+  Industries wall panels joined the page. `/facings/` and `/stonework-mantels/` 301 there.
+- Still open: putting the 186 guides in the sitemap, with descriptions (carry marks aren't needed
+  for that), and whether to name Hayward in the category H1s.
+
+### Done on 20 Oct 2026
+
+- **`/brands/` and a page per brand sold** (`/brands/blaze-king/`, `/brands/kozy-heat/` …),
+  following the URL plan above. Titles: "{Brand} in Hayward, WI"; descriptions name the brand's
+  product types and say it's the maker's current lineup with specs and guides. Each has
+  BreadcrumbList JSON-LD and the share image, and all 15 URLs are in the sitemap.
+- Each brand page shows the **maker's current US lineup** from the catalog, worded as the maker's
+  lineup rather than stock, with the maker's own figures and a link to each model's guide. "Which
+  models are on the floor" (the brief's brand-page item) comes from Steve's marks at
+  `/admin/carry/`. Floor models are badged and listed first, and the notice says how many there are.
+- **Internal links in:** product-page brand cards ("See the Blaze King lineup →"), **Brands** in
+  the top nav (a logo panel) and the mobile drawer, and "Brands" in the footer.
+- **Product pages carry real models:** each category page lists every brand's current models of
+  its type under that brand's card, each linking to its guide. That's the content the category
+  pages were missing for "[type] near me" searches. The guides are linked from every model card.
+- Still open for brand pages: *why the store carries the line* and *who it suits* (Steve's words,
+  not ours); parts and warranty support; model pages, which are for floor units only, so they wait
+  for the marks.
+
 ### Still open from the list below
 
-Item 8 (propane wording, waiting on Steve). Items 1–7 are done, as above.
+Item 8 (propane wording, a quick check with Steve). Items 1–7 are done, as above.
 
 ### Code changes that need no new content (as listed before the 8 Oct work)
 
@@ -257,19 +294,28 @@ Item 8 (propane wording, waiting on Steve). Items 1–7 are done, as above.
    "propane (LP) and natural gas" is a factual change Steve must confirm (that the units
    they sell and install run on LP). Very likely true, but ask.
 
-### Needs Steve before it can exist (no-invented-content line)
+### Needs facts from the business first (no-invented-content line)
 
-- Founding year. The nameplate artwork reads "EST 1975"; confirm before it goes into
-  `foundingDate` or About copy.
+Each of these waits only for its own facts; nothing else does.
+
+- Founding year. The nameplate artwork reads "EST 1975", and the round badge now on every
+  page reads "EST. 1975"; confirm before it goes into `foundingDate` or About copy.
 - Service list, lead times, price ranges, permit specifics, installer names and
-  certifications, area served (which counties and towns, stated as fact).
-- Which brands are actively sold vs. legacy mentions → `/brands/` pages.
+  certifications, area served (which counties and towns, stated as fact). **Mostly answered
+  27 Oct** and on `/services/`: the service list, lead times, permits, installer names, factory
+  training and a 1.5-hour radius. Steve's rule is no prices, so no price ranges; named towns
+  still wait.
+- Which brands are actively sold vs. legacy mentions → `/brands/` pages. **Answered by Ben
+  19 Oct; pages built 20 Oct.** Floor models are still Steve's to mark.
 - Floor models → model pages (ties into the product inventory and visualizer cutouts:
   one photo shoot serves both).
 - Install photos with town and product → `/projects/`.
-- Real customer questions → FAQs on category and service pages.
+- Real customer questions → FAQs on category and service pages. **Services has 14 (27 Oct),
+  marked up as FAQPage.**
 - Reviews → `/reviews/`, ideally pulled from Google rather than retyped.
 - Whether they service units they didn't sell; pellet stoves; chimney liners/cleaning.
+  **Answered:** only brands they sell (27 Oct); no pellet (26 Oct); no chimney sweeping, with
+  two recommended sweeps (27 Oct).
 
 ### Off-site (no code, but blocks AI visibility more than anything on the site)
 
@@ -278,3 +324,18 @@ Profile says "Stove Works & Fireplace Center", the site says "Hayward Stoveworks
 directories have other variants. Until every listing reads "Hayward Stoveworks", AI tools
 see two or three businesses. This overlaps HANDOFF loose ends 12–16 (domain, Gmail, GBP,
 sign photo, legal name).
+
+### Done on 22 Oct 2026: model pages
+
+- **Every model in the public lineup has a page** (190 of the 200), at `/brands/<brand>/<model>/`.
+  This changes two things the plan above says:
+  - **Not floor units only:** Ben asked for all of them. Each page carries something the
+    maker's doesn't (our owner & installer guide, Steve's showroom marks, the local store) and
+    links to the maker's page for full specs.
+  - **Not nested under the category:** a model clicked in a list opens as a pop-up over it,
+    which needs a route of its own, so the canonical address is under its brand.
+- **Titles:** `{Brand} {Model} {Type} | Hayward Stoveworks`, stepping down to fit 59 characters.
+  Descriptions are built from the maker's figures and name the store and town. Checked on all
+  190: titles 44–59 characters, no duplicates, descriptions 115–155.
+- **Product and BreadcrumbList JSON-LD**, with no offers because there are no prices. All model
+  pages are in the sitemap. `/compare/` and `/saved/` are noindex.

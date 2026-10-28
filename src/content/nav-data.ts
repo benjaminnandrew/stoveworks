@@ -1,3 +1,4 @@
+import { brandForName } from "./brands";
 import { pages } from "./pages";
 
 /**
@@ -6,8 +7,7 @@ import { pages } from "./pages";
  *
  * That matters: the mega menus advertise which brands we carry, and if that were
  * hand-maintained it would drift from the pages the moment anyone edited one.
- * This is computed once at module load — no database, no build step, and the
- * marketing pages stay statically prerendered.
+ * This is computed once at module load, with no database and no build step.
  */
 
 /** The same manufacturer is spelled a few ways across the mirrored pages. */
@@ -24,7 +24,8 @@ const CANONICAL: Record<string, string> = {
   "Dressy Log Furniture": "Dressy Log",
 };
 
-const canonical = (name: string) => CANONICAL[name] ?? name;
+// The brand list (brands.ts) spells the brands we sell; the map covers the rest.
+const canonical = (name: string) => brandForName(name)?.name ?? CANONICAL[name] ?? name;
 
 /** Trade-association logos share the aside slots with manufacturer logos. */
 const ASSOCIATION = /^(NABA|NAHB|NCHPBA)/i;

@@ -23,52 +23,29 @@
   background-position: 0 0;
 }
 
-/* Corners have been dragged into a bow-tie; the texture would fold back on
-   itself, so say so rather than rendering nonsense. */
+/* A mock-up saved before the editor went rectangular could still hold a
+   crossed quad; flag it rather than render the texture folding back. */
 .stone-region.is-folded { outline: 2px dashed var(--accent); outline-offset: -2px; }
 
-/* ---------- handles ---------- */
+/* ---------- move frame and resize handles ---------- */
 
-.region-grip,
-.corner-handle {
+/* Sits exactly over the region's box. Drag it to move; it carries the eight
+   resize handles (styled in app.css, shared with the stove visualizer). */
+.region-frame {
   position: absolute;
-  padding: 0;
-  border-radius: 50%;
-  cursor: grab;
   z-index: 5;
-  transform: translate(-50%, -50%);
+  cursor: move;
   touch-action: none;
+  outline: 1px dashed rgba(255, 255, 255, 0.55);
+  outline-offset: -1px;
 }
-
-.region-grip {
-  width: 30px;
-  height: 30px;
-  border: 2px solid rgba(255, 255, 255, 0.9);
-  background: rgba(0, 0, 0, 0.45);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+.region-frame:hover { outline-color: rgba(255, 255, 255, 0.9); }
+.region-frame.is-selected {
+  outline: 2px solid #fff;
+  outline-offset: -1px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35);
 }
-.region-grip::after {
-  content: "";
-  position: absolute;
-  inset: 8px;
-  border-radius: 50%;
-  background: #fff;
-  opacity: 0.85;
-}
-.region-grip:hover { background: rgba(214, 61, 69, 0.75); }
-.region-grip.is-selected { background: rgba(214, 61, 69, 0.85); }
-.region-grip:active { cursor: grabbing; }
-
-.corner-handle {
-  width: 22px;
-  height: 22px;
-  border: 3px solid #1c1c1c;
-  background: var(--highlight);
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.55);
-  cursor: crosshair;
-  z-index: 6;
-}
-.corner-handle:hover { background: #fff; }
+.region-frame:focus-visible { outline: 3px solid var(--accent); }
 
 /* ---------- controls specific to a region ---------- */
 

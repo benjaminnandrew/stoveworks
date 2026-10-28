@@ -1,0 +1,19 @@
+modules = ["nodejs-24"]
+
+# Workspace Run button: install if needed, then the dev server.
+run = "[ -d node_modules ] || npm ci; npm run dev -- -H 0.0.0.0"
+
+[nix]
+channel = "stable-24_05"
+
+# Published site: a Reserved VM (always on, no cold starts). start:live brings
+# the database up to date, starts the site on 3014, then loads the brands, the
+# stone profiles and the catalog in the background. See docs/replit.md.
+[deployment]
+deploymentTarget = "vm"
+build = ["sh", "-c", "npm ci && npm run build"]
+run = ["npm", "run", "start:live"]
+
+[[ports]]
+localPort = 3014
+externalPort = 80

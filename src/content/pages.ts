@@ -1,3 +1,4 @@
+import { servicePage } from "./services";
 import type { Page } from "./types";
 
 /**
@@ -8,6 +9,8 @@ export const pages: Page[] = [
   {
     "slug": "cook-stoves",
     "title": "Cook Stoves & Refrigerators",
+    "metaTitle": "Cook Stoves in Hayward, WI",
+    "description": "Cook stoves and refrigerators from Hayward Stoveworks, Northwest Wisconsin's most complete fireplace center, on County Road B in Hayward.",
     "sections": [
       {
         "type": "media-grid",
@@ -24,30 +27,130 @@ export const pages: Page[] = [
     ]
   },
   {
-    "slug": "fireplaces",
-    "title": "Fireplaces",
+    "slug": "fireplace-walls-mantels",
+    "title": "Fireplace Walls & Mantels",
+    "metaTitle": "Fireplace Walls & Mantels, Hayward WI",
+    "description": "Cultured Stone, TriLite and St. Croix stone veneer, Stoll steel and shiplap wall panels, and log mantels from Hayward's own Dressy Log Furniture.",
     "sections": [
       {
-        "type": "prose",
-        "html": "<h2>What is a fireplace?</h2>\n<p>A fireplace can vary in size from 20 inches wide to 54 inches wide.</p>\n<p>We specialize in zero clearance fireplaces, whether open or closed with doors. Your zero clearance fireplaces require a chimney, either air cooled or class A.</p>\n<p>Fireplaces can be either <a href=\"/fireplaces/gas-fireplaces/\">Gas</a>, <a href=\"/fireplaces/wood-fireplaces/\">Wood</a>, or <a href=\"/fireplaces/electric-fireplaces/\">Electric</a>.</p>"
-      },
-      {
-        "type": "media-grid",
-        "cols": 1,
+        "type": "photos",
+        "heading": "In our showroom",
         "items": [
           {
+            "src": "/images/fb14.jpg",
+            "alt": "A corner fireplace faced in stacked stone with a log mantel",
+            "width": 720,
+            "height": 960
+          },
+          {
+            "src": "/images/fb6.jpg",
+            "alt": "A stacked-stone corner fireplace with a rough log mantel",
+            "width": 720,
+            "height": 960
+          },
+          {
+            "src": "/images/fb7.jpg",
+            "alt": "A stone-faced fireplace with a log mantel and a firewood niche in the showroom",
+            "width": 720,
+            "height": 960
+          },
+          {
+            "src": "/images/fb4.jpg",
+            "alt": "A corner fireplace in stacked stone with a log mantel and a loon carving above",
+            "width": 604,
+            "height": 960
+          },
+          {
+            "src": "/images/fb13.jpg",
+            "alt": "A stacked-stone fireplace with a log mantel and a firewood niche",
+            "width": 720,
+            "height": 960
+          }
+        ]
+      },
+      {
+        "type": "brand",
+        "name": "St. Croix Stone by Environmental StoneWorks",
+        "body": "<p>Fireplaces, both masonry design and zero clearance applications are of the most common uses of St. Croix Stone. It is also a great solution for freestanding stove applications. Fireplace companies throughout the Midwest have been recommending St. Croix Stone for over 18 years.</p>",
+        "logo": {
+          "src": "/images/environmental-stone-works.jpg",
+          "alt": "Environmental Stone Works",
+          "width": 320,
+          "height": 105,
+          "href": "https://www.estoneworks.com/site/products/midwest"
+        }
+      },
+      {
+        "type": "brand",
+        "name": "Cultured Stone",
+        "body": "<p>Cultured Stone® manufactured stone veneers meet AC-51 criteria, the strictest requirements in the industry. Products are available in more than 21 textures and more than 100 colors.</p>",
+        "logo": {
+          "src": "/images/cultured-stone.jpg",
+          "alt": "Cultured Stone",
+          "width": 320,
+          "height": 65,
+          "href": "https://www.culturedstone.com/"
+        }
+      },
+      {
+        "type": "brand",
+        "name": "TriLite Stone Company",
+        "body": "<p>TriLite Stone Company employs a process for manufactured stone that is superior to other systems because of our full color integration – not just facial coating. We invite you to tour our selections and imagine the possibilities for yourself.</p>",
+        "logo": {
+          "src": "/images/trilite.jpg",
+          "alt": "TriLite Stone Company",
+          "width": 320,
+          "height": 119,
+          "href": "https://trilitestone.com/"
+        }
+      },
+      {
+        "type": "brand",
+        "name": "Stoll Industries",
+        "body": "<p>Wall panel systems in steel and aluminum shiplap, for fireplace surrounds, backsplashes and accent walls. The steel panels come in five layouts and more than 20 finishes. The aluminum shiplap is non-combustible for fireplace use, and the panels mount even over existing brick.</p>",
+        "website": "https://www.stollindustries.com/walls/"
+      },
+      {
+        "type": "brand",
+        "name": "Dressy Log Furniture",
+        "body": "<p>A local Hayward, WI business, Dressy Log Furniture was established in 1999. They make custom handcrafted mantels from lodgepole pine or northern white cedar logs.</p>",
+        "logo": {
+          "src": "/images/dressy-log.jpg",
+          "alt": "Dressy Log",
+          "width": 320,
+          "height": 130,
+          "href": "https://dressylog.com/mantels/"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "fireplaces",
+    "title": "Fireplaces",
+    "description": "Gas, wood and electric fireplaces in Hayward, WI, from 20 to 54 inches wide. We specialize in zero clearance fireplaces, open or closed with doors.",
+    "sections": [
+      {
+        "type": "prose-aside",
+        "html": "<h2>What is a fireplace?</h2>\n<p>A fireplace can vary in size from 20 inches wide to 54 inches wide.</p>\n<p>We specialize in zero clearance fireplaces, whether open or closed with doors. Your zero clearance fireplaces require a chimney, either air cooled or class A.</p>\n<p>Fireplaces can be either <a href=\"/fireplaces/gas-fireplaces/\">Gas</a>, <a href=\"/fireplaces/wood-fireplaces/\">Wood</a>, or <a href=\"/fireplaces/electric-fireplaces/\">Electric</a>.</p>",
+        "aside": [
+          {
             "src": "/images/feature-fireplaces.jpg",
-            "alt": "feature-fireplaces",
+            "alt": "A fireplace with a fieldstone surround and a wood mantel",
             "width": 281,
             "height": 281
           }
         ]
+      },
+      {
+        "type": "fuels",
+        "heading": "Choose a fuel"
       }
     ]
   },
   {
     "slug": "fireplaces/electric-fireplaces",
     "title": "Electric Fireplaces",
+    "description": "Majestic electric fireplaces in Hayward, WI. No venting or gas lines needed, so they suit interior rooms where venting is difficult or impossible.",
     "sections": [
       {
         "type": "prose",
@@ -70,6 +173,7 @@ export const pages: Page[] = [
   {
     "slug": "fireplaces/gas-fireplaces",
     "title": "Gas Fireplaces",
+    "description": "Gas fireplaces from Mendota, Kozy Heat, Town & Country and Jøtul, put in by factory-trained installers from Hayward Stoveworks in Hayward, WI.",
     "sections": [
       {
         "type": "brand",
@@ -85,7 +189,7 @@ export const pages: Page[] = [
       },
       {
         "type": "brand",
-        "name": "KozyHeat",
+        "name": "Kozy Heat",
         "body": "<p>All Kozy Heat gas fireplaces are designed to operate with a thermostat control. Because our gas fireplaces are tested and comply with wall furnace standards, homeowners can set the desired room temperature using a thermostat and the fireplace will automatically turn on or off according to the desired temperature.</p>",
         "logo": {
           "src": "/images/kozy-heat.png",
@@ -97,19 +201,7 @@ export const pages: Page[] = [
       },
       {
         "type": "brand",
-        "name": "Enviro",
-        "body": "<p>Family owned and operated since 1989. They offer gas, wood, and pellet stoves and inserts.</p>",
-        "logo": {
-          "src": "/images/enviro.png",
-          "alt": "Enviro",
-          "width": 320,
-          "height": 126,
-          "href": "https://enviro.com/products/catalogue/?f=Gas&t=FP"
-        }
-      },
-      {
-        "type": "brand",
-        "name": "Town & Country Fireplaces",
+        "name": "Town & Country",
         "body": "<p>A Town &amp; Country product is more than a fireplace. It is an architectural feature, a sophisticated statement about you and your home – and an investment that will retain its value for years to come.</p>",
         "logo": {
           "src": "/images/town-and-country-fireplace-logo.jpg",
@@ -121,7 +213,7 @@ export const pages: Page[] = [
       },
       {
         "type": "brand",
-        "name": "Jotul",
+        "name": "Jøtul",
         "body": "<p>At Jotul we are masters of our craft – we have been a leading manufacturer of cast iron hearths since 1853. We are proud of our high quality requirements, our tradition and our innovative design concepts. If you have high standards and demand the best – you are likely to choose a Jotul.</p>",
         "logo": {
           "src": "/images/jotul.png",
@@ -136,6 +228,7 @@ export const pages: Page[] = [
   {
     "slug": "fireplaces/wood-fireplaces",
     "title": "Wood Fireplaces",
+    "description": "Wood fireplaces from RSF, Renaissance, Majestic, Kozy Heat and Minnesota-made Wilkening, from Hayward Stoveworks in Hayward, Wisconsin.",
     "sections": [
       {
         "type": "brand",
@@ -202,6 +295,7 @@ export const pages: Page[] = [
   {
     "slug": "hearth-accessories",
     "title": "Hearth Accessories",
+    "description": "Gas and electric logs, glass doors, wood racks, tool sets, cleaning supplies and fire starters, plus parts to maintain your stove, fireplace or insert.",
     "sections": [
       {
         "type": "prose-aside",
@@ -215,12 +309,24 @@ export const pages: Page[] = [
             "href": "https://www.pilgrimhearth.com/"
           }
         ]
+      },
+      {
+        "type": "photos",
+        "items": [
+          {
+            "src": "/images/fb8.jpg",
+            "alt": "Stove and chimney care products, fire starters and bags of fatwood on the store's shelves",
+            "width": 720,
+            "height": 960
+          }
+        ]
       }
     ]
   },
   {
     "slug": "hearth-accessories/gas-logs",
     "title": "Gas Logs",
+    "description": "Gas logs from Napoleon, Hargrove and Peterson for your fireplace, from Hayward Stoveworks, Northwest Wisconsin's most complete fireplace center.",
     "sections": [
       {
         "type": "media-grid",
@@ -255,6 +361,7 @@ export const pages: Page[] = [
     "slug": "hearth-accessories/glass-doors",
     "title": "Glass Doors",
     "metaTitle": "Fireplace Glass Doors in Hayward, WI",
+    "description": "Wilkening fireplace glass doors, hand-crafted in Walker, Minnesota, from Hayward Stoveworks on County Road B in Hayward, Wisconsin.",
     "sections": [
       {
         "type": "brand",
@@ -273,6 +380,7 @@ export const pages: Page[] = [
   {
     "slug": "hearth-accessories/hearth-pads",
     "title": "Hearth Pads",
+    "description": "Stone and tile hearth pads from Hearth Classics, American Panel and AJ Originals, so your stove sits on a non-combustible surface. In Hayward, WI.",
     "sections": [
       {
         "type": "prose",
@@ -319,24 +427,55 @@ export const pages: Page[] = [
   {
     "slug": "home-cabin-decor",
     "title": "Home & Cabin Decor",
+    "description": "Lamps, art for over the mantel, fireplace accessories and cabin decor, with new inventory all the time. A good place to find a gift in Hayward, WI.",
     "sections": [
       {
         "type": "prose",
         "html": "<p>Hayward Stoveworks has a wide variety of fireplace accessories and home &amp; cabin decor available. We are the perfect place to find just the right gift you were looking for. With new inventory in all the time, please stop in and see the latest that Hayward Stoveworks has to offer!</p>"
       },
       {
-        "type": "media-grid",
-        "cols": 2,
+        "type": "photos",
+        "heading": "Around the store",
         "items": [
           {
+            "src": "/images/fb10.jpg",
+            "alt": "Stained-glass table lamps and deer metal art",
+            "width": 960,
+            "height": 720
+          },
+          {
+            "src": "/images/fb9.jpg",
+            "alt": "Metal welcome signs, wall hooks and a carved bear",
+            "width": 960,
+            "height": 720
+          },
+          {
+            "src": "/images/fb11.jpg",
+            "alt": "A pine shelf of picture frames, lanterns and seasonal decor",
+            "width": 960,
+            "height": 720
+          },
+          {
+            "src": "/images/fb3.jpg",
+            "alt": "Rustic shelves of cabin decor",
+            "width": 960,
+            "height": 720
+          },
+          {
+            "src": "/images/fb12.jpg",
+            "alt": "Leather bags and a cabin sign on a pine-panelled wall",
+            "width": 720,
+            "height": 960
+          },
+          {
             "src": "/images/decor-1-1.jpg",
-            "alt": "decor-1",
+            "alt": "Table lamps along the showroom counter",
             "width": 435,
             "height": 350
           },
           {
             "src": "/images/decor-2.jpg",
-            "alt": "decor-2",
+            "alt": "A stone fireplace with a log mantel, a Lake House sign and a metal heron",
             "width": 435,
             "height": 350
           }
@@ -348,28 +487,30 @@ export const pages: Page[] = [
     "slug": "inserts",
     "title": "Inserts",
     "metaTitle": "Fireplace Inserts in Hayward, WI",
+    "description": "Gas and wood inserts for an existing masonry fireplace: insulated doors keep the fire efficient and the glass lets you watch it. In Hayward, WI.",
     "sections": [
       {
-        "type": "prose",
-        "html": "<h2>What is an insert?</h2>\n<p>A fireplace insert is a device inserted into an existing masonry (real) fireplace.</p>\n<p>Fireplace inserts are made from cast iron or steel and now have self-cleaning glass doors that allow the flames of the fire to be viewed while the insulated doors remain closed, making the fire more efficient.</p>\n<p>We offer inserts in either <a href=\"/inserts/gas-inserts/\">Gas</a> or <a href=\"/inserts/wood-inserts/\">Wood</a>.</p>"
-      },
-      {
-        "type": "media-grid",
-        "cols": 1,
-        "items": [
+        "type": "prose-aside",
+        "html": "<h2>What is an insert?</h2>\n<p>A fireplace insert is a device inserted into an existing masonry (real) fireplace.</p>\n<p>Fireplace inserts are made from cast iron or steel and now have self-cleaning glass doors that allow the flames of the fire to be viewed while the insulated doors remain closed, making the fire more efficient.</p>\n<p>We offer inserts in either <a href=\"/inserts/gas-inserts/\">Gas</a> or <a href=\"/inserts/wood-inserts/\">Wood</a>.</p>",
+        "aside": [
           {
             "src": "/images/feature-inserts.jpg",
-            "alt": "feature-inserts",
+            "alt": "A fireplace insert set into a brick fireplace",
             "width": 281,
             "height": 281
           }
         ]
+      },
+      {
+        "type": "fuels",
+        "heading": "Choose a fuel"
       }
     ]
   },
   {
     "slug": "inserts/gas-inserts",
     "title": "Gas Inserts",
+    "description": "Gas fireplace inserts from Mendota, Jøtul, Kozy Heat and Majestic for an existing masonry fireplace, from Hayward Stoveworks in Hayward, Wisconsin.",
     "sections": [
       {
         "type": "brand",
@@ -385,7 +526,7 @@ export const pages: Page[] = [
       },
       {
         "type": "brand",
-        "name": "Jotul",
+        "name": "Jøtul",
         "body": "<p>Jotul offers a complete range of both traditional and contemporary stoves and fireplaces. Based on traditions in Norwegian craftsmanship, high quality and consistent use of good design, Jotul will continue to be the favored choice of the generations of today and tomorrow.</p>",
         "logo": {
           "src": "/images/jotul.png",
@@ -397,7 +538,7 @@ export const pages: Page[] = [
       },
       {
         "type": "brand",
-        "name": "KozyHeat",
+        "name": "Kozy Heat",
         "body": "<p>Kozy Heat® has highly efficient gas insert fireplaces designed for both masonry and factory-built wood burning fireplaces.</p>",
         "logo": {
           "src": "/images/kozy-heat.png",
@@ -424,10 +565,11 @@ export const pages: Page[] = [
   {
     "slug": "inserts/wood-inserts",
     "title": "Wood Inserts",
+    "description": "Wood fireplace inserts from Jøtul, Morsø, Pacific Energy, True North, Kuma and Blaze King, from Hayward Stoveworks in Hayward, Wisconsin.",
     "sections": [
       {
         "type": "brand",
-        "name": "Jotul",
+        "name": "Jøtul",
         "body": "<p>At Jotul we are masters of our craft – we have been a leading manufacturer of cast iron hearths since 1853. We are proud of our high quality requirements, our tradition and our innovative design concepts. If you have high standards and demand the best – you are likely to choose a Jotul.</p>",
         "logo": {
           "src": "/images/jotul.png",
@@ -439,7 +581,7 @@ export const pages: Page[] = [
       },
       {
         "type": "brand",
-        "name": "Morso",
+        "name": "Morsø",
         "body": "<p>Morso has been at the cutting-edge of modern woodstove design since 1853. Its reputation for high-performance, Scandinavian designed cast-iron stoves is world class, as is its “thinking-green” core that continues to innovate environmentally-responsible combustion technology and handcrafted high-quality cast iron products, using 98% recycled material.</p>",
         "logo": {
           "src": "/images/morso.jpg",
@@ -460,6 +602,19 @@ export const pages: Page[] = [
           "height": 172,
           "href": "https://www.pacificenergy.net/products/wood/"
         }
+      },
+      {
+        "type": "brand",
+        "name": "True North",
+        "body": "<p>True North is the economy line from Pacific Energy Fireplace Products. Its wood insert is made in Canada.</p>",
+        "logo": {
+          "src": "/images/true-north.png",
+          "alt": "True North",
+          "width": 320,
+          "height": 132,
+          "href": "https://truenorthstoves.com/"
+        },
+        "website": "https://truenorthstoves.com/"
       },
       {
         "type": "brand",
@@ -490,6 +645,8 @@ export const pages: Page[] = [
   {
     "slug": "outdoor",
     "title": "Outdoor Fire Rings & Grills",
+    "metaTitle": "Fire Rings & Grills in Hayward, WI",
+    "description": "Pilot Rock campfire rings and outdoor grills, made in the USA since 1959, from Hayward Stoveworks on County Road B in Hayward, Wisconsin.",
     "sections": [
       {
         "type": "brand",
@@ -508,6 +665,7 @@ export const pages: Page[] = [
   {
     "slug": "sauna-stoves",
     "title": "Wood-Fired Sauna Stoves",
+    "description": "Nippa wood-fired sauna stoves and heaters from Hayward Stoveworks in Hayward, Wisconsin, and Snorkel wood-fired hot tubs to go with them.",
     "sections": [
       {
         "type": "prose-aside",
@@ -524,122 +682,36 @@ export const pages: Page[] = [
       }
     ]
   },
-  {
-    "slug": "services",
-    "title": "Services",
-    "metaTitle": "Stove & Fireplace Installation in Hayward, WI",
-    "description": "Factory-trained installation of stoves, inserts and fireplaces by Hayward Stoveworks in Hayward, Wisconsin, members of the NAHB, NCHPBA and NABA. Call 715-634-2360.",
-    "sections": [
-      {
-        "type": "prose-aside",
-        "html": "<p>Hayward Stoveworks has a very knowledgeable staff here to assist you with any of your heating questions.</p>\n<p>All of our installers are factory trained. This guarantees that you are in the very best hands when it comes to installing your new stove or fireplace.</p>\n<p>We are also members of the NAHB – National Association of Home Builders, the NCHPBA – North Central Hearth Patio and Barbeque Association, and the NABA – Northland Area Builders Association.</p>\n<p>Our employees attend conferences every year to make sure they are up to date with the latest information and technology in the hearth industry.</p>",
-        "aside": [
-          {
-            "src": "/images/logo-naba.png",
-            "alt": "NABA Hayward",
-            "width": 320,
-            "height": 178,
-            "href": "https://northlandareabuilders.com/"
-          },
-          {
-            "src": "/images/logo-nahb.png",
-            "alt": "NAHB",
-            "width": 320,
-            "height": 224,
-            "href": "https://www.nahb.org/"
-          },
-          {
-            "src": "/images/logo-nchpba.jpg",
-            "alt": "NCHPBA",
-            "width": 320,
-            "height": 174,
-            "href": "https://northcentralhpba.org/"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "stonework-mantels",
-    "title": "Stonework & Mantels",
-    "metaTitle": "Fireplace Stone & Mantels in Hayward, WI",
-    "sections": [
-      {
-        "type": "brand",
-        "name": "St. Croix Stone by Environmental StoneWorks",
-        "body": "<p>Fireplaces, both masonry design and zero clearance applications are of the most common uses of St. Croix Stone. It is also a great solution for freestanding stove applications. Fireplace companies throughout the Midwest have been recommending St. Croix Stone for over 18 years.</p>",
-        "logo": {
-          "src": "/images/environmental-stone-works.jpg",
-          "alt": "Environmental Stone Works",
-          "width": 320,
-          "height": 105,
-          "href": "https://www.estoneworks.com/site/products/midwest"
-        }
-      },
-      {
-        "type": "brand",
-        "name": "Cultured Stone",
-        "body": "<p>Cultured Stone® manufactured stone veneers meet AC-51 criteria, the strictest requirements in the industry. Products are available in more than 21 textures and more than 100 colors.</p>",
-        "logo": {
-          "src": "/images/cultured-stone.jpg",
-          "alt": "Cultured Stone",
-          "width": 320,
-          "height": 65,
-          "href": "https://www.culturedstone.com/"
-        }
-      },
-      {
-        "type": "brand",
-        "name": "TriLite Stone Company",
-        "body": "<p>TriLite Stone Company employs a process for manufactured stone that is superior to other systems because of our full color integration – not just facial coating. We invite you to tour our selections and imagine the possibilities for yourself.</p>",
-        "logo": {
-          "src": "/images/trilite.jpg",
-          "alt": "TriLite Stone Company",
-          "width": 320,
-          "height": 119,
-          "href": "https://trilitestone.com/"
-        }
-      },
-      {
-        "type": "brand",
-        "name": "Dressy Log Furniture",
-        "body": "<p>A local Hayward, WI business, Dressy Log Furniture was established in 1999. They make custom handcrafted mantels from lodgepole pine or northern white cedar logs.</p>",
-        "logo": {
-          "src": "/images/dressy-log.jpg",
-          "alt": "Dressy Log",
-          "width": 320,
-          "height": 130,
-          "href": "https://dressylog.com/mantels/"
-        }
-      }
-    ]
-  },
+  // Its copy lives in services.ts, and src/app/services/ renders it.
+  servicePage,
   {
     "slug": "stoves",
     "title": "Stoves",
-    "metaTitle": "Wood, Gas & Pellet Stoves in Hayward, WI",
+    "metaTitle": "Wood & Gas Stoves, Hayward WI",
+    "description": "Freestanding wood and gas stoves in many sizes, from Blaze King, Jøtul, HearthStone, Pacific Energy, Kuma and more. In Hayward, WI.",
     "sections": [
       {
-        "type": "prose",
-        "html": "<h2>What is a stove?</h2>\n<p>A stove is a freestanding heating unit that can go just about anywhere in your home.</p>\n<p>We have a wide variety in stoves in either <a href=\"/stoves/gas-stoves/\">Gas</a>, <a href=\"/stoves/wood-stoves/\">Wood</a>, or Pellet in many different sizes to heat large or small spaces.</p>"
-      },
-      {
-        "type": "media-grid",
-        "cols": 1,
-        "items": [
+        "type": "prose-aside",
+        "html": "<h2>What is a stove?</h2>\n<p>A stove is a freestanding heating unit that can go just about anywhere in your home.</p>\n<p>We have a wide variety in stoves in either <a href=\"/stoves/gas-stoves/\">Gas</a> or <a href=\"/stoves/wood-stoves/\">Wood</a> in many different sizes to heat large or small spaces.</p>",
+        "aside": [
           {
             "src": "/images/feature-stoves.jpg",
-            "alt": "feature-stoves",
+            "alt": "A wood stove burning on a stone hearth",
             "width": 281,
             "height": 281
           }
         ]
+      },
+      {
+        "type": "fuels",
+        "heading": "Choose a fuel"
       }
     ]
   },
   {
     "slug": "stoves/gas-stoves",
     "title": "Gas Stoves",
+    "description": "Gas stoves from Jøtul, Kozy Heat, Blaze King and True North: the warmth of a fire without the upkeep of a wood stove. In Hayward, Wisconsin.",
     "sections": [
       {
         "type": "prose",
@@ -647,7 +719,7 @@ export const pages: Page[] = [
       },
       {
         "type": "brand",
-        "name": "Jotul",
+        "name": "Jøtul",
         "body": "<p>Jotul offers a complete range of both traditional and contemporary stoves and fireplaces. Based on traditions in Norwegian craftsmanship, high quality and consistent use of good design, Jotul will continue to be the favored choice of the generations of today and tomorrow.</p>",
         "logo": {
           "src": "/images/jotul.png",
@@ -683,21 +755,23 @@ export const pages: Page[] = [
       },
       {
         "type": "brand",
-        "name": "Enviro",
-        "body": "<p>Family owned and operated since 1989. They offer gas, wood, and pellet stoves and inserts.</p>",
+        "name": "True North",
+        "body": "<p>True North is the economy line from Pacific Energy Fireplace Products, and the range includes a direct-vent gas stove.</p>",
         "logo": {
-          "src": "/images/enviro.png",
-          "alt": "Enviro",
+          "src": "/images/true-north.png",
+          "alt": "True North",
           "width": 320,
-          "height": 126,
-          "href": "https://enviro.com/products/gas/?f=Gas"
-        }
+          "height": 132,
+          "href": "https://truenorthstoves.com/"
+        },
+        "website": "https://truenorthstoves.com/"
       }
     ]
   },
   {
     "slug": "stoves/wood-stoves",
     "title": "Wood Stoves",
+    "description": "Wood stoves from Blaze King, Jøtul, HearthStone, Pacific Energy, Morsø, Kuma and True North, at Hayward Stoveworks in Hayward, Wisconsin.",
     "sections": [
       {
         "type": "brand",
@@ -713,7 +787,20 @@ export const pages: Page[] = [
       },
       {
         "type": "brand",
-        "name": "Hearthstone",
+        "name": "True North",
+        "body": "<p>True North is the economy line from Pacific Energy Fireplace Products. Its wood stoves are made in Canada.</p>",
+        "logo": {
+          "src": "/images/true-north.png",
+          "alt": "True North",
+          "width": 320,
+          "height": 132,
+          "href": "https://truenorthstoves.com/"
+        },
+        "website": "https://truenorthstoves.com/"
+      },
+      {
+        "type": "brand",
+        "name": "HearthStone",
         "body": "<p>At HearthStone, they believe that burning wood is one of the most romantic, beautiful and satisfying ways to heat your home. Wood burning can be very economical, while also offering the additional benefits of a beautiful flame, relaxing warmth, and a romantic ambiance.</p>",
         "logo": {
           "src": "/images/HearthStone-Logo.png",
@@ -725,7 +812,7 @@ export const pages: Page[] = [
       },
       {
         "type": "brand",
-        "name": "Jotul",
+        "name": "Jøtul",
         "body": "<p>Jotul offers a complete range of both traditional and contemporary stoves and fireplaces. Based on traditions in Norwegian craftsmanship, high quality and consistent use of good design, Jotul will continue to be the favored choice of the generations of today and tomorrow.</p>",
         "logo": {
           "src": "/images/jotul.png",
@@ -745,18 +832,6 @@ export const pages: Page[] = [
           "width": 320,
           "height": 134,
           "href": "https://www.blazeking.com/category/products/wood-stoves/"
-        }
-      },
-      {
-        "type": "brand",
-        "name": "Thelin",
-        "body": "<p>Engineered, manufactured and tested in the United States, the professionals at Thelin are dedicated to providing our customers with a stove that they can depend on and be proud to have in their home.</p>",
-        "logo": {
-          "src": "/images/thelin-logo-2.jpg",
-          "alt": "Thelin",
-          "width": 320,
-          "height": 123,
-          "href": "https://thelinco.com/"
         }
       },
       {
@@ -788,6 +863,7 @@ export const pages: Page[] = [
   {
     "slug": "wood-fired-hot-tubs",
     "title": "Wood-Fired Hot Tubs",
+    "description": "Snorkel wood-fired hot tubs, made in the USA from Western Red Cedar, from Hayward Stoveworks in Hayward, Wisconsin. Nippa sauna stoves too.",
     "sections": [
       {
         "type": "prose-aside",
