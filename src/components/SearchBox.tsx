@@ -3,6 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 
+import { fold } from "@/lib/search/fold";
+
 /**
  * The site search box: type, or tap Talk and say it.
  *
@@ -11,9 +13,25 @@ import { useEffect, useId, useRef, useState } from "react";
  * input. Voice uses the browser's own speech recognition (Chrome, Edge and
  * Safari have it; Firefox doesn't), so the Talk button only appears where it
  * will work. Every box lands on the same search (docs/smart-search-plan.md).
+ *
+ * On the manuals hub (`guides`), the same names lead to guides instead: a model
+ * opens its guide and a maker jumps to its list on the page. What doesn't name
+ * one model still goes to the site search, so the page never narrows a search.
  */
 
-type Suggestion = { label: string; message: string; url: string };
+type Suggestion = { label: string; message: string; url: string; id?: string };
+
+/** The manuals hub's guides, for the box to open (Ben, 28 Oct 2026). */
+export type GuideFinder = {
+  /** Catalog model id → its guide (on its homeowner side when the hub is in owner mode). */
+  models: Record<string, { href: string; name: string; brand: string }>;
+  /** Brand slug → its list on the hub. */
+  brands: Record<string, string>;
+};
+
+/** Folded with the spaces gone, so "F500", "f 500" and "F-500" compare equal. */
+const squash = (s: string) => fold(s).replace(/ /g, "");
+const brandOf = (url: string) => /^\/brands\/([^/]+)\/$/.exec(url)?.[1];
 
 /* The Web Speech API isn't in TypeScript's DOM types everywhere. */
 type Recognition = {
@@ -68,12 +86,14 @@ export function SearchBox({
   defaultValue = "",
   autoFocus = false,
   placeholder = "Search stoves, brands, or ask a question",
+  guides,
 }: {
   variant?: "hero" | "bar" | "drawer";
   surface?: "home" | "header" | "page" | "drawer";
   defaultValue?: string;
   autoFocus?: boolean;
   placeholder?: string;
+  guides?: GuideFinder;
 }) {
   const router = useRouter();
   const id = useId();
@@ -126,10 +146,55 @@ export function SearchBox({
     return () => document.removeEventListener("pointerdown", onDown);
   }, []);
 
-  const go = (q: string, voice = false) => {
+  // Where a suggestion leads: its own page, or on the manuals hub a model's guide or a maker's list.
+  const hrefOf = (s: Suggestion) => {
+    if (!guides) return s.url;
+    if (s.id && guides.models[s.id]) return guides.models[s.id].href;
+    const brand = brandOf(s.url);
+    return (brand && guides.brands[brand]) || s.url;
+  };
+
+  const visit = (href: string) => {
+    setOpen(false);
+    if (!href.startsWith("#")) return router.push(href);
+    document.getElementById(href.slice(1))?.scrollIntoView();
+    history.replaceState(null, "", href);
+  };
+
+  // On the manuals hub: the guide for what was typed or said; "pick" when several models
+  // match (the list opens to choose from); null when it isn't one model, for the site search.
+  const findGuide = async (finder: GuideFinder, text: string): Promise<string | null> => {
+    const res = await fetch(`/api/search/suggest?q=${encodeURIComponent(text)}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null);
+    const all: Suggestion[] = Array.isArray(res?.suggestions) ? res.suggestions : [];
+    const models = all.filter((s) => s.id && finder.models[s.id]);
+    const t = squash(text);
+    const exact = models.find((s) => {
+      const m = finder.models[s.id!];
+      return squash(m.name) === t || squash(`${m.brand} ${m.name}`) === t;
+    });
+    if (exact || models.length === 1) return finder.models[(exact ?? models[0]).id!].href;
+    if (models.length > 1) {
+      setItems(models.slice(0, 6));
+      setActive(-1);
+      setOpen(true);
+      setStatus(`${models.length} models match. Pick yours.`);
+      return "pick";
+    }
+    const brand = all[0] ? brandOf(all[0].url) : undefined;
+    return brand && finder.brands[brand] && squash(all[0].message) === t ? finder.brands[brand] : null;
+  };
+
+  const go = async (q: string, voice = false) => {
     const text = q.trim();
     if (!text) return;
     setOpen(false);
+    if (guides) {
+      const found = await findGuide(guides, text);
+      if (found === "pick") return;
+      if (found) return visit(found);
+    }
     router.push(`/search/?q=${encodeURIComponent(text)}&from=${surface}${voice ? "&voice=1" : ""}`);
   };
 
@@ -167,7 +232,7 @@ export function SearchBox({
       }
     };
     recRef.current = rec;
-    setStatus("Listening… say a brand, a model, or your question.");
+    setStatus(guides ? "Listening… say the model." : "Listening… say a brand, a model, or your question.");
     setOpen(false);
     setListening(true);
     try {
@@ -190,8 +255,7 @@ export function SearchBox({
       setOpen(false);
     } else if (e.key === "Enter" && active >= 0) {
       e.preventDefault();
-      setOpen(false);
-      router.push(items[active].url);
+      visit(hrefOf(items[active]));
     }
   };
 
@@ -210,7 +274,7 @@ export function SearchBox({
       >
         <input type="hidden" name="from" value={surface} />
         <label htmlFor={`${id}-q`} className="visually-hidden">
-          Search the site
+          {guides ? "Find your model's guide" : "Search the site"}
         </label>
         <span className="searchbox-icon">
           <SearchIcon />
@@ -270,8 +334,7 @@ export function SearchBox({
                 className={i === active ? "is-active" : undefined}
                 onPointerDown={(e) => {
                   e.preventDefault();
-                  setOpen(false);
-                  router.push(s.url);
+                  visit(hrefOf(s));
                 }}
               >
                 <strong>{name}</strong>

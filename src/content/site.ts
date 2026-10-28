@@ -24,6 +24,8 @@ export const business = {
     { days: "Saturday", time: "10:00 AM – 2:00 PM" },
     { days: "Sunday", time: "Closed" },
   ],
+  /** The same hours in one short line: the top bar, the home page and the menus. */
+  hoursShort: "Mon–Fri 9–5 · Sat 10–2",
   /** schema.org openingHours, kept alongside the display copy above. */
   hoursSpec: [
     { days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "09:00", closes: "17:00" },
@@ -85,13 +87,22 @@ export const shopMenu = {
  * The Hearth Studio menu (Ben, 28 Oct 2026): the stone visualizer, which replaced the stone
  * mock-up studio and stands in for the retired room visualizer, in its two versions. The shop's
  * touch screen runs the website, so staff open the showroom version from here; its blurb tells
- * everyone else it's the in-store one.
+ * everyone else it's the in-store one. Under the online one, what it does, in the words of its
+ * BUILD-NOTES (a little more in the menu, like Services; Ben, 28 Oct 2026).
  */
-export const studioMenu: NavLink[] = [
+export const studioMenu: (NavLink & { features?: string[] })[] = [
   {
     label: "Online Studio",
     href: "/hearth-studio/",
     blurb: "Try Buechel stone on a chimney, hearth or accent wall, in a sample room or a photo of your own.",
+    features: [
+      "Stone by style and color",
+      "Joints and mortar color",
+      "Paint colors for the walls",
+      "How much stone it takes",
+      "Before and after",
+      "Save, download or share",
+    ],
   },
   {
     label: "Showroom Studio",

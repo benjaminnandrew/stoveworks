@@ -200,3 +200,20 @@ The loose-form misses are unfinished names answered with a choice of families ("
 - **Steve approves the wording:** the emergency and refusal messages are marked as drafts in `guard.ts`.
 - **Phase 2:** the AI interpreter, for numbers and wishes the names can't carry: "heats 2,000 sq ft", "quiet", "modern look". Today those are named back as not checked.
 - **Staff screens:** the "found nothing" list and adding aliases have no page yet. The data is in `search_log` and `search_aliases`.
+
+### 28 Oct 2026: a brand and the number in a name
+
+Ben searched "Jotul 445" and got guide sections, not the F 445 models: only "F 445" and "F445"
+were held. **The class:** a brand plus a number that stands on its own in a model's name, typed
+without the letters around it. **The rule** (`names.ts`, `NUMBER_IN_NAME`): each such number is
+held after each of its brand's names, for every model that has it. "Jøtul 445" asks which of the
+two F 445s; "Blaze King 20.2" offers the Ashford, Chinook and Sirocco 20.2; "Jøtul 445 floor
+protection" answers from those two models' guides. A bare number isn't held: it's too often a
+size or a count.
+
+It's tested as a new loose form, brand + the name's number (95 searches, all found). Loose forms
+are now 518/529 (97.9%), with the same 11 misses as before; every other mark is unchanged.
+
+The same day, the suggestions (`/api/search/suggest`) started carrying a model's catalog `id`,
+an added field, so the manuals hub's box can open a model's guide. That box uses the same
+endpoint, and anything that doesn't name one model still goes to the site search.

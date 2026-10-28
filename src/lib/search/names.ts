@@ -78,6 +78,9 @@ function add(map: Map<string, Entry[]>, key: string, entry: Entry) {
   map.set(key, list);
 }
 
+/** A number standing on its own in a model's name: 445 in "F 445 Holliday", 20.2 in "Ashford 20.2", not the 32 in "PE32". */
+const NUMBER_IN_NAME = /(?<![\p{L}\d.])\d+(?:\.\d+)?(?![\p{L}\d])/gu;
+
 /** The words of a name up to its first word with a digit: "Ashford 20.2" → "ashford". */
 function familyStem(name: string): string | null {
   const ws = words(name);
@@ -159,6 +162,14 @@ export function buildIndex(
       if (hasDigit(c) && c.length >= 3) add(compactMap, c, entry(c));
     }
     for (const w of ws) if (hasDigit(w) && /[a-z]/.test(w) && w.length >= 3) add(compactMap, w, entry(w));
+
+    // A number in the name, typed after the brand without the letters around it: "Jøtul 445" names
+    // the F 445 Holliday, and the F 445 Holliday CF that shares it (then the search asks which);
+    // "Blaze King 20.2" the Ashford and the Sirocco 20.2. Only after a brand: a bare number is too
+    // often a size or a count.
+    for (const n of m.name.match(NUMBER_IN_NAME) ?? []) {
+      for (const bk of brandKeys.get(m.brand_slug) ?? [fold(m.brand_name)]) add(exact, `${bk} ${fold(n)}`, entry(`${bk} ${fold(n)}`));
+    }
     for (const n of m.model_numbers) {
       const c = compact(n);
       if (c.length >= 3) add(compactMap, c, entry(c, "model_number"));

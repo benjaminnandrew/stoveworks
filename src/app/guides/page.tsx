@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { JumpBar } from "@/components/JumpBar";
+import { SearchBox, type GuideFinder } from "@/components/SearchBox";
 import { brands } from "@/content/brands";
 import { LINEUP_GROUPS } from "@/content/lineup";
 import { business } from "@/content/site";
@@ -51,26 +52,42 @@ export default async function GuidesPage({ searchParams }: Props) {
   const list = await guidesByBrand();
   const side = (await searchParams).for === "owner" ? "#homeowner" : "";
 
+  // What the finder opens: each model's guide (on the owner side in owner mode), each maker's list.
+  const finder: GuideFinder = { models: {}, brands: {} };
+  for (const b of list ?? []) {
+    finder.brands[b.slug] = `#${b.slug}`;
+    for (const g of b.groups) {
+      for (const m of g.models) finder.models[m.id] = { href: `${guideUrl(m.guide_id!)}${side}`, name: m.name, brand: b.name };
+    }
+  }
+
   return (
     <>
-      <div className="page-title">
-        <div className="wrap">
-          <nav aria-label="Breadcrumb">
-            <ol className="breadcrumbs">
-              <li>
-                <Link href="/">Home</Link>
-              </li>
-              <li>
-                <span aria-current="page">Manuals</span>
-              </li>
-            </ol>
-          </nav>
-          <h1>Manuals &amp; guides</h1>
-          <p className="page-lede guide-hub-lede">
-            Your model&rsquo;s owner guide covers lighting, everyday care and troubleshooting. Installers will find
-            clearances, venting and installation details in the same guide, each with the page of the maker&rsquo;s
-            manual it comes from.
-          </p>
+      {/* The heading and a shorter line beside a type-or-talk finder (Ben, 28 Oct 2026): a model
+          opens its guide, so the title area is shorter than before even with the box in it. */}
+      <div className="page-title guide-hub-title">
+        <div className="wrap guide-hub-head">
+          <div>
+            <nav aria-label="Breadcrumb">
+              <ol className="breadcrumbs">
+                <li>
+                  <Link href="/">Home</Link>
+                </li>
+                <li>
+                  <span aria-current="page">Manuals</span>
+                </li>
+              </ol>
+            </nav>
+            <h1>Manuals &amp; guides</h1>
+            <p className="page-lede guide-hub-lede">
+              Lighting, everyday care and troubleshooting for owners, and installation details for installers.
+            </p>
+          </div>
+          {list?.length ? (
+            <div className="guide-hub-find">
+              <SearchBox variant="hero" surface="page" placeholder="Type or say the model" guides={finder} />
+            </div>
+          ) : null}
         </div>
       </div>
 

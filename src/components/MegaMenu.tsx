@@ -136,17 +136,42 @@ export function BrandsMenu({ open, id }: PanelProps) {
   );
 }
 
-/** Hearth Studio's two versions: online, and the showroom's touch screen (Ben, 28 Oct 2026). */
+/**
+ * Hearth Studio's two versions, online and on the showroom's touch screen, with what it does and
+ * where the showroom is (Ben, 28 Oct 2026; laid out like Services). What it does is plain lines,
+ * not links: each would only open the same studio.
+ */
 export function StudioMenu({ open, id }: PanelProps) {
+  const [online, showroom] = studioMenu;
   return (
-    <div id={id} className={`mega mega-small${open ? " is-open" : ""}`} inert={!open}>
-      <div className="mega-small-inner">
-        {studioMenu.map((link) => (
-          <Link key={link.href} href={link.href} className="small-link">
-            <strong>{link.label}</strong>
-            <small>{link.blurb}</small>
+    <div id={id} className={`mega mega-small mega-wide${open ? " is-open" : ""}`} inert={!open}>
+      <div className="mega-wide-inner">
+        <div>
+          <Link href={online.href} className="small-link">
+            <strong>{online.label}</strong>
+            <small>{online.blurb}</small>
           </Link>
-        ))}
+          <ul className="mega-sublist is-plain" aria-label="What it does">
+            {online.features?.map((f) => (
+              <li key={f}>{f}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <Link href={showroom.href} className="small-link">
+            <strong>{showroom.label}</strong>
+            <small>{showroom.blurb}</small>
+          </Link>
+          <div className="mega-box">
+            <p className="mega-head">Visit the showroom</p>
+            <p>
+              {business.streetShort}, {business.city}
+              <br />
+              {business.hoursShort}
+            </p>
+            <Link href="/contact-us/">Hours &amp; directions &rarr;</Link>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -160,14 +185,14 @@ export function StudioMenu({ open, id }: PanelProps) {
 export function ServicesMenu({ open, id }: PanelProps) {
   const [service, manuals] = servicesMenu;
   return (
-    <div id={id} className={`mega mega-small mega-services${open ? " is-open" : ""}`} inert={!open}>
-      <div className="mega-services-inner">
+    <div id={id} className={`mega mega-small mega-wide${open ? " is-open" : ""}`} inert={!open}>
+      <div className="mega-wide-inner">
         <div>
           <Link href={service.href} className="small-link">
             <strong>{service.label}</strong>
             <small>{service.blurb}</small>
           </Link>
-          <ul className="services-sections">
+          <ul className="mega-sublist">
             {service.sections?.map((s) => (
               <li key={s.href}>
                 <Link href={s.href}>{s.label}</Link>
@@ -180,12 +205,12 @@ export function ServicesMenu({ open, id }: PanelProps) {
             <strong>{manuals.label}</strong>
             <small>{manuals.blurb}</small>
           </Link>
-          <div className="services-book">
+          <div className="mega-box">
             <p className="mega-head">Book service</p>
             <p>
               Call the shop to start: <a href={business.phoneHref}>{business.phoneDisplay}</a>
             </p>
-            <Link href="/services/#gas-smell" className="services-gas">
+            <Link href="/services/#gas-smell" className="mega-box-alert">
               If you smell gas &rarr;
             </Link>
           </div>

@@ -67,7 +67,22 @@ Everything before it is committed as `b4c1682` on `redesign-up-north`.
   magnifier in the photo's corner, now always on show, opens the close-up.
 - **Services menu:** wider, with six of the service page's sections, the manuals, and a Book
   service box (the phone, and "If you smell gas").
+- **Hearth Studio menu:** laid out the same way (Ben): what the Online Studio does (six plain
+  lines from its BUILD-NOTES, not links), and under Showroom Studio a Visit the showroom box with
+  the address and hours. The short hours line now lives once, as `business.hoursShort`.
 - **Phone menu:** each group folds under its title and starts closed.
+- **Manuals page (`/guides/`):** a "Type or say the model" box at the top, on the site search's
+  names (so typos, plain letters and model numbers work):
+  - a model opens its guide (on its homeowner side in owner mode);
+  - several matches stay listed to pick from, and a maker jumps to its list;
+  - anything else goes to the site search.
+  The title area got shorter even with the box: 185px at 1440 (was 264), 276px on a phone (was
+  307).
+- **Search:** a brand plus the number in a model's name now names it ("Jøtul 445" → the two
+  F 445s). It's a general rule plus a new generated test form; see
+  [docs/smart-search-plan.md](docs/smart-search-plan.md), "28 Oct 2026".
+- **Home search:** the suggestions hang over the hours strip instead of being cut off at the
+  hero's foot (`.home-hero` now clips sideways only).
 - **Header fit:** with "Hearth Studio" in the bar, the lockup logo starts at 1290px (was 1260px)
   and the 993–1100px nav padding is a touch tighter; measured with no wrapped item from 993 to
   1920px.

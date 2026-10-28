@@ -41,12 +41,16 @@ test("exact forms: full name, brand + name, name alone, model numbers", async ()
   assert.ok(r.pct >= EXACT_MARK, report("Findability, exact forms", r, EXACT_MARK));
 });
 
-test("loose forms: start of the name, official name, brand in plain letters", async () => {
+test("loose forms: start of the name, official name, brand in plain letters, brand + the name's number", async () => {
   const cases = [];
   for (const m of models) {
     const first = m.name.split(" ")[0];
     if (/^[A-Za-z]{5,}$/.test(first)) {
       cases.push({ m, q: `${m.brand} ${first.slice(0, Math.max(4, first.length - 2))}`, label: `${m.brand} ${first}… (start)` });
+    }
+    // "Jøtul 445" for the F 445 Holliday (Ben, 28 Oct 2026): found, or offered among those sharing it.
+    for (const n of m.name.match(/(?<![\p{L}\d.])\d+(?:\.\d+)?(?![\p{L}\d])/gu) ?? []) {
+      cases.push({ m, q: `${m.brand} ${n}`, label: `${m.brand} ${n} (number)` });
     }
     if (m.official_name && m.official_name !== m.name) cases.push({ m, q: m.official_name, label: `${m.official_name} (official)` });
     cases.push({ m, q: fold(`${m.brand} ${m.name}`), label: `${fold(m.brand)} ${fold(m.name)} (lowercase, no punctuation)` });

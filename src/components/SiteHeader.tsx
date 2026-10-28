@@ -51,8 +51,6 @@ const sectionHrefs = {
 
 type Menu = keyof typeof sectionHrefs;
 
-const hoursSummary = "Mon–Fri 9–5 · Sat 10–2";
-
 export function SiteHeader() {
   const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState<Menu | null>(null);
@@ -134,7 +132,7 @@ export function SiteHeader() {
             {business.streetShort} · {business.city}, Wisconsin
           </span>
           <span className="topbar-right">
-            <OpenStatus fallback={hoursSummary} />
+            <OpenStatus fallback={business.hoursShort} />
             <a className="topbar-phone" href={business.phoneHref}>
               {business.phoneDisplay}
             </a>

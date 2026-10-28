@@ -126,7 +126,7 @@ export default function HomePage() {
           <div className="wrap visit-grid">
             <div>
               <p className="visit-label">Hours</p>
-              <p className="visit-big">Mon–Fri 9–5 · Sat 10–2</p>
+              <p className="visit-big">{business.hoursShort}</p>
               <p className="visit-small">Closed Sundays</p>
             </div>
             <div>

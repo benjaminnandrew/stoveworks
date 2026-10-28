@@ -419,7 +419,6 @@ p:last-child { margin-bottom: 0; }
   border-radius: 0 0 var(--radius) var(--radius);
 }
 .mega-small.is-open { transform: translate(-50%, 0); }
-.mega-small-inner { padding: 0.75rem; }
 
 .small-link {
   display: block;
@@ -430,10 +429,11 @@ p:last-child { margin-bottom: 0; }
 .small-link strong { display: block; font-size: 1.05rem; font-weight: 600; }
 .small-link small { display: block; font-family: var(--font-sans); font-size: 0.86rem; color: var(--ink-soft); }
 
-/* Services: the service page with its sections, then the manuals and how to book (28 Oct 2026). */
-.mega-services { width: 44rem; }
-.mega-services-inner { display: grid; grid-template-columns: 1.3fr 1fr; gap: 0.5rem; padding: 0.75rem; }
-.mega-services .services-sections {
+/* The wider small panels, Hearth Studio and Services (28 Oct 2026): two columns, each a main link
+   with a short list or a box under it. */
+.mega-wide { width: 44rem; }
+.mega-wide-inner { display: grid; grid-template-columns: 1.3fr 1fr; gap: 0.5rem; padding: 0.75rem; }
+.mega-wide .mega-sublist {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.1rem 0.5rem;
@@ -443,9 +443,20 @@ p:last-child { margin-bottom: 0; }
   font-family: var(--font-sans);
   font-size: 0.92rem;
 }
-.services-sections a { display: block; padding: 0.4rem 0.6rem; border-radius: 6px; color: var(--ink); text-decoration: none; }
-.services-sections a:hover { background: var(--paper); color: var(--accent); }
-.services-book {
+.mega-sublist a { display: block; padding: 0.4rem 0.6rem; border-radius: 6px; color: var(--ink); text-decoration: none; }
+.mega-sublist a:hover { background: var(--paper); color: var(--accent); }
+/* Plain lines (what Hearth Studio does), each after a small gold dot, so they don't read as links. */
+.mega-sublist.is-plain li { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.4rem 0.6rem; color: var(--ink-soft); }
+.mega-sublist.is-plain li::before {
+  content: "";
+  flex: none;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: var(--gold);
+  transform: translateY(-0.12rem);
+}
+.mega-box {
   margin: 0.35rem 0.4rem 0;
   padding: 0.8rem 0.9rem 0.9rem;
   border-radius: 8px;
@@ -453,11 +464,11 @@ p:last-child { margin-bottom: 0; }
   font-family: var(--font-sans);
   font-size: 0.9rem;
 }
-.services-book .mega-head { margin: 0 0 0.3rem; }
-.services-book p { margin: 0 0 0.45rem; color: var(--ink-soft); }
-.services-book a { color: var(--ink); font-weight: 700; }
-.services-book .services-gas { color: var(--accent); text-decoration: none; }
-.services-book .services-gas:hover { text-decoration: underline; }
+.mega-box .mega-head { margin: 0 0 0.3rem; }
+.mega-box p { margin: 0 0 0.45rem; color: var(--ink-soft); }
+.mega-box a { color: var(--ink); font-weight: 700; }
+.mega-box .mega-box-alert { color: var(--accent); text-decoration: none; }
+.mega-box .mega-box-alert:hover { text-decoration: underline; }
 
 @media (max-width: 1180px) {
   .mega-grid { grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(0, 1fr)); }
@@ -814,7 +825,9 @@ a.brand-wordmark:hover { border-color: var(--accent); color: var(--accent); }
    Home page
    ========================================================================== */
 
-.home-hero { padding: clamp(1.25rem, 2.5vw, 2rem) 0 clamp(1rem, 1.5vw, 1.5rem); overflow: hidden; }
+/* Clipped sideways only (the tilted prints), so the search box's suggestions can hang down over the
+   hours strip instead of being cut off at the hero's foot (Ben, 28 Oct 2026). */
+.home-hero { padding: clamp(1.25rem, 2.5vw, 2rem) 0 clamp(1rem, 1.5vw, 1.5rem); overflow-x: clip; }
 
 .home-hero-grid {
   display: grid;
@@ -1414,6 +1427,17 @@ a.brand-wordmark:hover { border-color: var(--accent); color: var(--accent); }
   font-size: 1.15rem;
   line-height: 1.5;
   color: var(--ink-soft);
+}
+
+/* The manuals hub's title: heading and line on the left, the model finder on the right, and less
+   padding, so it's shorter than it was before the finder (Ben, 28 Oct 2026). */
+.guide-hub-title { padding: 1.6rem 0 1.4rem; }
+.guide-hub-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 32rem); gap: 1rem 3rem; align-items: end; }
+.guide-hub-head .guide-hub-lede { max-width: 68ch; margin: 0.5rem 0 0; font-size: 1.05rem; }
+/* Over the sticky brand bar (30) that sits under the title, under the header (40). */
+.guide-hub-find .searchbox-list { z-index: 35; }
+@media (max-width: 900px) {
+  .guide-hub-head { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* The "on this page" bar (src/components/JumpBar.tsx): under the page title, then stuck below
