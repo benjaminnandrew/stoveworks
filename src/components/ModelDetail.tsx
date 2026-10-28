@@ -91,9 +91,6 @@ export function ModelDetail({ data, variant }: { data: ModelPageData; variant: "
               size="large"
               item={{ id: model.id, name: model.name, brand: brand.name, type: kind, href: modelHref(model), photo: model.hero_image }}
             />
-            <a className="model-visualize" href={`/visualizer/?model=${encodeURIComponent(model.id)}`}>
-              See it in your room &rarr;
-            </a>
           </div>
           {model.carry_status !== "on_floor" ? (
             <p className="model-stock">

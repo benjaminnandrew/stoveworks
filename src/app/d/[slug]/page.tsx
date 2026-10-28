@@ -183,9 +183,7 @@ function Cta() {
         Get in touch
       </Link>
       <p className="share-cta">
-        <Link href="/visualizer/">Try a stove in your room →</Link>
-        <br />
-        <Link href="/veneer/">Try stone on your wall →</Link>
+        <Link href="/hearth-studio/">Try stone on your wall →</Link>
       </p>
     </>
   );

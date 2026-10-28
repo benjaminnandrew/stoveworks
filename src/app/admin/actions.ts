@@ -68,7 +68,6 @@ export async function saveProductAction(
 
   revalidatePath("/admin");
   revalidatePath(`/admin/products/${id}`);
-  revalidatePath("/visualizer");
   return { ok: true };
 }
 
@@ -138,7 +137,6 @@ export async function saveStoneAction(
 
   revalidatePath("/admin/stone");
   revalidatePath(`/admin/stone/${id}`);
-  revalidatePath("/veneer");
   return { ok: true };
 }
 

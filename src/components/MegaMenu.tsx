@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import { brandContent, brands } from "@/content/brands";
 import { brandsForHref } from "@/content/nav-data";
-import { business, servicesMenu, shopMenu, visualizeMenu } from "@/content/site";
+import { business, servicesMenu, shopMenu, studioMenu } from "@/content/site";
 
 /**
  * The panels that drop out of the nav bar.
@@ -136,11 +136,12 @@ export function BrandsMenu({ open, id }: PanelProps) {
   );
 }
 
-function SmallMenu({ open, id, links }: PanelProps & { links: typeof visualizeMenu }) {
+/** Hearth Studio's two versions: online, and the showroom's touch screen (Ben, 28 Oct 2026). */
+export function StudioMenu({ open, id }: PanelProps) {
   return (
     <div id={id} className={`mega mega-small${open ? " is-open" : ""}`} inert={!open}>
       <div className="mega-small-inner">
-        {links.map((link) => (
+        {studioMenu.map((link) => (
           <Link key={link.href} href={link.href} className="small-link">
             <strong>{link.label}</strong>
             <small>{link.blurb}</small>
@@ -151,11 +152,45 @@ function SmallMenu({ open, id, links }: PanelProps & { links: typeof visualizeMe
   );
 }
 
-export function VisualizeMenu(props: PanelProps) {
-  return <SmallMenu {...props} links={visualizeMenu} />;
-}
-
-/** Service & installation, and the manuals (Ben, 27 Oct 2026). */
-export function ServicesMenu(props: PanelProps) {
-  return <SmallMenu {...props} links={servicesMenu} />;
+/**
+ * Service & installation with its page's main sections, the manuals, and how to book (Ben,
+ * 27 Oct 2026; a little more in it, 28 Oct 2026). The booking lines use the service page's own
+ * words (src/content/services.ts, `book` and `gasSmell`).
+ */
+export function ServicesMenu({ open, id }: PanelProps) {
+  const [service, manuals] = servicesMenu;
+  return (
+    <div id={id} className={`mega mega-small mega-services${open ? " is-open" : ""}`} inert={!open}>
+      <div className="mega-services-inner">
+        <div>
+          <Link href={service.href} className="small-link">
+            <strong>{service.label}</strong>
+            <small>{service.blurb}</small>
+          </Link>
+          <ul className="services-sections">
+            {service.sections?.map((s) => (
+              <li key={s.href}>
+                <Link href={s.href}>{s.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <Link href={manuals.href} className="small-link">
+            <strong>{manuals.label}</strong>
+            <small>{manuals.blurb}</small>
+          </Link>
+          <div className="services-book">
+            <p className="mega-head">Book service</p>
+            <p>
+              Call the shop to start: <a href={business.phoneHref}>{business.phoneDisplay}</a>
+            </p>
+            <Link href="/services/#gas-smell" className="services-gas">
+              If you smell gas &rarr;
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

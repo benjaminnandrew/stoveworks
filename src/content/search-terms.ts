@@ -32,6 +32,9 @@ export const PAGE_WORDS: { href: string; words: string[] }[] = [
   },
   { href: "/services/", words: ["installation", "install", "installer", "installers", "service", "services", "repair", "repairs"] },
   { href: "/brands/", words: ["brands", "brand", "makers", "manufacturers", "what brands"] },
-  { href: "/visualizer/", words: ["visualizer", "room visualizer", "see it in my room", "try it in my room"] },
-  { href: "/veneer/", words: ["stone visualizer", "stone mock up", "stone mockup", "veneer", "stone veneer"] },
+  // Hearth Studio is the one visualizer for now: the room visualizer is retired (28 Oct 2026).
+  {
+    href: "/hearth-studio/",
+    words: ["visualizer", "room visualizer", "see it in my room", "try it in my room", "stone visualizer", "stone mock up", "stone mockup", "veneer", "stone veneer"],
+  },
 ];

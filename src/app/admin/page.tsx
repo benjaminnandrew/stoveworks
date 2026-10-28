@@ -23,8 +23,10 @@ export default async function AdminPage() {
         <div className="wrap">
           <h1>Inventory</h1>
           <p className="page-lede">
-            What the visualizer offers customers. A product needs a transparent cutout image and a
-            real width before it can be placed to scale.
+            The products&rsquo; cutouts and sizes. The room visualizer that showed them is retired for
+            now (28 Oct 2026); Hearth Studio&rsquo;s stoves will use them once that&rsquo;s built. A
+            product needs a transparent cutout image and a real width before it can be placed to
+            scale.
           </p>
           <p className="admin-crosslinks">
             <Link href="/admin/carry/">What we carry &rarr;</Link>

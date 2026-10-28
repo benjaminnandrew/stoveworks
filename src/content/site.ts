@@ -75,34 +75,50 @@ export const shopMenu = {
     { label: "Sauna stoves", href: "/sauna-stoves/" },
     { label: "Wood-fired hot tubs", href: "/wood-fired-hot-tubs/" },
   ] satisfies NavLink[],
+  // The room visualizer is retired for now (Ben, 28 Oct 2026).
   tools: [
-    { label: "Room visualizer", href: "/visualizer/", blurb: "Your photo, a real model, true scale" },
-    { label: "Stone mock-up studio", href: "/veneer/", blurb: "Cultured Stone on your wall, with an estimate" },
+    { label: "Hearth Studio", href: "/hearth-studio/", blurb: "Buechel stone on your wall, with an estimate" },
   ] satisfies NavLink[],
 };
 
-export const visualizeMenu: NavLink[] = [
+/**
+ * The Hearth Studio menu (Ben, 28 Oct 2026): the stone visualizer, which replaced the stone
+ * mock-up studio and stands in for the retired room visualizer, in its two versions. The shop's
+ * touch screen runs the website, so staff open the showroom version from here; its blurb tells
+ * everyone else it's the in-store one.
+ */
+export const studioMenu: NavLink[] = [
   {
-    label: "Stove & fireplace visualizer",
-    href: "/visualizer/",
-    blurb: "Drop a stove, insert or fireplace into a photo of your own room, at true scale.",
+    label: "Online Studio",
+    href: "/hearth-studio/",
+    blurb: "Try Buechel stone on a chimney, hearth or accent wall, in a sample room or a photo of your own.",
   },
   {
-    label: "Stone mock-up studio",
-    href: "/veneer/",
-    blurb: "Mark out a wall and try Cultured Stone on it, with a square-footage estimate.",
+    label: "Showroom Studio",
+    href: "/showroom/",
+    blurb: "The version on the touch screen in our showroom.",
   },
 ];
 
 /**
  * The Services menu (Ben, 27 Oct 2026): the service page, and the owner & installer guides,
- * which owners know as manuals. Blurbs come from the pages' own copy.
+ * which owners know as manuals. Blurbs come from the pages' own copy. Under the service page,
+ * its main sections, so the menu says a little more (Ben, 28 Oct 2026): the anchors are the
+ * section ids in src/content/services.ts, the labels its headings.
  */
-export const servicesMenu: NavLink[] = [
+export const servicesMenu: (NavLink & { sections?: NavLink[] })[] = [
   {
     label: "Service & installation",
     href: "/services/",
     blurb: "Yearly service, repairs, genuine parts and warranty help, from our crew in Hayward.",
+    sections: [
+      { label: "Yearly service", href: "/services/#yearly" },
+      { label: "Repairs", href: "/services/#repairs" },
+      { label: "Warranty help", href: "/services/#warranty" },
+      { label: "Parts", href: "/services/#parts" },
+      { label: "Chimneys & gas lines", href: "/services/#chimneys" },
+      { label: "Installation", href: "/services/#installation" },
+    ],
   },
   {
     label: "Manuals",
@@ -111,11 +127,11 @@ export const servicesMenu: NavLink[] = [
   },
 ];
 
-/** The top-level bar. Shop, Brands, Visualize and Services open panels; the rest are plain links. */
-export const primaryNav: (NavLink & { menu?: "shop" | "brands" | "visualize" | "services" })[] = [
+/** The top-level bar. Shop, Brands, Hearth Studio and Services open panels; the rest are plain links. */
+export const primaryNav: (NavLink & { menu?: "shop" | "brands" | "studio" | "services" })[] = [
   { label: "Shop", href: "/stoves/", menu: "shop" },
   { label: "Brands", href: "/brands/", menu: "brands" },
-  { label: "Visualize", href: "/visualizer/", menu: "visualize" },
+  { label: "Hearth Studio", href: "/hearth-studio/", menu: "studio" },
   { label: "Services", href: "/services/", menu: "services" },
   { label: "Cabin Decor", href: "/home-cabin-decor/" },
   { label: "Visit", href: "/contact-us/" },

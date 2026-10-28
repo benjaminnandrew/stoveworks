@@ -62,9 +62,7 @@ export default async function SignInPage({
                 <SignInForm />
 
                 <p className="auth-note">
-                  New here? Entering your email creates your account — no extra steps. Your account
-                  keeps the room photos and stove designs you make in the{" "}
-                  <Link href="/visualizer/">visualizer</Link>.
+                  New here? Entering your email creates your account — no extra steps.
                 </p>
               </>
             )}

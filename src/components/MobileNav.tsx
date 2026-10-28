@@ -6,7 +6,7 @@ import { createPortal } from "react-dom";
 
 import { SearchBox } from "@/components/SearchBox";
 import { brands } from "@/content/brands";
-import { business, mailtoHref, shopMenu, visualizeMenu } from "@/content/site";
+import { business, mailtoHref, shopMenu, studioMenu } from "@/content/site";
 
 /** The drawer lists everything the desktop panels do, grouped the same way. */
 const groups = [
@@ -23,7 +23,7 @@ const groups = [
     cols: true,
   },
   { title: "Hearth, sauna & outdoor", links: shopMenu.more },
-  { title: "Visualize", links: visualizeMenu },
+  { title: "Hearth Studio", links: studioMenu },
   {
     title: "Hayward Stoveworks",
     links: [
@@ -142,27 +142,31 @@ export function MobileNav({ pathname }: { pathname: string }) {
                     ))}
                   </ul>
 
-                  {groups.map((group) => (
-                    <div key={group.title} className="drawer-group">
-                      <p className="drawer-group-title">{group.title}</p>
-                      <ul className={`drawer-nav${"cols" in group ? " is-cols" : ""}`}>
-                        {group.links.map((link) => (
-                          <li key={link.href + link.label}>
-                            <Link href={link.href} aria-current={current(link.href)}>
-                              {link.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+                  {/* Each group folds under its title and starts closed, so the menu is one
+                      short list (Ben, 28 Oct 2026). Keyed by page, so they're closed again
+                      after moving to another page. */}
+                  <div key={pathname} className="drawer-groups">
+                    {groups.map((group) => (
+                      <details key={group.title} className="drawer-group">
+                        <summary className="drawer-group-title">{group.title}</summary>
+                        <ul className={`drawer-nav${"cols" in group ? " is-cols" : ""}`}>
+                          {group.links.map((link) => (
+                            <li key={link.href + link.label}>
+                              <Link href={link.href} aria-current={current(link.href)}>
+                                {link.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </details>
+                    ))}
+                  </div>
 
                   <div className="drawer-contact">
                     <a href={business.phoneHref} className="drawer-call">
                       Call {business.phoneDisplay}
                     </a>
                     <a href={mailtoHref}>Email us</a>
-                    <Link href="/account/">My designs</Link>
                     <span>
                       {business.street}, {business.city}
                     </span>

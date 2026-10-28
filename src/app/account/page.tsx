@@ -54,31 +54,28 @@ export default async function AccountPage() {
         <div className="wrap">
           {nothingYet ? (
             <div className="empty-state">
-              <h2>Nothing saved yet</h2>
+              <h2>Nothing saved here</h2>
               <p>
-                Upload a photo of your room and try a stove in it, or mark out a wall and see it in
-                stone. Save as many as you like, then bring them in and we&rsquo;ll talk through the
+                Try stone on your own wall in Hearth Studio. The ideas you save there stay on this
+                device; download or share a picture to bring in, and we&rsquo;ll talk through the
                 real thing.
               </p>
               <div className="empty-actions">
-                <Link className="btn" href="/visualizer/">
-                  Try a stove
-                </Link>
-                <Link className="tool" href="/veneer/">
-                  Try stone veneer
+                <Link className="btn" href="/hearth-studio/">
+                  Open Hearth Studio
                 </Link>
               </div>
             </div>
           ) : (
             <>
+              {/* The room visualizer is retired for now (28 Oct 2026); designs saved in it still
+                  list here and open. */}
               {stoves.length > 0 ? (
                 <section>
                   <div className="section-head">
                     <h2>Stove &amp; fireplace designs</h2>
-                    <Link className="btn" href="/visualizer/">
-                      New design
-                    </Link>
                   </div>
+                  <p className="viz-hint">Saved in our room visualizer, which is retired for now.</p>
                   <ul className="design-grid">
                     {stoves.map((design) => (
                       <li key={design.id}>
@@ -89,18 +86,19 @@ export default async function AccountPage() {
                 </section>
               ) : null}
 
-              <section className={stoves.length > 0 ? "account-section" : undefined}>
-                <div className="section-head">
-                  <h2>Stone veneer mock-ups</h2>
-                  <Link className="btn" href="/veneer/">
-                    New mock-up
-                  </Link>
-                </div>
-                {veneers.length === 0 ? (
+              {/* The old stone mock-up studio is retired (Hearth Studio replaced it, 28 Oct 2026);
+                  mock-ups saved in it still list here and open. */}
+              {veneers.length > 0 ? (
+                <section className={stoves.length > 0 ? "account-section" : undefined}>
+                  <div className="section-head">
+                    <h2>Stone mock-ups</h2>
+                    <Link className="btn" href="/hearth-studio/">
+                      Open Hearth Studio
+                    </Link>
+                  </div>
                   <p className="viz-hint">
-                    None yet — <Link href="/veneer/">try stone on a wall</Link>.
+                    Saved in our old stone mock-up studio. New stone ideas are made in Hearth Studio.
                   </p>
-                ) : (
                   <ul className="design-grid">
                     {veneers.map((design) => (
                       <li key={design.id}>
@@ -108,8 +106,8 @@ export default async function AccountPage() {
                       </li>
                     ))}
                   </ul>
-                )}
-              </section>
+                </section>
+              ) : null}
             </>
           )}
         </div>

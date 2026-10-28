@@ -16,6 +16,7 @@ import { CompareTray } from "@/components/CompareTray";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import { SiteFooter } from "@/components/SiteFooter";
 import { JsonLd } from "@/components/JsonLd";
+import { SiteChrome } from "@/components/SiteChrome";
 import { SiteHeader } from "@/components/SiteHeader";
 import { TypeSwitcher } from "@/components/TypeSwitcher";
 import { business } from "@/content/site";
@@ -193,17 +194,24 @@ export default function RootLayout({ children, modal }: { children: React.ReactN
           Skip to content
         </a>
         <div className="site">
-          <SiteHeader />
+          {/* Off the full-screen pages (Hearth Studio, the showroom screen): see SiteChrome. */}
+          <SiteChrome>
+            <SiteHeader />
+          </SiteChrome>
           <main id="content" className="site-main">
             {children}
           </main>
-          <SiteFooter />
+          <SiteChrome>
+            <SiteFooter />
+          </SiteChrome>
           <ImageLightbox />
         </div>
         {/* A model opened from a list (src/app/@modal). */}
         {modal}
-        <CompareTray />
-        <TypeSwitcher />
+        <SiteChrome>
+          <CompareTray />
+          <TypeSwitcher />
+        </SiteChrome>
       </body>
     </html>
   );

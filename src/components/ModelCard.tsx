@@ -8,10 +8,19 @@ import { modelHref } from "@/lib/model-url";
 
 const fmt = (n: number) => n.toLocaleString("en-US", { maximumFractionDigits: 1 });
 
+function MagnifierIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5M11 8v6M8 11h6" />
+    </svg>
+  );
+}
+
 /**
  * A model's photo, clicked to enlarge: the one lightbox in the layout (ImageLightbox) opens it,
  * with the model's name linking to its page. `linkToPage` is off where the photo is already on
- * that page.
+ * that page. (On a model's card the photo opens its page instead; see ModelCard.)
  */
 export function ModelZoom({
   model,
@@ -37,10 +46,7 @@ export function ModelZoom({
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={model.hero_image} alt={full} loading="lazy" />
       <span className="model-zoom-hint" aria-hidden="true">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-          <circle cx="11" cy="11" r="7" />
-          <path d="m20 20-3.5-3.5M11 8v6M8 11h6" />
-        </svg>
+        <MagnifierIcon />
       </span>
     </button>
   );
@@ -60,7 +66,26 @@ export function ModelCard({ model, brandName }: { model: CatalogModelSummary; br
     <article className="model-card" id={model.id}>
       <div className="model-photo">
         {model.hero_image ? (
-          <ModelZoom model={model} brandName={brandName} />
+          <>
+            {/* The photo opens the model's page, over the list like its name does, and the
+                magnifier in its corner enlarges it (Ben, 28 Oct 2026). Keyboards and screen
+                readers have the name for the page, so this link stays out of their way. */}
+            <Link href={modelHref(model)} className="model-photo-link" scroll={false} tabIndex={-1} aria-hidden="true">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={model.hero_image} alt="" loading="lazy" />
+            </Link>
+            <button
+              type="button"
+              className="model-zoom-hint model-zoom-corner"
+              data-enlarge={model.hero_image}
+              data-caption={full}
+              data-detail={typeLabel(model.form, model.fuel)}
+              data-href={modelHref(model)}
+              aria-label={`Enlarge the photo of the ${full}`}
+            >
+              <MagnifierIcon />
+            </button>
+          </>
         ) : (
           <span className="model-photo-none">Photo coming</span>
         )}

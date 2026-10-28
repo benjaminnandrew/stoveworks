@@ -153,6 +153,10 @@ p:last-child { margin-bottom: 0; }
 
 .site-main { flex: 1; }
 
+/* Hearth Studio (/hearth-studio/, /showroom/): the app framed at the full height of the screen,
+   with no site header or footer around it. */
+.hs-frame { display: block; width: 100%; height: 100dvh; border: 0; }
+
 /* ==========================================================================
    Header: top bar, then one sticky row (logo, nav, call to action)
    ========================================================================== */
@@ -220,14 +224,12 @@ p:last-child { margin-bottom: 0; }
 .header-logo-lockup { height: 52px; }
 .header-logo-badge { display: none; height: 80px; }
 /* Measured with the nav intact (no wrapped item, full carets): below this width the round badge
-   stands in for the lockup. */
-@media (min-width: 993px) and (max-width: 1259px) {
+   stands in for the lockup. Re-measured when Visualize became "Hearth Studio" with a menu (28 Oct
+   2026): the lockup fits from 1278px, so it starts at 1290px. */
+@media (min-width: 993px) and (max-width: 1289px) {
   .header-logo-lockup { display: none; }
   .header-logo-badge { display: block; }
 }
-/* On the home page the hero's badge is the logo; this one fades in once that has scrolled away. */
-.header-logo { transition: opacity 0.25s ease; }
-.header-logo.is-away { opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0s linear 0.25s; }
 
 .primary-nav { align-self: stretch; display: flex; }
 
@@ -428,6 +430,35 @@ p:last-child { margin-bottom: 0; }
 .small-link strong { display: block; font-size: 1.05rem; font-weight: 600; }
 .small-link small { display: block; font-family: var(--font-sans); font-size: 0.86rem; color: var(--ink-soft); }
 
+/* Services: the service page with its sections, then the manuals and how to book (28 Oct 2026). */
+.mega-services { width: 44rem; }
+.mega-services-inner { display: grid; grid-template-columns: 1.3fr 1fr; gap: 0.5rem; padding: 0.75rem; }
+.mega-services .services-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.1rem 0.5rem;
+  margin: 0.15rem 0 0;
+  padding: 0 0.4rem 0.4rem;
+  list-style: none;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+}
+.services-sections a { display: block; padding: 0.4rem 0.6rem; border-radius: 6px; color: var(--ink); text-decoration: none; }
+.services-sections a:hover { background: var(--paper); color: var(--accent); }
+.services-book {
+  margin: 0.35rem 0.4rem 0;
+  padding: 0.8rem 0.9rem 0.9rem;
+  border-radius: 8px;
+  background: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+}
+.services-book .mega-head { margin: 0 0 0.3rem; }
+.services-book p { margin: 0 0 0.45rem; color: var(--ink-soft); }
+.services-book a { color: var(--ink); font-weight: 700; }
+.services-book .services-gas { color: var(--accent); text-decoration: none; }
+.services-book .services-gas:hover { text-decoration: underline; }
+
 @media (max-width: 1180px) {
   .mega-grid { grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(0, 1fr)); }
   .mega-tools { display: none; }
@@ -577,6 +608,41 @@ p:last-child { margin-bottom: 0; }
 .drawer-nav a:focus-visible,
 .drawer-needs a:hover { background: var(--accent); color: #fff; }
 .drawer-nav a[aria-current="page"] { color: var(--gold); }
+
+/* The groups fold: each title is a full-width row with a chevron, closed until tapped (Ben,
+   28 Oct 2026). */
+.drawer-groups { margin-top: 1.25rem; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+.drawer-group { border-bottom: 1px solid rgba(255, 255, 255, 0.12); }
+.drawer-groups .drawer-group-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  padding: 1.05rem 1.25rem;
+  font-size: 0.78rem;
+  text-decoration: none;
+  cursor: pointer;
+  list-style: none;
+}
+.drawer-groups .drawer-group-title::-webkit-details-marker { display: none; }
+.drawer-groups .drawer-group-title::after {
+  content: "";
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.2rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-25%) rotate(45deg);
+  transition: transform 0.2s ease;
+}
+.drawer-group[open] > .drawer-group-title::after { transform: translateY(25%) rotate(-135deg); }
+.drawer-groups .drawer-group-title:hover,
+.drawer-groups .drawer-group-title:focus-visible { background: rgba(255, 255, 255, 0.06); }
+.drawer-group[open] > .drawer-nav { padding-bottom: 0.5rem; background: rgba(0, 0, 0, 0.12); }
+.drawer-group .drawer-nav > li:last-child { border-bottom: 0; }
+@media (prefers-reduced-motion: reduce) { .drawer-groups .drawer-group-title::after { transition: none; } }
 
 .drawer-contact {
   display: grid;
@@ -1139,6 +1205,12 @@ a.brand-wordmark:hover { border-color: var(--accent); color: var(--accent); }
 .plan-grid > .plan-card:hover .plate small,
 .plan-grid > .plan-card:focus-visible .plate small { max-height: 8em; opacity: 1; margin-top: 0.3rem; }
 .plan-grid > .plan-card:focus-visible .plate { box-shadow: inset 0 0 0 3px #171310, inset 0 0 0 4px var(--gold), 0 3px 8px rgba(0, 0, 0, 0.35); }
+
+/* One tool (the room visualizer is retired for now, 28 Oct 2026): its card, and beside it
+   what it does and the way in. */
+.plan-text { align-self: center; max-width: 30rem; }
+.plan-text p { margin: 0 0 1.4rem; font-size: 1.15rem; line-height: 1.6; color: var(--ink-soft); }
+.plan-grid.is-single .plate-blurb { display: none; }
 
 @media (max-width: 900px) { .plan-grid { grid-template-columns: 1fr; } }
 
@@ -1946,8 +2018,9 @@ a.brand-wordmark:hover { border-color: var(--accent); color: var(--accent); }
    desktops tighten once more rather than squeeze the logo. */
 @media (min-width: 993px) and (max-width: 1100px) {
   .header-bar { gap: 1rem; }
-  .nav-link { padding: 0.45rem 0.55rem; font-size: 1.05rem; }
-  .nav-link::after { left: 0.55rem; right: 0.55rem; }
+  /* 0.48rem rather than 0.55rem since "Hearth Studio" took Visualize's place (28 Oct 2026). */
+  .nav-link { padding: 0.45rem 0.48rem; font-size: 1.05rem; }
+  .nav-link::after { left: 0.48rem; right: 0.48rem; }
 }
 
 /* ---------- product pages: each brand with its models ---------- */
@@ -2185,8 +2258,6 @@ a.brand-wordmark:hover { border-color: var(--accent); color: var(--accent); }
 .shortlist-buttons.is-large button { padding: 0.5rem 0.9rem; font-size: 0.95rem; }
 .model-body .shortlist-buttons { margin-top: 0.25rem; }
 .model-keep { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1.25rem; margin: 0 0 1rem; }
-.model-visualize { font-family: var(--font-sans); font-weight: 700; text-decoration: none; }
-.model-visualize:hover { text-decoration: underline; }
 
 .header-saved { position: relative; }
 .header-saved-count {
@@ -2858,6 +2929,15 @@ body:has(.compare-tray.is-shown) .type-switch { bottom: 6.5rem; }
 /* On touch screens there's no hover, so the hint always shows. */
 @media (hover: none) { .model-zoom-hint { opacity: 0.9; } }
 .model-badge { z-index: 1; pointer-events: none; }
+
+/* A model's card: the photo opens its page, and the magnifier, always on show since it's the
+   only way to the close-up, enlarges it (Ben, 28 Oct 2026). */
+.model-photo-link { position: absolute; inset: 0; }
+.model-zoom-corner { z-index: 2; padding: 0; opacity: 1; cursor: zoom-in; }
+/* A finger-sized target around the small square, so a near miss doesn't open the page. */
+.model-zoom-corner::after { content: ""; position: absolute; inset: -7px; }
+.model-zoom-corner:hover { background: #fff; border-color: var(--ink-soft); }
+.model-zoom-corner:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
 /* The enlarged photo sits on a white mat, like a print, with its name beneath. */
 .lightbox-figure {

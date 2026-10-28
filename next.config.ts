@@ -34,6 +34,16 @@ const nextConfig: NextConfig = {
   // done in src/proxy.ts, for pages only, so API calls don't take a 308 hop.
   trailingSlash: true,
   skipTrailingSlashRedirect: true,
+  async headers() {
+    // Hearth Studio (public/hs/): the photo helper's model and its runtime are big and never change
+    // under the same name, so browsers keep them; stone textures and room renders for a day.
+    const year = "public, max-age=31536000, immutable";
+    return [
+      { source: "/hs/models/:path*", headers: [{ key: "Cache-Control", value: year }] },
+      { source: "/hs/vendor/:path*", headers: [{ key: "Cache-Control", value: year }] },
+      { source: "/hs/assets/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=86400" }] },
+    ];
+  },
   async redirects() {
     // Pages renamed in the rebuild (docs/seo-plan.md). 301 rather than Next's
     // default 308, to match what the old URLs are being retired with.
@@ -49,8 +59,18 @@ const nextConfig: NextConfig = {
       ["/stonework-mantels/", "/fireplace-walls-mantels/"],
       // Stoveworks doesn't sell pellet stoves (Ben, 26 Oct 2026).
       ["/stoves/pellet-stoves/", "/stoves/"],
+      // The stone mock-up studio, retired for Hearth Studio (Ben, 28 Oct 2026). Mock-ups saved in
+      // it still open at /account/veneer/<id>, and their share links at /d/<slug>.
+      ["/veneer/", "/hearth-studio/"],
     ];
-    return moved.map(([source, destination]) => ({ source, destination, statusCode: 301 }));
+    return [
+      ...moved.map(([source, destination]) => ({ source, destination, statusCode: 301 })),
+      // The room visualizer, retired for now (Ben, 28 Oct 2026): it draws stand-in shapes, not
+      // the stoves, until Hearth Studio's stove layer is built. A temporary redirect, so the
+      // address can come back. Saved designs still open at /account/designs/<id>, and their
+      // share links at /d/<slug>.
+      { source: "/visualizer/", destination: "/hearth-studio/", permanent: false },
+    ];
   },
 };
 

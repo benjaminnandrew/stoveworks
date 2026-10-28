@@ -22,8 +22,10 @@ export default async function AdminStonePage() {
         <div className="wrap">
           <h1>Stone catalogue</h1>
           <p className="page-lede">
-            What the veneer mock-up tool offers. A profile needs a seamlessly tiling swatch image
-            and the real area that image covers before it looks right on a wall.{" "}
+            The profiles the old stone mock-up studio offered. Hearth Studio replaced that studio on
+            28 Oct 2026 and brings its own Buechel stones for now, so these only draw mock-ups saved
+            in the old one. A profile needs a seamlessly tiling swatch image and the real area that
+            image covers before it looks right on a wall.{" "}
             <Link href="/admin/">Hearth inventory →</Link>
           </p>
         </div>

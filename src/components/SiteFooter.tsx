@@ -64,11 +64,9 @@ export function SiteFooter() {
           <div>
             <h2 className="footer-title">Plan &amp; install</h2>
             <ul className="footer-links">
-              <li><Link href="/visualizer/">Room visualizer</Link></li>
-              <li><Link href="/veneer/">Stone mock-up studio</Link></li>
+              <li><Link href="/hearth-studio/">Hearth Studio</Link></li>
               <li><Link href="/services/">Installation &amp; service</Link></li>
               <li><Link href="/guides/">Manuals</Link></li>
-              <li><Link href="/account/">My designs</Link></li>
             </ul>
             <h2 className="footer-title footer-title-gap">Members of</h2>
             <ul className="assoc-row">

@@ -5,8 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { business, primaryNav, servicesMenu, shopMenu, visualizeMenu } from "@/content/site";
-import { BrandsMenu, ServicesMenu, ShopMenu, VisualizeMenu } from "./MegaMenu";
+import { business, primaryNav, servicesMenu, shopMenu, studioMenu } from "@/content/site";
+import { BrandsMenu, ServicesMenu, ShopMenu, StudioMenu } from "./MegaMenu";
 import { MobileNav } from "./MobileNav";
 import { OpenStatus } from "./OpenStatus";
 import { SavedLink } from "./ShortlistButtons";
@@ -45,7 +45,7 @@ const sectionHrefs = {
     { href: "/hearth-accessories/" },
   ].map((l) => l.href),
   brands: ["/brands/"],
-  visualize: visualizeMenu.map((l) => l.href),
+  studio: studioMenu.map((l) => l.href),
   services: servicesMenu.map((l) => l.href),
 };
 
@@ -63,36 +63,6 @@ export function SiteHeader() {
   useEffect(() => {
     openRef.current = openMenu;
   }, [openMenu]);
-
-  // On the home page the hero's badge is the logo; the bar's own stays away until most of the
-  // badge has scrolled up under the header (Ben, 28 Oct 2026: one logo on screen at a time).
-  const [logoAway, setLogoAway] = useState(pathname === "/");
-  useEffect(() => {
-    if (pathname !== "/") {
-      setLogoAway(false);
-      return;
-    }
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const badge = [...document.querySelectorAll<HTMLElement>("[data-hero-badge]")].find((el) => el.offsetParent);
-      const header = document.querySelector(".site-header");
-      if (!badge || !header) return setLogoAway(false);
-      const b = badge.getBoundingClientRect();
-      setLogoAway(b.bottom - header.getBoundingClientRect().bottom > b.height * 0.35);
-    };
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (frame) cancelAnimationFrame(frame);
-    };
-  }, [pathname]);
 
   const isActive = (item: (typeof primaryNav)[number]) =>
     item.menu
@@ -168,13 +138,12 @@ export function SiteHeader() {
             <a className="topbar-phone" href={business.phoneHref}>
               {business.phoneDisplay}
             </a>
-            {/* Manuals for owners; My designs holds what people save in the two visual
-                tools (it was "My account"; Ben, 27 Oct 2026). */}
+            {/* Manuals for owners (Ben, 27 Oct 2026). "My designs" is off the bar, the drawer
+                and the footer while nothing new saves to an account: the stone mock-up studio
+                and the room visualizer are retired, and Hearth Studio keeps ideas on the device
+                (28 Oct 2026). /account/ itself still works. */}
             <Link href="/guides/" className="topbar-account">
               Manuals
-            </Link>
-            <Link href="/account/" className="topbar-account">
-              My designs
             </Link>
           </span>
         </div>
@@ -184,14 +153,11 @@ export function SiteHeader() {
           bottom edge, so it's the positioned ancestor they anchor to. */}
       <header className="site-header">
         <div className="wrap header-bar">
-          <Link
-            href="/"
-            className={`header-logo${logoAway ? " is-away" : ""}`}
-            aria-label={`${business.name} home`}
-          >
+          <Link href="/" className="header-logo" aria-label={`${business.name} home`}>
             {/* The stove and "Hayward Stoveworks", cut from the badge's own artwork so it reads
                 at bar height (Ben, 28 Oct 2026). Where the nav leaves too little room beside
-                it, the round badge stands in. */}
+                it, the round badge stands in. It shows from the start on every page, the home
+                page too, alongside the hero's badge (Ben, 28 Oct 2026). */}
             <Image
               className="header-logo-lockup"
               src="/images/logo-lockup.png"
@@ -275,10 +241,10 @@ export function SiteHeader() {
                       <ShopMenu open={isOpen} id={menuId} />
                     ) : menu === "brands" ? (
                       <BrandsMenu open={isOpen} id={menuId} />
-                    ) : menu === "services" ? (
-                      <ServicesMenu open={isOpen} id={menuId} />
+                    ) : menu === "studio" ? (
+                      <StudioMenu open={isOpen} id={menuId} />
                     ) : (
-                      <VisualizeMenu open={isOpen} id={menuId} />
+                      <ServicesMenu open={isOpen} id={menuId} />
                     )}
                   </li>
                 );

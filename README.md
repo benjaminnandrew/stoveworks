@@ -84,8 +84,10 @@ src/
     page.tsx                home
     [...slug]/page.tsx      every marketing page, from src/content/pages.ts
     contact-us/             hand-built: structured address, hours, map
-    visualizer/             the stove tool — public, works signed out
-    veneer/                 the stone veneer tool — public, works signed out
+    hearth-studio/          Hearth Studio, the stone visualizer (static app in public/hs/; docs/hearth-studio.md)
+    showroom/               the same app for the shop's touch screen
+                            (/visualizer/ and /veneer/ are retired and redirect to /hearth-studio/,
+                            28 Oct 2026; their editors live on under account/)
     sign-in/, auth/verify/  magic-link request and redemption
     account/                saved designs and mock-ups, profile, both editors
     admin/                  staff inventory: products, cutouts, dimensions

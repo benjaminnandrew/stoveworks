@@ -35,6 +35,43 @@ can live in Replit App Storage. The visualizer's products are now the catalog's 
 models; the placeholder rows are gone. The move to Replit is written up in
 [docs/replit.md](docs/replit.md).
 
+**28 Oct 2026 (branch `hearth-studio`, uncommitted): Hearth Studio.** Ben's stone and stove
+visualizer from a separate chat, the replacement for `/veneer/`, is on the site at `/hearth-studio/`
+and `/showroom/` (Phases 1 and 2 of its `INTEGRATION.md`). **Read [docs/hearth-studio.md](docs/hearth-studio.md)**:
+- what's where;
+- the edits to `public/hs/index.html` to re-apply when a new version of the app arrives;
+- `ANTHROPIC_API_KEY` for the paint lookup and the photo helper;
+- the stove report: no cutouts yet, and the sizes missing.
+
+Everything before it is committed as `b4c1682` on `redesign-up-north`.
+
+**Later on 28 Oct 2026 (same branch, uncommitted):**
+- **Two tools retired, for Hearth Studio.**
+  - `/veneer/`, the old stone mock-up studio, is gone for good: a 301 to `/hearth-studio/`.
+  - `/visualizer/`, the room visualizer, is gone **for now** (it drew stand-in shapes, not the
+    stoves): a 307 to `/hearth-studio/`, so the address can come back.
+  - Designs saved in either still open at `/account/designs/<id>` and `/account/veneer/<id>`, with
+    share links at `/d/<slug>`. The site was never live, so no customer has any. Their code,
+    tables and `/admin` pages stay; Hearth Studio's Phase 5 saving is meant to mirror them.
+  - The bar's Visualize became **Hearth Studio** (Ben), a menu of **Online Studio**
+    (`/hearth-studio/`) and **Showroom Studio** (`/showroom/`, "the version on the touch screen in
+    our showroom"): the shop's screen just runs the website. The Shop menu, footer, phone menu,
+    home page, sitemap and search lead there too. The "See it in your room" link on model pages is
+    gone.
+  - **"My designs" is off the top bar, the phone menu and the footer**: nothing new can be saved to
+    an account until Hearth Studio's Phase 5. `/account/` and sign-in still work.
+- **Hearth Studio:** `hearth-studio-update-1.zip` is applied (no 1 ft grid; the stove-size plan in
+  `INTEGRATION.md` 7c–7d). Its **Website | Showroom** switch is back, wired to the two pages; see
+  [docs/hearth-studio.md](docs/hearth-studio.md).
+- **Model cards:** the photo opens the model's page (over the list, like its name), and the
+  magnifier in the photo's corner, now always on show, opens the close-up.
+- **Services menu:** wider, with six of the service page's sections, the manuals, and a Book
+  service box (the phone, and "If you smell gas").
+- **Phone menu:** each group folds under its title and starts closed.
+- **Header fit:** with "Hearth Studio" in the bar, the lockup logo starts at 1290px (was 1260px)
+  and the 993–1100px nav padding is a touch tighter; measured with no wrapped item from 993 to
+  1920px.
+
 **28 Oct 2026 (uncommitted): the logo, front and centre.** Steve wanted the logo front and centre
 on the home page; Ben chose these from mock-ups.
 - **Hero badge:** the round badge sits straight (Ben: "straight rather than turned") over the point
@@ -47,17 +84,16 @@ on the home page; Ben chose these from mock-ups.
     floats right of the headline instead (Ben's call), 96–140px wide.
   - It adds no height: the first screen still ends exactly at the hours strip (checked at
     1440×900, 1366×768, 1280×720).
-- **One logo at a time:** on the home page the header's logo is hidden while the hero badge is on
-  screen, and fades in once most of the badge has scrolled under the header (`logoAway` in
-  `SiteHeader.tsx`). Other pages always show it.
+- **Header logo always on:** it first stayed hidden on the home page until the hero badge scrolled
+  away; Ben wanted it there from the start, so both show now (28 Oct 2026).
 - **Header logo:** the stove and "Hayward Stoveworks" side by side (Ben: "this works"), cut from the
   badge's own artwork, so no new lettering was drawn: `public/images/logo-lockup.png`, 563×134.
   - **How it was made:** cropped from `logo-badge.png` (stove 232,55–389,305; wordmark
     39,315–582,429). White was turned transparent, with solid ink at min channel ≤60 and paper at
     ≥232; the stove was scaled to 134px tall, the wordmark to 98px, with a 24px gap.
   - **Sizes:** 52px tall on desktop (Ben asked for it smaller than the first 62px). Between 993
-    and 1259px the round badge stands in, because the lockup would wrap "Cabin Decor". Phones
-    show it at up to 160px wide.
+    and 1289px the round badge stands in, because the lockup would wrap the nav (1259px until
+    "Hearth Studio" joined the bar). Phones show it at up to 160px wide.
   - **Steve hasn't seen it.** It's a new form of his logo.
   - The footer, JSON-LD and share image still use the round badge.
 

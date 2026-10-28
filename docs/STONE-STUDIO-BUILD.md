@@ -1,5 +1,9 @@
 # Stone Veneer Mock-up Studio: build details
 
+> **Retired, 28 Oct 2026.** Hearth Studio, the "better version" this document was written for,
+> replaced it: `/veneer/` redirects to `/hearth-studio/` (see [hearth-studio.md](hearth-studio.md)).
+> Mock-ups saved in the old studio still open at `/account/veneer/<id>`, so its code stays.
+
 **What this is:** a full outline of the stone mock-up studio as built for the Hayward
 Stoveworks site, to develop a better version separately and bring it back.
 

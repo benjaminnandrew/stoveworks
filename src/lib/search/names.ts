@@ -210,8 +210,7 @@ export function buildIndex(
   const pageList = [
     ...pages.map((p) => ({ href: `/${p.slug}/`, title: p.title, also: p.metaTitle ? [p.metaTitle.replace(/ in Hayward.*$/i, "")] : [] })),
     { href: "/contact-us/", title: "Visit the showroom", also: ["Hours & directions"] },
-    { href: "/visualizer/", title: "Room visualizer", also: [] },
-    { href: "/veneer/", title: "Stone mock-up studio", also: [] },
+    { href: "/hearth-studio/", title: "Hearth Studio", also: [] },
     { href: "/brands/", title: "Brands we carry", also: [] },
   ];
   const titleOf = new Map(pageList.map((p) => [p.href, p.title]));

@@ -8,7 +8,6 @@ import { SearchBox } from "@/components/SearchBox";
 import { collage, decor, hero, history, showroom } from "@/content/home";
 import { brandsForHref } from "@/content/nav-data";
 import { business, shopMenu } from "@/content/site";
-import { DEMO_ROOM } from "@/lib/demo-room";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
@@ -17,9 +16,8 @@ export const metadata: Metadata = {
 
 /**
  * The round badge, front and centre in the hero (Steve wanted the logo there; Ben chose it
- * straight, on the photos where they meet, 28 Oct 2026). While it's on screen it is the page's
- * logo: the header hides its own until the badge scrolls away (SiteHeader). Both copies share one
- * `sizes`, so they load the same file.
+ * straight, on the photos where they meet, 28 Oct 2026). The header's own logo stays on show
+ * beside it. Both copies share one `sizes`, so they load the same file.
  */
 const HERO_BADGE = {
   src: "/images/logo-badge.png",
@@ -36,18 +34,15 @@ const websiteJsonLd = {
   url: `${siteUrl}/`,
 };
 
-/** The two planning tools, shown as cards in "See it in your own room". */
+/**
+ * The planning tools, shown as cards in "See it in your own room". Just Hearth Studio for now:
+ * the room visualizer is retired until Hearth Studio has stoves (Ben, 28 Oct 2026).
+ */
 const tools = [
   {
-    href: "/visualizer/",
-    title: "Room visualizer",
-    blurb: "Try it on our sample cabin or a photo of your own room: drop in a stove, insert or fireplace and set it to true scale.",
-    photo: { src: DEMO_ROOM.url, width: DEMO_ROOM.width, height: DEMO_ROOM.height },
-  },
-  {
-    href: "/veneer/",
-    title: "Stone mock-up studio",
-    blurb: "Mark out a wall, try Cultured Stone on it, and get a square-footage estimate for the job.",
+    href: "/hearth-studio/",
+    title: "Hearth Studio",
+    blurb: "Try Buechel stone on a chimney, hearth or accent wall, in a sample room or a photo of your own, and see how much stone the job takes.",
     photo: { src: "/images/fb13.jpg", width: 720, height: 960 },
   },
 ];
@@ -74,7 +69,6 @@ export default function HomePage() {
               {/* On a phone the photos come after the copy, so the badge leads it instead. */}
               <Image
                 className="hero-badge hero-badge-top"
-                data-hero-badge
                 src={HERO_BADGE.src}
                 alt={HERO_BADGE.alt}
                 width={HERO_BADGE.width}
@@ -117,7 +111,6 @@ export default function HomePage() {
               ))}
               <Image
                 className="hero-badge"
-                data-hero-badge
                 src={HERO_BADGE.src}
                 alt={HERO_BADGE.alt}
                 width={HERO_BADGE.width}
@@ -187,7 +180,7 @@ export default function HomePage() {
           <h2 id="plan-heading" className="section-title">
             See it in your own room
           </h2>
-          <div className="plan-grid">
+          <div className={`plan-grid${tools.length === 1 ? " is-single" : ""}`}>
             {tools.map((tool) => (
               <Link key={tool.href} href={tool.href} className="plan-card">
                 <span className="plan-photo">
@@ -210,6 +203,15 @@ export default function HomePage() {
                 </span>
               </Link>
             ))}
+            {/* One tool for now: what it does sits beside its card, so the band isn't half empty. */}
+            {tools.length === 1 ? (
+              <div className="plan-text">
+                <p>{tools[0].blurb}</p>
+                <Link className="btn" href={tools[0].href}>
+                  Open {tools[0].title} &rarr;
+                </Link>
+              </div>
+            ) : null}
           </div>
         </div>
       </section>
