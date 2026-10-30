@@ -130,6 +130,13 @@ loaded). `src/lib/catalog.ts` has typed queries for building pages on top of the
 **Settings:** `FILE_STORE` (`local` or `replit`), `APP_STORAGE_BUCKET` (a bucket other than
 the default), `BRAIN_ASSETS_DIR` and `UPLOAD_DIR` (local folders), `ALLOW_PGLITE`.
 
+**The uuid override (30 Oct 2026):** `@replit/object-storage` 1.0.0, its latest, holds Google's
+storage library at version 7, whose `gaxios` and `teeny-request` want uuid 9, which `npm audit`
+flags (GHSA-w5hq-g745-h8pq; not reachable here, since both only call `uuid.v4()`). `overrides`
+in `package.json` gives that package's tree uuid 11.1.1 instead. Take the override out once a
+newer `@replit/object-storage` uses `@google-cloud/storage` 8 or later, and check that
+`npm audit --omit=dev` stays clean.
+
 **Brands:** `catalog_brands.slug` matches the site's `brands.slug` for 12 of the 13 makers.
 Town & Country is `town-country` in the catalog and `town-and-country` on the site. True North
 was added to the site's pages on 19 Oct 2026 (Wood Stoves, Wood Inserts, Gas Stoves), so its
