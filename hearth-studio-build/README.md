@@ -51,3 +51,21 @@ size go on it.
   `var/blendenv/Scripts/python.exe hearth-studio-build/merge_linear_open.py`. The merge uses the
   `linear` version's exposures, checks the zones and camera match, and copies `open_*` into
   `public/hs/assets/scenes/linear`.
+
+**The lake house den (scene `masonry`, 1 Nov 2026): a masonry fireplace for catalog inserts.**
+- **The room** (`build_masonry()`):
+  - A 6 ft chimney breast, 22 in deep, floor to ceiling, on an 8 in raised hearth with a slab top.
+  - A 34 × 24 in firebox opening, 20 in deep, with splayed firebrick sides.
+  - An open wood fire on a grate (`hearth_fire()`; its area light is `firelight`).
+  - A timber mantel, a window on the left wall for the afternoon sun, and an armchair.
+- **Why that opening:** most of the catalog's inserts fit it (their published minimum openings run
+  about 26–34 in wide by 20–27 in tall), and a surround panel covers it.
+- **Stone:** zones for the breast's face (with the opening) and the hearth's face. Its sides are
+  zones too, but this camera doesn't see them. The hearth slab is a `pad`.
+- **`fire_spot`** in the geometry (`post.py` writes it as `fireSpot`): the breast's face (y), the
+  opening's middle (x) and floor (z, `anchor: "floor"`: an insert stands on it), and the opening
+  (`cover`), which an insert's front has to cover.
+- **To make it:** `bash hearth-studio-build/render_masonry.sh 1`, then `... render_masonry.sh 2`
+  (two runs keep each under ten minutes). Then
+  `var/blendenv/Scripts/python.exe hearth-studio-build/post.py masonry masonry day,eve var/hs-renders public/hs/assets/scenes/masonry`
+  (from `hearth-studio-build/`, with the paths adjusted).

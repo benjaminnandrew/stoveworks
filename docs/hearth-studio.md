@@ -38,8 +38,18 @@ often").
     room's own fireplace stays as the sample. See "Phase 4" below.
   - **The round Morsøs' pipes come out of the top opening** and every pipe is black (31 Oct 2026,
     Ben). See edit 3, "The stovepipe".
-  - **Inserts need a third sample room** with a masonry fireplace opening; neither room has one.
-    That's a new render, and since 1 Nov 2026 it can be made here (`hearth-studio-build/`).
+  - **A third sample room for inserts: the lake house den** (1 Nov 2026; Ben chose "the insert
+    options" next). Built and rendered here (`build_masonry()`, `hearth-studio-build/README.md`).
+    - **The room:** a masonry fireplace with a 34 × 24 in opening on an 8 in raised hearth, an open
+      wood fire, and Cabin Creek River Rock on the breast and hearth by default.
+    - **In the app:** the room `masonry`, with `inserts: true`. Our inserts are drawn flat over the
+      opening, standing on the firebox floor (`fireSpot.anchor: "floor"` in `placeFace()`). Each has
+      to cover the opening. The tab, card and panel say "Insert".
+    - **No inserts listed yet:** none of the photos checked so far matches its maker's published
+      size closely enough. On the GI 635 the glass opening is 4% off and on the Nordik 34i 6.5%;
+      the surrounds of the Kumas and the TN20 are 5–9% off. Their manuals' surround sizes are next.
+    - Until then, the den is a stone room with an open fire, and its Stove tab points to the
+      cabin.
   - Next here: 7d, the staff sizing step on the stove admin.
   - Notes for the chat from testing: `handoff/hearth-studio-notes-3/` (`MESSAGE.md` and a picture).
 - **The app's files stay in `public/hs/` and ship with the site's files on Replit** (Ben, 28 Oct

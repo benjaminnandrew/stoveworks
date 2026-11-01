@@ -331,6 +331,35 @@ def stove_fire(cx, cy, z0, w, d, h, strength, light_power):
     lo.visible_camera = False; lo.visible_glossy = False; lo.visible_transmission = False
     return lo
 
+def hearth_fire(cx, cy, z0, w, d, strength, light_power):
+    """An open wood fire across a fireplace grate: an ember bed, charred logs and a row of flame
+    cards, with an area light at the front of the fire facing the room (named "firelight", so the
+    fire pass isolates it). For the masonry fireplace (1 Nov 2026); stove_fire is a stove's."""
+    emb = img_mat("embers_h", f"{TEX}/embers.jpg", rough=0.9)
+    nt = emb.node_tree; p = nt.nodes["Principled BSDF"]
+    it = [n for n in nt.nodes if n.type == "TEX_IMAGE"][0]
+    link(nt, it.outputs["Color"], p.inputs["Emission Color"])
+    p.inputs["Emission Strength"].default_value = 5.0 * strength
+    box("embers", (cx - w / 2, cy - d / 2, z0), (cx + w / 2, cy + d / 2, z0 + 0.02), emb)
+    char = mat("charred_h", (0.035, 0.028, 0.022), rough=0.9, bump=0.6, bump_scale=30)
+    for i, (dx, dy, dz, rr, ln, rot) in enumerate([(-0.02, 0.05, 0.05, 0.05, w * 0.95, 0.04), (0.03, -0.04, 0.05, 0.045, w * 0.9, -0.05),
+                                                   (0.0, 0.0, 0.13, 0.04, w * 0.75, 0.10), (-0.12, 0.0, 0.10, 0.035, 0.30, 0.9)]):
+        lg = cyl(f"hlog{i}", (cx + dx, cy + dy, z0 + dz), rr, ln, char, axis="X")
+        lg.rotation_euler = (0, math.pi / 2, rot)
+    n = 8
+    for i in range(n):
+        x = cx - w * 0.4 + (w * 0.8) * i / (n - 1)
+        sw, sh = 0.13, 0.22 + 0.10 * abs(math.sin(i * 1.9)) + (0.06 if i in (3, 4) else 0.0)
+        fm = flame_mat(f"hflame{i}", f"{TEX}/flame{i % 4}.png", 7.0 * strength)
+        fc = quad(f"flamecard{i}", (x - sw / 2, cy + 0.03 - 0.025 * (i % 3), z0 + 0.05), (sw, 0, 0), (0, 0, sh), fm, (0, 1, 0))
+        fc.visible_shadow = False
+    L = bpy.data.lights.new("fire", "AREA"); L.shape = "RECTANGLE"; L.size = w * 0.85; L.size_y = 0.22
+    L.energy = light_power; L.color = (1.0, 0.47, 0.15)
+    lo = add_obj("firelight", L); lo.location = (cx, cy + d / 2 + 0.03, z0 + 0.16)
+    lo.rotation_euler = (math.pi / 2, 0, 0)          # faces +y, into the room
+    lo.visible_camera = False; lo.visible_glossy = False; lo.visible_transmission = False
+    return lo
+
 def flamecard_uv_fix(ob):
     uvl = ob.data.uv_layers[0]
     # quad() writes metres; flame textures need 0..1
@@ -886,8 +915,158 @@ def build_linear():
                 dims=dict(chase_w=CW, chase_d=CD, fire_w=FW, fire_h=FH, fire_z=FZ, ceiling=RZ))
     return meta
 
+# ------------------------------------------------------------------ scene: masonry fireplace (inserts)
+def build_masonry():
+    """A den with a masonry fireplace: a stone chimney breast, a raised hearth, and an open firebox
+    with a wood fire. Catalog inserts are drawn into its opening (their front and surround, flat on
+    the breast's face, standing on the firebox floor). Built on the site's computer, 1 Nov 2026 (Ben
+    chose "the insert options" next)."""
+    global WALL_X, RIGHT_X
+    eve = LIGHT == "eve"
+    WALL_X = -3.2; RIGHT_X = 3.2
+    M = {
+        "paint": mat("paint", (0.70, 0.67, 0.60), rough=0.95, spec=0.2),
+        "trim": mat("trim", (0.82, 0.80, 0.76), rough=0.45, spec=0.4),
+        "floor": img_mat("floor", f"{TEX}/oak_floor.jpg", rough=0.42, scale=(0.5, 0.5), height=f"{TEX}/oak_floor_h.png", bump=0.25, spec=0.5),
+        "ceiling": mat("ceiling", (0.80, 0.79, 0.76), rough=0.95, spec=0.1),
+        "rug": img_mat("rug", f"{TEX}/lodge_rug.jpg", rough=0.95, spec=0.1),
+        "timber": img_mat("timber", f"{TEX}/timber.jpg", rough=0.7, scale=(0.5, 0.5), height=f"{TEX}/timber_h.png", bump=0.5, coord="Object", proj="BOX", blend=0.2),
+        "slab": mat("slab", (0.16, 0.16, 0.155), rough=0.55, bump=0.25, bump_scale=8, var=0.12, var_scale=3),
+        "iron": mat("iron", (0.02, 0.02, 0.02), rough=0.55, spec=0.45, bump=0.15, bump_scale=120),
+        "firebrick": mat("firebrick", (0.055, 0.032, 0.024), rough=0.9, bump=0.5, bump_scale=40, var=0.3, var_scale=9),
+        "soot": mat("soot", (0.012, 0.011, 0.010), rough=0.95),
+        "leather": mat("leather", (0.26, 0.11, 0.045), rough=0.42, spec=0.45, bump=0.12, bump_scale=180, var=0.18, var_scale=3),
+        "walnut": mat("walnut", (0.06, 0.035, 0.02), rough=0.5),
+        "bark": mat("bark", (0.07, 0.05, 0.035), rough=0.95, bump=1.0, bump_scale=25, var=0.3, var_scale=6),
+        "endgrain": mat("endgrain", (0.36, 0.25, 0.15), rough=0.9, bump=0.2, bump_scale=60, var=0.2, var_scale=12),
+        "brass": mat("brass", (0.6, 0.45, 0.2), rough=0.3, metal=1.0),
+        "ceramic": mat("ceramic", (0.62, 0.58, 0.50), rough=0.3, spec=0.6),
+        "ceramic2": mat("ceramic2", (0.10, 0.12, 0.13), rough=0.35, spec=0.6),
+        "shade": fabric_shade_mat("shade", (0.82, 0.76, 0.64)),
+        "wood_tbl": mat("wood_tbl", (0.22, 0.13, 0.07), rough=0.45, var=0.15, var_scale=20),
+    }
+    RX0, RX1, RY1, RZ = -3.2, 3.2, 6.8, 2.75
+    CW, CD = 1.83, 0.56            # chimney breast 6 ft wide, 22 in deep, floor to ceiling
+    HD, HZ, ST = 0.51, 0.20, 0.05  # raised hearth 20 in deep, 8 in high, the breast's width; its top slab 2 in
+    OW, OH, FD = 0.864, 0.610, 0.50   # firebox opening 34 x 24 in, 20 in deep; its floor is the hearth top
+    BW = 0.60                      # firebox back wall 23-1/2 in (splayed sides)
+    cx0, cx1 = -CW / 2, CW / 2
+    ox0, ox1, oz0, oz1 = -OW / 2, OW / 2, HZ, HZ + OH
+    yb = CD - FD                   # firebox back
+    win_l = (1.0, 2.5, 0.75, 2.35)  # left wall window: y from, y to, z from, z to
+    # room shell
+    quad("floor", (RX0, 0, 0), (RX1 - RX0, 0, 0), (0, RY1, 0), M["floor"], (0, 0, 1))
+    quad("ceiling", (RX0, 0, RZ), (RX1 - RX0, 0, 0), (0, RY1, 0), M["ceiling"], (0, 0, -1))
+    rect_with_holes("wall_left", (RX0, 0, 0), (0, 1, 0), (0, 0, 1), RY1, RZ, [(win_l[0], win_l[1], win_l[2], win_l[3])], M["paint"], (1, 0, 0))
+    quad("wall_right", (RX1, 0, 0), (0, RY1, 0), (0, 0, RZ), M["paint"], (-1, 0, 0))
+    quad("wall_front", (RX0, RY1, 0), (RX1 - RX0, 0, 0), (0, 0, RZ), M["paint"], (0, -1, 0))
+    box("base_left", (RX0, 0, 0), (RX0 + 0.015, RY1, 0.11), M["trim"])
+    box("base_right", (RX1 - 0.015, 0, 0), (RX1, RY1, 0.11), M["trim"])
+    for a, b in [(RX0, cx0), (cx1, RX1)]:
+        box(f"base_back{a}", (a, 0, 0), (b, 0.015, 0.11), M["trim"])
+    # zones: the breast's face (with the firebox opening), its sides, the hearth's face and side, the wall
+    zone("breast_front", "breast", "Fireplace face", (cx0, CD, 0), (1, 0, 0), (0, 0, 1), 0, CW, HZ, RZ, (0, 1, 0),
+         holes=[(ox0 - cx0, ox1 - cx0, oz0, oz1)],
+         corners=[["v", 0.0, HZ, RZ], ["v", CW, HZ, RZ]])
+    zone("breast_right", "breast", "Fireplace side", (cx1, CD, 0), (0, -1, 0), (0, 0, 1), 0, CD, HZ, RZ, (1, 0, 0), u_off=CW)
+    zone("breast_left", "breast", "Fireplace side (far)", (cx0, 0, 0), (0, 1, 0), (0, 0, 1), 0, CD, HZ, RZ, (-1, 0, 0),
+         u_off=-CD, visible=False)
+    zone("hearth_front", "hearth", "Hearth face", (cx0, CD + HD, 0), (1, 0, 0), (0, 0, 1), 0, CW, 0, HZ - ST, (0, 1, 0),
+         corners=[["v", 0.0, 0, HZ - ST], ["v", CW, 0, HZ - ST]])
+    zone("hearth_right", "hearth", "Hearth side", (cx1, CD + HD, 0), (0, -1, 0), (0, 0, 1), 0, CD + HD, 0, HZ - ST, (1, 0, 0), u_off=CW)
+    zone("hearth_left", "hearth", "Hearth side (far)", (cx0, 0, 0), (0, 1, 0), (0, 0, 1), 0, CD + HD, 0, HZ - ST, (-1, 0, 0),
+         u_off=-(CD + HD), visible=False)
+    zone("wall_back", "wall", "Wall beside the fireplace", (RX0, 0, 0), (1, 0, 0), (0, 0, 1), 0, RX1 - RX0, 0, RZ, (0, 1, 0),
+         holes=[(cx0 - RX0, cx1 - RX0, 0, RZ)])
+    # hearth top: a slab whose finish the customer can change (group "pad", like the cabin's)
+    slab = box("hearth_slab", (cx0 - 0.02, 0, HZ - ST), (cx1 + 0.02, CD + HD + 0.02, HZ), M["slab"], bevel=0.008)
+    slab["zone"] = "hearth_top"
+    zone("hearth_top", "pad", "Hearth pad", (cx0 - 0.02, 0, HZ), (1, 0, 0), (0, 1, 0), 0, CW + 0.04, 0, CD + HD + 0.02, (0, 0, 1),
+         build=False)
+    # firebox: firebrick floor, back and splayed sides; soot-dark smoke shelf above the opening
+    bx0, bx1 = -BW / 2, BW / 2
+    box("fb_floor", (ox0, yb, oz0 - 0.02), (ox1, CD, oz0), M["firebrick"])
+    quad("fb_back", (bx0, yb, oz0), (BW, 0, 0), (0, 0, OH), M["firebrick"], (0, 1, 0))
+    mesh("fb_left", [(ox0, CD, oz0), (bx0, yb, oz0), (bx0, yb, oz1), (ox0, CD, oz1)], [(0, 1, 2, 3)], M["firebrick"])
+    mesh("fb_right", [(bx1, yb, oz0), (ox1, CD, oz0), (ox1, CD, oz1), (bx1, yb, oz1)], [(0, 1, 2, 3)], M["firebrick"])
+    box("fb_top", (ox0, yb, oz1), (ox1, CD, oz1 + 0.03), M["soot"])
+    # the open wood fire on a grate (room's own; inserts are drawn over the opening)
+    for gx in (-0.2, -0.1, 0.0, 0.1, 0.2):
+        box(f"grate{gx}", (gx - 0.008, yb + 0.12, oz0), (gx + 0.008, CD - 0.10, oz0 + 0.07), M["iron"])
+    box("grate_rail", (-0.24, CD - 0.115, oz0 + 0.05), (0.24, CD - 0.10, oz0 + 0.075), M["iron"])
+    hearth_fire(0.0, yb + 0.27, oz0 + 0.07, 0.52, 0.26, 1.15, 50.0 if eve else 28.0)
+    # mantel and what's on it
+    box("mantel", (-0.98, CD, 1.40), (0.98, CD + 0.22, 1.53), M["timber"], bevel=0.008)
+    cyl("vase1", (-0.70, CD + 0.10, 1.53 + 0.13), 0.06, 0.26, M["ceramic"], r2=0.04, verts=48)
+    cyl("vase2", (-0.54, CD + 0.12, 1.53 + 0.08), 0.05, 0.16, M["ceramic2"], r2=0.045, verts=48)
+    box("frame", (0.28, CD + 0.03, 1.53), (0.80, CD + 0.06, 1.53 + 0.58), M["walnut"], bevel=0.006)
+    box("art", (0.32, CD + 0.06, 1.53 + 0.04), (0.76, CD + 0.062, 1.53 + 0.54), mat("art", (0.42, 0.48, 0.44), rough=0.8, var=0.35, var_scale=3))
+    # a few split logs on the hearth, left of the opening
+    log_stack(cx0 + 0.05, cx0 + 0.40, CD + 0.06, CD + 0.42, HZ, M, seed=11)
+    # window on the left wall: the afternoon sun comes in here
+    window("wl", "left", win_l[0], win_l[1], win_l[2], win_l[3], M)
+    portal("pl", "left", win_l[0], win_l[1], win_l[2], win_l[3])
+    haze("hz_l", "left", win_l[0], win_l[1], win_l[2], win_l[3], eve)
+    # rug, armchair (right, angled to the fire), side table and lamp
+    box("rug", (-1.30, CD + HD + 0.35, 0), (1.30, CD + HD + 2.25, 0.012), M["rug"], bevel=0.004)
+    r = ALL_OBJS[-1]
+    me = r.data
+    uvl = me.uv_layers.new(name="UVMap")
+    for poly in me.polygons:
+        for li in poly.loop_indices:
+            v = me.vertices[me.loops[li].vertex_index].co
+            uvl.data[li].uv = ((v.x + 1.3) / 2.6, (v.y - CD - HD - 0.35) / 1.9)
+    armchair(1.95, 2.45, math.radians(-38), M)   # its seat faces -y; turned toward the fire
+    cyl("tbl_top", (2.35, 1.55, 0.6), 0.25, 0.035, M["wood_tbl"], verts=48)
+    cyl("tbl_post", (2.35, 1.55, 0.3), 0.04, 0.58, M["wood_tbl"])
+    cyl("tbl_foot", (2.35, 1.55, 0.02), 0.2, 0.03, M["wood_tbl"], verts=48)
+    cyl("lamp_base", (2.35, 1.52, 0.75), 0.075, 0.26, M["ceramic2"], r2=0.05, verts=48)
+    cyl("lamp_neck", (2.35, 1.52, 0.95), 0.008, 0.16, M["brass"])
+    sh = cyl("lamp_shade", (2.35, 1.52, 1.08), 0.2, 0.24, M["shade"], r2=0.15, verts=64)
+    me = sh.data; bm = bmesh.new(); bm.from_mesh(me)
+    bmesh.ops.delete(bm, geom=[f for f in bm.faces if abs(f.normal.z) > 0.9], context="FACES")
+    bm.to_mesh(me); bm.free()
+    # lights
+    outdoors(M, eve)
+    world(eve)
+    if not eve:
+        sun = bpy.data.lights.new("sun", "SUN"); sun.energy = 6.0; sun.angle = math.radians(2.5)
+        sun.color = (1.0, 0.94, 0.86)
+        so = add_obj("sun", sun)
+        d = Vector((1.0, -0.40, -0.40)).normalized()    # in through the left window, toward the back wall
+        so.rotation_euler = d.to_track_quat("-Z", "Y").to_euler()
+    else:
+        lp = bpy.data.lights.new("lamp", "POINT"); lp.energy = 28; lp.color = (1.0, 0.68, 0.38); lp.shadow_soft_size = 0.05
+        add_obj("lamp", lp).location = (2.35, 1.52, 1.05)
+        for sx in (-0.55, 0.55):
+            sp = bpy.data.lights.new(f"can{sx}", "SPOT"); sp.energy = 45; sp.color = (1.0, 0.78, 0.55)
+            sp.spot_size = math.radians(70); sp.spot_blend = 0.6; sp.shadow_soft_size = 0.03
+            so = add_obj(f"can{sx}", sp); so.location = (sx, CD + 0.35, RZ - 0.02)
+            d = Vector((0, -0.18, -1)).normalized()
+            so.rotation_euler = d.to_track_quat("-Z", "Y").to_euler()
+            cyl(f"cantrim{sx}", (sx, CD + 0.35, RZ - 0.004), 0.07, 0.008, M["trim"])
+        fill = bpy.data.lights.new("fill", "AREA"); fill.energy = 16; fill.size = 3; fill.color = (1.0, 0.8, 0.6)
+        add_obj("fill", fill).location = (0.5, 5.2, 2.7)
+    # camera: near-frontal, a little from the right (inserts are drawn flat on the breast's face)
+    cam = bpy.data.cameras.new("cam"); cam.lens = 30; cam.sensor_width = 36; cam.sensor_fit = "HORIZONTAL"
+    cam.shift_y = -0.05
+    co = add_obj("cam", cam); SC.camera = co
+    co.location = (0.85, 4.30, 1.15)
+    tgt = Vector((0.45, 0.0, 1.15))
+    d = (tgt - co.location).normalized()
+    co.rotation_euler = d.to_track_quat("-Z", "Y").to_euler()
+    meta = dict(name="Lake house den", room=dict(x=[RX0, RX1], y=[0, RY1], z=[0, RZ]),
+                dims=dict(breast_w=CW, breast_d=CD, hearth_d=HD, hearth_h=HZ, opening_w=OW, opening_h=OH,
+                          firebox_d=FD, ceiling=RZ),
+                # where a catalog insert goes (metres, scene axes): on the breast's face (y), centred on
+                # x, standing on the firebox floor (z, anchor "floor"); its front has to cover the
+                # opening (cover: x0, z0, x1, z1; a centimetre in from the floor)
+                fire_spot=dict(y=CD, x=0.0, z=HZ, anchor="floor",
+                               cover=[round(ox0, 4), round(oz0 + 0.01, 4), round(ox1, 4), round(oz1, 4)]))
+    return meta
+
 # ------------------------------------------------------------------ build + render
-meta = build_cabin() if SCENE == "cabin" else build_linear()
+meta = build_cabin() if SCENE == "cabin" else build_linear() if SCENE == "linear" else build_masonry()
 for ob in ALL_OBJS:
     if ob.name.startswith("flamecard") or ob.name.startswith("lfc"):
         uvl = ob.data.uv_layers[0]

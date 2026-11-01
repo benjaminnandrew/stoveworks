@@ -10,8 +10,8 @@
 //     elbow into the chimney (capsules for the shader);
 //   - the box the stove fills (for its contact shadow and its shadow in the sun);
 //   - the light on it (measured on a probe box in the room's render: scene.json stoveSpot.light).
-// And for a sample room with a fire spot (the family room's built-in), where a catalog built-in
-// fireplace's front goes over the room's own (placeFace).
+// And for a sample room with a fire spot (the family room's built-in, the den's masonry opening), where a
+// catalog built-in fireplace's or insert's front goes (placeFace).
 // No prices, and nothing about a stove is made up: a stove with no size on file is drawn at a
 // typical size and its card says so.
 
@@ -51,7 +51,7 @@ export function normalize(raw) {
   const vi = Array.isArray(s.viewingIn) ? s.viewingIn.map(num) : null;
   s.viewingIn = vi && vi.length === 2 && vi[0] && vi[1] ? vi : null;
   s.finishes = Array.isArray(s.finishes) ? s.finishes.filter((f) => f && f.name && f.image) : [];
-  s.sized = s.kind === "fireplace" ? !!(s.viewingBox && s.viewingIn) : !!(s.widthIn && s.heightIn);
+  s.sized = s.kind === "fireplace" || s.kind === "insert" ? !!(s.viewingBox && s.viewingIn) : !!(s.widthIn && s.heightIn);
   // The stove's page on our own site: a path on the site ("/...") or a full http(s) address. The card
   // links there; the maker's page (productUrl) isn't shown (Ben, 28 Oct).
   const pg = typeof s.pageUrl === "string" ? s.pageUrl.trim() : "";
@@ -67,16 +67,17 @@ export async function loadCatalog(url) {
   const r = await fetch(url, { credentials: "same-origin" });
   if (!r.ok) throw new Error(`stove list: ${r.status}`);
   const j = await r.json();
-  // a built-in fireplace is drawn only at its own size (its viewing area): none is guessed
-  return (Array.isArray(j) ? j : j.stoves || []).map(normalize).filter(Boolean).filter((s) => s.kind === "freestanding" || (s.kind === "fireplace" && s.sized));
+  // a built-in fireplace or an insert is drawn only at its own size (its viewing area): none is guessed
+  return (Array.isArray(j) ? j : j.stoves || []).map(normalize).filter(Boolean).filter((s) => s.kind === "freestanding" || ((s.kind === "fireplace" || s.kind === "insert") && s.sized));
 }
 
 // ------------------------------------------------------------------ words for the cards
 export const stoveName = (s) => `${s.brand ? s.brand + " " : ""}${s.name}`;
 const FIREPLACES = { gas: "Gas fireplace", wood: "Wood fireplace", electric: "Electric fireplace" };
-export const fuelWord = (s) => (s.kind === "fireplace" ? FIREPLACES[s.fuel] || "Fireplace" : FUELS[s.fuel] || "Stove");
-/** "stove" or "fireplace", for the words round it. */
-export const kindWord = (s) => (s && s.kind === "fireplace" ? "fireplace" : "stove");
+const INSERTS = { gas: "Gas insert", wood: "Wood insert", electric: "Electric insert" };
+export const fuelWord = (s) => (s.kind === "fireplace" ? FIREPLACES[s.fuel] || "Fireplace" : s.kind === "insert" ? INSERTS[s.fuel] || "Fireplace insert" : FUELS[s.fuel] || "Stove");
+/** "stove", "fireplace" or "insert", for the words round it. */
+export const kindWord = (s) => (s && (s.kind === "fireplace" || s.kind === "insert") ? s.kind : "stove");
 const FR = ["", "⅛", "¼", "⅜", "½", "⅝", "¾", "⅞"];
 /** 22.63 -> 22⅝″ (to the nearest eighth, the way spec sheets read). */
 export function inches(v) {
@@ -85,7 +86,7 @@ export function inches(v) {
 }
 export function makerSize(s) {
   if (!s.sized) return "";
-  if (s.kind === "fireplace") return `${inches(s.viewingIn[0])} × ${inches(s.viewingIn[1])} viewing area`;
+  if (s.kind === "fireplace" || s.kind === "insert") return `${inches(s.viewingIn[0])} × ${inches(s.viewingIn[1])} viewing area`;
   return [`${inches(s.widthIn)} wide`, `${inches(s.heightIn)} tall`, s.depthIn ? `${inches(s.depthIn)} deep` : ""].filter(Boolean).join(" · ");
 }
 /** The size as drawn, in whole inches: what the customer checks against the real thing. */
@@ -299,17 +300,21 @@ export function placeInRoom(st, cut, sj, cam, k = 1, xIn = 0) {
 }
 
 /**
- * Where a built-in fireplace's front goes in a sample room with a fire spot (the family room): flat
- * on the wall, the photo straight on, its viewing area the maker's size and centered where the room's
- * own fireplace's is (the site's, 31 Oct 2026). Returns the map from scene px to the photo
- * (fractions; for the engine, and for taps), the screen box it covers, and whether it covers the
- * room's own fireplace: one smaller can't be drawn there yet, since the room's would show round it.
+ * Where a built-in fireplace's or an insert's front goes in a sample room with a fire spot: flat on the
+ * wall, the photo straight on, its viewing area the maker's size (the site's, 31 Oct 2026).
+ * - A fireplace (the family room): its viewing area centered where the room's own fireplace's is.
+ * - An insert (the den, anchor "floor", 1 Nov 2026): centered across the opening, its photo's lowest
+ *   point on the firebox floor, where an insert stands.
+ * Returns the map from scene px to the photo (fractions; for the engine, and for taps), the screen box
+ * it covers, and whether its front covers the room's own fireplace or opening: one that doesn't would
+ * show it round the front.
  */
 export function placeFace(st, cut, sj, cam) {
   const fs = sj.fireSpot, [vx0, vy0, vx1, vy1] = st.viewingBox;
   const Wv = st.viewingIn[0] * IN, Hv = st.viewingIn[1] * IN;
   // world (x, z) on the wall -> photo fractions. The photo's left is the room's +x (screen left)
-  const xl = fs.x + Wv / 2, zt = fs.z + Hv / 2, ax = (vx1 - vx0) / Wv, az = (vy1 - vy0) / Hv;
+  const ax = (vx1 - vx0) / Wv, az = (vy1 - vy0) / Hv;
+  const xl = fs.x + Wv / 2, zt = fs.anchor === "floor" ? fs.z + ((cut.bot + 1) / cut.h - vy0) / az : fs.z + Hv / 2;
   const fu = (x) => vx0 + (xl - x) * ax, fv = (z) => vy0 + (zt - z) * az;
   const A = [[-ax, 0, vx0 + xl * ax], [0, -az, vy0 + zt * az], [0, 0, 1]];
   // world (x, z, 1) -> scene px: the camera on the wall's plane, y = fs.y

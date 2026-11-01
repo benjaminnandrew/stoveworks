@@ -170,6 +170,8 @@ for variant in VARIANTS:
                           camera=dict(K=K.tolist(), R=R.tolist(), C=C.tolist()))
         if geo["meta"].get("stove_spot"):
             scene_json["stoveSpot"] = geo["meta"]["stove_spot"]
+        if geo["meta"].get("fire_spot"):   # where a catalog fireplace or insert's front goes (1 Nov 2026)
+            scene_json["fireSpot"] = geo["meta"]["fire_spot"]
     scene_json["variants"][variant] = dict(masks=mask_files, lights=variants_out)
 
 json.dump(scene_json, open(f"{ODIR}/scene.json", "w"), indent=1)

@@ -157,6 +157,14 @@ Everything before it is committed as `b4c1682` on `redesign-up-north`.
     - The chat's Blender build is in `hearth-studio-build/`, with Python 3.11 and bpy 5.0.1 in
       `var/blendenv`. Its README says how to run it.
     - Renders go to `var/hs-renders`.
+  - **A third sample room, the lake house den (1 Nov):** a masonry fireplace (34 × 24 in opening,
+    open wood fire) for catalog inserts, built and rendered here.
+    - Inserts are drawn over its opening, standing on the firebox floor.
+    - None are listed yet: their photos haven't matched the makers' published sizes. Their manuals'
+      surround sizes are next.
+    - Ben also asked for a way to see a product without knowing the sample rooms. Proposed: one
+      stoves-and-fireplaces list that picks the room itself, and a first-visit "What do you want to
+      see?".
   - **The round Morsøs' pipes, 31 Oct (Ben):**
     - The 6140 and 6148 pipes come out of the top opening.
       - Their photos show the top outlet's blanking plate. A new photo fact, `imageFlue`
