@@ -11,7 +11,7 @@ import { modelHref } from "@/lib/model-url";
  * "More …" row differ.
  */
 export function ModelDetail({ data, variant }: { data: ModelPageData; variant: "page" | "modal" }) {
-  const { brand, model, view, related } = data;
+  const { brand, model, view, related, studioStove } = data;
   const full = `${brand.name} ${model.name}`;
   const H = variant === "modal" ? "h3" : "h2";
   const kind = typeLabel(model.form, model.fuel);
@@ -91,6 +91,12 @@ export function ModelDetail({ data, variant }: { data: ModelPageData; variant: "
               size="large"
               item={{ id: model.id, name: model.name, brand: brand.name, type: kind, href: modelHref(model), photo: model.hero_image }}
             />
+            {/* Only where Hearth Studio can show this very stove or fireplace in its room (Ben, 28 Oct 2026). */}
+            {studioStove ? (
+              <a className="model-visualize" href={`/hearth-studio/?stove=${encodeURIComponent(studioStove)}`}>
+                See it in a room &rarr;
+              </a>
+            ) : null}
           </div>
           {model.carry_status !== "on_floor" ? (
             <p className="model-stock">

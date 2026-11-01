@@ -2,6 +2,7 @@
 // estimate, saved ideas and the own-photo setup. Rendering lives in engine.js.
 import { StoneEngine } from "./engine.js";
 import * as G from "./geometry.js";
+import * as ST from "./stoves.js";
 import * as P from "./photo.js";
 import * as PT from "./paint.js";
 import * as Seg from "./segment.js";
@@ -10,6 +11,9 @@ import * as LY from "./layout.js";
 
 // ------------------------------------------------------------------ constants
 const STORE = { name: "Hayward Stoveworks", site: "haywardstoveworks.com" };
+// The site keeps the estimate from customers until its numbers are confirmed (HS_CONFIG.estimate:
+// false; Ben, 28 Oct 2026). It's still worked out, and the staff panel's estimate settings stay.
+const SHOW_ESTIMATE = window.HS_CONFIG?.estimate !== false;
 const JOINTS = {
   dry: { label: "Dry stack", half: 0.07, note: "Stones set tight; almost no mortar shows." },
   standard: { label: "Standard joint", half: 0.25, note: "About ½″ mortar joints between stones." },
@@ -25,6 +29,7 @@ const ROOMS = [
     id: "cabin", name: "Lake cabin great room", short: "Lake cabin", blurb: "Full-height chimney, raised hearth, wood stove",
     sizeNote: "This sample room has a 6 ft wide chimney breast running 9½ ft to the ceiling, on an 8 ft raised hearth. The numbers use those sizes.",
     variants: [{ id: "trad", label: "Traditional wood stove" }, { id: "modern", label: "Modern wood stove" }, { id: "open", label: "No stove", noFire: true }],
+    stoves: true,          // catalog stoves stand on its empty hearth (variant "open")
     groups: [
       { id: "chimney", label: "Chimney", hint: "Face and both sides, hearth to ceiling", zones: ["chim_front", "chim_right", "chim_left"] },
       { id: "hearth", label: "Raised hearth", hint: "Front and sides, under the slab top", zones: ["hearth_front", "hearth_right", "hearth_left"] },
@@ -41,7 +46,9 @@ const ROOMS = [
   {
     id: "linear", name: "Lake home family room", short: "Family room", blurb: "Linear gas fireplace, floating mantel",
     sizeNote: "This sample room has a 7 ft wide fireplace bump-out, 9 ft tall, around a 52 in linear gas fireplace. The numbers use those sizes.",
-    variants: [{ id: "linear", label: "Linear gas fireplace" }],
+    // its own fireplace (the sample, so first), and the same room with an empty wall, rendered here (1 Nov 2026)
+    variants: [{ id: "linear", label: "Linear gas fireplace" }, { id: "open", label: "No fireplace", noFire: true }],
+    fireplaces: true,      // a catalog built-in fireplace's front goes on its empty wall, at any size (scene.json fireSpot)
     groups: [
       { id: "chase", label: "Fireplace wall", hint: "Face and sides of the bump-out", zones: ["chase_front", "chase_left", "chase_right"] },
       { id: "wall", label: "Wall beside the fireplace", hint: "Either side of the bump-out", zones: ["wall_back"] },
@@ -138,6 +145,7 @@ function loadSettings() {
 const S = {
   mode: "web", tab: "stone",
   catalog: [], cat: new Map(),
+  stoves: [], stoveMap: new Map(),   // the store's stove catalog (HS_CONFIG.stoveCatalogUrl)
   filters: { style: "All", tone: "All", q: "" },   // the stone list: Buechel collection, color tone, search words
   roomId: "cabin", variant: { cabin: "trad", linear: "linear" }, light: "day",
   room: null,
@@ -164,6 +172,8 @@ let engine = null;
 const LOOKUP = PT.createLookup();  // "type or say a paint color" (see paint.js for where it reaches Claude)
 const sceneCache = new Map();   // key -> {sj, imgs}
 const stoneLoads = new Map();   // id -> Promise
+const stoveLoads = new Map();   // stove id -> Promise of its cutout
+const stoveCuts = new Map();    // stove id -> {cut, tex}
 const stage = $("#stage"), canvas = $("#gl"), overlay = $("#overlay");
 
 // ------------------------------------------------------------------ boot
@@ -177,6 +187,11 @@ async function boot() {
   syncBg();
   try { matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => setTimeout(syncBg, 30)); } catch (e) { /* old browsers */ }
   new MutationObserver(() => setTimeout(syncBg, 30)).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  // the stove catalog's styles are in their own file, so the page file stays as it is
+  if (!document.querySelector('link[data-hs="stoves"]')) {
+    const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "css/stoves.css"; l.dataset.hs = "stoves"; document.head.appendChild(l);
+  }
+  const stovesP = ST.loadCatalog(window.HS_CONFIG?.stoveCatalogUrl || "assets/stoves/stoves.json").catch(() => []);
   const cat = await (await fetch("assets/stone/catalog.json")).json();
   S.catalog = cat;
   cat.forEach((c) => S.cat.set(c.id, c));
@@ -186,12 +201,25 @@ async function boot() {
     for (const [rid, d] of Object.entries(saved)) for (const g of Object.values(d || {})) if (g.mode === "stone" && !S.cat.has(g.stone)) g.stone = DEFAULT_STONE;
     Object.assign(S.design, saved);
   }
+  S.stoves = await stovesP;
+  S.stoves.forEach((s) => S.stoveMap.set(s.id, s));
+  // no longer in the catalog, or not the kind that room shows
+  for (const [rid, d] of Object.entries(S.design)) if (d && d.stove && !fitsRoom(S.stoveMap.get(d.stove.stoveId), roomDef(rid))) delete d.stove;
+  // From a stove's page on the site ("See it in a room": ?stove=<id>): that stove on the lake cabin's
+  // hearth, or that fireplace in the family room's wall, with its tab open (the site's, 28 and 31 Oct 2026)
+  const linked = S.stoveMap.get(new URLSearchParams(location.search).get("stove"));
+  const linkRoom = linked && ROOMS.find((r) => fitsRoom(linked, r));
+  if (linkRoom && S.design[linkRoom.id]) {
+    const was = S.design[linkRoom.id].stove;
+    S.design[linkRoom.id].stove = { stoveId: linked.id, finish: null, x: 0, sizeK: was && was.stoveId === linked.id ? was.sizeK : 1 };
+    S.tab = "stove";
+  }
   S.myPaints = (store.get("paints", []) || []).filter((c) => c && PT.normHex(c.hex)).slice(0, 8);
   S.canListen = PT.canListen();
   downloadsCap();   // look up once so the Download button answers straight away
   LOOKUP.ready().then((fn) => { S.lookupFn = fn; if (S.tab === "areas" && S.paintFor) renderRail({ keep: true }); });
   renderChrome();
-  await setRoom("cabin");
+  await setRoom(linkRoom ? linkRoom.id : "cabin");
   // The showroom screen opens the page with #showroom and stays in showroom mode.
   const showroomLink = () => { if (location.hash === "#showroom" && S.mode !== "kiosk") { S.kioskLocked = true; setMode("kiosk"); } };
   showroomLink();
@@ -278,52 +306,81 @@ async function setRoom(id) {
   if (id !== S.roomId) { S.paintFor = null; stopLookup(true); S.lk = { q: "", state: "idle" }; cardSpot = null; }
   S.roomId = id;
   S.compare = { mode: "off", split: 0.5, lookB: null, nameB: "" };
+  setCmpScene(null);
   if (id === "photo") { await buildPhotoRoom(); renderAll(); return; }
   busy(true);
   const def = roomDef(id);
-  const variant = S.variant[id];
-  const key = `${id}/${variant}/${S.light}`;
-  let entry = sceneCache.get(key);
-  if (!entry) {
-    const sj = sceneCache.get(id + "/json") || await (await fetch(`assets/scenes/${id}/scene.json`)).json();
-    sceneCache.set(id + "/json", sj);
-    const V = sj.variants[variant];
-    const Lt = V.lights.find((l) => l.light === S.light) || V.lights[0];
-    const base = `assets/scenes/${id}/`;
-    const imgs = await Promise.all([loadImg(base + Lt.image), loadImg(base + Lt.irr), loadImg(base + Lt.grad), ...V.masks.map((m) => loadImg(base + m))]);
-    const fireImg = Lt.fire ? await loadImg(base + Lt.fire).catch(() => null) : null;
-    entry = { sj, Lt, imgs, fireImg, masksKey: `${id}/${variant}` };
-    sceneCache.set(key, entry);
-  }
-  await Promise.all(stonesInDesign(S.design[id]).map(ensureStone));
-  const { sj, Lt, imgs, fireImg } = entry;
+  const variant = effectiveVariant(id);
+  const entry = await sceneEntry(id, variant, S.light);
+  await Promise.all([...stonesInDesign(S.design[id]).map(ensureStone), ensureStove(S.design[id]?.stove?.stoveId)]);
+  const { sj, Lt, imgs } = entry;
   const old = S.room;
   // "No stove" (the empty-hearth render) keeps a stand-in fire glow in its evening light; its fire
   // map is that glow's share of each pixel, so the engine takes it out (flicker multiplier 0).
-  const noFire = !!def.variants.find((v) => v.id === variant)?.noFire;
-  const tex = {
-    base: engine.texFromImage(imgs[0]),
-    irr: engine.texFromImage(imgs[1]),
-    grad: engine.texFromImage(imgs[2]),
-    masks: imgs.slice(3).map((m) => engine.texFromImage(m)),
-    fire: fireImg ? engine.texFromImage(fireImg) : null,
-  };
+  const noFire = !!def.variants.find((v) => v.id === variant)?.noFire && !S.design[id]?.stove;
+  const { tex, zones, vzones, scene } = sceneFor(entry, noFire);
   if (old && old.tex) disposeRoomTex(old);
-  const zones = sj.zones.map((z) => ({ ...z, grad: [0, 0] }));
-  const vzones = zones.filter((z) => z.mask);        // visible faces go to the renderer; hidden ones still count in the estimate
-  S.room = { kind: "scene", id, def, sj, light: Lt.light, width: sj.width, height: sj.height, tex, zones, vzones, groups: def.groups, noFire, pick: buildPick(imgs.slice(3), sj) };
-  engine.flick = noFire ? 0 : 1;
-  engine.setScene({ width: sj.width, height: sj.height, base: tex.base, masks: tex.masks, irr: { tex: tex.irr, mode: 0, range: Lt.irrRange }, grad: { tex: tex.grad }, fire: S.flicker || noFire ? tex.fire : null, composite: 0, drywall: sj.drywall, zones: vzones });
+  S.room = { kind: "scene", id, def, sj, light: Lt.light, width: sj.width, height: sj.height, tex, zones, vzones, groups: def.groups, noFire, variantId: variant, pick: buildPick(imgs.slice(3), sj) };
+  if ((def.stoves && variant !== "open") || def.fireplaces) prepSampleStove(S.room);   // a sample stove (or the room's own fireplace) can be tapped too
+  engine.flick = 1;
+  engine.setScene(scene);
   sizeCanvas(); engine.fit();
   if (S.target !== "all" && !def.groups.some((g) => g.id === S.target)) S.target = "all";
   busy(false);
   renderAll();
   invalidate();
 }
+/** A sample room's pictures for one version (stove) and light, loaded once. */
+async function sceneEntry(id, variant, light) {
+  const key = `${id}/${variant}/${light}`;
+  let entry = sceneCache.get(key);
+  if (entry) return entry;
+  // checked with the server every time: the room's data has to match this app (a browser's day-old
+  // copy from before update-2 had no stove light or shadows, so no stove was drawn; 28 Oct 2026)
+  const sj = sceneCache.get(id + "/json") || await (await fetch(`assets/scenes/${id}/scene.json`, { cache: "no-cache" })).json();
+  sceneCache.set(id + "/json", sj);
+  const V = sj.variants[variant];
+  const Lt = V.lights.find((l) => l.light === light) || V.lights[0];
+  const base = `assets/scenes/${id}/`;
+  const imgs = await Promise.all([loadImg(base + Lt.image), loadImg(base + Lt.irr), loadImg(base + Lt.grad), ...V.masks.map((m) => loadImg(base + m))]);
+  const fireImg = Lt.fire ? await loadImg(base + Lt.fire).catch(() => null) : null;
+  const shadeImg = V.shade ? await loadImg(base + V.shade).catch(() => null) : null;   // where each pixel is (for a stove's shadows)
+  entry = { sj, Lt, V, imgs, fireImg, shadeImg, masksKey: `${id}/${variant}` };
+  sceneCache.set(key, entry);
+  return entry;
+}
+/** Its textures and the engine's scene for it. */
+function sceneFor(entry, noFire) {
+  const { sj, Lt, V, imgs, fireImg, shadeImg } = entry;
+  const tex = {
+    base: engine.texFromImage(imgs[0]),
+    irr: engine.texFromImage(imgs[1]),
+    grad: engine.texFromImage(imgs[2]),
+    masks: imgs.slice(3).map((m) => engine.texFromImage(m)),
+    fire: fireImg ? engine.texFromImage(fireImg) : null,
+    shade: shadeImg ? engine.texFromImage(shadeImg, { linear: false }) : null,
+  };
+  const zones = sj.zones.map((z) => ({ ...z, grad: [0, 0] }));
+  const vzones = zones.filter((z) => z.mask);        // visible faces go to the renderer; hidden ones still count in the estimate
+  const scene = { width: sj.width, height: sj.height, base: tex.base, masks: tex.masks, irr: { tex: tex.irr, mode: 0, range: Lt.irrRange }, grad: { tex: tex.grad },
+    fire: S.flicker || noFire ? tex.fire : null, noFire, composite: 0, drywall: sj.drywall, zones: vzones };
+  if (tex.shade && sj.camera && sj.stoveSpot) {
+    const cam = ST.roomCamera(sj);
+    scene.stoveRoom = { shade: tex.shade, shadeSize: [shadeImg.naturalWidth, shadeImg.naturalHeight], distMax: V.distMax || 20,
+      ray: cam.RtKi, C: cam.C, fwd: cam.fwd, f: cam.f, sunTo: sj.stoveSpot.sun_to, useSun: Lt.light === "day" };
+  }
+  return { tex, zones, vzones, scene };
+}
+/** Compare with an idea that shows another version of the room (another stove): its own picture. */
+let cmpTex = null;
+function setCmpScene(sb) {
+  if (cmpTex) disposeRoomTex({ tex: cmpTex });
+  cmpTex = sb ? sb.tex : null;
+}
 
 function disposeRoomTex(room) {
   const t = room.tex; if (!t) return;
-  [t.base, t.irr, t.grad, t.fire, ...(t.masks || [])].forEach((x) => x && engine.deleteTex(x));
+  [t.base, t.irr, t.grad, t.fire, t.shade, ...(t.masks || [])].forEach((x) => x && engine.deleteTex(x));
 }
 
 /** Small CPU copy of the masks so a tap can tell which surface it hit. */
@@ -380,8 +437,323 @@ function lookFrom(design, room = S.room) {
   const zones = {};
   if (!room) return { zones };
   for (const g of room.groups) for (const zid of g.zones) zones[zid] = zoneLook(design[g.id]);
-  return { zones };
+  return { zones, stove: stoveLook(design, room) };
 }
+// ------------------------------------------------------------------ catalog stoves (INTEGRATION.md, section 7)
+// A room with a stove spot (the lake cabin) shows a catalog stove on its empty hearth: the room's
+// "open" picture, with the stove drawn in by the engine. The sample stoves are the room's other pictures.
+// A room with a fire spot (the family room) shows a catalog built-in fireplace's front over its own:
+// the same picture, with the front drawn in (the site's, 31 Oct 2026). Once the room has an "open"
+// picture too (an empty wall, asked of the chat 1 Nov 2026), the front goes on that instead.
+const onOpen = (def, design) => !!design?.stove && (!!def?.stoves || (!!def?.fireplaces && def.variants.some((v) => v.id === "open")));
+function effectiveVariant(id) {
+  return onOpen(roomDef(id), S.design[id]) ? "open" : S.variant[id];
+}
+/** Can this catalog stove go in this room: a freestanding stove on the cabin's hearth, a built-in
+ *  fireplace in the family room's wall. */
+function fitsRoom(st, def) {
+  return !!st && !!def && (def.fireplaces ? st.kind === "fireplace" : !!def.stoves && st.kind === "freestanding");
+}
+const catalogFor = (def) => S.stoves.filter((s) => fitsRoom(s, def));
+/** Loads a stove's cutout once (and gets it ready to draw). */
+function ensureStove(id) {
+  if (!id || !S.stoveMap.has(id) || !engine) return Promise.resolve(null);
+  if (stoveLoads.has(id)) return stoveLoads.get(id);
+  const st = S.stoveMap.get(id);
+  // the cutout's pixels are read (outline, halo clean-up), so a picture on another domain needs CORS
+  const load = new Promise((res, rej) => {
+    const i = new Image(); i.decoding = "async";
+    try { if (new URL(st.image, location.href).origin !== location.origin) i.crossOrigin = "anonymous"; } catch (e) { /* relative path */ }
+    i.onload = () => res(i); i.onerror = () => rej(new Error("Could not load " + st.image)); i.src = st.image;
+  });
+  const p = load.then((img) => {
+    const cut = ST.prepCutout(img);
+    const v = { cut, tex: engine.texFromImage(cut.canvas, { internal: "SRGB8_ALPHA8", mip: true }) };
+    stoveCuts.set(id, v); stoveLookCache.clear(); invalidate();
+    return v;
+  }).catch(() => { stoveLoads.delete(id); return null; });
+  stoveLoads.set(id, p);
+  return p;
+}
+const stoveLookCache = new Map();
+const padTo = (a, n) => { const o = (a || []).slice(0, n); while (o.length < n) o.push(o.length ? o[o.length - 1] : 1); return o; };
+/** What the engine needs to draw a design's stove in a sample room (null when there's none). */
+function stoveLook(design, room) {
+  const d = design && design.stove;
+  if (!d || room?.kind !== "scene" || !room.sj?.camera) return null;
+  if (room.def?.fireplaces) return fireplaceLook(d.stoveId, room);
+  if (!room.def?.stoves || !room.sj.stoveSpot) return null;
+  const st = S.stoveMap.get(d.stoveId), c = stoveCuts.get(d.stoveId);
+  if (!st || !c) return null;
+  const k = clamp(d.sizeK || 1, ST.SIZE_MIN, ST.SIZE_MAX);
+  const key = [room.id, room.light, d.stoveId, k.toFixed(4), d.x || 0].join("|");
+  if (stoveLookCache.has(key)) return stoveLookCache.get(key);
+  const pl = ST.placeInRoom(st, c.cut, room.sj, ST.roomCamera(room.sj), k, d.x || 0);
+  const Lr = ST.roomLight(room.sj, room.light);
+  const span = st.imageSpan || [c.cut.left / c.cut.w, (c.cut.right + 1) / c.cut.w];
+  const eve = room.light === "eve";
+  const val = {
+    tex: c.tex, s: pl.place.s, tx: pl.place.tx, ty: pl.place.ty, ymap: pl.place.ymap, w: c.cut.w, h: c.cut.h, bbox: pl.place.bbox,
+    glass: st.glassBox, span: [span[0], span[1], c.cut.top / c.cut.h, (c.cut.bot + 1) / c.cut.h],
+    light: { front: Lr.front, side: Lr.side, prof: padTo(Lr.prof, 8), vprof: padTo(Lr.vprof, 5) },
+    studio: 0.45, emis: eve ? 2.6 : 2.2, eve,
+    ldir: eve ? [0.98, 0.14, 0.14] : (room.sj.stoveSpot.sun_to || [0.875, 0.368, 0.315]),
+    caps: pl.pipe ? pl.pipe.caps : [], thimble: pl.pipe ? pl.pipe.thimble : null, pipeTop: pl.pipe ? pl.pipe.top : null,
+    box: pl.box, foot: pl.foot, footZ: room.sj.stoveSpot.z, ao: eve ? [0.62, 0.3, 0.2, 0.1] : [0.55, 0.28, 0.2, 0.1],
+  };
+  if (stoveLookCache.size > 8) stoveLookCache.clear();
+  stoveLookCache.set(key, val);
+  return val;
+}
+/** A built-in fireplace's front over the room's own (stoves.js, placeFace). Null when it can't be
+ *  drawn there: not loaded yet, or smaller than the room's own, which would show round it. A room
+ *  with an empty-wall picture ("open") takes any size: the front goes on that. */
+function fireplaceLook(id, room) {
+  const st = S.stoveMap.get(id), c = stoveCuts.get(id);
+  if (!st || st.kind !== "fireplace" || !c || !room.sj.fireSpot) return null;
+  const key = [room.id, room.light, id].join("|");
+  if (stoveLookCache.has(key)) return stoveLookCache.get(key);
+  const pl = ST.placeFace(st, c.cut, room.sj, ST.roomCamera(room.sj));
+  const eve = room.light === "eve";
+  const fits = pl.covers || room.def.variants.some((v) => v.id === "open");
+  const val = fits ? { tex: c.tex, face: pl.H, bbox: pl.bbox, glass: st.glassBox, studio: 0.45, emis: eve ? 2.6 : 2.2, eve } : null;
+  if (stoveLookCache.size > 8) stoveLookCache.clear();
+  stoveLookCache.set(key, val);
+  return val;
+}
+/** Is the stove at this spot of the picture (its outline, not the empty space round it)? */
+function stoveAtUV(u, v) {
+  const room = S.room; if (!room) return false;
+  const L = stoveLook(currentDesign(), room); if (!L) return false;
+  const x = u * room.width, y = v * room.height, b = L.bbox;
+  if (x < b[0] || y < b[1] || x > b[2] || y > b[3]) return false;
+  const c = stoveCuts.get(currentDesign().stove.stoveId); if (!c) return false;
+  let cx, cy;
+  if (L.face) {   // a fireplace's front: through its map to the photo, as the engine draws it
+    const H = L.face, q = H.map((r) => r[0] * x + r[1] * y + r[2]);
+    cx = Math.floor(q[0] / q[2] * c.cut.w); cy = Math.floor(q[1] / q[2] * c.cut.h);
+  } else {
+    // up the photo in its two parts, as the engine draws it (stoves.js, placeInRoom: ymap)
+    const m = L.ymap, row = y >= m[1] ? m[4] + (y - m[1]) * (m[5] - m[4]) / Math.max(1e-6, m[2] - m[1]) : m[3] + (y - m[0]) * (m[4] - m[3]) / Math.max(1e-6, m[1] - m[0]);
+    cx = Math.floor((x - L.tx) / L.s); cy = Math.floor(row);
+  }
+  if (cx < 0 || cy < 0 || cx >= c.cut.w || cy >= c.cut.h) return false;
+  return c.cut.alpha[cy * c.cut.w + cx] > 128;
+}
+/** A sample stove is part of the room's own picture, so it has no outline of its own. It's where the
+ *  empty-hearth picture's surfaces show and this picture's don't (the masks of "things in front"),
+ *  which takes in its pipe and leaves out the firewood that's in both. Worked out once per picture.
+ *  A room's own built-in fireplace is its box on the wall (scene.json fireSpot.cover), on screen. */
+async function prepSampleStove(room) {
+  const fs = room.sj.fireSpot, pk = room.pick;
+  if (fs && room.sj.camera) {
+    const cam = ST.roomCamera(room.sj), [x0, z0, x1, z1] = fs.cover;
+    const quad = [[x0, z0], [x1, z0], [x1, z1], [x0, z1]].map(([x, z]) => { const p = cam.project([x, fs.y, z]); return [p[0] * pk.w / room.width, p[1] * pk.h / room.height]; });
+    const at = new Uint8Array(pk.w * pk.h);
+    for (let i = 0; i < at.length; i++) at[i] = pointInPoly([i % pk.w + 0.5, Math.floor(i / pk.w) + 0.5], quad) ? 1 : 0;
+    room.sampleStove = at;
+    return;
+  }
+  const V = room.sj.variants.open; if (!V) return;
+  const key = `${room.id}/open/masks`;
+  const imgs = sceneCache.get(key) || await Promise.all(V.masks.map((m) => loadImg(`assets/scenes/${room.id}/${m}`))).catch(() => null);
+  if (!imgs) return;
+  sceneCache.set(key, imgs);
+  const open = buildPick(imgs, room.sj);
+  const shows = (p, i) => room.zones.some((z) => z.mask && p.datas[z.mask[0]]?.[i * 4 + z.mask[1]] > 60);
+  const at = new Uint8Array(pk.w * pk.h);
+  for (let i = 0; i < at.length; i++) at[i] = shows(open, i) && !shows(pk, i) ? 1 : 0;
+  room.sampleStove = at;
+}
+function sampleStoveAtUV(u, v) {
+  const room = S.room, at = room?.sampleStove;
+  if (!at || currentDesign().stove || u < 0 || v < 0 || u >= 1 || v >= 1) return false;
+  if (room.def?.fireplaces && !catalogFor(room.def).length) return false;   // none of ours to put there yet
+  return at[Math.floor(v * room.pick.h) * room.pick.w + Math.floor(u * room.pick.w)] === 1;
+}
+/** The empty hearth keeps a stand-in fire glow in its evening picture: with no stove it goes. */
+function applyFire() {
+  const r = S.room; if (r?.kind !== "scene" || !engine.scene) return;
+  const noFire = !!r.def.variants.find((x) => x.id === r.variantId)?.noFire && !currentDesign().stove;
+  r.noFire = noFire;
+  engine.scene.noFire = noFire;
+  engine.scene.fire = S.flicker || noFire ? r.tex.fire : null;
+}
+async function pickStove(v) {
+  const r = S.room; if (r?.kind !== "scene" || !(r.def?.stoves || r.def?.fireplaces)) return;
+  const d = currentDesign();
+  if (v === "none" || r.def.variants.some((x) => x.id === v)) {   // no stove, or the room's own
+    delete d.stove;
+    S.variant[r.id] = v === "none" ? "open" : v;
+  } else {
+    const st = S.stoveMap.get(v);
+    if (!fitsRoom(st, r.def)) return;
+    if (!(await ensureStove(v))) { toast(`Couldn't load that ${ST.kindWord(st)}'s picture. Try again.`); return; }
+    if (r.def.fireplaces && !fireplaceLook(v, r)) { toast("That one's smaller than this room's own fireplace, so it can't be shown here yet."); return; }
+    d.stove = { stoveId: v, finish: null, x: 0, sizeK: d.stove && d.stove.stoveId === v ? d.stove.sizeK : 1 };
+    track("stoves", v);
+  }
+  persist();
+  if (effectiveVariant(r.id) !== r.variantId) await setRoom(r.id);   // the hearth empties or fills: another picture
+  else { applyFire(); invalidate(); renderRail({ keep: true }); if (cardFor?.gid === STOVE_CARD) renderCard(); }
+}
+/** Stove size: v is log2(size) x 100, so each step is the same feel, half size to double. */
+function stoveSize(v) {
+  const d = currentDesign(); if (!d.stove) return;
+  v = clamp(Math.round(v), SZ_LO, SZ_HI);
+  d.stove.sizeK = +(2 ** (v / 100)).toFixed(4);
+  persist(); invalidate();
+  const st = S.stoveMap.get(d.stove.stoveId);
+  // the Stove tab's control and the stove's card on the picture (st_ and stc_) move together
+  for (const [k, box] of [["st", "#railBody"], ["stc", "#acard"]]) {
+    const o = $(`#${k}_out`), dr = $(`#${k}_drawn`), sl = $(`#${k}_size`), rb = $(`${box} [data-a="stovereset"]`);
+    if (o) o.textContent = `${Math.round(d.stove.sizeK * 100)}%`;
+    if (dr && st) dr.textContent = stoveDrawnText(st, d.stove.sizeK);
+    if (sl && Number(sl.value) !== v) sl.value = v;
+    if (rb) rb.disabled = v === 0;
+  }
+}
+document.addEventListener("input", (ev) => { if (ev.target && (ev.target.id === "st_size" || ev.target.id === "stc_size")) stoveSize(Number(ev.target.value)); });
+// Stove size folds away (Ben, 28 Oct 2026): closed when the page loads, then open or closed in the
+// Stove tab and the stove's card together until the next load. (toggle doesn't bubble: caught here)
+document.addEventListener("toggle", (ev) => {
+  if (!ev.target.matches?.("details[data-stsize]")) return;
+  S.stSizeOpen = ev.target.open;
+  document.querySelectorAll("details[data-stsize]").forEach((d) => { if (d.open !== S.stSizeOpen) d.open = S.stSizeOpen; });
+  const card = ev.target.closest("#acard"); if (card && cardFor) placeCard(card);   // it grew or shrank: keep it in the picture
+}, true);
+/** The Room tab's line about the stove that's showing. */
+function stoveNow(r) {
+  const d = S.design[r.id] || {}, st = d.stove && S.stoveMap.get(d.stove.stoveId);
+  if (st) return ST.stoveName(st);
+  const v = S.variant[r.id], vd = r.def?.variants.find((x) => x.id === v);
+  return vd ? (v === "open" ? vd.label : `Sample ${vd.label.toLowerCase()}`) : "";   // "No stove", "No fireplace"
+}
+/** Send to the store's "Heat source", from the stove in the design. */
+function heatGuess() {
+  const d = currentDesign(), st = d.stove && S.stoveMap.get(d.stove.stoveId);
+  if (st) return { wood: "Wood stove", gas: "Gas stove or fireplace", pellet: "Pellet stove" }[st.fuel] || "Not sure yet";
+  if (S.room?.def?.stoves && S.variant[S.room.id] === "open") return "Stone only, no stove";
+  return "Not sure yet";
+}
+const SZ_LO = Math.round(Math.log2(ST.SIZE_MIN) * 100), SZ_HI = Math.round(Math.log2(ST.SIZE_MAX) * 100);   // slider units: log2(size) x 100
+const stoveDrawnText = (st, k) => ST.drawnSize(st, k) + (!st.sized ? ". Size not on file yet, drawn by eye" : ST.byEye(st, k) ? ", set by eye" : "");
+
+const stCard = (id, pressed, pic, name, l2, l3) => `<button class="stcard" data-a="stovepick" data-v="${esc(id)}" aria-pressed="${pressed}">
+      <span class="pic">${pic}</span><span class="t"><b>${name}</b>${l2 ? `<span>${l2}</span>` : ""}${l3 ? `<span class="sz">${l3}</span>` : ""}</span></button>`;
+const catalogCard = (s, cur) => stCard(s.id, cur === s.id, `<img src="${esc(s.image)}" alt="" loading="lazy">`, esc(ST.stoveName(s)), esc(ST.fuelWord(s)), esc(ST.makerSize(s) || "Size not on file yet"));
+function stovePanel() {
+  const r = S.room;
+  if (r?.kind === "photo") return `<div class="group"><h2 class="h">Stove</h2>
+      <p class="sub">Stoves on your own photo are coming next. For now, try our stoves on the hearth in the lake cabin.</p>
+      <div class="row"><button class="btn" data-a="room" data-v="cabin">Go to the lake cabin</button></div></div>`;
+  if (r?.def?.fireplaces && catalogFor(r.def).length) return fireplacePanel(r);
+  if (!r?.def?.stoves) return `<div class="group"><h2 class="h">Stove</h2>
+      <p class="sub">This room has a built-in gas fireplace. Try our stoves on the hearth in the lake cabin.</p>
+      <div class="row"><button class="btn" data-a="room" data-v="cabin">Go to the lake cabin</button></div></div>`;
+  const d = currentDesign(), cur = d.stove ? d.stove.stoveId : null, v = S.variant[r.id];
+  const cards = catalogFor(r.def).map((s) => catalogCard(s, cur)).join("");
+  const none = stCard("none", !cur && v === "open", `<i class="hearthglyph" aria-hidden="true"></i>`, "No stove", "Just the stone", "");
+  const samples = [["trad", "Traditional"], ["modern", "Modern"]].map(([id, nm]) => stCard(id, !cur && v === id, `<i class="sample s-${id}" aria-hidden="true"></i>`, `${nm} wood stove`, "Sample drawing", "")).join("");
+  const st = cur && S.stoveMap.get(cur);
+  return `<div class="group"><h2 class="h">Stove</h2>
+      <p class="sub">Put a stove from our catalog on the hearth. ${S.mode === "kiosk" ? "Tap one to try it." : "Pick one to try it."}</p></div>
+    <div class="stoves">${cards}${none}</div>
+    ${st ? stoveDetail(st, d.stove) : ""}
+    <div class="group"><div class="eyebrow">Sample stoves</div><div class="stoves samples">${samples}</div>
+      <p class="note">Drawings for scale, not specific models.</p></div>`;
+}
+/** The family room's Fireplace tab: our built-in fireplaces, in place of the room's own. */
+function fireplacePanel(r) {
+  const d = currentDesign(), cur = d.stove ? d.stove.stoveId : null, own = r.def.variants[0];
+  const st = cur && S.stoveMap.get(cur);
+  return `<div class="group"><h2 class="h">Fireplace</h2>
+      <p class="sub">Put one of our fireplaces in this wall, in place of the room's own. ${S.mode === "kiosk" ? "Tap one to try it." : "Pick one to try it."}</p></div>
+    <div class="stoves">${catalogFor(r.def).map((s) => catalogCard(s, cur)).join("")}</div>
+    ${st ? stoveDetail(st, d.stove) : ""}
+    <div class="group"><div class="eyebrow">Sample fireplace</div><div class="stoves samples">${stCard(own.id, !cur, `<i class="sample s-${esc(own.id)}" aria-hidden="true"></i>`, esc(own.label), "The room's own", "")}</div>
+      <p class="note">Drawn for scale, not a specific model.</p></div>`;
+}
+function stoveDetail(st, ds) {
+  const k = S.mode === "kiosk", sk = clamp(ds.sizeK || 1, ST.SIZE_MIN, ST.SIZE_MAX), v = Math.round(Math.log2(sk) * 100);
+  const word = ST.kindWord(st);   // a built-in fireplace is drawn at its viewing area's size: no size control
+  return `<div class="detail stdetail">
+    <div class="top"><span class="stpic"><img src="${esc(st.image)}" alt="${esc(ST.stoveName(st))}"></span>
+      <div style="min-width:0;display:flex;flex-direction:column;gap:6px">
+        <div class="eyebrow">${esc(st.brand)}${st.brand ? " · " : ""}${esc(ST.fuelWord(st))}</div>
+        <h3 class="h" style="font-size:24px">${esc(st.name)}</h3>
+        ${st.onDisplay ? `<span class="note">On display in our showroom</span>` : ""}</div></div>
+    <dl class="facts"><dt>Maker's size</dt><dd>${esc(ST.makerSize(st) || "Not on file yet")}</dd></dl>
+    ${word === "fireplace" ? "" : `<details class="stsize" data-stsize${S.stSizeOpen ? " open" : ""}>
+      <summary class="fl"><span class="lb">Stove size</span><output id="st_out">${Math.round(sk * 100)}%</output></summary>
+      <div class="stbody">
+      <div class="fc"><button class="fstep" data-a="stovestep" data-v="-1" aria-label="Stove size: smaller">${ICON.minus}</button>
+        <input type="range" id="st_size" aria-label="Stove size" min="${SZ_LO}" max="${SZ_HI}" step="1" value="${v}">
+        <button class="fstep" data-a="stovestep" data-v="1" aria-label="Stove size: bigger">${ICON.plus}</button></div>
+      <div class="fe" aria-hidden="true"><span>smaller</span><span>bigger</span></div>
+      <p class="drawn" id="st_drawn">${esc(stoveDrawnText(st, sk))}</p>
+      <div class="row"><button class="btn small" data-a="stovereset"${v === 0 ? " disabled" : ""}>${ICON.reset}${st.sized ? "Back to the maker's size" : "Back to the starting size"}</button></div>
+      </div>
+    </details>`}
+    <div class="stmore">
+      <p class="note">Shown for size and style. Ask us about clearances and installation.</p>
+      ${st.pageUrl ? (k
+        ? `<div class="row"><button class="btn small" data-a="stoveqr" data-v="${esc(st.id)}">${ICON.phone}More about this ${word} on your phone</button></div>`
+        : `<a href="${esc(st.pageUrl)}" target="_blank" rel="noopener">More about this ${word}</a>`) : ""}
+    </div>
+  </div>`;
+}
+/** Showroom: our page for the stove goes to the customer's phone. */
+function openStoveLink(id) {
+  const st = S.stoveMap.get(id), url = ST.pageForPhone(st, STORE.site); if (!url) return;
+  openLayer(`<div class="hd"><div><div class="eyebrow">${esc(STORE.name)}</div><h2 class="h">${esc(ST.stoveName(st))} on your phone</h2>
+      <p class="sub">Point your phone's camera at the code to open our page for this ${ST.kindWord(st)}.</p></div>${closeBtn}</div>
+    <div class="row" style="gap:24px;align-items:center">
+      <div class="qr" aria-label="QR code">${qrSVG(url)}</div>
+      <div style="display:flex;flex-direction:column;gap:10px;min-width:0"><div class="eyebrow">Or type</div><div class="note" style="font-size:1em;word-break:break-all">${esc(url.replace(/^https?:\/\//, ""))}</div>
+        <p class="note">Clearances, installation, venting: ask anyone here.</p></div></div>`);
+}
+/** The stove's card on the picture: tap the stove to size it, change it or take it away, like an
+ *  area's card (Ben, 28 Oct 2026). A sample stove (part of the room's own picture) gets a shorter
+ *  one. Empty when no stove stands there. In the family room it's the fireplace's: ours, or the
+ *  room's own (31 Oct 2026). */
+function stoveCardHTML() {
+  const r = S.room; if (r?.kind !== "scene" || !(r.def?.stoves || r.def?.fireplaces)) return "";
+  const fp = !!r.def.fireplaces, word = fp ? "fireplace" : "stove";
+  if (fp && !catalogFor(r.def).length) return "";   // none of ours to try in its place yet
+  const ds = currentDesign().stove, st = ds && S.stoveMap.get(ds.stoveId);
+  const actions = `<button class="hb primary" data-a="cardstoves">${ICON.swatch}<span>Change ${word}</span></button>
+      ${!fp ? `<button class="hb" data-a="stovepick" data-v="none">${ICON.trash}<span>No stove</span></button>`
+        : st ? `<button class="hb" data-a="stovepick" data-v="${esc(r.def.variants[0].id)}">${ICON.reset}<span>The room's own</span></button>` : ""}`;
+  if (!st) {
+    const vd = !ds && r.variantId !== "open" && r.def.variants.find((x) => x.id === r.variantId);
+    return vd ? `<div class="agrip" data-tip="Drag to move this box" aria-hidden="true"></div><div class="ahd">
+      <i class="atile sample s-${esc(vd.id)}" aria-hidden="true"></i>
+      <div class="at"><div class="k">Sample ${word}</div><div class="v">${esc(vd.label)}</div><div class="m plain">Drawn for scale, not a specific model.</div></div>
+      <button class="hb" data-a="closecard" aria-label="Close">${ICON.x}</button></div>
+    <div class="aacts">${actions}</div>
+    ${catalogFor(r.def).length ? `<p class="fnote">Change ${word} to try one of ours, drawn at the maker's size.</p>` : ""}` : "";
+  }
+  const k = S.mode === "kiosk", sk = clamp(ds.sizeK || 1, ST.SIZE_MIN, ST.SIZE_MAX), v = Math.round(Math.log2(sk) * 100);
+  return `<div class="agrip" data-tip="Drag to move this box" aria-hidden="true"></div><div class="ahd">
+      <img class="stthumb" src="${esc(st.image)}" alt="">
+      <div class="at"><div class="k">${esc(st.brand)}${st.brand ? " · " : ""}${esc(ST.fuelWord(st))}</div><div class="v">${esc(st.name)}</div><div class="m">${esc(ST.makerSize(st) || "Size not on file yet")}</div></div>
+      <button class="hb" data-a="closecard" aria-label="Close">${ICON.x}</button></div>
+    ${fp ? "" : `<details class="stcsize" data-stsize${S.stSizeOpen ? " open" : ""}>
+      <summary><span class="lb">Stove size</span><output id="stc_out">${Math.round(sk * 100)}%</output></summary>
+      <div class="fitrow">
+      <div class="fc"><button class="hb fstep" data-a="stovestep" data-v="-1" aria-label="Stove size: smaller">${ICON.minus}</button>
+        <input type="range" id="stc_size" aria-label="Stove size" min="${SZ_LO}" max="${SZ_HI}" step="1" value="${v}">
+        <button class="hb fstep" data-a="stovestep" data-v="1" aria-label="Stove size: bigger">${ICON.plus}</button></div>
+      <div class="fe" aria-hidden="true"><span>smaller</span><span>bigger</span></div></div>
+      <p class="fnote" id="stc_drawn">${esc(stoveDrawnText(st, sk))}</p>
+      <div class="aacts"><button class="hb" data-a="stovereset"${v === 0 ? " disabled" : ""}>${ICON.reset}<span>${st.sized ? "Back to the maker's size" : "Back to the starting size"}</span></button></div>
+    </details>`}
+    <div class="aacts">${actions}</div>
+    <p class="fnote">Shown for size and style. Ask us about clearances and installation.${st.pageUrl && !k ? ` <a class="stlink" href="${esc(st.pageUrl)}" target="_blank" rel="noopener">More about this ${word}</a>` : ""}</p>
+    ${st.pageUrl && k ? `<div class="aacts"><button class="hb" data-a="stoveqr" data-v="${esc(st.id)}">${ICON.phone}<span>More about this ${word} on your phone</span></button></div>` : ""}`;
+}
+
 function persist() { syncLinks(); if (S.mode !== "kiosk") store.set("design", { cabin: S.design.cabin, linear: S.design.linear }); }
 
 // "Same as" links: an area set to "Same as Chimney" follows the chimney until it's tapped off, or
@@ -422,7 +794,7 @@ function loop(t) {
   requestAnimationFrame(loop);
   if (!engine || !S.room) return;
   if (sizeCanvas()) { engine.fit(S.attract ? "cover" : "contain"); drawOverlay(); dirty = true; }
-  const fireOn = !!(engine.scene && engine.scene.fire) && !S.room.noFire;
+  const fireOn = !!(engine.scene && engine.scene.fire) && !engine.scene.noFire;
   if (fireOn) engine.flick = 1 + 0.055 * Math.sin(t * 0.0071) + 0.035 * Math.sin(t * 0.0173 + 1.3) + 0.025 * Math.sin(t * 0.0411 + 0.7);
   const flickerOnly = fireOn && !dirty && t >= animUntil && !S.attractWipe;
   const animating = t < animUntil || !!S.attractWipe || (fireOn && !document.hidden);
@@ -486,7 +858,8 @@ function renderChrome() {
     tool("fit", ICON.fit, "Fit picture", "Fit the picture to the screen"),
   ]).join("") + (k ? tool("fullscreen", ICON.full, "Full screen", "Full screen") : "");
   layoutTools();
-  $("#tabs").innerHTML = [["stone", "Stone"], ["finish", "Finish"], ["areas", "Areas"], ["room", "Room"], ["estimate", "Estimate"]]
+  if (!SHOW_ESTIMATE && S.tab === "estimate") S.tab = "stone";
+  $("#tabs").innerHTML = [["stone", "Stone"], ["finish", "Finish"], ["stove", S.room?.def?.fireplaces && catalogFor(S.room.def).length ? "Fireplace" : "Stove"], ["areas", "Areas"], ["room", "Room"], ...(SHOW_ESTIMATE ? [["estimate", "Estimate"]] : [])]
     .map(([id, l]) => `<button role="tab" data-a="tab" data-v="${id}" aria-selected="${S.tab === id}">${l}</button>`).join("");
   $("#railFoot").innerHTML = k
     ? `<button class="btn" data-a="phone">${ICON.phone}Send to my phone</button><button class="btn primary" data-a="send">${ICON.send}Get a quote</button>`
@@ -515,7 +888,13 @@ function renderCaption() {
     const meta = a.mode === "stone" ? `${JOINTS[a.joint || "standard"].label}${a.joint === "dry" ? "" : " · " + esc(MORTARS.find((m) => m.id === a.mortar)?.label || "") + " mortar"}` : "";
     html = `<div class="cap"><div class="k">${esc(g.label)}</div><div class="v">${what}</div>${meta ? `<div class="m">${meta}</div>` : ""}</div>`;
   }
-  if (!S.hinted && r.kind === "scene") html += `<div class="cap" style="max-width:40%;text-align:right"><div class="m" style="color:#e9e6df">Tap the ${r.groups.map((x) => x.label.toLowerCase().replace("wall beside the ", "wall by the ")).slice(0, 2).join(" or ")} to change it</div></div>`;
+  if (!S.hinted && r.kind === "scene") {
+    const tap = r.groups.map((x) => x.label.toLowerCase().replace("wall beside the ", "wall by the ")).slice(0, 2);
+    // a catalog stove on the hearth has its own card too; so does the family room's fireplace (with
+    // the bump-out alone before it: "fireplace" three times over reads badly)
+    if (stoveCardHTML()) { if (r.def?.fireplaces) tap.splice(1); tap.push(r.def?.fireplaces ? "fireplace" : "stove"); }
+    html += `<div class="cap" style="max-width:40%;text-align:right"><div class="m" style="color:#e9e6df">Tap the ${tap.length > 2 ? `${tap.slice(0, -1).join(", ")} or ${tap[tap.length - 1]}` : tap.join(" or ")} to change it</div></div>`;
+  }
   $("#caption").innerHTML = html;
 }
 
@@ -575,7 +954,7 @@ function renderRail(opt) {
   const t = S.tab;
   if (S.paintFor && (t !== "areas" || !S.room?.groups.some((g) => g.id === S.paintFor) || currentDesign()[S.paintFor]?.mode !== "paint")) S.paintFor = null;
   const paint = t === "areas" && S.paintFor;
-  body.innerHTML = paint ? paintPanel(S.paintFor) : t === "stone" ? stonePanel() : t === "finish" ? finishPanel() : t === "areas" ? areasPanel() : t === "room" ? roomPanel() : estimatePanel();
+  body.innerHTML = paint ? paintPanel(S.paintFor) : t === "stone" ? stonePanel() : t === "finish" ? finishPanel() : t === "areas" ? areasPanel() : t === "room" ? roomPanel() : t === "stove" ? stovePanel() : estimatePanel();
   if (t === "finish") drawJointDiagrams();
   if (paint) bindPaintPanel();
   if (keep != null) body.scrollTop = keep;
@@ -1031,10 +1410,12 @@ function roomPanel() {
         ${S.photo ? `<img src="${S.photo.thumb}" alt="">` : `<span style="display:grid;place-items:center;height:80px;border-radius:8px;border:1px dashed var(--line)">${ICON.cam}</span>`}
         <span><b>${S.photo ? "Your photo" : "Use my photo"}</b><span>${S.photo ? "Your wall, set up for stone" : "A phone picture of your wall or fireplace works well"}</span></span></button>
     </div>
-    ${sceneRoom ? `<div class="group"><div class="eyebrow">${sceneRoom.variants.length > 1 ? "Stove" : "Fireplace"}</div>
+    ${sceneRoom && (sceneRoom.stoves || sceneRoom.fireplaces && catalogFor(sceneRoom).length) ? `<div class="group"><div class="eyebrow">${sceneRoom.stoves ? "Stove" : "Fireplace"}</div>
+      <div class="row"><span class="sub">${esc(stoveNow(r))}</span><button class="btn small" data-a="tab" data-v="stove">Change the ${sceneRoom.stoves ? "stove" : "fireplace"}</button></div></div>` : ""}
+    ${sceneRoom && !sceneRoom.stoves && !(sceneRoom.fireplaces && catalogFor(sceneRoom).length) ? `<div class="group"><div class="eyebrow">${sceneRoom.fireplaces ? "Fireplace" : "Stove"}</div>
       <div class="pills">${sceneRoom.variants.filter((v) => !r.sj || r.sj.variants[v.id]).map((v) => `<button class="pill" data-a="variant" data-v="${v.id}" aria-pressed="${S.variant[r.id] === v.id}">${esc(v.label)}</button>`).join("")}</div>
-      <p class="note">Sample ${sceneRoom.variants.length > 1 ? "stoves" : "fireplace"} for scale and style. Ask us about the wood, gas and pellet models we carry.</p></div>
-      ${sceneLightControls()}` : ""}`;
+      <p class="note">Sample ${sceneRoom.fireplaces ? "fireplace" : "stoves"} for scale and style. Ask us about the models we carry.</p></div>` : ""}
+    ${sceneRoom ? sceneLightControls() : ""}`;
 }
 
 // ------------------------------------------------------------------ back to the start
@@ -1215,9 +1596,13 @@ async function act(a, v, el) {
     case "shuffle": applyToTargets((g) => { g.seed = ((g.seed || 0) + 1 + Math.floor(Math.random() * 97)) % 1000; }); invalidate(); break;
     case "fit": engine.fit(); invalidate(); drawOverlay(); break;
     case "before": S.compare = S.compare.mode === "before" ? { mode: "off", split: 0.5 } : { mode: "before", split: 0.5 }; renderChrome(); renderChips(); drawOverlay(); invalidate(); break;
-    case "comparepick": if (S.compare.mode === "look") { S.compare = { mode: "off", split: 0.5 }; renderChrome(); renderChips(); drawOverlay(); invalidate(); } else openIdeas(true); break;
+    case "comparepick": if (S.compare.mode === "look") { S.compare = { mode: "off", split: 0.5 }; setCmpScene(null); renderChrome(); renderChips(); drawOverlay(); invalidate(); } else openIdeas(true); break;
     case "light": S.light = v; if (S.room.kind === "scene") await setRoom(S.roomId); else renderRail(); break;
     case "variant": S.variant[S.roomId] = v; await setRoom(S.roomId); break;
+    case "stovepick": await pickStove(v); break;
+    case "stovestep": stoveSize(Math.round(Math.log2(currentDesign().stove?.sizeK || 1) * 100) + Number(v) * 5); break;
+    case "stovereset": stoveSize(0); break;
+    case "stoveqr": openStoveLink(v); break;
     case "room": if (roomPopOpen) toggleRoomPop(false); if (v !== S.roomId) await setRoom(v); break;
     case "gmode": {
       const g = el.dataset.g; d[g] = d[g] || {};
@@ -1446,6 +1831,12 @@ function tapAt(p) {
   if (!S.hinted) { S.hinted = true; store.set("hinted", true); }
   const [cx, cy] = cssToCanvas(p[0], p[1]);
   const [u, v] = engine.toUV(cx, cy);
+  if (stoveAtUV(u, v) || sampleStoveAtUV(u, v)) {   // the stove (or fireplace): its card by it (size, change, no stove), and its tab
+    select(null); S.paintFor = null; S.tab = "stove";
+    renderChrome(); renderRail(); renderQuick();
+    openCard(STOVE_CARD, p);
+    return;
+  }
   const zid = zoneAtUV(u, v);
   const g = zid ? groupOfZone(zid) : null;
   if (!g) return;          // a tap off the areas leaves the card open: its X closes it
@@ -1455,7 +1846,7 @@ function tapAt(p) {
   if (isPad(g)) { S.paintFor = null; S.tab = "areas"; }
   else if (currentDesign()[g]?.mode === "paint") { S.tab = "areas"; S.paintFor = g; }
   else if (S.paintFor) { S.paintFor = null; S.tab = "stone"; }
-  if (S.tab === "estimate" || S.tab === "room") S.tab = "stone";
+  if (S.tab === "estimate" || S.tab === "room" || S.tab === "stove") S.tab = "stone";
   renderChrome(); renderRail(); renderQuick();
   openCard(g, p);
 }
@@ -1467,6 +1858,12 @@ function hoverAt(ev, p) {
   }
   const [cx, cy] = cssToCanvas(p[0], p[1]);
   const [u, v] = engine.toUV(cx, cy);
+  if (stoveAtUV(u, v) || sampleStoveAtUV(u, v)) {
+    if (S.hoverGroup) { S.hoverGroup = null; invalidate(); }
+    const st = S.stoveMap.get(currentDesign().stove?.stoveId);
+    const name = st ? ST.stoveName(st) : S.room.def.variants.find((x) => x.id === S.room.variantId)?.label;
+    if (name) showTip(p, name + " · tap to change"); return;
+  }
   const zid = zoneAtUV(u, v);
   const g = zid ? groupOfZone(zid) : null;
   if (g !== S.hoverGroup) { S.hoverGroup = g; invalidate(); }
@@ -1637,6 +2034,9 @@ function designSummary() {
     const st = S.cat.get(a.stone);
     lines.push(`${g.label}: ${st?.name} (Buechel Stone), ${JOINTS[a.joint].label.toLowerCase()}${a.joint === "dry" ? "" : ", " + MORTARS.find((m) => m.id === a.mortar)?.label.toLowerCase() + " mortar"}`);
   }
+  const sv = d.stove && S.stoveMap.get(d.stove.stoveId);
+  if (sv && S.room?.def?.stoves) lines.push(`Stove: ${ST.stoveName(sv)}${ST.byEye(sv, d.stove.sizeK) ? " (size set by eye)" : ""}`);
+  if (sv && S.room?.def?.fireplaces) lines.push(`Fireplace: ${ST.stoveName(sv)}`);
   return lines;
 }
 function composeImage(maxW = 2400) {
@@ -1788,11 +2188,11 @@ function openSend() {
       <div class="field"><label for="f_contact">Phone or email</label><input id="f_contact" autocomplete="email" required></div>
       <div class="field"><label for="f_town">Town or ZIP code</label><input id="f_town" autocomplete="postal-code"></div>
       <div class="field"><label for="f_when">When are you hoping to do this?</label><select id="f_when"><option>Just gathering ideas</option><option>In the next few months</option><option>This season</option><option>As soon as possible</option></select></div>
-      <div class="field"><label for="f_heat">Heat source</label><select id="f_heat"><option>Not sure yet</option><option>Wood stove</option><option>Gas stove or fireplace</option><option>Fireplace insert</option><option>Pellet stove</option><option>Stone only, no stove</option></select></div>
+      <div class="field"><label for="f_heat">Heat source</label><select id="f_heat">${["Not sure yet", "Wood stove", "Gas stove or fireplace", "Fireplace insert", "Stone only, no stove"].map((o) => `<option${o === heatGuess() ? " selected" : ""}>${o}</option>`).join("")}</select></div>
       <div class="field"><label for="f_note">Anything else?</label><textarea id="f_note" placeholder="Chimney height, existing hearth, questions…"></textarea></div>
       <div style="grid-column:1/-1;display:flex;gap:14px;align-items:center;flex-wrap:wrap">
         ${thumb ? `<img src="${thumb}" alt="" style="width:180px;border-radius:8px">` : ""}
-        <div class="note" style="flex:1;min-width:200px">Attached: your design picture, ${E.rows.length ? `the estimate (${fmt(E.total, 0)} sq ft of stone, ${fmt(E.totalC, 0)} lin ft of corners)` : "no stone areas yet"}${S.room.kind === "photo" ? ", and your photo" : ""}.</div>
+        <div class="note" style="flex:1;min-width:200px">Attached: your design picture${SHOW_ESTIMATE ? `, ${E.rows.length ? `the estimate (${fmt(E.total, 0)} sq ft of stone, ${fmt(E.totalC, 0)} lin ft of corners)` : "no stone areas yet"}${S.room.kind === "photo" ? ", and your photo" : ""}` : S.room.kind === "photo" ? " and your photo" : ""}.</div>
         <button class="btn primary" type="submit">${ICON.send}Send to ${STORE.name}</button></div>
     </form>`, "wide");
   $("#sendForm").addEventListener("submit", (e) => {
@@ -1808,7 +2208,7 @@ function openSend() {
         <dt>Timing</dt><dd>${esc($("#f_when")?.value || "")}</dd>
         <dt>Heat</dt><dd>${esc($("#f_heat")?.value || "")}</dd>
         <dt>Design</dt><dd>${summary.map(esc).join("<br>") || "No stone yet"}</dd>
-        <dt>Estimate</dt><dd>${fmt(E.total)} sq ft · ${fmt(E.totalC)} lin ft corners</dd>
+        ${SHOW_ESTIMATE ? `<dt>Estimate</dt><dd>${fmt(E.total)} sq ft · ${fmt(E.totalC)} lin ft corners</dd>` : ""}
         <dt>Room</dt><dd>${S.room.kind === "photo" ? "Customer photo (private)" : esc(S.room.def?.name || "")}</dd>
       </dl></div>`);
   });
@@ -1879,8 +2279,15 @@ const ideaActions = {
   },
   cmpidea: async (id) => {
     const i = S.ideas.find((x) => x.id === id); if (!i) return;
-    await Promise.all(stonesInDesign(i.design).map(ensureStone));
-    S.compare = { mode: "look", split: 0.5, lookB: lookFrom(i.design), nameB: i.name };
+    await Promise.all([...stonesInDesign(i.design).map(ensureStone), ensureStove(i.design?.stove?.stoveId)]);
+    let sceneB = null;
+    const r = S.room, iv = r?.kind === "scene" && onOpen(r.def, i.design) ? "open" : i.variant;
+    if (r?.kind === "scene" && iv && iv !== r.variantId && r.sj.variants[iv]) {
+      const noFireB = !!r.def.variants.find((x) => x.id === iv)?.noFire && !i.design?.stove;
+      const sb = sceneFor(await sceneEntry(r.id, iv, S.light), noFireB);
+      setCmpScene(sb); sceneB = sb.scene;
+    }
+    S.compare = { mode: "look", split: 0.5, lookB: lookFrom(i.design), nameB: i.name, sceneB };
     closeLayer(); renderChrome(); renderChips(); drawOverlay(); invalidate();
   },
   delidea: (id) => { S.ideas = S.ideas.filter((x) => x.id !== id); store.set("ideas", S.ideas); openIdeas(false); renderChrome(); },
@@ -4117,6 +4524,7 @@ function wizardSVG() {
 
 // ------------------------------------------------------------------ area card: tap a finished area to see and change it
 let cardFor = null;      // {gid, at:[x,y]}
+const STOVE_CARD = "@stove";   // cardFor.gid for the stove's card (stoveCardHTML); no area has it
 function openCard(gid, p) {
   // adjusting Size & angle and tapping another area: carry on adjusting that one
   const fa = cardFor?.view === "fit" ? S.photo?.areas.find((a) => a.id === gid) : null;
@@ -4129,9 +4537,11 @@ function renderCard() {
   let el = $("#acard");
   const r = S.room;
   if (!cardFor || !r || S.attract || S.photo?.wizard && S.roomId === "photo") { if (el) el.hidden = true; return; }
-  const g = r.groups.find((x) => x.id === cardFor.gid);
-  if (!g) { closeCard(); return; }
+  const stove = cardFor.gid === STOVE_CARD ? stoveCardHTML() : "";
+  const g = stove ? null : r.groups.find((x) => x.id === cardFor.gid);
+  if (!stove && !g) { closeCard(); return; }
   if (!el) { el = document.createElement("div"); el.id = "acard"; el.className = "acard"; el.setAttribute("role", "dialog"); stage.appendChild(el); bindCardDrag(el); }
+  if (stove) { el.innerHTML = stove; el.hidden = false; el.classList.remove("fit"); placeCard(el); return; }
   const d = currentDesign()[g.id] || { mode: "off" };
   const st = S.cat.get(d.stone);
   const photo = r.kind === "photo";
@@ -4168,6 +4578,9 @@ function renderCard() {
     </div>`;
   el.hidden = false;
   el.classList.toggle("fit", cardFor.view === "fit" && !!area);
+  placeCard(el);
+}
+function placeCard(el) {
   // place it next to the tap, inside the picture. On phones it sits just under the picture so the
   // whole picture stays in view while colors and stones change; in a narrow window it docks to the bottom.
   const stacked = window.matchMedia("(max-width: 860px)").matches;
@@ -4176,6 +4589,7 @@ function renderCard() {
   else if (el.parentElement !== stage) stage.appendChild(el);
   el.classList.toggle("under", stacked);
   el.classList.toggle("docked", narrow && !cardSpot);
+  el.classList.toggle("dtop", narrow && !cardSpot && cardFor?.gid === STOVE_CARD);   // a stove stands low in the picture: its card docks at the top
   if (stacked) { el.style.left = ""; el.style.top = ""; el.style.width = ""; return; }
   if (cardSpot) {                     // the customer moved it: keep it where they put it
     if (narrow) el.style.width = Math.min(360, stage.clientWidth - 24) + "px";
@@ -4226,7 +4640,10 @@ function bestCardSpot(gid, at, w, h) {
 function areaCover(gid) {
   const r = S.room; if (!r) return null;
   let w, h, on;
-  if (r.kind === "photo") {
+  if (gid === STOVE_CARD) {   // the stove's outline, so its card keeps off the stove (not kept: it moves and resizes)
+    w = 192; h = Math.max(1, Math.round(192 * r.height / r.width));
+    on = (i) => { const u = (i % w + 0.5) / w, v = (Math.floor(i / w) + 0.5) / h; return stoveAtUV(u, v) || sampleStoveAtUV(u, v); };
+  } else if (r.kind === "photo") {
     const area = S.photo?.areas.find((a) => a.id === gid); if (!area) return null;
     w = 300; h = Math.max(1, Math.round(300 * r.height / r.width));
     const c = document.createElement("canvas"); c.width = w; c.height = h;
@@ -4248,7 +4665,7 @@ function areaCover(gid) {
     for (let x = 0; x < w; x++) { run += on(y * w + x) ? 1 : 0; sat[(y + 1) * (w + 1) + x + 1] = sat[y * (w + 1) + x + 1] + run; }
   }
   const out = { w, h, sat, total: sat[sat.length - 1] };
-  if (r.kind !== "photo") (r.cover ||= {})[gid] = out;
+  if (r.kind !== "photo" && gid !== STOVE_CARD) (r.cover ||= {})[gid] = out;
   return out;
 }
 /** Drag the card by its top (the grip or the title) to move it off the part of the picture you're
@@ -4396,6 +4813,7 @@ const cardActions = {
     invalidate(600);
   },
   cardstone: () => { const g = cardFor?.gid; if (!g) return; S.target = g; S.tab = "stone"; closeCard(); renderChrome(); renderRail(); renderQuick(); revealRail("#railBody .grid"); },
+  cardstoves: () => { S.paintFor = null; S.tab = "stove"; closeCard(); renderChrome(); renderRail(); revealRail("#railBody .stoves"); },
   cardfit: () => {
     const a = S.photo?.areas.find((x) => x.id === cardFor?.gid); if (!a) return;
     Object.assign(cardFor, { view: "fit", spot: null, fitStart: fitSnap(a) });

@@ -42,7 +42,8 @@ const tools = [
   {
     href: "/hearth-studio/",
     title: "Hearth Studio",
-    blurb: "Try Buechel stone on a chimney, hearth or accent wall, in a sample room or a photo of your own, and see how much stone the job takes.",
+    // No "how much stone the job takes" while the estimate is kept from customers (Ben, 28 Oct 2026).
+    blurb: "Try Buechel stone on a chimney, hearth or accent wall, in a sample room or a photo of your own.",
     photo: { src: "/images/fb13.jpg", width: 720, height: 960 },
   },
 ];

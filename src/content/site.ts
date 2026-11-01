@@ -79,7 +79,8 @@ export const shopMenu = {
   ] satisfies NavLink[],
   // The room visualizer is retired for now (Ben, 28 Oct 2026).
   tools: [
-    { label: "Hearth Studio", href: "/hearth-studio/", blurb: "Buechel stone on your wall, with an estimate" },
+    // No estimate while it's kept from customers (Ben, 28 Oct 2026; docs/hearth-studio.md).
+    { label: "Hearth Studio", href: "/hearth-studio/", blurb: "Buechel stone on your wall" },
   ] satisfies NavLink[],
 };
 
@@ -99,7 +100,8 @@ export const studioMenu: (NavLink & { features?: string[] })[] = [
       "Stone by style and color",
       "Joints and mortar color",
       "Paint colors for the walls",
-      "How much stone it takes",
+      // was "How much stone it takes": the estimate is kept from customers for now (Ben, 28 Oct 2026)
+      "Stoves on the hearth",
       "Before and after",
       "Save, download or share",
     ],

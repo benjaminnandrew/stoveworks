@@ -75,7 +75,9 @@ npm run db:grant -- you@example.com admin
 db/schema.sql               the site's tables, idempotent
 db/catalog.sql              the catalog's tables (filled by brain:load), idempotent
 scripts/                    migrate, seed, seed-stone, reset, grant, tile + logo tooling,
-                            load-brain (the catalog loader) + store-driver
+                            load-brain (the catalog loader) + store-driver, set-stove-cutout
+                            (a stove, its pipe's top outlet, or a built-in fireplace into
+                            Hearth Studio locally, until the admin's sizing step)
 brain/                      the manufacturer catalog: data, photo/PDF lists, guides
 src/
   app/

@@ -93,6 +93,31 @@ CREATE INDEX IF NOT EXISTS products_brand_idx ON products (brand_id);
 ALTER TABLE products ADD COLUMN IF NOT EXISTS catalog_model_id text;
 CREATE UNIQUE INDEX IF NOT EXISTS products_catalog_model_key ON products (catalog_model_id);
 
+-- What Hearth Studio needs to know about a cutout, set by staff with the image (its
+-- INTEGRATION.md, 7a and 7d), and like the cutout never touched by brain:load:
+--   cutout_view      which way the photo faces: front, left34 or right34
+--   cutout_span      where the maker's width runs across the photo, [left, right] as fractions
+--   cutout_width_in  that width in inches (the maker's width, for a front view)
+--   glass_box        the fire window, [x0, y0, x1, y1] as fractions of the photo
+--   cutout_top_front where the top meets the front (the top of the maker's height), as a
+--                    fraction of the photo's height, so Hearth Studio draws the stove the right
+--                    height as well as width (30 Oct 2026)
+--   cutout_flue      where the photo shows the top flue outlet, capped (a blanking plate, no
+--                    collar), [x, y] as fractions of the photo: the pipe stands on the top there
+--                    (31 Oct 2026)
+--   viewing_box      a built-in fireplace's viewing area (what shows inside its front),
+--                    [x0, y0, x1, y1] as fractions of the photo (31 Oct 2026)
+--   viewing_in       that viewing area's size, [wide, tall] in inches: the maker's published
+--                    figure. Hearth Studio draws the fireplace's front at that size
+ALTER TABLE products ADD COLUMN IF NOT EXISTS cutout_view text;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS cutout_span real[];
+ALTER TABLE products ADD COLUMN IF NOT EXISTS cutout_width_in numeric(6, 2);
+ALTER TABLE products ADD COLUMN IF NOT EXISTS glass_box real[];
+ALTER TABLE products ADD COLUMN IF NOT EXISTS cutout_top_front real;
+ALTER TABLE products ADD COLUMN IF NOT EXISTS cutout_flue real[];
+ALTER TABLE products ADD COLUMN IF NOT EXISTS viewing_box real[];
+ALTER TABLE products ADD COLUMN IF NOT EXISTS viewing_in real[];
+
 -- ---------------------------------------------------------------------------
 -- Visualizer
 -- ---------------------------------------------------------------------------

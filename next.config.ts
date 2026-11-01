@@ -36,12 +36,15 @@ const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
   async headers() {
     // Hearth Studio (public/hs/): the photo helper's model and its runtime are big and never change
-    // under the same name, so browsers keep them; stone textures and room renders for a day.
+    // under the same name, so browsers keep them; each stone's textures for a day. The rest (the
+    // app, the rooms' data and renders, the stone list) is checked on every load: Hearth Studio's
+    // updates change those under the same names, and they have to match the app. A day-old
+    // scene.json with update-2's app drew no stove (28 Oct 2026).
     const year = "public, max-age=31536000, immutable";
     return [
       { source: "/hs/models/:path*", headers: [{ key: "Cache-Control", value: year }] },
       { source: "/hs/vendor/:path*", headers: [{ key: "Cache-Control", value: year }] },
-      { source: "/hs/assets/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=86400" }] },
+      { source: "/hs/assets/stone/:id/:file", headers: [{ key: "Cache-Control", value: "public, max-age=86400" }] },
     ];
   },
   async redirects() {

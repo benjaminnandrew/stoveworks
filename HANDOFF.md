@@ -78,11 +78,93 @@ Everything before it is committed as `b4c1682` on `redesign-up-north`.
   - anything else goes to the site search.
   The title area got shorter even with the box: 185px at 1440 (was 264), 276px on a phone (was
   307).
+- **Guides link back to the model** (Ben). Under each guide's two boxes there's "Our Kozy Heat
+  Lakefield XL page →"; a guide that covers several models links each one.
+  - Added as the guide is served (`src/lib/guide-theme.ts`, `listGuideModels()`), so `brain/` is
+    untouched.
+  - Only models with a page get a link, by the model page's own rule: 176 of 186 guides, and all
+    195 links checked.
 - **Search:** a brand plus the number in a model's name now names it ("Jøtul 445" → the two
   F 445s). It's a general rule plus a new generated test form; see
   [docs/smart-search-plan.md](docs/smart-search-plan.md), "28 Oct 2026".
 - **Home search:** the suggestions hang over the hours strip instead of being cut off at the
   hero's foot (`.home-hero` now clips sideways only).
+- **Hearth Studio, Phase 4 (stoves): the stove layer works in the lake cabin, with one stove, the
+  Morsø 7110 B.**
+  - Ben confirmed the makers' own photos may be used.
+  - The site side:
+    - the stove route lists stoves with a cutout, with four new cutout columns;
+    - each stove's `pageUrl` is its model page here, as a full address from `SITE_URL`;
+    - the config is set;
+    - the 7110 has its cutout locally (dev data only).
+  - The Hearth Studio chat built the layer: `hearth-studio-update-2.zip`, then `-update-3.zip`
+    (the cards link to our stove pages, never the maker's), both applied and checked.
+  - **Two fixes came out of testing:**
+    - `/hs/assets/` no longer caches for a day except stone textures. A stale `scene.json` beside
+      the new app drew no stove.
+    - A `[hidden]` line in our `index.html` block, because the app's spinner and messages never
+      hid.
+  - **Tap the stove to edit it** (Ben): a stove card on the picture, like the chimney's, with the
+    size control, Change stove, No stove and the page link. The sample stoves can be tapped too.
+    Stove size folds away, closed on each page load (Ben). Built here in `js/app.js` and
+    `css/stoves.css`, the first edits to the app's own code. Merge each new update from the chat
+    with `git merge-file`, as [docs/hearth-studio.md](docs/hearth-studio.md) says.
+  - **`/showroom/` isn't locked any more** (Ben). Its badge links home like the website's, since
+    it's likely the shop screen's home page and staff use the whole site from it. A long press on
+    the badge still opens the staff panel. That's in our `index.html` block.
+  - **A second stove: the Jøtul F 445 Holliday** (dev data, like the 7110). Its arched window led to
+    a one-line shader change in `js/engine.js`: only fire glows in the fire window.
+  - **A third, 30 Oct: the Morsø 6140 B with low base** (round). The pipe rules changed in
+    `js/stoves.js`: a collar in the photo places the pipe; without one, it's a 6″ pipe on the
+    center line.
+  - **Two more, 30 Oct: the Jøtul F 602 V3 and the Morsø 6148 B on pedestal**, so five in all
+    (dev data).
+  - **Accurate stove sizes in the sample room** (Ben, 30 Oct), the base for customer photos.
+    - Each stove's photo now also records where its top meets its front (`imageTopFront`,
+      `cutout_top_front`).
+    - Hearth Studio fits the front to the maker's height and the top to what the cabin's camera
+      sees. Width was already exact.
+    - Before, the 7110 and F 445 were drawn about 15% too tall and the 6140's front 7% short. Now
+      each one lines up with its maker-size outline.
+    `scripts/set-stove-cutout.mjs` adds a stove locally until 7d's admin step exists.
+  - **"See it in a room →" on stove pages** (Ben). It opens Hearth Studio with that stove on the
+    cabin's hearth, and shows only where Hearth Studio has the stove: today the 7110 and the F 445,
+    and any stove that gets a cutout picks it up.
+  - **The estimate is kept from customers** until it's confirmed (Ben): `estimate: false` in
+    `HS_CONFIG`. See "Content the tools need to be truthful" below.
+  - **Built-in fireplaces in the family room, 31 Oct** (Ben: "do the same with the Sample Room
+    family room"). The first was the Mendota ML54 Décor.
+    - Then Ben asked for "a couple others": the ML54 Timberline and the ML60 Décor.
+    - Then "any more": the ML60 Timberline and Kozy Heat's Nordik 60 TL (1 Nov).
+    - Then Ben asked why a 50″ one couldn't go on the wall. A fireplace's front was drawn over the
+      room's own, so it had to cover it.
+    - So the room was rendered again here with an **empty wall** (1 Nov), the first thing made
+      with the chat's Blender build now in `hearth-studio-build/`. With one of ours in, the room
+      shows that picture, so any size fits.
+    - That let in the ML48 Décor, FireIn and Timberline: eight fireplaces, all dev data.
+    - Each front is drawn flat on the bump-out at the maker's viewing area, and lines up with that
+      outline drawn from the room's camera.
+    - The rest wait on photos that match the maker's figures, or are too wide for the bump-out.
+    - The room's `scene.json` gained a `camera` and a `fireSpot`. A chat update that replaces it
+      drops them.
+    - Two product columns (`viewing_box`, `viewing_in`) and a `face` command in
+      `scripts/set-stove-cutout.mjs`.
+    - Fireplace pages get "See it in a room" too.
+    - **Inserts** need a third sample room with a masonry opening: a new render, which can now be
+      made here.
+  - **The rooms are built here now (1 Nov, Ben):** "let's get it dialed here so we're doing the best
+    in the same spot. I can use chat as an outside check every so often."
+    - The chat's Blender build is in `hearth-studio-build/`, with Python 3.11 and bpy 5.0.1 in
+      `var/blendenv`. Its README says how to run it.
+    - Renders go to `var/hs-renders`.
+  - **The round Morsøs' pipes, 31 Oct (Ben):**
+    - The 6140 and 6148 pipes come out of the top opening.
+      - Their photos show the top outlet's blanking plate. A new photo fact, `imageFlue`
+        (`cutout_flue`, the `flue` command), stands the pipe there.
+      - On the center line, the pipe had looked as if it came from behind.
+    - Every pipe and its trim ring are black now; they had looked gray.
+  - Notes for the chat are in `handoff/hearth-studio-notes-3/`, with the stove card as a patch.
+  - Details in [docs/hearth-studio.md](docs/hearth-studio.md).
 - **Header fit:** with "Hearth Studio" in the bar, the lockup logo starts at 1290px (was 1260px)
   and the 993–1100px nav padding is a touch tighter; measured with no wrapped item from 993 to
   1920px.
@@ -551,6 +633,16 @@ Ordered by what blocks going live.
    headers — a forged `Host` would otherwise mint links pointing at an attacker's domain.
 
 ### Content the tools need to be truthful
+
+**Hearth Studio's stone estimate (28 Oct 2026): kept from customers until it's confirmed (Ben).**
+The estimate is still worked out in the system, but customers don't see it:
+- the Estimate tab;
+- the estimate in "Send to the store";
+- the site's lines that promised it.
+
+What to confirm (Steve's coverage numbers, boxes and tons or square feet, the sample rooms' sizes,
+photo sizes set by eye) and how to turn it back on are in
+[docs/hearth-studio.md](docs/hearth-studio.md), "Still open", item 2.
 
 **Logo (19 Oct 2026):** the round badge (`public/images/logo-badge.png`) replaced the cast
 nameplate. It sits at 80px inside a 96px header bar (a version hanging below the bar was tried and

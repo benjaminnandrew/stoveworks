@@ -12,6 +12,7 @@ import {
   type CatalogModel,
   type CatalogModelSummary,
 } from "@/lib/catalog";
+import { studioStoveFor } from "@/lib/hearth-studio";
 import { modelHref } from "@/lib/model-url";
 import { modelView, type ModelView } from "@/lib/model-view";
 import { SHARE_IMAGE } from "@/lib/share-image";
@@ -23,6 +24,8 @@ export type ModelPageData = {
   view: ModelView;
   /** The brand's other public models of the same type, for "More Blaze King wood stoves". */
   related: CatalogModelSummary[];
+  /** Its stove or fireplace in Hearth Studio, when it can be shown in a room there ("See it in a room"). */
+  studioStove: string | null;
 };
 
 /**
@@ -36,10 +39,9 @@ export const loadModelPage = cache(async (brandSlug: string, slug: string): Prom
   if (!brand?.inCatalog) return null;
   const model = await getCatalogModel(`${brandSlug}-${slug}`);
   if (!model || model.brand_slug !== brandSlug || !isPublicModel(model)) return null;
-  const related = (await listPublicLineup(brandSlug))
-    .filter((m) => m.id !== model.id && m.form === model.form && m.fuel === model.fuel)
-    .slice(0, 6);
-  return { brand, model, view: modelView(model, brand.name), related };
+  const [lineup, studioStove] = await Promise.all([listPublicLineup(brandSlug), studioStoveFor(model.id)]);
+  const related = lineup.filter((m) => m.id !== model.id && m.form === model.form && m.fuel === model.fuel).slice(0, 6);
+  return { brand, model, view: modelView(model, brand.name), related, studioStove };
 });
 
 const absolute = (url: string) => (url.startsWith("/") ? `${siteUrl}${url}` : url);

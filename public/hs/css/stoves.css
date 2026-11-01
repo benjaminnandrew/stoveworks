@@ -1,0 +1,76 @@
+/* Hearth Studio: the Stove tab (catalog stoves). Loaded by js/app.js, so index.html stays as it is. */
+
+.stoves { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.stcard { position: relative; display: flex; flex-direction: column; padding: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface-2); color: var(--fg); text-align: left; }
+.stcard[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.stcard .pic { display: grid; place-items: center; aspect-ratio: 4 / 3; background: radial-gradient(circle at 50% 38%, #f3f1ec 0%, #dcd9d2 100%); overflow: hidden; }
+.stcard .pic img { width: 86%; height: 88%; object-fit: contain; display: block; }
+.stcard .t { padding: 8px 10px 10px; display: flex; flex-direction: column; gap: 2px; }
+.stcard .t b { font-weight: 600; font-size: .92em; line-height: 1.2; }
+.stcard .t span { font-size: .8em; color: var(--fg-3); }
+.stcard .t .sz { font-family: var(--f-mono); font-size: 11px; color: var(--fg-2); }
+/* "No stove": a hearth slab with nothing on it */
+.stcard .hearthglyph { width: 100%; height: 100%; display: block; background:
+  linear-gradient(#b7b3aa, #b7b3aa) 50% 74% / 72% 9% no-repeat,
+  linear-gradient(#c9c5bc, #c9c5bc) 50% 84% / 64% 11% no-repeat; }
+/* sample stoves: the stove from its own room picture */
+.stcard .sample { width: 100%; height: 100%; display: block; background-size: 360% 240%; background-position: 53.85% 60%; background-repeat: no-repeat; }
+.stcard .sample.s-trad { background-image: url("../assets/scenes/cabin/trad_day.jpg"); }
+.stcard .sample.s-modern { background-image: url("../assets/scenes/cabin/modern_day.jpg"); }
+/* the family room's own fireplace (a built-in: wide and low) */
+.stcard .sample.s-linear { background-image: url("../assets/scenes/linear/linear_day.jpg"); background-size: 380% auto; background-position: 54.7% 58.6%; }
+.stoves.samples .stcard .pic { aspect-ratio: 16 / 9; }
+
+/* the chosen stove */
+.stdetail .stpic { width: 84px; height: 84px; border-radius: 10px; flex: none; display: grid; place-items: center; background: radial-gradient(circle at 50% 38%, #f3f1ec 0%, #dcd9d2 100%); }
+.stdetail .stpic img { width: 88%; height: 88%; object-fit: contain; border-radius: 0; }
+/* the note and the link to our page for the stove, kept together */
+.stdetail .stmore { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.stdetail .stmore p { margin: 0; }
+.stdetail .stmore a { color: var(--accent); text-underline-offset: 2px; }
+/* Stove size folds away: a row with the size and a chevron, closed when the page loads */
+.stsize { display: block; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+.stsize > summary { display: flex; align-items: center; gap: 10px; padding: 10px 12px; cursor: pointer; list-style: none; border-radius: 10px; }
+.stsize .stbody { display: flex; flex-direction: column; gap: 4px; padding: 0 12px 12px; }
+.stsize .lb { flex: 1; font-weight: 700; font-size: 13px; }
+.stsize > summary::-webkit-details-marker, .stcsize > summary::-webkit-details-marker { display: none; }
+.stsize > summary::after, .stcsize > summary::after { content: ""; flex: none; width: 7px; height: 7px; margin: -4px 3px 0 0; border: solid currentColor; border-width: 0 2px 2px 0; opacity: .7; transform: rotate(45deg); transition: transform .15s ease; }
+.stsize[open] > summary::after, .stcsize[open] > summary::after { margin-top: 3px; transform: rotate(-135deg); }
+@media (prefers-reduced-motion: reduce) { .stsize > summary::after, .stcsize > summary::after { transition: none; } }
+.stsize output { font-family: var(--f-mono); font-size: 12px; color: var(--fg-2); }
+.stsize .fc { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 6px; }
+.stsize input[type=range] { width: 100%; height: 30px; margin: 0; accent-color: var(--accent); }
+.stsize .fstep { display: inline-grid; place-items: center; min-width: 36px; min-height: 36px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: var(--surface-2); color: var(--fg); }
+.stsize .fstep:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.stsize .fstep svg { width: 18px; height: 18px; }
+.stsize .fe { display: flex; justify-content: space-between; gap: 8px; padding: 0 42px; font-size: 10.5px; color: var(--fg-3); }
+.stsize .drawn { margin: 4px 0 2px; font-size: .86em; color: var(--fg-2); }
+/* the stove's card on the picture (tap the stove), on the area card's dark style */
+.acard .ahd img.stthumb { object-fit: contain; padding: 4px; background: radial-gradient(circle at 50% 38%, #f3f1ec 0%, #dcd9d2 100%); }
+.acard .stlink { color: #86c4ab; font-weight: 600; text-underline-offset: 2px; white-space: nowrap; }
+.acard.docked.dtop { top: 12px; bottom: auto; }
+.acard .stcsize > summary { display: flex; align-items: center; gap: 10px; min-height: 36px; padding: 0 2px; cursor: pointer; list-style: none; }
+.acard .stcsize .lb { flex: 1; font-weight: 700; font-size: 13px; }
+.acard .stcsize output { font-family: var(--f-mono); font-size: 12px; color: #c9d1cc; }
+.acard .stcsize > :not(summary) { margin-top: 8px; }
+/* a sample stove's card: the stove cut from its own room picture */
+.acard .atile.sample { background-size: 300% 200%; background-position: 53% 49%; background-repeat: no-repeat; }
+.acard .sample.s-trad { background-image: url("../assets/scenes/cabin/trad_day.jpg"); }
+.acard .sample.s-modern { background-image: url("../assets/scenes/cabin/modern_day.jpg"); }
+.acard .sample.s-linear { background-image: url("../assets/scenes/linear/linear_day.jpg"); background-size: 320% auto; background-position: 55% 62.7%; }
+
+/* showroom screen: bigger targets and type */
+.app[data-mode="kiosk"] .stcard .t b { font-size: 1.05em; }
+.app[data-mode="kiosk"] .stcard .t span { font-size: .9em; }
+.app[data-mode="kiosk"] .stcard .t .sz { font-size: 13px; }
+.app[data-mode="kiosk"] .stdetail .stpic { width: 110px; height: 110px; }
+.app[data-mode="kiosk"] .stsize .lb, .app[data-mode="kiosk"] .acard .stcsize .lb { font-size: 16px; }
+.app[data-mode="kiosk"] .stsize > summary { min-height: 52px; }
+.app[data-mode="kiosk"] .acard .stcsize > summary { min-height: 48px; }
+.app[data-mode="kiosk"] .acard .stcsize output { font-size: 14px; }
+.app[data-mode="kiosk"] .stsize output { font-size: 14px; }
+.app[data-mode="kiosk"] .stsize input[type=range] { height: 44px; }
+.app[data-mode="kiosk"] .stsize .fstep { min-width: 52px; min-height: 52px; }
+.app[data-mode="kiosk"] .stsize .fstep svg { width: 22px; height: 22px; }
+.app[data-mode="kiosk"] .stsize .fe { padding: 0 58px; font-size: 12.5px; }
+.app[data-mode="kiosk"] .stsize .drawn { font-size: 1em; }

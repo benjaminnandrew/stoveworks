@@ -1,5 +1,7 @@
-import { getGuideHtml } from "@/lib/catalog";
+import { brandBySlug } from "@/content/brands";
+import { getGuideHtml, listGuideModels } from "@/lib/catalog";
 import { themeGuide } from "@/lib/guide-theme";
+import { modelHref } from "@/lib/model-url";
 
 /**
  * The owner & installer guides: /guides/<id>/.
@@ -40,7 +42,16 @@ export async function GET(_request: Request, { params }: Params) {
   }
   if (!html) return page(404, "Guide not found", "We don't have a guide at that address.");
 
-  return new Response(themeGuide(html), {
+  // Our page for each model the guide covers, where the model has one (the model page's rule: a
+  // catalog brand and the public lineup). A failed lookup only costs the link, not the guide.
+  const models = (await listGuideModels(id).catch((err) => {
+    console.error(`[guides] ${id} models:`, err);
+    return [];
+  }))
+    .filter((m) => brandBySlug(m.brand_slug)?.inCatalog)
+    .map((m) => ({ brand: brandBySlug(m.brand_slug)?.name ?? m.brand_name, name: m.name, href: modelHref(m) }));
+
+  return new Response(themeGuide(html, { models }), {
     headers: {
       "content-type": "text/html; charset=utf-8",
       "x-content-type-options": "nosniff",

@@ -174,6 +174,17 @@ export const isPublicModel = (m: CatalogModelSummary & { retired?: boolean }) =>
   ["available", "temporarily_unavailable", "temporarily_unavailable_us"].includes(m.us_availability ?? "") &&
   m.carry_status !== "not_carried";
 
+/** The models a guide covers that customers see, so the guide can link back to each one's page. */
+export async function listGuideModels(guideId: string): Promise<CatalogModelSummary[]> {
+  const { rows } = await query<SummaryRow & { retired: boolean }>(
+    `${summarySelect(", (m.retired_at IS NOT NULL) AS retired")}
+     WHERE m.id IN (SELECT mg.model_id FROM catalog_model_guides mg WHERE mg.guide_id = $1)
+     ORDER BY m.name`,
+    [guideId],
+  );
+  return rows.map(({ retired, ...row }) => ({ ...toSummary(row), retired })).filter(isPublicModel);
+}
+
 /** How many models each brand shows publicly, for the brands hub. */
 export async function publicLineupCounts(): Promise<Map<string, number>> {
   const { rows } = await query<{ brand_slug: string; n: number }>(

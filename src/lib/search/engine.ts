@@ -121,7 +121,7 @@ function brandSource(slug: string): SearchSource {
 
 const STATIC_PAGES: Record<string, { title: string; detail: string }> = {
   "/contact-us/": { title: "Visit the showroom", detail: `${business.street}, ${business.city} · ${business.phoneDisplay}` },
-  "/hearth-studio/": { title: "Hearth Studio", detail: "Try stone on your wall and estimate the job" },
+  "/hearth-studio/": { title: "Hearth Studio", detail: "Try stone on your wall, and stoves on the hearth" },
   "/brands/": { title: "Brands we carry", detail: "Every maker's current lineup" },
 };
 

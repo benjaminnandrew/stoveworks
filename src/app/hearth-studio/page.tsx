@@ -18,12 +18,19 @@ export const metadata: Metadata = {
  * The app is static files in public/hs/ and owns the whole screen, top bar included, so it's
  * framed full height with the site's header and footer left off (SiteChrome). Same origin, so it
  * can call the site's /api/ routes. The showroom's touch screen opens /showroom/ instead.
+ *
+ * A stove page's "See it in a room" opens /hearth-studio/?stove=<id>: the app starts with that
+ * stove on the lake cabin's hearth (src/lib/hearth-studio.ts).
  */
-export default function HearthStudioPage() {
+type Props = { searchParams: Promise<{ stove?: string | string[] }> };
+
+export default async function HearthStudioPage({ searchParams }: Props) {
+  const { stove } = await searchParams;
+  const id = typeof stove === "string" && /^[a-z0-9][a-z0-9-]{0,119}$/.test(stove) ? stove : null;
   return (
     <iframe
       className="hs-frame"
-      src="/hs/index.html"
+      src={id ? `/hs/index.html?stove=${id}` : "/hs/index.html"}
       title="Hearth Studio"
       allow="fullscreen; clipboard-write; web-share"
     />

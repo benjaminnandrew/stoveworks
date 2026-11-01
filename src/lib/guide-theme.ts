@@ -7,9 +7,10 @@ import { business } from "@/content/site";
  * the brain is Ben's to rebuild, so nothing here edits them at rest. Instead each
  * one gets, on the way out: the site's fonts in place of its own, the theme sheet
  * (public/styles/guide-theme.css) after its styles, the favicon, the store name
- * in the title, the badge in its header linking back to the site, the
- * installer's search box (public/scripts/guide-installer-search.js), and the
- * owner's yearly-care card first, with a way to book it (guide-owner-service.js).
+ * in the title, the badge in its header linking back to the site, a link under
+ * the two boxes to our page for the model, the installer's search box
+ * (public/scripts/guide-installer-search.js), and the owner's yearly-care card
+ * first, with a way to book it (guide-owner-service.js).
  */
 
 /** The site's type (Trail + serif): Barlow for labels and big lines, Literata for reading and headings. */
@@ -60,7 +61,27 @@ const SERVICE_CTA = `<template id="sw-service-cta"><div class="sw-service-cta">
 
 const HOME =`<a class="sw-home" href="/" aria-label="${business.name} home"><img src="/images/logo-badge-112.png" alt="" width="109" height="112"></a>`;
 
-export function themeGuide(html: string): string {
+type ModelLink = { brand: string; name: string; href: string };
+
+const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+
+/**
+ * Ben, 28 Oct 2026: under the two boxes, a link back to our page for the model. A guide that
+ * covers several models links each one. Nothing when none of them has a page.
+ */
+function modelLinks(models: ModelLink[]): string {
+  if (!models.length) return "";
+  if (models.length === 1) {
+    const m = models[0];
+    return `<p class="sw-model"><a href="${esc(m.href)}">Our ${esc(m.brand)} ${esc(m.name)} page &rarr;</a></p>`;
+  }
+  const brands = new Set(models.map((m) => m.brand));
+  const one = brands.size === 1 ? [...brands][0] : null;
+  const links = models.map((m) => `<a href="${esc(m.href)}">${esc(one ? m.name : `${m.brand} ${m.name}`)}</a>`);
+  return `<p class="sw-model">Our pages for ${one ? `these ${esc(one)} models` : "these models"}: ${links.join(" &middot; ")}</p>`;
+}
+
+export function themeGuide(html: string, { models = [] }: { models?: ModelLink[] } = {}): string {
   let out = html;
 
   // Their Google Fonts request becomes ours; if it's gone, add ours.
@@ -72,6 +93,8 @@ export function themeGuide(html: string): string {
   out = out.replace("</head>", `${HEAD}</head>`);
   out = out.replace(/<title>([^<]*)<\/title>/, (_, t: string) => `<title>${t} | ${business.name}</title>`);
   out = out.replace(/<header>/, `<header>\n  ${HOME}`);
+  const toModel = modelLinks(models);
+  if (toModel) out = out.replace(/(<div class="cards">[\s\S]*?<\/div>)(\s*<p class="foot">)/, (_, cards: string, foot: string) => `${cards}\n  ${toModel}${foot}`);
   out = out.replace('<nav class="secnav" id="secNav"', `${INSTALLER_SEARCH}  <nav class="secnav" id="secNav"`);
   out = out.replace(
     "</body>",

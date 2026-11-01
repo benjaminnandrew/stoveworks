@@ -687,21 +687,28 @@ table.t th { color: var(--fg-3); font-weight: 600; font-size: .92em; }
 </div>
 <!-- Stoveworks site (handoff/hearth-studio/INTEGRATION.md, Phases 1 and 2). Every edit to public/hs/ is
      listed in docs/hearth-studio.md, so an updated app from the Hearth Studio chat can be dropped in. -->
-<script>window.HS_CONFIG = { paintLookupUrl: "/api/paint-lookup", findSurfacesUrl: "/api/find-surfaces" };</script>
+<script>
+  // estimate: false keeps the stone estimate from customers until its numbers are confirmed (Ben,
+  // 28 Oct 2026; docs/hearth-studio.md, "Still open"). It's still worked out; delete it to show it.
+  window.HS_CONFIG = { paintLookupUrl: "/api/paint-lookup", findSurfacesUrl: "/api/find-surfaces", stoveCatalogUrl: "/api/hearth-studio/stoves", estimate: false };
+</script>
 <style>
   /* The Website | Showroom switch is a real switch here, not a preview (the shop's screen runs the
      website; Ben, 28 Oct 2026), so its "Preview as" label goes. The attract screen's way back to the
-     website stays hidden: the showroom view is always locked (see the script below). */
+     website preview stays hidden: /showroom/ stays in showroom mode (see the scripts below). */
   .mode-switch .lbl, .attract-exit { display: none !important; }
+  /* Hidden means hidden: the app hides its loading spinner (.busy) and its messages (.toast) with
+     the hidden attribute, but their own display rules overrode it, so the spinner never left the
+     middle of the picture and messages never went away (28 Oct 2026; reported to the chat). */
+  [hidden] { display: none !important; }
   html, body { margin: 0; }
-  a.brand { color: inherit; text-decoration: none; }
+  a.brand { color: inherit; text-decoration: none; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
 </style>
 <script>
   // Website | Showroom goes between the site's two pages: Showroom opens /showroom/ (#showroom, where
-  // the app locks itself in showroom mode and hides the switch, so a customer at the shop's screen
-  // can't leave it), and the staff panel's "Switch this screen to the website" opens
-  // /hearth-studio/. Each is a real page, so a reload keeps the mode. Captured before the app's own
-  // handler, which would only switch modes in place.
+  // the app stays in showroom mode and hides the switch), and the staff panel's "Switch this screen
+  // to the website" opens /hearth-studio/. Each is a real page, so a reload keeps the mode. Captured
+  // before the app's own handler, which would only switch modes in place.
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest('[data-a="mode"], [data-a="unlock"]');
     if (!b) return;
@@ -714,11 +721,13 @@ table.t th { color: var(--fg-3); font-weight: 600; font-size: .92em; }
   }, true);
 </script>
 <script>
-  // On the website the badge and name lead back to the site, which has no header on this page. The
-  // staff panel (a long press on the logo) is the showroom screen's only, so here the press never
+  // The badge and name lead back to the site, which has no header on these pages. That includes
+  // /showroom/: it's likely to be the shop screen's home page, and staff use the rest of the site from
+  // it while they talk with people (Ben, 28 Oct 2026). The staff panel (the app's long press on the
+  // logo, 1.4 s, or shift and double-click) is the showroom screen's only. There, a press held past a
+  // tap, or a shift-click, opens it without following the link. On the website the press never
   // reaches the app's handler.
   (function () {
-    if (location.hash === "#showroom") return;
     var b = document.querySelector(".topbar .brand");
     if (!b) return;
     var a = document.createElement("a");
@@ -728,9 +737,29 @@ table.t th { color: var(--fg-3); font-weight: 600; font-size: .92em; }
     a.setAttribute("aria-label", "Hayward Stoveworks home");
     while (b.firstChild) a.appendChild(b.firstChild);
     b.replaceWith(a);
-    ["pointerdown", "dblclick"].forEach(function (t) {
-      a.addEventListener(t, function (e) { e.stopImmediatePropagation(); });
+    if (location.hash !== "#showroom") {
+      ["pointerdown", "dblclick"].forEach(function (t) {
+        a.addEventListener(t, function (e) { e.stopImmediatePropagation(); });
+      });
+      return;
+    }
+    var down = 0;
+    a.addEventListener("pointerdown", function () { down = Date.now(); });
+    a.addEventListener("pointerup", function () {
+      // a long press: the staff panel opened under the finger, and lifting it can land as a tap on
+      // the panel's backdrop, which would close it again. That one click is ignored.
+      if (!down || Date.now() - down <= 700) return;
+      var until = Date.now() + 500;
+      document.addEventListener("click", function eat(e) {
+        document.removeEventListener("click", eat, true);
+        if (Date.now() < until) { e.preventDefault(); e.stopImmediatePropagation(); }
+      }, true);
     });
+    a.addEventListener("click", function (e) {
+      if (e.shiftKey || (down && Date.now() - down > 700)) e.preventDefault();
+      down = 0;
+    });
+    a.addEventListener("contextmenu", function (e) { e.preventDefault(); });   // no link menu on a long press
   })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
