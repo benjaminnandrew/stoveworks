@@ -1,0 +1,670 @@
+{
+ "id": "pacific-energy-summit-insert-le",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "PACIFIC ENERGY",
+  "brand_line": "Summit Insert LE · Wood fireplace insert",
+  "kicker": "Wood fireplace insert",
+  "title": "Summit Insert LE",
+  "model_line": "Model SUMMIT INSERT LE · Full flue liner, or direct flue connection (USA only) · Seasoned cordwood, masonry fireplaces only",
+  "owner_noun": "insert",
+  "owner_card": "Light a fire, set the air, reload for overnight, run the blowers, clean the glass, empty ashes, check the warranty.",
+  "installer_card": "Specs, clearances, hearth and ember protection, liner and combustion air, the install sequence and the troubleshooting chart.",
+  "certification": "CAN/ULC 628 / UL1482 · EPA 2020 crib wood standards",
+  "owner_search_hint": "lighting, air control, creosote, glass",
+  "manual_search_hint": "clearance, liner, hearth, outside air"
+ },
+ "home_primary": [
+  {
+   "id": "light",
+   "icon": "flame",
+   "title": "Light a fire",
+   "blurb": "Paper, kindling and the door ajar: the start-up the manual gives."
+  },
+  {
+   "id": "air",
+   "icon": "air",
+   "title": "Set the air control",
+   "blurb": "High to the left, low to the right, and what smoky glass means."
+  },
+  {
+   "id": "reload",
+   "icon": "logs",
+   "title": "Reload & burn overnight",
+   "blurb": "Add wood without back puffing, set up a long burn, restart from coals."
+  },
+  {
+   "id": "wood",
+   "icon": "tree",
+   "title": "Burn the right wood",
+   "blurb": "Seasoned wood only, a quick dryness test, and what never goes in."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "blower",
+   "icon": "fan",
+   "title": "Run the blowers",
+   "blurb": "Automatic or manual, and the speed to use on low air."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass & door",
+   "blurb": "Cold glass, the right cleaner, and what the deposit tells you."
+  },
+  {
+   "id": "ash",
+   "icon": "ash",
+   "title": "Empty the ashes",
+   "blurb": "When to empty, how much to leave, and safe storage."
+  },
+  {
+   "id": "chimney",
+   "icon": "chimney",
+   "title": "Creosote & chimney fires",
+   "blurb": "How often to check, the warning signs, and what to do."
+  },
+  {
+   "id": "care",
+   "icon": "service",
+   "title": "Maintenance checks",
+   "blurb": "Weekly and monthly checks, the door gasket and the baffle."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "Lifetime and 3 year coverage, exclusions, and how to claim."
+  }
+ ],
+ "specs": [
+  {
+   "id": "output",
+   "lab": "EPA output & efficiency",
+   "tap": "specOutput",
+   "rows": [
+    [
+     "EPA BTU output",
+     "13,567 to 39,159 btu/hr"
+    ],
+    [
+     "Emissions",
+     "1.8 g/hr"
+    ],
+    [
+     "HHV efficiency",
+     "74%"
+    ],
+    [
+     "LHV efficiency",
+     "80%"
+    ]
+   ]
+  },
+  {
+   "id": "woodlen",
+   "lab": "Fuel & wood length",
+   "tap": "specWood",
+   "rows": [
+    [
+     "Fuel",
+     "Seasoned cord wood"
+    ],
+    [
+     "Max length · label",
+     "20 inches"
+    ],
+    [
+     "Max length · p. 7",
+     "up to 18\" (457mm)"
+    ],
+    [
+     "Ideal length",
+     "16-18 inches"
+    ]
+   ],
+   "note": "confirm max length"
+  },
+  {
+   "id": "fireplace",
+   "lab": "Min. fireplace size",
+   "tap": "specFireplace",
+   "rows": [
+    [
+     "Width at front",
+     "28 1/4\""
+    ],
+    [
+     "Width at rear",
+     "26 1/4\""
+    ],
+    [
+     "Height",
+     "22 1/2\""
+    ],
+    [
+     "Depth",
+     "19\""
+    ]
+   ],
+   "note": "masonry fireplace only"
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances to combustibles",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Adjacent sidewall",
+     "8 in."
+    ],
+    [
+     "Side facing (max 1.5 in. deep)",
+     "8 in."
+    ],
+    [
+     "Mantel",
+     "15 in."
+    ],
+    [
+     "Mantel facing",
+     "15 in."
+    ]
+   ],
+   "note": "measured from insert body"
+  },
+  {
+   "id": "hearth",
+   "lab": "Hearth & ember protection",
+   "tap": "specHearth",
+   "rows": [
+    [
+     "Hearth",
+     "16\" front · 8\" each side · raised 3\""
+    ],
+    [
+     "Flush hearth",
+     "22\" U.S. · 24\" Canada in front"
+    ],
+    [
+     "Ember protection",
+     "16\" USA · 18\" Canada from glass"
+    ]
+   ]
+  },
+  {
+   "id": "vent",
+   "lab": "Chimney & liner",
+   "tap": "specVent",
+   "rows": [
+    [
+     "Canada",
+     "6 inch full flue liner, required"
+    ],
+    [
+     "USA",
+     "Full liner, or direct flue connection (UL 1777 HT)"
+    ],
+    [
+     "Liner",
+     "Stainless steel, rigid or flex"
+    ],
+    [
+     "Chimney height",
+     "15' (minimum)"
+    ]
+   ]
+  },
+  {
+   "id": "elec",
+   "lab": "Electrical · blowers",
+   "tap": "specElec",
+   "rows": [
+    [
+     "Rating label",
+     "115V, 60HZ, 1.2 AMP"
+    ],
+    [
+     "Electrical Supply",
+     "120V, 60 Hz, 1.2 A"
+    ]
+   ],
+   "note": "confirm voltage"
+  },
+  {
+   "id": "combair",
+   "lab": "Combustion air",
+   "tap": "specAir",
+   "rows": [
+    [
+     "Outside air",
+     "Through the fireplace ash clean-out"
+    ],
+    [
+     "Room air",
+     "Remove the cover box under the ash lip"
+    ]
+   ]
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Qualify & prep the fireplace",
+   "Masonry wood-burning fireplace only, with its own flue, a 15' minimum chimney and the minimum internal size. Sweep, inspect and repair first; lock the damper open or remove it.",
+   "<p>Minimum internal size: width 28 1/4\" at front and 26 1/4\" at rear, height 22 1/2\", depth 19\". Fireplace built to N.F.P.A. 211 or applicable codes; installation to CAN/CSA-B365.</p><ul><li>Check for creosote or other obstructions; have the chimney swept and inspected.</li><li>Repair cracks, loose mortar or other defects before installing.</li><li>Do not remove bricks or mortar. Exception: masonry or steel, including the damper plate, may come off the smoke shelf and adjacent damper frame to fit a liner, if that does not weaken the fireplace and chimney or reduce protection for combustibles below the National Building Code.</li><li>If the fireplace was modified to take the insert, fasten the supplied metal tag to its back wall.</li><li>Never a makeshift or \"temporary\" installation.</li></ul><div class=\"note danger\"><b>Confirm fireplace type:</b> the manual says not to install in a factory-built fireplace on p. 3 and p. 15, but the clearances section on p. 14 refers to installation \"into a masonry or factory built fireplace.\"</div>"
+  ],
+  [
+   "Run the liner",
+   "Canada: continuous 6 inch stainless liner to the top of the chimney. USA: full liner (highly recommended) or a UL 1777 HT direct flue connection into the first flue tile with a throat seal. Fit a stove-to-liner adapter at the bottom.",
+   "<p><b>Full flue liner:</b> measure from the top of the existing chimney flue to the floor of the hearth, leaving extra for flashing and rain cap. Feed the stainless liner from the top, through the damper area, into the fireplace cavity, and attach a \"stove to liner\" adapter to its bottom per the liner maker's instructions.</p><p><b>Direct flue connection (USA only):</b> measure from the top of the first chimney flue liner tile to the top of the insert, plus extra to insert into the tile. Feed the liner through the damper area into the first flue tile, provide a seal in the throat, then follow full-liner steps 2-9. Local codes may require a clean-out door.</p><div class=\"note danger\"><b>Confirm the Canadian liner standard:</b> the rating label names CAN/ULC-S635 or CAN/ULC-S640 (p. 3); the installation section names the class III requirements of CAN/ULC-S365 or CAN/ULC-S640 (p. 16).</div>"
+  ],
+  [
+   "Attach the flue collar",
+   "Take the flue collar from its box packed in the stove, fix it to the adapter with three stainless screws and caulk the connections with high temp stove cement. Check that the gasket is in good shape."
+  ],
+  [
+   "Remove covers, top & baffle",
+   "Remove both blower covers (Torx screw in each top rear corner; lift and pull to free the tabs), loosen the two wing bolts and pull the cast top off, then remove the baffle.",
+   "<p><b>Baffle:</b> pull the retaining pin at the back top of the firebox, just under the baffle. Lift the baffle up and pull it forward off the supply tube, then tilt it sideways to drop it out. Inspect the gasket between baffle and supply tube (part 80000365).</p><div class=\"note\">Moving the fan speed control to the left side? The manual suggests doing it before the surround is fitted and the insert goes into the fireplace (p. 21).</div>"
+  ],
+  [
+   "Set, level & draw up the collar",
+   "Push the insert into the fireplace and level it with the front or rear adjustment legs. Reach through the flue opening, pull the collar down with the tool provided until its bolts pass through, fit the clamps and nuts, center it and tighten."
+  ],
+  [
+   "Flash & cap the chimney",
+   "Measure, trim and shape a chimney top flashing with a 1\" to 1-1/2\" overlap on each side and seat it over the liner against the flue tile. Attach a rain cap to the liner; a storm collar is optional."
+  ],
+  [
+   "Set up combustion air",
+   "Outside air: replace the fireplace ash clean-out cover with a rodent screen, keep the air inlet uncovered and seal the surround once installed. Room air: remove and discard the cover box under the ash lip."
+  ],
+  [
+   "Power the blowers",
+   "Plug into a properly grounded outlet that takes a three-pronged plug; never cut the grounding prong. Route the cord away from hot or sharp surfaces and never under the unit.",
+   "<div class=\"note danger\"><b>Confirm the supply voltage:</b> the rating label gives 115V, 60HZ, 1.2 AMP (p. 3); the Electrical Supply section gives 120V, 60 Hz, 1.2 A (p. 19).</div><p><b>Fan covers:</b> remove the screw at the top back corner of each, lift to release the catches and pull toward you, then lift up under the top and out from the bottom (Figures 11 and 12).</p><p><b>Speed control to the left side (p. 21-22):</b> disconnect the fan and thermal snap switch wires, noting how they are routed; lift off the ash lip; flip the control assembly and fix it on the left side using the upper screw holes; move the thermal switch to the left fan bracket; reconnect, and keep the power cable clear of the firebox side.</p>"
+  ],
+  [
+   "Fit the surround, top & covers",
+   "Bolt surround panels A, B and C together face down with the 1/4\" x 1/2\" bolts at points D. Slide it over the unit behind the ash shelf into the bracket slots, push the insert back to the fireplace face, then refit the decorative top and fan covers.",
+   "<p>Lay the panels on a flat, non-marring surface. Stand the assembly upright and check that the front face is flat and even at the joints and sides. Refit the decorative top by aligning the wing bolts in the slots, pushing it back gently against the surround and tightening the wing bolts. The fan cover rear tabs use the same slots as the surround.</p><div class=\"note\">With outside air, seal the surround to the fireplace and anywhere else air may enter (p. 18).</div>"
+  ],
+  [
+   "Refit the baffle, check the brick",
+   "Never fire with the baffle or its insulation out: refit it in reverse order, with the two side pieces of insulation tight against the side rails. Check that the firebrick is complete, uncracked and gap-free.",
+   "<h4>Brick pack (p. 24)</h4><div class=\"kv\"><div class=\"r\"><span>A · 19pcs</span><span>9\" X 4 1/2\" X 1 1/4\"</span></div><div class=\"r\"><span>B · 1pc</span><span>7 1/4\" X 4 1/2\" X 1 1/4\"</span></div><div class=\"r\"><span>B · 2pcs</span><span>9\" X 4 1/2\" X 1 1/4\" with corner cut</span></div></div><p>Floor (p. 25): a \"C\" brick in the left and right rear corners, an \"A\" next to each, the short \"B\" in the center against the baffle tube, then five full bricks along the front. Rear wall: 4 \"A\" bricks behind the brick rail tabs. Each side wall: 2 \"A\" under the side rail tabs pushed to the rear, then two more at the front. Shift bricks to close every gap. The pack is shared with other Summit models, so expect extras.</p><div class=\"note danger\"><b>Confirm the brick letters:</b> the table on p. 24 labels both the short brick and the two corner-cut bricks \"B\"; the steps on p. 25 place \"C\" bricks in the rear corners.</div>"
+  ]
+ ],
+ "faults": {
+  "label": "Troubleshooting chart",
+  "panels": [
+   {
+    "title": "Dirty glass",
+    "items": [
+     "Wet wood → use dry wood",
+     "Air control or damper turned down too soon → wait for a good bed of coals and charred wood",
+     "Draft too low (chimney height or diameter; chimney plugged or restricted) → inspect and clean; provide outside air for combustion",
+     "Door gasket leakage → replace gasket, check latch",
+     "Excessive creosote buildup has the same first three causes"
+    ]
+   },
+   {
+    "title": "Low heat output",
+    "items": [
+     "Wet wood → use dry wood",
+     "Fire too small → build a larger fire",
+     "Draft too low → chimney plugged or restricted: inspect and clean"
+    ]
+   },
+   {
+    "title": "Won't burn overnight",
+    "items": [
+     "Air control set too high → set it lower",
+     "Not enough wood → unsplit wood is preferred",
+     "Draft too high → excessive chimney height and/or diameter",
+     "Door gasket leaking → replace the door gasket"
+    ]
+   },
+   {
+    "title": "Stove won't burn",
+    "items": [
+     "Combustion air supply blocked → check outside air supply for obstruction; check that the room air cover is removed",
+     "Draft too low → chimney plugged or restricted: inspect and clean",
+     "Chimney oversized or otherwise unsuitable → consult dealer"
+    ]
+   }
+  ]
+ },
+ "codes": [],
+ "detail": {
+  "light": {
+   "tag": "Owner · operation",
+   "title": "Lighting a fire",
+   "cool": false,
+   "html": "<p>Build the fire right on the firebricks. Don't use a grate or andirons.</p><ol><li>Slide the air control to \"High\" (all the way to the left) and open the door.</li><li>Put crumpled newspaper in the center and crisscross several pieces of dry kindling over it. Add a few small pieces of dry wood on top.</li><li>Light the paper. Leave the door open about 1/2\" (13mm) to 1\" (25mm) until the kindling is fully in flame. Never leave the insert alone with the door open.</li><li>Once the kindling is fully engulfed, add a few small logs and close the door.</li><li>Start normal operation once there's a good bed of coals and the wood has charred.</li></ol><p>From then on, keep the door closed while it burns. This insert isn't made for open-door burning.</p><div class=\"note danger\"><b>Never use</b> gasoline, lantern fuel, kerosene, charcoal lighter fluid or any similar liquid to start or \"freshen up\" a fire. Keep them well away from the insert.</div><h4>Your first few fires</h4><p>The paint bakes on during the first 2-3 fires. Open all windows and doors while it cures; the smoke and fumes can bother some people. Follow the Stove Bright (Forrest Paint) sheet that came with it. Smoke detectors may go off more often during this time. Don't disconnect them.</p>"
+  },
+  "air": {
+   "tag": "Owner · operation",
+   "title": "Using the air control",
+   "cool": false,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>\"H\" (high)</span><span>all the way to the left</span></div><div class=\"r\"><span>\"L\" (low)</span><span>pushed to the far right</span></div></div><p>Once the fire is going, set the air control where you want it. Every home is different, so the right setting takes trial and error. Note what works for next time.</p><p>Leave the air fairly wide open for the first 10 to 30 minutes after each load. That's when most smoke forms. After about 30 minutes you can turn it down a lot without much smoke.</p><p>If smoke pours down across the glass (a \"waterfall\"), you turned the air down too soon or too low.</p><div class=\"note danger\"><b>Don't over-fire.</b> A glowing red top or vent pipe means the fire is too hot. It can permanently damage the insert and chimney, and may void the warranty. Use \"H\" only for starting a fire or heating up a fresh load.</div><p>An uncontrollable burn also points to too much draft. Smoke leaking into the room at the insert or pipe joints points to too little.</p><div class=\"note\">The lowest burn rate is set at the factory, and federal rules forbid changing it. Never alter the air control: tampering voids the warranty and can be very hazardous.</div>"
+  },
+  "reload": {
+   "tag": "Owner · operation",
+   "title": "Reloading and overnight burns",
+   "cool": false,
+   "html": "<h4>To add wood</h4><ol><li>Move the air control to high and give the fire time to brighten.</li><li>Open the door slowly, so smoke doesn't puff back into the room.</li><li>Load the wood endwise, leaving room for air to flow between the logs. Mixed shapes, diameters and lengths are fine.</li><li>Don't stack it so high, or in such a way, that opening the door becomes hazardous.</li></ol><p>For the cleanest burn, add smaller loads: two or three logs at a time, or 1/4 to 1/2 of a full load.</p><div class=\"note danger\"><b>Confirm the longest log:</b> the manual says up to 18\" (457mm) on p. 7, but the rating label lists a maximum wood length of 20 inches on p. 3.</div><h4>Overnight</h4><p>Unsplit logs work best. Char the new load completely on the maximum setting before you turn the air down for the night. Don't try an overnight burn with green or wet wood.</p><h4>Restarting</h4><p>Open the door, rake the hot embers toward the front, add a couple of dry, split logs and close the door. Set the air to high; the logs should catch in a few minutes. Once they've charred, reset the air.</p>"
+  },
+  "wood": {
+   "tag": "Owner · operation",
+   "title": "Choosing and testing your wood",
+   "cool": false,
+   "html": "<p>Burn natural wood only, air-dried (seasoned) for six months or more and stored under cover, away from flames or heat. Seasoned hardwoods give more heat and less smoke than softwoods or freshly cut wood.</p><p>Wet wood smoulders, makes heavy smoke and creosote, gives little heat and tends to go out. It can cut heat output by up to 25%.</p><h4>Test a piece</h4><p>Put a large piece on a good bed of coals:</p><ul><li><b>Dry:</b> it's burning on more than one side within one minute.</li><li><b>Damp:</b> it turns black and lights within three minutes.</li><li><b>Soaked:</b> it sizzles, hisses and blackens without lighting in five minutes. Don't burn it.</li></ul><h4>Never burn</h4><p>Garbage, treated or salt-water wood, coal or charcoal, cardboard and paper products, plywood or particleboard, yard waste, railroad ties, manure or animal remains, building debris, anything with plastic, rubber or asbestos, solvents, paints or petroleum products. Salt-water wood, treated wood, garbage and plastics rapidly destroy metal and void the warranty. Charcoal and other fuels can make carbon monoxide, which can kill. Fire starters made from paper, cardboard, sawdust or wax are fine for lighting.</p>"
+  },
+  "blower": {
+   "tag": "Owner · operation",
+   "title": "Running the blowers",
+   "cool": false,
+   "html": "<p>Your insert has two variable-speed blowers. A rocker switch picks automatic or manual, and a speed control sets how fast they run. The speed control sits under the ash lip, on the right-hand side unless your installer moved it to the left.</p><div class=\"kv\"><div class=\"r\"><span>Rocker switch \"OFF\"</span><span>automatic: the blowers start once the insert is up to temperature, and stop after the fire is out and it has cooled</span></div><div class=\"r\"><span>Rocker switch \"ON\"</span><span>manual: bypasses the temperature switch so you have full control</span></div></div><h4>Suggested settings</h4><ul><li>Air control at \"L\" (pushed to the far right): run the blowers on low.</li><li>Air control anywhere above \"L\": any speed you like.</li></ul><div class=\"note\">Clean the blowers at least every six months: remove the covers and vacuum the blower openings to clear dust and debris. Disconnect the power before servicing; there is a risk of electrical shock.</div>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass and door",
+   "cool": false,
+   "html": "<p>Clean darkened glass with fireplace glass cleaner, and only when the insert is cold. Never scrape it with anything that could scratch it, and don't use abrasive cleaners.</p><h4>What the deposit tells you</h4><ul><li><b>Light brown and dusty, wipes off easily:</b> good combustion and dry, seasoned wood. Your pipes and chimney are likely fairly clean.</li><li><b>Black and greasy, hard to remove:</b> wet or green wood and too slow a burn. The same heavy deposit is building up in the chimney at least as fast.</li></ul><h4>Protect the glass and door</h4><ul><li>Don't slam the door. Make sure no logs stick out to hit the glass when you close it.</li><li>If the glass cracks or breaks, replace it before you use the insert again. Use only 9-1/2\" (240mm) x 17-1/2\" (445mm) x 5 mm ceramic glass from your dealer.</li><li>Clean a plated door with mild soap and water only. Abrasive cleaners void the warranty.</li></ul><div class=\"note danger\">Hot glass will cause burns. Don't touch it until it has cooled, and never let children touch it.</div>"
+  },
+  "ash": {
+   "tag": "Owner · maintenance",
+   "title": "Removing and storing ashes",
+   "cool": false,
+   "html": "<p>Take ashes out only when the insert is cold. Once they're 3\" (76mm) to 4\" (102mm) deep and the fire has burned down and cooled, remove the excess. Leave a bed about 1\" (25 mm) deep on the firebox floor. It helps keep a hot charcoal bed.</p><p>Keep the front of the firebox clear of ash buildup. That's where boost combustion air comes in, and too much ash blocks it.</p><h4>Storing ashes safely</h4><ul><li>Use a metal container with a tight-fitting lid.</li><li>Set the closed container on a non-combustible floor or on the ground, well away from anything that can burn.</li><li>If you'll bury or spread the ashes, keep them in the closed container until all cinders have thoroughly cooled.</li><li>Don't put any other waste in that container.</li></ul>"
+  },
+  "chimney": {
+   "tag": "Owner · safety",
+   "title": "Creosote and chimney fires",
+   "cool": false,
+   "html": "<p>Slow fires give off tar and vapours that condense in the cool chimney as creosote, and creosote burns extremely hot. Some is inevitable; regular inspection and cleaning is the answer. Dry wood and plenty of air keep it down.</p><ul><li>Have the chimney and connector inspected at least once every two months during the heating season. Remove creosote once it reaches 3 mm or more.</li><li>Until you know your pattern, check daily. Weekly cleaning may be needed in mild weather; monthly is usually enough in the coldest months.</li></ul><h4>Signs of a chimney fire</h4><ul><li>Flames and sparks shooting out of the top of the chimney</li><li>A roaring sound</li><li>Vibration of the chimney</li></ul><h4>If it happens</h4><ol><li>Get everyone ready to leave, with a meeting place outside.</li><li>Close the air control on the insert.</li><li>Call the fire department. Have a fire extinguisher handy.</li><li>Before the next fire, have the chimney cleaned and checked for stress and cracks. Also check combustibles around the chimney and the roof.</li></ol><div class=\"note\">Smoke and carbon monoxide detectors are strongly recommended in the area where the insert is installed.</div>"
+  },
+  "care": {
+   "tag": "Owner · maintenance",
+   "title": "Maintenance checks",
+   "cool": false,
+   "html": "<p>Check these parts for cracks, heavy corrosion, burned-out sections and excessive warping:</p><div class=\"kv\"><div class=\"r\"><span>Weekly</span><span>firebrick (cracking) · door gasket (sagging, placement, damage)</span></div><div class=\"r\"><span>Monthly</span><span>baffle, brick rails and their tabs, air riser tube, back of the airwash chamber, baffle locking pin, boost tube cover, chimney liner and connector</span></div><div class=\"r\"><span>Every six months</span><span>vacuum the blowers (at minimum)</span></div><div class=\"r\"><span>Yearly</span><span>have the liner cleaned, or more often if needed</span></div><div class=\"r\"><span>When the chimney is cleaned</span><span>top baffle board/blanket, top heat shield and mounting bolt, baffle gasket, brick rails, manifold</span></div></div><h4>Door gasket</h4><p>The 7/8\" (22mm) fiberglass rope gasket needs only light pressure to seal. Inspect it now and then and replace it if needed: part# 80000158 Gasket Kit from your Pacific Energy dealer.</p><h4>Baffle</h4><p>Some warping of the baffle at the top of the firebox is normal, up to 1/4\". Replace it if the warping is greater, or if it's cracked or broken. Never run the insert with the baffle or its insulation removed.</p><div class=\"note\">Use only materials supplied by the manufacturer. If you find damage, contact your dealer: running with broken parts can damage other parts and may void your warranty.</div>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "Warranty at a glance",
+   "cool": false,
+   "html": "<p>Pacific Energy's coverage goes to the original registered purchaser.</p><div class=\"kv\"><div class=\"r\"><span>Limited lifetime</span><span>parts only: porcelain finish, glass (thermal breakage only, not impact), plating, firebox and baffle</span></div><div class=\"r\"><span>3 year comprehensive</span><span>parts and labor for any defective part from the date of purchase, including blowers, speed controls and thermal switches</span></div></div><div class=\"note danger\"><b>Confirm the lifetime term:</b> the heading gives it as \"(10 years)\", while the text calls it limited lifetime coverage (p. 28).</div><h4>Not covered</h4><ul><li>Labor under the lifetime coverage</li><li>Firebox rails and heat shields (left out of the lifetime coverage)</li><li>Firebrick, gaskets and ceramic fiber blankets</li><li>Misuse, abuse, improper installation, accident, lack of maintenance or modification</li></ul><p>Premature wear points to improper use, such as excessive draft, heating too large an area, or contaminated fuel. These can void your warranty.</p><h4>Making a claim</h4><p>Tell your Pacific Energy dealer, with proof of purchase, the purchase date, and the model name and serial number. The serial number is on the certification label or the cover of the installation manual. You can register the insert online at pacificenergy.net/register.</p>"
+  },
+  "specOutput": {
+   "tag": "Installer · spec",
+   "title": "EPA output, emissions & efficiency",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>EPA BTU output</span><span>13,567 to 39,159 btu/hr</span></div><div class=\"r\"><span>EPA certified emissions</span><span>1.8 grams per hour</span></div><div class=\"r\"><span>HHV tested efficiency</span><span>74%</span></div><div class=\"r\"><span>LHV tested efficiency</span><span>80%</span></div></div><p>Efficiencies are weighted averages tested to CSA B415. The BTU range is based on that efficiency and the burn rates from the low and high EPA tests, using Douglas Fir dimensional lumber. Meets the EPA 2020 crib wood particulate emission standards (test Method 28R).</p><p>Listed solid wood fuel fireplace insert, certified for Canada and U.S.A. to CAN/ULC 628 / UL1482 (Intertek C# 4001507). The rating label is on the bottom, back corner of the side casing on the door catch side.</p>"
+  },
+  "specWood": {
+   "tag": "Installer · spec",
+   "title": "Fuel & wood length",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Fuel</span><span>Seasoned cord wood</span></div><div class=\"r\"><span>Maximum wood length (label)</span><span>20 inches</span></div><div class=\"r\"><span>Ideal wood length (label)</span><span>16-18 inches</span></div></div><p>Cordwood only, burned directly on the firebrick: no grate, andirons or elevated fire. Operate only with the feed door closed; open it only to feed the fire.</p><div class=\"note danger\"><b>Confirm maximum log length:</b> the manual gives a maximum wood length of 20 inches on the rating label (p. 3) and \"up to 18\"(457mm)\" in Normal Operation (p. 7).</div>"
+  },
+  "specFireplace": {
+   "tag": "Installer · spec",
+   "title": "Minimum fireplace size",
+   "cool": true,
+   "html": "<p>Masonry wood-burning fireplace built to N.F.P.A. 211 (latest edition) or applicable codes; installation to CAN/CSA-B365. Required minimum internal sizes:</p><div class=\"kv\"><div class=\"r\"><span>Width (at front)</span><span>28 1/4\" (718 mm)</span></div><div class=\"r\"><span>Width (at rear)</span><span>26 1/4\" (667 mm)</span></div><div class=\"r\"><span>Height</span><span>22 1/2\" (572 mm)</span></div><div class=\"r\"><span>Depth</span><span>19\" (483 mm)</span></div><div class=\"r\"><span>Chimney height</span><span>15' (minimum)</span></div></div><p>Do not connect to a chimney flue serving another appliance. If the fireplace was modified to accommodate the insert, fasten the supplied metal tag to its back wall.</p><div class=\"note danger\"><b>Confirm fireplace type:</b> the rating label (p. 3) and the installation section (p. 15) say not to install in a factory-built fireplace, but the clearances section (p. 14) refers to installation \"into a masonry or factory built fireplace.\"</div><div class=\"note danger\"><b>Confirm metric sizes:</b> the manual gives 718 / 667 / 483 mm on p. 15 and 711 / 660 / 482mm on Figure 3 (p. 12) for the same widths and depth in inches.</div>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances to combustibles",
+   "cool": true,
+   "html": "<p>Minimum clearances to combustibles, measured from the insert body:</p><div class=\"kv\"><div class=\"r\"><span>Adjacent sidewall</span><span>8 in.(203 mm.)</span></div><div class=\"r\"><span>Side facing (max 1.5 in. deep)</span><span>8 in.(203 mm.)</span></div><div class=\"r\"><span>Mantel</span><span>15 in.(381 mm.)</span></div><div class=\"r\"><span>Mantel facing</span><span>15 in.(381 mm.)</span></div></div><p>The rating label repeats these (top facing 381 MM / 15IN) and adds the firing-side distances covered under Hearth & ember protection. Figure 6 on p. 14 shows the clearances as a drawing.</p>"
+  },
+  "specHearth": {
+   "tag": "Installer · spec",
+   "title": "Hearth & ember protection",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Non-combustible hearth</span><span>16\" in front, 8\" beyond each side of the fireplace opening</span></div><div class=\"r\"><span>Hearth height</span><span>3\" above any adjacent combustible floor</span></div><div class=\"r\"><span>Flush hearth, min. in front</span><span>22\" (U.S.) · 24\" / 610mm (Canada)</span></div><div class=\"r\"><span>Ember protection, firing side</span><span>16\" (USA) · 18\" (Canada) from the door glass</span></div><div class=\"r\"><span>Ember protection, sides</span><span>8\"</span></div></div><p>A non-combustible hearth reaching the flush-hearth depth in front of the fireplace opening can be flush with an adjacent combustible floor. Option A (Figure 4) shows the 3\" raised hearth; option B (Figure 5) an extended masonry hearth. Consult CAN/CSA-B365 in Canada and N.F.P.A. 211 in the USA.</p><div class=\"note danger\"><b>Confirm Canadian ember protection (metric):</b> the rating label gives 457 MM / 18 IN (p. 3); Figures 4 and 5 give 18\" / 406mm (p. 13).</div>"
+  },
+  "specVent": {
+   "tag": "Installer · spec",
+   "title": "Chimney & liner",
+   "cool": true,
+   "html": "<p><b>Canada:</b> a continuous 6 inch diameter stainless steel liner, rigid or flexible, from the insert to the top of the chimney is required.</p><p><b>USA:</b> a full liner is highly recommended as the safest installation and for correct draft. Alternatively, a direct flue connection: a stainless steel rigid or flexible liner meeting the HT requirements of UL 1777 from the flue collar into the first masonry chimney flue liner, with a seal in the throat. Figure 8 labels it a 6\" stainless steel rigid or flex liner. Local codes may require a clean-out door.</p><div class=\"kv\"><div class=\"r\"><span>Chimney height</span><span>15' (minimum)</span></div><div class=\"r\"><span>Shared flue</span><span>not permitted</span></div><div class=\"r\"><span>Existing damper</span><span>locked open or removed</span></div></div><div class=\"note danger\"><b>Confirm the Canadian liner standard:</b> the rating label names CAN/ULC-S635 or CAN/ULC-S640 (p. 3); the installation section names the class III requirements of CAN/ULC-S365 or CAN/ULC-S640 (p. 16).</div>"
+  },
+  "specElec": {
+   "tag": "Installer · spec",
+   "title": "Electrical · blowers",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Rating label (p. 3)</span><span>115V, 60HZ, 1.2 AMP</span></div><div class=\"r\"><span>Electrical Supply (p. 19)</span><span>120V, 60 Hz, 1.2 A</span></div></div><p>Powers the twin circulating air blowers. Use only a properly grounded outlet that accepts a three-pronged plug; don't cut or remove the grounding prong. Don't route the cord under the unit, and keep it clear of hot or sharp surfaces. Wire to local codes, or else CSA C22.2 (Canada) or ANSI/NFPA 70 (USA).</p><p>The fan speed controller is factory installed under the ash lip on the right; it can be moved to the left side (p. 21-22), ideally before the surround is fitted and the insert goes in.</p><div class=\"note danger\"><b>Confirm the supply voltage:</b> the rating label gives 115V, 60HZ, 1.2 AMP (p. 3); the Electrical Supply section gives 120V, 60 Hz, 1.2 A (p. 19).</div>"
+  },
+  "specAir": {
+   "tag": "Installer · spec",
+   "title": "Combustion air",
+   "cool": true,
+   "html": "<p>Consult local building codes on combustion air supply. Two options:</p><h4>Outside air</h4><p>Remove the cover from the ash clean-out in the existing fireplace and fit a rodent screen in its place. Install the insert without covering the air inlet opening, then seal the surround to the fireplace and anywhere else air may enter. Air is drawn from outside into the intake at the lower rear of the appliance.</p><h4>Room air</h4><p>Remove the two screws securing the center cover under the ash lip, remove the screw in the cover box front, slide the cover box out and discard it, then refit the center cover (Figure 9). Air is drawn from the room through the front of the unit.</p><div class=\"note\">The troubleshooting chart lists a blocked outside air supply, or a room air cover not removed, as a cause of \"stove won't burn.\"</div>"
+  }
+ },
+ "pageref": {
+  "light": 7,
+  "air": 7,
+  "reload": 7,
+  "wood": 6,
+  "blower": 8,
+  "glass": 9,
+  "ash": 8,
+  "chimney": 4,
+  "care": 10,
+  "warranty": 28,
+  "specOutput": 3,
+  "specWood": 3,
+  "specFireplace": 15,
+  "specClear": 14,
+  "specHearth": 12,
+  "specVent": 16,
+  "specElec": 19,
+  "specAir": 18,
+  "step0": 15,
+  "step1": 16,
+  "step2": 16,
+  "step3": 16,
+  "step4": 16,
+  "step5": 16,
+  "step6": 18,
+  "step7": 19,
+  "step8": 20,
+  "step9": 10
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "chimney",
+   "t": "chimney fire",
+   "p": "Roaring sound, sparks from the chimney top"
+  },
+  {
+   "k": "h",
+   "id": "air",
+   "t": "over-firing",
+   "p": "Glowing red top or vent pipe"
+  },
+  {
+   "k": "h",
+   "id": "air",
+   "t": "smoke on the glass",
+   "p": "Waterfall effect: air turned down too soon"
+  },
+  {
+   "k": "h",
+   "id": "light",
+   "t": "paint smell",
+   "p": "First 2-3 fires: open windows and doors"
+  },
+  {
+   "k": "h",
+   "id": "care",
+   "t": "door gasket",
+   "p": "Gasket kit part# 80000158"
+  },
+  {
+   "k": "h",
+   "id": "chimney",
+   "t": "creosote",
+   "p": "Inspect at least once every two months"
+  },
+  {
+   "k": "i",
+   "id": "specAir",
+   "t": "outside air",
+   "p": "Ash clean-out with a rodent screen"
+  },
+  {
+   "k": "i",
+   "id": "specFireplace",
+   "t": "factory-built fireplace",
+   "p": "Masonry fireplaces only; see the conflict note"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "specElec",
+    "issue": "Electrical rating: rating label gives 115V, 60HZ, 1.2 AMP; Electrical Supply section gives 120V, 60 Hz, 1.2 A. Also flagged in step7.",
+    "pages": [
+     [
+      1,
+      3
+     ],
+     [
+      1,
+      19
+     ]
+    ]
+   },
+   {
+    "where": "specWood",
+    "issue": "Maximum wood length: rating label gives 20 inches (ideal 16-18 inches); Normal Operation says up to 18\"(457mm). Also flagged in the reload drawer.",
+    "pages": [
+     [
+      1,
+      3
+     ],
+     [
+      1,
+      7
+     ]
+    ]
+   },
+   {
+    "where": "specFireplace",
+    "issue": "Fireplace type: rating label and Installation say not to install in a factory-built fireplace; the Clearances intro refers to installation into a masonry or factory built fireplace. Also flagged in step0.",
+    "pages": [
+     [
+      1,
+      3
+     ],
+     [
+      1,
+      14
+     ],
+     [
+      1,
+      15
+     ]
+    ]
+   },
+   {
+    "where": "specVent",
+    "issue": "Canadian liner standard: rating label names CAN/ULC-S635 or CAN/ULC-S640; installation section names class III of CAN/ULC-S365 or CAN/ULC-S640. Also flagged in step1.",
+    "pages": [
+     [
+      1,
+      3
+     ],
+     [
+      1,
+      16
+     ]
+    ]
+   },
+   {
+    "where": "specHearth",
+    "issue": "Canadian ember protection, metric: rating label gives 457 MM / 18 IN; Figures 4 and 5 give 18\" / 406mm.",
+    "pages": [
+     [
+      1,
+      3
+     ],
+     [
+      1,
+      13
+     ]
+    ]
+   },
+   {
+    "where": "specFireplace",
+    "issue": "Minimum fireplace sizes, metric: text table gives 718 / 667 / 483 mm; Figure 3 gives 711 / 660 / 482mm for the same inch values (28 1/4\", 26 1/4\", 19\").",
+    "pages": [
+     [
+      1,
+      12
+     ],
+     [
+      1,
+      15
+     ]
+    ]
+   },
+   {
+    "where": "step9",
+    "issue": "Brick pack letters: the table labels the 7 1/4\" brick and the two corner-cut bricks both 'B'; the installation steps place 'C' bricks in the rear corners.",
+    "pages": [
+     [
+      1,
+      24
+     ],
+     [
+      1,
+      25
+     ]
+    ]
+   },
+   {
+    "where": "warranty",
+    "issue": "Warranty term: heading reads 'LTD Lifetime Coverage (10 years)' while the text describes limited lifetime coverage.",
+    "pages": [
+     [
+      1,
+      28
+     ]
+    ]
+   }
+  ],
+  "catalog_mismatches": [
+   {
+    "model": "pacific-energy-summit-insert-le",
+    "field": "btu_output_epa",
+    "catalog": "41275",
+    "manual": "EPA BTU Output 13,567 to 39,159 btu/hr",
+    "page": [
+     1,
+     3
+    ]
+   },
+   {
+    "model": "pacific-energy-summit-insert-le",
+    "field": "log_length_recommended_in",
+    "catalog": "16",
+    "manual": "Ideal Wood Length 16-18 inches",
+    "page": [
+     1,
+     3
+    ]
+   }
+  ],
+  "notes": "Single manual (100000089, 32 pp.); physical pages match the printed footers, but the table of contents is off by one to two pages for Troubleshooting, Firebrick and Parts. Wood insert, no ignition system: lighting is the paper-and-kindling procedure on p. 7. No code table, so codes is empty. Not stated in the manual, so not checked against the catalog: heating area, max cordwood BTU, burn time, firebox volume, weight, view/glass area, non-catalytic combustion. Catalog log_length_max_in 20 matches the rating label (p. 3) but not p. 7 (up to 18\"); see conflicts. Not transcribed (figure-only or lettered dimensions without a text key): overall dimensions in Figure 2 (p. 11); surround sizes A/B (p. 11 table, which also disagrees with the parts diagram on p. 26: 32 1/4 / 34 1/4 vs 32-3/16 / 34-3/16); clearance drawing Figure 6 (p. 14, includes a 37 1/2\" dimension with no text explanation); wiring diagram (p. 19). Certification printed as 'CAN/ULC 628 / UL1482'. Pages 29-31 are blank. Catalog marks this model 'not for sale in the USA'; the manual covers both U.S. and Canadian installation."
+ }
+}

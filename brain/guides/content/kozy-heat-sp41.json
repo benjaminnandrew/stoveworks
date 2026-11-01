@@ -1,0 +1,689 @@
+{
+ "id": "kozy-heat-sp41",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "KOZY HEAT",
+  "brand_line": "SP41 · Direct vent gas fireplace",
+  "kicker": "Direct vent gas fireplace",
+  "title": "Kozy Heat SP41",
+  "model_line": "Models SP41-L · SP41-MV · Direct Vent · IPI / CPI electronic ignition (L) or millivolt (MV)",
+  "owner_noun": "fireplace",
+  "owner_card": "Light either version, use the remote, clean the glass, know what's normal, plus service and warranty.",
+  "installer_card": "Specs, clearances, venting, the install sequence, troubleshooting for both ignition systems and LED codes.",
+  "certification": "ANSI Z21.88-2019 · CSA 2.33-2019 · CSA 2.17 2017 (R2022)",
+  "owner_search_hint": "lighting, remote, pilot, gas smell",
+  "manual_search_hint": "clearance, vent, pressure, mantel"
+ },
+ "home_primary": [
+  {
+   "id": "lightL",
+   "icon": "flame",
+   "title": "Light the SP41-L",
+   "blurb": "Electronic ignition: press ON/OFF on the remote, and what to do if it won't light."
+  },
+  {
+   "id": "lightMV",
+   "icon": "pilot",
+   "title": "Light the SP41-MV",
+   "blurb": "Millivolt valve: where the lighting steps are, flame height, fan and the 7-day time-out."
+  },
+  {
+   "id": "remote",
+   "icon": "remote",
+   "title": "Use the remote",
+   "blurb": "SP41-L: flame levels, thermostat, fan speeds and key lock."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "Take it off safely, clean it right, and put it back."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "normal",
+   "icon": "sound",
+   "title": "Is that normal?",
+   "blurb": "Blue flames at first, creaks, beeps and a short daily pause."
+  },
+  {
+   "id": "modes",
+   "icon": "modes",
+   "title": "Pilot modes: IPI or CPI",
+   "blurb": "SP41-L: why the pilot may stay lit, and how to switch."
+  },
+  {
+   "id": "power",
+   "icon": "battery",
+   "title": "Power outages & batteries",
+   "blurb": "What works without power and which batteries go where."
+  },
+  {
+   "id": "safety",
+   "icon": "safety",
+   "title": "Safety & gas smell",
+   "blurb": "What to do if you smell gas, hot glass, and keeping the area clear."
+  },
+  {
+   "id": "service",
+   "icon": "service",
+   "title": "Yearly service",
+   "blurb": "What a professional checks every year."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "What's covered, for how long, and what voids it."
+  }
+ ],
+ "specs": [
+  {
+   "id": "input",
+   "lab": "Input rate · Btu/h",
+   "tap": "specInput",
+   "rows": [
+    [
+     "Natural gas",
+     "28,000 / 20,000"
+    ],
+    [
+     "Propane",
+     "28,000 / 21,000"
+    ]
+   ],
+   "note": "max / min · same for SP41-L and SP41-MV"
+  },
+  {
+   "id": "inlet",
+   "lab": "Inlet pressure · in. WC",
+   "tap": "specInlet",
+   "rows": [
+    [
+     "Natural gas",
+     "5\" – 10\" (7\" recommended)"
+    ],
+    [
+     "Propane",
+     "11\" – 13\""
+    ]
+   ],
+   "note": "min – max"
+  },
+  {
+   "id": "manifold",
+   "lab": "Manifold pressure · in. WC",
+   "tap": "specManifold",
+   "rows": [
+    [
+     "Natural gas",
+     "3.5\" high / 1.6\" low"
+    ],
+    [
+     "Propane",
+     "10\" high / 6.4\" low"
+    ]
+   ]
+  },
+  {
+   "id": "framing",
+   "lab": "Enclosure minimums",
+   "tap": "specFraming",
+   "rows": [
+    [
+     "Height",
+     "47-1/4\""
+    ],
+    [
+     "Width",
+     "41\""
+    ],
+    [
+     "Depth",
+     "15-1/2\""
+    ],
+    [
+     "Base to ceiling",
+     "63\""
+    ]
+   ]
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances to combustibles",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Front",
+     "36\""
+    ],
+    [
+     "Sides to sidewall",
+     "4-1/2\""
+    ],
+    [
+     "Corners",
+     "1/4\""
+    ],
+    [
+     "Stand-offs (top, sides, back)",
+     "0\""
+    ],
+    [
+     "6\" mantel, from enclosure floor",
+     "40-1/2\" (p. 14) or 37\" (p. 21)"
+    ]
+   ]
+  },
+  {
+   "id": "vent",
+   "lab": "Venting",
+   "tap": "specVent",
+   "rows": [
+    [
+     "Pipe",
+     "4\" × 6-5/8\" co-axial"
+    ],
+    [
+     "Vertical",
+     "3' min – 50' max"
+    ],
+    [
+     "Horizontal",
+     "up to 25' (with 25' vertical)"
+    ],
+    [
+     "Elbows",
+     "(5) 90° max"
+    ]
+   ]
+  },
+  {
+   "id": "elec",
+   "lab": "Electrical",
+   "tap": "specElec",
+   "rows": [
+    [
+     "Junction box",
+     "120VAC · 60Hz · 6 Amps"
+    ],
+    [
+     "SP41-L backup",
+     "4 × AA"
+    ],
+    [
+     "SP41-MV",
+     "120 V only for the fan kit"
+    ]
+   ]
+  },
+  {
+   "id": "fuel",
+   "lab": "Fuel & conversion",
+   "tap": "specFuel",
+   "rows": [
+    [
+     "Factory",
+     "Natural gas"
+    ],
+    [
+     "SP41-L kits",
+     "NCK-SP41L-S30 / LCK-SP41L-S30"
+    ],
+    [
+     "SP41-MV kits",
+     "OCK-S40A / OCK-S155A"
+    ]
+   ],
+   "note": "NG kit / LP kit"
+  }
+ ],
+ "specs_label": "Critical specs · SP41-L & SP41-MV",
+ "steps": [
+  [
+   "Frame the opening & vent path",
+   "Frame to the Table 3.1 minimums (47-1/4\" H × 41\" W × 15-1/2\" D) and lay out the vent run first; keep 1\" around vent pipe and use a wall thimble through walls.",
+   "<p>Frame to Table 3.1 (p. 14). Its figures are based on nominal 2\" x 4\" framing.</p><div class=\"kv\"><div class=\"r\"><span>Enclosure height, min.</span><span>47-1/4\"</span></div><div class=\"r\"><span>Enclosure width, min.</span><span>41\"</span></div><div class=\"r\"><span>Enclosure depth, min.</span><span>15-1/2\"</span></div><div class=\"r\"><span>Fireplace base to ceiling</span><span>63\"</span></div></div><ul><li>Lay out the vent run before installing the unit. If possible, place it so the vent terminates between two studs.</li><li>Level surface that can carry the fireplace and venting, directly on wood or a non-combustible surface (not linoleum or carpet). Over carpet, tile or other combustible flooring other than wood, use a metal or wood panel the full width and depth of the unit. Above floor level, build a solid, continuous platform.</li><li>Leave room in front for barrier removal, component access, gas line installation and service. Insulate outside walls (cold air transfer area).</li><li>Masonry: prepare the foundation for the full load and use a lintel over the unit.</li><li>TV above the fireplace: all vent clearances still apply; a mantel is recommended to deflect heat. TV placement is the homeowner's responsibility.</li></ul><h4>Vent pass-through</h4><ul><li>1\" clearance on all sides of vertical pipe; 1\" on the top, sides and bottom of horizontal pipe.</li><li>Wall thimble wherever a horizontal run passes through a wall: Kozy Heat #700-WPT (walls 4\" to 6-1/2\") or one that keeps the 1\" top clearance. Insulate only with unfaced insulation listed non-combustible per ASTM E 136.</li><li>1/4\" rise per 12\" of horizontal travel. Don't recess the vent cap into the wall or siding.</li><li>Elbow heights vary by vent maker: check theirs and adjust the rough opening. Pass-through dimensions were tested with Simpson DuraVent pipe and the Kozy Heat #700-2 flex system.</li></ul><div class=\"note\">The rough-in dimensions (Figure 3.4, the same for all design options) and the wall pass-through heights (Figures 3.5 and 3.6) are drawings in the manual; this guide doesn't reproduce them.</div>"
+  ],
+  [
+   "Prep flanges & top stand-offs",
+   "Bend the (4) nailing tabs out parallel to the face for 1/2\" facing, then form the top stand-off brackets and refit their (4) screws, all before the unit goes in.",
+   "<h4>Nailing flanges (p. 13)</h4><ol><li>Find the nailing tabs on the left and right sides that suit 1/2\" facing material.</li><li>Bend the (4) tabs out until parallel with the fireplace face. Never bend them toward the face.</li></ol><p>Never permanently remove these assemblies; they stay on whatever finish is used.</p><div class=\"note\"><b>Note:</b> p. 13 says the unit is designed for 1/2\" facing material, while the trim pages (pp. 27–28) say to install it at the recessed nailing-flange position of 1/2\" or 5/8\", chosen by the thickness of the finishing material.</div><h4>Top stand-offs (p. 12)</h4><ol><li>Remove and save the (4) screws holding the stand-off brackets on top of the unit.</li><li>Form each bracket by bending it at the perforations.</li><li>Line its holes up with the holes in the fireplace top and refit the (4) screws.</li></ol><p>Do this before the unit goes into the opening. The top stand-offs provide the 3-1/2\" minimum clearance to the header, which must be maintained; their 1\" flange takes 1/2\" combustible facing (sheetrock).</p>"
+  ],
+  [
+   "Set & secure the unit",
+   "Place it in the framed opening, center it for the minimum 1/4\" clearance at the corners, and secure it to the studs with nails or screws through the nailing tabs."
+  ],
+  [
+   "Vent run & termination",
+   "Run an approved 4\" × 6-5/8\" co-axial system within the configuration limits, rise 1/4\" per 12\" horizontally, and keep the Table 6.1 termination clearances.",
+   "<p>Use an approved 4\" exhaust × 6-5/8\" intake co-axial system (Ameri-Vent, BDM, ICC, Metal Fab, Olympia Chimney Supply, Selkirk or Simpson DuraVent; caps in Table 7.1) and follow the vent maker's instructions within this manual's limits (see the Venting spec).</p><ul><li>To get the flame appearance you want, the exhaust may be restricted with the restrictor plate (components packet): fit it before attaching the vent, or later through the baffle. It ships with both inner rings in place, which gives the most restriction.</li><li>Provide a way to check the vent connection visually after the fireplace is installed.</li><li>Never connect it to a chimney flue serving a solid-fuel appliance.</li><li>Vertical-cap clearances are shown only in Figures 6.1 and 6.2 (p. 31).</li></ul><h4>Horizontal termination clearances · Canada / US (Table 6.1)</h4><div class=\"kv\"><div class=\"r\"><span>A · above grade, veranda, porch, deck, balcony</span><span>12\" / 12\"</span></div><div class=\"r\"><span>B · window or door that may be opened</span><span>12\" / 9\"</span></div><div class=\"r\"><span>C · permanently closed window</span><span>12\" / 12\"</span></div><div class=\"r\"><span>D · ventilated soffit above, within 2 ft</span><span>24\" / 24\"</span></div><div class=\"r\"><span>E · unventilated soffit</span><span>12\" / 12\"</span></div><div class=\"r\"><span>F · outside corner</span><span>0\" / 0\"</span></div><div class=\"r\"><span>G · inside corner</span><span>12\" / 12\"</span></div><div class=\"r\"><span>J · non-mechanical air inlet</span><span>12\" / 9\"</span></div><div class=\"r\"><span>K · mechanical air supply inlet</span><span>6' / 3' above</span></div><div class=\"r\"><span>M · under veranda, porch, deck, balcony</span><span>12\" / 12\"</span></div><div class=\"r\"><span>N · between two horizontal terminations</span><span>12\" / 12\"</span></div><div class=\"r\"><span>P · above furnace exhaust or inlet</span><span>12\" / 12\"</span></div></div><p>Many entries are also subject to local installation codes and the gas supplier; rows H, I and L and the Massachusetts and veranda footnotes are in the table. Clearances are to heat-resistant materials, not vinyl: Hussong won't be responsible for heat damage from terminating under vinyl soffits, ceilings or overhangs, and vinyl or PVC siding may deform near a horizontal cap.</p><div class=\"note\">Footnote to row L (above a paved sidewalk or driveway on public property): a vent shall not terminate directly above a sidewalk or paved driveway that is located between two single family dwellings and serves both dwellings.</div>"
+  ],
+  [
+   "Gas line + leak test",
+   "Bring the line through the gas line hole to a 1/2\" tee-handle shut-off and flexible connector at the 1/2\" valve inlet; leak-test every joint with soapy water.",
+   "<ul><li>Built for natural gas. For propane, use the certified conversion kit and its instructions (see Fuel & conversion), before the logs go in.</li><li>A listed 1/2\" tee-handle manual shut-off valve and flexible gas connector connect to the 1/2\" control valve inlet. The unit comes with a 3/8\" x 18\" flexible gas connector and manual shut-off valve. Substitutes must meet local codes.</li><li>Run the line in through the gas line hole to where the shut-off and flex connector join (gas line access is in Figure 2.1, p. 9). Don't route it where it would obstruct the fan.</li><li>Installation by a qualified person to local codes, or ANSI Z223.1; in Massachusetts, a licensed plumber or gas fitter.</li><li>Pressure-testing the supply piping above 1/2 psi (3.5 kPa): disconnect the appliance and its shut-off. At 1/2 psi or less: close its manual shut-off valve.</li><li>Check every connection, field or factory made, for leaks with soapy water (p. 48).</li><li>High altitude: consult the local gas distributor or the authority having jurisdiction for rating methods.</li></ul>"
+  ],
+  [
+   "Electrical & fan kit",
+   "Junction box: 120VAC, 60Hz, 6 Amps, grounded. SP41-L supply always hot with no switch; SP41-MV needs 120 V only for the optional SP-028 fan kit.",
+   "<div class=\"kv\"><div class=\"r\"><span>Junction box</span><span>120VAC, 60Hz, 6 Amps</span></div></div><ul><li>Shut off the household breaker before working on any electrical line. Ground the appliance per local codes, or ANSI/NFPA 70 / CSA C22.1.</li><li>A pre-installed electrical box comes with the unit; the receptacle/box cover assembly is in the components packet.</li></ul><h4>SP41-L</h4><ul><li>Needs 120 VAC and/or batteries. The AC supply must be hot at all times, with no switch in it.</li><li>On battery backup only the burner's flame modulation works.</li><li>Its fan kit (SP-028-IPI) is listed as standard.</li></ul><h4>SP41-MV</h4><ul><li>Needs no 120 VAC to run. Never connect 120 VAC to the gas valve.</li><li>Optional thermostat or wall switch on low-voltage wires (not included). The ON/OFF rocker switch overrides it: leave the rocker OFF, or disconnect the rocker's wire at the back of the gas valve so only the thermostat or wall switch runs the burner.</li><li>Optional SP-028 fan kit: needs 120 VAC at the appliance and code-approved line voltage wiring, 14 gauge or better. Easier to fit before the gas line is connected to the control board: remove the back access panel's (4) screws, slide the fan under the firebox with the motor end to the right (magnetic tape, no mounting), mount the speed control box on the lower right side frame with the (2) black screws, set the temperature control switch on the firebox floor at the right, and plug in. Fitting it later means removing the control board (Section 8.5).</li></ul><div class=\"note small\"><b>Maker's website:</b> Standard Features … Fan Kit, in the same list as Electronic Ignition (IPI) and Standing Pilot Ignition.</div>"
+  ],
+  [
+   "Facing & trim",
+   "Combustible finish butts up to the unit's edge; only non-combustible finish may overlap the front; never cover the glass frame, upper hood or access panel.",
+   "<ul><li>Keep every clearance to combustibles. Finish must not stop the safety barrier going on or off, or block ventilation air.</li><li>Combustible finish butts up against the unit and stops at its edge, against the 1\" top stand-off flange.</li><li>To overlap the front of the unit, the finish must be non-combustible. Nothing may cover the glass frame assembly, upper hood or component access panel.</li><li>Sheetrock above the unit: dry and dust-free; heat-resilient tape, mesh and joint compound (such as Durabond), cured per its maker; high-quality acrylic latex primer and finish coat, avoiding flat or light-colored paint.</li><li>Stone: never a one-piece U-shaped marble, granite or natural stone surround (it can crack from thermal expansion); the material must handle more than 160°F.</li><li>Optional trim: the exterior trim (SP41-081) covers an exposed edge when the finish is flush with the unit (side and top pieces held by friction and adhesive tape); the finishing trim kit (SP41-FTK) gives tile or stone that projects past the unit a metal edge to butt against (slides in under sheet-metal screws).</li></ul><div class=\"note small\">The trim pages print the kit numbers as SP34-FTK (p. 27) and SP34-081 (p. 28); the contents list names them SP41-081 and SP41-FTK (p. 5).</div><p>Kozy Heat doesn't guarantee materials used around the fireplace and disclaims liability for warping, discoloring, cracking, peeling, flaking or off-gassing.</p>"
+  ],
+  [
+   "Hood, logs, glass & barrier",
+   "Clip on the upper hood, place the SP41-50A logs, lava rock and embers (convert to propane first), then refit the glass and the SP41-ES2 safety screen.",
+   "<ol><li>Upper hood (required): push it into the (2) clips above the glass frame assembly.</li><li>Convert to propane, and fit any panel set, before the logs.</li><li>Remove the valance. Set log SP41-1A on the back log plate; seat SP41-2A and SP41-3A on the mounting pins of the left and right front log plates.</li><li>Spread lava rock in front of the burner without blocking burner ports or air spaces.</li><li>Set SP41-4A and SP41-5A in the notches of SP41-1A and SP41-2A, and SP41-6A in the notches of SP41-3A.</li><li>Brush rockwool embers onto the logs and burner with a stiff bristle brush, keeping off the area the manual's figure marks.</li><li>Glass: tilt the top, hook its slots over the top tabs, lower the bottom, then pull the (2) spring-loaded latches out and up.</li><li>Safety screen (SP41-ES2): align its notched tabs with the slots on the frame, raise it slightly and let the tabs drop in. An optional Prairie (SP41-POL) or Arched Prairie (SP41-APOL) overlay is centered on the screen and held by its (4) hand-bent tabs first.</li></ol><div class=\"note danger\">Never place logs directly over burner port holes: it affects flame appearance and can soot the glass. Log numbers are on the bottom or side of each log.</div><div class=\"note small\">Pages 10 and 29 print the Arched Prairie overlay as SP41A-POL; the parts list gives SP41-APOL (p. 80).</div>"
+  ],
+  [
+   "Initialize the control",
+   "SP41-L: batteries, AC power, clear the firebox, sync the remote, rocker ON. SP41-MV: light it per the lighting instructions on p. 62.",
+   "<h4>SP41-L (Proflame 2 IFC)</h4><ol><li>Set the main ON/OFF rocker switch OFF.</li><li>Install (4) AA batteries (not included) in the backup holder on the control module and (3) AAA (included) in the remote.</li><li>Connect the IFC module to AC power.</li><li>Remove all packaging and combustible material from the firebox.</li><li>Lift off the safety screen, open the component access panel and slide out the control module to reach the remote sync button.</li><li>Press the sync button: 3 beeps and an amber LED. Within 5 seconds press ON/OFF on the remote: 4 beeps, and the pilot lights.</li><li>Press ON/OFF again. The pilot goes out and the control system is initialized.</li><li>Set the rocker switch ON for remote operation and refit the safety screen.</li></ol><p>The pilot igniter sparks repeatedly during start-up, and the pilot lights if gas is supplied. IPI or CPI is then chosen on the remote (Section 10.9.3).</p><h4>SP41-MV</h4><p>Light it with the lighting instructions printed on p. 62 (a graphic, not reproduced here). The gas valve and gas control knob are behind the control compartment access panel.</p>"
+  ],
+  [
+   "Pressure test & flame check",
+   "Check inlet and manifold pressure at the valve taps and reseal them, then burn 15 minutes and adjust venturi or restrictor only if the flame calls for it.",
+   "<div class=\"kv\"><div class=\"r\"><span>Inlet, NG</span><span>5\" – 10.0\" WC · 7\" recommended</span></div><div class=\"r\"><span>Inlet, LP</span><span>11\" – 13\" WC</span></div><div class=\"r\"><span>Manifold, NG</span><span>1.6\" – 3.5\" WC</span></div><div class=\"r\"><span>Manifold, LP</span><span>6.4\" – 10\" WC</span></div></div><ul><li>Inlet at the IN tap, manifold at the OUT tap, each with a 1/4\" I.D. hose. Test inlet pressure with every other gas appliance in the house on. SP41-MV: light the pilot, turn the knob ON (the burner shouldn't light), then the rocker ON.</li><li>Reseal each tap afterward. SP41-L, both taps: turn off burner and pilot, disconnect the hose and tighten the tap clockwise (snug, don't over-tighten), relight pilot and burner, then re-attach the manometer to verify the tap is completely sealed: it should read no pressure.</li><li>SP41-MV IN tap: rocker switch OFF, gas control knob OFF, disconnect the hose and tighten the tap clockwise (snug, don't over-tighten), relight the pilot and turn the knob to ON, then re-attach the manometer to verify the tap is completely sealed: it should read no pressure. OUT tap: disconnect the hose and tighten the tap clockwise (snug, don't over-tighten), then re-attach the manometer to verify it is completely sealed: it should read no pressure with pilot and burner on.</li><li>Inlet out of range: contact the gas company. Only a qualified gas service technician should adjust incoming pressure.</li></ul><h4>Flame check</h4><ul><li>Flames start blue and gradually turn yellow during the first 15 minutes. Burn at least 15 minutes, and let the unit cool, before any adjustment.</li><li>Venturi air shutter (factory set: 3/16\" NG, 1/2\" LP) is adjusted only by a qualified service technician, in slight increments. Soot: check log positioning first. Dark orange flames with black tips mean the venturi is closed too far: open it slightly. Short, blue flames: close it slightly.</li><li>Restrictor plate in the 4\" exhaust, reached through the baffle: short, flickering flames (excessive draft) need more restriction; lifting or ghosting (insufficient draft) means removing inner ring(s) or the plate. Vertical terminations may show an active, compact flame. If flames still lift after opening the restrictor and checking the vent, shut off the gas and call a qualified service technician.</li></ul><div class=\"note\"><b>Note:</b> for a blue flame that lifts off the burner, the SP-41-L chart (p. 72) says close the venturi air shutter slightly, in line with 12.3.1 (p. 66: opening it causes short, blue flames that may lift); the SP-41-MV chart (p. 75) says open it slightly, as does Table 12.6 for lifting (ghosting) flames (p. 67).</div>"
+  ]
+ ],
+ "faults": {
+  "label": "Troubleshooting chart · qualified technician",
+  "panels": [
+   {
+    "title": "SP41-L · pilot won't light or stay lit",
+    "items": [
+     "Power interrupted or disconnected → restore power, or use the battery backup with fully charged batteries",
+     "Wiring disconnected → check every connection against the wiring schematic",
+     "Gas supply off → check the shut-off valves; there may be more than (1) between appliance and main line",
+     "No propane, or low gas pressure (bent line, too-narrow pipe, low line pressure) → refill the tank; consult a plumber or gas supplier",
+     "Pilot adjustment screw not sealed → seal it; don't over-tighten",
+     "Pilot not contacting the flame rectification sensor → it must envelop the top of the sensor and reach onto the burner",
+     "Pilot always on, won't go out → control set to CPI; set it to IPI"
+    ]
+   },
+   {
+    "title": "SP41-L · burner won't light or respond",
+    "items": [
+     "ON/OFF rocker switch OFF → switch it ON",
+     "Gas off, low supply or no propane → check for multiple shut-offs; consult a plumber or gas supplier; refill the tank",
+     "Faulty, disconnected or improper wiring → check against Figure 9.1, the SP-41-L electrical diagram",
+     "Plugged burner orifice → remove the blockage",
+     "Pilot not directed to light the burner → see the pilot causes",
+     "Remote not working or no call for heat → replace batteries; remote ON with thermostat operation OFF",
+     "No reaction to commands → replace low backup or remote batteries; reprogram the remote to the IFC module; reset the IFC after too many failed ignitions or flame restorations"
+    ]
+   },
+   {
+    "title": "SP41-MV · spark, pilot & burner",
+    "items": [
+     "No spark when the piezo button is pressed → igniter grounding and wiring; 1/8\" gap between electrode and pilot",
+     "Sparks but no pilot → no gas (shut-offs, propane tank); clean the pilot hood; adjust the pilot onto the thermocouple",
+     "Pilot won't stay lit → thermocouple fully inserted (hand tight plus 1/4 turn); replace it below 15 millivolts; replace the thermopile below 350 millivolts at TH-TP and TP",
+     "Frequent pilot outages → pilot shield missing; pilot too high or low (clean the hood, adjust for maximum impingement on the thermopile)",
+     "Burner won't light → knob ON, rocker ON, switch, remote or thermostat calling for heat; clear a plugged orifice; jumper-test the switch and its wiring",
+     "Burner won't stay lit → thermopile wires loose or pinched at the valve; refractory panels not tight to the firebox walls"
+    ]
+   },
+   {
+    "title": "Both · goes out, soots or lifts",
+    "items": [
+     "Pilot and burner go out while running → no propane; glass assembly or vent cap installed wrong; vent cap blocked; exhaust leaking into the firebox; horizontal pitch under 1/4\" rise per 12\"",
+     "Goes out with excessive draft → install or modify the restrictor",
+     "SP41-MV goes out → check thermopile and thermocouple millivolts",
+     "Soot on the glass → log placement; venturi (open slightly); vent cap installation or blockage",
+     "Blue flame lifting off the burner → venturi setting (the two charts disagree on direction; see the pressure test step); vent cap installation; vent leaks or debris"
+    ]
+   }
+  ]
+ },
+ "codes": [
+  [
+   1,
+   "Low backup battery",
+   "Backup pack under 4V; low double-beep on ON/OFF. Replace the batteries."
+  ],
+  [
+   2,
+   "Pilot flame error",
+   "Contact your dealer."
+  ],
+  [
+   3,
+   "System lockout",
+   "No flame after (2) ignition tries. Verify gas is on and the sensor isn't shorted; reset, or re-initialize (10.2)."
+  ]
+ ],
+ "codes_label": "SP41-L · IFC module red LED codes",
+ "detail": {
+  "lightL": {
+   "tag": "Owner · operation",
+   "title": "Lighting the SP41-L",
+   "cool": false,
+   "html": "<p>The SP41-L lights itself. It has electronic ignition, run from its Proflame 2 remote.</p><ol><li>The main <b>ON/OFF rocker switch</b> must be switched on for the remote to work. It sits behind the safety screen, which lifts up and out of its slots.</li><li>With the fireplace off, press <b>ON/OFF</b> on the remote. The fireplace beeps once and the screen shows all active icons.</li><li>About 4 seconds later the control starts sparking at the pilot to light the fire.</li></ol><p>To turn it off, press ON/OFF again. The burner goes out and the screen shows only the room temperature.</p><h4>If it doesn't light</h4><p>It tries twice, sparking for about 60 seconds each time with about 35 seconds between. If both tries fail, it locks out and the red light blinks 3 times. To reset, turn it off with the remote or the rocker switch, wait about 2 seconds, and turn it back on. If it locks out again, check that the gas supply is on. Beyond that, troubleshooting is for a qualified technician.</p><div class=\"note\"><b>No remote?</b> The control can be reset for manual operation (Section 10.3). The rocker switch then turns the burner on and off, on HI only.</div>"
+  },
+  "lightMV": {
+   "tag": "Owner · operation",
+   "title": "Lighting & running the SP41-MV",
+   "cool": false,
+   "html": "<p>The SP41-MV has a millivolt gas valve. You light its pilot at the valve, and it doesn't need house power to run.</p><h4>Lighting</h4><ol><li>Open the access panel below the safety screen. Pull on its top; a magnet holds it shut. The gas valve and gas control knob are inside.</li><li>Follow the lighting instructions printed in the manual on the page linked below. They're a graphic, so this guide doesn't repeat them.</li></ol><h4>Running it</h4><ul><li><b>On and off:</b> the ON/OFF rocker switch, or a wall switch or thermostat if one was installed. Leave the rocker switch off when you use those; switched on, it overrides them.</li><li><b>Flame height:</b> turn the HI/LO knob on the gas valve clockwise toward HI or counterclockwise toward LO.</li><li><b>Optional fan:</b> turn its speed knob counterclockwise until it clicks to switch it off. Just past the click, clockwise, is the highest setting. The fan comes on when its sensor reaches 110°F and goes off at 90°F.</li></ul><div class=\"note\"><b>7-day time-out:</b> where required, the valve turns the pilot and burner off after 7 days without use, even though the knob still reads PILOT or ON. To restart, switch the ON/OFF switch off, wait 5 seconds, and switch it back on. Any burner use within the 7 days restarts the count. Ask your dealer whether yours has it.</div>"
+  },
+  "remote": {
+   "tag": "Owner · operation",
+   "title": "Using the remote (SP41-L)",
+   "cool": false,
+   "html": "<p>The SP41-L's remote runs on 3 AAA batteries. A single beep from the fireplace confirms commands such as on, off and flame changes.</p><ul><li><b>ON/OFF</b> turns the fireplace on (it lights itself) and off.</li><li><b>Up and down arrows</b> set 6 flame levels. Down lowers it one level at a time, all the way to off; up raises it. If the fireplace is on but the flame is off, up relights it on HI.</li><li><b>Thermostat key</b> makes the remote a room thermostat: set the temperature with the arrows. Keep pressing it until SMART appears for the smart thermostat, which turns the flame down as the room reaches the set point. You can't set flame height by hand in smart mode.</li><li><b>Mode key</b> steps to the fan icon. The arrows then turn the fan on or off and set 6 speeds.</li><li><b>Key lock:</b> press mode and the up arrow together. A lock icon shows.</li><li><b>°F or °C:</b> with the fireplace off, press thermostat and mode together.</li></ul><div class=\"note\"><b>Fan timing:</b> in thermostat mode the fan waits 5 minutes after the fire lights and keeps running about 12 minutes after it goes off. In manual mode it starts and stops with no delay.</div><p>A battery icon on the screen means the remote batteries are low. The remote also switches the pilot between IPI and CPI (see Pilot modes).</p>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>The manual lists glass cleaning as a once-a-year homeowner job. Only do it when the fireplace is cold.</p><ol><li>Clear a flat, stable surface big enough to lay the glass assembly on.</li><li>Lift the safety screen up and out of its slots.</li><li>Pull the 2 spring-loaded latches at the bottom of the firebox out and down. Then lift the glass up off the 2 tabs at the top.</li><li>Clean it with a suitable fireplace glass cleaner and a soft cloth. Don't use abrasive cleaners, and take care not to scratch it.</li><li>To refit, tilt the top in, hook its slots over the top tabs and lower the bottom into place. Pull the latches out and up to lock it, then put the safety screen back.</li></ol><div class=\"note danger\"><b>Never run the fireplace</b> with the glass removed, cracked or broken, or without the safety screen. Don't strike or slam the glass. Damaged glass should be replaced by a qualified service person, and it only comes as a complete assembly from Hussong Mfg.</div>"
+  },
+  "normal": {
+   "tag": "Owner · reassurance",
+   "title": "Is that normal?",
+   "cool": false,
+   "html": "<h4>Blue flames at first</h4><p>When the fireplace is first lit, the flames look blue. Over the first 15 minutes they gradually turn the yellow you want. If they stay blue, or turn dark orange with black tips, the burner's air setting may need adjusting. That's a job for a qualified service technician.</p><p>Flame height and look also depend on how the fireplace is vented and which gas it burns. A vertically vented fireplace may show an active, compact flame.</p><h4>Creaks and color changes</h4><p>Some minor expansion, contraction or movement of parts that makes noise is normal. So is some discoloration. Neither is a defect.</p><h4>SP41-L sparks, beeps and pauses</h4><ul><li>The igniter sparks repeatedly at the pilot while it lights.</li><li>One beep means a command was received. A double beep when you press ON/OFF means the backup batteries are low.</li><li>Within 24 hours of the pilot staying lit, the control turns itself off for about 5 seconds as a safety check, then goes back to its last command.</li></ul><div class=\"note\"><b>Soot on the glass?</b> The manual's usual causes are log placement, the burner's air setting and the vent cap. Have a qualified technician check them.</div>"
+  },
+  "modes": {
+   "tag": "Owner · operation",
+   "title": "Pilot modes: IPI or CPI (SP41-L)",
+   "cool": false,
+   "html": "<p>The SP41-L can run its pilot two ways. You choose on the remote.</p><ul><li><b>IPI:</b> the control sparks the pilot alight each time the fireplace starts.</li><li><b>CPI:</b> a continuous (standing) pilot. It keeps the firebox warm and establishes a draft in the vent, so the burner lights with less air-flow disruption.</li></ul><h4>To switch</h4><ol><li>Turn the fireplace off.</li><li>Press the mode key until the CPI icon is selected.</li><li>Press up for CPI, or down to go back to IPI. One beep confirms.</li></ol><p>With the fireplace on, a <b>snowflake icon</b> on the remote screen means CPI. No snowflake means IPI.</p><div class=\"note\"><b>7-day time-out:</b> in CPI, if the burner doesn't light for 7 days in a row, the pilot turns off. It's a standard safety feature. Any burner use within the 7 days restarts the count.</div><p>Pilot always on and won't go out? The system is set to CPI. Switch it to IPI.</p>"
+  },
+  "power": {
+   "tag": "Owner · operation",
+   "title": "Power outages & batteries",
+   "cool": false,
+   "html": "<h4>SP41-L</h4><p>It runs on house power, with batteries as backup.</p><div class=\"kv\"><div class=\"r\"><span>Backup, in the control module holder</span><span>4 × AA (not included)</span></div><div class=\"r\"><span>Remote</span><span>3 × AAA (included)</span></div></div><p>In a power outage the backup batteries keep the burner and flame height adjustment working. The fan and accent light kit won't run until power comes back.</p><ul><li>A low double beep when you press ON/OFF, or the red light blinking once at intervals, means the backup batteries are low. The fireplace ignores commands until you replace them, then beeps once.</li><li>A battery icon on the remote's screen means the remote batteries are low.</li><li>Battery life depends on battery quality, how often it lights and similar things. Install batteries with the correct polarity.</li></ul><h4>SP41-MV</h4><p>The millivolt gas valve doesn't need 120 V house power to operate. Only the optional fan kit plugs in.</p>"
+  },
+  "safety": {
+   "tag": "Owner · safety",
+   "title": "Safety & gas smell",
+   "cool": false,
+   "html": "<h4>If you smell gas</h4><ul><li>Don't try to light any appliance.</li><li>Don't touch any electrical switch, and don't use any phone in your building.</li><li>Leave the building right away.</li><li>Immediately call your gas supplier from a neighbor's phone and follow their instructions. If you can't reach them, call the fire department.</li></ul><h4>Every day</h4><ul><li>The glass gets hot. Keep the safety screen on to protect children and anyone at risk. If it's damaged, replace it with Hussong Mfg.'s barrier for this fireplace.</li><li>Keep furniture and drapes away, and keep gasoline and other flammable vapors and liquids out of the area.</li><li>If any part of the fireplace has been under water, don't use it. Call a qualified service technician to inspect it and replace any control parts that got wet.</li><li>Don't run it with the glass removed, cracked or broken.</li></ul><div class=\"note\">Installation and service must be done by a qualified installer, service agency or the gas supplier.</div>"
+  },
+  "service": {
+   "tag": "Owner · maintenance",
+   "title": "Yearly service",
+   "cool": false,
+   "html": "<p>Have a professional service person inspect the fireplace before use and at least once a year. Lint from carpet, bedding and the like can mean it needs cleaning more often. The control compartment, burner and air passages must be kept clean.</p><h4>What the yearly visit covers</h4><ul><li>Vacuuming debris out of the firebox, and checking that the glass latches move freely with spring tension.</li><li>Examining the vent and vent cap for soot or blockage. Combustion and ventilation air must flow freely.</li><li>Unplugging and vacuuming the fan, if you have one. Its bearings are sealed and need no oil.</li><li>Cleaning the glass and checking it for cracks, scratches and nicks.</li><li>Vacuuming the burner, leak-checking the gas connections, and checking the pilot, the flame safety system and a steady burner flame.</li></ul><div class=\"note\">Any screen or barrier removed for service must go back on before the fireplace is used. Between visits, keep the area clear of anything that burns, and of gasoline and other flammable vapors and liquids.</div>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "Warranty at a glance",
+   "cool": false,
+   "html": "<p>Hussong Mfg. covers this Kozy Heat fireplace with a Limited Lifetime Warranty against defects in materials and workmanship, for the original purchaser, from the date of purchase.</p><div class=\"kv\"><div class=\"r\"><span>30 days · parts & labor</span><span>Paint, light bulbs, gasket material, glass media and media dam</span></div><div class=\"r\"><span>Year 1 · parts & labor</span><span>All other parts and material (labor is paid to an authorized dealer only)</span></div><div class=\"r\"><span>Year 2 to lifetime · parts only</span><span>Firebox, heat exchanger, logs, burner tube or pan, outer shell, heat shields, front viewing glass (thermal shock only), refractory firebox liner (not enamel or glass panels)</span></div></div><h4>Making a claim</h4><p>You don't need to send in any documents to register it. Keep your proof of purchase with the fireplace's serial number and model. If you notice a defect, contact your authorized dealer within 30 days.</p><h4>Common ways to void it</h4><ul><li>Not installed by a licensed, authorized technician or contractor, or not installed, operated and maintained per the manual.</li><li>Serial number or testing label removed, or the fireplace altered or tampered with.</li><li>Submersion in water, or long periods of dampness or condensation.</li></ul><div class=\"note\">It isn't transferable. This is a summary; the full terms and exclusions are in the manual.</div>"
+  },
+  "specInput": {
+   "tag": "Installer · spec",
+   "title": "Input rates",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>NG max / min</span><span>28,000 / 20,000 Btu/h (8.2 / 5.9 kW)</span></div><div class=\"r\"><span>LP max / min</span><span>28,000 / 21,000 Btu/h (8.2 / 6.2 kW)</span></div><div class=\"r\"><span>Burner orifice (DMS)</span><span>#40 NG · #1.55mm LP</span></div></div><div class=\"note small\"><b>Maker's website:</b> BTU/hr Input – NG 28,000; BTU/hr Input – LP 28,000 (no minimum given). Install to the manual.</div><p>The same ratings apply to the SP41-L and SP41-MV. Certified to ANSI Z21.88-2019/CSA 2.33-2019 and, for high altitudes, CSA 2.17.</p><h4>High altitude</h4><p>US: above 2,000' (610m), reduce input ratings by 4% for each 1,000' (305m) above sea level. Canada: above 4,500' (1,372m), reduce the certified high-altitude rating by 4% for each additional 1,000' (305m). Otherwise follow ANSI Z223.1/NFPA 54, CSA B149.1 and local codes on derating.</p>"
+  },
+  "specInlet": {
+   "tag": "Installer · spec",
+   "title": "Inlet (supply) pressure",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>NG minimum</span><span>5\" WC (1.24 kPa)</span></div><div class=\"r\"><span>NG recommended</span><span>7\" WC (1.74 kPa)</span></div><div class=\"r\"><span>NG maximum</span><span>10\" WC (2.49 kPa)</span></div><div class=\"r\"><span>LP minimum</span><span>11\" WC (2.74 kPa)</span></div><div class=\"r\"><span>LP maximum</span><span>13\" WC (3.23 kPa)</span></div></div><p>Test at the valve's IN tap with a 1/4\" (6mm) I.D. hose, with every other gas appliance in the house on. If the reading is too high or too low, contact the gas company; only a qualified gas service technician should adjust incoming pressure. On the SP41-MV, read it with the pilot lit, knob ON and rocker switch ON: it should be near maximum inlet pressure, and low pressure can cause delayed ignition.</p><p>After the reading, reseal the IN tap. SP41-L: turn off burner and pilot, disconnect the hose and tighten the tap by turning the screw clockwise (snug, don't over-tighten), relight pilot and burner, then re-attach the manometer to the tap to verify it is completely sealed: it should read no pressure. SP41-MV: press the rocker switch to OFF, turn the gas control knob to OFF, disconnect the hose and tighten the tap by turning the screw clockwise (snug, don't over-tighten), relight the pilot and turn the gas control knob to ON, then re-attach the manometer to the tap to verify it is completely sealed: it should read no pressure.</p><p>Disconnect the appliance and its shut-off valve from the supply piping for any pressure test above 1/2 psi (3.5 kPa); at or below 1/2 psi, isolate it by closing its manual shut-off valve.</p>"
+  },
+  "specManifold": {
+   "tag": "Installer · spec",
+   "title": "Manifold pressure",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>NG high / low</span><span>3.5\" / 1.6\" WC (0.87 / 0.40 kPa)</span></div><div class=\"r\"><span>LP high / low</span><span>10\" / 6.4\" WC (2.49 / 1.59 kPa)</span></div><div class=\"r\"><span>Venturi opening (factory)</span><span>3/16\" (5mm) NG · 1/2\" (13mm) LP</span></div></div><p>Read it at the valve's OUT tap with a 1/4\" (6mm) I.D. hose, pilot lit and burner on (SP41-MV: knob ON, rocker switch ON). Then reseal the tap. SP41-L: turn burner and pilot off, disconnect the manometer hose and tighten the tap by turning the screw clockwise (snug, don't over-tighten), relight pilot and burner, then re-attach the manometer to verify the tap is completely sealed. SP41-MV: disconnect the manometer hose and tighten the tap by turning the screw clockwise (snug, don't over-tighten), then re-attach the manometer to verify it is completely sealed. Either way it should read no pressure with pilot and burner on.</p><p>The venturi air shutter is factory set; any adjustment is for a qualified service technician (see the pressure test step).</p>"
+  },
+  "specFraming": {
+   "tag": "Installer · spec",
+   "title": "Enclosure minimums",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Enclosure height, min.</span><span>47-1/4\" (1200mm)</span></div><div class=\"r\"><span>Enclosure width, min.</span><span>41\" (1040mm)</span></div><div class=\"r\"><span>Enclosure depth, min.</span><span>15-1/2\" (393mm)</span></div><div class=\"r\"><span>Fireplace base to ceiling</span><span>63\" (1600mm)</span></div></div><p>From Table 3.1, based on nominal 2\" x 4\" framing. The rough-in drawing (Figure 3.4) is the same for every design option and must be followed; the appliance's own dimensions and gas line access are shown only in Figure 2.1 (p. 9). This guide doesn't reproduce either drawing.</p><p>Floor: directly on wood or a non-combustible surface, or on a metal or wood panel the full width and depth of the unit over carpet, tile or other combustible flooring; a solid, continuous platform if raised. Floor protection in front isn't required. It may be installed in a bedroom, and in an aftermarket, permanently located manufactured home (USA only) or mobile home where local codes allow.</p><p>Outdoor covered installation is allowed where the unit is protected from direct precipitation: operation approved from 40°F to 110°F, wiring to the outdoor requirements of NFPA 70, black painted safety barriers recommended.</p>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances to combustibles",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>From fireplace front</span><span>36\" (914mm)</span></div><div class=\"r\"><span>Fireplace sides to adjacent sidewall</span><span>4-1/2\" (114mm)</span></div><div class=\"r\"><span>From fireplace corners</span><span>1/4\" (6mm)</span></div><div class=\"r\"><span>Top, side (nailing flange) and back stand-offs</span><span>0\"</span></div><div class=\"r\"><span>Header (held by the top stand-offs)</span><span>3-1/2\" (89mm) min.</span></div><div class=\"r\"><span>Vent pipe, all sides</span><span>1\" (25mm)</span></div></div><h4>Mantels</h4><div class=\"note\"><b>Note:</b> Table 3.1 (p. 14) gives the mantel heights as 37-1/8\" from the enclosure floor to 3/4\" mantel trim and 40-1/2\" to a 6\" mantel projection; section 4.1.1 (p. 21) says 3/4\" trim can start at 33-1/2\" and a 6\" mantel at 37\".</div><p>Above the 6\" mantel, combustible projections can grow 1\" deeper for every 1\" higher. A 6\" non-combustible mantel can start 6\" above the top finishing edge, then 1\" up for every 1\" deeper. Mantel legs follow the 4-1/2\" sidewall clearance; the sidewall projection beyond that is unlimited.</p><h4>Hearth</h4><p>Floor protection isn't required. Combustible flooring can run under the unit, allowing an unlimited combustible hearth projection, but the hearth can't be raised above the fireplace base / enclosure floor. The bottom of the fireplace must be level with a finished hearth extension for the safety barrier to fit.</p>"
+  },
+  "specVent": {
+   "tag": "Installer · spec",
+   "title": "Venting",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Pipe</span><span>4\" (102mm) exhaust × 6-5/8\" (168mm) intake, co-axial</span></div><div class=\"r\"><span>Vertical termination</span><span>3' (914mm) min – 50' (15.24m) max vertical + cap</span></div><div class=\"r\"><span>Combination, max</span><span>25' vertical + 25' horizontal = 50' total</span></div><div class=\"r\"><span>90° elbows</span><span>(5) max; subtract 3' for each after the first</span></div><div class=\"r\"><span>45° elbows</span><span>(2) may replace (1) 90°; subtract 18\" for each</span></div><div class=\"r\"><span>Horizontal rise</span><span>1/4\" per 12\" of travel</span></div></div><h4>Horizontal runs (vertical rise + 90° elbow + horizontal)</h4><ul><li>0\" vertical: 6\" min – 24\" max horizontal</li><li>9\" vertical: 6\" min – 8' max horizontal</li><li>12\" vertical: 6\" min – 10' max horizontal</li><li>24\" max vertical: 6\" – 16' max horizontal</li><li>25' max vertical: 6\" – 25' max horizontal</li></ul><p>Combination runs must fall within the shaded area of Figure 7.5 (not reproduced here). Approved 4\" × 6-5/8\" makers: American Metal Products (Ameri-Vent), BDM, ICC, Metal Fab, Olympia Chimney Supply, Selkirk and Simpson DuraVent (Table 7.1).</p><h4>Other approved routes</h4><ul><li>Kozy Heat #700-2 4\" × 7\" flexible direct vent, horizontal termination only (#745-2 termination kit, #718-2 extension; 6\" minimum bend radius; don't stretch an extension beyond 6').</li><li>Existing Class A/masonry chimney (minimum 7\" ID): retro connector + 4\" aluminum flex, 10' min – 50' max, 0\" – 24\" horizontal.</li><li>Co-axial to co-linear: adapter + 3\" aluminum flex, 10' min – 50' max, 0\" – 24\" horizontal.</li></ul><p>Flexible pipe only outside the appliance enclosure (the #700-2 kit excepted) and never to terminate vertically. Never connect to a flue serving a solid-fuel appliance.</p>"
+  },
+  "specElec": {
+   "tag": "Installer · spec",
+   "title": "Electrical",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Junction box</span><span>120VAC, 60Hz, 6 Amps</span></div><div class=\"r\"><span>SP41-L supply</span><span>hot at all times, no switch</span></div><div class=\"r\"><span>SP41-L backup</span><span>(4) AA, not included</span></div><div class=\"r\"><span>Remote (SP41-L)</span><span>(3) AAA, included</span></div><div class=\"r\"><span>SP41-MV</span><span>120 VAC only for the optional SP-028 fan kit</span></div></div><p>Ground the appliance per local codes, or the National Electrical Code ANSI/NFPA 70 or Canadian Electrical Code CSA C22.1. Its three-prong grounding plug goes directly into a properly grounded receptacle; don't cut or remove the grounding prong. Shut off the household breaker before working on any electrical line.</p><p>SP41-L: on battery backup only burner flame modulation works; the fan and accent light don't. SP41-MV: never connect 120 VAC to the gas valve; an optional thermostat or wall switch uses low-voltage wire (not included).</p>"
+  },
+  "specFuel": {
+   "tag": "Installer · spec",
+   "title": "Fuel & conversion",
+   "cool": true,
+   "html": "<p>The fireplace is built for natural gas and isn't convertible to another gas unless a certified kit is used. Follow the kit's instructions, and carry out the conversion per the provincial authorities having jurisdiction and the ANSI Z223.1 installation code.</p><div class=\"kv\"><div class=\"r\"><span>SP41-L kit, NG / LP</span><span>NCK-SP41L-S30 / LCK-SP41L-S30</span></div><div class=\"r\"><span>SP41-MV kit, NG / LP</span><span>OCK-S40A / OCK-S155A</span></div><div class=\"r\"><span>Burner orifice, NG / LP</span><span>#40 (700-240) / #1.55mm (700-155M)</span></div><div class=\"r\"><span>SP41-L valve stepper motor, NG / LP</span><span>700-503 / 700-503-1 (30% turn down)</span></div></div><p>If converting to propane, complete the conversion before installing the log set.</p><div class=\"note\"><b>Note:</b> the gas line page says a stepper motor is sold separately to complete gas conversion, but labels that line \"SP-34-L\" (p. 30).</div>"
+  }
+ },
+ "pageref": {
+  "lightL": 56,
+  "lightMV": 62,
+  "remote": 58,
+  "glass": 76,
+  "normal": 66,
+  "modes": 59,
+  "power": 56,
+  "safety": 1,
+  "service": 76,
+  "warranty": 81,
+  "specInput": 8,
+  "specInlet": 8,
+  "specManifold": 8,
+  "specFraming": 14,
+  "specClear": 14,
+  "specVent": 34,
+  "specElec": 8,
+  "specFuel": 30,
+  "step0": 16,
+  "step1": 12,
+  "step2": 13,
+  "step3": 33,
+  "step4": 30,
+  "step5": 52,
+  "step6": 21,
+  "step7": 46,
+  "step8": 56,
+  "step9": 64
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "safety",
+   "t": "gas smell",
+   "p": "What to do if you smell gas"
+  },
+  {
+   "k": "h",
+   "id": "lightL",
+   "t": "won't light",
+   "p": "Two tries, then lockout; how to reset"
+  },
+  {
+   "k": "h",
+   "id": "lightL",
+   "t": "blinking red light",
+   "p": "3 blinks means lockout; reset with ON/OFF"
+  },
+  {
+   "k": "h",
+   "id": "modes",
+   "t": "pilot stays on",
+   "p": "CPI keeps the pilot lit; switch to IPI"
+  },
+  {
+   "k": "h",
+   "id": "power",
+   "t": "power outage",
+   "p": "SP41-L runs on backup batteries; SP41-MV needs no house power"
+  },
+  {
+   "k": "h",
+   "id": "normal",
+   "t": "soot on glass",
+   "p": "Flames should turn yellow in 15 minutes; soot needs a technician"
+  },
+  {
+   "k": "i",
+   "id": "specFuel",
+   "t": "propane conversion",
+   "p": "LCK-SP41L-S30 (L) or OCK-S155A (MV); convert before the logs"
+  },
+  {
+   "k": "i",
+   "id": "specInput",
+   "t": "high altitude",
+   "p": "US: above 2,000', reduce input 4% per 1,000'"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "specClear",
+    "issue": "Mantel heights: Table 3.1 gives 37-1/8\" from the enclosure floor to 3/4\" mantel trim and 40-1/2\" to a 6\" mantel projection; section 4.1.1 says 3/4\" trim can start at 33-1/2\" and a 6\" mantel at 37\".",
+    "pages": [
+     [
+      1,
+      14
+     ],
+     [
+      1,
+      21
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "step9",
+    "issue": "Venturi direction for a blue flame lifting off the burner: the SP-41-L troubleshooting chart says close the air shutter slightly (consistent with 12.3.1, where opening it gives short blue flames that may lift); the SP-41-MV chart says open it slightly, as does Table 12.6 for lifting/ghosting flames.",
+    "pages": [
+     [
+      1,
+      72
+     ],
+     [
+      1,
+      66
+     ],
+     [
+      1,
+      75
+     ],
+     [
+      1,
+      67
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "step6",
+    "issue": "Trim kit part numbers: the table of contents names the exterior trim SP41-081 and the finishing trim kit SP41-FTK; the trim pages cross-refer to SP34-FTK and SP34-081.",
+    "pages": [
+     [
+      1,
+      5
+     ],
+     [
+      1,
+      27
+     ],
+     [
+      1,
+      28
+     ]
+    ],
+    "class": "clerical",
+    "corrected_to": "exterior trim SP41-081; finishing trim kit SP41-FTK"
+   },
+   {
+    "where": "step7",
+    "issue": "Arched Prairie overlay part number: SP41A-POL in 2.4 and 4.4.2, SP41-APOL in the parts list.",
+    "pages": [
+     [
+      1,
+      10
+     ],
+     [
+      1,
+      29
+     ],
+     [
+      1,
+      80
+     ]
+    ],
+    "class": "clerical",
+    "corrected_to": "SP41-APOL"
+   },
+   {
+    "where": "step1",
+    "issue": "Nailing-flange position: 3.5 says the appliance is designed for 1/2\" facing material; the trim kit pages say to install it at the recessed nailing-flange position of 1/2\" or 5/8\".",
+    "pages": [
+     [
+      1,
+      13
+     ],
+     [
+      1,
+      27
+     ],
+     [
+      1,
+      28
+     ]
+    ],
+    "class": "substantive"
+   }
+  ],
+  "catalog_mismatches": [
+   {
+    "model": "kozy-heat-sp41",
+    "field": "btu_input_ng_min",
+    "catalog": "14000",
+    "manual": "20,000 Btu/h (5.9 kW) minimum input on natural gas, SP-41-L and SP-41-MV",
+    "page": [
+     1,
+     8
+    ],
+    "shown": "specInput"
+   },
+   {
+    "model": "kozy-heat-sp41",
+    "field": "btu_input_lp_min",
+    "catalog": "14000",
+    "manual": "21,000 Btu/h (6.2 kW) minimum input on propane, SP-41-L and SP-41-MV",
+    "page": [
+     1,
+     8
+    ],
+    "shown": "specInput"
+   },
+   {
+    "model": "kozy-heat-sp41",
+    "field": "blower",
+    "catalog": "standard",
+    "manual": "Fan kit standard on the SP41-L (SP-028-IPI) but optional on the SP41-MV (SP-028); section 8.6 is '#SP-028 Optional Fan Kit (SP-41-MV Only)'",
+    "page": [
+     1,
+     80
+    ],
+    "shown": "step5"
+   }
+  ],
+  "notes": "One manual covers both versions (SP41-L Proflame 2 IPI/CPI; SP41-MV millivolt), so the owner side has a lighting tile for each; remote, IPI/CPI and LED codes are SP41-L only. Pages with no extractable text (figures, labels or blank): 2, 4, 6, 9, 15, 18, 20, 22, 38, 45, 47, 49, 53, 54, 55, 62, 69, 83. Not transcribed: Figure 2.1 appliance dimensions and gas line access (p. 9), rough-in Figure 3.4, pass-through Figures 3.5-3.6, vertical-cap Figures 6.1-6.2 (p. 31), the Figure 7.5 venting chart, log/ember placement figures, the wiring diagram, and the SP-41-MV lighting instructions: p. 63 says they are on the previous page, and p. 62 carries only its heading ('Opera?ng Instruc?ons - SP-41-MV', ligatures lost), so the MV lighting drawer and step 9 link p. 62 and give no steps. QA's PAGEREF sniff warns on lightMV->p62 for that reason; re-checked and kept. P. 55 (SP-41-L section opener) likewise has only its heading and is not used. The SP-41-L section headings 10.1-10.8 are missing from the text; the two-column order of pp. 56-57 was read from the raw extraction against the contents list. Not in the manual, so not compared with the catalog: efficiency (71.11 / 71.19 % AFUE), height/width/depth (34.5 / 40.75 / 15 in.; Figure 2.1 only), weight (179 lb), view area (23 3/8\" x 33 5/8\"; the manual only gives the 36-1/2\" x 26-1/8\" glass part and the 37.56\" x 26.13\" screen). Catalog max input (28,000), vent size (4 x 6-5/8) and ignition agree with the manual. Website (website.json, Oct 12): it prints BTU/hr Input – NG / LP 28,000 only, with no minimum, so the catalog's 14,000 minimum isn't on the maker's page; the specInput note quotes the website's 28,000 figures. Its Standard Features list Fan Kit for both versions (step5 note). Website rows the manual doesn't cover were skipped: Viewing Area, the EnerGuide / Steady State / AFUE efficiencies, Ceramic Glass. SP34 carry-overs in this SP41 manual: 'SP-34-L: Stepper Motor sold separately to complete gas conversion' (p. 30; shown in the Fuel & conversion drawer as a plain note; the SP-41-L parts list, p. 78, carries stepper motors 700-503 / 700-503-1), 'SP34 is approved for #700-2' (p. 35; p. 34 approves #700-2 for this appliance), 'optional component connection for the SP34-MV' (p. 52; the guide uses the 9.2.2 SP-41-MV statements instead), and the SP34 trim numbers (classed clerical: the contents list, p. 5, names the kits SP41-081 / SP41-FTK; the parts list doesn't carry them). Left out of the guide: 2.4 points to 'Section 4.3 Safety Barrier Installations' (it is 4.4); the SP-41-MV chart gives the horizontal pitch as 1/4\" (6mm) per 12\" (30mm) where everywhere else says 305mm (guide uses inches only); Table 6.1 row K's Massachusetts footnote is garbled ('10' (3m) above] if within 10' (3m) horizontally'), so only 6' / 3' above is shown; the contents list titles 8.6 '#SP-028 Optional Fan Kit (SP-41-MV Only)' while the parts list carries SP-028-IPI as standard for the SP41-L. Massachusetts CO-detector and signage rules (1.3) and the Prop 65 warnings are not carried into the guide. check_numbers: 0 numbers not found. Pressure-tap reseal: both IN-tap tests (pp. 64-65) and the SP-41-L OUT-tap test (p. 64) turn burner and pilot off before the hose is disconnected; the SP-41-MV OUT-tap steps (p. 65) go from noting the reading straight to disconnecting the hose, and the guide gives them as printed."
+ }
+}

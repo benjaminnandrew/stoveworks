@@ -1,0 +1,599 @@
+{
+ "id": "town-country-helifire-360",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "TOWN & COUNTRY",
+  "brand_line": "HeliFire 360 · Decorative direct vent gas fire feature",
+  "kicker": "Decorative direct vent gas fireplace",
+  "title": "Town & Country HeliFire 360",
+  "model_line": "Model HeliFire 360 · Series A · TCHF.22BODYA / TCHF.22STBODYA · Direct vented, power vent only · 24VAC direct ignition",
+  "owner_noun": "fireplace",
+  "owner_card": "Turn it on and off, first-fire smells, hot glass, the flame, glass care, the outside vent and yearly service.",
+  "installer_card": "Specs, gas pressures, clearances, power venting, the install sequence and flame / ignition faults.",
+  "certification": "ANSI Z21.50-2016 · CSA 2.22-2016 · ANSI Z21.97-2014 · CSA 2.41-2014 · CAN/CGA 2.17-M91",
+  "owner_search_hint": "turn on, lockout, glass, gas smell",
+  "manual_search_hint": "restrictor, manifold, vent clearance"
+ },
+ "home_primary": [
+  {
+   "id": "light",
+   "icon": "flame",
+   "title": "Turn it on",
+   "blurb": "One wall switch: a 10-second purge, then it lights itself."
+  },
+  {
+   "id": "off",
+   "icon": "off",
+   "title": "Turn it off",
+   "blurb": "Switch off, the 15-second post-purge, and longer shutdowns."
+  },
+  {
+   "id": "firstfire",
+   "icon": "sound",
+   "title": "First fire: smells & sounds",
+   "blurb": "A curing odor for a couple of hours and steel ticks are normal."
+  },
+  {
+   "id": "nolight",
+   "icon": "question",
+   "title": "It didn't light?",
+   "blurb": "Three tries, then a lockout, and who to call."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "safety",
+   "icon": "safety",
+   "title": "Hot glass & safety",
+   "blurb": "Burns, children, barriers and what to keep away."
+  },
+  {
+   "id": "gas",
+   "icon": "alert",
+   "title": "If you smell gas",
+   "blurb": "What to do, and what not to touch."
+  },
+  {
+   "id": "flame",
+   "icon": "adjust",
+   "title": "How the flame should look",
+   "blurb": "Long enough to fill the firebox, and what changes it."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "Fireplace glass cleaner, only when cool, never abrasives."
+  },
+  {
+   "id": "vent",
+   "icon": "wind",
+   "title": "Keep the outside vent clear",
+   "blurb": "The power vent outside needs open space and no blockage."
+  },
+  {
+   "id": "service",
+   "icon": "service",
+   "title": "Yearly service",
+   "blurb": "What the annual inspection checks."
+  }
+ ],
+ "specs": [
+  {
+   "id": "input",
+   "lab": "Input rate · BTU/hr",
+   "tap": "specInput",
+   "rows": [
+    [
+     "Natural gas",
+     "22,000"
+    ],
+    [
+     "Propane",
+     "16,500"
+    ]
+   ],
+   "note": "fixed input"
+  },
+  {
+   "id": "inlet",
+   "lab": "Inlet pressure · WC",
+   "tap": "specInlet",
+   "rows": [
+    [
+     "Natural gas",
+     "5.0\" / 13.9\""
+    ],
+    [
+     "Propane",
+     "11.0\" / 13.9\""
+    ]
+   ],
+   "note": "min / max"
+  },
+  {
+   "id": "manifold",
+   "lab": "Manifold pressure · WC",
+   "tap": "specManifold",
+   "rows": [
+    [
+     "Natural gas",
+     "3.5\""
+    ],
+    [
+     "Propane",
+     "10.0\""
+    ]
+   ],
+   "note": "high"
+  },
+  {
+   "id": "vent",
+   "lab": "Power venting",
+   "tap": "specVent",
+   "rows": [
+    [
+     "Flex vent",
+     "4\" collinear"
+    ],
+    [
+     "Max exhaust / intake",
+     "25 feet / 25 feet"
+    ],
+    [
+     "Exhaust to combustibles",
+     "1/4\""
+    ]
+   ]
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances to combustibles",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Top, back, side standoffs",
+     "0 in."
+    ],
+    [
+     "Ceiling / mantel",
+     "0 in."
+    ],
+    [
+     "Vent pipe",
+     "1/4 in."
+    ]
+   ]
+  },
+  {
+   "id": "terminal",
+   "lab": "Vent terminal clearances",
+   "tap": "specTerminal",
+   "rows": [
+    [
+     "Openable window / door",
+     "18 in. flush · 36 in surface"
+    ],
+    [
+     "In front of outlet",
+     "36 inches"
+    ],
+    [
+     "Below flush mount",
+     "18 inches"
+    ]
+   ]
+  },
+  {
+   "id": "elec",
+   "lab": "Electrical",
+   "tap": "specElec",
+   "rows": [
+    [
+     "Rating (incl. power vent)",
+     "115 Volts, 60 Hz, 2.48 amps"
+    ],
+    [
+     "Supply",
+     "Unswitched"
+    ],
+    [
+     "Control",
+     "Supplied on/off wall switch"
+    ]
+   ]
+  },
+  {
+   "id": "framing",
+   "lab": "Framing & finishing",
+   "tap": "specFraming",
+   "rows": [
+    [
+     "Wall",
+     "2\" x 6\" stud"
+    ],
+    [
+     "8 foot wall, vertical",
+     "22 1/2\" stud space"
+    ],
+    [
+     "Facing to trim",
+     "within 1/8\""
+    ]
+   ]
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Codes & qualified installer",
+   "Install and vent to ANSI Z223.1 (USA) or CAN/CGA-B149 (Canada) and local codes, by qualified personnel; in Massachusetts only a licensed plumber and gas fitter.",
+   "<p>Installation and venting must conform to the current National Fuel Gas Code, ANSI Z223.1 (USA) or the current CAN/CGA-B149 (Canada), and be approved per local codes. Only qualified (licensed or trained) personnel should install it. In Massachusetts, only a licensed Plumber and Gas Fitter may install it.</p><p>Manufactured (mobile) homes: may be installed after the \"first sale\" in some jurisdictions (consult local codes); the unit must be fastened in place. Follow CAN/CSA Z240 MH (Canada) or Title 24 CFR, Part 3280 / ANSI/NFPA 501A (USA).</p><p>Must not be connected to a chimney flue serving a separate solid fuel burning appliance.</p><div class=\"note\"><b>Note:</b> the cover (p. 1) says the appliance is \"suitable for installation in a bedroom or bed sitting room\"; the rating labels (pp. 36 and 37) say \"In Canada, also certified for installation in a bedroom or a bedsitting room.\"</div><div class=\"note\"><b>Massachusetts (248 CMR 5.08):</b> for a side-wall vent terminal less than seven (7) feet above grade, a hard-wired CO detector with alarm and battery back-up on the appliance's floor level, a CO detector on each additional level, and a metal or plastic sign at least eight (8) feet above grade in line with the terminal reading \"GAS VENT DIRECTLY BELOW. KEEP CLEAR OF ALL OBSTRUCTIONS\".</div>"
+  ],
+  [
+   "Locate & orient",
+   "Plan unit, vent and gas routing (peninsula, island or between interior walls). Glass door in a vertical plane, never flat in a floor or ceiling; flame pointing down looks best.",
+   "<p>Determine where the unit, the vent system and the gas supply piping will go. Peninsula wall, island and between-two-interior-walls installations are possible.</p><p>The unit can be oriented in any position, but the glass door must be in a vertical plane; it cannot be installed flat in a floor or ceiling. Weigh exhaust and air intake pipe routing and the power vent terminal location before choosing. For best flame appearance, orient it so the flame points downward. Flame length may vary by up to 30% due to vent length and especially orientation.</p>"
+  ],
+  [
+   "Frame in",
+   "Fits a 2\" x 6\" stud wall; vertical in an 8 foot wall, a 22 1/2\" stud space is recommended. Air intake at the unit's end only; pick one of 3 exhaust positions and plate the other two.",
+   "<ul><li>Vertical in an 8 foot wall: a 22 1/2\" stud space is recommended for easier access to the gas and electrical access covers; 2 x 6 positioning blocks can secure the unit.</li><li>Combustion air enters only at the end of the unit. Exhaust can leave at one of 3 locations; block the two unused ones with the cover plates. The flue collar ships on the end and can move to either side (p. 31); the intake collar can't be relocated.</li><li>Before framing in or finishing, seal the 3 electrical ports with latex silicone (p. 23).</li><li>Seal the chase at the ceiling level or between floors for fire-stop purposes; use a firestop wherever you penetrate a floor or ceiling.</li><li>Insulation: non-combustible rock wool on or around the exhaust vent; regular insulation is fine on the air intake. Spray insulation may go up to the sides of the unit except over the venting; cover insulation and vapour barrier with a solid surface such as drywall.</li><li>Finishing: 1/2 inch sheetrock up to the perimeter flange behind the window frame; other facing to within 1/8 inch of the decorative trim, never interfering with glass frame access.</li></ul>"
+  ],
+  [
+   "Outdoor flashing (outdoor installs)",
+   "Outdoors, the outdoor flashing must be used, over 7/16\" thick sheathing; don't fasten the sheathing to the face of the unit.",
+   "<p>When installing the HeliFire 360 outdoors, the outdoor flashing (HeliFire 360 flashing kit, 22220001) must be used, with 7/16\" thick sheathing under the flashing. Do not fasten the sheathing to the face of the unit.</p><p>The flashing and cross-section dimensions are shown only as drawings (Figures 11 and 12) on this page.</p>"
+  ],
+  [
+   "Gas supply",
+   "1/2\" NPT connection at the rear; correct line diameter; sediment trap no more than 6 feet from the gas control valve. Isolate the appliance during supply-line pressure tests.",
+   "<ul><li>Gas line by a qualified service person, to all building codes. The supply connection is on the rear of the unit and accepts a 1/2\" NPT fitting; use the correct gas line diameter for proper operation and pressure.</li><li>Install a sediment trap, as per the national fuel gas code, no more than 6 feet from the gas control valve.</li><li>Supply-piping pressure tests: disconnect the appliance and its shut-off valve for tests above 1/2 psig (3.5 kPa); isolate it by closing its manual shut-off valve for tests at or below 1/2 psig (p. 3).</li></ul>"
+  ],
+  [
+   "Manifold pressure test",
+   "With the unit on and before finishing covers the access port: bypass the vacuum switch (purple wires), read manifold pressure, then re-seal the port and apply the new label.",
+   "<ol><li>Wall switch off. Turn off the gas from inside the unit: pull the gas assembly in toward the firebox (its flexible hose stays connected) to reach the shut-off valve; see the burner control / valve removal steps (p. 18).</li><li>Find the manifold test port behind the \"Pressure Port Access\" label; remove the port screw with a 3/16 Allen wrench.</li><li>Attach the gauge with an extension test fitting and flexible hose.</li><li>The glass door is off for this test, so bypass the vacuum switch: remove its two purple wires.</li><li>Gas valve on, wall switch on, then connect the two purple wires to each other. Pre-purge runs about 10 seconds, then ignition; read the manifold pressure.</li><li>Wall switch off, gas off, remove the gauge. Re-tighten the port screws with thread sealant, re-attach the purple wires to the vacuum switch and apply the new included label over the access hole.</li></ol><p>Manifold (high): 3.5\" WC natural gas, 10.0\" WC propane (p. 17). Once finished over, a future check means removing the finishing material.</p>"
+  ],
+  [
+   "Electrical + wall switch",
+   "Unswitched 115 V supply to the black and white wires, ground to green; supplied wall switch to the two brown wires; power vent black to grey. Seal the 3 electrical ports before framing in.",
+   "<ul><li>Unswitched supply. The fire feature including its power vent is rated 115 Volts, 60 Hz, 2.48 amps.</li><li>Supply to the black and white wires inside the electrical connections compartment; ground to the green wire.</li><li>Town &amp; Country on/off wall switch (supplied) to the two brown wires. It should be installed by an electrician; the switch wiring is not included. In Canada, a thermostat can be used for bedroom or bed sitting room installations (p. 24).</li><li>Power vent: its black wire to the grey wire, white to white, ground to green.</li><li>Fill the 3 electrical ports with standard latex silicone (air and gas tight seal) before the unit is framed in or finished.</li></ul>"
+  ],
+  [
+   "Power vent & flex venting",
+   "Surface mount (roof or wall) or flush mount (outside vertical walls) kit; max 25 feet each for exhaust and intake. Hold 1/4\" to combustibles; clamp and screw the flex to the collars.",
+   "<ul><li>Use one power vent kit: surface mount (SKU# 22270002), on a roof or wall, with the HeliFire 360 inlet vent box; or flush mount (SKU# 22270001), on outside vertical walls only, in a framed 12 5/16\" by 12 5/16\" opening. Only Town &amp; Country venting material.</li><li>Maximum flue outlet pipe 25 feet; maximum combustion air inlet pipe 25 feet. Center the vent between two framing members at the exterior wall opening, and keep the vent terminal clearances (p. 32).</li><li>Keep 1/4\" between the exhaust flex and combustibles with vent standoffs, engineered stud brackets (cut a 4 5/8\" section from the stud; two brackets per stud) and firestops at floors and ceilings. Direct contact with rock wool or cement board is allowed.</li><li>Secure the flex to each collar with the supplied hose clamp plus at least one self tapping screw through a vacant slot in the band.</li><li>Surface mount: keep the outlet lower than the arrowed side so rain can't enter; on a flat roof, mount it atop an elevated platform clear of snow and water.</li></ul><p>Stud brackets: the HeliFire 360 comes with 4 pairs, supplied in the power vent kit (the surface mount and flush mount power vent kits each include 4 pairs of stud brackets, pp. 30 and 34). Additional brackets can be ordered.</p>"
+  ],
+  [
+   "Set the air intake restrictor",
+   "With the unit lit, adjust until the flame fills the firebox (approx. 55\"): screw down to open for a short flame, up to close if it struggles to light or stay lit. Repeat as needed.",
+   "<p>The restrictor matches incoming combustion air to the length of venting between the air intake and the firebox. Target: the flame fills the length of the firebox (approx. 55\"). Longer venting (to a maximum of 25') needs more air; shorter venting needs less. Too much air makes it hard to ignite and stay lit; too little gives a shorter, weaker flame.</p><ol><li>With the unit lit, observe the flame length.</li><li>Flame too short: loosen the adjustment screw at the front of the intake venting, move it down in its slot and tighten. This opens the restrictor.</li><li>Hard to light or stay lit (short venting): move the screw up in its slot to close the restrictor.</li><li>Observe again; repeat the cycle as needed.</li></ol><p>The inlet vent box is used only with the surface mount power vent; the flush mount power vent has its air inlet and restrictor plate built in.</p>"
+  ]
+ ],
+ "faults": {
+  "label": "Flame & ignition faults",
+  "panels": [
+   {
+    "title": "Hard to light or won't stay lit",
+    "items": [
+     "Too much combustion air, typically from a short vent run",
+     "Close the restrictor: move the adjustment screw up in its slot",
+     "Fails to ignite after 3 tries → control locks out"
+    ]
+   },
+   {
+    "title": "Short, weak flame",
+    "items": [
+     "Not enough combustion air; longer vent runs need more",
+     "Open the restrictor: move the adjustment screw down in its slot",
+     "Vent length and especially orientation can change flame length by up to 30%"
+    ]
+   }
+  ]
+ },
+ "codes": [],
+ "detail": {
+  "light": {
+   "tag": "Owner · operation",
+   "title": "Turning the fireplace on",
+   "cool": false,
+   "html": "<p>Your fireplace is controlled by a standard wall switch. There's nothing to light by hand: the control lights the burner for you.</p><ol><li>Before you turn it on, smell all around the fireplace for gas. Smell next to the floor too, because some gas is heavier than air and settles there.</li><li>Move the wall switch to on.</li><li>The unit purges for 10 seconds, then lights itself. It can take up to 30 seconds to ignite each time, so give it a moment.</li><li>If it doesn't light, it tries 3 times. After that the control locks out. Call your service technician or retailer.</li></ol><div class=\"note danger\"><b>Smell gas?</b> Don't turn it on. See \"If you smell gas\" for what to do.</div><div class=\"note\"><b>Decorative, not a heater.</b> This fireplace is a decorative product. It isn't meant to be used as a heater.</div>"
+  },
+  "off": {
+   "tag": "Owner · operation",
+   "title": "Turning the fireplace off",
+   "cool": false,
+   "html": "<p>Move the wall switch to off. The unit then runs a 15-second post-purge, a short clearing cycle. That's part of turning it off normally.</p><h4>For service or a long shutdown</h4><p>If the fireplace is going to be serviced, or you're shutting it down for an extended time, also turn off all electrical power to it. The manual's service steps do this at the main breaker.</p><p>Before anyone services it, the gas and electrical supply should be turned off and the unit given plenty of time to cool.</p><div class=\"note\"><b>Put everything back first.</b> Any grill, panel or door removed for servicing must be replaced before you run the fireplace again.</div><div class=\"note danger\"><b>Let it cool.</b> Don't touch the glass until it has cooled, and never let children touch it.</div>"
+  },
+  "firstfire": {
+   "tag": "Owner · reassurance",
+   "title": "First fire: smells and sounds",
+   "cool": false,
+   "html": "<h4>A slight smell for a couple of hours</h4><p>The first time the fireplace is lit, it may give off a slight odor for a couple of hours. That's the paints, sealants and lubricants from manufacturing curing. It's temporary. Open doors and windows to air out the room, because the curing odor can bother some people.</p><h4>Ticks and creaks</h4><p>Steel fireplaces make some expansion and contraction noises as they start up and cool down. It's the same kind of sound you hear from a furnace, a heat exchanger or a cook stove oven.</p><h4>A short wait to light</h4><p>The unit purges for 10 seconds before it lights, and it can take up to 30 seconds to ignite each time you switch it on.</p><div class=\"note\"><b>A gas smell is different.</b> If you smell gas, don't try to light it. See \"If you smell gas.\"</div>"
+  },
+  "nolight": {
+   "tag": "Owner · operation",
+   "title": "If it doesn't light",
+   "cool": false,
+   "html": "<p>When you switch it on, the unit purges for 10 seconds and then tries to light. It can take up to 30 seconds to ignite, so wait before you decide it hasn't worked.</p><p>If it fails to ignite, it tries 3 times. Then the control locks out (stops trying).</p><ul><li>Call your service technician or retailer to fix the problem.</li><li>Don't try to repair it yourself. You could hurt yourself or others and damage the unit.</li></ul><h4>Lights, but struggles to stay lit?</h4><p>Too much combustion air can make the fire hard to light and keep lit, especially with a short vent run. Your installer sets the airflow with an air intake restrictor, so contact your dealer rather than adjusting anything yourself.</p><div class=\"note danger\"><b>Smell gas?</b> Don't try to light it. See \"If you smell gas.\"</div>"
+  },
+  "safety": {
+   "tag": "Owner · safety",
+   "title": "Hot glass and safety",
+   "cool": false,
+   "html": "<ul><li><b>Hot glass will cause burns.</b> Don't touch it until it has cooled, and never let children touch it.</li><li>Make sure children and adults know about the hot surfaces and stay away, to avoid burns or clothing catching fire.</li><li>Watch young children carefully whenever they're in the same room as the fireplace. If anyone in the house is at risk, a physical barrier is recommended, such as an adjustable safety gate that keeps them out of the room.</li><li>The fireplace should be out of traffic and away from furniture and drapes. Don't put clothing or anything flammable on or near it.</li><li>Keep the area clear of combustible materials, gasoline and other flammable vapors and liquids.</li><li>Don't run it with the glass removed, cracked or broken.</li></ul><div class=\"note danger\"><b>Been under water?</b> Don't use the fireplace if any part has been under water. Call a qualified service technician right away to inspect it and replace any part of the control system and any gas control that was under water.</div>"
+  },
+  "gas": {
+   "tag": "Owner · safety",
+   "title": "If you smell gas",
+   "cool": false,
+   "html": "<p>Before you turn the fireplace on, smell all around it for gas. Smell next to the floor too, because some gas is heavier than air and settles there.</p><h4>If you smell gas</h4><ul><li>Don't try to light any appliance.</li><li>Don't touch any electrical switch.</li><li>Don't use any phone in your building.</li><li>Call your gas supplier right away from a neighbor's phone. Follow the supplier's instructions.</li><li>If you can't reach your gas supplier, call the fire department.</li></ul><div class=\"note\"><b>Keep it clear.</b> Don't store or use gasoline or other flammable vapors and liquids near this or any other appliance.</div>"
+  },
+  "flame": {
+   "tag": "Owner · reassurance",
+   "title": "How the flame should look",
+   "cool": false,
+   "html": "<p>The HeliFire 360 makes a helical flame. When it's set up right, the flame stretches to fill the length of the firebox, about 55\".</p><p>Flame length can vary by up to 30%, depending on the vent length and especially on which way the unit is mounted. The flame looks best when the unit is oriented so the flame points downward.</p><div class=\"note small\"><b>Maker's website:</b> Flame note, \"Flame length may vary up to 30% depending on vent length, fuel type, and orientation.\"</div><h4>Short and weak, or hard to keep lit?</h4><p>Your installer tunes the flame with an air intake restrictor, matched to the length of your venting. Too little air gives a shorter, weaker-looking flame. Too much air makes it hard to light and stay lit. If you see either, contact your dealer. Getting it right can take a few rounds of watching and adjusting.</p><div class=\"note\"><b>For looks, not heat.</b> This is a decorative product and isn't meant to be used as a heater.</div>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>Clean the viewing glass whenever it needs it, using fireplace glass cleaner.</p><ul><li>Only clean it when it's cool. Never clean hot glass.</li><li>Don't use abrasive cleaners on the glass or on any other part of the fireplace.</li><li>Clean the outside finish with mild soap and water.</li><li>Don't strike or knock the glass. The tempered glass is very fragile.</li></ul><div class=\"note danger\"><b>Cracked or broken glass?</b> Stop using the fireplace until it's replaced. A licensed or qualified service person should replace it; replacement glass comes from your Town &amp; Country dealer.</div><p>At the yearly inspection, the glass gasket (its seal) is checked and replaced if needed. Keeping that seal in good condition matters.</p>"
+  },
+  "vent": {
+   "tag": "Owner · maintenance",
+   "title": "Keep the outside vent clear",
+   "cool": false,
+   "html": "<p>Your fireplace is power vented. Flexible venting runs to a power vent outside, mounted on an outside wall or on the roof.</p><ul><li>The venting pipe and the vent terminal must be open and free from blockage or debris. Your service person checks this at the yearly inspection.</li><li>Keep clear space at the outlet. A surface-mount power vent needs at least 36 inches between the front of its outlet and any other material. A flush-mount power vent needs 36 inches clear in front and 18 inches clear below it.</li><li>On a flat roof, a surface-mount power vent sits on a raised platform to keep it clear of snow and water.</li></ul><div class=\"note\"><b>Notice a problem?</b> If something seems wrong with the vent or the fireplace, contact your dealer. Don't try to repair it yourself.</div>"
+  },
+  "service": {
+   "tag": "Owner · maintenance",
+   "title": "Yearly service",
+   "cool": false,
+   "html": "<p>Have the fireplace and its venting inspected before use and at least once a year by a qualified service person. Town &amp; Country recommends professionals certified by the National Fireplace Institute as NFI Gas Specialists.</p><h4>What the yearly check covers</h4><ul><li>The glass panel comes off so the burner and igniter can be checked for soot. Heavy soot means the unit needs to be inspected and adjusted for proper combustion.</li><li>The venting pipe and vent terminal are checked to make sure they're open and free from blockage or debris. If the venting is taken apart for cleaning, it must be put back together and re-sealed properly.</li><li>The glass gasket is checked and replaced if needed. The glass seal has to stay in good condition.</li></ul><p>More frequent cleaning may be needed if there's a lot of lint from carpeting, bedding and the like. The control compartments, burners and air passages need to be kept clean.</p><div class=\"note\">Before any service, the gas and electrical supply are turned off and the unit is given plenty of time to cool.</div>"
+  },
+  "specInput": {
+   "tag": "Installer · spec",
+   "title": "Input rate & efficiency",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Natural gas input</span><span>22,000 BTU/hr (fixed input)</span></div><div class=\"r\"><span>Propane input</span><span>16,500 BTU/hr (fixed input)</span></div><div class=\"r\"><span>Rating label max.</span><span>22,000 BTU (6.45 Kw) · 16,500 BTU (4.84 Kw)</span></div><div class=\"r\"><span>P.4.1 efficiency, NG</span><span>16.8%</span></div><div class=\"r\"><span>P.4.1 efficiency, LP</span><span>13.7% (table) · 16.8% (LP label)</span></div></div><div class=\"note small\"><b>Maker's website:</b> Efficiency 16.8% (NG) / 5.5% (LP) (Based on CPSA P.4.1-15).</div><div class=\"kv\"><div class=\"r\"><span>Orifice, NG / LP</span><span>\"NK\" / \"LK\" (table)</span></div><div class=\"r\"><span>Ignition</span><span>24VAC Honeywell direct ignition valve system</span></div><div class=\"r\"><span>Altitude</span><span>0 - 4500 ft.</span></div></div><p>Decorative appliance, not intended to be used as a heating appliance. Natural gas or liquid propane gas; use only the type of gas on the rating plate; the appliance is not convertible to other gases unless a certified kit is used. Orifice access: remove the spark igniter collar and outer burner tube, then a 1/2 inch socket wrench (p. 17).</p><div class=\"note\"><b>Note:</b> the gas requirements table on p. 17 gives a propane efficiency of 13.7%; the propane rating label on p. 37 gives 16.8%.</div><div class=\"note\"><b>Note:</b> the gas requirements table on p. 17 gives the propane orifice as \"LK\"; the propane rating label on p. 37 gives \"NK\".</div>"
+  },
+  "specInlet": {
+   "tag": "Installer · spec",
+   "title": "Inlet (supply) pressure",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Natural gas min / max</span><span>5.0\" WC / 13.9\" WC</span></div><div class=\"r\"><span>Propane min / max</span><span>11.0\" WC / 13.9\" WC</span></div><div class=\"r\"><span>Gas connection</span><span>1/2\" NPT fitting, rear of unit</span></div><div class=\"r\"><span>Sediment trap</span><span>no more than 6 feet from the gas control valve</span></div></div><p>Verify gas pressures with the unit lit; inlet pressure can be tested elsewhere along the gas line leading to the unit. Turn off the gas supply before removing the plug from the supply or manifold pressure test port. Use the correct gas line diameter for proper operation and pressure.</p><div class=\"note danger\"><b>Supply-line pressure tests:</b> disconnect the appliance and its individual shut-off valve for tests above 1/2 psig (3.5 kPa); isolate it by closing its manual shut-off valve for tests at or below 1/2 psig (p. 3).</div>"
+  },
+  "specManifold": {
+   "tag": "Installer · spec",
+   "title": "Manifold pressure",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Natural gas (high)</span><span>3.5\" WC</span></div><div class=\"r\"><span>Propane (high)</span><span>10.0\" WC</span></div><div class=\"r\"><span>Test port</span><span>behind the \"Pressure Port Access\" label</span></div><div class=\"r\"><span>Port screw</span><span>3/16 Allen wrench</span></div></div><p>Test with the unit on, before finishing material blocks off the access port. With the glass door off, bypass the vacuum switch by connecting its two purple wires to each other; pre-purge takes about 10 seconds before ignition. Afterwards re-tighten the port screws with thread sealant, re-attach the purple wires and apply the new included label over the access hole (p. 16). The rating labels give this value as the manifold \"Maximum\".</p>"
+  },
+  "specVent": {
+   "tag": "Installer · spec",
+   "title": "Power venting",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Vent</span><span>4\" collinear flex, Town &amp; Country material only</span></div><div class=\"r\"><span>Max flue outlet pipe</span><span>25 feet</span></div><div class=\"r\"><span>Max combustion air inlet pipe</span><span>25 feet</span></div><div class=\"r\"><span>Min venting length</span><span>1.5' to the power vent (Fig. 52)</span></div><div class=\"r\"><span>Exhaust vent to combustibles</span><span>1/4\"</span></div><div class=\"r\"><span>Surface mount power vent kit</span><span>TCVT.PVSMA · SKU# 22270002</span></div><div class=\"r\"><span>Flush mount power vent kit</span><span>TCVT.PVFMA · SKU# 22270001</span></div><div class=\"r\"><span>Vent extension kit</span><span>TCVT.PVEXTA</span></div></div><p>Power vented only; one of the two power vent kits must be used. Each kit includes 2 x 25' 4 inch aluminum flex pipe, 20 vent standoffs and 1 pair of firestops (pp. 27, 31, 34); the extension kit contains 2 lengths of 25 foot flexible venting pipe plus adaptors (p. 5).</p><p>Air intake enters only at the end of the unit and its collar can't be relocated; the flue collar ships on the end and can move to either side (p. 31). Surface mount: roof or wall, with the HeliFire 360 inlet vent box. Flush mount: outside vertical walls only (horizontal termination). If insulating, use rock wool on the exhaust vent; conventional insulation is fine on the air intake.</p>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances to combustibles",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Top, back and side standoffs</span><span>0 in.</span></div><div class=\"r\"><span>Sidewall to appliance</span><span>0 in.</span></div><div class=\"r\"><span>Ceiling to appliance</span><span>0 in.</span></div><div class=\"r\"><span>Mantel to appliance</span><span>0 in.</span></div><div class=\"r\"><span>Vent pipe</span><span>1/4 in.</span></div></div><p>Zero clearance unit; non-combustible board not required. Keep 1/4 inch between the exhaust portion of the flex vent and any combustible material with vent standoffs, stud brackets and firestops; the exhaust vent may touch non-combustibles such as rock wool or cement board. More standoffs: 80001410 (20 pce); stud bracket kit 22490004 (4 pair); firestops 80000575 (2 pair). Left and right are determined facing the front of the appliance.</p>"
+  },
+  "specTerminal": {
+   "tag": "Installer · spec",
+   "title": "Vent terminal clearances",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>B · window or door that opens</span><span>18 in. flush · 36 in surface mount</span></div><div class=\"r\"><span>C · permanently closed window</span><span>12 inches (recommended)</span></div><div class=\"r\"><span>D · ventilated soffit within 2 feet</span><span>0 inches</span></div><div class=\"r\"><span>E · unventilated soffit</span><span>0 inches</span></div><div class=\"r\"><span>F / G · outside / inside corner</span><span>6 inches</span></div><div class=\"r\"><span>H · above a meter/regulator, horizontally from its center-line</span><span>3 feet</span></div><div class=\"r\"><span>I · service regulator vent outlet</span><span>6 feet</span></div><div class=\"r\"><span>J · non-mechanical air supply / other appliance intake</span><span>18 in. flush · 36 in surface mount</span></div><div class=\"r\"><span>K · mechanical air supply inlet</span><span>6 feet</span></div><div class=\"r\"><span>L · above public paved sidewalk / driveway</span><span>7 feet</span></div><div class=\"r\"><span>M · under veranda, porch, deck, balcony</span><span>0 inches (open on min. 2 sides)</span></div></div><p>Power venting: the surface mount outlet needs 36 inches between its front and any other material; the flush mount needs 18 inches clear below the bottom of the power vent and 36 inches in front. Clearance A (above grade, veranda, porch, deck or balcony) has no separate value; the table points to the power venting clearances for the flush mount rule. On a flat roof, the surface mount sits on an elevated platform (riser min. 12\" high; check local codes). Don't terminate directly above a sidewalk or paved driveway located between two single family dwellings and serving both. Local codes may require different clearances.</p>"
+  },
+  "specElec": {
+   "tag": "Installer · spec",
+   "title": "Electrical",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Rating (incl. power vent)</span><span>115 Volts, 60 Hz, 2.48 amps</span></div><div class=\"r\"><span>Supply</span><span>unswitched</span></div><div class=\"r\"><span>Gas valve system</span><span>24VAC Honeywell direct ignition</span></div><div class=\"r\"><span>Supply wiring</span><span>to black and white; ground to green</span></div><div class=\"r\"><span>Wall switch (supplied)</span><span>to the two brown wires</span></div><div class=\"r\"><span>Power vent black / white / ground</span><span>to grey / white / green</span></div></div><p>The wall switch should be installed by an electrician; the switch is included, its wiring is not. In Canada, a thermostat can be used for bedroom or bed sitting room installations. Before framing in or finishing, fill the 3 electrical ports with standard latex silicone. Wiring diagram: p. 25.</p><div class=\"note small\">The Figure 26 caption on p. 19 prints \"Disconnecting 24VDC to gas valve assy.\"; the specifications on p. 5 give a 24VAC valve system and the wiring diagram on p. 25 a 24 VAC transformer.</div>"
+  },
+  "specFraming": {
+   "tag": "Installer · spec",
+   "title": "Framing & finishing",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Wall</span><span>fits within a 2\" x 6\" stud wall</span></div><div class=\"r\"><span>Vertical in an 8 foot wall</span><span>22 1/2\" stud space (recommended), 2 x 6 positioning blocks</span></div><div class=\"r\"><span>Drywall</span><span>1/2 inch sheetrock up to the perimeter flange</span></div><div class=\"r\"><span>Facing to decorative trim</span><span>within 1/8 inch</span></div><div class=\"r\"><span>Outdoor sheathing</span><span>7/16\" under the outdoor flashing</span></div><div class=\"r\"><span>Stud bracket cut-out</span><span>4 5/8\" section per stud</span></div></div><p>Mount with the glass door in a vertical plane, in any orientation except flat in a floor or ceiling. Facing must not interfere with glass frame access. Seal the chase at the ceiling or between floors for fire-stop purposes, and use a firestop wherever you penetrate a floor or ceiling. Spray insulation may go right up to the sides of the unit except over the venting; use non-combustible rock wool around venting. Outdoors, don't fasten the sheathing to the face of the unit. Overall dimensions are shown only as a drawing (Figure 2, p. 6).</p>"
+  }
+ },
+ "pageref": {
+  "light": 36,
+  "off": 36,
+  "firstfire": 8,
+  "nolight": 36,
+  "safety": 3,
+  "gas": 1,
+  "flame": 28,
+  "glass": 33,
+  "vent": 32,
+  "service": 33,
+  "specInput": 5,
+  "specInlet": 17,
+  "specManifold": 17,
+  "specVent": 26,
+  "specClear": 36,
+  "specTerminal": 32,
+  "specElec": 23,
+  "specFraming": 10,
+  "step0": 7,
+  "step1": 9,
+  "step2": 11,
+  "step3": 14,
+  "step4": 15,
+  "step5": 16,
+  "step6": 23,
+  "step7": 26,
+  "step8": 28
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "gas",
+   "t": "gas smell",
+   "p": "What to do if you smell gas"
+  },
+  {
+   "k": "h",
+   "id": "nolight",
+   "t": "lockout",
+   "p": "Control locks out after 3 failed ignition tries"
+  },
+  {
+   "k": "h",
+   "id": "firstfire",
+   "t": "burning smell",
+   "p": "Curing odor for a couple of hours on first fire"
+  },
+  {
+   "k": "h",
+   "id": "flame",
+   "t": "short flame",
+   "p": "The flame should fill the firebox, about 55\""
+  },
+  {
+   "k": "h",
+   "id": "vent",
+   "t": "snow on vent",
+   "p": "Flat-roof power vent sits on a raised platform"
+  },
+  {
+   "k": "i",
+   "id": "specManifold",
+   "t": "vacuum switch bypass",
+   "p": "Join the two purple wires for the manifold test"
+  },
+  {
+   "k": "i",
+   "id": "specVent",
+   "t": "flue collar",
+   "p": "Exhaust collar moves to either side; intake can't"
+  },
+  {
+   "k": "i",
+   "id": "specElec",
+   "t": "wall switch wiring",
+   "p": "Supplied switch to the two brown wires"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "specInput",
+    "issue": "Propane P.4.1 efficiency: 13.7% in the gas requirements table vs 16.8% on the propane rating label.",
+    "pages": [
+     [
+      1,
+      17
+     ],
+     [
+      1,
+      37
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "specInput",
+    "issue": "Propane orifice marking: \"LK\" in the gas requirements table vs \"NK\" on the propane rating label.",
+    "pages": [
+     [
+      1,
+      17
+     ],
+     [
+      1,
+      37
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "specElec",
+    "issue": "Gas valve voltage: 24VAC in the specifications (24 VAC transformer in the wiring diagram) vs Figure 26 caption \"Disconnecting 24VDC to gas valve assy.\"",
+    "pages": [
+     [
+      1,
+      5
+     ],
+     [
+      1,
+      25
+     ],
+     [
+      1,
+      19
+     ]
+    ],
+    "class": "clerical",
+    "corrected_to": "24VAC"
+   },
+   {
+    "where": "step0",
+    "issue": "Bedroom installation: cover says suitable for installation in a bedroom or bed sitting room (no country limit); rating labels say \"In Canada, also certified\" for bedroom / bedsitting room.",
+    "pages": [
+     [
+      1,
+      1
+     ],
+     [
+      1,
+      36
+     ],
+     [
+      1,
+      37
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "step7",
+    "issue": "Stud bracket supply: \"The HeliFire 360 comes with 4 pairs of brackets\" vs the note on the same page and the parts list, which put 4 pair in each power vent kit.",
+    "pages": [
+     [
+      1,
+      30
+     ],
+     [
+      1,
+      34
+     ]
+    ],
+    "class": "not_a_conflict",
+    "reason": "Every HeliFire 360 must use one of the two power vent kits (pp. 5, 26), and the note on p. 30 and the parts list on p. 34 put 4 pairs of stud brackets in each kit, so \"comes with 4 pairs\" describes the brackets supplied in that kit."
+   }
+  ],
+  "catalog_mismatches": [
+   {
+    "model": "town-country-helifire-360",
+    "field": "efficiency_lp_pct",
+    "catalog": "5.5",
+    "manual": "13.7% (P.4.1, gas requirements table); the propane rating label gives 16.8%",
+    "page": [
+     1,
+     17
+    ],
+    "shown": "specInput"
+   },
+   {
+    "model": "town-country-helifire-360",
+    "field": "flame_note",
+    "catalog": "Flame length may vary up to 30% depending on vent length, fuel type, and orientation",
+    "manual": "Flame length may vary by up to 30% due to vent length and especially orientation (no mention of fuel type)",
+    "page": [
+     1,
+     9
+    ],
+    "shown": "flame"
+   }
+  ],
+  "notes": "Single installation & operating manual. No troubleshooting chart, code table, warranty, remote or power-outage/battery content, so those topics are left out and codes is empty; the fault panels come from the combustion air intake restrictor description (p. 28) and the 3-try lockout on the lighting label (p. 36). Figure-only content not transcribed: overall dimensions (Fig. 2, p. 6), outdoor flashing and cross-section dimensions (Figs. 11-12, p. 14), inlet vent box and power vent dimensions (Figs. 57, 58, 62), the vent terminal drawing (Fig. 68) and an '8\" Min. clearance' label in Figs. 52 and 69 (pp. 26, 32) that the text doesn't tie to a dimension; vent terminal clearance A has no printed value. The minimum venting length (1.5') and flat-roof riser (min. 12\") are text labels in Fig. 52 (p. 26). The p. 17 table heads the 22,000 / 16,500 btu/hr column 'Output'; p. 5 and the rating labels call it input. The propane rating label (p. 37) has the French 'DU GAZ NATUREL SEULEMENT' under 'PROPANE GAS ONLY'. Model numbers TCHF.22BODYA / TCHF.22STBODYA appear only in page footers; the manual doesn't say which is single-sided or see-through, so they are not mapped. Gas valve assembly screws are 5/32 inch Allen in the see-through removal (p. 18) and 5/16 Allen in the single-window removal (pp. 20-21): different procedures, not flagged. The smell-gas block is in English (pp. 1, 36); the French caution on p. 36 repeats the English one and was not translated. No conversion kit part number is given. Pages 38-39 are blank."
+ }
+}

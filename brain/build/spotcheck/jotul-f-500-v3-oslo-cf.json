@@ -1,0 +1,119 @@
+{
+ "id": "jotul-f-500-v3-oslo-cf",
+ "checked_pagerefs": 28,
+ "notes_checked": {
+  "amber": 4,
+  "correction": 1,
+  "website": 7
+ },
+ "findings": [
+  {
+   "severity": "minor",
+   "where": "specs.clear row 1 (Side)",
+   "guide_says": "Card 'Clearances · unprotected walls': Side 14\" / Rear 18\" / Corner 13\", note 'single-wall pipe, no heatshields'. The card doesn't mention the left side load door.",
+   "manual_says": "p. 22 table (text is column-interleaved but reads consistently): 'Single Wall Pipe ... No Heatshields 14\" 18\" 13\"' (side / rear / corner). p. 23: 'Minimum clearance from Left Side Load Door to combustible surfaces is 36\". The side door must be locked in Alcove and Corner installations. Use Side Door Lock Kit 155850.'",
+   "pages": [
+    [
+     1,
+     22
+    ],
+    [
+     1,
+     23
+    ]
+   ],
+   "fix": "Add to the card note: 'Left side load door: 36\" to combustibles'. The specClear drawer and step6 already say this; the safety card that sits in front of them should too."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.air (danger note)",
+   "guide_says": "'Don't over-fire. Above 1750°F, even briefly, the combustor can be damaged.' The owner warning leaves out the 1600°F maximum recommended operating temperature.",
+   "manual_says": "'DO NOT OVERFIRE THIS HEATER. THE MAXIMUM RECOMMENDED OPERATING TEMPERATURE OF THE COMBUSTOR IS 1600°F (870°C). DAMAGE CAN OCCUR TO THE COMBUSTOR IF IT EXCEEDS 1750°F (954°C) FOR EVEN BRIEF PERIODS OF TIME.' (p. 9)",
+   "pages": [
+    [
+     1,
+     9
+    ]
+   ],
+   "fix": "'Don't over-fire. The combustor's maximum recommended operating temperature is 1600°F (870°C). Above 1750°F (954°C), even briefly, it can be damaged.'"
+  },
+  {
+   "severity": "minor",
+   "where": "detail.warranty (Not covered, bullet 1)",
+   "guide_says": "Under 'Not covered': 'Parts that wear or are replaced in normal maintenance: combustor, paint, gaskets, burn plates, baffles, air manifolds, firebricks, grates and glass (glass only against thermal breakage).' This sits just below a row giving 'Baffle and air manifold components: Lifetime, parts only', with no explanation. In an exclusion list, the glass clause can be read as 'thermal breakage is excluded'.",
+   "manual_says": "Sect. A: 'those baffle and air manifold components ... will be free of defects in material and workmanship for the life of the product.' Exclusion 1: 'Repair or replacement of parts that are subject to normal wear and tear during the warranty period or to parts that may require replacement in connection with normal maintenance. These parts include catalytic combustor*, paint, gaskets, burn plates, baffles, air manifolds, firebricks, fire grates, or glass (glass is only warranted against thermal breakage).' (p. 28)",
+   "pages": [
+    [
+     1,
+     28
+    ]
+   ],
+   "fix": "Word it so both terms are clear: 'Normal wear and tear, and parts replaced in normal maintenance: the catalytic combustor (it has its own 10-year warranty), paint, gaskets, burn plates, baffles, air manifolds, firebricks, fire grates and glass (glass is warranted only against thermal breakage). The lifetime warranty on baffle and air manifold components covers defects in material and workmanship.' Record it in review.conflicts as not_a_conflict, with that reason."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.warranty (Not covered, bullet 2)",
+   "guide_says": "Listed as one item under 'Not covered': 'Installation or service by anyone other than an authorized installer or service agency, or not done per the manual and local codes.'",
+   "manual_says": "'Notice: This warranty is void if installation or service is performed by someone other than an authorized installer or service agency, or if installation is not in conformance with the installation and operating instructions contained in this owner's manual or local and/or national fire and building regulations.' (p. 28)",
+   "pages": [
+    [
+     1,
+     28
+    ]
+   ],
+   "fix": "Say the whole warranty is void in these cases: 'The warranty is void if anyone other than an authorized installer or service agency installs or services the stove, or if the installation doesn't follow the manual and local or national fire and building codes.'"
+  },
+  {
+   "severity": "minor",
+   "where": "detail.wood (Never burn)",
+   "guide_says": "'Coal, garbage, synthetic fuel or logs, rubber, plastics, petroleum products, paints, thinners or solvents, asbestos, construction or demolition debris, railroad ties or pressure-treated wood, manure or animal remains, yard waste, salt-water driftwood, unseasoned wood, colored paper, junk mail, cardboard, plywood or particle board.'",
+   "manual_says": "'Waste petroleum products, asphalt products, paints, paint thinners or solvents; ... Salt water driftwood or other previously salt-water saturated materials; Unseasoned wood; Colored paper, or Paper products, junk mail, cardboard, plywood, or particle board. (The prohibition against burning these materials does not include the use of fire starters made from paper, cardboard, saw dust, wax or similar substances for the purpose of starting a fire.)' (p. 9; repeated on p. 30)",
+   "pages": [
+    [
+     1,
+     9
+    ],
+    [
+     1,
+     30
+    ]
+   ],
+   "fix": "Add the three dropped items: 'asphalt products', 'other materials soaked in salt water' and 'paper products'. Keep the existing fire-starter exception."
+  },
+  {
+   "severity": "minor",
+   "where": "step6 (summary) and detail.specClear",
+   "guide_says": "step6: 'Only Rear Heatshield #154332 may reduce clearances'. specClear: 'Only Rear Heatshield #154332 may be used to reduce clearances'. Both contradict the guide's own protected-wall and connector-shield rows.",
+   "manual_says": "'Jøtul F 500 V3 Rear Heatshield Kit #154332 This shield is specifically approved for use to reduce clearances on this appliance only. No other heat shield may be used.' The same section, '4.3 Using Shields to Reduce Clearances', also permits listed pipe shields, 'Listed double wall pipe is an acceptable alternative to connector pipe heatshields', and 'Wall-Mounted Protection: When reducing clearances through the use of wall mounted protection: Refer to NFPA 211'. (p. 7; see also p. 15: 'No other type of heatshield may be used.')",
+   "pages": [
+    [
+     1,
+     7
+    ],
+    [
+     1,
+     15
+    ],
+    [
+     1,
+     22
+    ]
+   ],
+   "fix": "'No heat shield other than Rear Heatshield #154332 may be used on the stove. Wall protection (NFPA 211), listed pipe shields and double-wall pipe reduce clearances as shown in the table.'"
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specFloor (vinyl note)",
+   "guide_says": "'Luxury vinyl flooring within 57\" of the front of the stove may be damaged; Jøtul recommends none in that space.'",
+   "manual_says": "'Note about Luxury Vinyl Flooring: Vinyl flooring and similar materials may be damaged if F 500 V3 is installed within 57\" of the front of the stove. We recommend NO luxury vinyl flooring within that space.' (p. 7)",
+   "pages": [
+    [
+     1,
+     7
+    ]
+   ],
+   "fix": "'Vinyl flooring and similar materials within 57\" of the front of the stove may be damaged. Jøtul recommends no luxury vinyl flooring in that space.'"
+  }
+ ],
+ "verdict": "Yes. Every spec number, procedure, amber note, the kit-number correction, the website notes and all 28 page links match the manual. After these seven minor wording fixes the guide is safe to publish; the most important is adding the 36\" left-side-load-door clearance to the clearance card."
+}

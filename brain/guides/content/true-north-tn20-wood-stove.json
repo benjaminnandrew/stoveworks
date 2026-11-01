@@ -1,0 +1,643 @@
+{
+ "id": "true-north-tn20-wood-stove",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "TRUE NORTH",
+  "brand_line": "TN20 Series B · Freestanding wood stove",
+  "kicker": "Wood stove",
+  "title": "True North TN20 Wood Stove",
+  "model_line": "Model TN20 · Series B · Leg (SKU#31010009) or pedestal (SKU#31010010) · 6\" chimney",
+  "owner_noun": "stove",
+  "owner_card": "Light a fire, set the air, choose your wood, empty ashes, clean the glass, avoid chimney fires, check the warranty.",
+  "installer_card": "Output, emissions, log length, chimney, clearances, floor protection, outside air, blower, the install sequence and troubleshooting.",
+  "certification": "ULC S627 / UL 1482 · EPA 2020 crib wood standard",
+  "owner_search_hint": "lighting, overnight burn, creosote, glass",
+  "manual_search_hint": "clearance, floor protector, outside air"
+ },
+ "home_primary": [
+  {
+   "id": "light",
+   "icon": "flame",
+   "title": "Light a fire",
+   "blurb": "Kindling, the air lever and when to close the door."
+  },
+  {
+   "id": "air",
+   "icon": "air",
+   "title": "Burn & reload",
+   "blurb": "Set the air, add wood safely and get an overnight burn."
+  },
+  {
+   "id": "wood",
+   "icon": "logs",
+   "title": "Choose your wood",
+   "blurb": "Seasoned cordwood, a quick dryness test, and what never to burn."
+  },
+  {
+   "id": "firstfire",
+   "icon": "wind",
+   "title": "First fires & paint smell",
+   "blurb": "Why the first few fires smoke and smell, and what to do."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "ash",
+   "icon": "ash",
+   "title": "Remove the ashes",
+   "blurb": "When to empty it, how much to leave and safe disposal."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "Clean it cold, read the film, and protect the glass."
+  },
+  {
+   "id": "chimney",
+   "icon": "chimney",
+   "title": "Creosote & chimney fires",
+   "blurb": "How often to inspect, signs of a chimney fire and what to do."
+  },
+  {
+   "id": "care",
+   "icon": "service",
+   "title": "Maintenance checklist",
+   "blurb": "Weekly and monthly checks, door gasket, baffle and blower."
+  },
+  {
+   "id": "safety",
+   "icon": "safety",
+   "title": "Safety & over-firing",
+   "blurb": "Hot surfaces, the loading door, and signs of draft trouble."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "What's covered, for how long, and how to claim."
+  }
+ ],
+ "specs": [
+  {
+   "id": "output",
+   "lab": "Heat output · btu/hr",
+   "tap": "specOutput",
+   "rows": [
+    [
+     "EPA output",
+     "13,900 to 29,200"
+    ],
+    [
+     "Peak output",
+     "55,000"
+    ]
+   ],
+   "note": "CSA B415 / EPA tests"
+  },
+  {
+   "id": "emissions",
+   "lab": "Emissions & efficiency",
+   "tap": "specEmissions",
+   "rows": [
+    [
+     "EPA emissions",
+     "1.6 g/hr"
+    ],
+    [
+     "HHV efficiency",
+     "72.7%"
+    ],
+    [
+     "LHV efficiency",
+     "78%"
+    ]
+   ]
+  },
+  {
+   "id": "loglength",
+   "lab": "Wood length",
+   "tap": "specWood",
+   "rows": [
+    [
+     "Maximum",
+     "20 inches"
+    ],
+    [
+     "Ideal",
+     "18 inches"
+    ]
+   ],
+   "note": "website lists 18 in. as max"
+  },
+  {
+   "id": "flue",
+   "lab": "Chimney & connector",
+   "tap": "specChimney",
+   "rows": [
+    [
+     "Diameter",
+     "6\"(150mm)"
+    ],
+    [
+     "USA",
+     "UL-103 HT"
+    ],
+    [
+     "Canada",
+     "ULC S-641 / ULC-S-629"
+    ]
+   ],
+   "note": "connector / chimney"
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances · stove body",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Single wall · side / back",
+     "12\" / 12\""
+    ],
+    [
+     "Single wall · corner",
+     "8\""
+    ],
+    [
+     "Double wall · side / back",
+     "8\" / 5\""
+    ],
+    [
+     "Double wall · corner",
+     "3\""
+    ]
+   ],
+   "note": "rating label, residential"
+  },
+  {
+   "id": "floor",
+   "lab": "Floor protection",
+   "tap": "specFloor",
+   "rows": [
+    [
+     "USA · front of firebox",
+     "16\""
+    ],
+    [
+     "USA · door-opening sides",
+     "8\""
+    ],
+    [
+     "Canada · front of door",
+     "18\""
+    ],
+    [
+     "Canada · sides",
+     "8\""
+    ]
+   ],
+   "note": "UL 1618 Type 1"
+  },
+  {
+   "id": "outsideair",
+   "lab": "Combustion air",
+   "tap": "specAir",
+   "rows": [
+    [
+     "Duct",
+     "4\"(100mm) metal"
+    ],
+    [
+     "Adapter",
+     "OAIR.1B"
+    ],
+    [
+     "Mobile home",
+     "Outside air required"
+    ]
+   ]
+  },
+  {
+   "id": "blower",
+   "lab": "Optional blower",
+   "tap": "specBlower",
+   "rows": [
+    [
+     "Electrical",
+     "115V, 60Hz, 0.5 amps"
+    ],
+    [
+     "Kit",
+     "SKU#31140001"
+    ]
+   ],
+   "note": "label part no. differs, see note"
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Uncrate",
+   "Carefully remove the wood top and supports, then the plastic cover. Remove all screws holding the legs or pedestal to the pallet."
+  ],
+  [
+   "Floor protection & placement",
+   "On a combustible floor, lay UL 1618 Type 1 non-combustible ember protection (USA: 16\" to the front of the firebox, 8\" from the sides of the loading door opening; Canada: 18\" / 8\"). Position stove and protector, with the combustion-air hole if needed, to the label clearances.",
+   "<p>On a combustible floor, use UL 1618 Type 1 ember protection of non-combustible material, the equivalent of 20 Gauge steel or tile.</p><div class=\"kv\"><div class=\"r\"><span>USA</span><span>16\" (406 mm) to the front of the firebox · 8\" (203 mm) from the sides of the fuel loading door opening</span></div><div class=\"r\"><span>Canada</span><span>18\" (457 mm) from the loading door on the firing side · 8\" (203 mm) from the sides</span></div></div><p>Position the stove and floor protection (with the hole for combustion air if required) to the clearances on the label and in Figure 7.</p><p>Securing brackets come bagged with the unit: slide them through the slots in the rear legs and lag them to the floor or hearth pad. Needed for mobile homes; recommended with outside air to stop the stove moving and the air intake separating.</p>"
+  ],
+  [
+   "Chimney through ceiling & roof",
+   "Follow the chimney maker's instructions: plumb-bob the hole, check joists and rafters, cut and frame, then fit the support, flashing and radiation shield with no chimney joints between ceiling and roof. Add the storm collar, sections to a safe height and the rain cap; check for leaks.",
+   "<p>Follow the chimney manufacturer's instructions; the manual gives general steps only.</p><ol><li>Mark the ceiling and roof hole with a string and plumb-bob; check it clears floor joists, ceiling joists and rafters.</li><li>Cut the hole, frame the sides and install the roof or ceiling support.</li><li>Install the roof flashing; secure and seal it.</li><li>Assemble the chimney sections resting on the support and through the roof; install the radiation shield. Avoid chimney joints between ceiling and roof.</li><li>Install the storm collar and sections to a safe height, attach the rain cap and check the system for leaks.</li></ol><p>Offsets: screw every connector, offset elbow and chimney joint with at least three sheet metal screws and support it with the chimney maker's listed offset support (Figure 6, p. 15).</p>"
+  ],
+  [
+   "Chimney connector",
+   "Listed double-wall connector to its maker's instructions, or 6\"(150mm) minimum 24 gauge black pipe, clean, new, short and straight: crimped end down inside the stove collar, three screws at the collar and each joint. It must not pass through an attic, roof space, closet, floor or ceiling."
+  ],
+  [
+   "Masonry chimney option",
+   "Code-approved chimney with a listed flue liner, in good condition; flue or liner the same size as the stove outlet (a full stainless steel liner may help draft). Flue exit 3 feet above the roof and two feet above the highest projection within 10 feet; minimum system height 12 feet from the top of the appliance."
+  ],
+  [
+   "Combustible-wall pass-through",
+   "Maintain the vapor barrier. Use an NFPA 211 pass-through: System A (12 in. brick), B (listed insulated chimney length, 9 in. air space), C (ventilated thimble, 6 in. glass fiber insulation) or D (insulated chimney section, 2 in. air space).",
+   "<p>Per NFPA 211-2013. The vapor barrier must be maintained wherever the chimney or other components penetrate to the exterior.</p><div class=\"kv\"><div class=\"r\"><span>System A · 12 in.</span><span>Min. 3.5 in. brick masonry wall, 12 in. of brick from clay liner to combustibles; fireclay liner min. 5/8 in. wall</span></div><div class=\"r\"><span>System B · 9 in.</span><span>Solid-insulated listed chimney length, same ID as the connector, 1 in. or more insulation, 9 in. air space to combustibles</span></div><div class=\"r\"><span>System C · 6 in.</span><span>Min. 24 gauge connector and ventilated thimble (two 1 in. air channels), 6 in. glass fiber insulation to combustibles</span></div><div class=\"r\"><span>System D · 2 in.</span><span>Solid-insulated listed chimney section 2 in. larger ID than the connector, min. 12 in. long, connector spaced 1 in., 2 in. air space</span></div></div><p>Supports fastened on all sides; fasteners must not penetrate the chimney liner.</p><div class=\"note\"><b>Note:</b> the manual allows passage through a combustible wall if the installation conforms to CAN/CSA-B365 or NFPA 211 on p. 14 (systems A–D on pp. 17–18), and the rating label says do not pass a chimney connector through a combustible wall or ceiling on p. 26.</div>"
+  ],
+  [
+   "Mobile home",
+   "Listed double-wall connector, 6\"(150mm) listed connector and chimney, outside combustion air, and a chimney at least 12' (3.66 m) above the unit or per the chimney maker's roof clearances, whichever is greater. Keep the floor, wall and roof structure intact; lag the stove down with two 1/4\" x 1\" or longer lag screws.",
+   "<p>Listed double-wall connector; connector and chimney 6\"(150mm), listed to UL-103 HT (USA) or ULC S-641 / ULC-S-629 (Canada). Outside combustion air supply must be used.</p><ul><li>Chimney: at least 12' (3.66 m) from the top of the unit, or the chimney maker's roof clearances if greater.</li><li>Attach the stove to the floor with two 1/4\" x 1\" or longer lag screws. Leg model: anchor tabs in the slots on the bottom of the two rear legs (Figure 5).</li><li>With the optional blower kit, the unit must be grounded to the mobile home.</li><li>Rating label: horizontal connector not permitted in mobile homes.</li><li>Clearances: double-wall close-clearance values on the rating label (p. 26); Figure 8 shows them as a drawing.</li></ul>"
+  ],
+  [
+   "Combustion air",
+   "Outside air through the floor or the nearest exterior wall with the OAIR.1B adapter, 4\"(100mm) metal venting, an approved inlet vent cap and 20GA minimum rodent screen; or room air by removing the knockout/cover plate. Secure the stove when using outside air."
+  ],
+  [
+   "Optional blower",
+   "Remove the two screws and cover plate from the rear shield, set the blower in with its outlet pointing up and fasten with the kit screws. 115V, 60Hz, 0.5 amps; route the three-prong cord away from the heater."
+  ],
+  [
+   "Firebrick & first-fire check",
+   "With the stove in its final position, fit the 20 firebricks: 4 under the rear brick rail, the floor bricks lengthwise (Figure 14), then 4 per side under the brick retainer.",
+   "<p>The package contains 20 full-size firebricks (set 80000620, 9\" x 4 1/2\" x 1 1/4\"). Install with the stove in its final position.</p><ol><li>Slide the first brick up under the rear brick rail to the far left or far right; add 3 more to complete the rear.</li><li>Lay the floor bricks as shown in Figure 14.</li><li>Each side: place the first side-wall brick under the brick retainer, on top of the floor bricks, and slide it back against the rear bricks; then 3 more along that wall.</li></ol><div class=\"note\">Before the first fire, remove the retaining clip on the front of the baffle (p. 9). Do not operate with the baffle board insulation or tubes removed (p. 21).</div>"
+  ]
+ ],
+ "faults": {
+  "label": "Troubleshooting chart",
+  "panels": [
+   {
+    "title": "Dirty glass / excess creosote",
+    "items": [
+     "Wet wood → use dry wood",
+     "Air control or damper turned down too soon → wait for a good bed of coals and charred wood",
+     "Draft too low → improper chimney height and/or diameter, plugged or restricted chimney; provide outside air",
+     "Door gasket leakage (glass) → replace gasket, check latch"
+    ]
+   },
+   {
+    "title": "Low heat output",
+    "items": [
+     "Wet wood → use dry wood",
+     "Fire too small → build a larger fire",
+     "Draft too low → chimney plugged or restricted; inspect and clean"
+    ]
+   },
+   {
+    "title": "Won't burn overnight",
+    "items": [
+     "Air control set too high → set it lower",
+     "Not enough wood → unsplit wood is preferred for overnight burns",
+     "Draft too high → excessive chimney height and/or diameter (see \"Proper Draft\", p. 10)"
+    ]
+   },
+   {
+    "title": "Stove won't burn",
+    "items": [
+     "Combustion air supply blocked → check outside air for obstruction; check the room air cover is removed",
+     "Draft too low → chimney plugged or restricted; inspect and clean",
+     "Chimney oversized or otherwise unsuitable → consult dealer"
+    ]
+   }
+  ]
+ },
+ "codes": [],
+ "detail": {
+  "light": {
+   "tag": "Owner · operation",
+   "title": "Lighting a fire",
+   "cool": false,
+   "html": "<p>Before your very first fire, remove the retaining clip on the front of the baffle.</p><ol><li>Move the air control lever all the way to the left. That's the maximum firing rate. Open the door.</li><li>Put crumpled newspaper in the centre of the firebox. Crisscross several pieces of dry kindling on top, then add a few small pieces of dry wood.</li><li>Light the paper. Leave the door open about 1/2\" to 1\" until the kindling is fully in flames. Don't leave the stove unattended.</li><li>Once the kindling is fully engulfed, add a few small logs and close the door.</li><li>Start normal burning once you have a good bed of coals and the wood has charred.</li></ol><p>Burn right on the firebricks. Don't raise the fire on a grate or andirons, and replace any broken or missing bricks.</p><div class=\"note\">Fire starters made from paper, cardboard, sawdust or wax are fine for lighting.</div><div class=\"note danger\"><b>Never use</b> gasoline, lantern fuel, kerosene, charcoal lighter fluid or similar liquids to start or \"freshen up\" a fire. Keep them well away from the stove.</div>"
+  },
+  "air": {
+   "tag": "Owner · operation",
+   "title": "Burning, reloading and overnight burns",
+   "cool": false,
+   "html": "<p>The air control lever sets how hard the fire burns. All the way to the left is the maximum firing rate.</p><h4>Everyday burning</h4><ul><li>Set the lever where you want it. Every home's heating needs differ, so find your setting by trial and error and note it for next time.</li><li>If smoke pours down across the glass (a \"waterfall\"), you turned the air down too soon or too low.</li></ul><h4>Reloading</h4><ol><li>Move the air control to high and give the fire time to brighten.</li><li>Open the door slowly. This stops smoke from puffing back into the room.</li><li>Load dry wood of mixed shapes and sizes, placed so air can flow between the logs. Don't stack it so high that opening the door would be a hazard.</li></ol><h4>Overnight burns</h4><p>Unsplit logs work best. Char the wood completely on the maximum setting before you turn the air down.</p><p>To restart, open the door and rake the hot embers to the front. Add a couple of dry, split logs, close the door and set the air to high. Once the wood has charred, reset the air.</p><div class=\"note danger\"><b>Don't over-fire.</b> Use the full-left setting only to start a fire or preheat a fresh load.</div><div class=\"note\">With the optional blower: except on its High setting, wait 30 minutes before turning it on.</div>"
+  },
+  "wood": {
+   "tag": "Owner · operation",
+   "title": "Choosing your wood",
+   "cool": false,
+   "html": "<p>Burn only natural, seasoned cordwood. Air-dried hardwoods give higher efficiency and lower emissions than softwoods or green wood.</p><ul><li>Season wood for six months or more. Store it under cover, away from open flame or heat.</li><li>Wet wood smoulders, makes lots of smoke and creosote, gives little heat and tends to go out.</li><li>18\" is the ideal log length; the loading instructions say to use wood up to 18\" long. The manual's maximum wood length is 20 inches.</li></ul><div class=\"note small\"><b>Maker's website:</b> Log Size (max.) 18 in. That's the manual's ideal length; the manual's maximum is 20 inches.</div><h4>Test a piece</h4><p>Put a large piece on a good bed of coals. Dry wood burns on more than one side within one minute. Damp wood turns black and lights within three minutes. If it sizzles, hisses and blackens without lighting in five minutes, it's soaked. Don't burn it.</p><h4>Never burn</h4><p>Wet or green wood, unseasoned wood, treated or salt-water wood, coal or charcoal, garbage, lawn clippings or yard waste, railroad ties, manure or animal remains, cardboard or other paper products, plywood, particleboard, anything with plastic, rubber (including tires) or asbestos, waste petroleum products, paints, paint thinners, solvents, asphalt products, or construction or demolition debris. Burning these can release toxic fumes, or make the stove ineffective and cause smoke. Salt-water wood and garbage contain chlorides that destroy metal and void the warranty. Charcoal can give off large amounts of carbon monoxide, an odorless gas that can kill. Never barbecue in the stove.</p><div class=\"note\"><b>Note:</b> The do-not-burn list (p. 8) names wet or green wood and unseasoned wood, and the chimney-fire advice (p. 7) says not to burn wet wood. The safety section (p. 4) says that if you feel it is necessary to burn wet or unseasoned wood, do so only with the air inlet set open enough to keep a good, strong fire and fairly high chimney temperatures, and not to try to burn overnight with green or wet wood.</div>"
+  },
+  "firstfire": {
+   "tag": "Owner · reassurance",
+   "title": "Your first few fires",
+   "cool": false,
+   "html": "<p>The paint on your stove bakes on during the first 2-3 fires. While it cures, it gives off smoke and fumes that may bother some people. That's expected and it passes.</p><ul><li>Keep the room well ventilated. Open all windows and doors during those first fires.</li><li>Follow the Stove Bright (Forrest Paint) information sheet that came with the stove.</li><li>Smoke detectors may go off more often while the paint cures, or if the door is left open by accident. Don't disconnect them.</li></ul><p>Before the very first fire, remove the retaining clip on the front of the baffle.</p><div class=\"note\">The manual strongly recommends smoke and carbon monoxide detectors in the area where the stove is installed.</div><h4>Learning your stove</h4><p>Until you're experienced, check the firebox daily for creosote build-up. The right air setting depends on your wood, the outside temperature, your chimney and the weather. With practice, you'll find the settings that suit your home.</p>"
+  },
+  "ash": {
+   "tag": "Owner · maintenance",
+   "title": "Removing the ashes",
+   "cool": false,
+   "html": "<p>Take ashes out only when the stove is cold, after the fire has burned down and cooled.</p><ul><li>Empty the firebox whenever the ash gets 3\" to 4\" deep.</li><li>Leave about 1\" of ash on the firebox bottom. It helps keep a hot charcoal bed.</li><li>Don't let ash pile up at the front of the firebox. That's where boost combustion air comes in, and heavy ash blocks it.</li><li>Remove ashes often. Embers can roll out the door and start a fire.</li></ul><h4>Disposing of ashes</h4><p>Put ashes in a metal container with a tight-fitting lid. Set the closed container outside on a non-combustible floor or on the ground, well away from anything that can burn. If you'll bury or spread the ashes, keep them in the closed container until every cinder has cooled completely. Don't put other waste in that container.</p>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>If the glass darkens from slow burning or poor wood, clean it with fireplace glass cleaner once the stove is cold.</p><ul><li>Never clean the glass while it's hot.</li><li>Don't use abrasive cleaners, and never scrape it with anything that could scratch.</li></ul><h4>What the film tells you</h4><p>A light brown, dusty film that wipes off easily usually means good combustion and dry wood, so your pipes and chimney are fairly clean. A black, greasy film that's hard to remove comes from wet wood and burning too slowly. That deposit is building up at least as fast in your chimney.</p><h4>Protect the glass</h4><p>Don't slam the door or knock the glass, and make sure no logs stick out when you close it. Cracked or broken glass must be replaced before you use the stove again. Your dealer supplies the replacement: 9-1/4\" x 13-1/4\" x 5 mm ceramic glass only.</p><div class=\"note danger\"><b>Hot glass will cause burns.</b> Don't touch it until it has cooled, and never let children touch it.</div>"
+  },
+  "chimney": {
+   "tag": "Owner · safety",
+   "title": "Creosote and chimney fires",
+   "cool": false,
+   "html": "<p>Slow fires give off tar and vapours that condense in a cool chimney as creosote. If creosote ignites, it burns extremely hot.</p><ul><li>Have the chimney and connector inspected at least once every two months in the heating season, and cleaned as needed at least twice a year.</li><li>Remove creosote once it reaches 3 mm or more.</li><li>To keep it down, burn dry wood and add small loads (two or three logs, or 1/4 to 1/2 of a full load). Leave the air fairly wide open for the first 10 to 30 minutes after loading.</li></ul><h4>Signs of a chimney fire</h4><p>Flames and sparks shooting out of the top of the chimney, a roaring sound, or the chimney vibrating.</p><h4>If it happens</h4><ol><li>Close down the air inlet on the stove.</li><li>Call the fire department.</li><li>Get ready to evacuate. Meet at an agreed place outside.</li><li>Before the next fire, have the chimney cleaned and checked for stress and cracks.</li></ol><div class=\"note\">Keep a fire extinguisher handy and make sure everyone at home knows the plan.</div>"
+  },
+  "care": {
+   "tag": "Owner · maintenance",
+   "title": "Maintenance checklist",
+   "cool": false,
+   "html": "<p>Look for cracks, heavy corrosion, burned-out sections or bad warping.</p><div class=\"kv\"><div class=\"r\"><span>Weekly</span><span>Firebrick (cracks) · door gasket (sagging, placement, damage)</span></div><div class=\"r\"><span>Monthly</span><span>Brick rails and tabs · back of the airwash chamber · boost tube cover · top baffle board · baffle tubes</span></div><div class=\"r\"><span>Every 2 months</span><span>Chimney inspection</span></div><div class=\"r\"><span>When the chimney is cleaned</span><span>Top heat shield and mounting bolt · brick rails · manifold</span></div><div class=\"r\"><span>Every six months</span><span>Vacuum the optional blower's grill openings (back and bottom of the casing)</span></div></div><h4>Door gasket</h4><p>The door seals with a 5/8\" fiberglass rope gasket that needs only light pressure. Inspect it now and then and replace it if needed, using the gasket kit from your True North dealer.</p><h4>Baffle</h4><p>For chimney cleaning, the connector pipe should be taken off the stove. Remove the baffle board only if that isn't possible, and never run the stove with the baffle board or tubes out.</p><div class=\"note danger\">Replace cracked baffle tubes and other damaged parts through your dealer, using only manufacturer-supplied materials. Running the stove with broken parts can damage other parts and will void your warranty.</div>"
+  },
+  "safety": {
+   "tag": "Owner · safety",
+   "title": "Safety around the stove",
+   "cool": false,
+   "html": "<ul><li>The stove is hot while it's running. Keep children, clothing and furniture away. Touching it can burn skin.</li><li>Keep the loading door closed while the fire burns. Open it only to add wood. An open door can throw sparks and pull air from your living space.</li><li>Keep wood, furniture, newspapers and anything else that can burn out of the stove's clearances and the space you need for loading and ash removal.</li><li>Don't modify the air control. The low burn setting is set at the factory and must not be changed.</li><li>Teach everyone at home how to run the stove safely and what to do in a chimney fire.</li></ul><h4>Signs of trouble</h4><p><b>Too much draft or over-firing:</b> an uncontrollable burn, or a stove part or the chimney glowing red. Over-firing can permanently damage the stove and chimney and may void the warranty.</p><p><b>Too little draft:</b> smoke puffing back or leaking into the room at the stove or pipe joints.</p><div class=\"note danger\">The manual strongly recommends smoke and carbon monoxide detectors near the stove. Don't disconnect them.</div>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "Warranty at a glance",
+   "cool": false,
+   "html": "<p>True North warrants the stove to the original consumer:</p><div class=\"kv\"><div class=\"r\"><span>Firebox, castings, glass</span><span>3 years parts (1 year labour)</span></div><div class=\"r\"><span>Electrical components and switches</span><span>1 year parts and labour</span></div><div class=\"r\"><span>Gaskets, paint (peeling), bricks, baffle tubes, baffle manifold, ceramic fibre board</span><span>1 year (parts only)</span></div></div><p>Glass is covered for thermal breakage only, not impact.</p><h4>Not covered</h4><ul><li>Damage from misuse, abuse, improper installation, lack of maintenance, over-firing, negligence, shipping accidents, power failures, downdrafts or venting problems</li><li>Scratches, corrosion, warping or discoloration caused by over-firing, abrasives or chemical cleaners</li><li>Defects or damage from unauthorized parts</li><li>Service calls related to an improper installation</li></ul><h4>Making a claim</h4><p>The warranty isn't transferable, and an authorized qualified technician must install the stove. Give your True North dealer proof of purchase (dated bill of sale), the model name and the serial number. A one-time replacement limit applies to covered parts. You can register the stove at truenorthstoves.com/register.</p>"
+  },
+  "specOutput": {
+   "tag": "Installer · spec",
+   "title": "Heat output",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>EPA BTU output</span><span>13,900 to 29,200 btu/hr</span></div><div class=\"r\"><span>Peak BTU/hr output</span><span>55,000</span></div></div><div class=\"note small\"><b>Maker's website:</b> Heat Output, Cord Wood 60,000 BTU.</div><div class=\"kv\"><div class=\"r\"><span>Fuel</span><span>Seasoned cord wood</span></div></div><p>EPA range: CSA B415 efficiency with burn rates from the low and high EPA tests on Douglas Fir dimensional lumber. Peak: maximum one-hour high burn rate from the high-burn EPA test, cord wood at 8600 btu/lb. The introduction (p. 2) states the tested range as 13,931 to 29,208 Btu/hr.</p><p>Designed for maximum overall efficiency at a moderate firing rate. Wet wood can cause up to 25% drop in heater output.</p>"
+  },
+  "specEmissions": {
+   "tag": "Installer · spec",
+   "title": "Emissions & efficiency",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>EPA certified emissions</span><span>1.6 grams per hour</span></div><div class=\"r\"><span>HHV tested efficiency</span><span>72.7%</span></div><div class=\"r\"><span>LHV tested efficiency</span><span>78%</span></div><div class=\"r\"><span>CO emissions</span><span>1.56 grams per minute</span></div></div><p>Efficiencies are weighted averages tested to CSA B415. Meets the EPA 2020 crib wood particulate emission standards (rating label: test Method 28R, 1.6 g/hr). Listed room heater, solid fuel type, to CAN/ULC S627 and UL 1482 (ETL#4001507); also for use in mobile homes.</p><div class=\"note\">The manufacturer-set minimum low burn rate must not be altered; doing so is against federal regulations.</div>"
+  },
+  "specWood": {
+   "tag": "Installer · spec",
+   "title": "Fuel & log length",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Maximum wood length</span><span>20 inches</span></div><div class=\"r\"><span>Ideal wood length</span><span>18 inches</span></div></div><div class=\"note small\"><b>Maker's website:</b> Log Size (max.) 18 in. The website labels the manual's ideal (recommended) length as its maximum; the manual's maximum is 20 inches.</div><div class=\"kv\"><div class=\"r\"><span>Fuel</span><span>Seasoned cord wood</span></div></div><p>The spec page (p. 3) lists both lengths. The loading instructions (p. 9) say to use wood of different shape, diameter and length (up to 18\" (457mm)), which is the ideal length.</p><p>Natural cordwood only, air-dried six months or more. Burn directly on the firebricks; no grates or andirons.</p>"
+  },
+  "specChimney": {
+   "tag": "Installer · spec",
+   "title": "Chimney & connector",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Chimney and connector</span><span>6\"(150mm) diameter</span></div><div class=\"r\"><span>USA</span><span>Connector and chimney listed to UL-103 HT</span></div><div class=\"r\"><span>Canada</span><span>Connector ULC S-641 · chimney ULC-S-629</span></div><div class=\"r\"><span>Single-wall smoke pipe</span><span>6\"(150mm), minimum 24 gauge black, clean and new</span></div><div class=\"r\"><span>Masonry flue exit</span><span>3 feet above the roof · two feet above the highest projection within 10 feet</span></div><div class=\"r\"><span>Minimum system height</span><span>12 feet (3.7 m.) from top of appliance</span></div></div><p>Or a code-approved masonry chimney with a listed flue liner, the same size as the stove outlet. Don't connect to a flue serving another appliance or to any air distribution duct; don't install in a fireplace or a sleeping room.</p>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances to combustibles",
+   "cool": true,
+   "html": "<p>From the rating label. Figure 2 (p. 12) and Figure 8 (p. 19, mobile home) show the clearances as drawings.</p><h4>Residential · single-wall connector</h4><div class=\"kv\"><div class=\"r\"><span>A · Sidewall to unit</span><span>12 in. / 305 mm</span></div><div class=\"r\"><span>B · Backwall to unit</span><span>12 in. / 305 mm</span></div><div class=\"r\"><span>C · Corner to unit</span><span>8 in. / 205 mm</span></div><div class=\"r\"><span>D · Sidewall to connector</span><span>19.75 in. / 505 mm</span></div><div class=\"r\"><span>E · Backwall to connector</span><span>15.375 in. / 390 mm</span></div><div class=\"r\"><span>F · Corner to connector</span><span>16 in. / 405 mm</span></div></div><h4>Residential / mobile home close clearance · double-wall connector</h4><div class=\"kv\"><div class=\"r\"><span>A · Sidewall to unit</span><span>8 in. / 205 mm</span></div><div class=\"r\"><span>B · Backwall to unit</span><span>5 in. / 130 mm</span></div><div class=\"r\"><span>C · Corner to unit</span><span>3 in. / 75 mm</span></div><div class=\"r\"><span>D · Sidewall to connector</span><span>15.75 in. / 400 mm</span></div><div class=\"r\"><span>E · Backwall to connector</span><span>8.375 in. / 215 mm</span></div><div class=\"r\"><span>F · Corner to connector</span><span>11 in. / 280 mm</span></div></div><h4>Alcove · double-wall connector</h4><p>A 8 in., B 5 in., D 15.75 in., E 8.375 in.; C and F N/A. Alcove size: depth 3 ft. max, height 7 ft. min, width 38 in. min. The label lists an outside air kit as required for mobile home and alcove installations.</p><p>Combustibles in front of the unit: 48\" (1219 mm), Figures 6 and 7. Clearances may be reduced with listed pipe shields, wall protectors or other means approved by local building or fire officials.</p><div class=\"note\"><b>Note:</b> the rating label gives a general 18 inches / 455 mm minimum between a single-wall connector and combustibles on p. 26, and the same label's single-wall table on p. 26 lists 15.375 in. backwall-to-connector and 16 in. corner-to-connector. The label also notes \"as tested - pipe shield may be required by local authorities.\"</div>"
+  },
+  "specFloor": {
+   "tag": "Installer · spec",
+   "title": "Floor protection",
+   "cool": true,
+   "html": "<p>On a combustible floor, use UL 1618 Type 1 ember protection made from non-combustible material (a minimum K value of 23.7 btu/ft h °F, as printed), the equivalent of 20 Gauge steel or tile.</p><div class=\"kv\"><div class=\"r\"><span>USA · front of firebox</span><span>16\" (406 mm)</span></div><div class=\"r\"><span>USA · sides of fuel loading door opening</span><span>8\" (203 mm)</span></div><div class=\"r\"><span>USA · minimum width</span><span>28 1/2\" (725 mm)</span></div><div class=\"r\"><span>USA · minimum overall depth</span><span>40\" (1.016 m)</span></div><div class=\"r\"><span>Canada · from loading door, firing side</span><span>18\" (457 mm)</span></div><div class=\"r\"><span>Canada · sides</span><span>8\" (203 mm)</span></div><div class=\"r\"><span>Canada · minimum width</span><span>37 3/8\" (950 mm)</span></div><div class=\"r\"><span>Canada · minimum overall depth</span><span>50\" (1.27 m)</span></div></div><p>USA: protection is also required under a horizontal chimney connector and 2\" (51 mm) beyond each side of it.</p><div class=\"note\"><b>Note:</b> for the floor protector's side extension (U.S.), the manual gives 8\" (203 mm) from the sides of the fuel loading door opening on p. 13 and H = 3.5 inches / 90 mm on the rating label's floor-protector drawing on p. 26.</div>"
+  },
+  "specAir": {
+   "tag": "Installer · spec",
+   "title": "Combustion air",
+   "cool": true,
+   "html": "<p>Direct outside air is necessary for mobile homes and optional for residential installations; consult local code, CAN/CSA-B365 or NFPA 211. The rating label (p. 26) lists the outside air kit as required for mobile home and alcove installations.</p><h4>Pedestal model</h4><ul><li>Through the floor: leave the rear knockout or cover plate in place; cut a 4\"(100mm) or larger hole inside the pedestal perimeter; approved 4\"(100mm) inlet vent cap.</li><li>From behind: hole in the closest exterior wall with an approved 4\"(100mm) inlet vent cap; OAIR.1B adapter on the back of the pedestal; 4\"(100mm) flexible or rigid metal venting.</li><li>Room air: remove the knockout or cover plate from the rear of the pedestal.</li></ul><h4>Leg model</h4><ul><li>Through the floor: 4\"(100mm) or larger hole under the stove; OAIR.1B on the underside, connected with 4\"(100mm) metal venting; approved inlet vent cap if extended outdoors.</li><li>From behind: as above, with the adapter on the underside.</li><li>Room air: remove the knockout or cover plate from the bottom.</li></ul><p>Cover floor holes with 20GA wire mesh minimum rodent screen; they must draw from a ventilated crawl space or be ducted outdoors. Outside air requires the stove to be secured to the structure (securing brackets, p. 13).</p>"
+  },
+  "specBlower": {
+   "tag": "Installer · spec",
+   "title": "Optional blower",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Kit</span><span>SKU#31140001</span></div><div class=\"r\"><span>Electrical rating</span><span>115V, 60Hz, 0.5 amps</span></div><div class=\"r\"><span>Cord</span><span>Three-prong; route away from the heater, not beneath it</span></div></div><p>May be installed at any time: remove the two screws and cover plate from the rear shield, set the blower in the opening with the outlet pointing up, fasten with the kit screws. Mobile home: the unit must be grounded when the blower kit is installed. Service parts: blower 80000905, fan speed control 80000908, speed control knob 80001509.</p><p>Operation: except on High, wait 30 minutes before turning the blower on.</p><div class=\"note\"><b>Note:</b> the manual lists the blower as SKU#31140001 on p. 22 (and p. 25); the rating label on p. 26 lists it as BLOWER (TRNO.19BLOWA), and its French text as VENTILATEUR (WODC.BLOW).</div>"
+  }
+ },
+ "pageref": {
+  "light": 9,
+  "air": 9,
+  "wood": 8,
+  "firstfire": 10,
+  "ash": 10,
+  "glass": 4,
+  "chimney": 6,
+  "care": 5,
+  "safety": 8,
+  "warranty": 27,
+  "specOutput": 3,
+  "specEmissions": 3,
+  "specWood": 3,
+  "specChimney": 12,
+  "specClear": 26,
+  "specFloor": 13,
+  "specAir": 20,
+  "specBlower": 22,
+  "step0": 12,
+  "step1": 13,
+  "step2": 14,
+  "step3": 14,
+  "step4": 16,
+  "step5": 17,
+  "step6": 19,
+  "step7": 20,
+  "step8": 22,
+  "step9": 23
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "chimney",
+   "t": "chimney fire",
+   "p": "Signs of a chimney fire and what to do"
+  },
+  {
+   "k": "h",
+   "id": "chimney",
+   "t": "creosote",
+   "p": "Inspect every two months; remove at 3 mm"
+  },
+  {
+   "k": "h",
+   "id": "air",
+   "t": "overnight burn",
+   "p": "Unsplit logs, char on maximum, then turn down"
+  },
+  {
+   "k": "h",
+   "id": "air",
+   "t": "back puffing",
+   "p": "Brighten the fire, then open the door slowly"
+  },
+  {
+   "k": "h",
+   "id": "safety",
+   "t": "glowing red",
+   "p": "Too much draft or over-firing"
+  },
+  {
+   "k": "h",
+   "id": "care",
+   "t": "door gasket",
+   "p": "5/8\" fiberglass rope, gasket kit from your dealer"
+  },
+  {
+   "k": "i",
+   "id": "specAir",
+   "t": "outside air kit",
+   "p": "OAIR.1B adapter, 4\"(100mm) metal venting"
+  },
+  {
+   "k": "i",
+   "id": "specClear",
+   "t": "mobile home clearances",
+   "p": "Double-wall close-clearance values"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "specWood",
+    "issue": "Maximum log length: \"Maximum Wood Length 20 inches\" in the specifications (p. 3) vs \"length (up to 18\" (457mm))\" in Normal Operation (p. 9). Shown in specWood and the owner wood drawer.",
+    "pages": [
+     [
+      1,
+      3
+     ],
+     [
+      1,
+      9
+     ]
+    ],
+    "class": "not_a_conflict",
+    "reason": "The p. 3 spec table lists both: Ideal Wood Length 18 inches and Maximum Wood Length 20 inches. The p. 9 loading advice (length up to 18\" (457mm)) matches the ideal length. Shown as ideal 18 in. and maximum 20 in. in specWood, the spec card and the owner wood drawer, per the True North log-length rule."
+   },
+   {
+    "where": "specClear",
+    "issue": "Rating label states a general 18 inches / 455 mm minimum between a single-wall connector and combustibles, while its own single-wall clearance table lists E backwall-to-connector 15.375 in. and F corner-to-connector 16 in.",
+    "pages": [
+     [
+      1,
+      26
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "step5",
+    "issue": "Combustible-wall pass-through: p. 14 allows connector passage through a combustible wall if it conforms to CAN/CSA-B365 or NFPA 211 (systems A-D, pp. 17-18); the rating label says do not pass a chimney connector through a combustible wall or ceiling.",
+    "pages": [
+     [
+      1,
+      14
+     ],
+     [
+      1,
+      17
+     ],
+     [
+      1,
+      26
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "specBlower",
+    "issue": "Blower kit part number: SKU#31140001 (pp. 22, 25) vs BLOWER (TRNO.19BLOWA) on the rating label; the label's French text gives VENTILATEUR (WODC.BLOW).",
+    "pages": [
+     [
+      1,
+      22
+     ],
+     [
+      1,
+      25
+     ],
+     [
+      1,
+      26
+     ]
+    ],
+    "class": "not_a_conflict",
+    "reason": "Different numbering on different documents (the blower kit's SKU vs the rating label's item code); the guide shows both."
+   },
+   {
+    "where": "specFloor",
+    "issue": "U.S. floor-protector side extension: 8\" (203 mm) from the sides of the fuel loading door opening (p. 13, Figure 4) vs H = 3.5 inches / 90 mm on the rating label drawing (p. 26). May be measured from different reference points (door opening vs stove body); the label letters are defined only by the drawing.",
+    "pages": [
+     [
+      1,
+      13
+     ],
+     [
+      1,
+      26
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "wood",
+    "issue": "Wet or unseasoned wood: the do-not-burn list on p. 8 names 'Wet or green wood' and 'Unseasoned wood' and p. 7 says 'Do not burn wet wood', but p. 4 (item 1) says 'If you feel it is necessary to burn wet or unseasoned wood, do so only with the air inlet set open enough to maintain a good strong fire and fairly high chimney temperatures. Do not attempt to burn overnight using green wood or wet wood.' The guide shows both in an amber note in the wood drawer.",
+    "pages": [
+     [
+      1,
+      4
+     ],
+     [
+      1,
+      7
+     ],
+     [
+      1,
+      8
+     ]
+    ],
+    "class": "substantive"
+   }
+  ],
+  "catalog_mismatches": [
+   {
+    "model": "true-north-tn20-wood-stove",
+    "field": "btu_output_cordwood_max",
+    "catalog": "60000",
+    "manual": "Peak BTU/Hr Output 55,000",
+    "page": [
+     1,
+     3
+    ],
+    "shown": "specOutput"
+   },
+   {
+    "model": "true-north-tn20-wood-stove",
+    "field": "log_length_max_in",
+    "catalog": "18",
+    "manual": "Maximum Wood Length 20 inches (p. 9 says up to 18\")",
+    "page": [
+     1,
+     3
+    ],
+    "shown": "specWood"
+   }
+  ],
+  "notes": "One manual (installation & operation, 28 pages); page numbers are physical PDF pages. Wood stove: no ignition system and no code table (codes empty). Stove dimensions (Figure 1, p. 11) appear only as an unlabeled drawing, so no height/width/depth spec was given. Clearance drawings (Figure 2 p. 12, Figure 8 p. 19) have unlabeled numbers; clearances were taken from the rating label's A-F table (letters defined in text, p. 26). The drawings look like connector-centreline figures (label value + 3 in.), but Figure 8 shows 18 5/8\" where Figure 2 shows 18 3/4\" (both 475mm) - worth a check. Floor-protector G/H/I values on the label are defined only by its drawing (USA G 16, H 3.5, I 0 in.; Canada G 18, H 8, I 8 in.), so the p. 13 text was used. The 57 3/4\" minimum in Figures 6 and 7 (pp. 15-16) has no clear label in the text; not transcribed. Metric equivalents vary slightly between pages (18\" = 457 mm p. 13, 455 mm Figure 3, 460 MM label; 12 ft = 3.7 m p. 16, 3.66 m p. 19); inch values agree. p. 2 gives the tested output as 13,931 to 29,208 Btu/hr; p. 3 rounds it to 13,900 to 29,200. The rating label cautions to keep the ash dump closed during firing, but the manual describes no ash dump or ash pan; left out of owner content. p. 9 says to remove the retaining clip on the front of the baffle before the first fire; the clip isn't described further, and the baffle-tube retaining clips on p. 21 are reinstalled, so these may be different parts - confirm. p. 20 calls outside air optional for residential installs, while the label requires the outside air kit for alcove installs; both are shown in specAir. The manual gives no firebox volume, burn time, weight, blower cfm or non-catalytic statement, so catalog firebox_cu_ft, burn_time_hr_max and the blower cfm feature could not be checked. The rating label is bilingual; no French-only safety text needed translating, and no scrambled text was found."
+ }
+}

@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morsø 2B Classic 2020 — Owner &amp; Installer Guide</title>
+<!-- Stoveworks owner & installer guide · template v3 · built 2026-10-12 from 72207100_-_2B_Classic_NA__PFS_-1.pdf
+     Generated from guides/content/morso-2b-classic-2020.json by scripts/build_guide.py — edit the content file and rebuild; don't edit this page. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* cast iron in shadow */
+    --iron:#191512; --iron-2:#241f1a; --iron-3:#322b24;
+    /* heat */
+    --ember:#e8682c; --ember-2:#c4521f; --amber:#f5a623;
+    /* gas pilot flame — the cool counter-accent, true to the subject */
+    --pilot:#5f93b8; --pilot-deep:#37607d;
+    /* warm reading surfaces */
+    --paper:#f1ece2; --paper-2:#fbf8f2; --card:#ffffff;
+    --ink:#23201b; --ink-soft:#6e655a; --hair:#e0d8c9;
+    --ok:#3f7d54; --warn:#b06a13;
+    --shadow:0 1px 2px rgba(30,22,14,.06),0 8px 24px rgba(30,22,14,.07);
+    --display:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+  .mono{font-family:var(--mono)}
+
+  /* ---------- top chrome ---------- */
+  header{position:sticky;top:0;z-index:40;background:var(--iron);color:#f3ece2;
+    display:flex;align-items:center;gap:14px;padding:11px 18px;border-bottom:1px solid #000;transition:transform .22s ease}
+  .brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;letter-spacing:.16em;font-size:14px}
+  .flame{width:18px;height:18px;flex:none}
+  .brand small{font-weight:600;letter-spacing:.02em;color:#b6ab9b;font-family:var(--body);font-size:11px;display:block;letter-spacing:.04em}
+  .brand-wrap{display:flex;flex-direction:column;line-height:1.15}
+  .spacer{flex:1}
+  /* role toggle */
+  .toggle{display:flex;background:#0e0b09;border:1px solid #3a322a;border-radius:999px;padding:3px}
+  .toggle button{font-family:var(--body);font-weight:600;font-size:12.5px;color:#9b9183;background:none;border:none;
+    padding:7px 15px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.18s;white-space:nowrap;min-height:36px}
+  .toggle button[aria-pressed="true"]{color:#fff}
+  .toggle button.home[aria-pressed="true"]{background:linear-gradient(180deg,var(--ember),var(--ember-2));box-shadow:0 0 14px rgba(232,104,44,.5)}
+  .toggle button.inst[aria-pressed="true"]{background:linear-gradient(180deg,var(--pilot),var(--pilot-deep));box-shadow:0 0 14px rgba(95,147,184,.45)}
+  .toggle .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.55}
+  .search{display:flex;align-items:center;gap:7px;background:#0e0b09;border:1px solid #3a322a;border-radius:9px;padding:7px 11px;min-width:120px}
+  .search input{background:none;border:none;color:#f3ece2;font-family:var(--body);font-size:13px;width:100%;outline:none}
+  .search input::placeholder{color:#7d7468}
+  .search svg{flex:none;opacity:.6}
+  .pdf{display:flex;align-items:center;gap:7px;background:none;border:1px solid #4a4138;color:#d9cfc0;
+    font-family:var(--body);font-weight:600;font-size:12.5px;padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;transition:.18s}
+  .pdf:hover{border-color:var(--ember);color:#fff}
+  .pdf{min-height:40px}
+  /* search icon (phones only) */
+  .qbtn{display:none;place-items:center;width:44px;height:44px;flex:none;background:none;border:1px solid #4a4138;border-radius:10px;color:#d9cfc0;cursor:pointer}
+  .qbtn[aria-expanded="true"]{border-color:var(--pilot-fill,#5f93b8);color:#fff}
+  /* installer section bar: jump to a section, current one highlighted */
+  .secnav{position:sticky;top:var(--hdr-h,58px);z-index:35;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
+    margin:6px -22px 0;padding:10px 22px;background:var(--paper);border-bottom:1px solid var(--hair);transition:top .22s ease}
+  .secnav::-webkit-scrollbar{display:none}
+  .secnav button{flex:none;font-family:var(--body);font-weight:600;font-size:14px;color:var(--ink);background:var(--card);
+    border:1px solid var(--hair);border-radius:999px;padding:0 16px;min-height:44px;cursor:pointer;white-space:nowrap}
+  .secnav button[aria-current="true"]{background:var(--pilot-deep,#2f5a78);border-color:var(--pilot-deep,#2f5a78);color:#fff}
+  .secnav button:focus-visible,.qbtn:focus-visible,.totop:focus-visible{outline:3px solid var(--amber,#f0a43c);outline-offset:2px}
+  .view .seclabel,#faultSec,#codeSec{scroll-margin-top:calc(var(--hdr-h,58px) + 74px)}
+  .hdr-away .view .seclabel,.hdr-away #faultSec,.hdr-away #codeSec{scroll-margin-top:74px}
+  /* back to top (one-handed use) */
+  .totop{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:45;width:52px;height:52px;border-radius:50%;
+    background:var(--iron);color:#f3ece2;border:1px solid #3a322a;box-shadow:0 6px 18px rgba(20,14,8,.3);display:grid;place-items:center;
+    cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s}
+  .totop.show{opacity:1;pointer-events:auto;transform:none}
+
+  /* ---------- ignition gate ---------- */
+  .gate{min-height:calc(100vh - 56px);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(120% 80% at 50% 110%,#3a1f10 0%,#1a120c 45%,#100c09 100%);color:#f3ece2;padding:40px 22px;text-align:center}
+  .gate .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.32em;color:var(--amber);text-transform:uppercase;margin-bottom:18px}
+  .gate h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,58px);line-height:1.02;letter-spacing:-.01em;max-width:14ch}
+  .gate .sub{color:#c4b8a7;max-width:46ch;margin:18px auto 6px;font-size:clamp(15px,2vw,17px)}
+  .gate .model{font-family:var(--mono);color:#8c8174;font-size:12.5px;margin-bottom:42px;letter-spacing:.04em}
+  .cards{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;width:100%;max-width:760px}
+  .ignite{position:relative;flex:1 1 300px;min-width:270px;text-align:left;cursor:pointer;border:1px solid #4a3c2e;border-radius:18px;
+    padding:26px 24px 22px;background:linear-gradient(180deg,#211913,#171009);overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s}
+  .ignite:hover{transform:translateY(-4px);border-color:var(--ember)}
+  .ignite.cool:hover{border-color:var(--pilot)}
+  .ignite::after{content:"";position:absolute;inset:auto -40% -60% -40%;height:70%;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(232,104,44,.55),transparent);opacity:0;transition:opacity .3s}
+  .ignite.cool::after{background:radial-gradient(closest-side,rgba(95,147,184,.5),transparent)}
+  .ignite:hover::after{opacity:1}
+  .ignite .ic{width:40px;height:40px;margin-bottom:16px;color:var(--ember)}
+  .ignite.cool .ic{color:var(--pilot)}
+  .ignite h2{font-family:var(--display);font-weight:700;font-size:24px;color:#fff;letter-spacing:-.01em}
+  .ignite p{color:#b3a795;font-size:14px;margin-top:7px}
+  .ignite .go{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-weight:600;font-size:13px;color:var(--ember);position:relative;z-index:1}
+  .ignite.cool .go{color:var(--pilot)}
+  .gate .foot{margin-top:38px;color:#7d7468;font-size:12.5px}
+  .gate .foot a{color:#b6ab9b}
+  .fine{margin-top:40px;padding-top:14px;border-top:1px solid var(--line,rgba(0,0,0,.08));font-size:12px;line-height:1.55;color:var(--ink-soft);max-width:72ch;margin-bottom:64px}
+  .gate .fine{border-top-color:rgba(255,255,255,.08);color:#7d7468;margin-top:18px}
+
+  /* ---------- views ---------- */
+  .view{display:none;max-width:1080px;margin:0 auto;padding:34px 22px 90px}
+  .view.active{display:block;animation:rise .4s ease}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .vhead{margin-bottom:26px}
+  .vhead .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:9px}
+  .vhead .eyebrow .pip{width:9px;height:9px;border-radius:50%}
+  .home-pip{background:var(--ember)} .inst-pip{background:var(--pilot)}
+  .vhead h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,4.5vw,38px);letter-spacing:-.015em;margin-top:8px}
+  .vhead p{color:var(--ink-soft);max-width:60ch;margin-top:7px;font-size:15px}
+
+  .seclabel{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+  .seclabel::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+  /* action tiles (homeowner) */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .tile{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 18px 16px;cursor:pointer;
+    text-align:left;font:inherit;color:inherit;box-shadow:var(--shadow);transition:transform .16s,border-color .16s}
+  .tile:hover{transform:translateY(-3px);border-color:var(--ember)}
+  .tile .ic{width:26px;height:26px;color:var(--ember);margin-bottom:12px}
+  .tile h3{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.01em}
+  .tile p{color:var(--ink-soft);font-size:13px;margin-top:4px}
+
+  /* spec cards (installer) */
+  .specs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .spec{background:var(--card);border:1px solid var(--hair);border-left:3px solid var(--pilot);border-radius:12px;padding:16px 17px;box-shadow:var(--shadow)}
+  .spec .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .spec .rows{margin-top:10px;display:flex;flex-direction:column;gap:7px}
+  .spec .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px}
+  .spec .row b{font-weight:500;color:var(--ink-soft)}
+  .spec .row .v{font-family:var(--mono);font-weight:700;font-size:14px;color:var(--ink);text-align:right}
+
+  /* checklist */
+  .checklist{background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  .step{display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid var(--hair);cursor:pointer;align-items:flex-start;transition:background .12s}
+  .step:last-child{border-bottom:none}
+  .step:hover{background:#faf6ee}
+  .step .num{flex:none;width:26px;height:26px;border-radius:7px;background:var(--iron);color:#f3ece2;font-family:var(--mono);font-weight:700;
+    font-size:12.5px;display:grid;place-items:center;margin-top:1px}
+  .step.done .num{background:var(--ok)}
+  .step .body h4{font-family:var(--display);font-weight:600;font-size:15.5px}
+  .step .body p{color:var(--ink-soft);font-size:13px;margin-top:2px}
+  .step .check{margin-left:auto;flex:none;width:20px;height:20px;border:2px solid var(--hair);border-radius:6px;margin-top:3px;display:grid;place-items:center}
+  .step.done .check{background:var(--ok);border-color:var(--ok)}
+  .step.done .check svg{display:block}
+  .step .check svg{display:none}
+
+  /* two-column callouts */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .panel{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  .panel h3{font-family:var(--display);font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px}
+  .panel.warn h3{color:var(--warn)} .panel.warn{border-left:3px solid var(--warn)}
+  .panel ul{list-style:none;margin-top:11px;display:flex;flex-direction:column;gap:9px}
+  .panel li{font-size:13.5px;color:#473f36;padding-left:16px;position:relative}
+  .panel li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--pilot)}
+  .panel.warn li::before{background:var(--warn)}
+
+  /* led codes */
+  .codes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .code{background:var(--iron);color:#f3ece2;border-radius:11px;padding:14px}
+  .code .blinks{display:flex;gap:5px;margin-bottom:9px}
+  .code .b{width:9px;height:9px;border-radius:50%;background:#3a322a}
+  .code .b.on{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+  .code .t{font-family:var(--display);font-weight:600;font-size:14px}
+  .code .d{font-size:11.5px;color:#a89c8c;margin-top:2px}
+
+  /* ---------- detail drawer ---------- */
+  .scrim{position:fixed;inset:0;background:rgba(20,14,8,.5);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:.22s;z-index:60}
+  .scrim.open{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(480px,100%);background:var(--paper-2);z-index:70;
+    transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.1,1);overflow-y:auto;box-shadow:-20px 0 50px rgba(20,14,8,.25)}
+  .drawer.open{transform:none}
+  .drawer .dh{position:sticky;top:0;z-index:2;background:var(--iron);color:#f3ece2;padding:18px 20px;display:flex;align-items:flex-start;gap:12px}
+  .drawer .dh .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+  .drawer .dh h2{font-family:var(--display);font-weight:700;font-size:21px;margin-top:5px;letter-spacing:-.01em}
+  .drawer .dh .x{margin-left:auto;background:#0e0b09;border:1px solid #3a322a;color:#d9cfc0;width:44px;height:44px;border-radius:10px;cursor:pointer;flex:none;font-size:22px;line-height:1}
+  .dcontent{padding:22px 24px 60px}
+  .dcontent h4{font-family:var(--display);font-weight:700;font-size:15px;margin:20px 0 8px;color:var(--ink)}
+  .dcontent h4:first-child{margin-top:0}
+  .dcontent p{font-size:14px;color:#473f36;margin-bottom:11px}
+  .dcontent ol,.dcontent ul{margin:0 0 13px 2px;display:flex;flex-direction:column;gap:9px}
+  .dcontent ol{counter-reset:s;list-style:none}
+  .dcontent ol li{position:relative;padding-left:32px;font-size:14px;color:#473f36}
+  .dcontent ol li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-1px;width:22px;height:22px;border-radius:6px;
+    background:var(--ember);color:#fff;font-family:var(--mono);font-weight:700;font-size:11.5px;display:grid;place-items:center}
+  .dcontent.cool ol li::before{background:var(--pilot)}
+  .dcontent ul{list-style:none}
+  .dcontent ul li{position:relative;padding-left:18px;font-size:14px;color:#473f36}
+  .dcontent ul li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--ember)}
+  .dcontent.cool ul li::before{background:var(--pilot)}
+  .note{background:#fcf3e3;border:1px solid #f0dcb4;border-radius:10px;padding:13px 15px;font-size:13.5px;color:#6b5320;margin:14px 0}
+  .note.danger{background:#fbe9e3;border-color:#f0c4b4;color:#8a3a1d}
+  .note b{font-weight:600}
+  .note.small{background:transparent;border:0;border-left:3px solid #e2cfa9;border-radius:0;padding:3px 0 3px 11px;font-size:12.5px;color:#6f6250;margin:8px 0 12px}
+  .note.small b{color:#4f4436}
+  .kv{font-family:var(--mono);font-size:13.5px;background:#efe9dd;border-radius:8px;padding:11px 13px;display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+  .kv .r{display:flex;justify-content:space-between;gap:12px}
+  .kv .r span:last-child{font-weight:700}
+
+  /* search results */
+  .results{position:fixed;top:56px;left:0;right:0;z-index:50;background:var(--paper-2);border-bottom:1px solid var(--hair);
+    box-shadow:0 18px 40px rgba(20,14,8,.18);max-height:70vh;overflow-y:auto;display:none}
+  .results.open{display:block}
+  .results .inner{max-width:1080px;margin:0 auto;padding:18px 22px 24px}
+  .results .rl{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px}
+  .ritem{display:flex;gap:12px;align-items:flex-start;padding:12px 13px;border-radius:11px;cursor:pointer;border:1px solid transparent}
+  .ritem:hover{background:#fff;border-color:var(--hair)}
+  .ritem .badge{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;border-radius:5px;flex:none;margin-top:1px}
+  .badge.h{background:#fbe6da;color:var(--ember-2)} .badge.i{background:#e2edf4;color:var(--pilot-deep)}
+  .ritem h4{font-family:var(--display);font-weight:600;font-size:15px}
+  .ritem p{font-size:12.5px;color:var(--ink-soft);margin-top:1px}
+  .rempty{color:var(--ink-soft);font-size:14px;padding:6px 2px}
+  .rgroup{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);
+    margin:16px 0 8px;display:flex;align-items:center;gap:9px}
+  .rgroup:first-child{margin-top:0}
+  .rgroup .ct{background:var(--hair);color:var(--ink-soft);border-radius:999px;padding:1px 8px;letter-spacing:.04em}
+  .ritem .pg{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink-soft);
+    border:1px solid var(--hair);border-radius:6px;padding:3px 7px;flex:none;margin-top:1px;white-space:nowrap}
+  .ritem .snip{font-size:12.5px;color:#5d544a;margin-top:3px;line-height:1.45}
+  .ritem .snip mark{background:#ffe7b3;color:#5a4310;border-radius:3px;padding:0 2px}
+  .ritem .jump{margin-left:auto;flex:none;align-self:center;color:var(--ink-soft);opacity:.5}
+
+
+  /* tablets: two tidy rows (brand + PDF, then the switch + search); the bar tucks away while scrolling down */
+  @media(max-width:1024px){
+    header{flex-wrap:wrap;row-gap:10px;column-gap:12px;padding:10px 16px}
+    .spacer{display:none}
+    .brand{order:1;flex:1;min-width:0}
+    .brand-wrap{min-width:0} .brand small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .pdf{order:2}
+    .toggle{order:3}
+    .toggle button{min-height:40px;font-size:14px;padding:6px 18px}
+    .search{order:4;flex:1;min-height:44px}
+    .search input{font-size:16px}
+    .hdr-away header{transform:translateY(-100%)}
+    .hdr-away .secnav{top:0}
+  }
+  /* phones: one slim row (home flame, own/install switch, search icon, PDF icon) */
+  @media(max-width:720px){
+    header{flex-wrap:wrap;gap:8px;padding:7px 10px;row-gap:8px}
+    .brand{order:1;flex:0 1 auto;min-height:44px}
+    .brand small{display:none}
+    .has-role .brand-wrap{display:none}
+    .has-role .brand{min-width:44px;justify-content:center}
+    .spacer{display:block;flex:1;order:2}
+    .has-role .spacer{display:none}
+    .toggle{order:2;flex:1;min-width:0}
+    .toggle button{flex:1;justify-content:center;min-height:40px;padding:6px 8px;font-size:13.5px}
+    .qbtn{display:grid;order:3}
+    .pdf{order:4;width:44px;height:44px;padding:0;justify-content:center;min-height:0}
+    .pdf .pdf-txt{display:none}
+    .search{display:none;order:5;flex:1 1 100%;min-width:0}
+    header.searching .search{display:flex}
+    .twocol{grid-template-columns:1fr}
+    .secnav{margin:4px -16px 0;padding:8px 16px}
+  }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} header,.secnav,.totop{transition:none} }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+  /* deep-link to the exact manual page (in the drawer) */
+  .manlink{display:flex;align-items:center;gap:13px;margin-top:24px;padding:14px 16px;border-radius:12px;text-decoration:none;
+    background:linear-gradient(180deg,#fdf1e9,#fce7da);border:1px solid #f0cdb6;color:var(--ember-2);transition:transform .18s,box-shadow .18s,border-color .18s}
+  .manlink:hover{border-color:var(--ember);box-shadow:0 7px 20px rgba(232,104,44,.18);transform:translateY(-1px)}
+  .manlink.cool{background:linear-gradient(180deg,#eef4f8,#e2edf4);border-color:#c2d6e3;color:var(--pilot-deep)}
+  .manlink.cool:hover{border-color:var(--pilot);box-shadow:0 7px 20px rgba(95,147,184,.2)}
+  .manlink .ic{flex:none;width:32px;height:32px;display:grid;place-items:center;border-radius:9px;background:#fff;color:var(--ember)}
+  .manlink.cool .ic{color:var(--pilot)}
+  .manlink .tx{display:flex;flex-direction:column;line-height:1.3}
+  .manlink b{font-family:var(--display);font-weight:700;font-size:14px}
+  .manlink small{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:2px;letter-spacing:.02em}
+  .manlink .arr{margin-left:auto;flex:none;opacity:.7}
+
+  /* installer-side full-manual search (inline, light surface) */
+  .ms-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--hair);
+    border-left:3px solid var(--pilot);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .ms-bar svg{flex:none;opacity:.5}
+  .ms-bar input{flex:1;background:none;border:none;font-family:var(--body);font-size:15px;color:var(--ink);outline:none}
+  .ms-bar input::placeholder{color:var(--ink-soft)}
+  .ms-results{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+  .ms-results .ritem{background:var(--card);border:1px solid var(--hair)}
+  .ms-results .ritem:hover{border-color:var(--pilot);background:#fbfdff}
+  .ms-hint{color:var(--ink-soft);font-size:13.5px;padding:8px 2px;line-height:1.5}
+  .ms-hint mark{background:none;color:var(--pilot-deep);font-weight:600}
+
+  /* owner-side inline search (ember surface) */
+  .os-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--hair);
+    border-left:3px solid var(--ember);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .os-bar svg{flex:none;opacity:.5}
+  .os-bar input{flex:1;background:none;border:none;font-family:var(--body);font-size:15px;color:var(--ink);outline:none}
+  .os-bar input::placeholder{color:var(--ink-soft)}
+  .os-results{display:flex;flex-direction:column;gap:8px}
+  .os-results:not(:empty){margin:14px 0 4px}
+  .os-results .ritem{background:var(--card);border:1px solid var(--hair)}
+  .os-results .ritem:hover{border-color:var(--ember);background:#fffaf6}
+  .os-hint{color:var(--ink-soft);font-size:13.5px;padding:8px 2px;line-height:1.5}
+  .os-hint mark{background:none;color:var(--ember-2);font-weight:600}
+  /* ---------- v3 additions ---------- */
+  /* manual picker, for guides built from more than one PDF */
+  .pdfmenu{position:absolute;top:calc(100% + 6px);right:14px;z-index:55;background:var(--paper-2);border:1px solid var(--hair);border-radius:12px;
+    box-shadow:0 18px 40px rgba(20,14,8,.22);padding:7px;min-width:260px;display:none}
+  .pdfmenu.open{display:block}
+  .pdfmenu .ml{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);padding:6px 11px 4px}
+  .pdfmenu a{display:flex;flex-direction:column;gap:1px;padding:10px 11px;border-radius:9px;text-decoration:none;color:var(--ink)}
+  .pdfmenu a:hover{background:#fff}
+  .pdfmenu b{font-family:var(--display);font-weight:700;font-size:14px}
+  .pdfmenu small{font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+  /* fault panels (any number) */
+  .faults{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  /* display-style codes (e.g. "E1") alongside blink codes */
+  .code .cd{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--amber);margin-bottom:7px;letter-spacing:.04em}
+  .gate .foot .docs a{white-space:nowrap}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand" id="brandHome" role="button" tabindex="0" title="Back to start" style="cursor:pointer">
+    <svg class="flame" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3-2 4-2 7 0 1 .6 2 1.5 2.4C12 10 13 8.5 13 7c2 2 4 4.5 4 8a5 5 0 0 1-10 0c0-2 1-3.5 2-5 .2 1.2 1 2 2 2-.4-3 1-6 3-10Z"/></svg>
+    <div class="brand-wrap"><span>MORSØ</span><small>2B Classic 2020 · Cast-iron wood stove</small></div>
+  </div>
+  <div class="spacer"></div>
+  <div class="search">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Search the whole guide…" autocomplete="off">
+  </div>
+  <button class="qbtn" id="qBtn" type="button" aria-label="Search the guide" aria-expanded="false">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+  </button>
+  <div class="toggle" id="toggle" style="display:none">
+    <button class="home" data-role="homeowner" aria-pressed="false"><span class="dot"></span>I own it</button>
+    <button class="inst" data-role="installer" aria-pressed="false"><span class="dot"></span>I install it</button>
+  </div>
+  <a class="pdf" href="#" id="pdfBtn" title="The full 28-page manual is the legal source of truth">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+    <span class="pdf-txt">Official PDF</span>
+  </a>
+  <div class="pdfmenu" id="pdfMenu"></div>
+</header>
+
+<!-- search results -->
+<div class="results" id="results"><div class="inner"><div class="rl">Results</div><div id="rlist"></div></div></div>
+
+<!-- ===== IGNITION GATE ===== -->
+<section class="gate" id="gate">
+  <div class="kicker">Wood stove</div>
+  <h1>Morsø 2B Classic 2020</h1>
+  <p class="sub">Tell us who you are and we'll bring the right half forward — the rest is one search away.</p>
+  <p class="model">Model 2B Classic 2020 · 6&quot; flue to masonry or listed HT chimney · Wood only, top-down lighting</p>
+  <div class="cards">
+    <button class="ignite" data-role="homeowner">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg>
+      <h2>I own this stove</h2>
+      <p>Light a fire, set the air, reload, pick dry wood, empty the ash, clean the glass, check the warranty.</p>
+      <span class="go">Light my path →</span>
+    </button>
+    <button class="ignite cool" data-role="installer">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3Z"/></svg>
+      <h2>I'm installing or servicing it</h2>
+      <p>EPA results, fuel, chimney and connector, clearances, floor protection, the install sequence and draft faults.</p>
+      <span class="go">Open field reference →</span>
+    </button>
+  </div>
+  <p class="foot">Both paths draw from the same certified manual (UL 1482-2022 · ULC-S627-2023). <a href="#" id="pdfBtn2" class="footdoc" data-doc="1">Skip straight to the full PDF →</a></p>
+  <p class="fine"><b>About these guides.</b> Manufacturers revise their manuals over the years, and a manual sometimes disagrees with itself or with the maker's website. We report what is printed and posted: where two figures differ, we show both right there, with links to the pages, and where the maker's website gives a different figure, we note it next to the manual's. Plain misprints, such as a metric conversion that doesn't match, are corrected with a small note saying what was printed. The official manual is the authority for installation; when two figures differ, ask us or your installer before relying on either.</p>
+</section>
+
+<!-- ===== HOMEOWNER ===== -->
+<section class="view" id="homeowner">
+  <div class="vhead">
+    <div class="eyebrow"><span class="pip home-pip"></span>For owners</div>
+    <h1>Your stove, in plain language</h1>
+    <p>The things people actually ask us about — pick one. Everything technical still lives under search and the official PDF up top.</p>
+  </div>
+  <div class="os-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="oq" type="search" placeholder="Search — lighting, air control, ash, creosote…" autocomplete="off">
+  </div>
+  <div class="os-results" id="oResults"></div>
+  <div class="seclabel">Start here</div>
+  <div class="tiles" id="homeTiles"></div>
+  <div id="homeSec2">
+    <div class="seclabel">Good to know</div>
+    <div class="tiles" id="homeTiles2"></div>
+  </div>
+  <p class="fine"><b>About these guides.</b> Manufacturers revise their manuals over the years, and a manual sometimes disagrees with itself or with the maker's website. We report what is printed and posted: where two figures differ, we show both right there, with links to the pages, and where the maker's website gives a different figure, we note it next to the manual's. Plain misprints, such as a metric conversion that doesn't match, are corrected with a small note saying what was printed. The official manual is the authority for installation; when two figures differ, ask us or your installer before relying on either.</p>
+</section>
+
+<!-- ===== INSTALLER ===== -->
+<section class="view" id="installer">
+  <div class="vhead">
+    <div class="eyebrow"><span class="pip inst-pip"></span>For installers &amp; service</div>
+    <h1>Field reference</h1>
+    <p>The numbers you look up on your knees, the sequence you follow, and the faults you diagnose — surfaced first. Tap any spec for the surrounding detail.</p>
+  </div>
+  <nav class="secnav" id="secNav" aria-label="Jump to a section"></nav>
+
+  <div class="seclabel" id="sec-specs">Critical specs</div>
+  <div class="specs" id="specCards"></div>
+
+  <div class="seclabel" id="sec-steps">Install sequence — tap to check off</div>
+  <div class="checklist" id="checklist"></div>
+
+  <div id="faultSec">
+    <div class="seclabel" id="faultLabel">Field faults</div>
+    <div class="faults" id="faults"></div>
+  </div>
+
+  <div id="codeSec">
+    <div class="seclabel">Control codes</div>
+    <div class="codes" id="codes"></div>
+  </div>
+
+  <div class="seclabel" id="sec-manual">Search the original manual</div>
+  <div class="ms-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="mq" type="search" placeholder="Search every page of the official manual — clearance, connector, floor protection…" autocomplete="off">
+  </div>
+  <div class="ms-results" id="mResults"></div>
+  <p class="fine"><b>About these guides.</b> Manufacturers revise their manuals over the years, and a manual sometimes disagrees with itself or with the maker's website. We report what is printed and posted: where two figures differ, we show both right there, with links to the pages, and where the maker's website gives a different figure, we note it next to the manual's. Plain misprints, such as a metric conversion that doesn't match, are corrected with a small note saying what was printed. The official manual is the authority for installation; when two figures differ, ask us or your installer before relying on either.</p>
+</section>
+
+<!-- detail drawer -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <div class="dh">
+    <div><div class="tag" id="dTag">Detail</div><h2 id="dTitle">Title</h2></div>
+    <button class="x" id="dClose" aria-label="Close">×</button>
+  </div>
+  <div class="dcontent" id="dBody"></div>
+</aside>
+
+<button class="totop" id="toTop" type="button" aria-label="Back to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></svg>
+</button>
+
+<script>
+/* ================= content: generated from guides/content/morso-2b-classic-2020.json ================= */
+const HOME_PRIMARY = [{"id":"light","icon":"M12 2c1 3-2 4-2 7 0 1 .6 2 1.5 2.4C12 10 13 8.5 13 7c2 2 4 4.5 4 8a5 5 0 0 1-10 0c0-2 1-3.5 2-5 .2 1.2 1 2 2 2-.4-3 1-6 3-10Z","title":"Light a fire","blurb":"The top-down method step by step, and what the first fire is like.","fill":true},{"id":"air","icon":"M4 7h16M4 12h16M4 17h16M8 5v4M15 10v4M11 15v4","title":"Air control & draft","blurb":"How far to turn the spinner, and what smoke or a roaring fire means."},{"id":"reload","icon":"M6 9a3 3 0 1 0 0 6 3 3 0 1 0 0-6Zm0 0h12a3 3 0 0 1 0 6H6M6 11.5v1","title":"Reload the stove","blurb":"When to add wood, how much, and how to open the door without smoke."},{"id":"wood","icon":"M12 2 6 10h3l-4 6h14l-4-6h3L12 2Zm0 14v6","title":"What wood to burn","blurb":"Dry, split, the right size, and what never goes in the stove."}];
+const HOME_SECONDARY = [{"id":"ash","icon":"M12 3v9M8 12h8l-1.5 8h-5L8 12Z","title":"Empty the ash pan","blurb":"How often, how to do it, and where hot ash should go."},{"id":"glass","icon":"M4 4h16v16H4Zm0 5h16M9 4v16","title":"Clean the glass","blurb":"Why it gets dirty, what to clean it with, and cracked glass."},{"id":"chimney","icon":"M7 21V8h10v13M5 8h14M9 8V5h6v3M7 13h10M7 17h10","title":"Chimney & creosote","blurb":"How often to check, sweeping, and what to do in a chimney fire."},{"id":"safety","icon":"M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z","title":"Safety & over-firing","blurb":"Hot surfaces, the door, smoke alarms, and signs it's running too hot."},{"id":"care","icon":"M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3Z","title":"Yearly care & summer","blurb":"Annual checks, the door gasket, hinges, paint and off-season storage."},{"id":"warranty","icon":"M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z","title":"Warranty","blurb":"10 years from purchase: what's covered, what isn't, and how to claim."}];
+const SPECS = [{"id":"epa","lab":"EPA test results","tap":"specEpa","rows":[["Heat output","11 811 to 22 017 Btu/hr"],["Efficiency (HHV)","75 %"],["Particulate","1.6 g/h"],["Carbon monoxide","0.94 g/min"]],"note":"crib wood, 2020 EPA standard"},{"id":"fuel","lab":"Fuel & load","tap":"specFuel","rows":[["Fuel","Wood only"],["Max log length","18 inches (45 cm)"],["Moisture","max. 20%"],["Max load","3.5 kg / 7 lbs"]]},{"id":"flue","lab":"Chimney & flue","tap":"specFlue","rows":[["Flue / connector","6 inches (150mm)"],["Chimney","Lined masonry or listed HT"],["Recommended height","16 feet"]]},{"id":"run","lab":"Connector runs","tap":"specRun","rows":[["Horizontal run","3 feet (1 metre) max."],["Total length","8 feet (2.5 metres) max."],["Upward slope","1/4 inch per foot"],["90 degree turns","no more than two"],["Below ceiling","18 inches"]]},{"id":"clear","lab":"Clearances · single-wall","tap":"specClear","rows":[["Sidewall to unit","26\""],["Backwall to unit","7\""],["Cornerwall to unit","22\""],["Sidewall to connector","29\""],["Backwall to connector","15\""],["Cornerwall to connector","29\""]],"note":"same for USA and Canada"},{"id":"floor","lab":"Floor protection","tap":"specFloor","rows":[["US · front","16\""],["US · sides","6\""],["Canada · front","450 mm"],["Canada · sides & back","200 mm"]],"note":"non-combustible ember protection"},{"id":"temp","lab":"Flue temperature","tap":"specTemp","rows":[["Normal (average)","approx. 300° C (550°F)"],["Maximum","450° C (750°F)"],["Measured","20 cm above the stove"]]},{"id":"roomair","lab":"Room air supply","tap":"specAir","rows":[["Fresh air inlet","2 square inches (1250 square mm)"],["Needed when","room air leakage is insufficient"]]}];
+const STEPS = [["Permits & site rules","Install to CAN/CSA-B365 and local code, with local building-official approval. Not in any fireplace or mobile home; never connect to an air distribution duct or system.","<p>Discuss the installation with the local building officials before you start; they have final authority to approve it. Confirm the stove and chimney connector can meet every clearance and that the floor protection is adequate.<\/p><p>The data plate on the back of the stove gives the safety testing information, the certified testing laboratory and the installation requirements.<\/p><div class=\"note danger\">Do not install in any fireplace. Do not connect to any air distribution duct or system. Do not install in a transportable building / mobile home (p. 12).<\/div>"],["Unpack & fit the legs","Flatten the carton as a work surface. Take the legs and bolts out of the stove, lay it on its back, unscrew it from the pallet and bolt the legs to the base; lift it upright, avoiding excess load on the back legs."],["Check loose parts","Confirm the fire bricks haven't shifted, the air control works freely, and the baffle (1), baffle insulation (2) and cover (3, identification number 2118) are placed correctly.","<p>Before the first fire, check:<\/p><ul><li>Fire bricks firmly in position, not shifted in transit.<\/li><li>Air control works freely.<\/li><li>Baffle (1) and the insulation (2) over it placed correctly.<\/li><li>Cover (3), identification number 2118, placed correctly.<\/li><\/ul><h4>Smoke cover (p. 6)<\/h4><p>Place it by the smoke vent at the front of the stove: lead it down through the flue collar before fitting the pipe, or fit it through the access door opening.<\/p><h4>Vertical baffle (p. 7)<\/h4><p>Lead it through the door, set it in position and place the baffle insulation on it.<\/p><div class=\"note\">A Morsø glove and the ceramic flue connection gasket are standard accessories, usually found in the ashpan or firebox area (p. 7).<\/div>"],["Confirm the chimney","Residential masonry with flue liner or listed HT factory-built (UL-103-1985, 2100º F; ULC S-629 in Canada), not less than 6\" inside, one flueway per appliance, independently supported; 16 feet above the stove recommended."],["Connect the flue","6 inches (150mm) connector: 24 MSG black or blue single-wall (24 gauge or heavier, never galvanized) or listed double-wall. Minimum three screws at the stove and every joint; seal it airtight to the chimney outlet.","<p>Single-wall connectors: 24 gauge or heavier steel. Double-wall connectors: tested and listed for solid-fuel burning appliances. Do not use galvanized connector. Secure with a minimum of three screws to the stove and to each adjoining section, and seal every joint so the system is airtight from the heater to the chimney outlet.<\/p><p>Horizontal run: 3 feet (1 metre) recommended max., total length no longer than 8 feet (2.5 metres), slope upward 1/4 inch per foot (20 mm per metre) toward the chimney, no more than two 90 degree turns, 18 inches from the ceiling. Don't pass the connector through an attic, closet or similar concealed space. Wear gloves and protective eyewear when drilling, cutting or joining sections.<\/p><div class=\"note\"><b>Note:<\/b> p. 8 says a chimney connector is included with the heater, but p. 7 lists only a glove and a ceramic flue connection gasket as standard accessories, the parts list on pp. 24-25 has no connector pipe, and p. 9 tells you which connector to use.<\/div>"],["Set clearances","Single-wall connector minimums (USA and Canada): sidewall 26\", backwall 7\", cornerwall 22\" to the unit; 29\", 15\" and 29\" to the connector. At least 4 inches recommended to non-combustible walls."],["Floor protection & room air","Non-combustible floor protection beneath the stove, 16\" to the front and 6\" to the sides (US); 450 mm and 200 mm in Canada. Add a 2 square inch (1250 square mm) fresh air inlet if room air leakage is insufficient."],["First fire","Keep the first fire small so the stove paint can cure and the main plates settle into position. The paint gives off some fumes; ventilate the room."]];
+const CODES = [];
+const FAULTS = {"label":"Draft & burn faults","panels":[{"title":"Poor draft · smoke or sluggish fire","items":["Smoke or fumes when lighting or reloading, or a fire that won't respond → poor draft (in a very few cases, too little fresh air into the room)","Smoke spills when the door opens → open it 1-2\" first and wait a few seconds for the flue pressure to equalise","Stove suddenly sluggish → soot fall around the flue collar or in the flue/chimney","Back-puffing and sluggishness → overly dry wood that is gray in color","Sluggish or unpredictable → flue section too large, flue gases cool excessively"]},{"title":"Excessive draft · over-firing","items":["Burns hotter and faster than intended even with the primary air set low → excessive chimney draft","Rapid fuel use, can't hold a low burn, roaring fire sounds → excessive draft","Stove or connector pipe glowing, flue over 450° C (750°F) → over-firing","Fix: reduce the air, burn smaller loads, check the chimney against the manual's dimensions, consult a chimney professional (a listed flue damper may be necessary)"]},{"title":"Dirty glass","items":["Fuel too wet","Logs too large or not split","Combustion temperatures too low, or the stove run too slowly","Glass persistently mists up and the wood spits or sizzles → wood not properly seasoned"]},{"title":"Fast internal wear","items":["Persistent heavy firing","Soot and ashes left to accumulate","Ash built up toward the underside of the grate → trapped heat, premature grate failure","Baffle distorted by an overfire → efficiency may be compromised; replace it","Door hard to close or air leaking around it → hardened door gasket; replace it"]}]};
+const DETAIL = {"light":{"tag":"Owner · operation","title":"Lighting a fire","cool":false,"html":"<p>Morsø recommends the <b>top-down<\/b> method. It's the most environmentally friendly way to light, and it minimizes soot on the glass.<\/p><ol><li>Use <b>two firelighters<\/b> and about <b>2-4 lbs of dry kindling sticks<\/b>. Put the firelighters directly under the top layer of kindling.<\/li><li>Open the air fully: turn the spinner on the door <b>2 1/2 turns counterclockwise<\/b> from closed.<\/li><li>Light the fire.<\/li><li>Close the door partway, leaving it <b>open an inch or two<\/b> so plenty of air gets in. Don't leave the stove while the door is open.<\/li><li>After about <b>5-10 minutes<\/b>, once the chimney is warm, close the door. Keep the spinner at least 1-1 1/2 turns open while the kindling burns.<\/li><\/ol><p>A good layer of embers forms after about 15-20 minutes. Then you can add logs (see Reload the stove).<\/p><div class=\"note\"><b>Your very first fire<\/b> should be small, so the paint can cure and the main plates can settle. The paint gives off some fumes, so ventilate the room.<\/div><div class=\"note danger\">Never use gasoline, lantern fuel, kerosene, charcoal lighter fluid or similar liquids to start or freshen a fire. Build the fire directly on the firebox floor; the manual says not to raise it with a grate, andirons or anything similar.<\/div>"},"air":{"tag":"Owner · operation","title":"Air control & draft","cool":false,"html":"<p>The <b>spinner on the door<\/b> controls the primary air. Opening it lets preheated air into the firebox through the airwash above the glass. The secondary air, injected into the gases above the fire for cleaner burning, is fixed open and can't be adjusted.<\/p><div class=\"kv\"><div class=\"r\"><span>Fully open<\/span><span>2 1/2 turns counterclockwise from closed<\/span><\/div><div class=\"r\"><span>Medium burn<\/span><span>1-1 1/2 turns counterclockwise<\/span><\/div><div class=\"r\"><span>Closed<\/span><span>minimum low burn rate<\/span><\/div><\/div><p>Even closed, a small factory-set gap (1.8 mm) stays open for the minimum burn rate. Don't alter it; that's against federal regulations. Before burning on minimum, let the fire burn at medium for about 15 minutes.<\/p><p><b>Rule of thumb:<\/b> less heat, less wood, less air. More heat, more wood, more air. Keep a good layer of embers either way.<\/p><h4>Smoke or a roaring fire?<\/h4><p>Smoke coming out when you light or reload, or a fire that won't respond, almost certainly means poor draft. Ask your stove supplier about improving the flue. A fire that burns hot and fast even on low air, roars, or makes the stove or pipe glow means too much draft: turn the air down as far as it goes, burn smaller loads and call a qualified chimney professional.<\/p>"},"reload":{"tag":"Owner · operation","title":"Reloading the stove","cool":false,"html":"<p>Add wood while there are still glowing embers in the bed. The new logs should catch within a minute or two.<\/p><ol><li>Use a poker to spread the embers across the firebox floor, with most of them toward the front.<\/li><li>Open the door gently, just 1-2\" at first. Wait a few seconds for the pressure in the flue to equalise, then open it all the way. This stops smoke spilling out, especially when the draft is poor.<\/li><li>Load <b>4 lbs (2 pieces) up to 7 lbs (5 pieces)<\/b>. Keep the wood below the lowest secondary air nozzles and no higher than the top edge of the back stone lining.<\/li><li>Close the door and open the spinner fully, 2 1/2 turns counterclockwise.<\/li><li>After a few minutes, adjust the air to suit the heat you want.<\/li><\/ol><div class=\"note\">Don't open the door while the fire is burning vigorously. If the new logs don't ignite, in an extreme case the flue gases can ignite, so always reload onto a good layer of embers.<\/div><div class=\"note\"><b>Note:<\/b> p. 16 recommends a load of 4 lbs (2 pieces) up to 7 lbs (5 pieces) and p. 17 gives a maximum of 3.5 kg/7 lbs per load, but the safety summary on p. 28 says to use 2 - 3 pieces, no more than 2 - 2.5 kg, when refuelling.<\/div>"},"wood":{"tag":"Owner · operation","title":"What wood to burn","cool":false,"html":"<p>Burn natural wood only, and only when it's <b>well seasoned and dry, with no more than 20% moisture<\/b>. The Morsø Moisture Meter (part # 62929900) makes that easy to check.<\/p><div class=\"kv\"><div class=\"r\"><span>Length<\/span><span>max 18 inches (45 cm)<\/span><\/div><div class=\"r\"><span>Thickness<\/span><span>approx. 3 to 3.5 inches (7-8 cm)<\/span><\/div><div class=\"r\"><span>Weight per piece<\/span><span>around 2-4 lbs<\/span><\/div><\/div><p>Split logs down the middle so moisture can escape, and stack them under cover where air moves through each piece. Some softwoods are ready after one good summer; oak, maple and elm can take up to 18 months.<\/p><p><b>Dry enough?<\/b> Seasoned wood feels light and shows cracks running out from the center at the ends. If the wood spits or sizzles and the door glass keeps misting up, it isn't properly seasoned. Overly dry gray wood can cause back-puffing and a sluggish fire.<\/p><h4>Never burn<\/h4><p>Garbage, lawn clippings or yard waste, materials containing rubber (including tires), materials containing plastic, waste petroleum products, paints or paint thinners, asphalt products, materials containing asbestos, construction or demolition debris, railroad ties or pressure-treated wood, manure or animal remains, salt-water driftwood or other previously salt-water-saturated materials, unseasoned wood, or paper products, cardboard, plywood and particleboard. Fire starters made from paper, cardboard, sawdust or wax are fine for lighting.<\/p><p>Burning these materials may release toxic fumes, or make the heater ineffective and cause smoke.<\/p><div class=\"note\"><b>Note:<\/b> p. 13 gives a log thickness of approx. 3 to 3.5 inches (7-8 cm) in section; the safety summary on p. 28 says the fuel must be split and 8 - 12 cm thick.<\/div>"},"ash":{"tag":"Owner · maintenance","title":"Emptying the ash pan","cool":false,"html":"<p>Empty the ash pan <b>daily, or as needed<\/b>. Ash that builds up toward the underside of the grate traps heat and can make the grate fail early.<\/p><ol><li>Open the front door. Use a shovel or poker to stir the excess ash through the slots in the grate into the ash pan.<\/li><li>Take out the ash pan, keeping it level so ash doesn't spill.<\/li><li>Empty the ash into a <b>metal container with a tight-fitting lid<\/b>.<\/li><li>Put the ash pan back in place and close the door.<\/li><\/ol><p>Set the closed container on a noncombustible floor or on the ground, well away from anything that can burn, until final disposal. If you bury or scatter the ashes, keep them in the closed container until all cinders have thoroughly cooled.<\/p><div class=\"note\">If you can, keep a 1-1.5 inch (2-3 cm) layer of ash on the floor of the firebox. It adds insulation.<\/div><div class=\"note danger\">Never empty the stove while it's in operation. Never use a household or shop vacuum cleaner to remove ash.<\/div>"},"glass":{"tag":"Owner · maintenance","title":"Cleaning the glass","cool":false,"html":"<p>When the stove runs at the right temperature there should be little or no dirt on the glass. Dirt that settles while you light it mostly burns off as the fire gets hotter.<\/p><p>For heavier deposits that won't burn off, use <b>Morsø glass cleaner on cold glass<\/b>, following its instructions. Never use abrasive cleaners.<\/p><h4>Why the glass gets dirty<\/h4><ul><li>Wood that is too wet or not well seasoned<\/li><li>Logs too large or not split<\/li><li>A fire burning too cool, or the stove run too slowly<\/li><\/ul><p>Lighting top-down and building a layer of hot embers keeps soot to a minimum.<\/p><div class=\"note danger\"><b>Cracked or broken glass:<\/b> don't use the stove until it's replaced, and use only the high temperature ceramic glass supplied by Morsø (ask your Morsø dealer). To avoid breaking it, don't strike the glass or slam the door.<\/div><div class=\"note\">Old ceramic glass can't go in ordinary glass recycling. Hand it in at a recycling station as ceramic glass.<\/div>"},"chimney":{"tag":"Owner · maintenance","title":"Chimney & creosote","cool":false,"html":"<p>A slow fire gives off tar and vapors that condense in a cool chimney as <b>creosote<\/b>. If creosote ignites it makes an extremely hot fire, so it has to be removed.<\/p><ul><li><b>At least once every two months<\/b> in the heating season, inspect the chimney and chimney connector for creosote buildup.<\/li><li><b>Every month or so<\/b> at first, check for soot above the baffle plate and around the flue outlet.<\/li><li>If the stove suddenly turns sluggish, check for a soot fall around the flue collar or in the chimney.<\/li><li><b>After each heating season<\/b>, clean the flue all the way to the top. Before the next season, check that no bird's nests or other blockages have formed.<\/li><\/ul><p>To look up the chimney, let the stove cool completely and sight up through the flue collar with a mirror. If you can't inspect or clean it yourself, contact your Morsø dealer or a professional chimney sweep.<\/p><div class=\"note danger\"><b>If you have a chimney fire,<\/b> act promptly:<br>1. Close the air control.<br>2. Get everyone out of the house.<br>3. Call the Fire Department.<\/div>"},"safety":{"tag":"Owner · safety","title":"Safety & over-firing","cool":false,"html":"<ul><li>The stove is <b>hot while in operation<\/b>. Keep children, clothing and furniture away; touching it can burn skin.<\/li><li>Keep furniture at least <b>30 inches<\/b> away, and the same for drying clothes, newspapers and firewood.<\/li><li>Run it with the <b>door fully closed<\/b>, except when lighting and refuelling. Never leave it unattended with the door open: gas and flame can be drawn out of the stove.<\/li><li>Fit a smoke detector in the room with the stove, and at least one on each floor, away from the stove and close to sleeping areas. Some areas also require carbon monoxide detectors.<\/li><\/ul><h4>Don't over-fire it<\/h4><p>If any part of the stove or chimney connector <b>glows<\/b>, you are over-firing. That can cause a house fire or permanently damage the stove, and persistent over-firing may void the warranty. In the stove pipe, normal firing runs about 300° C (550°F); above 450° C (750°F) is over-firing. A Morsø Flue Gas Thermometer (part no. 62901200) helps you check.<\/p><div class=\"note\">The safety summary at the back of the manual also says: never burn overnight.<\/div><div class=\"note danger\">Don't use chemicals or fluids to start the fire, and don't burn garbage or flammable fluids.<\/div>"},"care":{"tag":"Owner · maintenance","title":"Yearly care & summer storage","cool":false,"html":"<h4>Before each heating season<\/h4><ul><li>Thoroughly clean the chimney and chimney connector. Replace damaged connector sections and weak prefabricated chimney sections; have a mason repair a masonry chimney.<\/li><li>Check the gaskets for wear or compression, the glass for cracks, and the door and handle for tightness.<\/li><\/ul><p><b>Hinges:<\/b> lubricate the hinges and closing mechanisms once a year, or as needed, with copper grease or another heat-resistant grease.<\/p><p><b>Door gasket:<\/b> it hardens over time. Replace it if the door gets hard to close or air leaks in around it and the fire is harder to control. Your stove supplier has a Morsø rope gasket kit.<\/p><p><b>Paint:<\/b> clean it with a vacuum's soft brush attachment or a lint-free cloth. If it turns slightly grey, Morsø touch-up spray paint is available; ventilate well the first time you fire it afterwards.<\/p><h4>Over the summer<\/h4><p>Clean the stove out thoroughly, because leftover ash soaks up moisture and causes rust. Leave the air control slightly open, and fit a chimney cap to keep rain out without blocking the flue. A desiccant such as kitty litter in the ash pan helps absorb moisture; remove it before the heating season.<\/p>"},"warranty":{"tag":"Owner · warranty","title":"Warranty at a glance","cool":false,"html":"<p>If your stove was supplied by an authorised Morsø dealer, Morsø gives a <b>10-year<\/b> manufacturer's warranty against manufacturing defects in the main exterior body parts. The limited warranty runs 10 years from the date of purchase and covers repair or replacement of parts that are defective in material or workmanship.<\/p><h4>Not covered<\/h4><ul><li>Improper installation, or use that doesn't follow the manual and Morsø's firing instructions<\/li><li>Damage from overheating or burning the wrong fuel<\/li><li>Normal wear and tear such as discolored surfaces, and wear parts: smoke deflector plates, grates, refractory stones/plates, glass and sealing materials<\/li><li>The flame-path parts (ashpan, grate, firebricks, fire plates, glass, baffle, flue collar), ceramic rope and paint finish (p. 20)<\/li><li>Repairs or modifications Morsø didn't authorize<\/li><li>Corrosion from lack of maintenance<\/li><li>Problems caused by local conditions, draft, or chimney faults<\/li><\/ul><p>The warranty is void if the stove isn't installed, operated and maintained as the manual says, if it burns materials it isn't EPA-certified for, or if it's modified without authorization.<\/p><h4>To make a claim<\/h4><p>Contact Morsø Customer Service (info@morsoe.com or +45 96691900) with proof of purchase, the model and serial number, and a description of the problem, with photos if possible.<\/p>"},"specEpa":{"tag":"Installer · spec","title":"EPA test results & listing","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Heat output (test range)<\/span><span>11 811 to 22 017 Btu/hr<\/span><\/div><\/div><div class=\"note small\"><b>Maker's website:<\/b> Maximum Heat 31,988 BTU/hr.<\/div><div class=\"kv\"><div class=\"r\"><span>Efficiency (HHV, B415.1)<\/span><span>75 %<\/span><\/div><div class=\"r\"><span>Particulate (EPA Method 28R)<\/span><span>1.6 g/h<\/span><\/div><div class=\"r\"><span>Carbon monoxide (average)<\/span><span>0.94 g/min<\/span><\/div><\/div><p>Certified to the 2020 U.S. EPA particulate emission standards using crib wood. Certified and listed by PFS TECO (Clackamas, Oregon; Report Number F21-679) to UL 1482-2022 (US) and ULC-S627-2023 (Canada). Listed for burning wood only.<\/p><p>Manufacturer-set minimum low burn rate: with the spinner closed, a 1.8 mm gap remains (p. 16). Altering it is against federal regulations.<\/p>"},"specFuel":{"tag":"Installer · spec","title":"Fuel & load","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Fuel<\/span><span>Wood only, well-seasoned<\/span><\/div><div class=\"r\"><span>Max log length<\/span><span>18 inches (45 cm)<\/span><\/div><div class=\"r\"><span>Section<\/span><span>approx. 3 to 3.5 inches (7-8 cm)<\/span><\/div><div class=\"r\"><span>Moisture<\/span><span>no more than 20%<\/span><\/div><div class=\"r\"><span>Load<\/span><span>4 lbs (2 pieces) up to 7 lbs (5 pieces)<\/span><\/div><div class=\"r\"><span>Max per load<\/span><span>3.5 kg/7 lbs (approx 5 split logs)<\/span><\/div><div class=\"r\"><span>Kindling, first lighting<\/span><span>2-4 lbs<\/span><\/div><\/div><p>Keep the load below the lowest secondary air nozzles and below the top edge of the backwall stone lining. Morsø Moisture Meter: part # 62929900.<\/p><div class=\"note\"><b>Note:<\/b> p. 16 recommends a refuel load of 4 lbs (2 pieces) up to 7 lbs (5 pieces) and p. 17 gives max 3.5 kg/7 lbs, but the safety summary on p. 28 says 2 - 3 pieces, no more than 2 - 2.5 kg. For log size, p. 13 gives approx. 3 to 3.5 inches (7-8 cm) in section and p. 28 says 8 - 12 cm thick.<\/div>"},"specFlue":{"tag":"Installer · spec","title":"Chimney & flue","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Connector & chimney ID<\/span><span>not less than 6 inches (or equivalent cross section)<\/span><\/div><div class=\"r\"><span>Connector<\/span><span>6 inches (150mm)<\/span><\/div><div class=\"r\"><span>Chimney, USA<\/span><span>UL-103-1985 HT (2100º F) or code-approved masonry with flue liner<\/span><\/div><div class=\"r\"><span>Chimney, Canada<\/span><span>ULC S-629 HT (650ºC)<\/span><\/div><div class=\"r\"><span>Height, recommended<\/span><span>at least 16 feet above the stove (not required)<\/span><\/div><\/div><p>One flueway per appliance; never connect to a flue serving another appliance. The flue system must be independently secured, not supported by the stove, and the chimney must not be installed directly at the outlet: a chimney connector is required. Don't go significantly larger than 6\": an oversized section cools the flue gases and makes the stove sluggish or unpredictable.<\/p><p>Height is measured from the flue collar to the top of the chimney. Roof construction, large trees nearby and high altitude can affect draft and height; consult a local chimney sweep or Morsø dealer.<\/p>"},"specRun":{"tag":"Installer · spec","title":"Connector runs","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Horizontal run<\/span><span>3 feet (1 metre) recommended max.<\/span><\/div><div class=\"r\"><span>Total connector length<\/span><span>8 feet (2.5 metres) max.<\/span><\/div><div class=\"r\"><span>Upward slope toward chimney<\/span><span>1/4 inch per foot (20 mm per metre)<\/span><\/div><div class=\"r\"><span>90 degree turns<\/span><span>no more than two<\/span><\/div><div class=\"r\"><span>Horizontal run to ceiling<\/span><span>18 inches<\/span><\/div><\/div><p>24 MSG black or blue single-wall (24 gauge or heavier steel) or a listed double-wall connector tested for solid fuel. Never galvanized. Secure with a minimum of three screws to the stove and to each adjoining section, and seal the joints airtight.<\/p><p>Use mild bends (45º vs. 90º), form one continuous section rather than venting into a large void, and keep every part accessible for cleaning. Avoid combustible walls and ceilings; where a pass-through is unavoidable, follow CAN/CSA-B365, local codes and the chimney manufacturer's instructions. Never through an attic, closet or similar concealed space.<\/p>"},"specClear":{"tag":"Installer · spec","title":"Clearances to combustibles","cool":true,"html":"<p>Standard residential installation with a single-wall connector. These are the minimum tested distances; increase them for heat-sensitive materials.<\/p><div class=\"kv\"><div class=\"r\"><span>A · Sidewall to unit<\/span><span>26\" (660 mm)<\/span><\/div><div class=\"r\"><span>B · Backwall to unit<\/span><span>7\" (178 mm)<\/span><\/div><div class=\"r\"><span>C · Cornerwall to unit<\/span><span>22\" (559 mm)<\/span><\/div><div class=\"r\"><span>D · Sidewall to connector<\/span><span>29\" (737 mm)<\/span><\/div><div class=\"r\"><span>E · Backwall to connector<\/span><span>15\" (381 mm)<\/span><\/div><div class=\"r\"><span>F · Cornerwall to connector<\/span><span>29\" (737 mm)<\/span><\/div><\/div><p>The same values apply in the USA and Canada (mm given for Canada). Unit to ceiling and floor to ceiling are shown as \"-\". The manual lists no double-wall connector clearances.<\/p><p>Non-combustible walls: at least 4 inches (100 mm) recommended for cleaning access and air circulation. Furniture: 30 inches recommended minimum.<\/p>"},"specFloor":{"tag":"Installer · spec","title":"Floor protection","cool":true,"html":"<p>Meets CAN/ULC-S627 for a combustible floor without radiant floor protection (p. 11); ember protection is still required.<\/p><div class=\"kv\"><div class=\"r\"><span>US · front<\/span><span>16\"<\/span><\/div><div class=\"r\"><span>US · right / left side<\/span><span>6\"<\/span><\/div><div class=\"r\"><span>US · back<\/span><span>-<\/span><\/div><div class=\"r\"><span>Canada · front<\/span><span>450 mm (18 in)<\/span><\/div><div class=\"r\"><span>Canada · sides / back<\/span><span>200 mm (8 in)<\/span><\/div><\/div><p><b>US:<\/b> non-combustible material beneath the heater, extending 16\" to the front and 6\" to the sides of the fuel loading door and ash removal openings.<\/p><p><b>Canada (CSA B365):<\/b> a continuous, durable, non-combustible ember pad. The 450 mm on a door side runs the full width of the appliance plus 200 mm each side. Installed less than 200 mm from a wall, the pad need only reach the base of the wall. Not on carpet unless structurally supported against displacement and distortion.<\/p>"},"specTemp":{"tag":"Installer · spec","title":"Flue temperature","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Normal firing, average<\/span><span>approx. 300° C (550°F)<\/span><\/div><div class=\"r\"><span>Maximum<\/span><span>450° C (750°F)<\/span><\/div><div class=\"r\"><span>Measured<\/span><span>in the stove pipe, 20 cm above the stove<\/span><\/div><\/div><p>Above 450°C (750°F) counts as over-firing and may cause premature wear. The Morsø Flue Gas Thermometer (part no. 62901200) attaches magnetically to the stove pipe approx 20 cm (8\") above the top plate and reads the pipe's surface temperature.<\/p>"},"specAir":{"tag":"Installer · spec","title":"Room air supply","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Fresh air inlet<\/span><span>2 square inches (1250 square mm) of free air space<\/span><\/div><\/div><div class=\"note small\"><b>Maker's website:<\/b> Outside Air Supply Not available. Install to the manual.<\/div><p>Needed unless ambient leakage through doorways, windows and the like is sufficient; particularly important in a well-sealed room or where an extractor hood or ventilation system disturbs the natural air pressure.<\/p><p>Don't place the inlet on a wall usually under negative pressure from the normal wind pattern, or directly across the room from the stove (cold draft).<\/p>"}};
+const PAGEREF = {"light":15,"air":16,"reload":16,"wood":13,"ash":21,"glass":19,"chimney":21,"safety":13,"care":22,"warranty":26,"specEpa":3,"specFuel":13,"specFlue":8,"specRun":9,"specClear":11,"specFloor":12,"specTemp":17,"specAir":12,"step0":4,"step1":5,"step2":5,"step3":8,"step4":9,"step5":11,"step6":12,"step7":14};
+const INDEX_EXTRA = [{"k":"h","id":"chimney","t":"chimney fire","p":"Close the air control, get everyone out, call the Fire Department"},{"k":"h","id":"wood","t":"moisture meter","p":"No more than 20% moisture"},{"k":"h","id":"safety","t":"overfiring","p":"If any part glows, you are over-firing"},{"k":"h","id":"air","t":"smoke in room","p":"Poor draft is almost certainly to blame"},{"k":"h","id":"care","t":"door gasket","p":"Replace it if the door is hard to close or leaks air"},{"k":"h","id":"light","t":"kindling","p":"Two firelighters and about 2-4 lbs of dry kindling"},{"k":"i","id":"specTemp","t":"flue thermometer","p":"Morsø Flue Gas Thermometer, part no. 62901200"},{"k":"i","id":"specFloor","t":"hearth pad","p":"Ember protection 16\" front, 6\" sides (US)"}];
+const MANUAL_BASE = "../../var/brain-assets/";
+const MANUALS = [{"n":1,"label":"Installation & Operation Manual","short":"Manual","url":"documents/morso/72207100_-_2B_Classic_NA__PFS_-1.pdf","pages":28,"role":"installation_and_operation","kit":false,"revision":""}];
+
+/* step detail (generated; a step may carry its own drawer html as a third element) */
+STEPS.forEach((s,i)=>{ DETAIL['step'+i]={tag:'Installer · step '+(i+1), title:s[0], cool:true, html:s[2]||`<p>${s[1]}</p>`}; });
+
+/* ================= template logic (identical in every guide) ================= */
+const $=(s,r=document)=>r.querySelector(s); const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const MULTI = MANUALS.length>1;
+/* where each manual lives: a relative storage key under MANUAL_BASE, or a full URL */
+function manualHref(n){const m=MANUALS[n-1];return /^(https?:)?\/\//.test(m.url)?m.url:MANUAL_BASE+m.url;}
+function pdfHref(page,n){return manualHref(n||1)+(page?('#page='+page):'');}
+/* deep-link into a PDF at a specific page (#page=N is honored by the Chrome, Edge and Firefox viewers) */
+function openPDF(page,n){window.open(pdfHref(page,n),'_blank','noopener');}
+const MANUAL_URL = manualHref(1);
+
+function tile(d){const b=document.createElement('button');b.className='tile';b.innerHTML=
+  `<svg class="ic" viewBox="0 0 24 24" ${d.fill?'fill="currentColor"':'fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"'}><path d="${d.icon}"/></svg>
+   <h3>${d.title}</h3><p>${d.blurb}</p>`;
+  b.onclick=()=>openDrawer(d.id);return b;}
+HOME_PRIMARY.forEach(d=>$('#homeTiles').appendChild(tile(d)));
+HOME_SECONDARY.forEach(d=>$('#homeTiles2').appendChild(tile(d)));
+if(!HOME_SECONDARY.length) $('#homeSec2').style.display='none';
+
+SPECS.forEach(s=>{const el=document.createElement('div');el.className='spec';
+  el.innerHTML=`<div class="lab">${s.lab}</div><div class="rows">${s.rows.map(r=>`<div class="row"><b>${r[0]}</b><span class="v">${r[1]}</span></div>`).join('')}${s.note?`<div class="row"><b style="font-size:11px">${s.note}</b></div>`:''}</div>`;
+  el.style.cursor='pointer';el.onclick=()=>openDrawer(s.tap);$('#specCards').appendChild(el);});
+
+STEPS.forEach((s,i)=>{const el=document.createElement('div');el.className='step';
+  el.innerHTML=`<div class="num">${i+1}</div><div class="body"><h4>${s[0]}</h4><p>${s[1]}</p></div>
+   <div class="check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m5 12 4 4 10-10"/></svg></div>`;
+  el.querySelector('.body').onclick=(e)=>{e.stopPropagation();openDrawer('step'+i);};
+  el.onclick=()=>el.classList.toggle('done');
+  $('#checklist').appendChild(el);});
+
+if(FAULTS && FAULTS.panels && FAULTS.panels.length){
+  $('#faultLabel').textContent=FAULTS.label||'Field faults';
+  FAULTS.panels.forEach(p=>{const el=document.createElement('div');el.className='panel warn';
+    el.innerHTML=`<h3>⚠ ${p.title}</h3><ul>${p.items.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+    $('#faults').appendChild(el);});
+} else $('#faultSec').style.display='none';
+
+if(CODES.length){
+  const dots=Math.max(4,...CODES.filter(c=>typeof c[0]==='number').map(c=>c[0]));
+  CODES.forEach(c=>{const el=document.createElement('div');el.className='code';
+    let head='';
+    if(typeof c[0]==='number'){for(let i=0;i<dots;i++)head+=`<span class="b ${i<c[0]?'on':''}"></span>`;head=`<div class="blinks">${head}</div>`;}
+    else head=`<div class="cd">${c[0]}</div>`;
+    el.innerHTML=`${head}<div class="t">${c[1]}</div><div class="d">${c[2]}</div>`;
+    $('#codes').appendChild(el);});
+} else $('#codeSec').style.display='none';
+
+/* ---------------- role switching ---------------- */
+function setRole(role){
+  $('#gate').style.display='none';
+  $('#toggle').style.display='flex';
+  document.body.classList.add('has-role');
+  $$('.view').forEach(v=>v.classList.toggle('active',v.id===role));
+  $$('#toggle button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.role===role));
+  window.scrollTo({top:0});
+  document.body.classList.remove('hdr-away');
+  setHdrH(); requestAnimationFrame(onScroll);
+}
+$$('[data-role]').forEach(b=>b.onclick=()=>setRole(b.dataset.role));
+function currentRole(){const v=$('.view.active');return v?v.id:null;}
+
+/* return to the ignition gate (home) */
+function goHome(){
+  $('#gate').style.display='';
+  $('#toggle').style.display='none';
+  $$('.view').forEach(v=>v.classList.remove('active'));
+  $$('#toggle button').forEach(b=>b.setAttribute('aria-pressed','false'));
+  $('#results').classList.remove('open'); $('#q').value='';
+  document.body.classList.remove('has-role','hdr-away');
+  closeHeaderSearch();
+  window.scrollTo({top:0});
+  setHdrH();
+}
+$('#brandHome').onclick=goHome;
+$('#brandHome').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goHome();}});
+
+/* ---------------- drawer ---------------- */
+/* PAGEREF: the manual page where each topic is actually discussed, verified against PAGES.
+   A number is a page of the first manual; [n, page] is a page of manual n. */
+function refOf(id){const r=PAGEREF[id];if(r==null)return null;return Array.isArray(r)?{d:r[0],p:r[1]}:{d:1,p:r};}
+function openDrawer(id){const d=DETAIL[id];if(!d)return;
+  $('#dTag').textContent=d.tag;$('#dTitle').textContent=d.title;
+  const body=$('#dBody');body.className='dcontent'+(d.cool?' cool':'');
+  let html=d.html;
+  const ref=refOf(id), man=ref&&MANUALS[ref.d-1];
+  if(man) html+=`<a class="manlink${d.cool?' cool':''}" href="${pdfHref(ref.p,ref.d)}" target="_blank" rel="noopener">
+     <span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h9l5 5v11H4Z"/><path d="M13 4v5h5"/><path d="M8 13h6M8 16h6"/></svg></span>
+     <span class="tx"><b>For the specific details in the ${man.label}, go here →</b><small>Opens the official PDF at page ${ref.p}</small></span>
+     <svg class="arr" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg></a>`;
+  body.innerHTML=html;
+  $('#scrim').classList.add('open');$('#drawer').classList.add('open');}
+function closeDrawer(){$('#scrim').classList.remove('open');$('#drawer').classList.remove('open');}
+$('#dClose').onclick=closeDrawer;$('#scrim').onclick=closeDrawer;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();$('#pdfMenu').classList.remove('open');}});
+
+/* ---------------- the official PDF(s) ---------------- */
+const pdfMenu=$('#pdfMenu');
+pdfMenu.innerHTML=`<div class="ml">Official manuals</div>`+MANUALS.map((m,i)=>
+  `<a href="${pdfHref(null,i+1)}" target="_blank" rel="noopener"><b>${m.label}</b><small>${m.pages} pages${m.revision?' · '+m.revision:''}</small></a>`).join('');
+$('#pdfBtn').onclick=e=>{e.preventDefault();e.stopPropagation(); if(MULTI) pdfMenu.classList.toggle('open'); else openPDF(null,1);};
+$$('.footdoc').forEach(a=>{a.href=pdfHref(null,+a.dataset.doc);a.target='_blank';a.rel='noopener';});
+document.addEventListener('click',e=>{if(!pdfMenu.contains(e.target))pdfMenu.classList.remove('open');});
+
+/* ---------------- search ---------------- */
+/* full text of every page of every manual: {d: manual number, p: physical PDF page (cover = 1), t: text} */
+const PAGES = [{"d":1,"p":1,"t":"Installation and Operating Instructions\n\nMorsø 2B Classic\nFor use in North America\n\nSave these instructions\n\nMORSØ JERNSTØBERI A/S . DK-7900 NYKØBING MORS\nE-Mail: info@morsoe.com · Website: www.morsoe.com"},{"d":1,"p":2,"t":"Enjoy your new Morsø stove!\nWe congratulate you on your choice of a Morsø\nstove. Morsø has been producing some of the\nworld’s best stoves since 1853. If you follow this installation- and operating instruction carefully, we\ncan assure you many years of warmth and pleasure.\n\nContents\n\n1.0\nInstallation of your Morsø stove\n1.1\nUnpacking the stove\n1.2\nChecking loose parts in the stove\n1.3\nThe chimney / flue system\n1.4\nFlue connection\n1.5\nConnection to the existing chimney\n1.6\nPositioning the stove\n\nPage no.\n4\n5\n5\n8\n9\n9\n11\n\n2.0\n\nOperation\n2.1\nBefore you start firing\n2.2\nLighting & loading intervals\n\n13\n13\n15\n\n3.0\n\nMaintenance\n3.1\nExterior maintenance\n3.2\nInternal maintenance\n3.3\nCleaning the stove & the flue\n3.4\nLeaving the stove for extended periods\n3.5\nParts diagram for model Morsø 2B Classic\n3.6\nParts list for model Morsø 2B Classic\n\n19\n19\n19\n21\n22\n23\n24\n\nRead this entire manual before you install and use your new room heater. If this room\nheater is not properly installed, a house fire may result. To reduce the risk of fire, follow\nthe installation instructions. Failure to follow instructions may result in property damage, bodily injury, or even death.\nDo not tamper with or alter the original construction of the wood stove. Modifications\ncan lead to serious safety hazards, including fire, carbon monoxide poisoning, and voiding of the warranty. Always use the stove as designed and follow the\nmanufacturer’s instructions.\nContact local building officials about restrictions and installation inspectionrequirements\nin your area.\nSave these instructions\n2"},{"d":1,"p":3,"t":"Optional Accessories\nA wide range of accessories (such as handling gloves, fireside tools, glass cleaner and heatproof paint) are available for use with your Morsø stove. They help with day-to-day running\nand maintenance. Contact your Morsø dealer for more information.\nThe Morsø 2B Classic has been certified by PFS TECO.\nThe test standards are UL 1482-2022 for the United States and ULC-S627-2023 for Canada.\n\nCertified &\nListed By\n\nClackamas, Oregon\nUSA\n\nPFS TECO\nReport Number: F21-679\n\nThe stove is listed for burning wood only. Do not burn other fuels.\nU.S. ENVIRONMENTAL PROTECTION AGENCY. Certified to comply with 2020\nparticulate emission standards using crib wood.\nAverage particulate emission using EPA Method 28R crib wood test method: 1.6 g/h\nAverage carbon monoxide emissions during testing: 0.94 g/min\nUnder specific test conditions this heater has been shown to deliver heat at rates ranging\nfrom 11 811 to 22 017 Btu/hr.\nThis appliance was determined to have an average higher heating efficiency value of 75 %\nwhen tested in accordance with B415.1.”\nThis wood heater needs periodic inspection and repair for proper operation. It is\nagainst federal regulations to operate this wood heater in a manner inconsistent with\noperating instructions in this manual.\n\nCast iron\nCast iron is a live material. There are no two ovens that are identical. This is partly due to the\ntolerances of the casting process, partly because the ovens are a work of craftsmanship.\nMinor unevennesses may also occur in the cast iron surface.\n\n3"},{"d":1,"p":4,"t":"1.0 Installation of your Morsø stove\nThe installation must conform standard CAN/CSA-B365, Installation Code For\nSolid-Fuel-Burning Appliances and Equipment\nMake-shift compromises during installation can have consequences, the Installation of\nthe woodburning stoves must be safe and legal.\nIf your Morsø stove is not installed correctly, it may cause a house fire. To reduce the risk\nof fire, the installation instructions must be followed carefully. Contact the local building\nofficials about restrictions and installation inspection in your area.\nDo not install in any fireplace.\nBefore you start installing your stove, make sure that:\n-  The stove and chimney connection are placed far enough from combustible materials to\nmeet all clearance requirements.\n-  The floor protection must be adequate and must be made correctly according to the requirements.\nAll neccessary approvals are needed from the local building officials.\nThe data plate, which is located on the back of the stove, provides information regarding safety\ntesting information, name of certified testing laboratory, and installation requirements.\nInstallation requirements vary in different districts, and the local building officials have the final\nauthorization to approve your installation. You should discuss the installation with them before\nbeginning. Please ask your dealer for further information.\nDo not connect to any air distribution duct or system.\nImportant: If the installation instructions are not followed carefully, it may cause dangerous situations like chimney - and house fires. Follow the instructions carefully and\ndo not deviate from them as it may cause injuries to people or property.\n\n4"},{"d":1,"p":5,"t":"1.1 Unpacking the stove\n\n2B Classic: After removing the outer packaging, flatten it and lay onto the floor close to the\nstove; this can then act as protective work surface during the assembly process.\nNext, remove the legs and bolts from inside the stove. Gently lay the stove onto its back and\nunscrew it from the wooden pallet. Using the bolts supplied, now screw the legs into position\non the underside of the base. The stove should now be lifted and moved into the upright position, avoiding excess load on the back legs.\n\n1.2 Checking loose parts in the stove\n\n3\n2\n1\n\nB-B\n15-12-2009\n\nB\n\nAfter unpacking, check that the fire bricks are firmly in position and have not shifted in transit. Check also that the air control works freely.\nBefore starting the initial fire, make sure that the baffle (1) and insulation (2) over the baffle\nare placed correctly, as shown on the images below. Also check that the cover (3) identification number 2118 are placed correctly.\n\nRev. Revisions\nTitle:\n\nConstruction:\n\nDim. without indication of margin acc. to DS/ISO 2768-1 m\n\nSnit\n\nReleased:\n\nMaterial:\n\n2B Classic NA\n\nFormat:\n\nWeight:\n\nScale:\n\nSign.:\n\nDate:\n\nRSV\n\n15.12.2009\n\nA4\n1:5\n\n5"},{"d":1,"p":6,"t":"How to fit the Smoke Cover\nPlace the smoke cover by the smoke vent in front of the stove. This is easily done by leading\nthe smoke cover down through the flue collar before fitting the pipe. It is also possible to fit\nthe smoke cover through the access door opening. See pictures below.\n\n6"},{"d":1,"p":7,"t":"How to fit the Vertical Baffle\nLead the vertical baffle through the door as shown below (picture 1 & 2). Place the baffle\ninto the right position (picture 3 & 4). The baffle insulation is placed on the baffle.\n\nStandard Accessories\nA Morsø glove and ceramic flue connection gasket are standard accessories that usually can\nbe found in the ashpan or firebox area.\n7"},{"d":1,"p":8,"t":"1.3 The chimney / flue system\n\nNote that the flue system must be independently secured and must not rely on the stove for\nsupport. Do not install the chimney directly at the outlet of the appliance.\nA chimney connector (flue pipe) is required unless the appliance is specifically approved for\nthat type of installation. A chimney connector is included with the heater.\nThe stove must not be connected to a chimney flue serving any other appliance. (Several flues may run up a single chimney stack; use one flueway per appliance).\nUse a residential type masonry or listed type HT factory-built chimney.\nHigh Temperature (H.T.) Chimney Standard UL-103-1985 (2100º F.) or a code-approved\nmasonry chimney with flue liner for the USA, and High Temperature (650ºC) Standard\nULC S-629 for Canada.\nThe internal dimensions of the chimney connector and chimney must not be less than 6 inches diameter (or equivalent cross section), and should not be significantly larger than this. Too\nlarge a section will tend to allow the flue gases to cool excessively, causing sluggishness or\nunpredictability in the stove’s performance.\nWe recommend the length of the chimney system should be at least 16 feet (not required)\nabove the stove in normal domestic situations, measured from the flue collar to the top of\nthe chimney.\nLocal conditions like for example - roof constructions, large trees nearby and high altitude,\nmay influence the chimney draft and height. Therefore, contact the local professional chimney sweep or your Morsø dealer.\n\nTypical Factory-Built or Masonry Chimney Installations\n\n8"},{"d":1,"p":9,"t":"Be sure that all connectors between the chimney parts and the heater are sealed properly\nso the chimney is airtight from the heater to the chimney outlet.\n\n1.4 Flue Connection\n\nA flue collar is placed in the firebox area.\nUse a 24 MSG black or blue chimney connector or listed double wall chimney connector. Refer to local codes and the chimney manufacturer’s instructions for precautions required for\npassing a chimney through a combustible wall or ceiling. Remember to secure the chimney\nconnector with a minimum of three screws to the product and to each adjoining section.\nPosition the stove and connect to the flue system.\nWear gloves and protective eyewear when drilling, cutting or joining sections of chimney connector.\n\n1.5 Connection to the existing chimney\n\nA chimney connector is the double-wall or single-wall pipe that connects the stove to the chimney. The chimney itself is the masonry or prefabricated structure that encloses the flue. Chimney connectors are used only to connect the stove to the chimney.\nDouble-wall connectors must be tested and listed for use with solid-fuel burning appliances. Single-wall connectors should be made of 24 gauge or heavier gauge steel. Do not use\ngalvanized connector; it cannot withstand the high-temperatures that smoke and exhaust\ngases can reach, and may release toxic fumes under high heat. The connector must be 6\ninches (150mm) in diameter.\nIf possible, do not pass the chimney connector through a combustible wall or ceiling. If passage through a combustible wall is unavoidable, refer to the sections on Wall Pass- Throughs.\nDo not pass the connector through an attic, a closet or similar concealed space when installing the chimney connectors.\nIt is important to keep the flue gases moving smoothly in the right direction. Do not vent\ninto a large void at this location; rather form one continuous section all the way up. Use mild\nbends (e.g. 45º vs. 90º) rather than sharp angles where a change of direction is required. All\nparts of the venting must be accessible for cleaning purposes.\nIn horizontal runs of chimney, maintain a distance of 18 inches from the ceiling. Keep it as\nshort and direct as possible, with no more than two 90 degree turns. Slope horizontal runs\nof connector upward 1/4 inch per foot (20 mm per metre) going from the stove toward the\nchimney. The recommended maximum length of a horizontal run is 3 feet (1 metre), and the\ntotal length should be no longer than 8 feet (2.5 metres).\nInformation on assembling and installing connectors is provided by the manufacturer’s instructions exactly as you assemble the connector and attach it to the stove and chimney.\nBe sure the installed stove and chimney connector are correct distances from near by\ncombustible materials. See the clearance paragraph page 11.\nWhere passage through a wall or partition of combustible construction is desired, the installation shall conform to CAN/CSA-B365.\n9"},{"d":1,"p":10,"t":"10"},{"d":1,"p":11,"t":"1.6 Positioning the stove\nDistance to walls and lintel\nWhen the stove is positioned near combustible materials, all applicable local and national\nbuilding regulations must be observed. The installation clearances specified in the\nclearance charts below are the minimum tested distances and must always be maintained.\nThese distances may need to be increased if surrounding materials are particularly\nheat-sensitive.\nNote that wallpaper, adhesives, and other decorative materials may be affected by heat over\ntime. Care should be taken to ensure that such materials do not loosen and fall toward the\nstove.\nWhen the stove is positioned near non-combustible materials, a clearance of at least\n4 inches (100 mm) is recommended to allow access for cleaning and to ensure proper air\ncirculation around the stove.\nThis heater meets the requirements of CAN/ULC-S627 and is suitable for installation on a\ncombustible floor without the need for radiant floor protection.\nPlease refer to the section below regarding floor protection against falling embers.\nClearance requirements for 2B Classic (Singlewall connector)\nCLEARANCE REQUIREMENTS\n\nA.\nB.\nC.\nD.\nE.\nF.\nG.\nH.\n\nSidewall to unit\nBackwall to unit\nCornerwall to unit\nSidewall to connector\nBackwall to connector\nCornerwall to connector\nUnit to ceiling\nFloor to ceiling\n\nSTANDARD RESIDENTIAL INSTALLATION\n(SINGLEWALL CONNECTOR)\nUSA\n\nCANADA\n\n26”\n7”\n22”\n29”\n15”\n29”\n-\n\n26” (660 mm)\n7” (178 mm)\n22” (559 mm)\n29” (737 mm)\n15” (381 mm)\n29” (737 mm)\n-\n\nDistance to furniture\nThe recommended minimum distance from stove to furniture is 30 inches. Note that some\nfurniture is more easily affected by heat and may need to be moved to a greater distance.\nThis is your responsibility.\nIn addition other combustible materials, away from the stove. In general, a distance of 30\ninches must be maintained between the stove and moveable combustible item such as drying clothes, newspapers, firewood etc.\n\n11"},{"d":1,"p":12,"t":"Floor protection requirements\n\nA. Extending distance, back\nB. Extending distance, right side\nC. Extending distance, left side\nD. Extending distance, front\n\nNon-combustible materials beneath stove\nUSA\n\nCanada\n\n6”\n6”\n16”\n\n200 mm\n200 mm\n200 mm\n450 mm\n\nIn the US, floor protection must be constructed of a non-combustible material and installed\nto extend beneath the heater and 16’’ to the front and 6’’ to the sides of the fuel loading\ndoor and ash removal openings.\nIn Canada, to comply with CSA B365, Installation Code for Solid-Fuel-Burning Appliances\nand Equipment, any combustible covering beneath the appliance and/or within the area extending horizontally at least 450 mm (18 in) beyond the appliance on any side equipped with\na door, and at least 200 mm (8 in) beyond the appliance on other sides, shall be protected\nby a continuous, durable, non-combustible pad that will provide ember protection. The 450\nmm (18 in) ember protection required on any side with a door shall extend for the full width\nof the appliance plus the 200 mm (8 in) required on each side of the appliance without a\ndoor. Where an appliance is installed less than 200 mm (8 in) from a wall, the ember pad\nneed only extend to the base of the wall. An ember pad shall not be placed on top of a carpet\nunless the pad is structurally supported to prevent displacement and distortion.\nDO NOT INSTALL IN A TRANSPORTABLE BUILDING / MOBILE HOME\nNote:\nAcid Protection\nIf acid-washing the masonry around the stove, protect the stove surface with an acid-proof\ncover.\nFresh Air Inlet\nUnless there is deemed to be sufficient ambient leakage of air into the room via doorways, windows\nand the like, a dedicated fresh air inlet will be needed. This inlet should have 2 square inches (1250\nsquare mm) of free air space. This is particularly important where the room is well sealed, or where\nan extractor hood or ventilation system disturbs the natural air pressure. Such an inlet should not\nbe on a wall that is usually subject to negative pressure from normal wind pattern. Avoid placing the\ninlet directly across the room from the stove, thus causing a cold air draft.\n\n12"},{"d":1,"p":13,"t":"2.0 Operation\n2.1 Before you start firing\nFor use with solid wood fuel only. Do not overfire, if heater or chimney connector glows\nyou are overfiring. Inspect and clean chimney frequently. Under certain conditions of use\ncreosote buildup may occur rapidly. Because of risk of smoke and flame spillage, operate\nonly with door fully closed.\nCAUTION:\nHot while in operation. Keep children, clothing and furniture away. Contact may cause\nskin burns.\nDO NOT USE CHEMICALS OR FLUIDS TO START THE FIRE\nDO NOT BURN GARBAGE OR FLAMMABLE FLUIDS\nDO NOT USE A GRATE, ANDIRONS, OR OTHER WAYS OF ELEVATING THE FIRE - BUILD\nFIRE DIRECTLY ON HEARTH.\nDO NOT USE GASOLINE, GASOLINE-TYPE LANTERN FUEL, KEROSENE, CHARCOAL LIGHTER OR FLUID OR SIMILAR LIQUIDS TO START OR FRESHEN UP A FIRE IN THIS HEATER. KEEP\nALL SUCH LIQUIDS AWAY FROM THE HEATER WHILE IT IS IN USE\nDo Not Burn:\n• Garbage;\n• Lawn clippings or yard waste;\n• Materials containing rubber, including tires;\n• Materials containing plastic;\n• Waste petroleum products, paints or paint thinners, or asphalt products;\n• Materials containing asbestos;\n• Construction or demolition debris;\n• Railroad ties or pressure-treated wood;\n• Manure or animal remains;\n• Salt water driftwood or other previously salt-water saturated materials;\n• Unseasoned wood; or\n• Paper products, cardboard, plywood, or particleboard. The prohibition\nagainst burning these materials does not prohibit the use of fire starters\nmade from paper, cardboard, saw dust, wax and similar substances for the\npurpose of starting a fire in an affected wood heater.\nBurning these materials may result in release of toxic fumes or render the heater ineffective and cause smoke.\nChoosing your fuel\nAll types of natural wood can be burned on your stove, but they must be well-seasoned and\ndry. Once the wood is cut to length, it should be split down middle - to suit the dimensions\ngiven below - to allow moisture to evaporate.Cut the wood to a length of max 18 inches (45\ncm) and approx. 3 to 3.5 inches (7-8 cm) in section. If you can weigh your wood, aim for around\n2-4 lbs/ piece. For correct combustion and heat output, wood fuel should contain no more\nthan 20% moisture; this can easily be checked by using the Morsø Moisture Meter\n(part # 62929900).\n13"},{"d":1,"p":14,"t":"To naturally season wood fuel, stack and store it under cover in an airy location where fresh air\ncan move through each piece. Some soft woods may take as little as one good summer to season whereas harder woods such as oak, maple, and elm may require seasoning up to 18 months.\nAvoid overly dry wood that is gray in color as under certain conditions it can cause performance\nproblems, such as back-puffing and sluggishness. Well seasoned wood will be light to hold and\nwill show signs of cracking from the center-out in the ends. If your wood spits or sizzles when\nb urnt, and your stove’s door glass persistently mists up, your wood is not properly seasoned.\nNever use drift wood (from the sea), whose salt content may cause corrosion, nor construction\nwood that may have been impregnated with chemicals.\nTo optimize efficiency:\nBurning wet wood has a negative impact on efficiency\nThe efficiency of the wood heater is primarily influenced by its location. The stove is mainly\ndesigned to heat the room where it is installed.\nMain Living Area. Placing the wood heater in the main living area maximizes efficiency, as it\ndirectly heats the space where most time is spent.\nBasement. Installing the heater in the basement can be less efficient if heat does not adequately circulate to upper levels. Proper insulation and airflow management are crucial for\neffective heating.\nOutdoors in Sub-Freezing Temperatures. Using the wood heater outdoors in very\ncold conditions significantly reduces efficiency. The heater must work harder to\nmaintain warmth, leading to increased fuel consumption and less effective heating.\nCAUTION Do not place fuel within the installation clearances for the stove or within the\nspace required for loading fuel and ash removal.\nStarting the First Fire\nThe initial fire should be small, so that the stove paint can cure and the main plates of the\nstove can settle into position. Some fumes will be given off by the paint. Ventilate the room\nduring this phase.\nThe setting of the air control, lighting techniques and loading intervals will depend on chimney draft, the fuel used, the heat required and so on. Some basic techniques are outlined\nbelow.\nIMPORTANT\nTo ensure proper combustion and prevent airflow blockage, never overload the firebox with wood. Use up to the recommended load of 7 lbs. Ensure the wood does not\nextend beyond the top edge of the backwall stone lining.The area in front of and just\nbelow the stainless-steel secondary air supply tubes, located on the baffle plate,\nis exclusively reserved for volatile gas combustion.\nIn principle\nYour stove is fitted with Primary and Secondary air inlets.\nPrimary Air is controlled using the spinner on the door. Open the spinner will allow a supply\nof preheated air to enter the firebox via the ‘airwash’ system situated inside the stove and\nabove the glass.\nThe secondary air is injected into the flue gases above the fire resulting in a cleaner, more\nefficient combustion process. The supply of secondary air is fixed open and is not adjustable.\n\n14"},{"d":1,"p":15,"t":"For extra safety, your stove has been fitted with a removable handle on the frontdoor.\nThe secondary air is injected into the flue gases above the fire resulting in a cleaner, more\nefficient combustion process. The supply of secondary air is fixed open and is not adjustable.\n\n2.2 Lighting and loading intervals\n\nWhen first lighting the stove, a large volume of air is needed. When the stove is cold, you\nshould leave the door open an inch or two for the first few minutes and open the primary air\nsupply completely. While the door is open, do not leave the stove unattended.\nTo form a reasonable bed of ash on the floor of the stove, you should use 2-4 pounds of dry\nkindling at the initial lighting. If possible, maintain a 1-1.5 inch (2-3 cm) layer of ash on the\nfloor of the combustion chamber for added insulation.\n1. We recommend using the “top-down” method to light\nyour wood-burning stove. It is the most environmentally-friendly\nmethod of lighting. Use two firelighters and approx. 2-4 lbs\nof dry kindling sticks to quickly create a glowing layer of\nwood. Place the firelighters directly under the top layer of\nkindling sticks.This minimizes soot formation on the glass. Soot\nformation on the glass is often caused by too vigorous burning\nin contact with cold surfaces. If you avoid the formation of soot\nwhen lighting the fire and build up a layer of hot embers, you will\nhave minimal soot formation when getting the fire burning again\nlater.\n2. The air supply must be fully open.\nTurn the spinner control 2 1/2 turns counterclockwise\nfrom closed position to fully open the primary air supply\n(See box on page 15 regarding closed position)\n\n3. Light the fire.\n\n4. After lighting, partially close the door, leaving it open an inch or\ntwo to allow in plenty of combustion air.\n\n5. When the chimney is warm after about 5-10 minutes,\nthe frontdoor should be closed. We recommend setting the spinner control at a minimum of 1-1 1/2 turns counterclockwise from\nclosed position, when burning the kindling/start-up fuel.\nA suitable layer of embers will be formed after about 15-20 minutes.\n\n15"},{"d":1,"p":16,"t":"6. When ready to reload, use a poker to spread the embers across\nthe firebox floor, bringing plenty towards the front of the stove.\n7. Refuelling of your stove should be done while there are\nstill glowing embers in the bed. Spread the embers across the bottom, but concentrated mostly towards the front of the stove.\nWe recommend using fuel load with a weight of 4 lbs (2 pieces) and\nup to 7 lbs (5 pieces).\nAlways keep the fuel load beneath the lowest\nsecondary air nozzles. The space in front of and above the lowest air nozzles is reserved for volatile gas combustion only.\nWhen refuelling your stove, it is recommended that\nyou open the stove door gently for the first 1-2’’, then wait for\na few seconds for the pressure in the flue to equalise; you are now\nsafe to proceed and open it all the way. By using this\ntechnique smoke spillage can be eliminated particularly in\npoor chimney draft conditions. The stove door should not\nbe opened when the stove is being fired vigorously.\n8. Close the frontdoor. Turn the spinner control 2 1/2 turns counterclockwise from closed position to fully open the primary air supply\nThe new fuel will ignite in a minute or two\n9. After a few minutes, adjust the primary air supply to suit\nyour heating requirements.\nIf using the minimum low burn rate (spinner control closed)\nallow the fire to establish properly, by burning at medium burn rate\nfor about 15 minutes beforehand. Turn the spinner control\n1-11/2 turns counterclockwise from closed position to achive a medium burn rate.\n10. For refueling, add a layer of wood while there are still plenty of\nlive embers, Repeat steps 6-9.\nThis wood heater has a manufacturer-set minimum low burn rate that must not\nbe altered. It is against federal regulations to alter this setting or otherwise operate\nthis wood heater in a manner inconsistent with operating instructions in\nthis manual.\nWhen the spinner air controller is turned all the way down, closed position, there\nis still a small gap between the spinner and the door frame allowing for the minimum\nlow burn rate. The manufacturer-set gap is 1.8 mm\nWarning: Fireplace stoves must never be left unattended with the door open.\nIf the door is left partly open, gas and flame may be drawn out of the fireplace stove\nopening, creating risks from both fire and smoke. We recommend that you fit\na smoke detector in the room where the stove is installed.\nDO NOT OVERFIRE THIS HEATER. Overfiring may cause a house fire, or can result in\npermanent damage to the stove. If any part of the stove glows, you are overfiring.\n16"},{"d":1,"p":17,"t":"The maximum recommended weight of wood fuel per load is 3.5 kg/7 Ibs (approx 5 split\nlogs).\nUnder normal firing, the average flue temperature in the stove pipe, measured 20 cm above\nthe stove, is approx. 300° C (550°F). The maximum flue temperature in the stove pipe must\nnot exceed 450° C (750°F). If the flue temperature exceeds 450°C (750°F), it is considered\nas over firing and may cause premature wear and tear of the stove.\nTo help gauge the correct running temperature of your stove, we recommend you use the\nMorsø Flue Gas Thermometer (part no. 62901200). The Flue Gas Thermometer magnetically attaches onto the stove pipe approx 20 cm (8”) above the stove’s top plate and measures the surface temperature of the stove pipe. Please see your authorized Morsø Dealer\nfor availability.\nDraft conditions\nIf smoke or fumes come out of your stove when lightning up and reloading, or if the fire simply\nwill not respond, a poor draft is almost certainly to blame. (In a very few cases, there may be\ninsufficient fresh air getting into the room - see installation advice above). Take advice from\nyour stove supplier on how best to upgrade your flue system to improve draft.\nExcessive chimney draft may cause the stove to burn hotter and faster than intended, even\nwhen the primary air control is set to a low position. Signs of excessive draft may\ninclude unusually rapid fuel consumption, difficulty maintaining a low burn rate, roaring fire\nsounds, glowing stove or connector pipe parts, and excessively high flue temperatures.\nIf excessive draft conditions occur:\n•\n•\n•\n•\n\nReduce the air supply as much as possible.\nBurn smaller fuel loads.\nEnsure the chimney system conforms to the recommended dimensions in this manual.\nConsult a qualified chimney professional. Installation of a listed flue damper may be\nnecessary in some installations.\n\nDo not overfire the stove. Persistent overfiring may damage the appliance and\nchimney system and may void the warranty.\nRules of woodburning\nIf you want less heat, put fewer logs on the stove and reduce the amount of air. It is still important to maintain a good layer of embers.\nLess heat - less wood - less air\nGreater heat - more wood - more air\nSoot deposits will settle on the glass if the stove is run too slowly or if your wood is not well\nseasoned.\nCarbon Monoxide Emissions\nThis stove has been certified to comply with U.S. EPA particulate emission standards.\nAs with all wood-burning appliances, carbon monoxide (CO) is produced during combustion. The amount of CO emitted may vary depending on fuel quality, chimney draft, wood\nmoisture content, burn rate, refueling practices, and operating conditions.\n\n17"},{"d":1,"p":18,"t":"To minimize carbon monoxide emissions:\n•\n•\n•\n•\n\nBurn only dry, seasoned wood with a moisture content below 20%.\nMaintain adequate combustion air and avoid smoldering fires.\nOperate the stove with the door fully closed except during lighting and refueling.\nInspect and maintain the chimney system regularly.\n\nImproper operation or poor draft conditions may increase carbon monoxide\nproduction and smoke spillage.\nCarbon monoxide detectors\nIt is required in some jurisdictions to install smoke and carbon monoxide detectors where\nheaters are installed. Install at least one smoke detector on each floor of your home\nto ensure your safety. It should be located away from the wood appliance and close to\nthe sleeping areas. Locating a smoke detector too close to a wood appliance can cause the\nsmoke detector alarm to sound if a puff of smoke is emitted while the wood appliance door\nis open during reloading. Follow the smoke detector manufacturers placement, installation,\nand maintenance instructions\n\n18"},{"d":1,"p":19,"t":"3.0 Maintenance\nWhen perfoming maintenance on your stove, always protect yourself, using safety goggles and gloves\n\n3.1 Exterior Maintenance\n\nThe stove surface is painted with heat-resistant Senotherm paint. It is best kept clean by\nvacuuming with a soft brush attachment or by wiping with a lint-free cloth.\nOver a period of time, the painted surface may become slightly grey. A can of Morsø touch-up\nspray paint should be available from your stove supplier. This can be applied - in accordance with\nthe instructions - in just a few minutes. When first firing after touching up, the stove will give off a\nslight smell as the paint cures. Make sure to ventilate the room well during this phase.\n\n3.2 Internal maintenance\n\nGlass\nIf the stove is generally run at the correct temperatures, there should be little or no dirt on\nthe glass. If dirt does settle during lighting, most will burn off as temperatures increase.For\nheavier deposits that will not burn off, use Morsø glass cleaner, applied when the glass is\ncold, in accordance with the instructions. Never use abrasive cleaners on the glass surface.\nReasons for dirty glass\n- Fuel too wet\n- Logs too large or not split\n- Combustion temperatures too low\nReplace broken glass immediately.\nDo not operate your stove if the glass in the door is damaged.\nIf you need to replace the glass, it should be replaced with the high temperature ceramic\nclass supplied by Morsø, contact your Morsø dealer.\n\nALWAYS USE ORIGINAL MORSØ SPAREPARTS\n\nInstalling the glass\nNever install the glass when the stove is in function.\nCeramic glass replacement\nCeramic glass cannot be recycled because it has a higher\nmelting point that ordinary glass. If ceramic glass is mixed\nwith ordinary glass, the raw material is spoiled, and the\nreclaiming process may be halted. Take care that the ovenproof glass does not end up among ordinary recycled\nwaste. That will be a great benefit to the environment.\nNote: Should be handed in to a recycling station as ceramic glass.\n19"},{"d":1,"p":20,"t":"1.\t Lift the door off the hinges and place it face down on a sheet of cardboard or other nonabrasive fabric.\n2.\t Unscrew the 4 bolts that secure the glass. (In the event that a bolt sheers off when being\nunscrewed, remove the remaining body of the bolt by drilling down its centre with 1/8\ninch high speed steel drill bit. Smaller drill bits may be successful, but do not use a lager\nbit. Make sure the bit stays away from the edges of the bolt - this may damage the thread\nin the cast iron).\n3.\t Remove the old ceramic gaskets and clean up the surface underneath with wire wool or\nemery paper to remove loose particles.\n4.\t Place the new gasket material in position around the perimeter of the window area, making\nsure to pinch them to the length in such a way that they make a continuous seal. Leave no gaps.\n5.\t Place the new glass in position on the strips and screw home the fresh bolts and fitting\nby hand.\n6.\t Finally, give each of the bolts an extra half turn or so. The glass should held tight enough\nby that cleaning will not dislodge it. Do not over-tighten the bolts as this may put excessive pressure on the glass, resulting in cracking - important!\nTo reduce the risk of breaking the glass, avoid striking the glass or slamming the door.\nInternal service parts\nThe flame-path equipment - consisting of the ashpan, grate, firebricks, Cast iron fire plates,\nglass, baffle and flue collar - are subject to the extremes of heat produced by the fire. From\ntime to time, one or other of these parts may need replacing as a matter of routine maintenance.\nStone replacement\nWhen replacing the stones, unscrew at the rear of the stove the heat reflector, which is mounted with\n4 screws. This provides access to the 2 bolts that hold the smoke baffle in place. Remove these bolts\nso that the smoke baffle inside the stove can be raised. Raise the smoke baffle so that the old stones\ncan be removed from the stove and the new ones can be installed. The side stones are placed in the\ngrooves in the vermiculite bottom plate. Once the stones have been properly put into place, lower the\nsmoke baffle down onto the stones and re-bolt it securely to the cast rear of the stove.\nFinally, reinstall the rear heat reflector with its 4 screws.\nNOTE: The flame-path equipment, the ceramic rope and the paint finish are not\ncovered by guarantee.\nAll of these service parts can be bought from your Morsø dealer, and we recommend that\ndamaged parts are replaced as soon as possible to avoid collateral damage.\nShould the baffle be distorted by an overfire, the stove will still function, although its efficiency\nmay be compromised. Replace it as soon as possible.\nReasons for fast internal wear and tear\n- Persistent heavy firing\n- Soot and ashes left to accumulate\n20"},{"d":1,"p":21,"t":"Gasket\nThe gasket around the perimeter of the door may harden over a period of time. It should be\nreplaced if it becomes difficult to close the doors or if air starts to leak in around the perimeter of the doors, causing the fire to become a little less controllable. A Morsø rope gasket\nkit is available from your stove supplier.\n\n3.3 Cleaning the Stove and the Flue\n\nCheck for soot above the baffle plate and around the flue outlet every month or so to start\nwith. If the stove suddenly becomes sluggish, check for a soot fall around the flue collar or\nin the flue/chimney.\nThe chimney and chimney connector should be inspected at least once every two months\nduring the heating season to determine if a creosote buildup has occurred. If creosote has\naccumulated, it should be removed to reduce the risk of a chimney fire.\nClean the flue/chimney - all the way from the stove to the flue terminal point above the house.\nA good routine is to clean the flue after each heating season in any case, and inspect prior\nto the season to ensure that bird’s nests or other blockages have not occurred during the\noff season.\nAsh disposal\nEmpty the ashpan on a daily basis or as needed. Ash allowed to build up towards the underside of the grate will trap heat and could cause premature failure of the grate.\nEmpty the ashpan according to this procedure:\nOpen the front door, and use a shovel or poker to stir excess ash through the ash slots in\nthe grate down into the ash pan. Take out the ash pan, making sure to keep it level to avoid\nspilling ash.\nDispose the ash in a metal container with a tight fitting lid.\nThe closed container of ashes should be placed on a noncombustible floor or on the ground,\nwell away from all combustible materials, pending final disposal. If the ashes are disposed of\nby burial in soil or otherwise locally disperded, they should be retained in the closed container\nuntil all cinders have thoroughly cooled.\nReturn the ash pan to its original position in the stove, and close the door.\nCaution:\nNever empty a stove in operation.\nNever use your household or shop vacuum cleaner to remove ash from the stove; always\nremove and dispose of the ash properly.\nCreosote - formation and need for removal\nWhen wood is burned slowly, it produces tar and other organic vapors, which combine with expelled\nmoisture to form creosote. The creosote vapors condense in the relatively cool chimney flue of a slowburning fire. As a result, creosote residue accumulates on the flue lining. When ignited this creosote\nmakes an extremely hot fire. When burning wood, the chimney and chimney connector should be inspected at least once every two months during the heating season to determine if a creosote buildup\nhas occurred. If creosote has accumulated, it should be removed to reduce the risk of a chimney fire.\n\n21"},{"d":1,"p":22,"t":"Chimney sweeping\nInspect the system regularly during the heating season as part of a regular maintenance schedule. To inspect the chimney, let the stove cool completely. Then, using a mirror, sight up through\nthe flue collar into the chimney flue. If you cannot inspect the flue system in this fashion, the\nstove must be disconnected to provide better viewing access.\nClean the chimney using a brush the same size and shape as the flue liner. Run the brush up\nand down the liner, causing any deposits to fall to the bottom of the chimney where they\ncan be removed through the clean-out door.\nClean the chimney connector disconnecting the sections, taking them outside, and removing any deposits with a stiff wire brush. Reinstall the connector sections after cleaning, being sure to secure the joints between individual sections with sheet metal screws.\nIf you cannot inspect or clean the chimney yourself, contact your local Morsø Dealer or a\nprofessional chimney sweep.\nIf you do experience a chimney fire, act promptly and:\n1. Close the air control.\n2. Get everyone out of the house.\n3. Call the Fire Department.\nAnnual maintenance\nBefore the heating season, perform a thorough cleaning, inspection and repair:\nThoroughly clean the chimney and chimney connector.\nInspect the chimney for damage and deterioration. Replace weak sections of prefabricated\nchimney. Have a mason make repairs to a masonry chimney.\nInspect the chimney connector and replace any damaged sections.\nCheck gasketing for wear or compression, and replace if necessary.\nCheck the glass for cracking; replace if needed.\nCheck door and handle for tightness. Adjust if needed.\n\n3.4 Leaving the stove for extended periods\n\nImportant:\nIf the stove is to be left unused for any period of time, clean it out thoroughly and leave the\nair control slightly open to allow airflow. Make sure that the flue does not allow rainwater\nto come anywhere near the stove; install a chimney cap, but do not block off the flue completely.\nThese measures should ensure there is a slight movement of air through the stove, and that\nthe body of the stove remains dry, right into the corners.\nAny ash left within an unfired stove can attract moisture like blotting paper. If moisture is allowed to settle within the stove, rust will form. Rust expands as it takes a grip. This can lead\nto undue pressure on the stove joints, and this in turn may result in damage to the stove.\nNOTE: It is best to thoroughly clean the stove after the heating season has concluded. Adding a dessicant, such as kitter litter, into the ash pan helps absorb moisture during the summer months. Be sure to remove this prior to the heating season.\nThank you for buying a Morsø stove.\nWe hope you have many years of carefree warmth in its company. Some initial experimentation with loading and running techniques will decide your normal routine. If you have any\nproblems after this short learning phase, please refer to your stove dealer. Should they be\nunable to help for any reason, please contact us in writing at the address on the front of\nthis publication.\nWe highly recommend lubrication of hinges and closing mechanisms once per year or\nas needed, not only to ensure smooth functioning and longevity, but also to mitigate wear\nand tear.\nWe recommend copper grease as a lubricant or another equally heat-resistant grease.\n22"},{"d":1,"p":23,"t":"3.5 Parts diagram for model Morsø 2B Classic 2020\n68\n73\n69\n67\n57\n55\n56\n\n59\n70\n\n59\n70\n59\n\n51\n1\n9\n\n59\n18\n45\n\n45\n43 36\n\n53\n30\n77\n\n48 6\n\n4\n\n39\n\n3\n\n40\n\n48\n47\n72\n\n42 37\n\n86\n\n84 24\n11 62\n71\n\n47\n48 12\n\n44\n78\n\n66\n63\n14\n\n82\n81\n64\n\n91\n\n26\n\n17\n\n80\n\n36\n65\n5\n\n41\n\n46\n\n50 53 52 35 81 83 80\n\n58\n54\n\n35\n2\n10\n51\n1\n\n15\n\n43\n59\n\n9\n\n62\n\n59\n\n90\n\n62\n\n62\n29\n\n13\n\n28\n\n62\n\n27\n\n59\n25\n31\n22\n23\n34\n\nMaterial:\n\nWeight kg:\n\n16\n\nModel no.\n\n32\n\nDrawingtyp\n\n23 Location of file\n\nThis drawin"},{"d":1,"p":24,"t":"3.6 Parts list for model Morsø 2B Classic 2020\nPos. No.\n1\n2\n3\n4\n5\n6\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n20\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n34\n35\n36\n37\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n50\n51\n52\n53\n54\n55\n\n24\n\nParts\nSKU no.\nSquirrel Side Panel\n54200321\nRear Plate\n44203821\nSmoke Valve\n44200800\nHorizontal Baffle\n44203600\nFront Baffle\n34203800\nFront\t\t44201521\nSide Panel for Upper Part\n44202521\nRear Plate for Lower Part\n44202621\nFront for Lower Part\n44202721\nAsh Door\n44204821\nIntermediate Grate Frame\n44204921\nRiddling Grate\n44203000\nInner Grate Frame\n44203100\nLeg\t\t44200121\nDoor assembly\n44204421\nFrame\t\t44211121\nPoker\t\t541075\nRadiation Shield - Base\n54137000\nDistance Tube Ø10x1 L=10mm\n541439\nHinge Pin Ø6x45\n541808\nAsh pan\n541405\nRiddling Handle\n542052\nBolt M6x170\n542053\nBolt M6x205\n542054\nBolt M6x215\n542055\nRear Panel for Upper Part\n44211421\nBase\t\t54209400\nM10x16 DIN 933 screw (black)\n73111600\nM6x25 DIN 933 Screw (black)\n731616\nVistop lock washer 6 mm\n746206\nM8 DIN 934 bolt\n735008\nM85x08 ISO 7380 button head screw\n73850800\nM5x25 DIN 965A fzb screw\n743525\nKnob for riddling handle\n752619\nDoor Glass\n790715\nGlass Clips\n790743\nSide Brick\n79209000\nRear Brick\n79209100\nM8x50 DIN 931 angled screw\n791172\nBakelite Handle 36 mm\n79118200\nClasp\t\t79127000\nØ6x32mm Pin\n791868\nIntermediate Frame\n44211200\nSide Panel for Upper Part\n44211321\nRear Panel for Upper Part\n44203921\nInside rear panel upper part\n44211521\nInside top - upper part\n44211621\nTop - upper part\n44200721"},{"d":1,"p":25,"t":"3.6 Parts list for model Morsø 2B Classic 2020\nPos. No.\n56\n57\n58\n59\n62\n63\n64\n65\n66\n67\n68\n69\n70\n71\n72\n73\n77\n78\n80\n81\n82\n83\n84\n86\n90\n91\n\nParts\nSKU no.\nCover - upper part\n44211800\nAccess Door Upper Part\n44211921\nBolt - Ø5 360 mm\n542146\nM6 DIN 934 black steel nut\n735006\n06 mm DIN 9021 fzb washer\n791891\nBrick - Base\n79209200\nBaffle - stainless steel\n71209061\nInsulation\t\t79077100\nM6x08 DIN 933 A2 screw\n74160804\nFitting for Cover w. thread\n44256700\nM6x30 DIN 7991 screw (black)\n74241900\nFlue Collar\n44145921\nFitting w/o thread\n44256800\nRadiation Shield - Front\n71209161\nFitting for handle\n75140161\n3,5x13 DIN 7981 fzb screw\n79183600\nGasket for glass\n79074200\nM6x16 buttonhead A2 Screw\n73861300\nM6x30 DIN 933 Screw (black)\n731630\nDistance Tube Ø10x1 L=20mm\n542635\nConv. back rear plate\n54201221\nRadiation Shield - Back\n54202921\nM6x60 DIN 933 Screw (black)\n731645\nBakelite Handle 72 mm\n7\n9118300\nM6 nut Verbus Ribb - BN2798-HFC851\n735306\n06 mm 6.5x16x1 fzb DIN 522-A washer\n766106\n\n25"},{"d":1,"p":26,"t":"MORSØ 10 YEAR WARRANTY CERTIFICATE\nBehind every Morsø stove is more than 160 years of dedicated stove design and manufacturing experience. Quality control has always been at the heart of the production process and detailed measures\nhave been put into place at all key stages of the build. Accordingly, provided that the stove has been\nsupplied by an authorised Morsø dealer, Morsø will offer a 10-Year Manufacturers warranty against\nmanufacturing defect to any of the main exterior body parts of its stoves.\n\nWarranty Information\n\nLimited Warranty\nMorsø warrants that the wood stove is free from defects in material and workmanship under\nnormal use and service, subject to the terms and conditions outlined below. The warranty\nperiod is valid for 10 years from the date of purchase.\nWhat Is Covered:\nThis warranty covers replacement or repair of parts that are defective due to materials or\nworkmanship.\nWhat Is Not Covered:\nThe warranty does not cover damage resulting from:\n•\nImproper installation or use not in accordance with the owner’s manual, including in\nrelation to applicable public regulations and Morsø’s assembly and firing instructions.\n•\nDamage caused by overheating and firing with the wrong fuel.\n•\nNormal wear and tear, such as discoloration of surfaces. Wear parts, i.e. parts that wear\nout during normal use (e.g. smoke deflector plates, grates, refractory stones/plates as\nwell as glass and sealing materials). The provisions of the Sales Act on liability for defects apply to these parts.\n•\nRepairs or modifications not authorized by Morsø.\n•\nIn the event of lack of maintenance and breakage of the product’s surface treatment,\ncorrosion can occur. The warranty does not cover such occurrences. The provisions of\nthe Sales Act on liability for defects also apply here.\n•\nMalfunctions caused by local conditions, draft problems or damage/faults to the chimney.\nVoid Conditions:\nThis warranty is void if this wood heater is not installed, operated, and maintained in accordance with the instructions provided in this manual or if it is used to burn materials for which\nit is not certified by the EPA. The warranty is also void if any unauthorized modifications are\nmade to the heater.\nHow To Exercise Your Warranty\nTo make a warranty claim, follow these steps:\n1.\nContact Morsø Customer Service via email at info@morsoe.com or by phone at +45\n96691900\n2. Provide the following information:\n•\nProof of purchase (receipt or invoice).\n•\nModel number and serial number of the stove.\n•\nA detailed description of the issue, including photographs if possible\n3. Morsø will evaluate the claim and, if approved, provide instructions for repair, replacement, or service.\n\n26"},{"d":1,"p":27,"t":"For detailed warranty terms, please visit:\nMorsø Warranty Page https://morsoe.com/us/customer-service/indoor/warrantystoves\n\nStove manufacturer\nAddress\n\nPhone Number\n\nMorsø Jernstøberi A/S\nFurvej 6\n7900 Nykøbing Mors\nDenmark\n+45 96691900\n\n27"},{"d":1,"p":28,"t":"IMPORTANT!\n\nHow to heat safely for the environment and yourself!\n• Use only dry wood\n\n\t Use only dry (max. 20% moisture content)\nand untreated wood. The fuel must be split\nand 8 - 12 cm thick.\n\n• Light\n\n\t Light with dry kindling (use 1 - 2 kg). Leave\nthe door ajar and stay close to the stove\nduring the lighting phase.\n\n• Good layer of embers\n\n\t Be certain to have a good layer of embers before refilling. The wood should\nlight within 2 minutes. If the logs do\nnot ignite it may, in an extreme case,\ncause the flue gases to ignite which\nmay pose a risk to material damage or\npersonal injury.\n\n• Refuelling\n\n\t When refuelling use 2 - 3 pieces of wood\n- no more than 2 - 2.5 kg.\n\n• Ensure adequate air\n\n\t I.e. clear and yellow flames.\n\n• Never burn overnight\n\nMorsø Jernstøberi A/S - 18.05.2026- 72207100\n\n28\n\nMORSØ JERNSTØBERI A/S . DK-7900 NYKØBING MORS\nE-Mail: info@morsoe.com · Website: www.morsoe.com"}];
+
+/* curated topic index — the hand-written, audience-tuned answers */
+const INDEX=[
+  ...HOME_PRIMARY.map(d=>({k:'h',id:d.id,t:d.title,p:d.blurb})),
+  ...HOME_SECONDARY.map(d=>({k:'h',id:d.id,t:d.title,p:d.blurb})),
+  ...SPECS.map(s=>({k:'i',id:s.tap,t:s.lab,p:s.rows.map(r=>r[0]+' '+r[1]).join(' · ')})),
+  ...STEPS.map((s,i)=>({k:'i',id:'step'+i,t:s[0],p:s[1]})),
+  ...INDEX_EXTRA,
+];
+
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const plain=s=>String(s).replace(/<[^>]+>/g,'');
+/* match regardless of line breaks, case and curly quotes */
+const fold=s=>s.toLowerCase().replace(/[‘’ʼ′]/g,"'").replace(/[“”″]/g,'"').replace(/ /g,' ');
+PAGES.forEach(pg=>{pg.s=pg.t.replace(/\s+/g,' ').trim(); pg.f=fold(pg.s); if(pg.f.length!==pg.s.length) pg.s=pg.f;});
+INDEX.forEach(x=>{x.f=fold(plain(x.t+' '+x.p)).replace(/\s+/g,' ');});
+const normQ=raw=>fold(raw).replace(/\s+/g,' ');
+function snippet(pg,q){
+  const i=pg.f.indexOf(q); if(i<0)return '';
+  const s=Math.max(0,i-55), e=Math.min(pg.s.length,i+q.length+85);
+  const frag=pg.s.slice(s,e), ff=pg.f.slice(s,e);
+  // highlight every occurrence of the query in the fragment
+  let out='',at=0,j;
+  while((j=ff.indexOf(q,at))>=0){out+=esc(frag.slice(at,j))+'<mark>'+esc(frag.slice(j,j+q.length))+'</mark>';at=j+q.length;}
+  out+=esc(frag.slice(at));
+  return (s>0?'… ':'')+out+(e<pg.s.length?' …':'');
+}
+/* which manual a reader on each side wants first */
+const PREF={homeowner:{operation:0,installation_and_operation:1,installation:2},installer:{installation:0,installation_and_operation:1,operation:3}};
+function pageHitsFor(q,role){
+  const hits=PAGES.filter(pg=>pg.f.includes(q));
+  if(!MULTI) return hits;
+  const pref=PREF[role]||{};
+  const rank=pg=>{const m=MANUALS[pg.d-1];return m.kit?2:(pref[m.role]??2);};
+  return hits.sort((a,b)=>rank(a)-rank(b)||a.d-b.d||a.p-b.p);
+}
+const pgLabel=pg=>MULTI?`${esc(MANUALS[pg.d-1].short)} p.${pg.p}`:`p.${pg.p}`;
+const pageItem=(pg,q)=>`<div class="ritem" data-kind="page" data-doc="${pg.d}" data-page="${pg.p}">
+         <span class="pg">${pgLabel(pg)}</span>
+         <div class="snip">${snippet(pg,q)}</div>
+         <svg class="jump" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg>
+       </div>`;
+const topicItem=(x,withRole)=>`<div class="ritem" data-kind="topic" data-id="${x.id}"${withRole?` data-role="${x.k==='h'?'homeowner':'installer'}"`:''}>
+         <span class="badge ${x.k}">${x.k==='h'?'Owner':'Install'}</span>
+         <div><h4>${esc(plain(x.t))}</h4><p>${esc(plain(x.p))}</p></div></div>`;
+const manualsLine=()=>MULTI?MANUALS.map(m=>`${m.label} (${m.pages} pages)`).join(' and '):`${MANUALS[0].pages}-page manual`;
+
+const res=$('#results'),rlist=$('#rlist');
+$('#q').addEventListener('input',e=>{
+  const raw=e.target.value.trim(), q=normQ(raw);
+  if(q.length<2){res.classList.remove('open');return;}
+  const curated=INDEX.filter(x=>x.f.includes(q)).slice(0,6);
+  const pageHits=pageHitsFor(q,currentRole()).slice(0,12);
+  let html='';
+  if(curated.length){
+    html+=`<div class="rgroup">Best matches <span class="ct">${curated.length}</span></div>`;
+    html+=curated.map(x=>topicItem(x,true)).join('');
+  }
+  if(pageHits.length){
+    html+=`<div class="rgroup">In the full ${MULTI?'manuals':'manual'} <span class="ct">${pageHits.length} page${pageHits.length>1?'s':''}</span></div>`;
+    html+=pageHits.map(pg=>pageItem(pg,q)).join('');
+  }
+  if(!curated.length && !pageHits.length)
+    html=`<div class="rempty">Nothing matched “${esc(raw)}”. Try a part name, a number, or open the full PDF above.</div>`;
+  rlist.innerHTML=html;
+  res.classList.add('open'); placeResults();
+  $$('.ritem',rlist).forEach(it=>it.onclick=()=>{
+    if(it.dataset.kind==='page'){ openPDF(it.dataset.page,+it.dataset.doc); }
+    else { res.classList.remove('open'); $('#q').value=''; closeHeaderSearch(); setRole(it.dataset.role); openDrawer(it.dataset.id); }
+  });
+});
+document.addEventListener('click',e=>{if(!res.contains(e.target)&&e.target.id!=='q'&&!e.target.closest('#qBtn'))res.classList.remove('open');});
+
+/* ---------------- owner-side inline search ---------------- */
+/* Curated answers (open the drawer) + full-manual page hits (open the PDF) —
+   the same two-tier logic as the header search, surfaced in the owner view. */
+const oq=$('#oq'), oResults=$('#oResults');
+function renderOwnerSearch(){
+  if(!oq||!oResults) return;
+  const raw=oq.value.trim(), q=normQ(raw);
+  if(q.length<2){ oResults.innerHTML=''; return; }
+  const curated=INDEX.filter(x=>x.f.includes(q)).slice(0,6);
+  const pageHits=pageHitsFor(q,'homeowner').slice(0,8);
+  let html='';
+  if(curated.length){
+    html+=`<div class="rgroup">Best matches <span class="ct">${curated.length}</span></div>`;
+    html+=curated.map(x=>topicItem(x,false)).join('');
+  }
+  if(pageHits.length){
+    html+=`<div class="rgroup">In the full ${MULTI?'manuals':'manual'} <span class="ct">${pageHits.length} page${pageHits.length>1?'s':''}</span></div>`;
+    html+=pageHits.map(pg=>pageItem(pg,q)).join('');
+  }
+  if(!curated.length && !pageHits.length)
+    html=`<div class="os-hint">Nothing matched “${esc(raw)}”. Try another word, or open the full <mark>Official PDF</mark> up top.</div>`;
+  oResults.innerHTML=html;
+  $$('.ritem',oResults).forEach(it=>{
+    if(it.dataset.kind==='page') it.onclick=()=>openPDF(it.dataset.page,+it.dataset.doc);
+    else it.onclick=()=>openDrawer(it.dataset.id);
+  });
+}
+oq.addEventListener('input',renderOwnerSearch);
+
+/* ---------------- installer-side full-manual search ---------------- */
+/* Same per-page PDF index as the header search, surfaced inline in the field
+   reference where installers expect it. Click a hit to deep-link the PDF page. */
+const mq=$('#mq'), mResults=$('#mResults');
+function renderManualSearch(){
+  if(!mq||!mResults) return;
+  const raw=mq.value.trim(), q=normQ(raw);
+  if(q.length<2){
+    mResults.innerHTML=`<div class="ms-hint">Searches the full text of every page of the official ${manualsLine()}. Type a part name, a number, or a term — each result opens the PDF at that page.</div>`;
+    return;
+  }
+  const hits=pageHitsFor(q,'installer');
+  if(!hits.length){
+    mResults.innerHTML=`<div class="ms-hint">Nothing in the ${MULTI?'manuals':'manual'} matched “${esc(raw)}”. Try a different term, or open the full <mark>Official PDF</mark> up top.</div>`;
+    return;
+  }
+  mResults.innerHTML=`<div class="rgroup">In the full ${MULTI?'manuals':'manual'} <span class="ct">${hits.length} page${hits.length>1?'s':''}</span></div>`+
+    hits.slice(0,30).map(pg=>pageItem(pg,q)).join('');
+  $$('.ritem',mResults).forEach(it=>it.onclick=()=>openPDF(it.dataset.page,+it.dataset.doc));
+}
+mq.addEventListener('input',renderManualSearch);
+renderManualSearch();
+
+
+/* ---------------- phones & tablets: slim header, section bar, back to top ---------------- */
+const hdr=document.querySelector('header');
+function setHdrH(){document.documentElement.style.setProperty('--hdr-h',hdr.offsetHeight+'px');}
+function placeResults(){res.style.top=Math.max(0,hdr.getBoundingClientRect().bottom)+'px';}
+function closeHeaderSearch(){hdr.classList.remove('searching');$('#qBtn').setAttribute('aria-expanded','false');setHdrH();}
+$('#qBtn').addEventListener('click',()=>{
+  const open=!hdr.classList.contains('searching');
+  hdr.classList.toggle('searching',open);$('#qBtn').setAttribute('aria-expanded',String(open));
+  document.body.classList.remove('hdr-away');setHdrH();
+  if(open){$('#q').focus();} else {res.classList.remove('open');}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&hdr.classList.contains('searching')){res.classList.remove('open');closeHeaderSearch();}});
+addEventListener('resize',()=>{setHdrH(); if(res.classList.contains('open')) placeResults();});
+setHdrH();
+
+/* the section bar lists only the sections this guide has */
+const SECS=[['sec-specs','Specs'],['sec-steps','Install steps'],['faultSec','Faults'],['codeSec','Codes'],['sec-manual','Manual']]
+  .map(([id,label])=>[document.getElementById(id),label]).filter(([el])=>el&&el.style.display!=='none');
+const secNav=$('#secNav');
+secNav.innerHTML=SECS.map(([,label],i)=>`<button type="button" data-i="${i}">${label}</button>`).join('');
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+secNav.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  $$('button',secNav).forEach(x=>x.setAttribute('aria-current',String(x===b)));
+  SECS[+b.dataset.i][0].scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'});});
+let lastY=scrollY,ticking=false,activeSec=-1;
+function onScroll(){
+  const y=scrollY, small=innerWidth<=1024, inRole=document.body.classList.contains('has-role');
+  const busy=hdr.classList.contains('searching')||$('#drawer').classList.contains('open')||res.classList.contains('open');
+  if(!small||!inRole||y<140||y<lastY-6) document.body.classList.remove('hdr-away');
+  else if(y>lastY+6&&!busy) document.body.classList.add('hdr-away');
+  lastY=y;
+  $('#toTop').classList.toggle('show',inRole&&y>700);
+  if(currentRole()==='installer'&&SECS.length){
+    const line=hdr.offsetHeight+secNav.offsetHeight+48;   /* generous: works whether the header is showing or tucked away */
+    let a=0; SECS.forEach(([el],i)=>{if(el.getBoundingClientRect().top<=line)a=i;});
+    if(innerHeight+y>=document.documentElement.scrollHeight-4)a=SECS.length-1;
+    if(a!==activeSec){activeSec=a;
+      $$('button',secNav).forEach((b,i)=>b.setAttribute('aria-current',String(i===a)));
+      const btn=$$('button',secNav)[a]; if(btn) secNav.scrollTo({left:btn.offsetLeft-16,behavior:reduceMotion?'auto':'smooth'});}
+  }
+  ticking=false;
+}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+$('#toTop').addEventListener('click',()=>scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));
+
+/* ---------------- deep links into the guide: #homeowner, #installer, or a topic id (#light) ---------------- */
+function fromHash(){const h=decodeURIComponent(location.hash.slice(1));if(!h)return;
+  if(h==='homeowner'||h==='owner'){setRole('homeowner');return;}
+  if(h==='installer'){setRole('installer');return;}
+  if(DETAIL[h]){setRole(DETAIL[h].cool?'installer':'homeowner');openDrawer(h);}}
+window.addEventListener('hashchange',fromHash);
+fromHash();
+</script>
+</body>
+</html>

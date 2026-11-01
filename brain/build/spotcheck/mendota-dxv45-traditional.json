@@ -1,0 +1,56 @@
+{
+ "id": "mendota-dxv45-traditional",
+ "checked_pagerefs": 28,
+ "notes_checked": {"amber": 11, "correction": 1, "website": 3},
+ "findings": [
+  {
+   "severity": "major",
+   "where": "detail.specMantel (TV above the fireplace, bullet 1)",
+   "guide_says": "Mantel at least 2 inches deeper than the TV and at least as wide, top surface at least 12 inches above the top air gap.",
+   "manual_says": "p. 29: \"The mantel shall be mounted so that its top surface is a minimum of 12 inches above the top air gap of the fireplace. Attention: If the mantel is constructed of combustible materials, make certain that the entire mantel meets the clearances to combustible mantel requirements.\" p. 23: \"An 8” combustible mantel may be installed at a minimum of 14\" above the top of the heat outlet ... DO NOT deviate from this minimum clearance requirement.\" The guide keeps the 12-inch figure but drops the caveat, so it reads as an allowance below the combustible-mantel clearance.",
+   "pages": [[1, 29], [1, 23]],
+   "fix": "Mantel at least 2 inches deeper than the TV and at least as wide, top surface at least 12 inches above the top air gap. If the mantel is combustible, the entire mantel must also meet the combustible-mantel clearances above (p. 29)."
+  },
+  {
+   "severity": "minor",
+   "where": "specs.framing row 4 | detail.specFraming (Hearth pad, bullet 2)",
+   "guide_says": "Unit raised 6\" or more: no pad required. / Raised 6\" or more: no pad required.",
+   "manual_says": "p. 17: \"If this fireplace is raised more than 6” off the floor, no hearth protection pad is required.\" pp. 14, 18, 22: \"elevated 6” or higher\" / \"raised off the floor 6\" or more\"; p. 10: \"elevated at least 6”\". The same pages' rule (\"For every 1” this fireplace is elevated, you may reduce the hearth pad depth by 2”\") still leaves a 2\" pad at exactly 6\", so the manual does not settle it. This is a silent pick on a fire-protection requirement: the writer noted it only in review.notes.",
+   "pages": [[1, 10], [1, 14], [1, 17], [1, 18], [1, 22]],
+   "fix": "Card: \"6\" or more (pp. 14, 18, 22) / more than 6\" (p. 17)\". Drawer: <div class=\"note\"><b>Note:</b> pp. 10, 14, 18 and 22 say no hearth pad is needed when the fireplace is raised 6\" or more; p. 17 says when it is raised more than 6\".</div> Record in review.conflicts as substantive."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.light (Before you start, bullet 3)",
+   "guide_says": "Keep the glass door on while the pilot lights. The manual's only exception is the first-time lighting.",
+   "manual_says": "p. 76: \"the door must remain on this unit during pilot ignition, except for the “First Time Lighting”.\" But p. 10: \"Verify glass gasket seal before firing unit the first time. Verify proper latching of glass frame onto unit body.\" and p. 7 (also p. 6): \"Do not operate this appliance with the glass removed, cracked or broken.\" The owner drawer gives owners the exception with nothing to show that other pages contradict it.",
+   "pages": [[1, 76], [1, 10], [1, 7], [1, 6]],
+   "fix": "Drop the second sentence from the owner drawer, or replace it with: <div class=\"note\"><b>Note:</b> p. 76 says the door must stay on during pilot ignition except for the first-time lighting; p. 10 says to check the glass gasket and latching before the fireplace is fired the first time, and pp. 6-7 say never to operate it with the glass removed.</div>"
+  },
+  {
+   "severity": "minor",
+   "where": "detail.light (Before you start, bullet 2) | detail.safety (Shutting it down)",
+   "guide_says": "The master switch, behind the lower grill, must be on. Otherwise the remote can't talk to the fireplace.",
+   "manual_says": "p. 76: \"Remote control will not communicate to receiver unless the Master Switch is ON.\" p. 71: \"When the master switch is in the off -condition, the main gas burners will not turn on. However, all other fireplace functions, including the Continuous Pilot Mode (CPI) , will operate.\" The guide shows only p. 76's version of what the emergency switch does; the writer listed the conflict only in review.notes.",
+   "pages": [[1, 71], [1, 76]],
+   "fix": "<div class=\"note\"><b>Note:</b> p. 76 says the remote won't communicate with the fireplace unless the master switch is on; p. 71 says that with the master switch off only the main burners are stopped, and all other functions, including the CPI pilot, keep working.</div> (in the light drawer, or in the safety drawer next to the master-switch shutdown)."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specFraming (first Maker's website note)",
+   "guide_says": "Maker's website: Minimum Fireplace Framing Requirements: Front Width 41\", Depth 20\", Height 38 1/8\". Install to the manual.",
+   "manual_says": "p. 19: \"MINIMUM FRAMING DIMENSIONS WIDTH = 41” HEIGHT = 38-1/8” DEPTH = 20”\" (same on pp. 14-17); the text prints no rear framing width. website.json has four rows: Front Width 41\", Rear Width 34 5/8\", Depth 20\", Height 38 1/8\". The note quotes the three rows that match the manual and leaves out the only one the manual's text doesn't print.",
+   "pages": [[1, 19]],
+   "fix": "Maker's website: Minimum Fireplace Framing Requirements: Front Width 41\", Rear Width 34 5/8\", Depth 20\", Height 38 1/8\". Install to the manual. Record the rear width in review.catalog_mismatches (shown: specFraming)."
+  },
+  {
+   "severity": "minor",
+   "where": "step8 drawer, item 9",
+   "guide_says": "Brush Inswool thinly over the front burner, ember bed and logs, only lightly over the middle and rear burners, with no large chunks.",
+   "manual_says": "p. 67: \"Brushed Inswool deposits should be a thin layer but enough to hide the front burner tube. Brush generously over front ember bed and all logs. Also brush lightly over center burner tube and rear burner tube.\"",
+   "pages": [[1, 67]],
+   "fix": "Brush Inswool over the front burner in a thin layer that still hides the tube, generously over the front ember bed and all logs, and only lightly over the middle and rear burners, with no large chunks."
+  }
+ ],
+ "verdict": "Yes: lighting, gas-smell, shutdown, gas pressures, venting, clearances and electrical content match the manual, and the 11 amber notes and the correction note are accurate. Once the TV-mantel combustible-clearance caveat is restored and the five minor items are fixed, it is safe to publish."
+}

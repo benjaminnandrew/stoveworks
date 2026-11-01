@@ -1,0 +1,610 @@
+{
+ "id": "town-country-tc54",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "TOWN & COUNTRY",
+  "brand_line": "TC54 · Direct vent decorative gas fireplace",
+  "kicker": "Direct vent decorative gas fireplace",
+  "title": "Town & Country TC54",
+  "model_line": "Model TC54D2 · Direct Vent · IPI / CPI electronic ignition",
+  "owner_noun": "fireplace",
+  "owner_card": "Light it, use the remote and app, decode a sound, clean the glass, check the warranty.",
+  "installer_card": "Specs, clearances, gas pressures, venting, the install sequence and flame-fault diagnosis.",
+  "certification": "ANSI Z21.50-2019 · CSA 2.22-2019 · CAN/CGA 2.17-M91",
+  "owner_search_hint": "lighting, remote, app, gas smell",
+  "manual_search_hint": "clearance, restrictor, pressure"
+ },
+ "home_primary": [
+  {
+   "id": "light",
+   "icon": "flame",
+   "title": "Light the fireplace",
+   "blurb": "Turn it on and off, and what to do if it won't light."
+  },
+  {
+   "id": "remote",
+   "icon": "remote",
+   "title": "Use the remote",
+   "blurb": "Flame height, light dimmer, pilot mode and key lock."
+  },
+  {
+   "id": "sounds",
+   "icon": "sound",
+   "title": "A sound or smell?",
+   "blurb": "First-fire odor, ticking steel and beeps: what's normal."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "How to clean it safely, and what to do if it cracks."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "app",
+   "icon": "phone",
+   "title": "Pair the remote & app",
+   "blurb": "Re-link the wall switch and remote, or add the TC Fire app."
+  },
+  {
+   "id": "power",
+   "icon": "battery",
+   "title": "Power & batteries",
+   "blurb": "Which batteries go where, low-battery signs, outages."
+  },
+  {
+   "id": "safety",
+   "icon": "safety",
+   "title": "Safety & gas smell",
+   "blurb": "Hot glass, the barrier screen, children, and a gas smell."
+  },
+  {
+   "id": "service",
+   "icon": "service",
+   "title": "Annual service",
+   "blurb": "What the yearly inspection covers and who should do it."
+  },
+  {
+   "id": "bulb",
+   "icon": "light",
+   "title": "Replace the light bulb",
+   "blurb": "Swap the firebox light without harming the new bulb."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "Lifetime parts coverage, two years comprehensive, exclusions."
+  }
+ ],
+ "specs": [
+  {
+   "id": "input",
+   "lab": "Input rate · BTU/hr",
+   "tap": "specInput",
+   "rows": [
+    [
+     "Natural gas",
+     "84,000 / 59,000"
+    ],
+    [
+     "Propane",
+     "84,000 / 66,000"
+    ]
+   ],
+   "note": "max / min"
+  },
+  {
+   "id": "inlet",
+   "lab": "Supply pressure · in. WC",
+   "tap": "specInlet",
+   "rows": [
+    [
+     "Natural gas",
+     "5.0\" – 13.9\""
+    ],
+    [
+     "Propane",
+     "12.5\" – 13.9\""
+    ]
+   ],
+   "note": "min – max"
+  },
+  {
+   "id": "manifold",
+   "lab": "Manifold pressure · in. WC",
+   "tap": "specManifold",
+   "rows": [
+    [
+     "Natural gas",
+     "1.6\" – 3.5\""
+    ],
+    [
+     "Propane",
+     "6.4\" – 10\""
+    ]
+   ],
+   "note": "min – max"
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances to combustibles",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Top, back, side standoffs",
+     "0 in."
+    ],
+    [
+     "Adjacent side wall",
+     "4 in."
+    ],
+    [
+     "Ceiling to appliance",
+     "24 in."
+    ],
+    [
+     "Vent pipe",
+     "1 3/4\""
+    ]
+   ]
+  },
+  {
+   "id": "hearth",
+   "lab": "Hearth & facing",
+   "tap": "specHearth",
+   "rows": [
+    [
+     "Hearth extension",
+     "2\" thick · 18\" deep"
+    ],
+    [
+     "Hearth height",
+     "1\" max above fireplace bottom"
+    ],
+    [
+     "Flush facing",
+     "1/2\" to 2 1/4\""
+    ],
+    [
+     "Backer board",
+     "18 3/4\" above · 5\" to sides"
+    ]
+   ]
+  },
+  {
+   "id": "vent",
+   "lab": "Roof (vertical) venting",
+   "tap": "specVent",
+   "rows": [
+    [
+     "Min. height · NG",
+     "10 feet"
+    ],
+    [
+     "Min. height · LP",
+     "20 feet"
+    ],
+    [
+     "Elbows",
+     "45° only · max 2"
+    ],
+    [
+     "Before 1st elbow",
+     "5' vertical min."
+    ]
+   ]
+  },
+  {
+   "id": "power",
+   "lab": "Wall venting (power vent)",
+   "tap": "specPower",
+   "rows": [
+    [
+     "Kit",
+     "SKU 22270007"
+    ],
+    [
+     "Pipe",
+     "TC 8x11"
+    ],
+    [
+     "Minimum",
+     "10' plus one 90 degree elbow"
+    ],
+    [
+     "Maximum",
+     "66 ft plus six 90 degree elbows"
+    ]
+   ]
+  },
+  {
+   "id": "elec",
+   "lab": "Electrical",
+   "tap": "specElec",
+   "rows": [
+    [
+     "Fireplace",
+     "110 volts, 60Hz, 0.25A"
+    ],
+    [
+     "Power vent kit",
+     "115 volts, 60Hz, 1.8A"
+    ],
+    [
+     "Wall switch cable",
+     "50 ft (supplied)"
+    ],
+    [
+     "Backup batteries",
+     "4 \"AA\" (wall switch)"
+    ]
+   ]
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Top standoffs & location",
+   "Install the top standoffs (shipped loose inside the fireplace) on top of the unit once it is on site and in position. Plan the vent path and gas piping, and keep the unit out of high-traffic areas and away from furniture and draperies.",
+   "<p>Common locations: an existing wall, a corner, a built-in wall or a wall projection (Figure 8). Hold the minimum clearances in Figure 2 and Figure 3 (p. 5).</p>\n<p>Manufactured (mobile) homes: allowed in some jurisdictions after the \"first sale\" where local codes approve; the fireplace must be fastened in place. In Massachusetts only a licensed Plumber and Gas Fitter may install this product.</p>"
+  ],
+  [
+   "Framing & non-combustible board",
+   "With the fireplace in place and venting installed, fit the supplied Steel Stud Framing Kit (required unless the unit is totally enclosed in non-combustible material). Sheet the front with cement board or equivalent extending 18 3/4\" above and 5\" to the sides of the framing edge bars.",
+   "<ul>\n<li>No combustible material, electrical wiring, insulation, plastic vapor barrier or gas plumbing within the steel stud framing.</li>\n<li>A full header above the metal framing kit is highly recommended. Sides, back and top may be framed with conventional lumber up to the steel studs and standoffs.</li>\n<li>Painting the wall above the unit: discard the framing kit and use full sheets of calcium silicate board (1/2\" thick) or equivalent with full-length metal studs. Pre-drill mounting holes so the board doesn't crack.</li>\n<li>Seal the chase at the ceiling or between floors. Insulate exterior chase walls like other exterior walls, but don't place the fireplace directly against insulation; cover it and the vapour barrier with a solid surface such as drywall.</li>\n</ul>\n<p>Minimum combustible framing dimensions are shown only as a drawing (Figure 13, p. 9); the kit parts list and frame assembly are on pp. 10–11.</p>"
+  ],
+  [
+   "Facing & hearth extension",
+   "The lintel is fixed, so position the fireplace itself so its front finishes flush with the facing (1/2\" to 2 1/4\" thick; the framing brackets allow 1 7/8\" of adjustment). Over a combustible sub floor, fit a 2\" thick non-combustible hearth extending 18\" in front, no more than 1\" above the bottom of the fireplace.",
+   "<p>The fireplace can finish flush or with a 4 1/2\" recess. To recess it further, move the facing away from the unit and window, top and sides, at a ratio of 1:1, up to a maximum 12\" deep (Figure 12, p. 9). Facing must not stop the door or screen from opening.</p>\n<p>The hearth runs the full width of the glass. Raise the fireplace on combustible or non-combustible material, fully supported along its full width and depth, so the hearth doesn't interfere with the safety screen. The fixed lintel and framing bracket range are on p. 12.</p>"
+  ],
+  [
+   "Electrical & wall switch",
+   "Connect 110 V. AC to the junction box behind the right-side firebox access panel, mount the wall switch, run the supplied 50 ft cable to the interface board and load the 4 supplied \"AA\" batteries. Set the NV / PV switch on the interface board to \"NV\", or \"PV\" with a power vent.",
+   "<p>The gas control system sits on the right-hand side of the firebox behind an access panel and the decorative firebox panel. A cable extension beyond the supplied 50 ft is not recommended. If not already installed, install the burner using the instructions supplied with the burner kit.</p>\n<h4>Home automation (optional)</h4>\n<p>Two cables: the top one from the wall switch to the fireplace, the bottom one from the wall switch to the automation system. Digital I/O must be on a dry contact relay; flame and light level take a 0 - 10 volt DC signal (Low = 1 volt, High = 10 volts). Leave the wall switch on the \"Remote\" setting. The control repeats a signal every 2 hours or until a new command is received.</p>"
+  ],
+  [
+   "Gas supply & pressure check",
+   "Bring the line to the 3/8\" N.P.T. valve inlet with a union or flare fitting (do not hard pipe) and a sediment trap no more than 6 feet from the valve, then leak-test every connection. Verify pressures with the fireplace lit on its highest setting, checking manifold pressure on both burners.",
+   "<p>Four test ports: the top two serve the rear burner, the bottom two the front burner. Turn off the gas before removing a test-port plug. The test procedure is in the Burner Installation Manual.</p>\n<div class=\"kv\">\n<div class=\"r\"><span>Supply min · NG / LP</span><span>5.0\" WC / 12.5\" WC</span></div>\n<div class=\"r\"><span>Supply max · NG / LP</span><span>13.9\" WC / 13.9\" WC</span></div>\n<div class=\"r\"><span>Manifold max · NG / LP</span><span>3.5\" WC / 10\" WC</span></div>\n<div class=\"r\"><span>Manifold min · NG / LP</span><span>1.6\" WC / 6.4\" WC</span></div>\n</div>\n<div class=\"note danger\">Reinstall the access panel and its gasket after installation, conversion or servicing. Leaving it off will cause overheating and premature failure of the control system.</div>"
+  ],
+  [
+   "Wall venting (power vent only)",
+   "Horizontal termination is allowed only with the approved High Capacity Power Vent Kit (SKU 22270007) on TC 8x11 Vent Pipe: minimum 10' plus one 90 degree elbow, maximum 66 ft plus six 90 degree elbows. Open the vent restrictor fully and set the NV / PV switch to \"PV\".",
+   "<p>Any combination of rise and run between those limits is allowed, including 3 ft below the unit (to the center of the vent pipe); support the pipe properly. Keep 1 3/4\" from the vent pipe to combustible surfaces. Painting the terminal with hi-temp paint is recommended.</p>\n<div class=\"note danger\">A vertically vented TC54 cannot be power-vented.</div>"
+  ],
+  [
+   "Roof venting",
+   "Use only the Roof Termination Kit 22270010 and the listed vent components: 45° elbows only (max 2), 5' of vertical before the first elbow, and at least 10 feet total height on natural gas or 20 feet on propane. Seal every outer joint with the supplied \"High Temperature\" aluminium tape and fit the insulated collar shield.",
+   "<ol>\n<li>Cut and frame a 14 1/2\" opening where the vent passes through a floor, ceiling or roof (larger as roof pitch increases; avoid cutting rafters).</li>\n<li>Push the ceiling firestop (22270011) through from below. Into an attic, leave its shield full length and add a storm collar on top; an Attic Insulation Shield (22270029) may be required.</li>\n<li>Run pipe from the collar on top of the fireplace up through the roof, screwed and taped, at least 12\" above the roof. Use a minimum of 1 support every 4'.</li>\n<li>Fit the roof support bracket (80001286) to the roof joists.</li>\n<li>After sealing, fit the insulated collar shield (80000445) flush with the top of the unit, bending its tabs over 180°.</li>\n<li>Fit the flashing, the storm collar (80000472) with a thick ring of mastic, and the vertical termination cap (80000574); caulk the screw heads and joint.</li>\n</ol>\n<p>The vent terminal must not be recessed. Minimum terminal heights by roof pitch are in the Roof Pitch Table on p. 24.</p>"
+  ],
+  [
+   "Vent restrictor",
+   "The restrictor on the underside of the firebox top leaves the factory wide open; set it from the rise-and-run chart for your vent height and horizontal length (loosen the screw, move it, re-tighten). It must be fully open when using the power vent.",
+   "<p>Positions in the chart (Figure 41, p. 25) come from lab tests, and the ideal position may vary slightly with the installation.</p>\n<ul>\n<li><b>Too closed:</b> flame excessively tall and lifting, lacks movement, soots.</li>\n<li><b>Too open:</b> flame height is low, with excessive movement.</li>\n</ul>"
+  ],
+  [
+   "Firebox panels & trim",
+   "A firebox panel set must be installed for safe operation, before the logs: remove the side panel retainer, fit the lower rear, right side, rear upper and left side panels, re-install the retainers, then the left and right front panels. Add the transition trim kit and the magnetic safety barrier screen.",
+   "<p>Panels are very fragile. The lower rear panel is held by two \"V\" brackets on the firebox rear wall (adjust by hand for a snug fit), and fibre panels may need trimming. Porcelain panels have their own instruction manual.</p>\n<p>Transition trim kit (SU #80002250): side pieces first (two small magnets each), the top piece over them (two larger magnets), then the meshed bottom piece on the floor between the outer-most door frame and the glass, with the Town &amp; Country badge on its right side. Attach the magnetic safety barrier screen to the outer-most door frame.</p>"
+  ],
+  [
+   "Link wall switch & remote",
+   "With the wall switch on \"Remote\", hold its Program button (straightened paper clip) for up to 10 seconds until it beeps 5 times; the fireplace answers with 3 beeps, then another 3. Then press Program once (3 beeps) and press the handset's on/off button within 60 sec.; 3 beeps confirm the link.",
+   "<p>If another nearby fireplace responds instead, repeat the first procedure to switch automatically to another of three available channels. The optional TC Fire app pairs over Bluetooth using the PIN on the sticker on the wall switch (owner's manual).</p>"
+  ]
+ ],
+ "faults": {
+  "label": "Flame, ignition & signal faults",
+  "panels": [
+   {
+    "title": "Restrictor too closed",
+    "items": [
+     "Flame excessively tall and lifting",
+     "Flame lacks movement",
+     "Flame soots"
+    ]
+   },
+   {
+    "title": "Restrictor too open",
+    "items": [
+     "Flame height is low",
+     "Flame has excessive movement"
+    ]
+   },
+   {
+    "title": "Burner won't light",
+    "items": [
+     "First lighting → allow time for air to escape the lines",
+     "Pilot may take up to 30 seconds after ON",
+     "No light → switch off, wait at least 5 minutes, retry; if you still smell gas, stop",
+     "Won't light or stay lit after several tries → off, cut power, call service"
+    ]
+   },
+   {
+    "title": "Remote & receiver",
+    "items": [
+     "IFC double-beeps on a command → IFC batteries low",
+     "Low-battery icon on the handset → replace its batteries",
+     "Another fireplace responds → re-pair to change channel",
+     "Handset depleted → turn off at the wall switch on/off"
+    ]
+   }
+  ]
+ },
+ "codes": [],
+ "detail": {
+  "light": {
+   "tag": "Owner · operation",
+   "title": "Lighting the fireplace",
+   "cool": false,
+   "html": "<p>Your fireplace has an ignition device that lights the pilot automatically. Don't try to light the pilot by hand.</p>\n<h4>Before you light it</h4>\n<p>Smell all around the fireplace for gas, including next to the floor. Some gas is heavier than air and settles low. If you smell gas, don't light it (see Safety &amp; gas smell).</p>\n<h4>To light</h4>\n<ol>\n<li>Push the On/Off switch to turn the fireplace on. The pilot may take up to 30 seconds to light each time.</li>\n<li>Once the burner lights, set the flame you want with the hand-held remote.</li>\n<li>If the burner doesn't light, switch it off and wait at least 5 minutes for any gas to clear. If you still smell gas, stop. If you don't, try again.</li>\n</ol>\n<div class=\"note\"><b>Lighting for the first time?</b> Allow time for air to escape from the gas lines.</div>\n<div class=\"note danger\"><b>Won't light or stay lit after several tries?</b> Switch it off, turn off all electric power to the fireplace, and call your service technician or gas supplier.</div>\n<h4>To turn it off</h4>\n<p>Push the On/Off switch to off. For service or an extended shutdown, also turn off all electric power and remove the backup batteries.</p>"
+  },
+  "remote": {
+   "tag": "Owner · operation",
+   "title": "Using the remote",
+   "cool": false,
+   "html": "<p>The Proflame 2 remote runs on 3 AAA batteries and works through the wall switch. A single beep from the fireplace confirms each command.</p>\n<ul>\n<li><b>On/Off key</b>: turns the fireplace on; press again to turn it off. When it's off, the screen shows only the room temperature.</li>\n<li><b>Up / Down arrows</b>: six flame levels. Down lowers the flame one step at a time until it's off. Up raises it, and if the flame is off while the fireplace is on, Up brings it back on high.</li>\n<li><b>Light</b>: press Mode until the light bulb icon shows, then use Up / Down to set the light through six levels.</li>\n<li><b>Pilot mode</b>: with the system off, press Mode to reach the CPI icon. Up selects continuous pilot (CPI); Down returns to intermittent pilot (IPI).</li>\n<li><b>Key lock</b>: press Mode and Up together to lock the keys against unsupervised use. Do it again to unlock.</li>\n</ul>\n<div class=\"note\"><b>Thermostat:</b> the thermostat function is disabled by default. The manual says it is not permissible in the USA, only in Canada.</div>\n<p>Remote batteries low or dead? Turn the fireplace off with the On/Off switch on the wall switch.</p>"
+  },
+  "sounds": {
+   "tag": "Owner · reassurance",
+   "title": "That sound or smell is probably normal",
+   "cool": false,
+   "html": "<h4>A smell the first few hours</h4>\n<p>The first time it's lit, the fireplace gives off a slight odor for a couple of hours. That's paints, sealants and lubricants from manufacturing curing in the heat. It's temporary. Open doors and windows to air the room, since the odor can bother some people.</p>\n<h4>Ticking and creaking</h4>\n<p>Steel fireplaces make some expansion and contraction noises as they start up and cool down, much like a furnace or an oven. That's normal.</p>\n<h4>A short wait before the flame</h4>\n<p>The pilot may take up to 30 seconds to light each time you turn the fireplace on.</p>\n<h4>Beeps</h4>\n<p>One beep from the fireplace means it received a command. A double beep each time it receives a command means its backup batteries are low.</p>\n<div class=\"note danger\"><b>A gas smell is different.</b> Don't light anything, don't touch electrical switches, and don't use a phone in the building. Call your gas supplier from a neighbor's phone, or the fire department if you can't reach them.</div>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>Clean the viewing glass whenever it needs it, using fireplace glass cleaner. The outside finish can be cleaned with mild soap and water.</p>\n<ul>\n<li>Never clean the glass while it's hot. Turn off the gas and power and give the fireplace ample time to cool.</li>\n<li>Don't use abrasive cleaners on the glass or on any other part of the fireplace.</li>\n<li>Don't strike or knock the glass in any way that could break it.</li>\n</ul>\n<div class=\"note danger\"><b>Hot glass will cause burns.</b> Don't touch it until it has cooled, and never let children touch it. Keep the barrier screen that came with the fireplace installed.</div>\n<h4>If the glass cracks or breaks</h4>\n<p>Don't use the fireplace until the glass is replaced. A licensed or qualified service person should replace it, using ceramic glass from your Town &amp; Country dealer and no other type. The size is 42\" x 36\" x 5mm.</p>"
+  },
+  "app": {
+   "tag": "Owner · operation",
+   "title": "Pairing the remote and the TC Fire app",
+   "cool": false,
+   "html": "<p>The remote talks to the fireplace through the wall switch, so there are two links to make, in order. You'll need a straightened paper clip to reach the Program button.</p>\n<h4>Step 1: wall switch to fireplace</h4>\n<ol>\n<li>Set the wall switch selector to \"Remote\".</li>\n<li>Press and hold the Program button for up to 10 seconds. The wall switch beeps 5 times; let go.</li>\n<li>The fireplace beeps 3 times, then 3 more. They're linked.</li>\n</ol>\n<h4>Step 2: remote to wall switch</h4>\n<ol>\n<li>Press and release the Program button once. The wall switch beeps 3 times.</li>\n<li>Within 60 seconds, press and release On/Off on the remote. The wall switch beeps 3 times and the remote is ready.</li>\n</ol>\n<div class=\"note\"><b>Another nearby fireplace turning on instead?</b> Repeat Step 1. It switches to another of three channels.</div>\n<h4>The TC Fire app (optional)</h4>\n<p>On a Bluetooth phone, download TC Fire from the Apple App Store or Google Play. Open Add/Edit Fireplace, press Add, enter the PIN from the sticker on the wall switch and a name, then press Save. The app turns the flame and light on and off and sets their levels.</p>"
+  },
+  "power": {
+   "tag": "Owner · operation",
+   "title": "Power & batteries",
+   "cool": false,
+   "html": "<p>The fireplace runs on house power, with a battery pack for backup.</p>\n<div class=\"kv\">\n<div class=\"r\"><span>Backup pack (in the wall switch)</span><span>4 \"AA\"</span></div>\n<div class=\"r\"><span>Remote</span><span>3 AAA</span></div>\n</div>\n<h4>In a power outage</h4>\n<p>The backup batteries are used only when house power is interrupted or lost, and only if the fireplace does not use a combustion fan. Ask your installer if yours does. Battery power is for temporary, short-term use.</p>\n<h4>Low-battery signs</h4>\n<ul>\n<li><b>Remote:</b> a low-battery icon appears on its screen before the batteries run out. It goes away once you replace them.</li>\n<li><b>Backup batteries:</b> the fireplace double-beeps when it receives a command. After you replace them, it beeps once.</li>\n</ul>\n<div class=\"note danger\"><b>Turn off the main gas supply to the fireplace</b> before removing or reinserting the batteries.</div>\n<p>For service or an extended shutdown, turn off all electric power and remove the backup batteries. Batteries are checked at the annual service.</p>"
+  },
+  "safety": {
+   "tag": "Owner · safety",
+   "title": "Safety around the fireplace",
+   "cool": false,
+   "html": "<ul>\n<li><b>Hot glass will cause burns.</b> Don't touch it until it has cooled, and never let children touch it.</li>\n<li>A barrier screen that reduces the risk of burns from the hot glass comes with the fireplace and must be installed to protect children and other at-risk people.</li>\n<li>Supervise young children in the same room. If there are at-risk people in the house, a physical barrier, such as an adjustable safety gate, is recommended.</li>\n<li>Keep clothing, furniture, draperies and anything flammable away. Don't store or use gasoline or other flammable vapors and liquids nearby.</li>\n<li>Put back any panel or door removed for service before using the fireplace.</li>\n<li>Use only your hand to push in or turn the gas control knob. Never use tools. If the knob won't push in or turn by hand, don't try to repair it. Call a qualified service technician. Force or attempted repair may result in a fire or explosion.</li>\n<li>Don't use it if any part has been under water. Call a qualified service technician right away to inspect the fireplace and to replace any part of the control system and any gas control that has been under water.</li>\n<li>Don't try to repair it yourself. Contact your dealer.</li>\n</ul>\n<h4>If you smell gas</h4>\n<ol>\n<li>Don't try to light any appliance.</li>\n<li>Don't touch any electrical switch, and don't use any phone in your building.</li>\n<li>Call your gas supplier right away from a neighbor's phone and follow their instructions.</li>\n<li>If you can't reach your gas supplier, call the fire department.</li>\n</ol>"
+  },
+  "service": {
+   "tag": "Owner · maintenance",
+   "title": "Annual service",
+   "cool": false,
+   "html": "<p>Have a qualified service person inspect the fireplace and its venting before use and at least once a year. More frequent cleaning may be needed if there's a lot of lint from carpeting or bedding.</p>\n<h4>What the yearly check covers</h4>\n<ul>\n<li>Removing the glass and checking the logs or other decorative media for soot. Heavy soot means the unit needs inspecting and adjusting for proper combustion.</li>\n<li>Cleaning the media, and brushing or vacuuming the burner, especially the burner ports.</li>\n<li>Checking the pilot for proper flame size and operation, and cleaning it.</li>\n<li>Making sure the vent pipe and vent terminal are open and free of blockage.</li>\n<li>Checking the glass gasket and replacing it if needed, so the glass stays sealed.</li>\n<li>Checking and replacing batteries as needed.</li>\n</ul>\n<div class=\"note\">Between visits, keep the area around the fireplace clear of combustible materials, gasoline and other flammable vapors and liquids.</div>"
+  },
+  "bulb": {
+   "tag": "Owner · maintenance",
+   "title": "Replacing the light bulb",
+   "cool": false,
+   "html": "<p>Turn off the gas and power and let the fireplace cool before you start.</p>\n<h4>Remove the old bulb</h4>\n<ol>\n<li>Remove the screw holding the light cover in the upper heat shield at the top of the firebox, then pull the light assembly down slightly.</li>\n<li>Slip a small flat screwdriver between the glass lens and the light box, and twist carefully to pop the lens open.</li>\n<li>Pull the old bulb away from the plug end, wiggling it gently.</li>\n</ol>\n<h4>Fit the new bulb</h4>\n<ol>\n<li>Hold the new bulb with a paper towel or cloth. Oils from your skin can make it fail early. If you touch it by accident, clean it with alcohol before use.</li>\n<li>Push it into the plug end, wiggling it gently.</li>\n<li>Push the glass lens up to close it.</li>\n<li>Seat the light assembly back in its compartment and secure it with the same screw.</li>\n</ol>\n<p>The replacement is the halogen light bulb, part 80002650.</p>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "Warranty at a glance",
+   "cool": false,
+   "html": "<p>Town &amp; Country's Limited Lifetime Warranty covers the original registered purchaser.</p>\n<div class=\"kv\">\n<div class=\"r\"><span>Glass (thermal breakage only)</span><span>Limited lifetime, parts only</span></div>\n<div class=\"r\"><span>Combustion chamber</span><span>Limited lifetime, parts only</span></div>\n<div class=\"r\"><span>Burner tube assembly</span><span>Limited lifetime, parts only</span></div>\n<div class=\"r\"><span>Porcelain finishes</span><span>Limited lifetime, parts only</span></div>\n<div class=\"r\"><span>Any defective part</span><span>2 years from purchase, parts and labor</span></div>\n</div>\n<h4>Conditions</h4>\n<ul>\n<li>A qualified technician must install it following the manual and local and national requirements, with a sediment trap within 6 feet of the gas valve.</li>\n<li>Porcelain is warranted for gloss retention. Some colors darken when hot and return to their shade when cool.</li>\n</ul>\n<h4>Not covered</h4>\n<ul>\n<li>Misuse, abuse, improper installation, accident or lack of maintenance.</li>\n<li>Mantels, surrounds or finishing material around the fireplace.</li>\n<li>Installation, operating or environmental conditions beyond Town &amp; Country's control.</li>\n</ul>\n<div class=\"note\">Any installation or operation that departs from the manual voids the warranty. This is a summary; the full terms are in the manual.</div>"
+  },
+  "specInput": {
+   "tag": "Installer · spec",
+   "title": "Input rates & rating",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>NG max / min</span><span>84,000 / 59,000 BTU/hr</span></div>\n<div class=\"r\"><span>LP max / min</span><span>84,000 / 66,000 BTU/hr</span></div>\n<div class=\"r\"><span>Efficiency (P.4.1-15)</span><span>38.5%</span></div>\n<div class=\"r\"><span>Altitude</span><span>0 - 4500 ft. (0 - 1372 m)</span></div>\n</div>\n<p>From the rating label, on a plate in a slot between the left-hand lintel and the left-hand door frame (attached to the lintel by a cable). It is a decorative product, not intended to be used as a heating appliance. The warranty makes the installer responsible for confirming the appliance fires as per the rating plate.</p>\n<p>The appliance is for the gas type on the rating plate only, unless a certified conversion kit is used; this manual does not detail the kit.</p>"
+  },
+  "specInlet": {
+   "tag": "Installer · spec",
+   "title": "Supply pressure & gas connection",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Natural gas min / max</span><span>5.0\" WC / 13.9\" WC</span></div>\n<div class=\"r\"><span>Propane min / max</span><span>12.5\" WC / 13.9\" WC</span></div>\n<div class=\"r\"><span>Valve inlet</span><span>3/8\" N.P.T.</span></div>\n<div class=\"r\"><span>Sediment trap</span><span>no more than 6 feet from the valve</span></div>\n</div>\n<p>Minimums are for the purpose of input adjustment. Verify with the fireplace lit and on the highest setting; turn off the gas before removing a test-port plug. Gas line access holes are at the top and left sides of the control box. Do not hard pipe the line to the valve; provide a union or flare fitting.</p>\n<p>Disconnect the appliance and its shut-off valve during supply-system pressure tests above 1/2 psig (3.5 kPa); isolate it by closing its manual shut-off valve at 1/2 psig or less.</p>"
+  },
+  "specManifold": {
+   "tag": "Installer · spec",
+   "title": "Manifold pressure",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Natural gas max / min</span><span>3.5\" WC / 1.6\" WC</span></div>\n<div class=\"r\"><span>Propane max / min</span><span>10\" WC / 6.4\" WC</span></div>\n</div>\n<p>There are four test ports: the top two are connected to the rear burner, the bottom two to the front burner. Check manifold pressure on both burners, with the fireplace lit on its highest setting. The test procedure is in the Burner Installation Manual.</p>\n<p>The rating label (p. 38) gives the maximums as 3.5 in/wc (NG) and 10.0 in/wc (LP).</p>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances to combustibles",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Side, back and top standoffs</span><span>0 in. (0 mm)</span></div>\n<div class=\"r\"><span>Bottom of appliance</span><span>0 in. (0 mm)</span></div>\n<div class=\"r\"><span>Adjacent side wall</span><span>4 in. (102 mm)</span></div>\n<div class=\"r\"><span>Ceiling to appliance</span><span>24 in. (610 mm)</span></div>\n<div class=\"r\"><span>Mantel support</span><span>4 in. (102 mm)</span></div>\n<div class=\"r\"><span>Vertical vent pipe</span><span>1 3/4\" (45 mm)</span></div>\n<div class=\"r\"><span>Horizontal vent pipe (top, sides, bottom)</span><span>1 3/4\" (45 mm)</span></div>\n</div>\n<p>Mantel clearance and maximum mantel depth come from the lettered mantel clearance chart in Figure 2 on this page, measured from the top of the lintel bar; read the pairs from the drawing. No combustible material, electrical wiring or gas plumbing in the non-combustible zone shown there. The top standoffs ship loose and must be installed.</p>\n<div class=\"note\"><b>Note:</b> the rating label (p. 38) gives mantel to appliance as 9 in. (229 mm) and maximum mantel extension as 12 in. (305 mm), with a footnote referring to the installation manual for more detail; the mantel clearance chart on p. 5 lists mantel clearances of 17\", 15\" and 12\" (A–C) for mantel depths of 12\", 6\" and 1\" (D–F).</div>"
+  },
+  "specHearth": {
+   "tag": "Installer · spec",
+   "title": "Hearth extension & facing",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Hearth extension</span><span>2\" thick min., non-combustible</span></div>\n<div class=\"r\"><span>Hearth depth</span><span>18\" in front, full width of the glass</span></div>\n<div class=\"r\"><span>Hearth height</span><span>no more than 1\" above the bottom of the fireplace</span></div>\n<div class=\"r\"><span>Facing thickness (flush)</span><span>1/2\" to 2 1/4\"</span></div>\n<div class=\"r\"><span>Recess</span><span>4 1/2\" (deeper at 1:1, up to 12\")</span></div>\n<div class=\"r\"><span>Backer board</span><span>18 3/4\" above, 5\" to the sides of the framing edge bars</span></div>\n<div class=\"r\"><span>Framing bracket range</span><span>1 7/8\"</span></div>\n</div>\n<p>The hearth extension is required if a combustible sub floor extends in front of the fireplace. Raise the fireplace (combustible or non-combustible materials, fully supported along its full width and depth) so the hearth doesn't interfere with the safety screen.</p>\n<p>The lintel is fixed; the fireplace itself is moved so the lintel face sets its final position. Facing must not interfere with the door or screen opening. Masonry-type non-combustible material may stand up to 4 1/2 inches proud of the appliance above and to the sides.</p>"
+  },
+  "specVent": {
+   "tag": "Installer · spec",
+   "title": "Roof (vertical) venting",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Min. total vent height · natural gas</span><span>10 feet</span></div>\n<div class=\"r\"><span>Min. total vent height · propane</span><span>20 feet</span></div>\n<div class=\"r\"><span>Elbows</span><span>45º only, maximum 2</span></div>\n<div class=\"r\"><span>Vertical before 1st elbow</span><span>5' minimum</span></div>\n<div class=\"r\"><span>Combustibles to vent pipe</span><span>1 3/4 inches</span></div>\n<div class=\"r\"><span>Supports</span><span>minimum 1 every 4'</span></div>\n<div class=\"r\"><span>Above the roof</span><span>at least 12\" (more on steeper pitches)</span></div>\n<div class=\"r\"><span>Floor / ceiling / roof opening</span><span>14 1/2\"</span></div>\n</div>\n<p>Use only the Roof Termination Kit 22270010 with the listed components: 12\", 18\", 24\" and 48\" pipe (22220006, 22220007, 22220008, 22220010), 12\" adjustable (22220005), 45° elbow (22220009), wall/offset support (22220012), wall shield / ceiling firestop (22270011), and adjustable, flat or steep flashing (22220002, 22220003, 22220004) or any that fits 11\" pipe.</p>\n<p>Allowed rise and offset combinations are in the vertical venting chart (Figure 34), which is marked 48' MAX. and 4' MAX.; keep the vent as short as possible. Join every component tightly, screw it and seal outer joints with the supplied high-temperature aluminium tape. The terminal must not be recessed; minimum heights by roof pitch are in the table on p. 24.</p>\n<div class=\"note danger\">A vertically vented TC54 cannot be power-vented.</div>"
+  },
+  "specPower": {
+   "tag": "Installer · spec",
+   "title": "Wall (horizontal) power venting",
+   "cool": true,
+   "html": "<p>The unit can be vented horizontally (wall termination) only with the approved High Capacity Power Vent Kit (SKU 22270007) using TC 8x11 Vent Pipe.</p>\n<div class=\"kv\">\n<div class=\"r\"><span>Minimum venting</span><span>10' plus one 90 degree elbow</span></div>\n<div class=\"r\"><span>Maximum vent length</span><span>66 ft plus six 90 degree elbows</span></div>\n<div class=\"r\"><span>Below the unit</span><span>maximum 3' to center of vent pipe</span></div>\n<div class=\"r\"><span>Combustibles to vent pipe</span><span>1 3/4\" minimum</span></div>\n</div>\n<p>The manual words the maximum as \"66 ft plus six 90 degree elbows or combination of other elbows equaling 90 degrees.\" Any combination of rise and run between the minimum and maximum is allowed; support the pipe properly. Set the NV / PV switch to \"PV\" and keep the vent restrictor fully open. Painting the terminal with hi-temp paint is recommended.</p>\n<p>The kit goes by two numbers: p. 18 gives its SKU, 22270007, and the rating label (p. 38) lists it among the optional components as Powervent Kit TCVT.PVAX21.</p>"
+  },
+  "specElec": {
+   "tag": "Installer · spec",
+   "title": "Electrical & controls",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Fireplace</span><span>110 volts, 60Hz, 0.25A</span></div>\n<div class=\"r\"><span>Optional power vent kit</span><span>115 volts, 60Hz, 1.8A</span></div>\n<div class=\"r\"><span>Wall switch cable</span><span>50 ft, supplied</span></div>\n<div class=\"r\"><span>Wall switch backup batteries</span><span>4 \"AA\", supplied</span></div>\n</div>\n<p>Connect the 110 V. AC supply to the wires in the junction box behind the right-side firebox access panel. A communication cable extension beyond the supplied 50 ft is not recommended. The NV / PV switch on the interface board is \"NV\" without a power vent and \"PV\" with one.</p>\n<p>Home automation: dry contact relay for flame and light on/off; 0 - 10 volt DC analog input for flame and light level (Low = 1 volt, High = 10 volts). Leave the wall switch on \"Remote\".</p>\n<div class=\"note\"><b>Note:</b> p. 14 rates the optional power vent kit at 115 volts, 60Hz, 1.8A; the rating label on p. 38 lists the optional Powervent Kit with a blower electrical rating of 115v, 60hz, 1.1 A.</div>"
+  }
+ },
+ "pageref": {
+  "light": [
+   2,
+   4
+  ],
+  "remote": [
+   2,
+   8
+  ],
+  "sounds": [
+   2,
+   5
+  ],
+  "glass": [
+   2,
+   17
+  ],
+  "app": [
+   2,
+   11
+  ],
+  "power": [
+   2,
+   7
+  ],
+  "safety": [
+   2,
+   3
+  ],
+  "service": [
+   2,
+   17
+  ],
+  "bulb": [
+   2,
+   18
+  ],
+  "warranty": [
+   2,
+   20
+  ],
+  "specInput": 38,
+  "specInlet": 17,
+  "specManifold": 17,
+  "specClear": 5,
+  "specHearth": 13,
+  "specVent": 20,
+  "specPower": 18,
+  "specElec": 14,
+  "step0": 7,
+  "step1": 8,
+  "step2": 13,
+  "step3": 14,
+  "step4": 17,
+  "step5": 18,
+  "step6": 19,
+  "step7": 25,
+  "step8": 28,
+  "step9": 32
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "safety",
+   "t": "gas smell",
+   "p": "What to do if you smell gas"
+  },
+  {
+   "k": "h",
+   "id": "light",
+   "t": "won't light",
+   "p": "Burner doesn't light or stay lit"
+  },
+  {
+   "k": "h",
+   "id": "remote",
+   "t": "thermostat",
+   "p": "Disabled by default; not permissible in the USA"
+  },
+  {
+   "k": "h",
+   "id": "remote",
+   "t": "pilot mode",
+   "p": "Choose IPI or CPI from the remote"
+  },
+  {
+   "k": "h",
+   "id": "app",
+   "t": "bluetooth",
+   "p": "TC Fire app on iOS or Android"
+  },
+  {
+   "k": "h",
+   "id": "power",
+   "t": "power outage",
+   "p": "When the backup batteries take over"
+  },
+  {
+   "k": "i",
+   "id": "specVent",
+   "t": "elbows",
+   "p": "45° only, maximum 2 on roof venting"
+  },
+  {
+   "k": "i",
+   "id": "specElec",
+   "t": "home automation",
+   "p": "Dry contact relay and 0 - 10 volt control"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "specClear",
+    "class": "substantive",
+    "issue": "Mantel clearance: rating label gives mantel to appliance 9 in. (229 mm) and maximum mantel extension 12 in. (305 mm); the mantel clearance chart (Fig. 2) lists clearances of 17\", 15\", 12\" (A-C) for mantel depths of 12\", 6\", 1\" (D-F), measured from the top of the lintel bar. No 9\" value in the chart.",
+    "pages": [
+     [
+      1,
+      5
+     ],
+     [
+      1,
+      38
+     ]
+    ]
+   },
+   {
+    "where": "specElec",
+    "class": "substantive",
+    "issue": "Power vent electrical rating: p. 14 says the optional power vent kit is rated 115 volts, 60Hz, 1.8A; the rating label lists the Powervent Kit as the optional component and gives a blower electrical rating of 115v, 60hz, 1.1 A.",
+    "pages": [
+     [
+      1,
+      14
+     ],
+     [
+      1,
+      38
+     ]
+    ]
+   },
+   {
+    "where": "specPower",
+    "class": "not_a_conflict",
+    "reason": "Two numbering systems, not a disagreement: p. 18 gives the High Capacity Power Vent Kit's SKU, 22270007; the rating label lists the optional Powervent Kit by its label code, TCVT.PVAX21. The guide shows both and says what each is.",
+    "issue": "Power vent kit identifier: p. 18 names the High Capacity Power Vent Kit SKU 22270007; the rating label lists the optional Powervent Kit as TCVT.PVAX21. May be two codes for one kit, but the manual doesn't say so.",
+    "pages": [
+     [
+      1,
+      18
+     ],
+     [
+      1,
+      38
+     ]
+    ]
+   }
+  ],
+  "catalog_mismatches": [],
+  "notes": "Ignition: Proflame 2 IFC, automatic pilot ignition, IPI/CPI selectable from the remote (owner p. 10); no hand-lighting procedure. Neither manual has a troubleshooting chart or LED code table, so codes are empty and fault panels come from the vent restrictor flame descriptions (install p. 25), the owner's lighting instructions (owner p. 4) and the remote/IFC beep and channel notes (owner pp. 10-11). Burner, logs, gas pressure test procedure and fuel conversion are in separate burner/conversion documents not supplied; left out. Drawings not transcribed: fireplace dimensions (Fig. 1, p. 5), mantel clearance/depth pairings (Fig. 2), minimum combustible framing (Fig. 13, p. 9), framing kit dimensions (Fig. 9), power vent dimensions (Fig. 32), vent terminal clearances to adjacent structures (Fig. 40, p. 24), restrictor positions (Fig. 41) and the vertical venting chart (Fig. 34, p. 20; only its 48' MAX. / 4' MAX. labels are quoted). Junction box wire colours (Fig. 22) are garbled in the text and were left out. Fig. 20 (p. 13) labels the hearth '18\" wide minimum' while the text on pp. 5 and 13 says 18\" deep / in front across the full width of the glass; the guide follows the text. p. 21 points to the Figure 35 table for vent height above the roof, but the pitch-height table is on p. 24 (Roof Pitch Table). Glass size 42\" x 36\" x 5mm appears only in the owner's manual (p. 17) and is quoted as printed. Catalog view_area (2034 sq in) can't be checked: the manual gives no viewing area. Catalog input rates, 38.5% efficiency (P.4.1-15) and IPI/CPI ignition match the rating label. The owner's manual says the thermostat function is disabled by default and not permissible in the USA (owner p. 6); the guide says so and does not describe the Smart/Room thermostat. Battery backup works only if the fireplace does not use a combustion fan (owner p. 7); the owner text tells owners to ask the installer rather than equating this to the power vent. Owner's manual cover says TC54D Version 2 / Series D; install manual says TC54D2 / Series D2. The lighting label (owner p. 4, item C) carries a line about pushing in or turning the gas control knob by hand only, never with tools, and not repairing a knob that won't move (force or attempted repair may result in a fire or explosion); the lighting steps use the On/Off switch and the remote and the manual describes no knob procedure, so the guide gives that line in the Safety drawer as printed and adds no knob steps of its own. The Safety drawer's under-water warning follows the manual's full wording (install p. 3, owner pp. 3-4), including replacing any part of the control system and any gas control that has been under water."
+ }
+}

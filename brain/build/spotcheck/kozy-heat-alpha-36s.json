@@ -1,0 +1,106 @@
+{
+ "id": "kozy-heat-alpha-36s",
+ "checked_pagerefs": 28,
+ "notes_checked": {
+  "amber": 2,
+  "correction": 0,
+  "website": 1
+ },
+ "findings": [
+  {
+   "severity": "minor",
+   "where": "detail.light (\"Still won't run?\" note: turning off the gas)",
+   "guide_says": "Turn off the gas (remote OFF, then the manual valve clockwise to OFF) and call your service technician or gas supplier.",
+   "manual_says": "p. 45, To Turn Off Gas To Appliance: \"1. Press the wireless remote OFF button. 2. Turn off all electric power to the appliance if service is to be performed. 3. Locate the manual valve installed by your qualified service technician. 4. Turn the manual valve clockwise to OFF position.\" Step 11 of the operating instructions sends the reader to this block before calling the service technician, so step 2 applies.",
+   "pages": [
+    [
+     1,
+     45
+    ]
+   ],
+   "fix": "\"Turn off the gas: press OFF on the remote, turn off all electric power to the fireplace if it is going to be serviced, then turn the manual valve clockwise to OFF. Call your service technician or gas supplier.\""
+  },
+  {
+   "severity": "minor",
+   "where": "detail.light (Full lighting instructions, step 3)",
+   "guide_says": "Turn the manual gas valve clockwise to OFF. Use only your hand, never tools.",
+   "manual_says": "p. 45, safety item C: \"Use only your hand to turn the gas control manual valve. Never use tools. If the valve will not turn by hand, do not try to repair it; call a qualified service technician. Force or attempted repair may result in a fire or explosion.\" The guide keeps the first half and drops the rest of the warning.",
+   "pages": [
+    [
+     1,
+     45
+    ]
+   ],
+   "fix": "Add: \"If the valve won't turn by hand, don't force it or try to repair it. Call a qualified service technician: force or attempted repair can cause a fire or explosion.\""
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specInlet (inlet pressure test procedure)",
+   "guide_says": "Light pilot and burner and confirm the reading is between minimum and maximum. Retighten the tap snug, then relight and confirm the manometer reads no pressure.",
+   "manual_says": "p. 51, 11.1.1: \"3. Light pilot and burner. Check pressure to ensure it is between the minimum and maximum recommended pressure settings. 4. Turn off burner and pilot. 5. Disconnect hose and tighten the inlet (IN) pressure tap by turning screw clockwise. Screw should be snug. Do not over tighten. 6. Relight pilot and burner. Then reattach manometer to the inlet pressure tap (A) to verify the tap is completely sealed. Manometer should read no pressure.\" The guide skips step 4 (burner and pilot off before the hose comes off the open tap) and \"Do not over tighten\". The manifold drawer keeps the equivalent steps.",
+   "pages": [
+    [
+     1,
+     51
+    ]
+   ],
+   "fix": "\"Loosen the IN tap (A) and attach the manometer on a 1/4 in (6mm) I.D. hose ... Light pilot and burner and confirm the reading is between minimum and maximum. Turn off burner and pilot, disconnect the hose and retighten the tap snug without over-tightening. Relight pilot and burner, reattach the manometer and confirm it reads no pressure.\""
+  },
+  {
+   "severity": "minor",
+   "where": "step9 (amber Note on venturi direction)",
+   "guide_says": "Note: on the venturi direction for blue, lifting flames, p. 52 says opening the air shutter causes a short, blue flame that may lift off the burner (Table 11.4: close slightly), but the manual's troubleshooting chart on p. 55 says to open the air shutter slightly when the flame burns blue and lifts off the burner.",
+   "manual_says": "p. 52: \"Opening the air shutter will cause a short, blue flame that may lift off the burner.\" Table 11.4 (p. 52) has two separate rows: \"Short, blue flames | Venturi open too far | Close setting slightly\" and \"Lifting (ghosting) flames | Gas pressure too high / Venturi closed too far | Check manometer settings / Open venturi setting slightly\". p. 55: \"Flame burns blue and lifts off burner | Improper venturi setting | Venturi air shutter may need to be opened slightly to allow more air into the gas mix.\" The disagreement is real, but \"(Table 11.4: close slightly)\" quotes only the blue row. That makes the table look as if it sides with closing, when its lifting row says to open, as p. 55 does.",
+   "pages": [
+    [
+     1,
+     52
+    ],
+    [
+     1,
+     55
+    ]
+   ],
+   "fix": "\"Note: on the venturi direction for blue, lifting flames, p. 52 says opening the air shutter causes a short, blue flame that may lift off the burner, and its Table 11.4 says to close the venturi slightly for short, blue flames but to open it slightly for lifting (ghosting) flames; the troubleshooting chart on p. 55 says to open the air shutter slightly when the flame burns blue and lifts off the burner.\""
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specVent (vent size; silent pick of a metric misprint)",
+   "guide_says": "5\" (127mm) exhaust by 8\" (203mm) air intake co-axial vent. Approved: Kozy Heat #800 Series flexible direct vent ... (no note)",
+   "manual_says": "p. 30: \"This appliance is equipped for use with a 5” (127mm) exhaust by 8” (203mm) air intake co-axial vent pipe system.\" Same page: \"This appliance is approved for use with Kozy Heat 5” (127mm) x 8” (177mm) #800 Series Flexible Direct Vent System (horizontal terminations only).\" Elsewhere the manual gives 8\" as 203mm (pp. 14, 21). The writer recorded this only in review.notes. It isn't in review.conflicts, and the drawer has no note.",
+   "pages": [
+    [
+     1,
+     30
+    ],
+    [
+     1,
+     14
+    ],
+    [
+     1,
+     21
+    ]
+   ],
+   "fix": "Keep 8\" (203mm) and add <div class=\"note small\">For the #800 Series the manual also prints 8\" as 177mm (p. 30); the same page gives 8\" (203mm).</div>, then record it in review.conflicts with \"class\": \"clerical\" and \"corrected_to\": \"8\\\" (203mm)\"."
+  },
+  {
+   "severity": "minor",
+   "where": "specs.inlet note and detail.specInlet (propane 'recommended' on Table 5.1)",
+   "guide_says": "Card note: \"min – max · 7\" WC recommended for natural gas\". Drawer: \"Propane min / max 12\" WC (2.99 kPa) / 13\" WC (3.24 kPa)\", with no recommended figure for propane.",
+   "manual_says": "p. 27, Table 5.1 (extracted text, garbled at this spot): \"Natural Gas 5” WC (1.25 kPa) 10.5” WC (2.62 kPa) / 7” WC (1.74 kPa ) / recommended / Propane 12” WC (2.99 kPa) 13” WC (3.24 kPa) / recommended\". The propane row carries the word \"recommended\", but the text doesn't show which value it labels or whether a separate figure is printed. Not decoded here; check against the page image. The propane min–max themselves are confirmed by Table 11.1, p. 51: \"12” - 13” WC (2.99 - 3.24 kPa)\".",
+   "pages": [
+    [
+     1,
+     27
+    ],
+    [
+     1,
+     51
+    ]
+   ],
+   "fix": "Check p. 27 against the page image. If the propane row marks or prints a recommended inlet pressure, show it as printed beside the propane min/max (card note and drawer). If it doesn't, no change."
+  }
+ ],
+ "verdict": "Yes: no critical or major errors. Clearances, venting limits, gas and manifold pressures, electrical ratings, input rates, the IPI/CPI lighting steps and the gas-smell steps all match the manual, and all 28 page links are correct. It is safe to publish once the six minor wording and note fixes are made (p. 27 to be checked against the page image)."
+}

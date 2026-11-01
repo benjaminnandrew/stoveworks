@@ -1,0 +1,593 @@
+{
+ "id": "morso-1440-b",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "MORSØ",
+  "brand_line": "1440 B · Cast-iron wood stove",
+  "kicker": "Wood stove",
+  "title": "Morsø 1440 B",
+  "model_line": "Model Morsø 1440B · 6\" flue, top or rear outlet · Wood only",
+  "owner_noun": "stove",
+  "owner_card": "Light a fire, reload and set the air, choose dry wood, clean the glass, empty the ash, care for the chimney.",
+  "installer_card": "Output, fuel, chimney and connector, clearances, floor protection, flue temperature, the install sequence and draft / over-firing faults.",
+  "certification": "UL-1482-2011 (R2015) · ULC-S627-00",
+  "owner_search_hint": "lighting, air control, ash, creosote",
+  "manual_search_hint": "clearance, floor protection, connector"
+ },
+ "home_primary": [
+  {
+   "id": "light",
+   "icon": "flame",
+   "title": "Light a fire",
+   "blurb": "From a cold stove to a good ember bed, plus your very first fire."
+  },
+  {
+   "id": "reload",
+   "icon": "logs",
+   "title": "Reload and set the air",
+   "blurb": "How much wood, when to add it, and how the air control works."
+  },
+  {
+   "id": "wood",
+   "icon": "tree",
+   "title": "Choose dry wood",
+   "blurb": "Log size, moisture and seasoning, and what never to burn."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "Why it gets sooty and how to clean it without damage."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "overfire",
+   "icon": "thermometer",
+   "title": "Too hot? Over-firing",
+   "blurb": "The warning signs and the flue temperature to stay under."
+  },
+  {
+   "id": "safety",
+   "icon": "safety",
+   "title": "Safety around the stove",
+   "blurb": "Hot surfaces, the door, furniture distance and detectors."
+  },
+  {
+   "id": "ash",
+   "icon": "ash",
+   "title": "Empty the ash",
+   "blurb": "Riddle the grate, empty the pan and store ashes safely."
+  },
+  {
+   "id": "chimney",
+   "icon": "chimney",
+   "title": "Chimney and creosote",
+   "blurb": "How often to check and sweep, and what to do in a chimney fire."
+  },
+  {
+   "id": "care",
+   "icon": "service",
+   "title": "Yearly care and summer",
+   "blurb": "Pre-season checks, the door gasket, hinges and storing it unused."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Guarantee",
+   "blurb": "Morsø's 10-year cover and the parts it doesn't include."
+  }
+ ],
+ "specs": [
+  {
+   "id": "output",
+   "lab": "Heat output · Btu/hr",
+   "tap": "specOutput",
+   "rows": [
+    [
+     "Range (test conditions)",
+     "12,115 – 24,733"
+    ],
+    [
+     "Efficiency (HHV)",
+     "73.5%"
+    ],
+    [
+     "EPA",
+     "2020 limits"
+    ]
+   ]
+  },
+  {
+   "id": "fuel",
+   "lab": "Fuel",
+   "tap": "specFuel",
+   "rows": [
+    [
+     "Fuel",
+     "Wood only"
+    ],
+    [
+     "Max log length",
+     "10\" (25 cm)"
+    ],
+    [
+     "Moisture",
+     "max 20%"
+    ]
+   ]
+  },
+  {
+   "id": "flue",
+   "lab": "Chimney",
+   "tap": "specFlue",
+   "rows": [
+    [
+     "Flue size",
+     "6\" min."
+    ],
+    [
+     "Type",
+     "Masonry + liner, or listed HT"
+    ],
+    [
+     "Recommended height",
+     "16 ft (not required)"
+    ]
+   ]
+  },
+  {
+   "id": "connector",
+   "lab": "Chimney connector",
+   "tap": "specConnector",
+   "rows": [
+    [
+     "Diameter",
+     "6\" (150mm)"
+    ],
+    [
+     "Single wall",
+     "24 gauge or heavier"
+    ],
+    [
+     "Horizontal run",
+     "3 ft (1 m) rec. max"
+    ],
+    [
+     "Total length",
+     "8 ft (2.5 m) max"
+    ]
+   ]
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances · USA",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Sidewall to unit",
+     "8\""
+    ],
+    [
+     "Backwall to unit",
+     "10\" SW · 6\" DW"
+    ],
+    [
+     "Cornerwall to unit",
+     "7\""
+    ],
+    [
+     "SW connector: side / back / corner",
+     "13.5\" / 12\" / 13\""
+    ]
+   ],
+   "note": "SW = single-wall, DW = double-wall connector"
+  },
+  {
+   "id": "alcove",
+   "lab": "Alcove · USA",
+   "tap": "specAlcove",
+   "rows": [
+    [
+     "Min. width",
+     "32\""
+    ],
+    [
+     "Max. depth",
+     "24\""
+    ],
+    [
+     "Ceiling above stove top",
+     "36\""
+    ]
+   ]
+  },
+  {
+   "id": "floor",
+   "lab": "Floor protection",
+   "tap": "specFloor",
+   "rows": [
+    [
+     "Front",
+     "16\" US · 450 mm CA"
+    ],
+    [
+     "Sides",
+     "6\" US · 200 mm CA"
+    ],
+    [
+     "Back",
+     "– US · 200 mm CA"
+    ]
+   ]
+  },
+  {
+   "id": "fluetemp",
+   "lab": "Flue temperature",
+   "tap": "specFlueTemp",
+   "rows": [
+    [
+     "Normal (average)",
+     "approx. 300° C (550°F)"
+    ],
+    [
+     "Maximum",
+     "450° C (750°F)"
+    ],
+    [
+     "Measured",
+     "20 cm above the stove"
+    ]
+   ]
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Codes, permits and location",
+   "Install to CAN/CSA-B365 and local code, with approval from local building officials. Not in any fireplace, not to an air distribution duct, not in a mobile home.",
+   "<p>The installation must conform to CAN/CSA-B365, Installation Code for Solid-Fuel-Burning Appliances and Equipment. Local building officials have the final authority; discuss the installation with them before beginning.</p><ul><li>Do not install in any fireplace.</li><li>Do not connect to any air distribution duct or system.</li><li>Do not install in a transportable building / mobile home (p. 10).</li></ul><p>The data plate on the back of the stove gives safety testing information, the name of the certified testing laboratory and installation requirements.</p>"
+  ],
+  [
+   "Unpack and check loose parts",
+   "Check that the center grate and fire bricks haven't shifted in transit and the air control works freely. Poker, ceramic flue connection gasket and riddling tool are usually in the ashpan or firebox.",
+   "<p>After unpacking, check that the center grate and fire bricks are firmly in position and haven't shifted in transit, and that the air control works freely. The poker, ceramic flue connection gasket and riddling tool are standard accessories, usually in the ashpan or firebox area.</p><div class=\"note\"><b>Note:</b> p. 5 says a chimney connector is included with the heater; p. 4 lists the standard accessories as the poker, ceramic flue connection gasket and riddling tool, and p. 6 mentions only an enclosed 6 inch adapter and says which connector to use.</div>"
+  ],
+  [
+   "Chimney",
+   "Code-approved masonry with flue liner or listed type HT factory-built (UL-103-1985 / ULC S-629); dedicated flue, not less than 6\" diameter, independently supported."
+  ],
+  [
+   "Flue outlet: top or rear",
+   "Factory-fitted for top exit, with the collar prepared for the enclosed 6\" adapter. For rear: knock out the round panel in the rear heat shield plate, swap the blanking plate and flue collar, push down and tighten the enclosed screws."
+  ],
+  [
+   "Chimney connector",
+   "6\" single-wall, 24 gauge or heavier (no galvanized), or listed double-wall; three screws per joint. Max 3 ft horizontal (recommended), 8 ft total, two 90° turns, 1/4\" per foot rise; seal airtight."
+  ],
+  [
+   "Position to clearances",
+   "Backwall 10\" with single-wall connector, 6\" with double-wall; sidewall 8\"; cornerwall 7\". Alcove: min 32\" wide, max 24\" deep, 36\" ceiling above the stove top."
+  ],
+  [
+   "Floor protection",
+   "Non-combustible ember protection beneath the stove, 16\" to the front and 6\" to the sides of the door openings (USA); 450 mm / 200 mm (Canada). No radiant floor protection needed."
+  ],
+  [
+   "Room air and furniture",
+   "Unless room air leakage is sufficient, add a fresh air inlet with 2 square inches (1250 square mm) of free air space. Keep 30\" to furniture and movable combustibles.",
+   "<p>A dedicated fresh air inlet is needed unless there is sufficient ambient leakage of air into the room via doorways, windows and the like. It matters most where the room is well sealed or an extractor hood or ventilation system disturbs the natural air pressure.</p><div class=\"kv\"><div class=\"r\"><span>Inlet free air space</span><span>2 square inches (1250 square mm)</span></div><div class=\"r\"><span>Furniture</span><span>30 inches recommended minimum</span></div><div class=\"r\"><span>Movable combustibles</span><span>30 inches</span></div></div><p>Don't put the inlet on a wall usually under negative pressure from normal wind patterns, or directly across the room from the stove (cold draft). If acid-washing nearby masonry, protect the stove surface with an acid-proof cover.</p>"
+  ],
+  [
+   "First fire",
+   "Keep the first fire small so the paint cures and the main plates settle into position; the paint gives off fumes, so ventilate the room."
+  ]
+ ],
+ "faults": {
+  "label": "Draft and over-firing faults",
+  "panels": [
+   {
+    "title": "Smoke or poor draft",
+    "items": [
+     "Smoke or fumes when lighting or reloading, or the fire won't respond → poor draft almost certainly; upgrade the flue system",
+     "In a very few cases → insufficient fresh air into the room (fresh air inlet, p. 10)",
+     "Stove suddenly sluggish → soot fall around the flue collar or in the flue/chimney",
+     "Door left partly open → gas and flame drawn out of the opening"
+    ]
+   },
+   {
+    "title": "Over-firing",
+    "items": [
+     "Any part of the stove or chimney connector glows",
+     "Flue above 450° C (750°F), 20 cm above the stove → premature wear and tear",
+     "Baffle distorted by an overfire → efficiency compromised; replace it",
+     "Persistent heavy firing → fast internal wear"
+    ]
+   },
+   {
+    "title": "Sooty glass",
+    "items": [
+     "Fuel too wet",
+     "Logs too large or not split",
+     "Combustion temperatures too low, or stove run too slowly"
+    ]
+   },
+   {
+    "title": "Fire hard to control",
+    "items": [
+     "Door gasket hardened → air leaks in around the door; fit a Morsø rope gasket kit",
+     "Wood spits or sizzles, glass mists up → wood not properly seasoned",
+     "Overly dry, gray wood → back-puffing and sluggishness"
+    ]
+   }
+  ]
+ },
+ "codes": [],
+ "detail": {
+  "light": {
+   "tag": "Owner · operation",
+   "title": "Lighting a fire",
+   "cool": false,
+   "html": "<p>A cold stove needs plenty of air to get going. Build the fire directly on the firebox floor, not too close to the door glass. Don't use andirons or anything similar.</p><ol><li>Open the primary air control (the upper control on the door) fully. That's a maximum of 4 turns.</li><li>Lay dry kindling, put firelighters, Morsø kindling bags or 7-10 pieces of twisted paper under it, and light it.</li><li>Close the door partway, leaving it open an inch or two so plenty of air gets in. Stay with the stove while the door is open.</li><li>After 5-10 minutes, once the chimney has warmed through, close the door. A good ember bed forms after a further 15-20 minutes. Then you can add logs (see \"Reload and set the air\").</li></ol><p>At the initial lighting, use a layer of dry kindling 5-6 inches thick (2-4 pound) to form a bed of ash on the stove floor. At all other times, keep a 1-1.5 inch (2-3 cm) layer of ash there.</p><div class=\"note\"><b>Your very first fire</b> should be small, so the paint can cure and the main plates can settle into position. The paint gives off some fumes, so ventilate the room.</div><div class=\"note danger\">Never use gasoline, lantern fuel, kerosene, charcoal lighter fluid or similar liquids to start or freshen up a fire.</div>"
+  },
+  "reload": {
+   "tag": "Owner · operation",
+   "title": "Reloading and setting the air",
+   "cool": false,
+   "html": "<p>Your stove has two air supplies. The <b>upper air control on the door</b> sets the primary air, and it's the one you adjust. Secondary air comes in above the fire through two rows of holes in the steel baffle. It's constant and can't be changed. The lower control on the door is fixed and only decorative.</p><ol><li>When you're ready to reload, use the poker to spread the embers across the firebox floor, bringing plenty toward the front.</li><li>Lay three pieces of wood on the embers, half an inch (1 cm) or more apart. Point the ends toward the opening, but not too close to the front.</li><li>Close the door and leave the primary air fully open.</li><li>After a few minutes, adjust the air to suit the heat you want.</li><li>Add the next modest load while there's still a good layer of live embers. The wood should light within 2 minutes. If the logs don't ignite, in an extreme case the flue gases may ignite, which could damage property or injure someone.</li></ol><p><b>Less heat:</b> less wood, less air, but keep a good layer of embers. <b>More heat:</b> more wood, more air. Never burn overnight.</p><div class=\"note\"><b>Note:</b> p. 14 gives the maximum recommended load as 2 kg/h/5.5 lbs (approx 3 split logs); p. 24 says to refuel with 2 - 3 pieces of wood, no more than 2 - 2.5 kg.</div><div class=\"note\">Don't try to get more heat by changing the air control's adjustment range. The low burn rate is set at the factory, and altering it is against federal regulations.</div>"
+  },
+  "wood": {
+   "tag": "Owner · operation",
+   "title": "Choosing and seasoning wood",
+   "cool": false,
+   "html": "<p>Burn natural wood only. Any type works, as long as it's well seasoned and dry. The stove is listed for wood only, so don't burn other fuels, garbage or flammable fluids.</p><div class=\"kv\"><div class=\"r\"><span>Length</span><span>max 10 inches (25 cm)</span></div></div><div class=\"note small\"><b>Maker's website:</b> Log Size 12\".</div><div class=\"kv\"><div class=\"r\"><span>Thickness</span><span>approx. 3 to 3.5 inches (7-8 cm)</span></div><div class=\"r\"><span>Moisture</span><span>no more than 20%</span></div></div><p>Split the wood down the middle so moisture can escape. If you can weigh your wood, aim for around 2 lbs. You can check moisture with the Morsø Moisture Meter (part # 62929900). Wet wood lowers efficiency.</p><h4>Seasoning</h4><p>Stack wood under cover in an airy spot where air moves through each piece. Some softwoods season in one good summer; oak, maple and elm can take up to 18 months. Seasoned wood feels light and shows cracks running out from the center at the ends. If it spits or sizzles, or the door glass keeps misting up, it isn't seasoned yet. Avoid overly dry wood that has turned gray: it can cause back-puffing and a sluggish fire.</p><div class=\"note danger\">Never burn driftwood from the sea (its salt can cause corrosion) or construction wood that may have been treated with chemicals.</div><div class=\"note\"><b>Note:</b> p. 11 gives the log thickness as approx. 3 to 3.5 inches (7-8 cm); p. 24 says the wood must be split and 8 - 12 cm thick.</div>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>If you run the stove at the right temperatures, little or no dirt should build up on the glass. Dirt that settles while you're lighting mostly burns off as the fire gets hotter.</p><p>Always wear safety goggles and gloves when you do maintenance on your stove.</p><ol><li>Wait until the glass is cold. Never clean it while it's hot.</li><li>For heavier deposits that won't burn off, use Morsø glass cleaner, following its instructions.</li><li>Never use abrasive cleaners on the glass.</li></ol><h4>Why glass gets dirty</h4><ul><li>The wood is too wet.</li><li>The logs are too large or not split.</li><li>The fire is burning too cool.</li></ul><p>Running the stove too slowly also lets soot settle on the glass.</p><div class=\"note danger\"><b>Cracked or broken glass?</b> Don't use the stove until it's replaced, and replace it right away with the high-temperature ceramic glass supplied by Morsø (ask your dealer). To avoid breaking it, don't strike the glass or slam the door.</div><p>Old ceramic glass can't go in ordinary glass recycling. Hand it in at a recycling station as ceramic glass.</p>"
+  },
+  "overfire": {
+   "tag": "Owner · safety",
+   "title": "Signs of over-firing",
+   "cool": false,
+   "html": "<p>Do not over-fire the stove. Over-firing means running the stove too hot. It can cause a house fire or permanently damage the stove.</p><h4>The warning signs</h4><ul><li>Any part of the stove or the chimney connector glows.</li><li>The flue temperature in the stove pipe, measured 20 cm above the stove, goes over 450° C (750°F). Normal firing averages approx. 300° C (550°F).</li></ul><div class=\"note\"><b>Note:</b> p. 14 prints the maximum flue temperature as 450° C (750°F). The two figures are not the same temperature, and the manual gives no other figure for this limit.</div><p>To keep an eye on it, Morsø recommends its Flue Gas Thermometer (part # 62901200). It attaches magnetically to the stove pipe about 20 cm (8\") above the top plate and reads the pipe's surface temperature. Ask your Morsø dealer.</p><h4>How to avoid it</h4><ul><li>Stay within the maximum recommended load (see \"Reload and set the air\").</li><li>Don't change the air control's adjustment range to get more heat.</li><li>Persistent heavy firing wears out the inside parts fast. If over-firing distorts the baffle, the stove still works but less efficiently; have the baffle replaced as soon as possible.</li></ul>"
+  },
+  "safety": {
+   "tag": "Owner · safety",
+   "title": "Safety around the stove",
+   "cool": false,
+   "html": "<ul><li>The stove is hot while it's running. Keep children, clothing and furniture away; touching it can burn skin.</li><li>Keep furniture at least 30 inches away. Keep drying clothes, newspapers, firewood and other things that can burn 30 inches away too.</li><li>Run the stove only with the door fully closed. Never leave it unattended with the door open: gas and flame can be drawn out of the opening.</li><li>Never use chemicals or fluids to start the fire, and keep such liquids away from the stove while it's in use.</li><li>Don't use the stove if the glass in the door is damaged.</li></ul><h4>Detectors</h4><p>Morsø recommends a smoke detector in the room where the stove is installed. Also install at least one smoke detector on each floor of your home, away from the stove and close to sleeping areas. Too close to the stove, it may go off when a puff of smoke escapes while you reload. Some areas require smoke and carbon monoxide detectors where heaters are installed.</p><div class=\"note danger\"><b>Chimney fire?</b> Close the air control, get everyone out of the house, and call the fire department.</div>"
+  },
+  "ash": {
+   "tag": "Owner · maintenance",
+   "title": "Emptying the ash",
+   "cool": false,
+   "html": "<p>Empty the ash pan daily or as needed. Ash that builds up toward the underside of the grate traps heat and can make the grate fail early.</p><p>Always wear safety goggles and gloves when you do maintenance on your stove.</p><ol><li>With the door closed, you can work the grate with the riddling bar.</li><li>Open the front door and use a shovel or the poker to stir excess ash through the slots in the grate into the ash pan.</li><li>Lift out the ash pan, keeping it level.</li><li>Tip the ash into a metal container with a tight-fitting lid.</li><li>Put the ash pan back in place and close the door.</li></ol><p>Set the closed container on a noncombustible floor or on the ground, well away from anything that can burn. If you'll bury or spread the ashes, keep them in the closed container until all cinders have thoroughly cooled.</p><div class=\"note danger\">Never empty the stove while it's in operation, and never use a household or shop vacuum to remove ash.</div>"
+  },
+  "chimney": {
+   "tag": "Owner · maintenance",
+   "title": "Chimney, creosote and sweeping",
+   "cool": false,
+   "html": "<p>When wood burns slowly, it gives off tar and vapors that mix with moisture and condense in the cool chimney as creosote. It builds up on the flue lining, and once ignited it makes an extremely hot fire. Under certain conditions it can build up quickly.</p><h4>How often</h4><ul><li>Check for soot above the baffle plate and around the flue outlet every month or so to start with, and inspect every month.</li><li>Clean the flue after each heating season, and inspect it before the next season for bird's nests or other blockages.</li><li>If the stove suddenly becomes sluggish, check for a soot fall around the flue collar or in the chimney.</li></ul><h4>Inspect and sweep</h4><p>Always wear safety goggles and gloves when you do maintenance on your stove. Let the stove cool completely, then use a mirror to look up through the flue collar into the chimney. Sweep with a brush the same size and shape as the flue liner; deposits fall to the bottom and come out through the clean-out door. Take the connector sections outside, clean them with a stiff wire brush, and re-secure the joints with sheet metal screws. If you can't do this yourself, call your Morsø dealer or a professional chimney sweep.</p><div class=\"note danger\"><b>Chimney fire:</b> close the air control, get everyone out of the house, and call the fire department.</div>"
+  },
+  "care": {
+   "tag": "Owner · maintenance",
+   "title": "Yearly care and summer storage",
+   "cool": false,
+   "html": "<p>Always wear safety goggles and gloves when you do maintenance on your stove.</p><h4>Before each heating season</h4><ul><li>Thoroughly clean the chimney and chimney connector.</li><li>Inspect the chimney for damage. Replace weak sections of a prefabricated chimney; have a mason repair a masonry one.</li><li>Replace any damaged connector sections.</li><li>Check the gaskets for wear or compression, the glass for cracks, and the door and handles for tightness.</li></ul><p>Lubricate the hinges and closing mechanisms once a year or as needed, with copper grease or another equally heat-resistant grease. Always use original Morsø spare parts.</p><h4>Door gasket</h4><p>The gasket around the door can harden over time. Replace it if the door gets hard to close, or if air leaks in around the door and the fire becomes less controllable. A Morsø rope gasket kit is available from your stove supplier.</p><h4>When it sits unused</h4><p>Clean it out thoroughly and leave the spinner slightly open so air can move through. Fit a chimney cap to keep rain out, but don't block the flue completely. Ash left in an unused stove soaks up moisture, and that causes rust. A moisture absorber such as kitty litter in the ash pan helps over the summer; remove it before the heating season.</p>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "The Morsø guarantee",
+   "cool": false,
+   "html": "<p>If your stove was supplied by an authorised Morsø dealer, Morsø gives a <b>10-Year Manufacturers Guarantee</b> against manufacturing defects in any of the main exterior body parts.</p><h4>Not covered (p. 16)</h4><ul><li>The flame-path parts: ash pan, grate, firebricks, cast iron fire plates, glass, baffle and flue collar. They take the full heat of the fire and may need replacing from time to time as routine maintenance.</li><li>The ceramic rope (gasket).</li><li>The paint finish.</li></ul><p>Your Morsø dealer sells all these service parts. Replace damaged parts as soon as possible to avoid further damage.</p><div class=\"note\">Morsø asks you to register your new stove online. The guarantee page of the manual gives the address, where you can also read more about the guarantee.</div>"
+  },
+  "specOutput": {
+   "tag": "Installer · spec",
+   "title": "Heat output and efficiency",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Heat output (test conditions)</span><span>12,115 to 24,733 Btu/hr</span></div><div class=\"r\"><span>Efficiency</span><span>73.5% average higher heating value (B415.1)</span></div><div class=\"r\"><span>EPA</span><span>meets limits for wood heaters sold on or after May 15, 2020</span></div><div class=\"r\"><span>Certified and listed by</span><span>PFS TECO, Portland, Oregon · Report F20-579</span></div><div class=\"r\"><span>Test standards</span><span>UL-1482-2011 (R2015) USA · ULC-S627-00 Canada</span></div></div><p>Listed for burning wood only. The manufacturer-set minimum low burn rate must not be altered (p. 13). The heater needs periodic inspection and repair for proper operation.</p>"
+  },
+  "specFuel": {
+   "tag": "Installer · spec",
+   "title": "Fuel and loading",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Fuel</span><span>natural wood only, well seasoned and dry</span></div><div class=\"r\"><span>Log length</span><span>max 10 inches (25 cm)</span></div></div><div class=\"note small\"><b>Maker's website:</b> Log Size 12\".</div><div class=\"kv\"><div class=\"r\"><span>Section</span><span>approx. 3 to 3.5 inches (7-8 cm)</span></div><div class=\"r\"><span>Moisture</span><span>no more than 20%</span></div><div class=\"r\"><span>Max load (p. 14)</span><span>2 kg/h/5.5 lbs (approx 3 split logs)</span></div><div class=\"r\"><span>Primary air</span><span>upper door control · fully open = maximum 4 turns</span></div></div><p>Fire built directly on the firebox hearth; no andirons. Secondary air through two rows of holes in the steel baffle is constant; the lower door control is fixed (decorative only). Moisture meter: Morsø part # 62929900.</p><div class=\"note\"><b>Note:</b> p. 14 gives the maximum recommended load as 2 kg/h/5.5 lbs (approx 3 split logs); p. 24 says to refuel with 2 - 3 pieces of wood, no more than 2 - 2.5 kg.</div><div class=\"note\"><b>Note:</b> p. 11 gives the log thickness as approx. 3 to 3.5 inches (7-8 cm); p. 24 says the wood must be split and 8 - 12 cm thick.</div>"
+  },
+  "specFlue": {
+   "tag": "Installer · spec",
+   "title": "Chimney",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Connector and chimney ID</span><span>not less than 6 inches diameter (or equivalent cross section)</span></div><div class=\"r\"><span>Chimney</span><span>code-approved masonry with flue liner, or listed type HT factory-built</span></div><div class=\"r\"><span>HT standard, USA</span><span>UL-103-1985 (2100º F)</span></div><div class=\"r\"><span>HT standard, Canada</span><span>ULC S-629 (650ºC)</span></div><div class=\"r\"><span>Recommended height</span><span>at least 16 feet above the stove, flue collar to chimney top (not required)</span></div></div><p>One flueway per appliance: never connect to a flue serving another appliance. The flue system must be independently secured and must not rely on the stove for support; don't install the chimney directly at the appliance outlet. A flue significantly larger than 6\" lets the gases cool too much, making the stove sluggish or unpredictable. Roof construction, nearby trees and high altitude can affect draft and height; consult a local chimney sweep or Morsø dealer.</p>"
+  },
+  "specConnector": {
+   "tag": "Installer · spec",
+   "title": "Chimney connector",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Diameter</span><span>6 inches (150mm)</span></div><div class=\"r\"><span>Single wall</span><span>24 MSG black or blue · 24 gauge or heavier steel</span></div><div class=\"r\"><span>Double wall</span><span>tested and listed for solid fuel</span></div><div class=\"r\"><span>Fastening</span><span>minimum three screws to the stove and to each adjoining section</span></div><div class=\"r\"><span>Horizontal runs</span><span>18 inches from the ceiling · slope up 1/4 inch per foot (20 mm per metre) toward the chimney</span></div><div class=\"r\"><span>Max horizontal run</span><span>3 feet (1 metre), recommended</span></div><div class=\"r\"><span>Max total length</span><span>8 feet (2.5 metres)</span></div><div class=\"r\"><span>Turns</span><span>no more than two 90 degree turns · mild bends (45º vs. 90º)</span></div></div><p>No galvanized connector: it can't withstand the flue gas temperatures and may release toxic fumes. Don't pass the connector through an attic, closet or similar concealed space, and avoid combustible walls or ceilings where possible (follow local codes and the chimney maker's instructions). Seal every joint airtight, keep all parts accessible for cleaning, and wear gloves and eye protection when drilling, cutting or joining sections.</p>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances to combustibles",
+   "cool": true,
+   "html": "<p>Standard residential installation · integral rear and bottom shields · top or rear vent. USA · Canada as printed.</p><h4>Single-wall connector</h4><div class=\"kv\"><div class=\"r\"><span>A. Sidewall to unit</span><span>8\" · 205 mm</span></div><div class=\"r\"><span>B. Backwall to unit</span><span>10\" · 255 mm</span></div><div class=\"r\"><span>C. Cornerwall to unit</span><span>7\" · 180 mm</span></div><div class=\"r\"><span>D. Sidewall to connector</span><span>13.5\" · 345 mm</span></div><div class=\"r\"><span>E. Backwall to connector</span><span>12\" · 305 mm</span></div><div class=\"r\"><span>F. Cornerwall to connector</span><span>13\" · 330 mm</span></div></div><h4>Double-wall connector</h4><div class=\"kv\"><div class=\"r\"><span>A. Sidewall to unit</span><span>8\" · 205 mm</span></div><div class=\"r\"><span>B. Backwall to unit</span><span>6\" · 150 mm</span></div><div class=\"r\"><span>C. Cornerwall to unit</span><span>7\" · 180 mm</span></div></div><p>Both tables leave G (unit to ceiling) and H (floor to ceiling) blank, and the double-wall table gives no connector clearances. Near non-combustible materials, a gap of 4 inches or more is recommended for cleaning and heat circulation. Distances may need to be increased for heat-sensitive materials; follow local and national building regulations.</p>"
+  },
+  "specAlcove": {
+   "tag": "Installer · spec",
+   "title": "Alcove installation",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>W. Minimum alcove width</span><span>32\" · 813 mm</span></div><div class=\"r\"><span>D. Maximum alcove depth</span><span>24\" · 610 mm</span></div><div class=\"r\"><span>G. Alcove ceiling above stove top</span><span>36\" · 915 mm</span></div></div><p>From the manual's alcove installation table: USA in inches, Canada in mm. The width is printed with stray quote marks (32’’”).</p>"
+  },
+  "specFloor": {
+   "tag": "Installer · spec",
+   "title": "Floor protection",
+   "cool": true,
+   "html": "<p>Ember protection only: the heater meets CAN/ULC-S627, is suitable for installation on a combustible floor and does not require radiant floor protection (p. 8).</p><div class=\"kv\"><div class=\"r\"><span>A. Extending distance, back</span><span>– USA · 200 mm Canada</span></div><div class=\"r\"><span>B. Extending distance, right side</span><span>6\" · 200 mm</span></div><div class=\"r\"><span>C. Extending distance, left side</span><span>6\" · 200 mm</span></div><div class=\"r\"><span>D. Extending distance, front</span><span>16\" · 450 mm</span></div></div><p><b>USA:</b> non-combustible material, beneath the heater and 16\" to the front and 6\" to the sides of the fuel loading door and ash removal openings.</p><p><b>Canada (CSA B365):</b> a continuous, durable, non-combustible pad beneath the appliance, at least 450 mm (18 in) beyond any side with a door and at least 200 mm (8 in) beyond other sides. The 450 mm section runs the full width of the appliance plus the 200 mm on each side without a door. Installed less than 200 mm (8 in) from a wall, the pad need only reach the base of the wall. Not on top of carpet unless structurally supported against displacement and distortion.</p>"
+  },
+  "specFlueTemp": {
+   "tag": "Installer · spec",
+   "title": "Flue temperature",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Normal firing, average</span><span>approx. 300° C (550°F)</span></div><div class=\"r\"><span>Maximum</span><span>450° C (750°F)</span></div><div class=\"r\"><span>Measured</span><span>in the stove pipe, 20 cm above the stove</span></div><div class=\"r\"><span>Flue Gas Thermometer</span><span>Morsø part # 62901200 · magnetic · approx 20 cm (8\") above the top plate</span></div></div><p>Above 450° C (750°F) counts as over-firing and may cause premature wear and tear of the stove. If any part of the stove or chimney connector glows, it is over-firing (pp. 11, 13). The thermometer reads the surface temperature of the stove pipe.</p><div class=\"note\"><b>Note:</b> p. 14 prints the maximum flue temperature as 450° C (750°F). The two figures are not the same temperature, and the manual gives no other figure for this limit.</div>"
+  }
+ },
+ "pageref": {
+  "light": 12,
+  "reload": 13,
+  "wood": 11,
+  "glass": 15,
+  "overfire": 14,
+  "safety": 11,
+  "ash": 17,
+  "chimney": 17,
+  "care": 18,
+  "warranty": 23,
+  "specOutput": 3,
+  "specFuel": 11,
+  "specFlue": 5,
+  "specConnector": 6,
+  "specClear": 8,
+  "specAlcove": 9,
+  "specFloor": 9,
+  "specFlueTemp": 14,
+  "step0": 4,
+  "step1": 4,
+  "step2": 5,
+  "step3": 6,
+  "step4": 6,
+  "step5": 8,
+  "step6": 9,
+  "step7": 10,
+  "step8": 11
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "reload",
+   "t": "air control",
+   "p": "Upper control on the door, maximum 4 turns"
+  },
+  {
+   "k": "h",
+   "id": "chimney",
+   "t": "chimney fire",
+   "p": "Close the air control, get out, call the fire department"
+  },
+  {
+   "k": "h",
+   "id": "overfire",
+   "t": "glowing",
+   "p": "If any part of the stove glows, you are overfiring"
+  },
+  {
+   "k": "h",
+   "id": "wood",
+   "t": "moisture meter",
+   "p": "Wood should contain no more than 20% moisture"
+  },
+  {
+   "k": "h",
+   "id": "care",
+   "t": "door gasket",
+   "p": "Replace it if the door is hard to close or leaks air"
+  },
+  {
+   "k": "h",
+   "id": "safety",
+   "t": "smoke detector",
+   "p": "Where to put smoke and carbon monoxide detectors"
+  },
+  {
+   "k": "i",
+   "id": "specConnector",
+   "t": "stove pipe",
+   "p": "6 inch connector, 24 gauge or heavier, max 8 feet total"
+  },
+  {
+   "k": "i",
+   "id": "specFloor",
+   "t": "ember pad",
+   "p": "16 inches front, 6 inches sides (USA)"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "specFuel",
+    "class": "substantive",
+    "issue": "Maximum fuel load: p. 14 says 2 kg/h/5.5 lbs (approx 3 split logs); p. 24 says use 2 - 3 pieces of wood, no more than 2 - 2.5 kg. Flagged in the specFuel and reload drawers.",
+    "pages": [
+     [
+      1,
+      14
+     ],
+     [
+      1,
+      24
+     ]
+    ]
+   },
+   {
+    "where": "specFuel",
+    "class": "substantive",
+    "issue": "Log thickness: p. 11 says approx. 3 to 3.5 inches (7-8 cm) in section; p. 24 says split and 8 - 12 cm thick. Flagged in the specFuel and wood drawers.",
+    "pages": [
+     [
+      1,
+      11
+     ],
+     [
+      1,
+      24
+     ]
+    ]
+   },
+   {
+    "where": "specFlueTemp",
+    "class": "substantive",
+    "issue": "Maximum flue temperature (the over-firing threshold): p. 14 prints 450° C (750°F), and 450°C (750°F) in the next sentence; the Celsius and Fahrenheit figures are not the same temperature, and no other page gives the limit. Shown as printed, with a note in the specFlueTemp and overfire drawers.",
+    "pages": [
+     [
+      1,
+      14
+     ]
+    ]
+   },
+   {
+    "where": "step1",
+    "class": "substantive",
+    "issue": "Chimney connector in the box: p. 5 says a chimney connector is included with the heater; p. 4 lists the standard accessories as the poker, ceramic flue connection gasket and riddling tool, and p. 6 mentions only the enclosed 6 inch adapter and says to use a 24 MSG black or blue chimney connector or listed double wall chimney connector. Flagged in the step1 drawer.",
+    "pages": [
+     [
+      1,
+      5
+     ],
+     [
+      1,
+      4
+     ],
+     [
+      1,
+      6
+     ]
+    ]
+   }
+  ],
+  "catalog_mismatches": [
+   {
+    "model": "morso-1440-b",
+    "field": "log_length_max_in",
+    "catalog": "12",
+    "manual": "max 10 inches (25 cm)",
+    "page": [
+     1,
+     11
+    ],
+    "shown": "specFuel"
+   }
+  ],
+  "notes": "Hand-lit wood stove: no ignition system, blower, troubleshooting chart or code table, so codes are empty and the fault panels are built from the manual's draft (p. 14), over-firing (p. 11, 13, 14, 16), dirty-glass (p. 15), gasket (p. 17) and seasoning (p. 11) text. The manual text gives no emissions rate, firebox volume, stove weight, heating area, overall dimensions, kW output or outside-air connection, so those catalog entries could not be checked; the Btu range, 73.5% HHV efficiency, 6 inch flue and EPA 2020 status match pp. 3, 5 and 6. The catalog item number does not appear in the manual. Pages 7 and 22 carry no text (figures or blank); p. 5's 'Typical factory-built or masonry chimney installations' is a figure. p. 5 says 'A chimney connector is included with the heater', while p. 4's standard accessories don't include one and p. 6 mentions only an enclosed 6 inch adapter and specifies which connector to use; the step1 drawer shows this as a note (see conflicts). p. 6 refers to 'sections on Wall Pass-Throughs' that this manual does not contain. p. 18 says to leave 'the spinner' slightly open when the stove sits unused; the manual never defines it, so the owner drawer keeps the manual's word. Smoke detectors: p. 13 recommends one in the stove room, p. 14 says to place detectors away from the appliance and near sleeping areas; both are shown in the safety drawer. Written differently from the print: the ash layer '1-1,5 inch (2-3 cm)' (decimal comma, p. 12) is written 1-1.5 inch; '5.5Ibs' (p. 14) is written 5.5 lbs; 'kitter litter' (p. 18) is written kitty litter; the alcove width prints as 32’’” (p. 9) and is shown as 32\"."
+ }
+}

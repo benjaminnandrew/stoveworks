@@ -1,0 +1,617 @@
+{
+ "id": "hearthstone-wfp-100",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "HEARTHSTONE",
+  "brand_line": "WFP-100 · Wood-burning fireplace",
+  "kicker": "Wood-burning fireplace",
+  "title": "Hearthstone WFP 100",
+  "model_line": "WFP-100 · Model 8420 · 8\" insulated chimney · Dry cordwood",
+  "owner_noun": "fireplace",
+  "owner_card": "Light a fire, use the air control, reload, choose wood, clean the glass and chimney, check the warranty.",
+  "installer_card": "Specs, clearances, hearth extension, chimney, outside air, the install sequence and draft faults.",
+  "certification": "UL 127 · ULC-S610 · EPA / ASTM WK47329",
+  "owner_search_hint": "kindling, air control, ashes, creosote",
+  "manual_search_hint": "hearth, chimney, clearance, outside air"
+ },
+ "home_primary": [
+  {
+   "id": "light",
+   "icon": "flame",
+   "title": "Light a fire",
+   "blurb": "The top-down method, plus what to expect from your first fires."
+  },
+  {
+   "id": "air",
+   "icon": "air",
+   "title": "Use the air control",
+   "blurb": "Positions A, B, B-2 and B-1, and what to do in a power failure."
+  },
+  {
+   "id": "reload",
+   "icon": "logs",
+   "title": "Reload & burn times",
+   "blurb": "Rake the coals, fire each load hot, and how long a load lasts."
+  },
+  {
+   "id": "wood",
+   "icon": "tree",
+   "title": "What wood to burn",
+   "blurb": "Dry, split, 16-inch wood, and what never goes in."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "ash",
+   "icon": "ash",
+   "title": "Remove the ashes",
+   "blurb": "How often, when, and where the ashes go."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "Wipe it cool, and what brown stains are telling you."
+  },
+  {
+   "id": "chimney",
+   "icon": "chimney",
+   "title": "Chimney & creosote",
+   "blurb": "How often to check and sweep, and why the baffle matters."
+  },
+  {
+   "id": "doors",
+   "icon": "door",
+   "title": "Door gaskets & latch",
+   "blurb": "Test the seal, tighten the latch, replace a gasket."
+  },
+  {
+   "id": "safety",
+   "icon": "safety",
+   "title": "Safety & chimney fires",
+   "blurb": "Clearances, detectors, and what to do in a chimney fire."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "What's covered, for how long, and how to claim."
+  }
+ ],
+ "specs": [
+  {
+   "id": "output",
+   "lab": "Heat output · BTU/h",
+   "tap": "specOutput",
+   "rows": [
+    [
+     "Min – max",
+     "16,610 – 43,021"
+    ],
+    [
+     "Heating area",
+     "1,000 to 2,800 ft2"
+    ],
+    [
+     "Max burn time",
+     "10 h"
+    ]
+   ],
+   "note": "overall heat output rate"
+  },
+  {
+   "id": "firebox",
+   "lab": "Firebox & logs",
+   "tap": "specFirebox",
+   "rows": [
+    [
+     "Firebox volume",
+     "4.28 ft3"
+    ],
+    [
+     "Max log length",
+     "25 in east-west"
+    ],
+    [
+     "Weight",
+     "665 lb"
+    ]
+   ]
+  },
+  {
+   "id": "emis",
+   "lab": "Emissions & efficiency",
+   "tap": "specEmis",
+   "rows": [
+    [
+     "Particulate",
+     "1.6 g/h (EPA)"
+    ],
+    [
+     "Efficiency HHV / LHV",
+     "63.9% / 68.4%"
+    ],
+    [
+     "Average CO",
+     "157.4 g/h"
+    ]
+   ]
+  },
+  {
+   "id": "flue",
+   "lab": "Flue & chimney",
+   "tap": "specFlue",
+   "rows": [
+    [
+     "Flue outlet",
+     "8 in"
+    ],
+    [
+     "Chimney type",
+     "UL 103 HT (2100 °F)"
+    ],
+    [
+     "To combustibles",
+     "2\""
+    ]
+   ]
+  },
+  {
+   "id": "height",
+   "lab": "Chimney height",
+   "tap": "specHeight",
+   "rows": [
+    [
+     "Straight or 2 elbows",
+     "15 ft."
+    ],
+    [
+     "Four elbows",
+     "17 ft."
+    ],
+    [
+     "Above roof contact",
+     "3 ft."
+    ]
+   ],
+   "note": "minimum, from the bottom of the fireplace"
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Back / sides / floor",
+     "0\""
+    ],
+    [
+     "Ceiling (from base)",
+     "84\""
+    ],
+    [
+     "Wall in front",
+     "48\""
+    ]
+   ]
+  },
+  {
+   "id": "hearth",
+   "lab": "Hearth extension",
+   "tap": "specHearth",
+   "rows": [
+    [
+     "Directly on floor",
+     "32\" · R 2.00"
+    ],
+    [
+     "Raised less than 8\"",
+     "32\" · R 2.00"
+    ],
+    [
+     "Each side of opening",
+     "8\""
+    ]
+   ],
+   "note": "front depth · raised options in the drawer"
+  },
+  {
+   "id": "air",
+   "lab": "Outside air",
+   "tap": "specAir",
+   "rows": [
+    [
+     "Adaptor",
+     "5\""
+    ],
+    [
+     "Pipe over 20 ft",
+     "6\""
+    ],
+    [
+     "Max pipe length",
+     "30 ft"
+    ]
+   ]
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Install the standoffs",
+   "Before setting the fireplace, fit two standoffs on each side and two on the back with the screws in the manual kit; the standoffs ship inside the firebox."
+  ],
+  [
+   "Locate & check the floor",
+   "Allow space for the hearth extension and mantel, and pick a spot where the chimney misses trusses, beams, studs, pipes and wiring with the fewest offsets. Check floor support (665 lb appliance) and set it on a level, straight surface."
+  ],
+  [
+   "Build the hearth extension",
+   "Choose option #1–#5 by installation height: continuous non-combustible protection with the required R value, 8\" past each side of the door opening, sheet-metal joint, no carpet beneath."
+  ],
+  [
+   "Frame the enclosure",
+   "2\" × 3\" or heavier at sides and back; front studs and headers no deeper than the top standoffs; nothing combustible above the unit for 84\" from its base; no insulation against the fireplace.",
+   "<p>Run vertical studs floor to ceiling at the sides, set back from the front edge by the facing thickness so the facing finishes flush. Add headers only where needed to support the facing and mantel, no deeper than the top standoffs; nothing goes in the area directly above the fireplace.</p><p>The fireplace keeps a 1/2\" minimum gap to the faceplate; keeping the non-combustible material flush with the fireplace is recommended (p. 35). Framing dimensions, corner layouts and the extra room for a fresh air or forced air kit are lettered dimensions on the drawings on pp. 34–36 — take them from the figures. Flexible pipe in the enclosure must not be within the standoffs.</p><div class=\"note danger\">Don't pack required air spaces with insulation or other material; cover insulation around the fireplace with drywall.</div>"
+  ],
+  [
+   "Facing & shelf",
+   "Non-combustible facing directly in front (minimum dimensions on the p. 37 drawing), installed so the faceplate stays removable; a shelf must be non-combustible and at least 52\" above the fireplace base."
+  ],
+  [
+   "Doors, knobs & façade",
+   "Slide the door hinges onto the pins and tighten the upper hinge (3/32 hex wrench), fit the wooden knobs (5/32 hex wrench), align, then spring the façade on and fix it with the 2 screws through the frame slots."
+  ],
+  [
+   "Install the chimney",
+   "8\" anchor plate, then listed lengths locked together; firestops at each floor/ceiling, attic radiation shield, 2\" clearance, roof support, flashing, storm collar and cap. 15 ft. minimum system height.",
+   "<ol><li>Cut and frame the ceiling, floor and roof holes, centred with a plumb bob and sized per the chimney manufacturer.</li><li>From below, a firestop at each ceiling/floor; at the attic, an attic radiation shield from above.</li><li>Fit the 8\" anchor plate, then the first chimney length; lock each length in place.</li><li>Square framed holes give 2\" (50 mm) to combustibles — no insulation in that space.</li><li>Firestop at every ceiling or wall; roof support at the desired height.</li><li>Flashing under the upper shingles and over the lower ones, sealed with roofing pitch and nailed.</li><li>Storm collar over the flashing, sealed to the chimney with silicone; then the chimney cap. Don't caulk the openings of a ventilated flashing.</li></ol><p>Offsets: 18 inches (457 mm) from the top of the unit to the first offset is recommended; secure joints with three ½\" (12 mm) metal screws where the chimney manufacturer calls for it; use a support on the first 15' section (4.6 m). Through a combustible wall at 30° or 45° (30° only in the USA), fit one angled firestop or wall radiation shield from the chimney manufacturer.</p>"
+  ],
+  [
+   "Combustion air & air kits",
+   "Outside air is optional unless code requires it but strongly recommended: fit the 5\" kit on the right side or right side underneath. Optional forced air kit (94-57200) or hot air grille (94-99200) per their own manuals.",
+   "<p><b>Fresh air intake (Appendix 4):</b> remove only the knock-out you'll use and twist the 5\" adapter in clockwise with the notches aligned. Flip the lower decorative louver and fit the block-off plate on the front opening of the air control housing. Clamp the insulated pipe to the adapter and to the outside wall termination; make the wall hole 1/4\" to 1/2\" larger than the pipe and fit the termination open side down. Check the outdoor air duct for soot when the venting system is cleaned.</p><p><b>Forced air distribution kit (94-57200):</b> either side, to a room up to 50 feet (15 m) away, with insulated HVAC flexible pipe (ULC S110 and/or UL 181, Class 0 or Class 1, 250°F). Leave 1\" to combustibles around the termination grill; in Canada mount it at least 59\" (150 cm) from the floor. <b>Hot air circulation grille (94-99200):</b> natural convection through the facing. Both kits follow their own installation manuals.</p><div class=\"note\"><b>Note:</b> p. 24 says not to connect to or use in conjunction with any air distribution ductwork, but p. 49 offers the forced air distribution kit.</div>"
+  ],
+  [
+   "Refractory, air tubes & baffle",
+   "Install the refractory panels once the fireplace is set (they ship in a separate box), then the secondary air tubes and C-Cast baffle per Appendix 6.",
+   "<p><b>Refractory (Appendix 5):</b> the manual gives the removal order — inner ash retainer and floor slabs, then the slab holders and left and right slabs (power screwdriver, 5/16\" hex tip), then the rear slab. Install in reverse.</p><p><b>Air tubes and baffle (Appendix 6):</b> fit the two back tubes, then the C-Cast baffle, then the two front tubes. Each tube goes in right end first, with the left-end notch aligned to the channel tab, and locks with a cotter pin in the last hole on the right, tabs bent. Tubes can be replaced without removing the baffle.</p><div class=\"note danger\">Never operate the fireplace without the baffle — unsafe temperatures, and it voids the warranty.</div>"
+  ],
+  [
+   "Electrical connection",
+   "Qualified electrician: power to the terminal block, white to white, black to black, ground (green or skinned wire) to the fireplace metal frame."
+  ]
+ ],
+ "faults": {
+  "label": "Draft & smoke faults",
+  "panels": [
+   {
+    "title": "Low draft",
+    "items": [
+     "Inefficient burns and low heat output",
+     "Smoke into the room when the doors are opened",
+     "More flammable build-up in the flue",
+     "Cold backdraft with no fire, slow kindling, smoke roll-out on loading → venting design"
+    ]
+   },
+   {
+    "title": "Excessive draft",
+    "items": [
+     "Over-consumption of fuel",
+     "Lower overall heating capacity",
+     "Potential over-firing"
+    ]
+   },
+   {
+    "title": "Smoke spillage / backdraft",
+    "items": [
+     "Chimney shorter than the heated space or on an outside wall → cold backdraft",
+     "Basement install with an outside chimney → prone to flow reversal",
+     "Exhaust fans or an airtight house → negative pressure; bring in outside air",
+     "Air intake on a windward wall → a mechanical damper helps diagnose"
+    ]
+   },
+   {
+    "title": "Wet or wrong fuel",
+    "items": [
+     "Flames die out when the air is reduced → wood too humid",
+     "More creosote, less heat, dirty glass → green or unseasoned wood",
+     "Brown stains on the glass → smoky, incomplete combustion"
+    ]
+   }
+  ]
+ },
+ "codes": [],
+ "detail": {
+  "light": {
+   "tag": "Owner · operation",
+   "title": "Lighting a fire",
+   "cool": false,
+   "html": "<p>The manual's best-practice method is the top-down fire: it burns cleaner and won't collapse on itself. It only works well with well-seasoned wood.</p><ol><li>Open the air control fully (position A).</li><li>Crisscross about 10 pieces of finely split, dry kindling (0.5 to 1 in), leaving air space between them.</li><li>Put at least 5 sheets of newspaper on top. Rolled into a long cylinder and tied in 2 knots, they burn slowly and cleanly.</li><li>Light the paper and leave the door open 1 inch for 5-10 minutes. Stay with the fire while the door is open.</li><li>Once there's a small coal bed, crisscross three or four medium split pieces (2-3 in) and close the door.</li><li>When you have a good coal bed, add your main load.</li></ol><div class=\"note\"><b>Your first fires:</b> the paint cures over the first few fires. The fumes aren't poisonous, but they smell bad and can set off smoke alarms, so open doors or windows. Burn one or two small fires, then bigger, hotter ones until the smell is gone.</div><div class=\"note danger\">Never use gasoline, lighter fluid, kerosene or any flammable liquid or aerosol to start or rekindle a fire. Keep all such liquids and aerosols well away from the fireplace while it is in use. Gel starter is fine only in a cold firebox with no hot embers. Close and latch the door once the fire has caught.</div>"
+  },
+  "air": {
+   "tag": "Owner · operation",
+   "title": "Using the air control",
+   "cool": false,
+   "html": "<p>The air control sets how hard the fire burns. There are three rates: maximum, medium and low.</p><div class=\"kv\"><div class=\"r\"><span>A · fully open</span><span>Cold start or maximum heat</span></div><div class=\"r\"><span>B · air intake closed</span><span>The air control system takes over once the fireplace is hot enough</span></div><div class=\"r\"><span>B-2 · medium</span><span>Push the auxiliary air control toward the fireplace</span></div><div class=\"r\"><span>B-1 · low</span><span>Pull the auxiliary air control out</span></div></div><h4>A typical burn</h4><p>Start at A. Close the intake to B and let it run mid-high until it reaches the factory-set temperature, then pick B-2 or B-1. The manual's drawing shows where each control sits.</p><p>With seasoned wood the flames get smaller but stay strong and steady, even on low. If they nearly disappear when you cut the air, your wood is probably too wet.</p><div class=\"note\"><b>Power failure:</b> in position B you can close the air supply by hand by pushing the small lever to the left.</div><div class=\"note danger\">Always open the air control fully before you open the door. The low-burn limit is set at the factory, and it's against federal regulations to alter it.</div>"
+  },
+  "reload": {
+   "tag": "Owner · operation",
+   "title": "Reloading & burn times",
+   "cool": false,
+   "html": "<p>Wood burns best in cycles. A cycle starts when a new load catches on hot coals and ends when it has burned back to a coal bed about the size you started with. Don't try for steady heat by adding one log at a time.</p><h4>To reload</h4><ol><li>Open the air control fully. If the fire is still flaming, wait a few minutes, then unlatch and open the door slowly.</li><li>Remove ash if needed, then rake the coals toward the door.</li><li>Load at least 5 to 8 pieces north-south (log ends facing the door), on and behind the coals and not too close to the glass.</li><li>Close the door with the air fully open. Leave it there until the firebox is full of flames, the wood is charred black and its edges glow red; then you can turn the air down.</li></ol><div class=\"note danger\">Stay with the fireplace while a new load is firing hot, and don't over-fire it. Running with the air fully open for whole burn cycles wears the parts out faster.</div><h4>How long a load lasts</h4><p>The manual gives a maximum burn time of 10 h. When you're home to tend it, a smaller fire of three or four hours is easier to match to the room. Letting the room cool a little before you reload is one of the secrets to clean burning.</p>"
+  },
+  "wood": {
+   "tag": "Owner · operation",
+   "title": "Choosing firewood",
+   "cool": false,
+   "html": "<p>Burn only dry, seasoned natural firewood. How dry your wood is matters more than the tree species. Ready-to-burn firewood has 15% to 20% moisture content. Wet wood greatly reduces your efficiency and causes most wood-fire complaints: more creosote, less heat and a dirty glass door.</p><ul><li><b>Length:</b> 16\" is recommended, with no more than 1\" difference from piece to piece. Logs up to 25 in fit lying east-west (sides facing the door), but this fireplace burns most efficiently with logs north-south (ends facing the door).</li><li><b>Size:</b> split to a range of about 3\" to 6\" across. A mix of sizes makes lighting easier.</li><li><b>Drying:</b> stack it in the open, in sun and wind. Pine, spruce and poplar can be ready after one summer; oak, maple and ash can take one or even two years.</li><li><b>Is it dry?</b> Dry wood has cracked ends, turns grey or yellow, sounds hollow when two pieces are knocked together, feels light and doesn't hiss in the fire. A moisture meter gives you a number.</li><li><b>Manufactured logs:</b> logs made of 100% wood residue are fine. Start with one, and never burn more than three at a time.</li></ul><div class=\"note danger\"><b>Don't burn</b> unseasoned (green or wet) wood, garbage, lawn clippings, treated wood, plywood or particleboard, construction debris, railroad ties, salt-water driftwood, manure or animal remains, asphalt products, waste petroleum products, paints or paint thinners, materials containing asbestos, or anything with plastic or rubber. Burning these materials may release toxic fumes, or make the heater ineffective and cause smoke. Large amounts of paper, cardboard or branches can overheat the fireplace or ignite a creosoted chimney.</div>"
+  },
+  "ash": {
+   "tag": "Owner · maintenance",
+   "title": "Removing ashes",
+   "cool": false,
+   "html": "<p>Take ash out every two or three days when you're heating full time. Letting it build up makes the fire harder to manage.</p><ul><li>The best time is after an overnight fire, when the fireplace is fairly cool but the chimney still draws, so ash dust is pulled into the fireplace instead of the room.</li><li>Remove ash first, then rake the remaining coals toward the door before you reload.</li><li>Put the ashes in a metal container with a tight lid and take it outside right away.</li><li>Set the closed container on a non-combustible floor or on the ground, well away from anything that can burn.</li><li>Keep the ashes in the closed container until every cinder is cold. Ashes can hold live coals for several days. Don't put other waste in it.</li></ul><div class=\"note danger\">Never store ashes indoors, in a non-metal container, or on a wooden deck.</div>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>With dry wood and good burning habits, the glass stays fairly clear. A whitish, dusty film after a week or so is normal.</p><h4>To clean it</h4><ul><li>Wait until the fireplace is cool. Never clean the glass while it's hot.</li><li>Wipe with a damp cloth or paper towel, then dry.</li><li>For brown stains, use a cleaner made for wood heater glass doors. Never use abrasives.</li></ul><h4>What the glass is telling you</h4><p>Light brown stains, especially in the lower corners in spring and fall, mean the fire has been smoky. In mild weather it can be better to let the fire go out than to keep a slow one going. Brown streaks coming from the edge of the glass mean the glass gasket needs replacing; your dealer has the self-adhesive gasket.</p><div class=\"note danger\">Don't slam the doors or strike the glass, and don't use the fireplace with cracked or broken glass. Replacement glass must be the same 5 mm ceramic glass; tempered or ordinary glass can't take the heat.</div>"
+  },
+  "chimney": {
+   "tag": "Owner · maintenance",
+   "title": "Chimney care & creosote",
+   "cool": false,
+   "html": "<p>Wood smoke can condense inside the chimney as creosote, a deposit that can catch fire. Smouldering, smoky fires build it up quickly; clean, hot fires build it up slowly.</p><ul><li>While you're getting used to the fireplace, check the chimney for build-up every month until you know how fast creosote forms.</li><li>Have the chimney cleaned and inspected at least once a year. The manual recommends doing it at the end of every heating season, because damp summer air mixed with deposits forms an acid that corrodes the steel. Corrosion isn't covered by the warranty.</li><li>Never let more than 1/8\" (3 mm) of creosote build up.</li><li>A professional chimney sweep is the safe choice, especially the first time. Chemical cleaners won't keep the chimney clean.</li><li>To sweep, the baffle (the board at the top of the firebox) and the air tubes come out first, then the rain cap. All of them go back in afterwards.</li></ul><div class=\"note danger\"><b>Never run the fireplace without the baffle.</b> It can cause unsafe temperatures and voids the warranty.</div>"
+  },
+  "doors": {
+   "tag": "Owner · maintenance",
+   "title": "Door gaskets & latch",
+   "cool": false,
+   "html": "<p>The doors must seal tightly for the fireplace to burn efficiently. After a year or more, the gaskets compress and harden and can let air leak past.</p><h4>Test the seal</h4><p>Close and latch the doors on a strip of paper. Try it all around. If the paper slips out easily anywhere, it's time for new gaskets (Door Gasket Kit 94-58200 from your dealer).</p><h4>Adjusting the latch</h4><p>The right-hand door carries the latch. Removing small spacer rings from the latch shaft tightens the seal; adding them loosens it. You'll need a 5/32\" allen wrench for the handle set screw.</p><h4>Replacing a gasket</h4><ol><li>Lay the door face-down on something soft, pry out the old gasket and scrape off the old adhesive.</li><li>Run a 1/4\" (6 mm) bead of high-temperature silicone in the groove.</li><li>Starting at the middle of the hinge side, press the new gasket in without stretching it. Cut it about 1/2\" long and press the end in.</li><li>Close the door and don't use the fireplace for 24 hours.</li></ol>"
+  },
+  "safety": {
+   "tag": "Owner · safety",
+   "title": "Safety & chimney fires",
+   "cool": false,
+   "html": "<p>The fireplace is hot whenever it's burning. Keep children, clothing and furniture away; you may need gloves to operate it.</p><ul><li>Run it only with the doors fully closed. A partly open door can let smoke and flames out.</li><li>Keep anything that can burn at least 48 inches from the front of the fireplace, and don't store firewood within the installation clearances.</li><li>Don't raise the fire on a grate or andirons, and don't block the air inlets or the hot air vents.</li><li>Don't use the fireplace if the glass, firebricks or baffle are cracked or broken.</li><li>Have a smoke detector, a carbon monoxide detector and a fire extinguisher in the house, and make sure everyone knows where the extinguisher is.</li></ul><h4>If you have a chimney fire</h4><ol><li>Close the fireplace door and the air controls.</li><li>Alert your family, and call the fire department if you need help.</li><li>If you can, use a dry chemical extinguisher, baking soda or sand. Never use water: it can cause a dangerous steam explosion.</li><li>Check outside that sparks and embers from the chimney aren't igniting the roof.</li><li>Don't use the fireplace again until a qualified chimney sweep or a fire department inspector has inspected the chimney and fireplace.</li></ol>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "Warranty at a glance",
+   "cool": false,
+   "html": "<p>HearthStone's limited lifetime warranty covers the original buyer only and can't be transferred. Coverage depends on the part:</p><div class=\"kv\"><div class=\"r\"><span>Combustion chamber (welds), castings, convector air-mate, ceramic glass (thermal breakage)</span><span>Lifetime parts · 4 years labour</span></div><div class=\"r\"><span>Plating (defective manufacture)</span><span>Lifetime parts</span></div><div class=\"r\"><span>Stainless steel firebox parts, surrounds, heat shields, C-Cast baffle, secondary air tubes</span><span>5 years parts · 3 years labour</span></div><div class=\"r\"><span>Carbon steel firebox parts, glass retainers, handle assembly</span><span>3 years parts · 2 years labour</span></div><div class=\"r\"><span>Blowers, heat sensors, switches, wiring, controls</span><span>2 years parts · 1 year labour</span></div><div class=\"r\"><span>Paint (peeling), gaskets, insulation, firebrick</span><span>1 year parts</span></div></div><h4>Not covered</h4><ul><li>Misuse, improper installation, lack of maintenance, over-firing, power failures, downdrafts or venting problems</li><li>Scratches, corrosion, distortion or discoloration</li><li>Damage from parts that aren't original</li></ul><div class=\"note\">To claim, contact your HearthStone dealer with your bill of sale, the model name and serial number (on the nameplate on the back of the unit), the installation configuration and what's wrong. Some parts need pictures. Lifetime parts can be replaced one time only.</div>"
+  },
+  "specOutput": {
+   "tag": "Installer · spec",
+   "title": "Heat output & heating area",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Overall heat output (min. to max.)</span><span>16,610 BTU/h to 43,021 BTU/h (4.9 kW to 12.6 kW)</span></div></div><div class=\"note small\"><b>Maker's website:</b> BTU: Up to 95,000.</div><div class=\"kv\"><div class=\"r\"><span>Recommended heating area</span><span>1,000 to 2,800 ft2 (93 to 260 m2)</span></div><div class=\"r\"><span>Maximum burn time</span><span>10 h</span></div><div class=\"r\"><span>Fuel</span><span>Dry cordwood</span></div></div><p>Output as measured per CSA B415.1-10 stack loss method; the maximum heat output is based on a loading density between 15 lb/ft3 and 20 lb/ft3. Heating area and burn time vary with location in the home, chimney draft, heat loss, climate and fuel. Not approved for alcove or mobile / manufactured home installation.</p>"
+  },
+  "specFirebox": {
+   "tag": "Installer · spec",
+   "title": "Firebox, logs & weight",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Firebox volume</span><span>4.28 ft3 (0.113 m3)</span></div><div class=\"r\"><span>Maximum log length</span><span>25 in (635 mm) east-west</span></div><div class=\"r\"><span>Recommended log</span><span>16\" north-south</span></div><div class=\"r\"><span>Appliance weight</span><span>665 lb (302 kg) incl. refractory slabs and faceplate</span></div><div class=\"r\"><span>Shipping weight</span><span>545 lb (247 kg) without option</span></div><div class=\"r\"><span>Door / glass</span><span>Double, glass with cast iron frame · ceramic glass</span></div><div class=\"r\"><span>Baffle</span><span>C-Cast</span></div><div class=\"r\"><span>Blower</span><span>Included (up to 176 CFM)</span></div></div><p>Refractory panels ship in a separate box to reduce the handling weight; install them after the fireplace is set (p. 25). The dimensions (section 2.2) are a drawing only — take them from the figure on p. 8.</p>"
+  },
+  "specEmis": {
+   "tag": "Installer · spec",
+   "title": "Emissions & efficiency",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Particulate (EPA)</span><span>1.6 g/h</span></div><div class=\"r\"><span>Average overall efficiency</span><span>63.9% (HHV) · 68.4% (LHV)</span></div></div><div class=\"note small\"><b>Maker's website:</b> Efficiency: 64% HHV.</div><div class=\"kv\"><div class=\"r\"><span>Optimum efficiency</span><span>69.7%</span></div><div class=\"r\"><span>Average CO</span><span>157.4 g/h</span></div><div class=\"r\"><span>Emission standard</span><span>EPA / ASTM WK47329</span></div></div><p>Certified to the U.S. EPA 2020 particulate emissions standard using cord wood (p. 2). Efficiency is a weighted average across the 3 burn rate categories (HHV). The manufacturer-set minimum low burn rate must not be altered.</p>"
+  },
+  "specFlue": {
+   "tag": "Installer · spec",
+   "title": "Flue & listed chimneys",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Flue outlet / chimney diameter</span><span>8 in (203 mm)</span></div><div class=\"r\"><span>Chimney type</span><span>CAN/ULC S629, UL 103 HT (2100 °F)</span></div><div class=\"r\"><span>First component</span><span>8\" anchor plate secured to the fireplace (sold separately)</span></div><div class=\"r\"><span>Clearance to combustibles</span><span>2\" (50 mm), not filled with insulation</span></div></div><p>Listed only with the Table 3 chimneys, all 8\" (20 cm) inner diameter: Selkirk, American Metal, Metal Fab, DuraVent, ICC, Olympia Chimney, Security Chimney, SBI Venting Division and Rockford Chimney lines in 2\" Solid Pack, 1\" Solid Pack or AC Triple Wall. Table 4 (p. 46) lists each manufacturer's mandatory components (ventilated roof flashing, rafter protectors, insulated attic radiation shield). The chimney must not vent any other appliance.</p><p>If the anchor plate's male nozzle exceeds 2\" (51 mm), cut it above the lifting hooks so the plate rests flat on the fireplace; if you cut only around the hooks, check that the flue damper mechanism works before closing the walls.</p><p><b>Masonry chimneys:</b> the fireplace has not been tested to be installed inside a masonry chimney (p. 24), and it is not approved for a positive flue connection to clay tile (p. 25). The masonry application on p. 47 works differently: the fireplace stays in its own location and connects through a hole in the masonry with a 30° or 45° insulated liner adapter (30° only in the USA) to a stainless steel liner of the outlet diameter that relines the chimney. Keep at least 1\" between the outside of the masonry and any wood framing or loose insulation, and run the liner at least 12\" (30 cm) above the masonry.</p>"
+  },
+  "specHeight": {
+   "tag": "Installer · spec",
+   "title": "Chimney height",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Vertical installation</span><span>15 ft. (4.6 m)</span></div><div class=\"r\"><span>Two (2) elbows</span><span>15 ft. (4.6 m)</span></div><div class=\"r\"><span>Four (4) elbows</span><span>17 ft. (5.2 m)</span></div><div class=\"r\"><span>Top of unit to first offset</span><span>18 inches (457 mm) recommended</span></div><div class=\"r\"><span>Above roof contact</span><span>at least 3 ft.</span></div><div class=\"r\"><span>Above anything within 10 ft.</span><span>at least 2 ft.</span></div><div class=\"r\"><span>Roof brace</span><span>if more than 5 ft. above the roof</span></div></div><p>Minimum system height runs from the bottom of the fireplace to the chimney cap. At the minimum, conditions must be optimal (interior chimney, 18\" before any offset); extra height increases draft. Starting with a 30° or 45° elbow is also approved. Every installation needs at least one support; the fireplace itself may carry at most 9 ft. (2.75 m) of 2\" Solid Pack or 12 ft. (3.7 m) of 1\" Solid Pack chimney. A rain cap is required. Where several chimneys share an area, the manual suggests separating terminations by at least 16\" (410 mm) horizontally and 18\" (460 mm) vertically.</p>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances to combustibles",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Enclosure back / sides</span><span>0\"</span></div><div class=\"r\"><span>Floor (under the fireplace)</span><span>0\"</span></div><div class=\"r\"><span>Chimney</span><span>2\" (50 mm)</span></div><div class=\"r\"><span>Ceiling</span><span>84\" (2.13 m) from the base of the fireplace</span></div><div class=\"r\"><span>Wall in front of fireplace</span><span>48\"</span></div><div class=\"r\"><span>Non-combustible shelf</span><span>at least 52\" from the base</span></div><div class=\"r\"><span>Side &amp; mantel, from the door opening</span><span>A 6\" (152 mm) max · B 8\" (203 mm) min · C 24\" (610 mm) min</span></div></div><div class=\"note small\"><b>Maker's website:</b> Clearances: Ceiling from bottom of fireplace 84″; side trim from door opening 8″; side wall from door opening 24″. Install to the clearance diagrams in the manual.</div><p>Side and mantel clearances are lettered dimensions (A, B, C) measured from the door opening, shown on the drawing on this page — take them from the figure. Combustible framing can't go in the space directly above the fireplace, which must stay empty for 84\" from the base (p. 34). Don't pack required air spaces with insulation, and keep the fireplace out of contact with insulation or loose fill.</p>"
+  },
+  "specHearth": {
+   "tag": "Installer · spec",
+   "title": "Hearth extension",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>#1 Directly on the floor</span><span>R 2.00 · 32\" (813 mm)</span></div><div class=\"r\"><span>#2 Raised less than 8\"</span><span>R 2.00 · 32\" (813 mm)</span></div><div class=\"r\"><span>#3 On a more than 8\" raised base</span><span>R 2.00 · 16\" (406 mm)</span></div><div class=\"r\"><span>#4 Raised between 8\" and 12\"</span><span>R 1.00 · 20\" (508 mm)</span></div><div class=\"r\"><span>#5 Raised more than 12\"</span><span>No R value · 16\" (406 mm)</span></div><div class=\"r\"><span>Each side of the door opening</span><span>8\" (203 mm)</span></div></div><p>Depth is the non-combustible floor protection in front of the hearth (p. 27 table). Use a continuous, grouted non-combustible material such as ceramic tile, cement board, brick or millboard; any tile needs a continuous non-combustible sheet beneath. R values add up across layers (Table 1, p. 32). Cover the joint with bent, continuous sheet metal (not included): the hearth-to-fireplace joint for #1 and #3; the upper and lower angle, 2\" horizontally and 2\" vertically, for #2, #4 and #5. The floor under the fireplace should match or exceed the height of the floor protection. Keep 84\" from the fireplace base to the ceiling, and leave no carpet under the floor protection.</p><div class=\"note\"><b>Note:</b> on the 12\" boundary between options #4 and #5, the p. 27 table puts a 12\" rise under #4 (between 8\" and 12\") and starts #5 above 12\", but p. 31 gives #5 as 12\" and more and p. 33 as 12\" or more. Option #3 (more than 8\" raised base) also overlaps #4 by height; the drawings on pp. 29–30 show how they differ.</div>"
+  },
+  "specAir": {
+   "tag": "Installer · spec",
+   "title": "Outside combustion air",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Kit (included)</span><span>5\" adaptor, air inlet block-off plate (P/N 5420-080), four screws</span></div><div class=\"r\"><span>Insulated pipe</span><span>5\" under 20 ft · 6\" over 20 ft or more than two deviations</span></div><div class=\"r\"><span>Maximum pipe length</span><span>30 ft (9 m)</span></div><div class=\"r\"><span>Pipe rating</span><span>HVAC type, ULC S110 and/or UL 181, Class 0 or Class 1, 250 °F</span></div><div class=\"r\"><span>Wall termination</span><span>not more than 10 ft. (3 m) above or 3 ft. below the fireplace base, nor above 50% of the chimney height</span></div></div><p>Outside air is not legally mandatory unless local code requires it, but the manual strongly recommends it, with a mechanical damper to close it when the fireplace isn't in use and a CO detector in the room (p. 48). Connect on the right side (most common) or the right side underneath; remove only that knock-out. Use at least 10 ft of insulated pipe with a P-trap to avoid condensation and rust. Air must come from outdoors, not the attic, basement or garage; keep the termination clear of snow, extreme wind, car exhaust, gas meters and other vents, and off a heavily windward wall.</p>"
+  }
+ },
+ "pageref": {
+  "light": 12,
+  "air": 15,
+  "reload": 14,
+  "wood": 10,
+  "ash": 14,
+  "glass": 19,
+  "chimney": 22,
+  "doors": 21,
+  "safety": 5,
+  "warranty": 60,
+  "specOutput": 7,
+  "specFirebox": 7,
+  "specEmis": 7,
+  "specFlue": 45,
+  "specHeight": 44,
+  "specClear": 26,
+  "specHearth": 27,
+  "specAir": 52,
+  "step0": 25,
+  "step1": 26,
+  "step2": 27,
+  "step3": 34,
+  "step4": 37,
+  "step5": 38,
+  "step6": 43,
+  "step7": 51,
+  "step8": 53,
+  "step9": 57
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "light",
+   "t": "paint smell",
+   "p": "First fires cure the paint; open a window"
+  },
+  {
+   "k": "h",
+   "id": "chimney",
+   "t": "creosote",
+   "p": "Check monthly at first, clean at least once a year"
+  },
+  {
+   "k": "h",
+   "id": "safety",
+   "t": "chimney fire",
+   "p": "Close the door and air controls; never use water"
+  },
+  {
+   "k": "h",
+   "id": "wood",
+   "t": "moisture content",
+   "p": "Ready-to-burn wood is 15% to 20%"
+  },
+  {
+   "k": "h",
+   "id": "air",
+   "t": "power failure",
+   "p": "Close the air by hand with the small lever"
+  },
+  {
+   "k": "h",
+   "id": "doors",
+   "t": "door won't seal",
+   "p": "Paper-strip test, latch spacers, new gaskets"
+  },
+  {
+   "k": "i",
+   "id": "specHearth",
+   "t": "R value",
+   "p": "Hearth extension R 2.00 or 1.00 by option"
+  },
+  {
+   "k": "i",
+   "id": "specFlue",
+   "t": "anchor plate",
+   "p": "Every chimney starts with an 8\" anchor plate"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "specHearth",
+    "issue": "Hearth-extension option ranges: the p. 27 table gives #4 as raised between 8\" and 12\" (R 1.00, 20\") and #5 as more than 12\" (no R, 16\"), but p. 31 gives #5 as 12\" and more and p. 33 as 12\" or more (with #4 more than 8\" but less than 12\"), so a 12\" rise falls under different options. #3 (more than 8\" raised base, R 2.00, 16\") also overlaps #4 by height; only the drawings on pp. 29-30 distinguish them.",
+    "pages": [
+     [
+      1,
+      27
+     ],
+     [
+      1,
+      29
+     ],
+     [
+      1,
+      30
+     ],
+     [
+      1,
+      31
+     ],
+     [
+      1,
+      33
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "specFlue",
+    "issue": "Masonry chimney: p. 24 says the fireplace has not been tested to be installed inside a masonry chimney (p. 25: not approved for a positive flue connection to clay tile), yet section 8.9 on p. 47 gives masonry application instructions with a stainless steel liner and 30/45 degree insulated liner adapter.",
+    "pages": [
+     [
+      1,
+      24
+     ],
+     [
+      1,
+      25
+     ],
+     [
+      1,
+      47
+     ]
+    ],
+    "class": "not_a_conflict",
+    "reason": "The p. 24 warning is about installing the fireplace itself inside a masonry chimney, and p. 25 rules out a positive flue connection to the clay tile. The section 8.9 masonry application (p. 47) does neither: the fireplace is positioned in its own location and connects through a hole in the masonry, with a 30 or 45 degree insulated liner adapter, to a stainless steel liner that relines the chimney."
+   },
+   {
+    "where": "step7",
+    "issue": "Air distribution ductwork: p. 24 says do not connect to or use in conjunction with any air distribution ductwork, while p. 24 (optional equipment) and Appendix 2 on p. 49 offer the forced air distribution kit (94-57200), ducted to another room with insulated HVAC flexible pipe.",
+    "pages": [
+     [
+      1,
+      24
+     ],
+     [
+      1,
+      49
+     ]
+    ],
+    "class": "substantive"
+   }
+  ],
+  "catalog_mismatches": [
+   {
+    "model": "hearthstone-wfp-100",
+    "field": "btu_output_max",
+    "catalog": "95000",
+    "manual": "Overall heat output rate (min. to max.) 16,610 BTU/h to 43,021 BTU/h; 95,000 does not appear in the manual",
+    "page": [
+     1,
+     7
+    ],
+    "shown": "specOutput"
+   },
+   {
+    "model": "hearthstone-wfp-100",
+    "field": "efficiency_pct",
+    "catalog": "64% HHV",
+    "manual": "Average overall efficiency - Dry cordwood 63.9% (HHV) 68.4% (LHV)",
+    "page": [
+     1,
+     7
+    ],
+    "shown": "specEmis"
+   },
+   {
+    "model": "hearthstone-wfp-100",
+    "field": "clearances_note",
+    "catalog": "Ceiling from bottom of fireplace 84″; side trim from door opening 8″; side wall from door opening 24″",
+    "manual": "Ceiling: 84\" (2.13 m) measured from the base of the fireplace. Side and mantel clearances are lettered dimensions measured from the door opening: A 6\" (152 mm) max, B 8\" (203 mm) min, C 24\" (610 mm) min; the text doesn't say which letter is side trim or side wall (the drawing shows them)",
+    "page": [
+     1,
+     26
+    ],
+    "shown": "specClear"
+   }
+  ],
+  "notes": "No troubleshooting chart: fault panels are built from the manual's draft and fuel descriptions (pp. 2, 11, 15, 19, 39-40, 48, 51); no code table. Not transcribed because they are drawings with lettered dimensions: dimensions (p. 8), the positions of side/mantel clearances A/B/C from the door opening (p. 26; their values are listed in specClear), hearth-extension letters incl. B 49\" (p. 33), framing E/F and corner M/N (pp. 34, 36), fresh air / forced air kit framing J/M (p. 36), facing O-R (p. 37), chimney 12\" above roof flashing (p. 42). The website's clearance labels (8\" side trim, 24\" side wall from the door opening) can't be confirmed from the text; specClear shows the manual's lettered figures and the website's wording. Safety rating label (p. 59) is image-only, so no electrical rating is given; Appendix 8 only describes the terminal-block wiring. No blower operating instructions in the text (blower covered as a spec and the Appendix 3 replacement only). Pages 61-62 are blank. Cover reads 'FP15 Waterloo' and 'Woodstove' (likely template residue). Broken cross-references: p. 25 refractory ('see' with no target), p. 26 weights ('Erreur ! Source du renvoi introuvable'; weights are on p. 7), p. 38 door alignment 'pg. 19' (it is on p. 20). Printed without units: creosote limit '1/8 (3 mm)' (p. 22), shown as 1/8\"; fresh-air pipe 'a 5 / a 6 pipe diameter' (p. 52), shown as 5\" / 6\". Block-off plate P/N 5420-080 is read from the 'F- P/N 5420-080' label next to the step naming blocking plate (F) on p. 52. Minor inconsistencies not shown on the page: plated-finish cleaning (metal polish on p. 19 vs damp soft cloth only on p. 22; plated finish left out of the guide), test method named CSA B415-10 (p. 2) vs CSA B415.1-10 (p. 7), roof-height metric equivalents differ between p. 39 (1 m, 60 cm, 3 m) and p. 40 (92 cm, 61 cm, 3.1 m) so the guide uses the imperial values printed on both, Table 1 ceramic tile k 12.5 vs R 0.008 per inch (p. 32; table not transcribed), exterior-chimney note '18 C (0 F)' (p. 40) omitted. Website efficiency 64% HHV is the manual's 63.9% (HHV) rounded; listed as a mismatch and shown as a website note in specEmis."
+ }
+}

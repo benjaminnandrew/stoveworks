@@ -1,0 +1,89 @@
+{
+ "id": "morso-1440-b",
+ "checked_pagerefs": 27,
+ "notes_checked": {
+  "amber": 4,
+  "correction": 0,
+  "website": 2
+ },
+ "findings": [
+  {
+   "severity": "major",
+   "where": "detail.specFlueTemp row 'Maximum' (same figure in specs.fluetemp row 2, detail.overfire 'The warning signs', faults 'Over-firing' item 2)",
+   "guide_says": "Maximum: 450° C (750°F) ... Above 450° C (750°F) counts as over-firing. Shown as one settled limit everywhere, with no note.",
+   "manual_says": "p. 14: \"The maximum flue temperature in the stove pipe must not exceed 450° C (750°F). If the flue temperature exceeds 450°C (750°F), it is considered as over firing and may cause premature wear and tear of the stove.\" The two units don't match: 450 °C is about 842 °F, and 750 °F is about 400 °C. No other page gives the limit, so the manual doesn't settle which figure is right. This is the over-firing threshold, a burn/safety value, so per the rules it isn't a plain misprint to correct; it needs an amber note. (The normal-firing pair 'approx. 300° C (550°F)' is also loose, 300 °C being about 572 °F, but it is marked approx.)",
+   "pages": [
+    [
+     1,
+     14
+    ]
+   ],
+   "fix": "Keep '450° C (750°F)' exactly as printed, and add an amber note where the limit appears (at least specFlueTemp and overfire), e.g. <div class=\"note\"><b>Note:</b> p. 14 gives the maximum flue temperature as 450° C with 750°F in brackets; these two figures are not the same temperature, and the manual gives no other value.</div> Record it in review.conflicts as substantive."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.reload step 5",
+   "guide_says": "Add the next modest load while there are still plenty of live embers. It should light within 2 minutes.",
+   "manual_says": "p. 24: \"Be certain to have a good layer of embers before refilling. The wood should light within 2 minutes. If the logs do not ignite it may, in an extreme case, cause the flue gases to ignite which may pose a risk to material damage or personal injury.\" The guide keeps the 2-minute figure but drops the warning it comes with, which turns a safety warning into a casual expectation.",
+   "pages": [
+    [
+     1,
+     24
+    ]
+   ],
+   "fix": "Make sure there's a good layer of embers before you reload. The wood should light within 2 minutes. If the logs don't catch, in an extreme case the flue gases can ignite, which can damage property or injure someone."
+  },
+  {
+   "severity": "minor",
+   "where": "step1 / step3 (and review.notes)",
+   "guide_says": "Step1 lists only 'Poker, ceramic flue connection gasket and riddling tool', and step3 mentions only 'the enclosed 6\" adapter'. The guide leaves out p. 5's statement that a connector is included. review.notes says instead 'worth confirming what ships in the box (not stated in the guide)'.",
+   "manual_says": "p. 5: \"A chimney connector (flue pipe) is required unless the appliance is specifically approved for that type of installation. A chimney connector is included with the heater.\" p. 4: \"Poker, ceramic flue connection gasket and riddling tool are standard accessories\". p. 6: \"The flue collar is from the factory prepared for fitting the enlosed 6 inche adapter. Use a 24 MSG black or blue chimney connector or listed double wall chimney connector.\" This is a silent pick: the manual disagrees with itself about whether a connector comes in the box, and the guide shows only one side. The writer also left a to-do for Stoveworks where the rules call for a note.",
+   "pages": [
+    [
+     1,
+     5
+    ],
+    [
+     1,
+     4
+    ],
+    [
+     1,
+     6
+    ]
+   ],
+   "fix": "Add an amber note (in a step1 drawer or in specConnector): <div class=\"note\"><b>Note:</b> p. 5 says a chimney connector is included with the heater; p. 4 lists the standard accessories as the poker, ceramic flue connection gasket and riddling tool, and p. 6 mentions only an enclosed 6 inch adapter.</div> Record it as a substantive conflict, and drop the 'worth confirming' to-do from review.notes."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.ash / detail.chimney (also detail.glass, detail.care)",
+   "guide_says": "The owner maintenance drawers (emptying ash, sweeping the chimney and connector, cleaning the glass, pre-season care) give the procedures without saying to wear any protection.",
+   "manual_says": "p. 15 (opening the Maintenance section): \"When perfoming maintenance on your stove, always protect yourself, using safety goggles and gloves.\" The guide drops an 'always' safety instruction from the topics it does cover. Only the installer connector drawer has gloves/eyewear, and that is for drilling and cutting (p. 6).",
+   "pages": [
+    [
+     1,
+     15
+    ]
+   ],
+   "fix": "Add to the ash and chimney drawers (ideally to glass and care too): 'Wear safety goggles and gloves whenever you do maintenance on the stove.'"
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specFlueTemp paragraph",
+   "guide_says": "If any part of the stove or chimney connector glows, it is over-firing (p. 13).",
+   "manual_says": "p. 13 says only: \"If any part of the stove glows, you are overfiring.\" The chimney connector is on p. 11: \"Do not overfire, if heater or chimney connector glows you are overfiring.\"",
+   "pages": [
+    [
+     1,
+     13
+    ],
+    [
+     1,
+     11
+    ]
+   ],
+   "fix": "Cite both pages: '... it is over-firing (pp. 11, 13).'"
+  }
+ ],
+ "verdict": "Yes, it is safe to publish after the fixes: lighting, loading, clearances, floor protection, venting and the existing notes all match the manual, and the one real gap is that p. 14's self-contradictory over-firing limit '450° C (750°F)' needs an amber note."
+}

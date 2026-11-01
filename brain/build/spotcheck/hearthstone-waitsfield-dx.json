@@ -1,0 +1,140 @@
+{
+ "id": "hearthstone-waitsfield-dx",
+ "checked_pagerefs": 28,
+ "notes_checked": {
+  "amber": 5,
+  "correction": 1,
+  "website": 1
+ },
+ "findings": [
+  {
+   "severity": "critical",
+   "where": "step6",
+   "guide_says": "Manual ignition (optional): ... hold the pilot button down; after a ten second wait press the piezo button every three seconds until the pilot lights; hold one minute; MANUAL knob to ON, then Main Valve counter-clockwise past minimum.",
+   "manual_says": "The guide follows the short copy of the procedure on p. 21, which stops at \"push the piezo igniter button on the valve every three seconds until you see the pilot light.\" The full copy on pp. 31-32 adds the safety limits: p. 31 step 7: \"If the pilot does not light after one minute, release the pilot button and wait 5 minutes for gas to clear then repeat step 5. If the pilot has not ignited after three attempts at the ignition sequence, STOP ALL ATTEMPTS TO LIGHT PILOT AND CALL AN AUTHORIZED SERVICE TECHNICIAN.\" p. 32 step 8: \"If the pilot does not remain on after three attempts, STOP ALL ATTEMPTS TO LIGHT PILOT AND CALL AN AUTHORIZED SERVICE TECHNICIAN.\" Step 10: \"If the Main Burner does not ignite, return the Main Valve knob clockwise back to “OFF” , wait three (3) minutes and repeat step 9. If the main burner does not ignite after a repeat attempt, STOP ALL ATTEMPTS TO LIGHT THE MAIN BURNER, TURN THE MANUAL KNOB TO ON, SHOT [sic] OFF THE GAS SUPPLY VALVE AND CALL AN AUTHORIZED SERVICE TECHNICIAN.\"",
+   "pages": [
+    [
+     1,
+     21
+    ],
+    [
+     1,
+     31
+    ],
+    [
+     1,
+     32
+    ]
+   ],
+   "fix": "After \"until the pilot lights\", add: \"If it hasn't lit after one minute, release the pilot button and wait 5 minutes for gas to clear before trying again. If the pilot hasn't lit, or won't stay lit, after three attempts, stop and call an authorized service technician. If the main burner doesn't light, turn the Main Valve back to OFF, wait 3 minutes and try once more. If it still doesn't light, stop, turn the MANUAL knob to ON, shut off the gas supply valve and call an authorized service technician (pp. 31-32).\""
+  },
+  {
+   "severity": "critical",
+   "where": "detail.firstfire",
+   "guide_says": "Fine surface cracks in the ceramic burner are normal too. If the flames stay blue, or a crack goes below the ceramic surface, have a qualified technician check it.",
+   "manual_says": "p. 28 (Ceramic Burner Fissures): \"These fissures are normal, and have no effect on the operation, or safety of the stove. However, if a crack is found that penetrates into the fuel accumulation area below the ceramic surface; discontinue operation until the stove is checked by a qualified technician.\" Blue flames are a lesser matter: p. 44: \"If the blue color stays; adjust the air shutter for a proper burn.\"",
+   "pages": [
+    [
+     1,
+     28
+    ],
+    [
+     1,
+     44
+    ]
+   ],
+   "fix": "Split the two cases and keep the stop-use instruction: \"If a crack goes down into the fuel area below the ceramic surface, stop using the stove until a qualified technician has checked it. If the flames stay blue after the first 20 minutes, the air shutter needs adjusting; have a qualified technician do it.\""
+  },
+  {
+   "severity": "major",
+   "where": "detail.specHoriz row L",
+   "guide_says": "L · Paved public sidewalk or driveway: 7 feet (2.1m)",
+   "manual_says": "p. 15 (Figure 11): \"L = ¹Clearance above paved sidewalk or a paved driveway located on public property: 7 feet (2.1m) minimum.\" Its footnote: \"¹A vent shall not terminate directly above a sidewalk or driveway which is located between two single family dwellings and serves both dwellings\". The guide keeps the footnote for row M but drops this prohibition from row L.",
+   "pages": [
+    [
+     1,
+     15
+    ]
+   ],
+   "fix": "Row L: \"7 feet (2.1m); never directly above a sidewalk or driveway that lies between two single-family dwellings and serves both.\""
+  },
+  {
+   "severity": "minor",
+   "where": "detail.thermostat",
+   "guide_says": "After 6 hours with no change in flame height (in thermostat or timer mode, with the room holding at the set temperature), it drops to pilot.",
+   "manual_says": "p. 38: \"6 Hour no Motor Movement • Manual Model/Temperature/Timer Mode: The valve will turn to pilot flame if there is no change in flame height for a 6 hour period. In Temperature/Timer Mode if the ambient room temperature changes, the flame height will adjust automatically to maintain set temperature, and the fire will continue to function normally. The valve will turn to pilot flame if the set temperature and the ambient room temperature remain the same over a 6 hour period.\" The 6-hour drop also applies in manual mode.",
+   "pages": [
+    [
+     1,
+     38
+    ]
+   ],
+   "fix": "\"In any mode, including manual, it drops to pilot after 6 hours with no change in flame height. In thermostat and timer modes the flame keeps adjusting while the room temperature changes, so the drop comes after the room has stayed at the set temperature for 6 hours.\""
+  },
+  {
+   "severity": "minor",
+   "where": "detail.safety",
+   "guide_says": "Don't use the stove if any part has been under water. Call a qualified service technician to inspect it.",
+   "manual_says": "p. 6: \"CAUTION: DO NOT USE THIS APPLIANCE IF ANY PART WAS UNDER WATER. IMMEDIATELY CALL A QUALIFIED SERVICE TECHNICIAN TO INSPECT THE HEATER AND TO REPLACE ANY PART OF THE CONTROL SYSTEM AND GAS CONTROL THAT HAS BEEN UNDER WATER.\"",
+   "pages": [
+    [
+     1,
+     6
+    ]
+   ],
+   "fix": "\"Don't use the stove if any part has been under water. Call a qualified service technician right away to inspect it and replace any part of the control system and gas control that was under water.\""
+  },
+  {
+   "severity": "minor",
+   "where": "detail.firstfire (Smell gas? note)",
+   "guide_says": "Smell gas? That's not normal. Don't light anything, touch electrical switches or use a phone in the building. Call your gas supplier from outside.",
+   "manual_says": "p. 1: \"Immediately call your gas supplier from a phone outside the structure. Follow your gas supplier’s instructions. If you cannot reach your gas supplier, call the fire department or 911.\" The short note drops the follow-their-instructions and fire department / 911 steps (the safety drawer has them).",
+   "pages": [
+    [
+     1,
+     1
+    ]
+   ],
+   "fix": "End the note: \"Call your gas supplier right away from a phone outside and follow their instructions. If you can't reach them, call the fire department or 911.\""
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specHoriz rows J and H",
+   "guide_says": "J · Non-mechanical air inlet: 12 inches (30cm); H · Meter/regulator assembly: not within 15 feet (4.5m) above, within 3 feet (91cm) horizontally of the regulator center line",
+   "manual_says": "p. 15: \"J = Clearance to non-mechanical air supply inlet to building or the combustion air inlet to any other appliance: 12inches (30cm) minimum.\" \"H = *Not to be installed within 15 feet (4.5m) above a meter/regulator assembly within 3 feet (91cm) horizontally from the center line of the regulator.\" Legend: \"*In accordance with CSA B149 Installation codes.\" Row J loses the other-appliance combustion-air inlet, and row H loses its CSA B149 marker.",
+   "pages": [
+    [
+     1,
+     15
+    ]
+   ],
+   "fix": "J: \"Non-mechanical air supply inlet to the building, or the combustion air inlet of any other appliance: 12 inches (30cm)\". H: add \"(CSA B149)\"."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specVent / step2",
+   "guide_says": "Terminations and restrictor settings come from the venting chart (Figure 12, p. 16) ... / Termination within the Figure 12 chart.",
+   "manual_says": "p. 12 (vertical terminations): \"The termination must fall within the chart in Figure 11.\" p. 13: \"The termination must fall within the chart shown in Figure 12.\" (chimney) and \"The termination must fall within the area shown in Figures 11 & 12.\" (horizontal). Figure 11 (p. 15) is \"Acceptable Direct Vent Terminal Vent Cap Locations\" and Figure 12 (p. 16) is \"Venting Termination\". The guide quietly resolves the p. 12 reference to Figure 12, with a record only in review.notes and no small note on the page.",
+   "pages": [
+    [
+     1,
+     12
+    ],
+    [
+     1,
+     13
+    ],
+    [
+     1,
+     15
+    ],
+    [
+     1,
+     16
+    ]
+   ],
+   "fix": "In specVent add <div class=\"note small\">For vertical terminations p. 12 says \"the chart in Figure 11\"; Figure 11 (p. 15) is the cap-location diagram, and the venting chart is Figure 12 (p. 16), the figure pp. 13 and 28-29 cite.</div> and record it as clerical in review.conflicts."
+  }
+ ],
+ "verdict": "Safe to publish once the step-6 manual-ignition limits (one minute, 5-minute gas-clearing wait, stop after three attempts) and the burner-crack stop-use instruction are restored and the row-L driveway prohibition is added; the rest are small wording fixes."
+}

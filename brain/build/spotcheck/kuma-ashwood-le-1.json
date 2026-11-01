@@ -1,0 +1,40 @@
+{
+ "id": "kuma-ashwood-le-1",
+ "checked_pagerefs": 27,
+ "notes_checked": {"amber": 2, "correction": 1, "website": 3},
+ "findings": [
+  {
+   "severity": "minor",
+   "where": "detail.care (kv row 'Chimney & connector')",
+   "guide_says": "Chimney & connector: at least once every two months in the heating season. No note; this is the only chimney-check interval the guide shows.",
+   "manual_says": "p. 25: \"The chimney connector and chimney should be inspected at least once every two months during the heating season to determine if a creosote buildup has occurred.\" p. 30 (twice) and p. 31: \"Your chimney should be checked and cleaned, if necessary, every few months.\" This is a silent pick: the manual gives two intervals for the same check. The writer listed it only in review.notes as a 'minor wording difference' and didn't show it on the page.",
+   "pages": [[1, 25], [1, 30], [1, 31]],
+   "fix": "Keep the p. 25 row and add after the kv block: <div class=\"note\"><b>Note:</b> p. 25 says to inspect the chimney connector and chimney at least once every two months during the heating season; the troubleshooting pages (pp. 30-31) say to have the chimney checked and cleaned, if necessary, every few months.</div> Record it in review.conflicts (class substantive)."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.light (amber note)",
+   "guide_says": "Note: p. 19 says to leave the air open for 20-30 minutes after lighting, and p. 23 says to set it to high for 20 to 30 minutes when starting; the tips on p. 20 say to burn at high for 10-30 minutes when you start the stove.",
+   "manual_says": "p. 19 doesn't say 'after lighting'. Step 5: \"After 15 minutes, or once the catalytic thermometer enters the active range, close the bypass control engaging the combustor (...). Leave the air control open for 20-30 minutes so that the fire becomes well established.\" Step 6: \"After 20-30 minutes, begin to regulate the heat output and burn rate by sliding in the air control.\" On p. 19 the 20-30 minutes comes right after closing the bypass, which is also the order of the guide's own steps 5-6. So the note doesn't match the drawer, and it makes p. 19 read the same as p. 23. The p. 20 tips also say: \"During the startup of a cold stove, a medium to high firing rate must be maintained for about 20 minutes.\"",
+   "pages": [[1, 19], [1, 20], [1, 23]],
+   "fix": "<div class=\"note\"><b>Note:</b> p. 19 says that once the bypass is closed, you leave the air control open for 20-30 minutes; p. 23 says to set it to high for 20 to 30 minutes when starting; the tips on p. 20 say to burn at high for 10-30 minutes when you start the stove, and to keep a medium to high firing rate for about 20 minutes when starting a cold stove.</div>"
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specDims",
+   "guide_says": "Overall dimensions appear only as a dimensioned drawing for each model ... The drawing values aren't in the manual text, so they aren't transcribed here; read them from the drawing pages. The manual text doesn't state weights or firebox volume. There is no Maker's website note.",
+   "manual_says": "p. 6: \"WOOD CLASSIC DIMENSIONAL DRAWINGS / All dimensions are in inches.\" p. 7: \"ASHWOOD DIMENSIONAL DRAWINGS / All dimensions are in inches.\" p. 8: \"CAMBRIDGE DIMENSIONAL DRAWINGS / All dimensions are in inches.\" These pages are drawings only, and no page of the text gives a weight or a firebox volume. website.json prints these figures: Ashwood LE-1 Width 26-1/8\", Height with Legs 30\", Height with Pedestal 32-1/2\", Depth 24-1/8\", Weight 440 lbs. Wood Classic LE-1 Width 26-1/8\", Height with Legs 31-3/4\", Height with Pedestal 34-1/4\", Depth 26-1/8\", Weight 450 lbs. Cambridge LE-1 Width 26-1/8\", Height with Lower Platform 38\", Height without Lower Platform 37\", Depth 24-1/8\", Weight 470 lbs. All three: Firebox Size 2.5 ft³. The GUIDE_SPEC website section says two things here. When the manual gives a figure only in a drawing, the website's figures go where the guide points to the drawing. When the guide says the manual prints no figure, the website's figure goes in a small note right there.",
+   "pages": [[1, 6], [1, 7], [1, 8]],
+   "fix": "After each model's drawing row, add a small note with that model's website figures, e.g. <div class=\"note small\"><b>Maker's website:</b> Width 26-1/8\"; Height with Legs 30\"; Height with Pedestal 32-1/2\"; Depth 24-1/8\"; Weight 440 lbs.</div> for the Ashwood LE-1, and the same for the Wood Classic LE-1 and Cambridge LE-1 with their own values. After 'doesn't state weights or firebox volume', add <div class=\"note small\"><b>Maker's website:</b> Firebox Size 2.5 ft³ (all three models).</div> Record these in review.catalog_mismatches."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specOutput (efficiency row)",
+   "guide_says": "Efficiency 77.8% (High Heating Value), followed only by 'Maker's website: Efficiency (HHV) 78%.'",
+   "manual_says": "p. 3: \"an efficiency of 77.8% (High Heating Value)\". The manual prints no LHV figure. For all three models, website.json also prints \"Efficiency (LHV)\": \"84%\", which is on a topic the guide covers, but the guide leaves it out.",
+   "pages": [[1, 3]],
+   "fix": "After the HHV note, add <div class=\"note small\"><b>Maker's website:</b> Efficiency (LHV) 84%.</div>"
+  }
+ ],
+ "verdict": "Safe to publish once these minor fixes are made: every safety procedure and value matches the manual exactly, and all 27 page links are correct. That covers the lighting and reload sequences, the over-fire, broken-glass and ash steps, the clearances, floor protection, chimney and flue heights, the mobile-home rules and the warranty."
+}

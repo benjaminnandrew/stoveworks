@@ -1,0 +1,84 @@
+{
+ "id": "hearthstone-shelburne",
+ "checked_pagerefs": 27,
+ "notes_checked": {
+  "amber": 8,
+  "correction": 1,
+  "website": 2
+ },
+ "findings": [
+  {
+   "severity": "minor",
+   "where": "detail.chimney (first bullet); detail.care 'Every other month'",
+   "guide_says": "Inspect the chimney connector and chimney at least once every two months during the heating season, and at least monthly if creosote is building up. (The care checklist lists the creosote look only under 'Every other month'.)",
+   "manual_says": "p. 6: \"Check daily for creosote build-up until experience shows how often you need to clean to be safe. Be aware that the hotter the fire the less creosote is deposited, and weekly cleaning may be necessary in mild weather even though monthly cleaning may be enough in the coldest months.\" p. 30: \"inspect the chimney connector and chimney at least once every two months during the heating season\".",
+   "pages": [
+    [
+     1,
+     6
+    ],
+    [
+     1,
+     30
+    ]
+   ],
+   "fix": "Keep the p. 30 minimums and add the stricter p. 6 guidance: \"Until you know how fast creosote builds in your system, check for it daily. Weekly cleaning may be needed in mild weather; monthly may be enough in the coldest months.\""
+  },
+  {
+   "severity": "minor",
+   "where": "detail.light (intro line)",
+   "guide_says": "Use these steps each time you light the stove. (The steps are the everyday procedure, ending 'Let the stove run on high for around 20 minutes'.)",
+   "manual_says": "p. 24 heads these steps \"BUILDING A FIRE FOR EVERYDAY USE\"; for break-in, p. 24 says \"Your first fire and first fire each season thereafter should be built and maintained as outlined above\" (p. 23: \"Your first fire should make the stove warm but not hot to the touch\"); p. 22: \"over-firing a new stove may cause soapstone to crack\".",
+   "pages": [
+    [
+     1,
+     22
+    ],
+    [
+     1,
+     23
+    ],
+    [
+     1,
+     24
+    ]
+   ],
+   "fix": "\"Use these steps for everyday fires. For your very first fire, and the first fire of each season, follow the break-in steps instead.\""
+  },
+  {
+   "severity": "minor",
+   "where": "detail.bypass (amber Note); faults.panels[1].items[0]",
+   "guide_says": "Note: p. 24 says to run the stove at a medium to high firing rate for about 10 minutes when reloading a cool or burned-down fire; p. 30 says to burn it with the primary air fully open for 15 to 20 minutes after reloading. Separately, the troubleshooting panel says 'primary air fully open ... a few minutes after reloading', with no note.",
+   "manual_says": "p. 33: \"Fully open the primary air control one minute before opening the door and keep it fully open for a few minutes after reloading.\" (p. 24: \"operate the stove at a medium to high firing rate for about 10 minutes\"; p. 30: \"After reloading with wood, burn the stove with the primary air control fully open for 15 to 20 minutes.\")",
+   "pages": [
+    [
+     1,
+     24
+    ],
+    [
+     1,
+     30
+    ],
+    [
+     1,
+     33
+    ]
+   ],
+   "fix": "Add the third figure to the note: \"...; the troubleshooting table (p. 33) says to keep the primary air fully open for a few minutes after reloading.\" (The writer's review.conflicts entry already lists p. 33.)"
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specClear (and specs.clear card)",
+   "guide_says": "Letters A–F are defined only in the Figure 4 drawing; the table text doesn't say which is side, rear or corner, so read them against the drawing. No Maker's website note.",
+   "manual_says": "p. 10 gives the clearances by letter only: \"Clearances A B C D E F ... Single Wall Connector – NO REAR HEATSHIELD 13\"-33cm 17.5\"-45cm 21\"-53cm 26\"-66cm 10\"-26cm 20.5\"-52cm\". website.json prints the same figures as side/rear/corner: \"Clearances, single-wall connector, no rear heat shield: Side 13\", Rear 17½\", Corner 10\"\"; \"with rear heat shield: Side 13\", Rear 11\", Corner 7\"\"; \"double-wall connector, with blower kit heat shield: Side 13\", Rear 5\", Corner 7\"\".",
+   "pages": [
+    [
+     1,
+     10
+    ]
+   ],
+   "fix": "Where the drawer points to the drawing, add: <div class=\"note small\"><b>Maker's website:</b> Clearances, single-wall connector, no rear heat shield: Side 13\", Rear 17½\", Corner 10\"; single-wall connector, with rear heat shield: Side 13\", Rear 11\", Corner 7\"; double-wall connector, with blower kit heat shield: Side 13\", Rear 5\", Corner 7\". Install to the clearance diagrams in the manual.</div> and record it in review.catalog_mismatches (GUIDE_SPEC website rule for lettered clearances)."
+  }
+ ],
+ "verdict": "Yes: lighting, break-in, bypass, burn and over-firing, clearances, floor protection, venting and draft, mobile-home rules, every number and all 27 page links match the manual, so it is safe to publish once the four minor wording and note fixes are made."
+}

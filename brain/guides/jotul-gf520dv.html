@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jøtul GF 520 DV — Owner &amp; Installer Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* cast iron in shadow */
+    --iron:#191512; --iron-2:#241f1a; --iron-3:#322b24;
+    /* heat */
+    --ember:#e8682c; --ember-2:#c4521f; --amber:#f5a623;
+    /* gas pilot flame — the cool counter-accent, true to the subject */
+    --pilot:#5f93b8; --pilot-deep:#37607d;
+    /* warm reading surfaces */
+    --paper:#f1ece2; --paper-2:#fbf8f2; --card:#ffffff;
+    --ink:#23201b; --ink-soft:#6e655a; --hair:#e0d8c9;
+    --ok:#3f7d54; --warn:#b06a13;
+    --shadow:0 1px 2px rgba(30,22,14,.06),0 8px 24px rgba(30,22,14,.07);
+    --display:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+  .mono{font-family:var(--mono)}
+
+  /* ---------- top chrome ---------- */
+  header{position:sticky;top:0;z-index:40;background:var(--iron);color:#f3ece2;
+    display:flex;align-items:center;gap:14px;padding:11px 18px;border-bottom:1px solid #000}
+  .brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;letter-spacing:.16em;font-size:14px}
+  .flame{width:18px;height:18px;flex:none}
+  .brand small{font-weight:600;letter-spacing:.02em;color:#b6ab9b;font-family:var(--body);font-size:11px;display:block;letter-spacing:.04em}
+  .brand-wrap{display:flex;flex-direction:column;line-height:1.15}
+  .spacer{flex:1}
+  /* role toggle */
+  .toggle{display:flex;background:#0e0b09;border:1px solid #3a322a;border-radius:999px;padding:3px}
+  .toggle button{font-family:var(--body);font-weight:600;font-size:12.5px;color:#9b9183;background:none;border:none;
+    padding:7px 15px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.18s}
+  .toggle button[aria-pressed="true"]{color:#fff}
+  .toggle button.home[aria-pressed="true"]{background:linear-gradient(180deg,var(--ember),var(--ember-2));box-shadow:0 0 14px rgba(232,104,44,.5)}
+  .toggle button.inst[aria-pressed="true"]{background:linear-gradient(180deg,var(--pilot),var(--pilot-deep));box-shadow:0 0 14px rgba(95,147,184,.45)}
+  .toggle .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.55}
+  .search{display:flex;align-items:center;gap:7px;background:#0e0b09;border:1px solid #3a322a;border-radius:9px;padding:7px 11px;min-width:120px}
+  .search input{background:none;border:none;color:#f3ece2;font-family:var(--body);font-size:13px;width:100%;outline:none}
+  .search input::placeholder{color:#7d7468}
+  .search svg{flex:none;opacity:.6}
+  .pdf{display:flex;align-items:center;gap:7px;background:none;border:1px solid #4a4138;color:#d9cfc0;
+    font-family:var(--body);font-weight:600;font-size:12.5px;padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;transition:.18s}
+  .pdf:hover{border-color:var(--ember);color:#fff}
+
+  /* ---------- ignition gate ---------- */
+  .gate{min-height:calc(100vh - 56px);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(120% 80% at 50% 110%,#3a1f10 0%,#1a120c 45%,#100c09 100%);color:#f3ece2;padding:40px 22px;text-align:center}
+  .gate .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.32em;color:var(--amber);text-transform:uppercase;margin-bottom:18px}
+  .gate h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,58px);line-height:1.02;letter-spacing:-.01em;max-width:14ch}
+  .gate .sub{color:#c4b8a7;max-width:46ch;margin:18px auto 6px;font-size:clamp(15px,2vw,17px)}
+  .gate .model{font-family:var(--mono);color:#8c8174;font-size:12.5px;margin-bottom:42px;letter-spacing:.04em}
+  .cards{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;width:100%;max-width:760px}
+  .ignite{position:relative;flex:1 1 300px;min-width:270px;text-align:left;cursor:pointer;border:1px solid #4a3c2e;border-radius:18px;
+    padding:26px 24px 22px;background:linear-gradient(180deg,#211913,#171009);overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s}
+  .ignite:hover{transform:translateY(-4px);border-color:var(--ember)}
+  .ignite.cool:hover{border-color:var(--pilot)}
+  .ignite::after{content:"";position:absolute;inset:auto -40% -60% -40%;height:70%;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(232,104,44,.55),transparent);opacity:0;transition:opacity .3s}
+  .ignite.cool::after{background:radial-gradient(closest-side,rgba(95,147,184,.5),transparent)}
+  .ignite:hover::after{opacity:1}
+  .ignite .ic{width:40px;height:40px;margin-bottom:16px;color:var(--ember)}
+  .ignite.cool .ic{color:var(--pilot)}
+  .ignite h2{font-family:var(--display);font-weight:700;font-size:24px;color:#fff;letter-spacing:-.01em}
+  .ignite p{color:#b3a795;font-size:14px;margin-top:7px}
+  .ignite .go{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-weight:600;font-size:13px;color:var(--ember);position:relative;z-index:1}
+  .ignite.cool .go{color:var(--pilot)}
+  .gate .foot{margin-top:38px;color:#7d7468;font-size:12.5px}
+  .gate .foot a{color:#b6ab9b}
+
+  /* ---------- views ---------- */
+  .view{display:none;max-width:1080px;margin:0 auto;padding:34px 22px 90px}
+  .view.active{display:block;animation:rise .4s ease}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .vhead{margin-bottom:26px}
+  .vhead .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:9px}
+  .vhead .eyebrow .pip{width:9px;height:9px;border-radius:50%}
+  .home-pip{background:var(--ember)} .inst-pip{background:var(--pilot)}
+  .vhead h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,4.5vw,38px);letter-spacing:-.015em;margin-top:8px}
+  .vhead p{color:var(--ink-soft);max-width:60ch;margin-top:7px;font-size:15px}
+
+  .seclabel{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+  .seclabel::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+  /* action tiles (homeowner) */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .tile{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 18px 16px;cursor:pointer;
+    text-align:left;font:inherit;color:inherit;box-shadow:var(--shadow);transition:transform .16s,border-color .16s}
+  .tile:hover{transform:translateY(-3px);border-color:var(--ember)}
+  .tile .ic{width:26px;height:26px;color:var(--ember);margin-bottom:12px}
+  .tile h3{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.01em}
+  .tile p{color:var(--ink-soft);font-size:13px;margin-top:4px}
+
+  /* spec cards (installer) */
+  .specs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .spec{background:var(--card);border:1px solid var(--hair);border-left:3px solid var(--pilot);border-radius:12px;padding:16px 17px;box-shadow:var(--shadow)}
+  .spec .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .spec .rows{margin-top:10px;display:flex;flex-direction:column;gap:7px}
+  .spec .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px}
+  .spec .row b{font-weight:500;color:var(--ink-soft)}
+  .spec .row .v{font-family:var(--mono);font-weight:700;font-size:14px;color:var(--ink);text-align:right}
+
+  /* checklist */
+  .checklist{background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  .step{display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid var(--hair);cursor:pointer;align-items:flex-start;transition:background .12s}
+  .step:last-child{border-bottom:none}
+  .step:hover{background:#faf6ee}
+  .step .num{flex:none;width:26px;height:26px;border-radius:7px;background:var(--iron);color:#f3ece2;font-family:var(--mono);font-weight:700;
+    font-size:12.5px;display:grid;place-items:center;margin-top:1px}
+  .step.done .num{background:var(--ok)}
+  .step .body h4{font-family:var(--display);font-weight:600;font-size:15.5px}
+  .step .body p{color:var(--ink-soft);font-size:13px;margin-top:2px}
+  .step .check{margin-left:auto;flex:none;width:20px;height:20px;border:2px solid var(--hair);border-radius:6px;margin-top:3px;display:grid;place-items:center}
+  .step.done .check{background:var(--ok);border-color:var(--ok)}
+  .step.done .check svg{display:block}
+  .step .check svg{display:none}
+
+  /* two-column callouts */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .panel{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  .panel h3{font-family:var(--display);font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px}
+  .panel.warn h3{color:var(--warn)} .panel.warn{border-left:3px solid var(--warn)}
+  .panel ul{list-style:none;margin-top:11px;display:flex;flex-direction:column;gap:9px}
+  .panel li{font-size:13.5px;color:#473f36;padding-left:16px;position:relative}
+  .panel li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--pilot)}
+  .panel.warn li::before{background:var(--warn)}
+
+  /* led codes */
+  .codes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .code{background:var(--iron);color:#f3ece2;border-radius:11px;padding:14px}
+  .code .blinks{display:flex;gap:5px;margin-bottom:9px}
+  .code .b{width:9px;height:9px;border-radius:50%;background:#3a322a}
+  .code .b.on{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+  .code .t{font-family:var(--display);font-weight:600;font-size:14px}
+  .code .d{font-size:11.5px;color:#a89c8c;margin-top:2px}
+
+  /* ---------- detail drawer ---------- */
+  .scrim{position:fixed;inset:0;background:rgba(20,14,8,.5);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:.22s;z-index:60}
+  .scrim.open{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(480px,100%);background:var(--paper-2);z-index:70;
+    transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.1,1);overflow-y:auto;box-shadow:-20px 0 50px rgba(20,14,8,.25)}
+  .drawer.open{transform:none}
+  .drawer .dh{position:sticky;top:0;background:var(--iron);color:#f3ece2;padding:18px 20px;display:flex;align-items:flex-start;gap:12px}
+  .drawer .dh .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+  .drawer .dh h2{font-family:var(--display);font-weight:700;font-size:21px;margin-top:5px;letter-spacing:-.01em}
+  .drawer .dh .x{margin-left:auto;background:#0e0b09;border:1px solid #3a322a;color:#d9cfc0;width:32px;height:32px;border-radius:8px;cursor:pointer;flex:none;font-size:18px;line-height:1;position:relative;top:14px;right:6px}
+  .dcontent{padding:22px 24px 60px}
+  .dcontent h4{font-family:var(--display);font-weight:700;font-size:15px;margin:20px 0 8px;color:var(--ink)}
+  .dcontent h4:first-child{margin-top:0}
+  .dcontent p{font-size:14px;color:#473f36;margin-bottom:11px}
+  .dcontent ol,.dcontent ul{margin:0 0 13px 2px;display:flex;flex-direction:column;gap:9px}
+  .dcontent ol{counter-reset:s;list-style:none}
+  .dcontent ol li{position:relative;padding-left:32px;font-size:14px;color:#473f36}
+  .dcontent ol li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-1px;width:22px;height:22px;border-radius:6px;
+    background:var(--ember);color:#fff;font-family:var(--mono);font-weight:700;font-size:11.5px;display:grid;place-items:center}
+  .dcontent.cool ol li::before{background:var(--pilot)}
+  .dcontent ul{list-style:none}
+  .dcontent ul li{position:relative;padding-left:18px;font-size:14px;color:#473f36}
+  .dcontent ul li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--ember)}
+  .dcontent.cool ul li::before{background:var(--pilot)}
+  .note{background:#fcf3e3;border:1px solid #f0dcb4;border-radius:10px;padding:13px 15px;font-size:13.5px;color:#6b5320;margin:14px 0}
+  .note.danger{background:#fbe9e3;border-color:#f0c4b4;color:#8a3a1d}
+  .note b{font-weight:600}
+  .kv{font-family:var(--mono);font-size:13.5px;background:#efe9dd;border-radius:8px;padding:11px 13px;display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+  .kv .r{display:flex;justify-content:space-between;gap:12px}
+  .kv .r span:last-child{font-weight:700}
+
+  /* deep-link to the exact manual page (in the drawer) */
+  .manlink{display:flex;align-items:center;gap:13px;margin-top:24px;padding:14px 16px;border-radius:12px;text-decoration:none;
+    background:linear-gradient(180deg,#fdf1e9,#fce7da);border:1px solid #f0cdb6;color:var(--ember-2);transition:transform .18s,box-shadow .18s,border-color .18s}
+  .manlink:hover{border-color:var(--ember);box-shadow:0 7px 20px rgba(232,104,44,.18);transform:translateY(-1px)}
+  .manlink.cool{background:linear-gradient(180deg,#eef4f8,#e2edf4);border-color:#c2d6e3;color:var(--pilot-deep)}
+  .manlink.cool:hover{border-color:var(--pilot);box-shadow:0 7px 20px rgba(95,147,184,.2)}
+  .manlink .ic{flex:none;width:32px;height:32px;display:grid;place-items:center;border-radius:9px;background:#fff;color:var(--ember)}
+  .manlink.cool .ic{color:var(--pilot)}
+  .manlink .tx{display:flex;flex-direction:column;line-height:1.3}
+  .manlink b{font-family:var(--display);font-weight:700;font-size:14px}
+  .manlink small{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:2px;letter-spacing:.02em}
+  .manlink .arr{margin-left:auto;flex:none;opacity:.7}
+
+  /* search results */
+  .results{position:fixed;top:56px;left:0;right:0;z-index:50;background:var(--paper-2);border-bottom:1px solid var(--hair);
+    box-shadow:0 18px 40px rgba(20,14,8,.18);max-height:70vh;overflow-y:auto;display:none}
+  .results.open{display:block}
+  .results .inner{max-width:1080px;margin:0 auto;padding:18px 22px 24px}
+  .results .rl{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px}
+  .ritem{display:flex;gap:12px;align-items:flex-start;padding:12px 13px;border-radius:11px;cursor:pointer;border:1px solid transparent}
+  .ritem:hover{background:#fff;border-color:var(--hair)}
+  .ritem .badge{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;border-radius:5px;flex:none;margin-top:1px}
+  .badge.h{background:#fbe6da;color:var(--ember-2)} .badge.i{background:#e2edf4;color:var(--pilot-deep)}
+  .ritem h4{font-family:var(--display);font-weight:600;font-size:15px}
+  .ritem p{font-size:12.5px;color:var(--ink-soft);margin-top:1px}
+  .rempty{color:var(--ink-soft);font-size:14px;padding:6px 2px}
+  .rgroup{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);
+    margin:16px 0 8px;display:flex;align-items:center;gap:9px}
+  .rgroup:first-child{margin-top:0}
+  .rgroup .ct{background:var(--hair);color:var(--ink-soft);border-radius:999px;padding:1px 8px;letter-spacing:.04em}
+  .ritem .pg{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink-soft);
+    border:1px solid var(--hair);border-radius:6px;padding:3px 7px;flex:none;margin-top:1px;white-space:nowrap}
+  .ritem .snip{font-size:12.5px;color:#5d544a;margin-top:3px;line-height:1.45}
+  .ritem .snip mark{background:#ffe7b3;color:#5a4310;border-radius:3px;padding:0 2px}
+  .ritem .jump{margin-left:auto;flex:none;align-self:center;color:var(--ink-soft);opacity:.5}
+
+  /* installer-side full-manual search (inline, light surface) */
+  .ms-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--hair);
+    border-left:3px solid var(--pilot);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .ms-bar svg{flex:none;opacity:.5}
+  .ms-bar input{flex:1;background:none;border:none;font-family:var(--body);font-size:15px;color:var(--ink);outline:none}
+  .ms-bar input::placeholder{color:var(--ink-soft)}
+  .ms-results{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+  .ms-results .ritem{background:var(--card);border:1px solid var(--hair)}
+  .ms-results .ritem:hover{border-color:var(--pilot);background:#fbfdff}
+  .ms-hint{color:var(--ink-soft);font-size:13.5px;padding:8px 2px;line-height:1.5}
+  .ms-hint mark{background:none;color:var(--pilot-deep);font-weight:600}
+
+  .demo-tag{position:fixed;left:14px;bottom:14px;z-index:30;background:var(--iron);color:#cdbfab;font-size:11.5px;
+    padding:7px 12px;border-radius:999px;border:1px solid #3a322a;font-family:var(--mono);letter-spacing:.03em}
+
+  @media(max-width:720px){
+    header{flex-wrap:wrap;gap:9px;padding:10px 13px}
+    .brand{order:1} .pdf{order:2;margin-left:auto} .search{order:4;flex:1 1 100%;min-width:0}
+    .toggle{order:3;flex:1 1 100%;justify-content:center}
+    .toggle button{flex:1;justify-content:center}
+    .twocol{grid-template-columns:1fr}
+    .results{top:auto}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+  /* owner-side inline search (ember surface) */
+  .os-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--hair);
+    border-left:3px solid var(--ember);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .os-bar svg{flex:none;opacity:.5}
+  .os-bar input{flex:1;background:none;border:none;font-family:var(--body);font-size:15px;color:var(--ink);outline:none}
+  .os-bar input::placeholder{color:var(--ink-soft)}
+  .os-results{display:flex;flex-direction:column;gap:8px}
+  .os-results:not(:empty){margin:14px 0 4px}
+  .os-results .ritem{background:var(--card);border:1px solid var(--hair)}
+  .os-results .ritem:hover{border-color:var(--ember);background:#fffaf6}
+  .os-hint{color:var(--ink-soft);font-size:13.5px;padding:8px 2px;line-height:1.5}
+  .os-hint mark{background:none;color:var(--ember-2);font-weight:600}
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand" id="brandHome" role="button" tabindex="0" title="Back to start" style="cursor:pointer">
+    <svg class="flame" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3-2 4-2 7 0 1 .6 2 1.5 2.4C12 10 13 8.5 13 7c2 2 4 4.5 4 8a5 5 0 0 1-10 0c0-2 1-3.5 2-5 .2 1.2 1 2 2 2-.4-3 1-6 3-10Z"/></svg>
+    <div class="brand-wrap"><span>JØTUL</span><small>GF 520 DV · DV MV</small></div>
+  </div>
+  <div class="spacer"></div>
+  <div class="search">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Search the whole guide…" autocomplete="off">
+  </div>
+  <div class="toggle" id="toggle" style="display:none">
+    <button class="home" data-role="homeowner" aria-pressed="false"><span class="dot"></span>I own it</button>
+    <button class="inst" data-role="installer" aria-pressed="false"><span class="dot"></span>I install it</button>
+  </div>
+  <a class="pdf" href="#" id="pdfBtn" title="The full 52-page manual is the legal source of truth">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+    Official PDF
+  </a>
+</header>
+
+<!-- search results -->
+<div class="results" id="results"><div class="inner"><div class="rl">Results</div><div id="rlist"></div></div></div>
+
+<!-- ===== IGNITION GATE ===== -->
+<section class="gate" id="gate">
+  <div class="kicker">Direct vent gas stove</div>
+  <h1>Jøtul GF 520 DV</h1>
+  <p class="sub">Tell us who you are and we'll bring the right half forward — the rest is one search away.</p>
+  <p class="model">Model GF 520 DV / DV MV · Direct Vent · Standing Pilot · Piezo Ignition</p>
+  <div class="cards">
+    <button class="ignite" data-role="homeowner">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg>
+      <h2>I own this stove</h2>
+      <p>Light it, adjust the flame, use the remote, clean the glass, check service.</p>
+      <span class="go">Light my path →</span>
+    </button>
+    <button class="ignite cool" data-role="installer">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3Z"/></svg>
+      <h2>I'm installing or servicing it</h2>
+      <p>Specs, clearances, direct-vent runs, the install sequence, and gas-pressure fault diagnosis.</p>
+      <span class="go">Open field reference →</span>
+    </button>
+  </div>
+  <p class="foot">Both paths draw from the same certified manual (ANSI Z21.88-2019 · CSA 2.33-2019). <a href="#" id="pdfBtn2">Skip straight to the full PDF →</a></p>
+</section>
+
+<!-- ===== HOMEOWNER ===== -->
+<section class="view" id="homeowner">
+  <div class="vhead">
+    <div class="eyebrow"><span class="pip home-pip"></span>For owners</div>
+    <h1>Your stove, in plain language</h1>
+    <p>The things people actually ask us about — pick one. Everything technical still lives under search and the official PDF up top.</p>
+  </div>
+  <div class="os-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="oq" type="search" placeholder="Search — lighting, pilot flame, glass, gas smell…" autocomplete="off">
+  </div>
+  <div class="os-results" id="oResults"></div>
+  <div class="seclabel">Start here</div>
+  <div class="tiles" id="homeTiles"></div>
+  <div class="seclabel">Good to know</div>
+  <div class="tiles" id="homeTiles2"></div>
+</section>
+
+<!-- ===== INSTALLER ===== -->
+<section class="view" id="installer">
+  <div class="vhead">
+    <div class="eyebrow"><span class="pip inst-pip"></span>For installers &amp; service</div>
+    <h1>Field reference</h1>
+    <p>The numbers you look up on your knees, the sequence you follow, and the faults you diagnose — surfaced first. Tap any spec for the surrounding detail.</p>
+  </div>
+
+  <div class="seclabel">Search the original manual</div>
+  <div class="ms-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="mq" type="search" placeholder="Search every page of the official manual — orifice, clearance, pressure…" autocomplete="off">
+  </div>
+  <div class="ms-results" id="mResults"></div>
+
+  <div class="seclabel">Critical specs</div>
+  <div class="specs" id="specCards"></div>
+
+  <div class="seclabel">Install sequence — tap to check off</div>
+  <div class="checklist" id="checklist"></div>
+
+  <div class="seclabel">Gas pressure faults</div>
+  <div class="twocol">
+    <div class="panel warn">
+      <h3>⚠ Insufficient pressure</h3>
+      <ul>
+        <li>Small pilot flame → weak millivolt signal and burner outages</li>
+        <li>Little change in flame between HI and LO on the regulator knob</li>
+        <li>Undersized supply feeding several appliances → nuisance dropouts or surges</li>
+      </ul>
+    </div>
+    <div class="panel warn">
+      <h3>⚠ Excessive pressure</h3>
+      <ul>
+        <li>Permanent valve damage → full appliance shutdown</li>
+        <li>Oversized pilot flame overheats the sensor → shutdown</li>
+        <li>Sooting and white residue from flame impingement / wrong fuel-air mix</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- detail drawer -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <div class="dh">
+    <div><div class="tag" id="dTag">Detail</div><h2 id="dTitle">Title</h2></div>
+    <button class="x" id="dClose" aria-label="Close">×</button>
+  </div>
+  <div class="dcontent" id="dBody"></div>
+</aside>
+
+<div class="demo-tag">Concept prototype · representative content</div>
+
+<script>
+/* ---------------- content model (real values from the GF 520 DV / DV MV manual) ---------------- */
+const HOME_PRIMARY = [
+  {id:'light', icon:'M12 2c1 3-2 4-2 7 0 1 .6 2 1.5 2.4C12 10 13 8.5 13 7c2 2 4 4.5 4 8a5 5 0 0 1-10 0c0-2 1-3.5 2-5 .2 1.2 1 2 2 2-.4-3 1-6 3-10Z',
+    fill:true, title:'Light the stove', blurb:'Light the pilot by hand with the igniter button, then the burner.'},
+  {id:'flame', icon:'M3 12h4l3-8 4 16 3-8h4',
+    title:'Adjust the flame', blurb:'Set the heat with the regulator knob.'},
+  {id:'remote', icon:'M9 2h6a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm3 14h.01M9 6h6M9 9h2M13 9h2',
+    title:'Remote & thermostat', blurb:'Optional hands-off control of the burner.'},
+  {id:'off', icon:'M12 4v8M7.5 6.5a7 7 0 1 0 9 0',
+    title:'Turn it off', blurb:'Pause the flame, or shut the stove down fully.'},
+];
+const HOME_SECONDARY = [
+  {id:'pilot', icon:'M12 3c.8 2.2-1.4 3-1.4 5 0 1.3 1 2.3 2.3 2.1.9-.7 1-1.8.6-3 1.4 1.3 2.5 3 2.5 5a4 4 0 0 1-8 0c0-1.6.8-2.8 1.6-3.8C9.9 7 11 5 12 3Z',
+    fill:true, title:'Check the pilot', blurb:'What a healthy pilot flame should look like.'},
+  {id:'glass', icon:'M4 4h16v16H4Zm0 5h16M9 4v16',
+    title:'Clean the glass', blurb:'Clear the white curing residue before it etches.'},
+  {id:'blower', icon:'M12 12a4 4 0 0 0 0-8c-.5 4-3 4-3 6s3 2 3 2Zm0 0a4 4 0 0 1 0 8c.5-4 3-4 3-6s-3-2-3-2Z',
+    title:'Run the blower', blurb:'The optional fan that pushes warm air into the room.'},
+  {id:'sounds', icon:'M11 5 6 9H2v6h4l5 4V5Zm5 2a5 5 0 0 1 0 10M19 4a9 9 0 0 1 0 16',
+    title:'Odors, fog & first fires', blurb:'New-stove smell, fog and white residue — what\'s normal.'},
+  {id:'safety', icon:'M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z',
+    title:'Safety & gas smell', blurb:'Hot glass, the barrier screens, and what to do if you smell gas.'},
+  {id:'service', icon:'M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3Z',
+    title:'Service & warranty', blurb:'Annual care and what\'s covered, for how long.'},
+];
+
+const SPECS = [
+  {id:'input', lab:'Input rate · BTU/hr', tap:'specInput', rows:[
+    ['Natural gas','30,000 / 16,500'],['Propane','29,000 / 16,500']],note:'max / min'},
+  {id:'inlet', lab:'Inlet pressure · in. WC', tap:'specInlet', rows:[
+    ['Natural gas','5.0 – 7.0'],['Propane','12.0 – 14.0']],note:'see note: LP min'},
+  {id:'manifold', lab:'Manifold pressure · in. WC', tap:'specManifold', rows:[
+    ['Natural gas','1.12 – 3.80'],['Propane','2.9 – 11.0']]},
+  {id:'vent', lab:'Venting · direct vent', tap:'specVent', rows:[
+    ['Pipe','4" / 6⅝" coaxial'],['Horizontal term.','30 ft vert · 20 ft horiz']]},
+  {id:'clear', lab:'Clearances to combustibles', tap:'specClear', rows:[
+    ['Rear','1½"'],['Side','10"'],['Corner','5⅝"'],['Ceiling','43"']]},
+  {id:'fuel', lab:'Fuel & orifices', tap:'specFuel', rows:[
+    ['NG / LP burner','#37 / #52'],['Conversion kit','158329 LP']]},
+];
+
+const STEPS = [
+  ['Unpack & check the barrier screens','Remove the top plate and confirm the integrated certified safety-barrier screens on the front door and side glass are in place — they must stay installed. Review all requirements first.'],
+  ['Location, clearances & floor','Rear 1½", sides 10", corner 5⅝", ceiling 43". Approved directly on combustible floors — no hearth pad required — but never on thick carpet or foam, which lets the stove settle and can leak the vent. Alcove min 44"W × 24"D × 60"H.'],
+  ['Fuel conversion (if LP)','Ships for natural gas. For propane, convert with kit 158329 — swap to the #52 burner orifice and the .013" LP pilot injector, and fit the LP regulator tower. Authorized technician only.'],
+  ['Direct-vent system','Vertical or horizontal coaxial (4" inner / 6⅝" outer). Use one approved brand only — DuraVent DirectVent Pro and listed equivalents — never mixed. Seal the inner pipe with a 1/8" bead of high-temp cement (no silicone). Horizontal: ≤30 ft vertical and ≤20 ft horizontal, with a 12" rise and 6" run minimum. Set the exhaust restrictor plate per the vent matrix.'],
+  ['Gas connection + pressure test','3/8" NPT supply (about 12" off the rear centerline) with a manual shut-off (T-handle in MA) and union in the same room. Leak-test every joint. Verify inlet and manifold pressure with the knob on HIGH at the A (manifold) and B (inlet) ports.'],
+  ['Log set, embers & options','Install the Beach Fire log set and rock-wool embers; add the optional reflective or fluted liner and ash lip if used. Wear gloves and keep embers clear of the pilot.'],
+  ['Electrical, blower & controls','Provide a grounded outlet within 6 ft of the vent centerline. Fit the optional blower kit; wire a 750 mV remote or thermostat to the terminal block right of the valve. Set the rear switch to T-STAT for thermostatic or remote control.'],
+  ['System check & flame','Purge the line on first light and, from cold, let the pilot burn 10–15 minutes to build draft before the burner. The pilot should engulf the top 1/8" of the thermocouple and thermopile. Tune the air shutter (factory NG 1/16", LP 1/8") for a clean flame with no soot.'],
+];
+
+const CODES = [];  /* no flash/diagnostic code table is published in this manual */
+
+/* drawer detail content */
+const DETAIL = {
+  light:{tag:'Owner · operation', title:'Lighting the stove', cool:false, html:`
+    <div class="note danger"><b>Before lighting,</b> smell all around the stove for gas, including near the floor. If you smell gas, stop — see <b>Safety &amp; gas smell</b>.</div>
+    <p>Both versions of the GF 520 — the DV and the DV MV — have a standing pilot that you light by hand with the red igniter button.</p>
+    <ol>
+      <li>Set the BURNER <b>ON/OFF switch to OFF</b>.</li>
+      <li>Confirm the gas supply shut-off valve is open.</li>
+      <li>Push the control knob in slightly and turn it <b>clockwise to OFF</b>. Wait 5 minutes — still smell gas? Stop.</li>
+      <li>Turn the knob <b>counter-clockwise to PILOT</b>, push it all the way in and hold.</li>
+      <li>Press the red <b>igniter button</b> repeatedly until the pilot lights; keep holding about one minute, then release. It should stay lit.</li>
+      <li>Turn the knob to <b>ON</b>, then set the BURNER switch to <b>ON</b>.</li>
+    </ol>
+    <div class="note"><b>DV MV pilot timer:</b> on the DV MV, the pilot shuts off on its own after 7 days with no call for heat — re-light it with the same steps. From a cold start, let the pilot burn 10–15 minutes to build draft before running the burner.</div>
+    <div class="note danger"><b>Confirm on your stove:</b> the manual disagrees with itself here. One paragraph on p. 35 says the stove has an ignition device that lights the pilot automatically, but the lighting instructions (p. 47, also printed on the rating plate), the pilot parts (p. 32) and the parts list with its piezo igniter (p. 42) all describe a hand-lit pilot. These steps follow the lighting instructions; the rating plate on the back of your stove is the final word.</div>`},
+  flame:{tag:'Owner · operation', title:'Adjusting the flame & heat', cool:false, html:`
+    <p>Set flame height and heat with the <b>regulator knob</b> in the controls compartment. The rear rocker switch handles <b>ON/OFF</b>, or <b>T-STAT</b> for thermostat / remote control.</p>
+    <div class="note danger">Pilot and air-shutter adjustments are a qualified technician's job — not a homeowner setting.</div>
+    <p>Long yellow flames, soot, or heavy white residue point to a fuel-air problem — clean the glass (see below) and have the air shutter checked.</p>`},
+  remote:{tag:'Owner · operation', title:'Remote & thermostat', cool:false, html:`
+    <p>The stove accepts an optional 750 mV wall thermostat (750003) or a remote control (224910).</p>
+    <ol>
+      <li>Make sure the pilot is lit — it powers the control circuit.</li>
+      <li>Set the rear rocker switch to <b>T-STAT</b>.</li>
+      <li>Operate from the thermostat or remote per its own instructions.</li>
+    </ol>
+    <div class="note danger">On a thermostat or remote, the stove can fire on its own and stays <b>very hot even when the burner looks off</b>. Keep the remote where children can't reach it.</div>`},
+  off:{tag:'Owner · operation', title:'Turning it off', cool:false, html:`
+    <h4>Pause the flame</h4>
+    <p>Set the rear rocker switch to <b>OFF</b>.</p>
+    <h4>Turn off the pilot</h4>
+    <p>Push the control knob in slightly and turn it <b>clockwise to OFF</b> (don't force it). On the DV MV, the pilot also times out on its own after 7 days unused.</p>
+    <h4>Shut it down fully</h4>
+    <p>Close the supply-line gas cock.</p>`},
+  pilot:{tag:'Owner · reassurance', title:'Checking the pilot flame', cool:false, html:`
+    <p>The pilot sits behind the burner at the rear of the firebox.</p>
+    <p>A healthy pilot is <b>steady</b> — not lifting or floating — <b>blue</b> around the hood with a little yellow at the edges, and reaches up to engulf the top 1/8" of the thermocouple and thermopile.</p>
+    <div class="note"><b>Weak or won't stay lit?</b> That's a service call — pilot adjustment must be done by a qualified technician.</div>`},
+  glass:{tag:'Owner · maintenance', title:'Cleaning the glass', cool:false, html:`
+    <div class="note danger"><b>Never</b> run the stove with any glass panel removed, cracked or broken; never clean the glass hot; and never use ammonia-based or abrasive cleaners.</div>
+    <p>After the first few fires a <b>white powdery residue</b> appears as the burner media cures. Clean it off promptly with a non-abrasive hearth gas-appliance glass cleaner and warm water — if left on, it can permanently etch the glass.</p>
+    <ol>
+      <li>Let the glass cool completely.</li>
+      <li>Wipe with the cleaner or warm water on a soft cloth.</li>
+      <li>Dry with a soft towel; don't scratch the surface.</li>
+    </ol>
+    <div class="note">The integrated safety-barrier screens must stay installed; replacement screens and glass come only from your Jøtul dealer.</div>`},
+  blower:{tag:'Owner · operation', title:'Running the blower', cool:false, html:`
+    <p>The optional blower kit (158333) circulates warm air off the firebox and into the room.</p>
+    <p>Once installed, it's driven by a heat-activated switch and has a speed control — it comes on after the stove warms up and shuts off as it cools.</p>
+    <div class="note">Set-up and control details are in the blower kit instructions.</div>`},
+  sounds:{tag:'Owner · reassurance', title:'Odors, fog & the first few fires', cool:false, html:`
+    <h4>Odor and some smoke at first</h4>
+    <p>The high-temperature paint heat-cures during the first fires, giving off odor and some visible smoke. Operate low for a few hours, then high for a few hours, with plenty of fresh air. It passes.</p>
+    <h4>Fog and white residue on the glass</h4>
+    <p>A little fog at each lighting is normal and clears as the glass warms. The white powdery film after early fires is curing residue — clean it off (see <b>Clean the glass</b>) before it etches.</p>
+    <div class="note danger"><b>A strong gas smell is different.</b> Don't touch switches or phones inside — leave and call your gas supplier. See <b>Safety &amp; gas smell</b>.</div>`},
+  safety:{tag:'Owner · safety', title:'Safety & what to do if you smell gas', cool:false, html:`
+    <ul>
+      <li>The <b>glass and surfaces get very hot</b> — and stay hot after the burner looks off. Keep children and at-risk individuals away.</li>
+      <li>The <b>integrated certified safety-barrier screens</b> on the front door and side glass must remain installed at all times; if one is damaged, get the original-equipment replacement from your dealer.</li>
+      <li>Never store or use gasoline or flammable liquids near the stove.</li>
+      <li><b>Gas or propane only</b> — never burn solid fuel.</li>
+    </ul>
+    <div class="note danger"><b>If you smell gas:</b> do NOT try to light anything, do NOT touch electrical switches or use a phone in the building. Leave the building, then call your gas supplier from a neighbor's phone. If you can't reach them, call the fire department.</div>
+    <div class="note"><b>Massachusetts:</b> a carbon-monoxide detector must be installed in the same room as the appliance.</div>`},
+  service:{tag:'Owner · service', title:'Annual service & warranty', cool:false, html:`
+    <p>Have the stove and its vent inspected and cleaned at least once a year by a qualified technician. Always shut off the gas before any service work.</p>
+    <div class="kv">
+      <div class="r"><span>Cast iron, firebox</span><span>5 years</span></div>
+      <div class="r"><span>Burner, firebox panels</span><span>2 years</span></div>
+      <div class="r"><span>Enamel finish</span><span>2 years</span></div>
+      <div class="r"><span>Gas & electrical (valve, controls, blower)</span><span>1 year</span></div>
+    </div>
+    <div class="note">This is a summary. Full warranty terms and exclusions are in the official PDF.</div>`},
+  /* installer details */
+  specInput:{tag:'Installer · spec', title:'Input rates & efficiency', cool:true, html:`
+    <div class="kv">
+      <div class="r"><span>NG max / min</span><span>30,000 / 16,500 BTU/hr</span></div>
+      <div class="r"><span>LP max / min</span><span>29,000 / 16,500 BTU/hr</span></div>
+    </div>
+    <p>Steady-state efficiency 70.01% NG / 71.72% LP. CSA P4.1-15 fireplace efficiency: <b>DV</b> 61.47% NG / 62.15% LP · <b>DV MV</b> 63.49% NG / 64.61% LP.</p>`},
+  specInlet:{tag:'Installer · spec', title:'Inlet (supply) pressure', cool:true, html:`
+    <div class="kv">
+      <div class="r"><span>Natural gas</span><span>5.0 – 7.0 in. WC</span></div>
+      <div class="r"><span>Propane</span><span>12.0 – 14.0 in. WC</span></div>
+    </div>
+    <div class="note danger"><b>Source conflict — verify against the rating plate.</b> The Specifications page lists the LP inlet minimum as <b>12.0&nbsp;WC</b>, but the Gas Pressure section lists it as <b>11.0&nbsp;WC</b>. Confirm before commissioning.</div>
+    <p>Measure at the <b>B</b> (inlet) test port on the front of the valve with the control knob on HIGH. An external regulator is required for propane.</p>`},
+  specManifold:{tag:'Installer · spec', title:'Manifold pressure', cool:true, html:`
+    <div class="kv">
+      <div class="r"><span>Natural gas</span><span>1.12 – 3.80 in. WC</span></div>
+      <div class="r"><span>Propane</span><span>2.9 – 11.0 in. WC</span></div>
+    </div>
+    <p>Measure at the <b>A</b> (manifold) test port, knob on HIGH. The pilot should be blue at the hood with yellow at the edges and engulf the top 1/8" of both the thermocouple and the thermopile.</p>`},
+  specVent:{tag:'Installer · spec', title:'Venting — direct vent', cool:true, html:`
+    <div class="note danger"><b>Sealed direct-vent only.</b> Use parts from one approved manufacturer — DuraVent DirectVent Pro / GS and listed equivalents — never mixed. Seal the inner pipe joints with a 1/8" bead of high-temp cement; <b>do not use silicone</b>.</div>
+    <div class="kv">
+      <div class="r"><span>Pipe</span><span>4" inner / 6⅝" outer coaxial</span></div>
+      <div class="r"><span>Termination</span><span>vertical or horizontal</span></div>
+      <div class="r"><span>Horizontal: max vertical</span><span>30 ft</span></div>
+      <div class="r"><span>Horizontal: max horizontal</span><span>20 ft</span></div>
+      <div class="r"><span>Min. rise / run</span><span>12" rise + 6" run</span></div>
+    </div>
+    <p>Slope horizontal runs 1/4" per foot up — never downward. Set the rear exhaust-restrictor plate per the vent-window matrix. Termination clearance: 3" to combustible projections ≤2½", 12" to projections over 2½". Wall cut-out 10" × 10". Co-linear termination allowed with a 2 ft max horizontal run.</p>`},
+  specClear:{tag:'Installer · spec', title:'Clearances & floor', cool:true, html:`
+    <div class="kv">
+      <div class="r"><span>Rear (rear shroud)</span><span>1½"</span></div>
+      <div class="r"><span>Side (side plate)</span><span>10"</span></div>
+      <div class="r"><span>Corner (side plate)</span><span>5⅝"</span></div>
+      <div class="r"><span>Ceiling (top plate)</span><span>43"</span></div>
+    </div>
+    <p>Vent-pipe clearances: 1" on all sides of vertical runs; on horizontal runs 2" off the top and 1" off the sides and bottom. Alcove minimum 44"W × 24"D × 60"H.</p>
+    <p><b>Floor:</b> approved directly on combustible floors — no floor protection required — but not on a compressible surface like thick carpet or foam, which lets the stove settle and can leak the vent.</p>`},
+  specFuel:{tag:'Installer · spec', title:'Fuel & orifices', cool:true, html:`
+    <div class="kv">
+      <div class="r"><span>NG burner orifice</span><span>#37</span></div>
+      <div class="r"><span>LP burner orifice</span><span>#52</span></div>
+      <div class="r"><span>Pilot injector</span><span>NG .020" / LP .013"</span></div>
+      <div class="r"><span>Air shutter (factory)</span><span>NG 1/16" / LP 1/8"</span></div>
+    </div>
+    <p>Ships for natural gas. Convert to LP with kit 158329 (back to NG with 158330) — authorized technician only. Do not alter or modify components.</p>`},
+};
+
+/* step detail (generated) */
+STEPS.forEach((s,i)=>{ DETAIL['step'+i]={tag:'Installer · step '+(i+1), title:s[0], cool:true, html:`<p>${s[1]}</p>`}; });
+
+/* ---------------- render ---------------- */
+const $=(s,r=document)=>r.querySelector(s); const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+function tile(d){const b=document.createElement('button');b.className='tile';b.innerHTML=
+  `<svg class="ic" viewBox="0 0 24 24" ${d.fill?'fill="currentColor"':'fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"'}><path d="${d.icon}"/></svg>
+   <h3>${d.title}</h3><p>${d.blurb}</p>`;
+  b.onclick=()=>openDrawer(d.id);return b;}
+HOME_PRIMARY.forEach(d=>$('#homeTiles').appendChild(tile(d)));
+HOME_SECONDARY.forEach(d=>$('#homeTiles2').appendChild(tile(d)));
+
+SPECS.forEach(s=>{const el=document.createElement('div');el.className='spec';
+  el.innerHTML=`<div class="lab">${s.lab}</div><div class="rows">${s.rows.map(r=>`<div class="row"><b>${r[0]}</b><span class="v">${r[1]}</span></div>`).join('')}${s.note?`<div class="row"><b style="font-size:11px">${s.note}</b></div>`:''}</div>`;
+  el.style.cursor='pointer';el.onclick=()=>openDrawer(s.tap);$('#specCards').appendChild(el);});
+
+STEPS.forEach((s,i)=>{const el=document.createElement('div');el.className='step';
+  el.innerHTML=`<div class="num">${i+1}</div><div class="body"><h4>${s[0]}</h4><p>${s[1]}</p></div>
+   <div class="check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m5 12 4 4 10-10"/></svg></div>`;
+  el.querySelector('.body').onclick=(e)=>{e.stopPropagation();openDrawer('step'+i);};
+  el.onclick=()=>el.classList.toggle('done');
+  $('#checklist').appendChild(el);});
+
+CODES.forEach(c=>{const el=document.createElement('div');el.className='code';
+  let dots='';for(let i=0;i<4;i++)dots+=`<span class="b ${i<c[0]?'on':''}"></span>`;
+  el.innerHTML=`<div class="blinks">${dots}</div><div class="t">${c[1]}</div><div class="d">${c[2]}</div>`;
+  $('#codes').appendChild(el);});
+
+/* ---------------- role switching ---------------- */
+function setRole(role){
+  $('#gate').style.display='none';
+  $('#toggle').style.display='flex';
+  $$('.view').forEach(v=>v.classList.toggle('active',v.id===role));
+  $$('#toggle button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.role===role));
+  window.scrollTo({top:0});
+}
+$$('[data-role]').forEach(b=>b.onclick=()=>setRole(b.dataset.role));
+
+/* return to the ignition gate (home) */
+function goHome(){
+  $('#gate').style.display='';
+  $('#toggle').style.display='none';
+  $$('.view').forEach(v=>v.classList.remove('active'));
+  $$('#toggle button').forEach(b=>b.setAttribute('aria-pressed','false'));
+  $('#results').classList.remove('open'); $('#q').value='';
+  window.scrollTo({top:0});
+}
+$('#brandHome').onclick=goHome;
+$('#brandHome').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goHome();}});
+
+/* ---------------- drawer ---------------- */
+/* the page in the official manual where each topic is actually discussed,
+   verified against the embedded per-page text index (PAGES) */
+const PAGEREF={
+  light:47, flame:34, remote:24, off:47, pilot:32, glass:36, blower:25, sounds:34, safety:1, service:46,
+  specInput:4, specInlet:20, specManifold:20, specVent:13, specClear:7, specFuel:16,
+  step0:5, step1:7, step2:16, step3:10, step4:20, step5:28, step6:24, step7:33,
+};
+function openDrawer(id){const d=DETAIL[id];if(!d)return;
+  $('#dTag').textContent=d.tag;$('#dTitle').textContent=d.title;
+  const body=$('#dBody');body.className='dcontent'+(d.cool?' cool':'');
+  let html=d.html;
+  const pg=PAGEREF[id];
+  if(pg) html+=`<a class="manlink${d.cool?' cool':''}" href="#" data-page="${pg}">
+     <span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h9l5 5v11H4Z"/><path d="M13 4v5h5"/><path d="M8 13h6M8 16h6"/></svg></span>
+     <span class="tx"><b>For the specific details in the Installation Manual, go here →</b><small>Opens the official PDF at page ${pg}</small></span>
+     <svg class="arr" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg></a>`;
+  body.innerHTML=html;
+  const ml=body.querySelector('.manlink'); if(ml) ml.onclick=(e)=>{e.preventDefault();openPDF(pg);};
+  $('#scrim').classList.add('open');$('#drawer').classList.add('open');}
+function closeDrawer(){$('#scrim').classList.remove('open');$('#drawer').classList.remove('open');}
+$('#dClose').onclick=closeDrawer;$('#scrim').onclick=closeDrawer;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+
+/* ---------------- search ---------------- */
+/* On your real site, point this at the hosted PDF. The #page=N fragment is
+   honored by the in-browser PDF viewers in Chrome, Edge and Firefox. */
+const MANUAL_URL = 'Installation_and_user_manual_GF_520_DV.pdf';
+
+/* full-text, per-page index extracted from the actual manual (const PAGES) */
+const PAGES=[{"p": 1, "t": "130139_Rev 3 GF 520 DV 9/24 WARNING: If the information in these instructions is not followed exactly, a fire or explosion may result causing property damage, personal injury or loss of life. – Do not store or use gasoline or other flammable vapors and liquids in the vicinity of this or any other appliance. – WHAT TO DO IF YOU SMELL GAS • Do not try to light any appliance. • Do not touch any electrical switch; do not use any phone in your building. • Leave the building immediately. • Immediately call your gas supplier from a neighbor’s phone. Follow the gas supplier’s instructions. • If you cannot reach your gas supplier, call the fire department. – Installation and service must be performed by a qualified installer, service agency or the gas supplier. Jøtul GF 520 DV – In the Commonwealth of Massachusetts, and a carbon monoxide (CO) detector shall be installed in the same room as the Jøtul GF 520 DV MV appliance. Direct Vent Gas Stove This appliance may be installed in an aftermarket, permanently located, manufactured home or mobile Installation and home, where not prohibited by local codes. This appliance is only for use with the types of gas Operation Instructions indicated on the rating plate. A conversion kit is supplied with the appliance. \u0013\u0019\u0017\u001b\u0016\u0014 \u001b\u001a\u0019\u0018\u0018 \u001b\u001a\u0019\u0018\u0017 \u0016\u0019\u0015\u0014\u0018\u0013 \u0013 \u0017 \u0012\u0011 \u001b\u001a\u0019\u0018\u0018 Certified to ANSI Z21.88-2019 • CSA 2.33-2019 \u0019\u0014\u000f \u001b\u0012\u0012 \u0017\u0010\u0013 and CAN/CGA 2.17-M17. \u0017\u0016\u0015\u0016\u0014 \u001a \u0012 \u001b\u0011 \u0010\u0015\u0017\u0014 \u000f\u0012 \u000f\u0012\u0019\u001b\u0011 \u000e \u001a\u0018\u0018\u0013 \u001b\u001b\u001a\u0019\u001b \u0018\u0019\u0017\u001a\u0016\u0015\u0019\u0018 \u0014\u0013 \u001b\u0019\u0018\u0012\u0011\u0019 \u0014\u0010\u0019 \u0012\u001b\u0015 \u0010 \u000f \u001b\u0018 INSTALLER: Leave this manual with the appliance. \u000e\u001b\u0013 \u0014\u0010\u0019 \u0016 \u0017\u0017 \u001a\u0019 \u001a\u0015\u0016 \u001b\u0019 \u001a\u0017 \u001b\u0013 \u001a\u0018\u0019\u0018 \u001a\u0014\u0010 \u0014\u0010\u001a\u0017 \u001a \u0015\u0011\u0019 \u0015\u0018 \u0017\u0010 \u0019 \u001a\u0015\u0017\u0014 \u0019\u0018 \u000e\u0013\u001b \u0014\u0010\u0019 \u001b\u0013\u0014\u0019\u0011\u0014\u001a\u0013\u0015 OWNER: Retain this manual for future reference. \u0013\u000e \u0011\u0010\u001a \u0018\u001b\u0019\u0015 \u0015\u0018 \u0013\u0014\u0010\u0019\u001b \u0014\b\u001b\u001a\u0017\u0007 \u001a\u0015\u0018\u001a \u001a\u0018\u0012 \u0017\u0006 1"}, {"p": 2, "t": "130139 Rev 3 GF 520 DV 9/24 THIS OWNER’S MANUAL PROVIDES INFORMATION Installation Requirements for the TO ENSURE SAFE INSTALLATION AND EFFICIENT, Commonwealth of Massachusetts DEPENDABLE OPERATION. PLEASE READ THESE INSTRUCTIONS IN THEIR ENTIRETY AND MAKE THEM THIS PRODUCT MUST BE INSTALLED BY AVAILABLE TO ANYONE USING OR SERVICING THE A LICENSED MASTER OR JOURNEYMAN APPLIANCE. PLUMBER OR GAS-FITTER WHEN INSTALLED IN THE COMMONWEALTH DO NOT ATTEMPT TO ALTER OR MODIFY THE OF MASSACHUSETTS. CONSTRUCTION OF THIS APPLIANCE OR ITS COMPONENTS. ANY MODIFICATION OR ALTERATION 1. If there is not one already present, on each floor WILL VOID THE WARRANTY, CERTIFICATION AND level where there are bedroom(s), a carbon LISTING OF THIS APPLIANCE. monoxide detector and alarm shall be placed THIS APPLIANCE MUST BE INSTALLED AND MAIN- in the living area outside the bedroom(s). The TAINED BY A QUALIFIED SERVICE TECHNICIAN OR carbon monoxide detector shall comply with AGENCY. NFPA 720 (Current Edition). 2. A carbon monoxide detector shall: Suggested Tools for Installation and Service a) Be located in the room that houses the • External regulator (for Propane only) appliance or equipment; • Piping which complies with local code b) Be either hard-wired or battery powered or • Manual shut-off valve - both; and T-Handle required in Massachusetts c) Shall comply with NFPA 720 (Current • Sediment trap - if required by code Edition). • Tee joint 3. A Product-approved vent terminal must be • Pipe wrench used, and if applicable, a Product-approved • 1/4” nut driver • Pipe sealant air intake must be used. Installation shall be • Gloves in strict compliance with the manufacturer’s • 10 mm open end wrench • Safety glasses instructions. A copy of the installation • 1/2”, 7/16” open end wrench • Torx T-20 screwdriver for instructions must remain with the appliance or • Phillips head screwdriver Fuel Conversion equipment at the completion of the installation. • Flat head screwdriver 4. A Manual gas supply line shut-off valve must be installed. PLEASE NOTE: Initial Break-in It is normal for smoke and odor to occur during the initial stages of operation, depending upon temperatures generated over time. This “curing” condition can be alleviated by promoting fresh air circulation within the immediate vicinity of the appliance. Please see page 23 for further information. Natural Gas / 63.49% Propane / 64.61% Operation Sound Based on CSA P.4.1-15 Please be aware that cast iron and steel components expand and contract with temperature fluctuations that are often Jøtul GF 520 DV MV accompanied by “creaking” or “pinging” sounds. This is We recommend that the result of natural thermal our gas products be activity. installed and serviced The optional blower fan will also by professionals who are generate a slight hum at the certified in the U.S. by low setting and progressively the National Fireplace increase with the velocity of Institute® (NFI) as NFI forced air. Gas Specialists. 2"}, {"p": 3, "t": "130139_Rev 3 GF 520 DV 9/24 Table of Contents Jøtul GF 520 DV 1. Specifications........................................ 4 Jøtul GF 520 DV MV 2. Initial Assembly.................................... 5 3. General Information............................ 6 4. Safety Information .............................. 6 5. Installation Requirements.....................7 Direct Vent Gas Floor Protection ................................................ 7 Heater Manufactured and Distributed by: Clearances...................................................... 7-8 Jøtul North America Mobile Home Installation.................................. 9 55 Hutcherson Dr. Gorham, Maine 04038 6. Vent Requirements ............................10 Vertical Termination..........................................12 Certified Test Standards Horizontal Termination............................... 13-15 This appliance complies with National Safety standards 7. Fuel Conversion............................. 16-19 and is tested and listed by 8. Gas Connection..................................20 Intertek Testing Services of Middleton, Wisconsin to 9. Gas Pressure.......................................20 ANSI Z21.88-2019 • CSA 2.33-2019, “Vented Gas Fireplace Heater” and CAN/CGA 2.17-M17. 10. Optional Equipment ......................... 22 Firebox Panel Kits .....................................22-23 Wall Thermostat...............................................24 Blower.........................................................25-27 11. Burner Media Installation WARNING: Log Set....................................................... 28-29 READ AND UNDERSTAND ALL OPERATING Birch Log Set ..................................... 30-31 INSTRUCTIONS BEFORE ATTEMPTING TO OPERATE THIS APPLIANCE. DO NOT ALLOW 12. System Check .................................... 32 ANYONE TO OPERATE THIS APPLIANCE WHO 13. Flame Picture Adjustment................ 33 HAS NOT READ AND UNDERSTOOD THESE INSTRUCTIONS. 14. Operation Guidelines...................34-35 KEEP THE REMOTE CONTROL TRANSMITTER 15. Maintenance....................................... 36 WHERE CHILDREN CANNOT REACH IT. Annual Cleaning ..............................................36 Glass Care & Replacement...................... 36-38 WARNING: Safety Screen Replacement .......................... 39 SEVERE INJURY. THIS APPLIANCE CAN BE SET 16. Illustrated Parts List....................40-42 TO OPERATE THERMOSTATICALLY. BE AWARE 17. Warranty Statement..........................46 THAT THE STOVE MAY BE VERY HOT EVEN WHEN THE BURNER IS NOT APPARENTLY OPER- 18 Lighting Instructions.......................... 47 ATING. KEEP CHILDREN AWAY FROM THE APPLIANCE. WARNING: FIRE HAZARD. CAN CAUSE SEVERE INJURY OR DEATH. THE APPLIANCE CAN TURN ON SUDDENLY. KEEP AWAY FROM THE APPLIANCE BURNER WHEN OPERATING THE REMOTE SYSTEM. 3"}, {"p": 4, "t": "130139 Rev 3 GF 520 DV 9/24 1. Specifications Input Rates Miscellaneous Hardware Bag Contents Natural Gas • Fuel Conversion Kit , LP ............................158329 16,500 BTU/hr. minimum input • Rock Wool Embers, 1 oz. ............................ 157259 30,000 BTU/hr. maximum input • GF 520 DV / MV Manual.......................... 130139 Propane 16,500 BTU/hr. minimum input • Rear Intake Air Diverter.............................226861 29,000 BTU/hr. maximum input • Sheet Metal Screws, 2...................................117917 Inlet Pressure: MIN MAX Natural Gas: 5.0 WC (1.25 kPa) 7.0 WC (1.74 kPa) Options & Accessories Propane: 12.0 WC (3.0 kPa) 14.0 WC (3.48 kPa) • Beach Fire Log Set .....................................158263 Manifold Pressure: MIN MAX • Black Reflective Panel.................................158342 Natural Gas: 1.12 WC (.3 kPa) 3.80 WC (.95 kPa) • Fluted Liner................................................. 158288 Propane: 2.9 WC (.72 kPa) 11.0 WC (2.74 kPa) • Fuel Conversion Kit , LP ............................158329 • Fuel Conversion Kit, NG - ........................ 158330 • Optional Blower Kit.....................................158333 • Steady State Efficiency: 70.01% NG / 71.72% LP • CSA P4. 1-15 Fireplace Efficiency: GF 520 DV NG - 61.47% LP - 62.15% GF 520 DV MV NG - 63.49% LP - 64.61% • Factory Air Shutter Open Settings: NG - 1/16” LP - 1/8” • On Demand Pilot Mode (DV MV Only) • Ambient Temperature Range: 32 -122°F (0 - 50°C) SAFETY BARRIER SCREEN The front door and side glass panels of this appliance are equipped with integrated Certified Safety Barrier Screens ℄ which must remain installed at all times. 11 5/8\" 165 mm Should a screen become damaged, contact your 6 1/2\" authorized Jøtul dealer for original equipment 165 mm replacement assemblies. ℄ 17 1/2\" 444 mm 23 3/8\" 594 mm 17 1/2\" 444 mm 12 1/2\" 318 mm 12 1/12\" 19 3/8\" 318 mm 492 mm 39\" 991 mm 39 1/2\" 7 7/8\" 1003 mm 200 mm Figure 1.1 Dimensioned views, GF 520 DV / GF 520 DV MV 4"}, {"p": 5, "t": "130139_Rev 3 GF 520 DV 9/24 2. Initial Assembly STOP! FOR EASIEST ACCESS, The stove is heavy. INSTALL FUEL CONVERSION DO NOT DRAG THE STOVE. AND FIREBOX PANELS BEFORE Have assistance available to move the stove into position. Place removed parts on a blanket, towel, or REMOVING THE STOVE FROM other protective material. THE PALLET. Unpacking the Stove EXCEPT AS NOTED, ALL INSTRUCTIONS ARE ORIENTED FACING THE FRONT OF THE STOVE. 1. Open the Firebox Remove the Top Plate and set aside. Remove the Front Plate by lifting it up off of the front plate hooks. See fig. 2.1. • Remove the Latch Tool from the shipping pallet and use it to remove the Glass Panel by pulling the two latch hooks out to disengage them from the glass frame. Fig. 2.2. • Tilt the glass frame forward, then lift it straight up and out of the spring glass retainer. 2. Remove the Miscellaneous Hardware kit from the firebox Figure 2.1 Remove Front Plate. and inspect the contents. Refer to the list on the previous page and contact your dealer if any items are missing. 3. Optional Equipment and Burner Media: See Sections 10 and 11 for specific installation instructions. Figure 2.2 Disengage the glass frame latches to open the firebox. RE-INSTALL THE TOP PLATE BEFORE CONNECTING VENT PIPE TO THE STOVE. 5"}, {"p": 6, "t": "130139 Rev 3 GF 520 DV 9/24 3. General Information  DO NOT OPERATE THIS STOVE IF ANY PART HAS BEEN UNDER WATER. Call a qualified service technician to inspect the heater and to replace any part of the control system and any gas control which may have been under  THIS HEATER MUST BE INSTALLED AND water. MAINTAINED BY A QUALIFIED SERVICE AGENCY.  The installation and repair of this appliance must be done by a qualified service person. Failure to properly install and maintain this heater could result in an unsafe or hazardous 4. Safety Information installation, which may result in a fire, explosion, property  Due to the high operating temperatures this appliance should damage, personal injury or loss of life. be located out of traffic and away from furniture and draperies. Maintain proper clearance to combustible mantels and  This appliance should be inspected before use and at least fireplace trim. annually. More frequent cleaning may be required due  Children and adults should be alerted to the hazards of high to excessive lint from carpeting, bedding material, etc. It surface temperatures and should stay away to avoid burns or is imperative that control compartments, burners, and clothing ignition. circulating air passageways of the appliance be kept clean.  Young children should be supervised while they are in the same See Maintenance section for details. room as the appliance. Toddlers, young children and others  THIS APPLIANCE MUST NOT BE CONNECTED may be susceptible to accidental contact burns. A physical TO A CHIMNEY OR FLUE SERVING ANY OTHER barrier, such as a child guard, is recommended to be used if APPLIANCE. there are at-risk individuals in the house. To restrict access to a fireplace or stove, install an adjustable safety gate to keep  The installation must conform to local codes. Your local toddlers, young children and other at-risk individuals out of the Jøtul dealer can assist you in determining what is required room and away from hot surfaces. in your area for a safe and legal installation. Some areas  This appliance includes permanent, integrated safety barriers require a permit to install a gas burning appliance. Always designed to reduce the risk of burns from the hot viewing consult your local building inspector, or authority having glass. These barriers shall remain installed for the protection of jurisdiction, to determine what regulations apply in your children and other at-risk individuals. area. The appliance must not be operated with the front door open  CODE COMPLIANCE : Your local officials have final or ajar. authority in determining if a proposed installation is acceptable. Any requirement that is requested by the  A damaged screen barrier must be replaced only with Jøtul GF local authority having jurisdiction, that is not specifically 520 Front Replacement Screen 226647, or Side Replacement addressed in this manual, defaults to local code. In the Screen 226648, available from any Jøtul Authorized Dealer. absence of local codes, the installation requirements must  Any safety screen, guard, or barrier removed for servicing an comply with the current edition of National codes. In the appliance must be replaced prior to operating the appliance. U.S., these requirements are established in the National See maintenance instructions. Fuel Code, ANSI Z223.1.(NFPA 54) current edition. In Canada, the codes have been established in CAN/CGA  Clothing or other flammable materials should not be placed on B149 Fuel Installation Code, current edition. or near the fireplace.  Never allow anyone to use the fireplace if they are unfamiliar  The appliance, when installed, must be electrically with its operation. grounded in accordance with local codes or, in absence of local codes, with the National Electrical Code, ANSI/  NEVER store or use gasoline or any other flammable vapors or NFPA 70, or the Canadian Electrical Code, CAN/CSA liquids in the vicinity of this appliance. C22.1.  Never burn any solid materials (wood, cardboard, paper, coal,  CAUTION: Label all wires prior to disconnection when etc.) in this appliance. Use with natural gas or propane fuel servicing controls. Wiring errors can cause improper and ONLY. dangerous operation.  Do not slam or strike the glass panel. Verify operation after servicing.  This appliance is NOT for use with aftermarket glass doors.  Wear gloves and safety glasses while installing or performing maintenance procedures on this appliance. 6"}, {"p": 7, "t": "130139_Rev 3 GF 520 DV 9/24 5. Installation Requirements Location Stove and Vent Clearance In selecting a location for the stove, consider the Requirements following points: Minimum Clearances from the Stove to Combustibles: 1) Heat distribution 2) Vent termination requirements Measured from: 3) Gas supply line routing 4) Traffic areas, furniture, draperies, etc. Rear: 1 1/2” (38 mm) Rear Shroud The stove may be located on or near conventional Room Ceiling: 43” (1092 mm) Top Plate construction materials, however, proper clearance to Corner: 5 5/8” (143 mm) Side Plate combustibles must be maintained in order to provide adequate Side: 10” (254 mm) Side Plate air circulation around the appliance. Also, it is important to provide adequate access around the stove for servicing and operation. Minimum Clearances between Vent Pipe and Combustible Materials: The clearance and hearth specifications listed in this manual are the minimum requirements for combustible material. A Horizontal Run: combustible material is anything that can burn (i.e. sheet rock, Off the top of the pipe 2” (51 mm) wall paper, wood, fabrics etc.). These surfaces are not limited Off the sides and bottom 1” (25 mm) to those that are visible and also include materials that may be located behind non-combustibles. Vertical Run: All sides 1” (25 mm) If you are not sure of the combustible nature of a material, consult your local fire officials. Remember, “Fire Resistant” materials are considered combustible: they are difficult to ignite, but will burn. Also, “fire-rated” sheet rock is considered combustible. Floor Protection 5 5/8\" 38\" 965 mm 143 mm The Jøtul GF 520 DV / GF 520 DV MV has been approved for installation directly on combustible floor materials. No 10\" additional floor protection is required, however, we recommend 254 mm 16-5/8\" 422 mm that the stove be installed on a non-compressible, solid surface. 16\" 406 mm 24\" 610 mm WARNING: Figure 5.1. Corner Wall clearances. INSTALLING THIS STOVE ON A COMPRESSIBLE SURFACE SUCH AS A THICK CARPET OR FOAM FLOOR MAT WILL CAUSE THE STOVE TO SETTLE AFTER INSTALLATION WHICH MAY CREATE LEAKS IN THE VENTING SYSTEM! 7"}, {"p": 8, "t": "130139 Rev 3 GF 520 DV 9/24 1 1/2\" Alcove Installation 38 mm Maximum Alcove Depth: 24” (607 mm) Minimum Alcove Width*: 44” (1118 mm) Minimum Alcove Ceiling Height 7 15/16\" from floor: 60” (2802 mm) 202 mm * Alcove clearances are determined through testing in specific 24\" construction configurations which often result in greater clearances 22\" 607 mm than an open stove installation. 559 mm 10\" 10\" 254 mm 254 mm Clearance to Combustible Materials Above 44\" Stove 1117 mm Figure 5.2 Minimum Height from floor: 60” (1524 mm) with 24\" (610 Alcove Clearances. mm) maximum depth. Distance to Gas Supply Suggested gas supply location is within 12\" of the rear of the center line of the stove. 24\" 610 mm Distance to Electrical Supply A grounded permanent electrical supply should be installed within 6 ft. of the center line of the exhaust pipe. 21\" 533 mm 1 1/2\" 60\" 38 mm 1524 mm 39\" 991 mm Figure 5.3. Alcove Depth and Height Clearances. 8"}, {"p": 9, "t": "130139_Rev 3 GF 520 DV 9/24 Mobile Home Installation The GF 520 DV / GF 520 DV MV is approved for installation in a mobile home in the U.S. and Canada with the following THIS APPLIANCE MAY BE INSTALLED AS AN requirements: OEM INSTALLATION IN A MANUFACTURED (MOBILE) HOME AND MUST BE INSTALLED IN  The stove must be secured to the floor of the mobile home. ACCORDANCE WITH THE MANUFACTURER’S INSTRUCTIONS AND THE MANUFACTURED  Provision must be made to secure an electrical ground HOME CONSTRUCTION AND SAFETY between the stove and the mobile home chassis. STANDARD, TITLE 24 CFR, PART 3280. THIS  The stove must be installed in accordance with Title 24 CFR, APPLIANCE IS ONLY FOR USE WITH THE TYPE Part 3280-Manufactured Home Construction and Safety OF GAS THAT IS INDICATED ON THE STOVE’S Standard in the U.S. RATING PLATE. A GAS CONVERSION KIT IS In Canada, comply with CSA Z240.4, Gas Equipped PROVIDED WITH THE GF 520 DV / GF 520 DV MV GAS STOVE. Recreational Vehicles and Mobile Housing.  Always contact your local officials about installation THIS APPLIANCE MAY BE INSTALLED IN AN restrictions and requirements in your area. AFTERMARKET PERMANENTLY LOCATED, MANUFACTURED (MOBILE) HOME, WHERE NOT PROHIBITED BY LOCAL CODES. Procedure 1. Using the two #12 x 3 1/2\" screws used to secure the stove to the shipping pallet, secure the GF 520 DV / GF 520 DV MV to the floor of your mobile home through the two holes at the bottom of the base of the stove. If needed, longer hardware can be used. Shipping/Mobile Home Screws Figure 5.4 Figure 5.5 Mobile Home Installation Mobile Home Installation 9"}, {"p": 10, "t": "130139 Rev 3 GF 520 DV 9/24 6. Venting Requirements The Jøtul GF 520 DV / GF 520 DV MV gas stove may be installed with a vertical or horizontal termination and must conform to the configuration requirements described below. Figure 6.1. This appliance is approved for use with vent systems from DO NOT USE SILICONE SEALANT. the following manufacturers: • DuraVent DirectVent Pro and GS Series • American Metal Products (Amerivent) \u001b \u001a • Security Chimneys International, Ltd. (Secure Vent) • Selkirk Metalbestos (Direct Temp) • Metal-Fab, Inc. (Sure-Seal Direct Vent) • Industrial Chimney Corp. (ExcelDirect) • Bernard Dalsin Mfg. (Pro Form) • Olympia Chimney Supply, Inc. (Ventis Direct Vent) Use parts of one manufacturer only - DO NOT MIX VENT COMPONENTS FROM DIFFERENT MANUFACTURERS IN THE SAME SYSTEM. RE-INSTALL THE TOP PLATE BEFORE Installation of any components not manufactured or approved by Jøtul or failure to meet all clearance requirements CONNECTING VENT TO THE STOVE. will void all warranties and could result in property damage, bodily injury, or serious fire. The approved vent configurations described in this manual are derived from extensive testing under controlled laboratory conditions. Gas appliance performance can be negatively Vent Restriction affected by variables present in the installation environment, The GF 520 DV / GF 520 DV MV is equipped with an Exhaust i.e: atmospheric pressure, strong prevailing winds, adjacent Restrictor Plate which enables regulation of the exhaust gas structures and trees, snow accumulation, etc. These conditions flow. The plate prevents overly-strong draft that can cause poor should be taken into consideration by the installer and stove combustion and weak flame picture. Follow the guidelines below owner when planning the vent system design. and on the following pages to determine the correct restrictor plate setting for your particular installation. IMPORTANT Exhaust Restrictor • JOINT SEALING REQUIREMENT: APPLY A 1/8” BEAD OF The Exhaust Restrictor plate is located on the rear of the HIGH-TEMPERATURE SEALANT OR MIL-PAC® TO THE MALE SECTION OF THE INNER VENT PIPE. THE CEMENT firebox. It is adjusted by rotating the dial on the back shroud SHOULD FORM A SEAL BETWEEN THE INNER AND within a range beginning at the factory-set, fully open position OUTER PIPES. (no restriction) to a fully restricted position. See Figs. 6.2 and 6.3. • NEVER MODIFY ANY VENTING COMPONENT, OR USE The Minus (-) and Plus (+) signs on the dial relate to degrees of ANY DAMAGED VENTING PRODUCT. restriction, from zero to approximately 70%. The three, lettered positions correlate to the termination zones (A,B,C) diagramed • THE GAS APPLIANCE AND VENT SYSTEM MUST BE VENTED DIRECTLY TO THE OUTSIDE OF THE BUILDING in figure 6.2. Use the diagram to determine the degree of AND NEVER ATTACHED TO A CHIMNEY SERVING A SOLID restriction and shutter setting that correlates to your vent FUEL OR GAS BURNING APPLIANCE. EACH DIRECT VENT configuration. GAS APPLIANCE MUST HAVE ITS OWN SEPARATE VENT SYSTEM. COMMON VENT SYSTEMS ARE PROHIBITED. Adjusting Exhaust Restrictor Plate: • IF THE VENTING SYSTEM IS DISASSEMBLED FOR 1. Use a 1/4” nut driver to loosen the screw and then use the MAINTENANCE OR ANY OTHER REASON, IT MUST BE PROPERLY REASSEMBLED AND RESEALED pivot tab to set the dial to the position appropriate to your IN ACCORDANCE WITH THE ORIGINAL VENT termination zone. See figs. 6.2-6.4, page 11. MANUFACTURER’S INSTRUCTIONS. 2. Re-tighten the screw after adjustment. CONFIRM THAT ALL INTERLOCKING JOINTS ARE TIGHTLY RE-SECURED AND THAT ALL SEALS ARE MAINTAINED INTACT. REINSTALL ANY FASTENERS AND REPLACE AS NECESSARY. 10"}, {"p": 11, "t": "130139_Rev 3 GF 520 DV 9/24 30 ft. Approved Horizontal and (9.14 m) Vertical Vent Terminations TERMINATION • ALL VENTING MUST NOT TERMINATE (END) WITHIN APPROVED ONE OF THE DESIGNATED AREAS. • SET STOVE EXHAUST RESTRICTOR TO THE POSITION THAT CORRESPONDS TO THE VENT TERMINATION AREA IN THE MATRIX. When termination is exactly on a division line, use the less restrictive position. For example, if termination is 10 feet VERTICAL RISE high and offset 7 feet, restriction should be set at Position B. • Up to two 45° elbows or one additional 90° elbow is permitted in addition to the first elbow, however, a 5 foot reduction in horizontal length must be made for each 10 ft. additional elbow whether 45° or (3.05 m) 90°. 7 ft. (2.13 m) 3 ft. (0.91 m) TERMINATION 2 ft. NOT (0.61 m) APPROVED 6\" (152mm) min. horz. run 3 ft. 7 ft. 12 ft. 20 ft. (0.91 m) (2.13 m) (3.66 m) (6.10 m) HORIZONTAL RUN Figure 6.2. Vent Termination Restriction Zones - NG / LP. See also Snorkel Termination vent run restrictions, pg. 12. Top Plate C B A Rear Heat Shield Figure 6.4. Determine the dial notch position appropriate to your vent Figure 6.3. configuration as designated in Fig 6.2. Pivot the dial to align the Use a 1/4” nut driver to loosen the Restrictor screw. screw with that notch. 11"}, {"p": 12, "t": "130139 Rev 3 GF 520 DV 9/24 Vertical Vent Termination This appliance may be vertically vented through a ceiling or to a roof termination using the following guidelines:  The termination should fall within the shaded areas of the grids depicted in the Vent Matrix, fig. 6.2, page 11. Air Intake Diverter  Maximum Horizontal run is 20 ft. (152 cm) See Fig. 6.2 for related termination zone limitations. Sheet Metal Screw  Minimum Vertical Termination is 6 ft. (183 cm).  Total run, including offsets, must not exceed 30 ft. (9.14m).  Vent Terminus Clearance: In no case shall any discharge opening on the cap be less than 18 in. (457 mm) horizontally from the roof surface. See fig. 6.6.  Steep roofs, nearby trees, and predominantly windy conditions can contribute to poor draft and/or promote draft reversal. Increasing the height of the vent may alleviate these conditions.  Use Wall Straps to support an offset pipe run at intervals of three feet to avoid excessive stress on the offsets. Figure 6.5. Install the Air Intake Diverter. NOTE: Install with the bends facing  A firestop is required at every floor. The floor opening DOWN. should be framed to 10\" X 10\" inside dimension.  Any venting that is exposed in living space above the first floor must be enclosed. Always maintain the required 1\" clearance from all sides of the vertical vent system. Insulation in attic space must be retained by an insulation barrier.  Allowable minimum vent run is 1' vertical with 6\" horizontal. Horizontal Overhang Vertical Wall 18. 18. min. min. Lowest Discharge Opening Termination Air Intake Diverter Cap 18 min. The GF 520 DV / GF 520 DV MV comes with an Air Intake Diverter in the miscellaneous kit. This is to be installed in installations with a vertical installation greater than 10 ft, in installations with excessive draft conditions, or when the flame picture shows a flame with weak rear flame and a large front flame. Figure 6.6. Vertical vent termination height above roof. Installation Instructions: Using a 1/4\" driver, use the two sheet metal screws provided in the misc. kit to secure the Air Diverter to the Rear Burner Skirt. Install the Air Diverter with the bends facing downward. See fig. 6.5. 12"}, {"p": 13, "t": "130139_Rev 3 GF 520 DV 9/24  Any horizontal run of vent must be level or have a 1/4 in. rise for every foot of run toward the termination cap. NEVER ALLOW THE VENTING TO RUN DOWNWARD FROM STOVE TO TERMINATION; A DOWNWARD VENT RUN TRAPS HEAT AND CREATES A FIRE HAZARD.  The horizontal termination cap must maintain a 3” clearance to any overhead combustible projections 2 1/2” or less. It must also maintain 12” clearance from projections exceeding 2 1/2”.  A direct vent terminal may not be recessed into a wall or siding.  Install a Vinyl Siding Standoff (Dura-Vent #950) between the vent termination and an exterior wall covered by vinyl siding material to prevent potential heat damage to the siding. Figure 6.6. Co-linear Termination is permitted with 2 foot (62 cm) maximum horizontal run (A). RE-INSTALL THE TOP PLATE BEFORE CONNECTING VENT TO THE STOVE. Horizontal Termination  Any horizontal termination must fall within the shaded portion of the vent window matrix shown in fig. 6.2. 1.5\"  Any horizontally-terminated vent run must include a 38 mm minimum 12” (61 cm) vertical rise with a minimum 6\" horizontal run. See figs. 6.8, 6.9, 6.10. 67\"  Horizontal termination requirements: 70.25\" 1702 mm 1) Maximum vertical run is 30 ft. (9.14m) 1784 mm 2) Maximum horizontal run is 20 ft. (6.1 m)  ELBOW RESTRICTION: Up to two 45° elbows or one 90° 39\" 991 mm elbow may be used in addition to the first elbow. The horizontal run must be reduced by 5 feet for each additional elbow, whether 45° or 90°.  Wall Cut-out Opening: A minimum 10\" X 10\" (250 mm x 250 mm) square hole is required for proper pipe clearances through a combustible wall.  Horizontal Vent Pipe Clearance to Combustible Material: Figure 6.8. From Top Surface: 2” (51 mm) Recommended Horizontal Termination. From Sides: 1” (25 mm) DO NOT FILL AIR SPACE WITH ANY TYPE OF INSULATION. 13"}, {"p": 14, "t": "130139 Rev 3 GF 520 DV 9/24 36\"  SNORKEL TERMINATION: 914 mm Snorkel • HORIZONTAL RUN MUST NOT EXCEED 2 FEET (61 CM). A 14” (356mm) or 36” (914mm) snorkel termination is approved in conformance with the vent rise/run and termination clearance specifications published in this manual. See figs. 6.9 – 6.10. The snorkel termination must comply with grade and building clearance requirements per local and national building codes. 2\" 51 mm Max 24\" 610 mm Max 18\" Length Length 80.5\" 2045 mm Min 12\" Length 1.5\" 38 mm 1.5\" 38 mm 55\" 58\" 1397 mm 44.5\" 1473 mm 69\" 1130 mm 1753 mm 39\" 991 mm Figure 6.9. Optional Snorkel Termination Figure 6.10. Minimal Pipe Exposure Clearances.  2 FT. MAX. HORIZONTAL RUN (A) TO SNORKEL TERMINATION  Any horizontally terminated vent run must include a minimum 1 ft. (61 cm) vertical rise.  At minimum vertical run, the total horizontal run (A) must not exceed 5 ft. (152.4 cm). 36\" Snorkel 12\" Pipe Length 5.75\" 146mm 16.75\" 6\" Wall Thickness 24\" Vertical Pipe and 90 425 mm 6\" Degree Elbow 23.5\" 152 mm 597 mm 7\" 5.75\" 146 mm 178 mm 3.75\" 95 mm 90 Degree Elbow to Unit 45 Degree 18\" Pipe Elbow Length Figure 6.11. 16.75\" Optional Corner Installation Clearances 6\" 425 mm Center Pipe Pipe Length 14"}, {"p": 15, "t": "130139_Rev 3 GF 520 DV 9/24 Horizontal Termination Clearance Requirements \u0018\u001b\u0019\u0015\u0018 \u0019\u0018\u001b \u0014\u001b\u001a\u001a \u0017\u0016 \u001a\u001a \u001b\u001a\u001a Figure 6.11. \u001b\u001a \u0019\u0018\u0017 \u0016\u0015 \u0014\u0017\u0019\u001b\u0013\u0012\u0011\u0011\u0015\u0010 \u001a \u0019\u0018\u0017 \u0016\u0015\u000f\u001b\u000e\u0019 \u0017 \u0017 \u001b\u0017 \u001b \u0017\u000f\u001b\u0014\u0019 \u0016 Termination Clearance to Figure 6.11. Vent Terminal Clearances, Canada and United States overhangs. Canadian Installations 1 U.S. Installations 2 Clearance above grade, veranda, porch, deck, or 12 in. (30 cm) A 12 in. (30 cm) balcony 9 in. (23 cm) We recommend 12 in. to prevent B Clearance to window or door that may be opened 12 in. (30 cm) condensation on a window. 9 in. (23 cm) We recommend 12 in. to prevent C Clearance to permanently closed window 12 in. (30 cm) condensation on a window. Vertical clearance to ventilated soffit located D above the terminal within a horizontal distance of 18 in. (46 cm) 18 in. (46 cm) 2 ft. (60 cm) from the center line of the terminal E Clearance to unventilated soffit 12 in. (46 cm) 12 in. (46 cm) 9 in. (23 cm) We strongly recommend 12 in. F Clearance to outside corner 12 in. (46 cm) particularly where strong winds prevail. 9 in. (23 cm) We strongly recommend 12 in. G Clearance to inside corner 12 in. (46 cm) particularly where strong winds prevail. Clearance to each side of center line extended 3 ft. (91 cm) within a height 15 ft. above the H above a gas meter or regulator meter/regulator assembly * I Clearance to service regulator vent outlet 3 ft. (91 cm) * Clearance to nonmechanical air supply inlet to J building or the combustion air inlet to any other 12 in. (30 cm) 9 in. (23 cm) appliance 3 ft. (91) cm above if within 10 ft. (3 m) K Clearance to a mechanical air supply inlet 6 ft. (1.83 m) horizontally Clearance above paved sidewalk or paved L driveway located on public property 7 ft. (2.13 m) 3 * 4 M Clearance under veranda, porch, deck, or balcony 12 in. (30 cm) 12 in. (30 cm) 4 Clearance to propane tank relief valve and filler N 5 ft. (1.52 m) 5 / 10 ft. (3.05 m) 6 5 ft. (1.52 m) 5 / 10 ft. (3.05 m) 6 connection 1) In accordance with the current CSA B149.1, Natural Gas and Propane Installa- 3) A vent shall not terminate directly above a sidewalk or driveway which is located tion Code. between two single family dwellings and serves both dwellings. 2) In accordance with ANSI Z223.1/NFPA 54, National Fuel Gas Code 4) Permitted only if veranda, porch, deck, or balcony is fully open on a minimum of * For clearances not specified in ANSI Z223.1/NFPA 54 or CSA B149.1, the two sides beneath the floor. clearance will be in accordance with local installation codes and the require- 5) Minimum clearance to tanks not filled on site. ments of the gas supplier. 6) Minimum clearance to tanks filled on site from bulk truck. 15"}, {"p": 16, "t": "130139 Rev 3 GF 520 DV 9/24 7. Fuel Conversion Fuel Conversion Procedure The GF 520 DV / GF 520 DV MV gas stove is shipped from the 1. Turn off gas supply to stove. factory equipped to burn NATURAL GAS only. If PROPANE 2. Remove top and front cast. Release the glass frame latches gas is to be used as fuel, the appliance must first be converted by to remove the glass frame and open the firebox. Tilt the glass using the Propane Conversion Kit 158331 included with the stove. frame forward and lift it out of the stove. See initial assembly Use Natural Gas Conversion Kit 158332 to revert back to Natural page 5. gas. 3. Open the Controls Compartment under the firebox. If opening the Controls Compartment for the first time, loosen the Air Shutter wing nut located below the firebox floor and rotate the handle 180°. Push the Air Shutter handle as far WARNING: back as it will travel. See fig. 7.1. THE CONVERSION KIT IS TO BE 4. Lift out Rear Burner Skirt. INSTALLED BY AN AUTHORIZED SERVICE TECHNICIAN IN ACCORDANCE WITH THE 5. Remove the Burner: Lift the front of the burner base to MANUFACTURER’S INSTRUCTION AND disengage it from the support brackets and pull it forward off ALL CODES AND REQUIREMENTS OF of the burner injector. Then tilt it side-to-side and pull it out THE AUTHORITY HAVING JURISDICTION. through the firebox opening. Fig. 7.2. FAILURE TO FOLLOW THESE INSTRUCTIONS 5. Change the Burner Injector. COULD RESULT IN SERIOUS INJURY OR PROPERTY DAMAGE. THE QUALIFIED See fig. 7.3. Using a 1/2” open end wrench or deep-well AGENCY PERFORMING THIS WORK socket, remove the burner injector from the orifice holder and ASSUMES RESPONSIBILITY FOR THIS replace it with the injector supplied in the conversion kit. CONVERSION. CAUTION: DO NOT OVER TIGHTEN! IN CANADA: THE CONVERSION SHALL BE CARRIED OUT IN ACCORDANCE WITH THE REQUIREMENTS OF THE PROVINCIAL AUTHORITIES HAVING JURISDICTION AND IN ACCORDANCE WITH THE REQUIREMENTS OF THE CAN1-B149.1 AND .2 INSTALLATION CODE. Tools required: • 1/2” or 13 mm wrench or deep-well socket, • Torx T20 screw driver Figure 7.1. Rotate the Air Shutter Handle 180° and push Air Shutter FULLY back to disengage burner from injector. Conversion Kit Contents: • 1, regulator tower labeled LP • 2 regulator tower Torx Screws • LP orifice: #52 • 1, Pilot Injector - BL .020 for NG - 226758 .013 for LPG - 226759 • Label A - to be completed and applied to the lower door hinge. • Label B - apply to the stove’s Rating Plate • Small valve label - apply to valve body • Instructions Figure 7.2. Remove Burner. 16"}, {"p": 17, "t": "130139_Rev 3 GF 520 DV 9/24 Replace Burner Injector Figure 7.3. Injector and Pilot conversion. The Air Shutter MUST be flipped for LP conversion. Pilot Hood Replace Pilot Injector Figure 7.3. Injector and Pilot conversion. The Air Shutter MUST be flipped for LP conversion. 17"}, {"p": 18, "t": "130139 Rev 3 GF 520 DV 9/24 Fuel Conversion, cont’d. 6. Change the Pilot Injector, Fig 7.3. • Use the 7/16” wrench to loosen the pilot hood, hold the pilot mounting bracket with pliers to prevent bending the pilot bracket. • Lift the Pilot Hood and remove the pilot injector and replace with one in fuel conversion kit. Replace the pilot head and ly S mall App Here orient the hood to project flame to the Flame Sensor and Lab e l burner carry-over ports. Be sure to orient the hood to project flame to the Flame Sensor and the burner carry-over ports. 7. Flip the Air Shutter. Carefully bend open the Air Shutter Handle and flip the Air Shutter so it displays \"LP\". Carefully Remove black bend the Air Shutter Handle back around the Air Shutter. rubber gasket See fig 7.3 8. Replace the Burner. Tilt the burner assembly downward Variable regulator tower to engage the venturi tube with air shutter assembly. BE CERTAIN THE BURNER IS LEVEL AND SECURELY ENGAGED WITH THE FRONT SUPPORTS ON THE Figure 7.7. FIREBOX FLOOR. Regulator tower removal and replacement Figure 7.4. GF 520 / GF 520 DV MV Control Compartment. Image shown with optional blower. 18"}, {"p": 19, "t": "130139_Rev 3 GF 520 DV 9/24 9. Replace the variable regulator. Using a Torx T-20 13. Confirm correct gas pressure. Use a manometer to check screwdriver, remove the three specialty screws from the pressures as specified under Section 9, Gas Pressure (page 20). regulator tower on the front of the valve. Note: To help 14. Adjust the Air Shutter. Fig. 7. 7 identify which screws to remove, refer to the new regulator in the The factory setting for NG is 1/16” open. Adjustment may be kit. See fig. 7.7. necessary to provide the best flame picture depending upon the 10. Remove the regulator tower and the rubber diaphragm. specific vent configuration. 11. Install the new variable regulator tower from the kit. Be sure that the gasket is properly positioned and tighten screws • Start with the shutter set open to 1/16”. securely. • Push the shutter stem back (to the rear) to restrict air. 12 . Apply the identification labels to the stove so that they can be seen by • Pull the shutter stem forward (toward yourself) to open the any person that may be servicing the stove. shutter and add oxygen to the fuel mix. • Label “A”: Apply Control Compartment Door, next to the lighting instructions. With some experimentation, you will find the shutter position • Label “B”: Apply to the Rating Plate. that works best for that particular installation. • Small valve sticker: Apply to valve. • Run the stove at least 15 minutes to let the burner settle-in 11. Reassemble the stove and apply gas to the system. before making further adjustments in very small increments (1/16” - 1/8”) 12. Leak Check: Check for leaks using a soapy water solution or digital gas detector. NEVER USE OPEN FLAME TO CHECK FOR GAS LEAKS. AVOID WETTING THE IFC UNIT OR MOTORIZED REGULATOR WHEN CONDUCTING LEAK CHECK. OPEN CLOSED Apply Small Conversion Label to valve Figure 7.7. Air shutter adjustment. Apply Label “A” to Controls Compartment Door Figure 7.6. Conversion label “A” location. 19"}, {"p": 20, "t": "130139 Rev 3 GF 520 DV 9/24 8. Gas Supply Connection 9. Gas Pressure  Route the gas supply line to the flex line behind the unit. Correct gas pressure is essential for efficient and safe Gas installation should be approximately 12\" from the operation of the GF 520 DV gas stove. It is important center line on either side of the unit. that the correct pressure is established at the time of the installation. Proper gas pressure provides a consistent flow of  The gas supply line should be 3/8” npt with a 1/2” diameter gas to the appliance and is instrumental in checking for gas supply, or the appropriate size to provide sufficient gas leaks. pressure to the valve regardless of the input setting. Pressure Test: Attach a manometer to the appropriate  The use of Flexible Gas Appliance Connectors is test point on the valve. See fig. 9.1. acceptable in many areas in the U.S. However, Canadian The gauge connections are located on the front of the methods vary depending on local code. valve. Connections are identified by:  ALL INSTALLATIONS MUST COMPLY WITH LOCAL A - for Manifold Pressure (the amount of gas that is CODE OR IN THE ABSENCE OF LOCAL CODE, coming out of the valve to the burner.) MUST COMPLY WITH THE MOST RECENT EDITION B - for Inlet or Supply Pressure (the amount of gas OF THE NATIONAL FUEL GAS CODE ANSI Z223.1/ coming to the valve.) NFPA 54 OR CAN-B149. ALWAYS TEST PRESSURES WITH VALVE  All codes require a gas shut-off valve (gas cock) and union, CONTROL KNOB SET ON HIGH. to be installed in the supply line, and in the same room as the appliance. This allows for the disconnection of the stove for servicing and maintenance. See fig. 8.1. A T-HANDLE GAS COCK IS REQUIRED IN MASSACHUSETTS TO COMPLY WITH CODE 248CMR.  Secure all joints tightly using appropriate tools and sealing B A compounds. For propane units be sure to use compounds that are propane resistant. Turn on gas supply and test for gas leaks at all joints. Figure 9.1. Pressure test points. \u0019 \u0018 \u001b\u0004\u0003 \u001b\u001a\u001b\u0019 \u0018 \u0017\u0016\u0015\u0014\u0013\u001b\u0017\u0007\u000f\u000f\u0007\u0006\u0005 INLET GAS PRESSURES \u001b\u001a\u001b\u0019 \u0018 \u001b\u0017\u0016\u0015\u0014\u0013 \u0012\u0011\u0010\u000f\u000e \u001b \u0015\u0016 \u0013 (inches water column) MIN MAX NATURAL GAS 5.0 7.0 \u0019 \u0018 \u001b\u0017\u0016\u0013\u001a\u001b \u0010\b\u0007\u0006\u0005 PROPANE 11.0 14.0 The appliance and its appliance main gas valve must \u0019 \u0018 \u0004\u0007\u0002\u0002\u0016\u0013 be disconnected from the gas supply piping system during any pressure testing on that system at test pressures in excess of 1/2 psig (3.5 kPa). The appliance must be isolated from the gas supply \u0019 \u0018 \u001b\u0006\u0007 \u0006 line by closing its individual manual gas shut-off valve (gas \u0001\u0015\u001b\u0012\u000f\u0010\b \u0019 \u0018 \u001b\u0016 \u0013\u001b\u0004\u0007\u0002\u0002\u0016\u0013 cock) during any pressure testing of the gas supply piping \u0019 \u0018 \u001b\u0012\u0011\u0010\u000f\u000e system that is equal to or less than 1/2 psig (3.5 kPa). \u001b\u001a\u001b\u0019 \u0018 \u0015\u0016 \u0013 MANIFOLD PRESSURES \u0013\u0010\u0013\u0014 (inches water column) MIN MAX Figure 8.1. Gas supply line connection alternatives. NATURAL GAS 1.6 3.5 PROPANE 6.4 10.0 20"}, {"p": 21, "t": "130139_Rev 3 GF 520 DV 9/24 This page is intentionally left blank. 21"}, {"p": 22, "t": "130139 Rev 3 GF 520 DV 9/24 10. Accessories ORIENT GLASS PANEL WITH THE Firebox Panel Kit SMOOTH SIDE FACING OUT. Black Reflective Glass Panel Kit 158342 1. Set the Rear Panel, bottom first, behind the pilot assembly shield and resting on the rear shelf. See fig. 10.1. Reflective Black Glass Contents: Tools: 2. Use a flat head screwdriver to bend the rear tab at 45° to keep • Rear Panel ....................226763 • Flat head screw driver glass from falling forward. See fig. 10.2. • Cotton Gloves, 2 •1/4\" hex socket 3. Repeat the process for the tab on the opposite side. • Instructions NOTE: If the Glass Panel is installed in a location prone to INSTALL FUEL CONVERSION KIT BEFORE vibration, the retainer tab can be adjusted to hold the glass INSTALLING PANEL KIT. tighter. 1. Remove the Baffle by removing the two M6 nuts in the upper THE PANEL IS FRAGILE. front corners of the firebox. SUPPORT WITH BOTH HANDS. 2. Use a 1/4\" hex socket to loosen the screw on one of the HANDLE THE GLASS PANELS WITH THE COTTON retaining tabs. Rotate the tab until it is holding the glass panel GLOVES PROVIDED TO MINIMIZE FINGERPRINTS. tight to the firebox and tighten the screw. SKIN OILS ARE DIFFICULT TO REMOVE FROM THE GLASS SURFACE. 3. Replace the Baffle. Retainer Tab Figure 10.1. Install Rear Panel. Figure 10.2. Bend Side Tabs 22"}, {"p": 23, "t": "130139_Rev 3 GF 520 DV 9/24 Firebox Panel Kit Fluted Panel Kit 158288 Fluted Panel Kit Contents: Tools: • Rear Panel ................... 226943 • Flat head screw driver • Instructions INSTALL FUEL CONVERSION KIT BEFORE INSTALLING PANEL KIT. 1. Use the screwdriver to bend out the front tab of the retainer clips on each side slightly, only enough to allow the screwdriver access from the front. See fig. 10.3. 2. Install the bottom of the panel first, then stand the panel against the rear wall of the firebox. See fig. 10.4. 3. Insert the screwdriver underneath the tab previously bent and twist to bend the tab against the panel. Repeat this Figure 10.4. Install Panel. step on the other side and bend the tabs equally so the panel is centered and retained in the firebox. See fig 10.5. Retainer Tab Figure 10.3. Bend the front tab on each side slightly. Figure 10.5. Bend both tabs fully to retain Panel. 23"}, {"p": 24, "t": "130139 Rev 3 GF 520 DV 9/24 Optional Wall Thermostat 750003 Use only a 750 millivolt DC two-wire circuit wall thermostat \u0016\u0015\u0014 with this appliance. The thermostat should be placed in the \u0012 \u0016\u0011\u001b\u0018 \u0010 \u001b \u0015\u0012 same room as the heater, typically 5 feet off the floor. Avoid \u001b drafty areas or any area that may affect the accuracy of the \u001a\u001a thermostat. \u0019 \u0018 The thermostat should be connected to the terminal block using a minimum of 16 gauge wire with a maximum length of \u0013\u0019\u0018\u0013 \u0016\u0011 \u001b\u0016\u001a\u0019\u0018 \u0012 \u0016\u0010 \u0019 25 feet of wire. \u000f\u000e \u0016 Connect either of the two thermostat wire leads to either \u0015\u0016\u001a \u0016\u0018 of two terminals on the terminal block located to the right of \u001b\u001a\u0019\u0018 \u0017\u0018\u0016\u0015\u0014 the main gas valve. Do not overtighten the connections. IT IS NOT NECESSARY TO DISCONNECT ANY OTHER WIRES. See Fig. 10.7. Figure 10.7. Accessory wiring diagram. For thermostatic operation, the On/Off/T-Stat switch on the back of the stove must be in the T-stat position, and the pilot light must be running, as it is the power source for the Optional Ash Lip thermostat. Your GF 520 IPI comes with an optional Ash Lip to At the thermostat, the two wires should be connected to give you options for your desired look. Included in the two connection screws on the thermostat base plate per the manufacturer’s instructions. the miscellaneous kit are two bolts to be used if you desire to attach the ashlip. CAUTION: LABEL ALL WIRES PRIOR TO DISCONNECTION WHEN Instructions: SERVICING THE CONTROLS. WIRING ERRORS CAN CAUSE IMPROPER OR DANGEROUS OPERATION. AL- Use a small screwdriver to push out the two WAYS VERIFY PROPER OPERATION AFTER SERVICING nylon plugs from the rear of the lower front THE APPLIANCE. plate in the location shown in figure 10.6. Hold Optional Remote Control 224910 the Ash Lip in place and hand start the two When using a remote, the remote receiver should be wired to bolts included in the misc. kit in the holes where the terminal block in the same way the as the thermostat. See the plugs were removed. Use a 13mm wrench the instructions under Optional Wall Thermostat. The remote or socket and ratchet to tighten the two bolts receiver can be places on the bottom right of the Control Compartment. under the ashlip. Follow the operating instructions included with the Remote Control unit. Figure 10.6. Remote Receiver Location. Shown with optional blower. Figure 10.6. Ash Lip bolt locations. 24"}, {"p": 25, "t": "130139_Rev 3 GF 520 DV 9/24 Optional Blower 158333 Kit Contents: • Left Blower Assembly • Snapstat • Right Blower Assembly • Snapstat Bracket • Wiring Harness • Snapstat Finger Guard Assembly • Flange Nuts (6) • Green Grounding Strap • Sheet Metal Screws (3) Tools Required: • 10mm socket and ratchet • 1/4\" driver • Light Figure 10.8. Grounding Strap connection point. • Gloves Read these instructions before beginning the installation. 1. Unpack and check the contents of the blower kit. Contact your dealer if any damage is evident or parts are missing. 2. Identify the Right Blower Assembly. The Right Blower As- sembly has the air hole cutout on one side. 3. Attach the pink connectors from the Green Gounding Strap to the prong at the bottom of the blower as shown in fig. 10.8. 4. With the arrows on the blower facing up and out, rotate the blower behind the burner gas line and mount to the studs on the factory installed blower brackets. Figure 10.9. Install the right side blower. • Do not connect blower to power supply until all wire connections have been made. • This blower must be electrically grounded in accordance with local codes or, in the absence of local codes, with the current ANSI/NFPA 70, National Electrical Code or CSA C22.1- Canadian Electrical Code. • This unit is supplied with a three-prong (grounding) plug for protection against shock hazard and should be plugged directly into a properly grounded three-prong receptacle. DO NOT CUT OR REMOVE THE GROUNDING PRONG FROM THE PLUG. • Always disconnect the power supply when performing any service on the stove. Figure 10.10. Rotate the Left side blower to fit behind the burner gas line. 25"}, {"p": 26, "t": "130139 Rev 3 GF 520 DV 9/24 5. Attach the Blower to the brackets using two M6 flange nuts Grounding Strap connection point as shown in fig 10.9. 6. Identify the Left Blower Assembly. The Left Blower assembly has a solid plate on the front. 7. Attach the yellow connector from the Green Grounding Strap to the prong at the bottom of the Right Blower Assem- bly. 8. With the arrows facing up and out, rotate the Left Blower Assembly behind the burner gas line onto the studs on the blower brackets and secure with two M6 flange nuts. See fig 10.11 9. Secure the Green Grounding Strap to the rear of the control box using the supplied sheet metal screw. See fig 10.12 10. Attach the Blower Control Box to the pilot holes in the rear wall in the controls compartment using two sheet metal Figure 10.12. Blower Control Box and power routing. screws provided. See fig 10.12. CAUTION: DO NOT PINCH WIRES WHEN INSTALLING CONTROL BOX! 11. Route the power cable plug through the square hole at the bottom of the controls compartment. Figure 10.13. Secure the Snapstat bracket securely. Figure 10.11. Secure nuts on studs. Tighten securely. 26"}, {"p": 27, "t": "130139_Rev 3 GF 520 DV 9/24 12. Install the Snapstat Bracket to the stud at the bottom of the firebox using the provided M6 flange nut. Blower Operation 13. Install the Snapstat into the bracket ensuring that it sits The optional variable-speed blower will enhance heat flush on the firebox. If snapstat is not snug against the circulation around the firebox and out into the room. The firebox, the bracket may need to be bent by hand to make a blower is controlled by a heat activated switch (snapstat) secure fit. See fig 10.14. that will ONLY function when the control switch is in AUTO setting. After the fire has been burning for a time, the snapstat 14. Install the black and blue wires from the control harness to will react to the heat and activate the blower. Fan speed may be the Snapstat. manually adjusted with the rheostat knob. If the burner turns 15. Bend the protective cover open enough to slide over the off, the blower will be shut off automatically when the stove snapstat. cools down. 16. Manipulate the Snapstat harness through the protective If automatic blower circulation is not desired, place the cover then attach the protective cover assembly to the stud blower control switch in the MANUAL position. at the bottom of the firebox using a second M6 flange nut. Bend the cover shut. See fig 10.15. 17. Attach the 4 connectors from the wire harness to the four terminals on the Left and Right Blower Assemblies. 18. Connect power cord to outlet. Manual or Automatic Modes Speed Control Figure 10.16. Blower Controls Figure 10.14. Install Snapstat and attach pink connectors. \u001a\u0019\u0018\u0017\u0016\u0015 G W BK BK BK W G BL BK BK BK BK \u0015\u0012\u0016\u0018 \u001b \u001b \u0018\u0017\u0016\u0015 GY \u001b \u001b \u0014 \u0019\u0013 BR BL GY BR \u000f= QuickConnector Pin Figure 10.15. Install the Snapstat cover using a second M6 nut \u0017\u0011\u001b\u0010\u0012 and tigheten securely. AUTO OFF MANUAL Figure 10.17. Blower Wiring Diagram 27"}, {"p": 28, "t": "130139 Rev 3 GF 520 DV 9/24 11. Install Burner Media Do not install burner media until after all other accessory installations or component adjustments have been completed. 1 Log Set 158263 NOTE: LOG COMPONENTS ARE FRAGILE. WEAR SAFETY GLOVES AND HANDLE LOGS WITH CARE. Figure 11.1. Set the #1 Rear Log on the rear pins, one on the Burner and one on the Burner Skirt. Contents: #1 Rear Log.............................226921 #2 Left Side Log......................226922 #3 Right Side Log...................226923 #4 Left Middle Log.................226924 #5 Right Middle Log...............226925 Ember Stones....................6 oz. Avoid Ember Stones in this area Inspect the log parts and report any damage to your dealer. DO NOT INSTALL DAMAGED LOGS. 1. Rear Log: Engage the holes in the underside of Rear Log #1 with two pins, one on the burner base and one on the burner skirt. Fig 11.1 Figure 11.2. Place 12-15 Ember Stones on each side of the Burner. Avoid the Pilot carry-over area. 2. Place 12-15 Ember Stones on each side of the rear of the Burner as shown in fig. 11.2. KEEP EMBER STONES AWAY FROM THE PILOT CARRY-OVER AREA AND BURNER PERIMETER. 3. Right Side Log: Engage the hole on the underside of Right Log #3 with the pin on the right side of the burner. Lean the other side against Rear Log #1. Align the groove on the bottom of Right Log #3 with the large bump on Rear Log #1. Fig 11.3 3 Figure 11.3. Rest the end of the #3 Right Log in the small pocket on the Base Log. 28"}, {"p": 29, "t": "130139_Rev 3 GF 520 DV 9/24 4. Left Side Log: Engage the hole on the underside of Left Side Log #2 with the pin on the left side of the burner. Lean the other side against Rear Log #1. Align the indentation on Left Side Log #2 with the small bump on Rear Log #1. 5. Right Middle Log: Engage the holes on the underside of Right Middle Log #5 with the two pins on the middle right of the Burner as shown. 2 6. Left Middle Log: Engage the hole on the underside of Left Middle Log with the pin on the middle left of the Burner. Rest the other side of the log on Right Middle Log #5. Figure 11.4. Place #2 Left Side Log on the far left pin and rest the 7. If desired, spread the Ember Stones over the Burner Base in other end on the bump on #1 Rear Log. a thin layer. DO NOT COVER GAS PORTING HOLES ON THE SIDES OR FRONT OF THE BURNER. PLACE STONES OVER THE REAR PORTS ONLY AND UP TO THE REAR FLANGE OF THE BURNER. KEEP EMBER STONES AWAY FROM THE PILOT CARRY-OVER AREA AND BURNER PERIMETER. 5 Figure 11.5. Place #5 Right Middle Log on the two middle right pins on the burner. The Rock Wool included the Miscellaneous Kit is intended as an enhancement to replicate glowing embers. Use a toothbrush or tweezers to sparingly apply small pinches of fibers over the front of the burner base after the log components have been installed. The ample supply of rock wool is provided for ease of handling and application purposes only. DO NOT USE THE ENTIRE QUANTITY OF ROCK WOOL. Use no more than 1/4 of the material supplied. Please be aware that sooting may occur with Propane fuel 4 under minimum vent configurations. Should soot develop, use a soft brush to clean the log and remove some or all of the rock wool from the burner. Figure 11.6. Place #4 Left Middle Log on the middle left pin on the burner and rest the other end on #5 Right Middle Log. Arrange Ember Stones over the Burner Base. 29"}, {"p": 30, "t": "130139 Rev 3 GF 520 DV 9/24 Do not install burner media until after all other accessory installations or component adjustments have been completed. Birch Log Set 158388 NOTE: LOG COMPONENTS ARE FRAGILE. WEAR SAFETY GLOVES AND HANDLE LOGS WITH CARE. Contents: 2 #1 Rear Log.............................227191 #2 Lower Left Log...................227192 #3 Middle Lower Log..............227193 #4 Right Lower Log................227194 Figure 11.8. Set the #2 Lower Left Log on the two front left pins. #5 Left Upper Log..................227195 #6 Right Upper Log................227196 #7 Middle Log.........................227197 Ember Stones....................6 oz. Inspect the log parts and report any damage to your dealer. DO NOT INSTALL DAMAGED LOGS. 1. Rear Log: Engage the holes in the underside of #1 Rear Log with two pins, one on the burner base and one on the burner skirt. 2. Lower Left Log: Engage the holes in the underside of #2 Lower Left Log with the two pins on the front left side of the burner. 3 3. Middle Lower Log: Engage the hole on the underside of #3 Middle Lower Log with the pin in the middle of the burner. Arrainge the log so that the right side of the log rests in front of the front right burner hole. Figure 11.9. Place the #3 Middle Lower Log on the middle front pin. 1 4 Figure 11.10. Place the #4 Right Lower Log on the two pins on the Figure 11.7. Set the #1 Rear Log on the rear pins, one on the Burner right side of the burner. and one on the Burner Skirt. 30"}, {"p": 31, "t": "130139_Rev 3 GF 520 DV 9/24 Avoid Ember Stones in these areas 5 Figure 11.11. Set the #2 Lower Left Log on the two front left pins. 4. Right Lower Log: Engage the holes on the underside of #4 Right Lower Log with the two pins on the right side of the Figure 11.12. Place #5 Left Upper Log on the pins located on #1 burner. Rear Log and #2 Left Lower Log. 5. If desired, spread the Ember Stones over the Burner Base in a thin layer. DO NOT COVER GAS PORTING HOLES ON THE SIDES OR FRONT OF THE BURNER. PLACE STONES OVER THE REAR PORTS ONLY AND UP TO THE REAR FLANGE OF THE BURNER. KEEP EMBER STONES AWAY FROM THE PILOT CARRY-OVER AREA, CENTER OF THE BURNER AND BURNER PERIMETER. 6. Left Upper Log: Engage the holes on the underside of #5 Left 6 Upper Log with the pin on the left side of #1 Rear Log and the pin on #2 Lower Left Log. 7. Right Upper Log: Engage the hole on the underside of #6 Right Upper Log Log with the pin on the right side of #1 Rear Log and the pin on #4 Lower Right Log. 8. Middle Log: Place the #7 Middle Log with the flat base Figure 11.13. Place #6 Right Upper Log on the two pins on #1 Rear in the center of the burner in the area left clear of ember Log and #4 Lower Right Log. stones and rest the left side of the log in the groove on #5 Left Upper Log. The Rock Wool included the Miscellaneous Kit is intended as an enhancement to replicate glowing embers. Use a toothbrush or tweezers to sparingly apply small pinches of fibers over the front of the burner base after the log components have been installed. The ample supply of rock wool is provided for ease of handling and application purposes only. DO NOT USE THE ENTIRE QUANTITY 7 OF ROCK WOOL. Use no more than 1/4 of the material supplied. Please be aware that sooting may occur with Propane fuel under minimum vent configurations. Should soot develop, use a soft brush to clean the log and remove some or all of the rock wool from the burner. Figure 11.14. Place the #7 Middle Log in the center of the burner and rest the left side of the log in the groove on #5 Left Upper Log. 31"}, {"p": 32, "t": "130139 Rev 3 GF 520 DV 9/24 12. System Check \u001b\u001a\u001a\u0019 \u0018\u0017\u0016 \u0017\u0016 \u0016\u001a\u001a\u0019 1. PURGING THE GAS LINE: When lighting the appliance \u0018\u001a\u001a\u0019 \u0015\u0014\u0013\u0012 for the first time, it will take a few moments to clear the \u0015\u0014\u0013\u0012 gas line of air. Once this purge is complete, the appliance will operate as described in the lighting instructions. From Thermopile a cold start, it may be helpful to let the pilot light burn in Thermocouple mode for 10 - 15 minutes to establish positive draft, before turning the burner on. See the procedure on the inside back cover of this manual. Subsequent burner starts will not require purging the gas line unless the supply line is Figure 12.1. shut off. Normal pilot flame projection. 2. PILOT FLAME: You can monitor the pilot flame located behind the burner at the rear of the firebox. The pilot flame WARNING: should be steady - not lifting or floating. The flame should PILOT ADJUSTMENT SHOULD ONLY be blue in color around the pilot hood, with traces of yellow toward the outer edges. Fig. 12.1. BE PERFORMED BY A QUALIFIED, PROFESSIONAL SERVICE TECHNICIAN The pilot flame should engulf the top 1/8” of the thermocouple and thermopile . The pilot flame should project from the pilot hood port toward the burner carry- Adjustment screw over ports. Adjust the pilot flame using the adjustment screw to the left of the valve regulator. See fig. 12.2. 3. See Flame Appearance / Air Shutter for air shutter settings and adjustments. Note: The more offsets there are in the vent system, the greater the need for an air shutter adjustment. Figure 12.2. Pilot flame regulation. INITIAL FIRING PROCESS - Heat-curing the Stove Paint This appliance has been painted with the highest quality Gas Appliance Curing Process coating used in the hearth industry. Manufacturers 1. After the installer has confirmed proper burner function have selected this product because it has been proven at all heat levels, the homeowner should operate the durable, colorfast, and beautiful at temperatures up to appliance at a low setting for several hours, followed by 1200°F/650°C. Although the paint has been air-dried at several hours operation at a high setting. the factory, it must be heat-cured in order to maximize its 2. Off-gassing by paint and log set ceramic material may coating properties and durability. This process occurs during leave a white, powdery deposit on the inside surface of initial firing of the appliance and will generate odor and the glass panel. This residue must be removed using a non- some visible smoke. abrasive hearth gas appliance glass cleaner or warm water We recommend you do the following BEFORE operating the to prevent permanent etching of the glass. appliance for the first time: DO NOT USE AMMONIA-BASED CLEANERS. DO 1. Ventilate: Open doors and windows and use a fan to NOT CLEAN HOT GLASS. circulate fresh air throughout the room. See OPERATION sections, pages 31-32, for detailed, day- 2. Vacate: The fumes are non-toxic, but can be to-day operating procedures. uncomfortable for babies, small children, pregnant women, elderly, pets, or anyone having breathing difficulties. 32"}, {"p": 33, "t": "130139_Rev 3 GF 520 DV 9/24 13. Flame Appearance / Air Shutter Adjustment OPEN - The GF 520 DV / GF 520 DV MVgas stove is shipped from the Increase oxygen factory equipped to burn Natural gas and the air inlet shutter has been set to provide optimal combustion efficiency under a variety of venting configurations. The air shutter may be adjusted, CLOSE - however, to accommodate the conditions of your individual Restrict oxygen installation and to provide the desired flame picture. Other installation-related variables can also affect the flame picture: Too large an air setting - the appliance will generate a flame Figure 13.1. that is blue and transparent, or an “anemic” flame. Pull the shutter forward to increase primary air. Too small an air setting - the appliance will generate very Push it back to restrict air. long yellow flames resulting in black soot deposits on the logs, on the inside walls of the appliance, and potentially on the exterior termination cap. Sooting is caused by incomplete combustion in To adjust the air shutter: the flames and/ or insufficient combustion air entering the air 1. Loosen the wing nut shown in fig. 13.1. Slide the Air Shutter shutter opening. Handle forward toward yourself to open the air shutter and back to provide less air. Before making any adjustments, start at the mid-point of the total range of adjustment. 2. Allow the stove to burn for 15-20 minutes on the HIGH setting, observing the flame continuously. If the flame appears weak, slow, or sooty, increase the air shutter opening in 1/16” - 1/8” increments until the desired flame picture is achieved. Allow the flames a few minutes to “settle-in” after each adjustment. 3. Tighten the wing nut to secure the shutter at the desired setting. Figure 13.2. Log Set burner flame picture. 33"}, {"p": 34, "t": "130139 Rev 3 GF 520 DV 9/24 14. Operation WARNING: Important Notes READ AND UNDERSTAND ALL OPERATING INSTRUCTIONS BEFORE ATTEMPTING TO 1. For the first several hours of operation, it is common to OPERATE THIS APPLIANCE. DO NOT ALLOW detect some odor as the metal and manufacturing materials ANYONE TO OPERATE THIS APPLIANCE WHO cure under heat. This condition is temporary and can be HAS NOT READ AND UNDERSTOOD THESE alleviated by allowing plenty of fresh air to circulate through INSTRUCTIONS. KEEP THE REMOTE CONTROL the area. TRANSMITTER WHERE CHILDREN CANNOT 2. Condensation may develop on the glass upon each lighting of REACH IT. the appliance. This “fog” will disappear as the glass heats. 3. IMPORTANT: It will be necessary to clean the glass after WARNING: the first few fires. A white powdery residue will be evident which results from the burner media curing. Use a non- SEVERE INJURY. THIS APPLIANCE CAN BE SET TO OPERATE THERMOSTATICALLY. BE AWARE THAT abrasive hearth gas appliance glass cleaner and warm THE APPLIANCE MAY BE VERY HOT EVEN WHEN water. THE BURNER IS NOT APPARENTLY OPERATING. IF THE GLASS IS NOT CLEANED, THIS RESIDUE CAN KEEP CHILDREN AWAY FROM THE APPLIANCE. CAUSE THE GLASS TO BECOME PERMANENTLY ETCHED. DO NOT USE AMMONIA-BASED CLEANERS. WARNING: 4. Keep the control compartments and area under the OBSERVE CAUTION NEAR THE GLASS appliance free of dust. Always keep the appliance area clear PANEL. and free from combustible materials, gasoline and other THE GLASS MAY SHATTER IF STRUCK BY flammable liquids. AN OBJECT. ALWAYS HANDLE THE GLASS PANEL WITH CARE. 5. This appliance can be operated with a continuously burning pilot flame. Exercise caution when using household products containing combustible vapors. 6. CAUTION: DO NOT OPERATE THIS APPLIANCE WITH ANY OF THE GLASS PANELS REMOVED, CRACKED OR BROKEN. REPLACEMENT OF THE GLASS SHOULD BE DONE ONLY BY A LICENSED OR QUALIFIED SERVICE PERSON. USE ONLY REPLACEMENT GLASS PROVIDED BY YOUR AUTHORIZED JØTUL DEALER. NEVER SUBSTITUTE ANY OTHER TYPE OF GLASS. REMOVE GLASS ONLY FOR ROUTINE MAINTENANCE. ALWAYS HANDLE GLASS CAREFULLY. 34"}, {"p": 35, "t": "130139_Rev 3 GF 520 DV 9/24 Pilot Volume Adjustment Screw Rocker Switch Figure 14.1. GF 520 DV / DV MV Controls Compartment. Regulator Knob Control Knob Igniter Button Inlet Pressure Port Manifold Pressure Port Figure 14.2. Burner Control Rocker Switch. Burner Operation Familiarize yourself with the controls of the GF 520 DV / GF 520 DV MV and be sure that anyone else using the appliance is also familiar with the controls and operation procedures. Always follow the Lighting Instructions on the inside back cover of this manual and also located on the inside the Controls Access Panel. This appliance is equipped with an ignition device that lights the pilot automatically. Do not try to light the pilot by hand. Once the pilot is lit, burner operation is controlled by the rocker switch located at the left corner of the Control Access Panel. See fig. 14.2. ON / OFF - use for manual control of the burner. T-STAT - use for optional thermostatic or remote control operation. The burner will be controlled by those accessories. DV MV ONLY: This appliance is equipped with a timed valve that will shut off the pilot light after seven (7) days if there has been not call for heat within that time. Re-ignite the pilot following the lighting instructions on the rating plate on the rear of the stove or on page 43 of this manual. Exercise caution when using household products containing combustible vapors. 35"}, {"p": 36, "t": "130139 Rev 3 GF 520 DV 9/24 15. Maintenance Glass Care NOTICE: Clean the glass only when necessary. Wipe the surface with a clean, dampened, soft cloth. Follow with a dry, soft towel. Take  THIS APPLIANCE AND VENT SYSTEM MUST BE care not to scratch the glass surface. INSPECTED ANNUALLY BY A QUALIFIED GAS WARNING: TECHNICIAN. Keep this manual for reference. DO NOT USE ABRASIVE CLEANERS ON THE GLASS.  IMPORTANT: ALWAYS TURN OFF THE GAS NEVER CLEAN THE GLASS WHEN IT IS HOT. DO NOT USE AMMONIA-BASED CLEANING SOLU- SUPPLY AND DISCONNECT POWER FROM THE TIONS. APPLIANCE BEFORE ANY SERVICE WORK IS PERFORMED. Glass and Gasket Inspection It is important that the glass gasket be inspected at least annually. Examine the ribbon gasket for signs of deterioration GLASS AND SAFETY SCREEN BARRIERS and make sure the gasket has a positive seal. Replace the gasket if  DO NOT OPERATE THIS APPLIANCE IF ANY necessary. Refer to the replacement parts list on page 39. OF THE GLASS PANELS OR SAFETY SCREEN BARRIERS IS REMOVED, CRACKED, DAMAGED OR MISSING. NOTE: INSPECT THE GLASS SURFACE FOR  REPLACE DAMAGED COMPONENTS USING SCRATCHES AS THESE CAN WEAKEN THE PANEL ONLY GENUINE JØTUL PARTS AVAILABLE TENSILE STRENGTH. REPLACE THE PANEL IF ANY FROM ANY JØTUL AUTHORIZED DEALER. SCRATCHES ARE FOUND. USE ONLY DOOR GLASS REPLACEMENT SHOULD BE DONE ONLY BY A KIT 158067 AND SIDE GLASS PANEL 158080. DO LICENSED OR QUALIFIED SERVICE PERSON. NOT SUBSTITUTE ANY OTHER TYPE OF GLASS.  CAUTION: HANDLE BROKEN GLASS WITH CARE. REMOVE THE LOG SET AND USE A VACUUM TO CLEAN ANY REMAINING GLASS FRAGMENTS FROM THE BURNER AND FIREBOX. Front Door Glass & Gasket Replacement Kit 158335 Annual Cleaning Read through these instructions before beginning the procedure Vent System Tools: Needle nose pliers or flathead screwdriver  The entire vent system, including the chimney if appropriate, should be inspected every year. If the venting is disassembled for any reason, it should be reassembled and 1. Lift and remove the Top Plate and Front Plate sealed according to the vent manufacturer’s instructions 2. Use the Latch Tool to pull each latch hook forward to provided at the initial installation. DO NOT USE disengage them from the glass frame. Fig. 2.2, page 5. SILICONE SEALANT. 3. Lift the glass frame up and off of the firebox. 4. The glass panel is held in place by four tabs at the frame Burner System corners. Use a screwdriver or small pliers to pry these up just enough to release the glass panel. See fig. 11.1, page 34. Periodically inspect the firebox, valve compartment, convection airways and optional blower to BE CERTAIN THAT THE 5. Remove the old gasket material. FLOW OF COMBUSTION AND VENTILATION AIR IS 6. Wrap the new gasket material evenly around the edge of UNOBSTRUCTED. the glass, peeling back the protective strip to expose the  The valve compartment should be vacuumed regularly to adhesive as you go, leaving a 1/2” overlap at the top. Press remove dust and debris. Vacuum more frequently if there the adhesive side down onto the glass surface. Do not stretch are pets in the home. the gasket.  Use a soft brush attachment and handle log set components 7. Place the gasketed glass within the frame and carefully bend carefully. each of the corner retainer tabs back just enough to secure the glass in the frame. The Replacement Glass kit includes  The pilot assembly and burner base should be inspected and 4 Tinnerman compression clips for use in case a tab should cleaned annually by a qualified technician. Replace any break. The clips engage over the edge of the frame sides. component showing evidence of corrosion. 36"}, {"p": 37, "t": "130139_Rev 3 GF 520 DV 9/24 Side Glass & Gasket Replacement Kit Glass Fram e 158080 Extra Retainer Clips included with Read through these instructions before beginning the procedure. Replacement Glass Tool List: • Two 10mm wrenches • 1/4 inch drive • 4mm hex key Replace the Side Glass Panel Glass Panel Gasket 1. Lift off the Top Plate. 2. Remove the Front Plate. Integrated 3.Use the Latch Tool to pull each latch hook forward to Retainer Tab disengage the glass frame from the firebox. Lift the glass frame up and off of the stove. See figs. 2.1 and 2.2 pg 5.+ Figure 15.1. 4. Remove the 10mm nut and bolt from the rear top side of the Front Glass replacement. side assembly. 5. LOOSEN the 10mm bolt on the inside front of the side screen assembly. 6. LOOSEN the 10mm bolt on the inside back of the side screen assembly. 7. Remove the side assembly by tipping and lifting off the unit. 8. Remove the four 10mm nuts holding the side glass frames. Figure 15.3.Remove the Nut and Bolt from the rear top of the Side Assembly Figure 15.4. Loosen the bolt on the inside front of the Side Assembly 37"}, {"p": 38, "t": "130139 Rev 3 GF 520 DV 9/24 9. Install replacement side glass and gasket: • Wrap the new gasket material evenly around the edge of the glass, peeling back the protective strip to expose the adhesive, leaving a 1/2” overlap at the end seam. Press the adhesive side down onto the glass surface. Do not stretch the gasket. • Place the panel within the frame, ensuring the gasket seam is on the top. 10. Replace the Side Glass Frame. Place the front of the frame in the channel on the firebox then swing the frame onto the four retaining studs. Using the four 10mm nuts previously removed. 11. Replace the Side Assembly and tighten the two loosened bolts on the inside front and back of the side assembly. 12. Replace the 10mm bolt and screw removed form the rear top side of the side assembly. 13. Replace the front and top plates. Figure 15.6. Remove the side assembly and set aside. Figure 15.5. Loosen the bolt on the inside rear of the Side Assembly Figure 15.7. Remove the nuts holding the glass frame. 38"}, {"p": 39, "t": "130139_Rev 3 GF 520 DV 9/24 Safety Screen Maintenance and Replacement Cleaning The integrated, Invisimesh® safety screens, located in front of the door and side glass panels, should be periodically cleaned to remove dust, lint, and other air-bourne debris. Over time, and with continuous exposure to heat, these materials can contribute to variations in the screen hue. Remove the front plate and clean both sides of the screen using a fine, soft bristle brush or vacuum attachment. APPLY ONLY VERY GENTLE PRESSURE TO AVOID DAMAGING THE SCREEN. 226647 Front Safety Screen Replacement Tools: #4 hex key The front safety screen is easily accessible from the back of the front plate. . Use a #4 Hex Key to remove the eight button head screws and retainer brackets as shown in fig. 15.8. Figure 15.8. Remove front screen retainer The replacement screen and frame installs as a single unit using screws and brackets. the original eight brackets and screws. Screen material must sit flush to inner cast rib. Side Safety Screen Replacement 226648 Tool List: • Two 10mm wrenches • 1/4\" Driver • #4 hex key 1. Follow steps 1-7 in the instructions for the side glass replace- ment kit on pg. 34 to remove the side assembly. 2. Use the 4mm hex key to remove the four button head screws and two screen brackets. 3. Remove the old screen and place the new screen on the side Figure 15.9. assembly with the screen material resting against the cast rib Remove side screen retainer of the side plate. screws and brackets. 4. Replace the screen brackets and screws. 5. Follow steps 11-13 in the instructions for the side glass re- placement kit on pg. 34-35 to reassemble the stove. 39"}, {"p": 40, "t": "40 130139 Rev 3 GF 520 DV 9/24 Figure 16.1 GF 520 DV / GF 520 DV MV Firebox and Cast Iron Assembly"}, {"p": 41, "t": "130139_Rev 3 GF 520 DV 9/24 No. Part No. Description No. Part No. Description 1 117917 Screw, HWH SMA #8 x 1/2 SL Blk Oxide - PIC 36 9911 Bolt, Hex Cap, M6x45, DIN 933, Class 8.8, Blk - PIC 2 226725 Convection Air Shroud, GF520 37 118039 Sleeve, .375\" OD X .312\" ID X 1.188\", SS - PIC 3 227013 Weldment, Restrictor Outer, GF520 38 118408 Spacer, .400\"ID x .500\" OD .625\"LG 4 223241 Gasket, Exhaust Restrictor / Washer 39 226467 Spring, 1.5\" Length 316 SS 5 120004 Washer, Fender, 6.4mm ID x18mm OD x 1.6mm, Zinc, 40 226655 Retainer Glass Frame, GF520 DIN 9021 - PIC 41 226608 Firebox Weldment, GF520 6 225469 Inner Restrictor Rod, GF 305/500 42 226918 Blower Chevron, GF520 7 225466 Restrictor Plate, GF 305/500 43 129159 Lanyard, Rating Plates 8 10502392 Top Plate, Front, MB, GF 520 44 22666592 Access Door Controls, GF520, MB 9 226858 Heat Shield, Top Plate, GF520 45 222664 Protection Cap, M8 Hex, Black 10 9962 Bolt, Hex Cap M6x10 DIN 6928 8.8 Ser Flange Zinc - 46 99115 Bolt, Hex Head M8 x 12 Blk - PIC PIC 47 10502892 Base Plate, MB, GF 520 11 22476392 Light Box, Delay Door Mount, MB 48 22666492 Access Wall Controls, GF520 12 157601 Accent Light Wire Harness, Single Light, Proflame 2 49 226660 Retainer, Side to Base, GF520 Stoves 50 10502692 Base, Side Plate, MB, GF 520 13 117967 Screw, Pan Head #7 x 3/8 PH SMA Zinc - PIC 51 117875 Bolt, M8 x 20, Hex Serrated Flange Hd Class 8.8 Black 14 222943 Light Bulb, 130 Volt, 35 Watt Oxide 15 222974 Glass, Ceramic, Light Fixture 52 226648 Screen, Assembly, Side, GF 520 16 222977 Gasket, Light Cover 53 226657 Front Plate Hanger, Left Side, GF520 17 22476792 Light Shade, Stoves, MB 54 117975 Nut,Wing M6 Zinc - PIC 18 117968 Nut, M6 Serrated Flange plain - PIC 55 226955 Handle, Air Shutter 19 225942 Latch, Glass Frame, GF305 DV IPI 56 220734 Gasket, 2.25\" OD x 188\" ID x .125\" T - PIC 20 129322 Adapter Pipe, 6.625 dia 57 226677 Handle, Air Shutter, GF520 21 129118 Gasket, Starter, 6.75\" ID x 8.25\" OD - PIC 58 158219 Replacement Burner Assembly, GF520 22 118034 Screw, M6 x 12, Button Head, Hex Socket, Blk Oxide 59 221390 Primary Air Shutter Asby 23 226658 Screen Retainer, GF520 60 220018 Orifice, #37 24 117130 Bolt, Hex Head Serr Flange M6x12 Blk - PIC 45025 Orifice, #52 / LP 25 10502292 Side Plate, MB, GF 520 61 223231 Orifice Holder, Drop In Assembly, 12.5\" Tube 26 226659 Front Plate Hanger, Right Side, GF520 62 225525 Grommet, Silicone, Pilot Plug, GF500/160/305 27 226667 Support Bracket, Top Plate, GF520 63 222280 Gasket, Drop In Orifice Holder 28 226647 Screen, Assembly, Front, GF 520 64 226919 Intake Air Diverter, GF520 29 22665492 Glass Frame, GF520, MB 65 226745 Pilot Assembly, NG, Flat Brkt, SS Body, 18\" Tube, w/LP 30 129124 Gasket, Tadpole, .25 X 1.25 Nominal, Graphite, Self Injector Adhesive (70 in) 66 226670 Rear Shelf, GF520 31 226723 Glass, Ceramic, Front, GF 520 67 226861 Intake Air Diverter, Rear Shelf, GF520 32 220042 Clip, U Type (Tinnerman) - PIC 68 226948 Panel Retainer, GF520 33 226666 Glass Frame, Side, GF520 69 226656 Baffle, Firebox, GF520 34 226724 Glass, Ceramic, Side, GF 520 70 10502492 Top Plate, Rear, MB, GF 520 35 129124 Gasket, Tadpole, .25 X 1.25 Nominal, Graphite, Self 71 226668 Rear Shroud, GF520 Adhesive (46 in) 72 226857 Rear Heat Shield Top Plate 73 10502191 Front Plate, MB, GF 520 41"}, {"p": 42, "t": "130139 Rev 3 GF 520 DV 9/24 GF 520 DV / GF 520 DV MV Illustrated Parts Breakdown Use only parts available from Jøtul authorized dealers. Figure 16.2 GF 520 DV / GF 520 DV MV Valve Assembly and Optional Blower No. Part No. Description No. Part No. Description 1 117917 Screw, HWH SMA #8 x 1/2 SL Blk Oxide 15 117968 Nut, M6 Serrated Flange plain 2 226662 Valve Bracket, GF520 16 158333 Replacement Blower, Flat Pack, GF520 3 117911 Screw, Pan Head, Phillips, 10-32x3/8\", Zinc 17 225063 Snapstat Finger Guard, GI450 4 222292 Elbow, 90 deg, Brass 3/8 NTP X 3/8\" Dia Flare DVII/45i/545/645 5 117922 Nut, Hex M4, DIN 934, Plain - PIC 18 225069 Snapstat Shield, GI450 DVII/45i/545/645 6 117921 Screw, Pan Head, Phillips, M4 X 14, Blk Oxide 19 222951 Bracket, Snapstat, Firebox Mounted, GI 7 117920 Screw, Pan Head, Phillips, M4 X 8, Zinc 450/545/645 8 118055 Kepnut, M4, Ext. Tooth Lockwasher, Stl, Zinc 20 220617 Snapstat, 120-110 °F, Normally Open - YELLOW 9 226939 Fan Mounting Bracket, GF520 21 158 Replacement Harness, Burner Switch, GF520 DV 10 129154 Terminal Block, 2 Pole 77 series - PIC 22 129153 Switch, Rocker, SPDT, Black, Ctr Off, Marked 11 3902576 Igniter Bracket \"ON-OFF-STAT\" - PIC 12 3902573 Piezo Ignitor Button 23 226950 Switch Box, Ignition On/Off, GF520 DV / 13 226310 Flex Tube, 3/8\" OD x 36\", 3/8\" Female Flare DVMV Connectors 24 226661 Controls Board, GF520 14 223215 Adapter, Straight, Brass, 3/8 NTP x 3/8\" Dia 25 222263 DV Valve Flare 226946 DV MV Valve 42"}, {"p": 43, "t": "130139_Rev 3 GF 520 DV 9/24 This page is intentionally left blank. 43"}, {"p": 44, "t": "130139 Rev 3 GF 520 DV 9/24 This page is intentionally left blank. 44"}, {"p": 45, "t": "130139_Rev 3 GF 520 DV 9/24 This page is intentionally left blank. 45"}, {"p": 46, "t": "130139 Rev 3 GF 520 DV 9/24 18. Jøtul Gas Product 2) Damage due to incorrect installations not in conformance with the installation instructions contained in this owner’s manual or local and/or national Warranty fire and building regulations. 3) Damage due to service performed by an installer, service agency or gas supplier, unless otherwise agreed to in writing by JØTUL. 4) Labor or other costs associated with the repair of gas controls, plumbing, This warranty policy applies to gas products identified by the Jøtul trade burners, log set, lamp bulbs, or sheet metal firebox beyond the warranty period. name as set forth below. 5) Damage caused by unauthorized modification, use or repair. A. LIMITED FIVE YEAR WARRANTY - Cast Iron, Steel Doors, 6) Damage to enameled surfaces caused by improper operation or misuse, Surround Components, Firebox: including use that is not in conformance with the operating instructions Jøtul North America Inc. (JØTUL) warrants, to the original retail contained in this owner’s manual. Such damage can typically be identified by purchaser, that those components of the Jøtul Gas Stove or Fireplace bubbling, cracking, or discoloration of the enamel finish. specified above will be free of defects in material and workmanship 7) Costs incurred by travel time and/or loss of service. 8) Damage incurred while the Jøtul Gas Stove or Fireplace is in transit. for a period of five (5) years from the date of purchase. This warranty IN NO EVENT SHALL JØTUL, ITS PARENT COMPANY, is subject to the terms, exclusions and limitations set forth in the SHAREHOLDERS, AFFILIATES, OFFICERS, EMPLOYEES, AGENTS following text. OR REPRESENTATIVES BE LIABLE OR RESPONSIBLE TO YOU FOR B. LIMITED TWO YEAR WARRANTY - Burner, Ceramic Burner, ANY SPECIAL, INDIRECT, INCIDENTAL, CONSEQUENTIAL, PUNITIVE Burner Treatments, Firebox Panels: OR OTHER SIMILAR DAMAGES, INCLUDING, BUT NOT LIMITED TO, JØTUL warrants, to the original retail purchaser, that those LOST PROFITS, LOST SALES, INJURY TO PERSON OR PROPERTY, OR components of the Jøtul Gas Stove or Fireplace specified above will DAMAGES TO A STRUCTURE OR ITS CONTENTS, ARISING UNDER be free of defects in material and workmanship for a period of two ANY THEORY OF LAW WHATSOEVER. ALL IMPLIED WARRANTIES, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY (2) years from the date of purchase. Ceramic burners are warranted AND FITNESS FOR A PARTICULAR PURPOSE, OR OTHERWISE, against functional defects for a period of two (2) years from the date ARE LIMITED IN DURATION TO THE LENGTH OF THIS WRITTEN of purchase. This warranty is subject to the terms, exclusions, and WARRANTY. EXCEPT AS EXPRESSLY SET FORTH HEREIN, JØTUL limitations set forth in the following text. MAKES NO ORAL, WRITTEN OR OTHER WARRANTY WITH RESPECT C. LIMITED TWO YEAR WARRANTY - Enamel Finish: TO JØTUL GAS STOVES OR FIREPLACES. JØTUL warrants, to the original retail purchaser, the enamel finish on Some states do not allow the exclusion or limitation of incidental or cast iron components of the Jøtul Stove or Fireplace Insert specified consequential damages, or limitations on the length of implied warranties. above against peeling or fading for a period of two (2) years from the Therefore, the above exclusions or limitations may not apply to you. This warranty gives you specific legal rights, and you may have other rights, which date of purchase. This warranty is subject to the terms, exclusions and vary from state to state. limitations set forth below. JØTUL reserves the right to discontinue, modify or change the materials used to D. LIMITED ONE YEAR WARRANTY - Gas & Electrical produce the Jøtul Gas Stove or Fireplace. JØTUL shall have the right to replace any Components (controls, plumbing, valve, blower): defective component with substitute components determined by JØTUL to be of JØTUL warrants, to the original retail purchaser, that those substantially equal quality and price. components of the Jøtul Gas Stove or Fireplace specified above will The dollar value of JØTUL’s liability for breach of this warranty shall be limited be free of defects in material and workmanship for a period of one (1) exclusively to the cost of furnishing a replacement component. JØTUL year from the date of purchase. This warranty is subject to the terms, shall not in any event be liable for the cost of labor expended by others in connection with any defective component. Any costs or expenses beyond those exclusions, and limitations set forth in the following text. expressly assumed by JØTUL under the terms of this warranty shall be the sole responsibility of the owner(s) of the Jøtul Gas Stove or Fireplace. JØTUL will repair or replace (including parts & labor), at its option, any of the No dealer, distributor, or other person is authorized to modify, augment, or above components determined by JØTUL to be covered by this warranty. You extend this limited warranty on behalf of JØTUL. NO MODIFICATION must, at your own expense, arrange to deliver or ship the component to an OR CHANGE TO THIS WARRANTY WILL BE EFFECTIVE UNLESS IT authorized Jøtul dealer and arrange for pickup or delivery of the component IS MADE IN A WRITTEN DOCUMENT MANUALLY SIGNED BY AN after repairs have been made. If, upon inspection, JØTUL determines that the AUTHORIZED OFFICER OF JØTUL. component is covered by this warranty, the repair or replacement will be made An authorized installer may have been provided with certain information as set forth above. This warranty is not transferable and is extended only to, and related particularly to the Jøtul Gas Stove or Fireplace; however, no authorized is solely for the benefit of, the original retail purchaser of the Jøtul Gas Stove installer or other person who may service the appliance is an agent of JØTUL. or Fireplace. This paragraph sets forth the sole remedy available under this No inference should be made that JØTUL has tested, certified, or otherwise warranty in the event of any defect in the Jøtul Gas Stove or Fireplace. pronounced any person as qualified to install or service the appliance. JØTUL The warranty period for any replaced component will be the remaining unexpired shall not be liable or otherwise responsible for any error or omission by a person portion of the warranty period for the original component. installing or servicing a Jøtul Gas Stove or Fireplace. Please retain your dated sales receipt in your records as proof of purchase. If you believe your Jøtul Gas Stove or Fireplace is defective, you should contact your nearest authorized Jøtul dealer, who will process a warranty claim. IN EXCLUSIONS AND LIMITATIONS ORDER TO QUALIFY FOR WARRANTY COVERAGE, JØTUL MUST NOTICE: This warranty is void if installation or service is performed by someone RECEIVE NOTICE OF A POSSIBLE DEFECT WITHIN SIXTY (60) DAYS other than an authorized installer, service agency or gas supplier, or if installation OF THE DATE THE DEFECT IS FIRST DISCOVERED, OR REASONABLY is not in conformance with the installation and operating instructions contained COULD HAVE BEEN DISCOVERED. in this owner’s manual or local and/or national fire and building regulations. A listing of local authorized installers, service agencies and gas suppliers can be This warranty is given by Jøtul North America, Inc., obtained from the National Fireplace Institute at http://www.nficertified.org/. 55 Hutcherson Drive, Gorham, Maine 04038 USA This warranty does not cover the following: 1) Repair or replacement of parts that are subject to normal wear and tear during the warranty period or to parts that may require replacement in connection with normal maintenance. These parts include lamp bulbs, paint, gaskets, and glass (except to the extent such parts suffer damage from thermal stress). 46"}, {"p": 47, "t": "130139_Rev 3 GF 520 DV 9/24 LIGHTING INSTRUCTIONS FOR YOUR SAFETY, READ BEFORE LIGHTING. WARNING: IF YOU DO NOT FOLLOW THESE INSTRUCTIONS EXACTLY, A FIRE OR EXPLOSION MAY RESULT CAUSING PROPERTY DAMAGE, PERSONAL INJURY, OR LOSS OF LIFE. A. This appliance has a pilot which must be lit by hand. • If your gas supplier cannot be reached, call the fire When lighting the pilot, follow these instructions department. exactly. C. Use only your hand to push in or turn the gas control B. BEFORE LIGHTING, smell all around the knob. Never use tools. If the knob will not push in or appliance area for gas. Be sure to smell next to the turn by hand, do not try to repair it. Call a qualified floor because some gas is heavier than air and will technician. Force or attempted repair may result in a settle to the floor. fire or explosion. WHAT TO DO IF YOU SMELL GAS: D. Do not use this appliance if any part has been under • Extinguish any open flame. water. Immediately call a qualified service technician • Open windows. to inspect the appliance and to replace any part of the • Do not light any appliance. control system and any gas control which has been • Do not touch any electrical switches. under water. • Do not use any phone in your building. • Immediately call your gas supplier from a neigh- bor’s phone. LIGHTING INSTRUCTIONS 1. STOP! Read the safety information above. Immediately light the pilot by triggering the spark 2. Set the BURNER ON/OFF switch to “OFF”, or set the ignitor (push the red button repeatedly) until pilot thermostat to lowest setting (if used). lights. Continue to hold the control knob in for about one minute after the pilot lights. Release knob and 3. Confirm that the gas supply line shut-off valve is open. it should spring back. The pilot should remain lit. If it Control Valve goes out, repeat Steps 5 through 7. Control • If knob does not return when released, stop and Knob ON immediately call your service technician or gas PILOT supplier. OFF • If pilot will not stay lit after several tries, turn the control knob 4. Push in Valve Control knob slightly and turn clockwise to OFF and call your to “OFF”. service technician or gas Pilot Assembly NOTE: Knob cannot be turned from “PILOT” to “OFF” supplier. unless the knob is pushed in slightly. Do not force. 8. Turn Valve Control knob counter-clockwise to 5. Wait five (5) minutes to clear out any gas. If you then “ON”. smell gas, STOP! Follow “B” in the safety information 9. Set the BURNER switch to “ON”, or set thermostat above on this page. If you do not smell gas, go to the (if used) to desired temperature. next step. 10. NOTE: MV MODELS ONLY - the pilot will 6. Push in Valve Control knob slightly and turn counter- automatically shut off if there is no call for heat within clockwise to “PILOT”. seven days. Relight the pilot following the preceding 7. Push in control knob all the way and hold in. steps in order. TO TURN OFF GAS TO THE APPLIANCE: 1. Place BURNER switch in” OFF” position. The pilot 2. For complete shutdown, depress the Valve Control Knob will remain lit for normal service. and turn clockwise to “OFF”. Do not force. 47"}, {"p": 48, "t": "130139 Rev 3 GF 520 DV 9/24 September 2024 130139_Rev. 3 This appliance must be installed in conformance with local and national building regulations. Before beginning the installation, it is important that these instructions be carefully read and understood. Jøtul maintains a policy of continual product development. Consequently, products may differ in specification, color or type of accessories from those illustrated or described in various publications. Your stove has a unique serial number stamped on the rating plate located in the control compartment. Please record the serial number in the space below. You may also wish to attach your purchase receipt to this page for future reference. MODEL NAME: Jøtul GF 520 DV / Jøtul GF 520 DV MV SERIAL NUMBER:_______________________________ DATE OF PURCHASE:____________________________ AUTHORIZED DEALER:__________________________ ADDRESS ___________________________________ PHONE: ____________________________________ INSTALLER: __________________________________ FUEL TYPE: ____________________________________ FUEL CONVERSION: NO _______ YES______ INSTALLATION DATE: _____________________________ INSTALLATION TECHNICIAN: ______________________ Jøtul North America 55 Hutcherson Dr. Gorham, Maine 04038-2634 Jøtul ASA P.O. Box 1411 N-1602 Fredrikstad Norway 48"}];
+
+/* curated topic index — the hand-written, audience-tuned answers */
+const INDEX=[
+  ...HOME_PRIMARY.map(d=>({k:'h',id:d.id,t:d.title,p:d.blurb})),
+  ...HOME_SECONDARY.map(d=>({k:'h',id:d.id,t:d.title,p:d.blurb})),
+  ...SPECS.map(s=>({k:'i',id:s.tap,t:s.lab,p:s.rows.map(r=>r[0]+' '+r[1]).join(' · ')})),
+  ...STEPS.map((s,i)=>({k:'i',id:'step'+i,t:s[0],p:s[1]})),
+  {k:'h',id:'safety',t:'gas smell',p:'What to do if you smell gas'},
+  {k:'h',id:'pilot',t:'pilot light thermopile thermocouple',p:'How the pilot flame should look'},
+  {k:'h',id:'glass',t:'white residue soot etch ammonia',p:'Clearing curing residue from the glass'},
+  {k:'h',id:'light',t:'standing pilot igniter button piezo light by hand millivolt mv 7-day pilot timer',p:'Light the pilot by hand with the igniter button'},
+  {k:'i',id:'step2',t:'propane lp conversion orifice kit 158329',p:'Convert to propane before installing'},
+  {k:'i',id:'specVent',t:'direct vent coaxial duravent horizontal termination restrictor',p:'Direct-vent pipe runs & termination'},
+  {k:'i',id:'specManifold',t:'pilot flame thermopile thermocouple millivolt',p:'Manifold pressure & pilot target'},
+  {k:'i',id:'specClear',t:'clearance alcove floor protection carpet combustible',p:'Clearances and floor'},
+];
+
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function snippet(text,q){
+  const i=text.toLowerCase().indexOf(q); if(i<0)return '';
+  let s=Math.max(0,i-55), e=Math.min(text.length,i+q.length+85);
+  let frag=text.slice(s,e);
+  if(s>0)frag='… '+frag; if(e<text.length)frag+=' …';
+  // highlight every occurrence of the query in the fragment
+  const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');
+  return esc(frag).replace(re,'<mark>$1</mark>');
+}
+
+const res=$('#results'),rlist=$('#rlist');
+$('#q').addEventListener('input',e=>{
+  const raw=e.target.value.trim(), q=raw.toLowerCase();
+  if(q.length<2){res.classList.remove('open');return;}
+
+  // curated matches (best answers)
+  const curated=INDEX.filter(x=>(x.t+' '+x.p).toLowerCase().includes(q)).slice(0,6);
+  // full-manual page matches
+  const pageHits=PAGES.filter(pg=>pg.t.toLowerCase().includes(q)).slice(0,12);
+
+  let html='';
+  if(curated.length){
+    html+=`<div class="rgroup">Best matches <span class="ct">${curated.length}</span></div>`;
+    html+=curated.map(h=>
+      `<div class="ritem" data-kind="topic" data-id="${h.id}" data-role="${h.k==='h'?'homeowner':'installer'}">
+         <span class="badge ${h.k}">${h.k==='h'?'Owner':'Install'}</span>
+         <div><h4>${esc(h.t)}</h4><p>${esc(h.p)}</p></div></div>`).join('');
+  }
+  if(pageHits.length){
+    html+=`<div class="rgroup">In the full manual <span class="ct">${pageHits.length} page${pageHits.length>1?'s':''}</span></div>`;
+    html+=pageHits.map(pg=>
+      `<div class="ritem" data-kind="page" data-page="${pg.p}">
+         <span class="pg">p.${pg.p}</span>
+         <div class="snip">${snippet(pg.t,q)}</div>
+         <svg class="jump" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg>
+       </div>`).join('');
+  }
+  if(!curated.length && !pageHits.length)
+    html=`<div class="rempty">Nothing matched “${esc(raw)}”. Try a part name, a number, or open the full PDF above.</div>`;
+
+  rlist.innerHTML=html;
+  res.classList.add('open');
+
+  $$('.ritem',rlist).forEach(it=>it.onclick=()=>{
+    if(it.dataset.kind==='page'){ openPDF(it.dataset.page); }
+    else { res.classList.remove('open'); $('#q').value=''; setRole(it.dataset.role); openDrawer(it.dataset.id); }
+  });
+});
+document.addEventListener('click',e=>{if(!res.contains(e.target)&&e.target.id!=='q')res.classList.remove('open');});
+
+/* deep-link into the PDF at a specific page */
+function openPDF(page){
+  const url = MANUAL_URL + (page?('#page='+page):'');
+  // In this prototype the PDF isn't hosted, so show the exact link it builds.
+  // On your site this single line is all the deep-link needs:  window.open(url,'_blank');
+  window.open(url,'_blank');
+}
+function pdfNote(e){e.preventDefault();openPDF(null);}
+$('#pdfBtn').onclick=pdfNote; $('#pdfBtn2').onclick=pdfNote;
+
+/* ---------------- installer-side full-manual search ---------------- */
+/* Same per-page PDF index as the header search, surfaced inline in the field
+   reference where installers expect it. Click a hit to deep-link the PDF page. */
+/* ---------------- owner-side inline search ---------------- */
+/* Curated answers (open the drawer) + full-manual page hits (open the PDF) —
+   the same two-tier logic as the header search, surfaced in the owner view. */
+const oq=$('#oq'), oResults=$('#oResults');
+function renderOwnerSearch(){
+  if(!oq||!oResults) return;
+  const raw=oq.value.trim(), q=raw.toLowerCase();
+  if(q.length<2){ oResults.innerHTML=''; return; }
+  const curated=INDEX.filter(x=>(x.t+' '+x.p).toLowerCase().includes(q)).slice(0,6);
+  const pageHits=PAGES.filter(pg=>pg.t.toLowerCase().includes(q)).slice(0,8);
+  let html='';
+  if(curated.length){
+    html+=`<div class="rgroup">Best matches <span class="ct">${curated.length}</span></div>`;
+    html+=curated.map(x=>
+      `<div class="ritem" data-kind="topic" data-id="${x.id}">
+         <span class="badge ${x.k}">${x.k==='h'?'Owner':'Install'}</span>
+         <div><h4>${esc(x.t)}</h4><p>${esc(x.p)}</p></div></div>`).join('');
+  }
+  if(pageHits.length){
+    html+=`<div class="rgroup">In the full manual <span class="ct">${pageHits.length} page${pageHits.length>1?'s':''}</span></div>`;
+    html+=pageHits.map(pg=>
+      `<div class="ritem" data-kind="page" data-page="${pg.p}">
+         <span class="pg">p.${pg.p}</span>
+         <div class="snip">${snippet(pg.t,q)}</div>
+         <svg class="jump" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg>
+       </div>`).join('');
+  }
+  if(!curated.length && !pageHits.length)
+    html=`<div class="os-hint">Nothing matched “${esc(raw)}”. Try another word, or open the full <mark>Official PDF</mark> up top.</div>`;
+  oResults.innerHTML=html;
+  $$('.ritem',oResults).forEach(it=>{
+    if(it.dataset.kind==='page') it.onclick=()=>openPDF(it.dataset.page);
+    else it.onclick=()=>openDrawer(it.dataset.id);
+  });
+}
+oq.addEventListener('input',renderOwnerSearch);
+
+const mq=$('#mq'), mResults=$('#mResults');
+function renderManualSearch(){
+  if(!mq||!mResults) return;
+  const raw=mq.value.trim(), q=raw.toLowerCase();
+  if(q.length<2){
+    mResults.innerHTML=`<div class="ms-hint">Searches the full text of every page of the official ${PAGES.length}-page manual. Type a part name, a number, or a term — each result opens the PDF at that page.</div>`;
+    return;
+  }
+  const hits=PAGES.filter(pg=>pg.t.toLowerCase().includes(q));
+  if(!hits.length){
+    mResults.innerHTML=`<div class="ms-hint">Nothing in the manual matched “${esc(raw)}”. Try a different term, or open the full <mark>Official PDF</mark> up top.</div>`;
+    return;
+  }
+  mResults.innerHTML=`<div class="rgroup">In the full manual <span class="ct">${hits.length} page${hits.length>1?'s':''}</span></div>`+
+    hits.slice(0,30).map(pg=>
+      `<div class="ritem" data-page="${pg.p}">
+         <span class="pg">p.${pg.p}</span>
+         <div class="snip">${snippet(pg.t,q)}</div>
+         <svg class="jump" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg>
+       </div>`).join('');
+  $$('.ritem',mResults).forEach(it=>it.onclick=()=>openPDF(it.dataset.page));
+}
+mq.addEventListener('input',renderManualSearch);
+renderManualSearch();
+</script>
+</body>
+</html>

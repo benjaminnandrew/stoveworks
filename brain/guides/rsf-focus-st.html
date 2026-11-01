@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSF Focus ST — Owner &amp; Installer Guide</title>
+<!-- Stoveworks owner & installer guide · template v3 · built 2026-10-12 from RSF-IIFST_2020-06.pdf
+     Generated from guides/content/rsf-focus-st.json by scripts/build_guide.py — edit the content file and rebuild; don't edit this page. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* cast iron in shadow */
+    --iron:#191512; --iron-2:#241f1a; --iron-3:#322b24;
+    /* heat */
+    --ember:#e8682c; --ember-2:#c4521f; --amber:#f5a623;
+    /* gas pilot flame — the cool counter-accent, true to the subject */
+    --pilot:#5f93b8; --pilot-deep:#37607d;
+    /* warm reading surfaces */
+    --paper:#f1ece2; --paper-2:#fbf8f2; --card:#ffffff;
+    --ink:#23201b; --ink-soft:#6e655a; --hair:#e0d8c9;
+    --ok:#3f7d54; --warn:#b06a13;
+    --shadow:0 1px 2px rgba(30,22,14,.06),0 8px 24px rgba(30,22,14,.07);
+    --display:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+  .mono{font-family:var(--mono)}
+
+  /* ---------- top chrome ---------- */
+  header{position:sticky;top:0;z-index:40;background:var(--iron);color:#f3ece2;
+    display:flex;align-items:center;gap:14px;padding:11px 18px;border-bottom:1px solid #000;transition:transform .22s ease}
+  .brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;letter-spacing:.16em;font-size:14px}
+  .flame{width:18px;height:18px;flex:none}
+  .brand small{font-weight:600;letter-spacing:.02em;color:#b6ab9b;font-family:var(--body);font-size:11px;display:block;letter-spacing:.04em}
+  .brand-wrap{display:flex;flex-direction:column;line-height:1.15}
+  .spacer{flex:1}
+  /* role toggle */
+  .toggle{display:flex;background:#0e0b09;border:1px solid #3a322a;border-radius:999px;padding:3px}
+  .toggle button{font-family:var(--body);font-weight:600;font-size:12.5px;color:#9b9183;background:none;border:none;
+    padding:7px 15px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.18s;white-space:nowrap;min-height:36px}
+  .toggle button[aria-pressed="true"]{color:#fff}
+  .toggle button.home[aria-pressed="true"]{background:linear-gradient(180deg,var(--ember),var(--ember-2));box-shadow:0 0 14px rgba(232,104,44,.5)}
+  .toggle button.inst[aria-pressed="true"]{background:linear-gradient(180deg,var(--pilot),var(--pilot-deep));box-shadow:0 0 14px rgba(95,147,184,.45)}
+  .toggle .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.55}
+  .search{display:flex;align-items:center;gap:7px;background:#0e0b09;border:1px solid #3a322a;border-radius:9px;padding:7px 11px;min-width:120px}
+  .search input{background:none;border:none;color:#f3ece2;font-family:var(--body);font-size:13px;width:100%;outline:none}
+  .search input::placeholder{color:#7d7468}
+  .search svg{flex:none;opacity:.6}
+  .pdf{display:flex;align-items:center;gap:7px;background:none;border:1px solid #4a4138;color:#d9cfc0;
+    font-family:var(--body);font-weight:600;font-size:12.5px;padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;transition:.18s}
+  .pdf:hover{border-color:var(--ember);color:#fff}
+  .pdf{min-height:40px}
+  /* search icon (phones only) */
+  .qbtn{display:none;place-items:center;width:44px;height:44px;flex:none;background:none;border:1px solid #4a4138;border-radius:10px;color:#d9cfc0;cursor:pointer}
+  .qbtn[aria-expanded="true"]{border-color:var(--pilot-fill,#5f93b8);color:#fff}
+  /* installer section bar: jump to a section, current one highlighted */
+  .secnav{position:sticky;top:var(--hdr-h,58px);z-index:35;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
+    margin:6px -22px 0;padding:10px 22px;background:var(--paper);border-bottom:1px solid var(--hair);transition:top .22s ease}
+  .secnav::-webkit-scrollbar{display:none}
+  .secnav button{flex:none;font-family:var(--body);font-weight:600;font-size:14px;color:var(--ink);background:var(--card);
+    border:1px solid var(--hair);border-radius:999px;padding:0 16px;min-height:44px;cursor:pointer;white-space:nowrap}
+  .secnav button[aria-current="true"]{background:var(--pilot-deep,#2f5a78);border-color:var(--pilot-deep,#2f5a78);color:#fff}
+  .secnav button:focus-visible,.qbtn:focus-visible,.totop:focus-visible{outline:3px solid var(--amber,#f0a43c);outline-offset:2px}
+  .view .seclabel,#faultSec,#codeSec{scroll-margin-top:calc(var(--hdr-h,58px) + 74px)}
+  .hdr-away .view .seclabel,.hdr-away #faultSec,.hdr-away #codeSec{scroll-margin-top:74px}
+  /* back to top (one-handed use) */
+  .totop{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:45;width:52px;height:52px;border-radius:50%;
+    background:var(--iron);color:#f3ece2;border:1px solid #3a322a;box-shadow:0 6px 18px rgba(20,14,8,.3);display:grid;place-items:center;
+    cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s}
+  .totop.show{opacity:1;pointer-events:auto;transform:none}
+
+  /* ---------- ignition gate ---------- */
+  .gate{min-height:calc(100vh - 56px);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(120% 80% at 50% 110%,#3a1f10 0%,#1a120c 45%,#100c09 100%);color:#f3ece2;padding:40px 22px;text-align:center}
+  .gate .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.32em;color:var(--amber);text-transform:uppercase;margin-bottom:18px}
+  .gate h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,58px);line-height:1.02;letter-spacing:-.01em;max-width:14ch}
+  .gate .sub{color:#c4b8a7;max-width:46ch;margin:18px auto 6px;font-size:clamp(15px,2vw,17px)}
+  .gate .model{font-family:var(--mono);color:#8c8174;font-size:12.5px;margin-bottom:42px;letter-spacing:.04em}
+  .cards{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;width:100%;max-width:760px}
+  .ignite{position:relative;flex:1 1 300px;min-width:270px;text-align:left;cursor:pointer;border:1px solid #4a3c2e;border-radius:18px;
+    padding:26px 24px 22px;background:linear-gradient(180deg,#211913,#171009);overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s}
+  .ignite:hover{transform:translateY(-4px);border-color:var(--ember)}
+  .ignite.cool:hover{border-color:var(--pilot)}
+  .ignite::after{content:"";position:absolute;inset:auto -40% -60% -40%;height:70%;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(232,104,44,.55),transparent);opacity:0;transition:opacity .3s}
+  .ignite.cool::after{background:radial-gradient(closest-side,rgba(95,147,184,.5),transparent)}
+  .ignite:hover::after{opacity:1}
+  .ignite .ic{width:40px;height:40px;margin-bottom:16px;color:var(--ember)}
+  .ignite.cool .ic{color:var(--pilot)}
+  .ignite h2{font-family:var(--display);font-weight:700;font-size:24px;color:#fff;letter-spacing:-.01em}
+  .ignite p{color:#b3a795;font-size:14px;margin-top:7px}
+  .ignite .go{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-weight:600;font-size:13px;color:var(--ember);position:relative;z-index:1}
+  .ignite.cool .go{color:var(--pilot)}
+  .gate .foot{margin-top:38px;color:#7d7468;font-size:12.5px}
+  .gate .foot a{color:#b6ab9b}
+  .fine{margin-top:40px;padding-top:14px;border-top:1px solid var(--line,rgba(0,0,0,.08));font-size:12px;line-height:1.55;color:var(--ink-soft);max-width:72ch;margin-bottom:64px}
+  .gate .fine{border-top-color:rgba(255,255,255,.08);color:#7d7468;margin-top:18px}
+
+  /* ---------- views ---------- */
+  .view{display:none;max-width:1080px;margin:0 auto;padding:34px 22px 90px}
+  .view.active{display:block;animation:rise .4s ease}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .vhead{margin-bottom:26px}
+  .vhead .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:9px}
+  .vhead .eyebrow .pip{width:9px;height:9px;border-radius:50%}
+  .home-pip{background:var(--ember)} .inst-pip{background:var(--pilot)}
+  .vhead h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,4.5vw,38px);letter-spacing:-.015em;margin-top:8px}
+  .vhead p{color:var(--ink-soft);max-width:60ch;margin-top:7px;font-size:15px}
+
+  .seclabel{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+  .seclabel::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+  /* action tiles (homeowner) */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .tile{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 18px 16px;cursor:pointer;
+    text-align:left;font:inherit;color:inherit;box-shadow:var(--shadow);transition:transform .16s,border-color .16s}
+  .tile:hover{transform:translateY(-3px);border-color:var(--ember)}
+  .tile .ic{width:26px;height:26px;color:var(--ember);margin-bottom:12px}
+  .tile h3{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.01em}
+  .tile p{color:var(--ink-soft);font-size:13px;margin-top:4px}
+
+  /* spec cards (installer) */
+  .specs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .spec{background:var(--card);border:1px solid var(--hair);border-left:3px solid var(--pilot);border-radius:12px;padding:16px 17px;box-shadow:var(--shadow)}
+  .spec .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .spec .rows{margin-top:10px;display:flex;flex-direction:column;gap:7px}
+  .spec .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px}
+  .spec .row b{font-weight:500;color:var(--ink-soft)}
+  .spec .row .v{font-family:var(--mono);font-weight:700;font-size:14px;color:var(--ink);text-align:right}
+
+  /* checklist */
+  .checklist{background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  .step{display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid var(--hair);cursor:pointer;align-items:flex-start;transition:background .12s}
+  .step:last-child{border-bottom:none}
+  .step:hover{background:#faf6ee}
+  .step .num{flex:none;width:26px;height:26px;border-radius:7px;background:var(--iron);color:#f3ece2;font-family:var(--mono);font-weight:700;
+    font-size:12.5px;display:grid;place-items:center;margin-top:1px}
+  .step.done .num{background:var(--ok)}
+  .step .body h4{font-family:var(--display);font-weight:600;font-size:15.5px}
+  .step .body p{color:var(--ink-soft);font-size:13px;margin-top:2px}
+  .step .check{margin-left:auto;flex:none;width:20px;height:20px;border:2px solid var(--hair);border-radius:6px;margin-top:3px;display:grid;place-items:center}
+  .step.done .check{background:var(--ok);border-color:var(--ok)}
+  .step.done .check svg{display:block}
+  .step .check svg{display:none}
+
+  /* two-column callouts */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .panel{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  .panel h3{font-family:var(--display);font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px}
+  .panel.warn h3{color:var(--warn)} .panel.warn{border-left:3px solid var(--warn)}
+  .panel ul{list-style:none;margin-top:11px;display:flex;flex-direction:column;gap:9px}
+  .panel li{font-size:13.5px;color:#473f36;padding-left:16px;position:relative}
+  .panel li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--pilot)}
+  .panel.warn li::before{background:var(--warn)}
+
+  /* led codes */
+  .codes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .code{background:var(--iron);color:#f3ece2;border-radius:11px;padding:14px}
+  .code .blinks{display:flex;gap:5px;margin-bottom:9px}
+  .code .b{width:9px;height:9px;border-radius:50%;background:#3a322a}
+  .code .b.on{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+  .code .t{font-family:var(--display);font-weight:600;font-size:14px}
+  .code .d{font-size:11.5px;color:#a89c8c;margin-top:2px}
+
+  /* ---------- detail drawer ---------- */
+  .scrim{position:fixed;inset:0;background:rgba(20,14,8,.5);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:.22s;z-index:60}
+  .scrim.open{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(480px,100%);background:var(--paper-2);z-index:70;
+    transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.1,1);overflow-y:auto;box-shadow:-20px 0 50px rgba(20,14,8,.25)}
+  .drawer.open{transform:none}
+  .drawer .dh{position:sticky;top:0;z-index:2;background:var(--iron);color:#f3ece2;padding:18px 20px;display:flex;align-items:flex-start;gap:12px}
+  .drawer .dh .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+  .drawer .dh h2{font-family:var(--display);font-weight:700;font-size:21px;margin-top:5px;letter-spacing:-.01em}
+  .drawer .dh .x{margin-left:auto;background:#0e0b09;border:1px solid #3a322a;color:#d9cfc0;width:44px;height:44px;border-radius:10px;cursor:pointer;flex:none;font-size:22px;line-height:1}
+  .dcontent{padding:22px 24px 60px}
+  .dcontent h4{font-family:var(--display);font-weight:700;font-size:15px;margin:20px 0 8px;color:var(--ink)}
+  .dcontent h4:first-child{margin-top:0}
+  .dcontent p{font-size:14px;color:#473f36;margin-bottom:11px}
+  .dcontent ol,.dcontent ul{margin:0 0 13px 2px;display:flex;flex-direction:column;gap:9px}
+  .dcontent ol{counter-reset:s;list-style:none}
+  .dcontent ol li{position:relative;padding-left:32px;font-size:14px;color:#473f36}
+  .dcontent ol li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-1px;width:22px;height:22px;border-radius:6px;
+    background:var(--ember);color:#fff;font-family:var(--mono);font-weight:700;font-size:11.5px;display:grid;place-items:center}
+  .dcontent.cool ol li::before{background:var(--pilot)}
+  .dcontent ul{list-style:none}
+  .dcontent ul li{position:relative;padding-left:18px;font-size:14px;color:#473f36}
+  .dcontent ul li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--ember)}
+  .dcontent.cool ul li::before{background:var(--pilot)}
+  .note{background:#fcf3e3;border:1px solid #f0dcb4;border-radius:10px;padding:13px 15px;font-size:13.5px;color:#6b5320;margin:14px 0}
+  .note.danger{background:#fbe9e3;border-color:#f0c4b4;color:#8a3a1d}
+  .note b{font-weight:600}
+  .note.small{background:transparent;border:0;border-left:3px solid #e2cfa9;border-radius:0;padding:3px 0 3px 11px;font-size:12.5px;color:#6f6250;margin:8px 0 12px}
+  .note.small b{color:#4f4436}
+  .kv{font-family:var(--mono);font-size:13.5px;background:#efe9dd;border-radius:8px;padding:11px 13px;display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+  .kv .r{display:flex;justify-content:space-between;gap:12px}
+  .kv .r span:last-child{font-weight:700}
+
+  /* search results */
+  .results{position:fixed;top:56px;left:0;right:0;z-index:50;background:var(--paper-2);border-bottom:1px solid var(--hair);
+    box-shadow:0 18px 40px rgba(20,14,8,.18);max-height:70vh;overflow-y:auto;display:none}
+  .results.open{display:block}
+  .results .inner{max-width:1080px;margin:0 auto;padding:18px 22px 24px}
+  .results .rl{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px}
+  .ritem{display:flex;gap:12px;align-items:flex-start;padding:12px 13px;border-radius:11px;cursor:pointer;border:1px solid transparent}
+  .ritem:hover{background:#fff;border-color:var(--hair)}
+  .ritem .badge{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;border-radius:5px;flex:none;margin-top:1px}
+  .badge.h{background:#fbe6da;color:var(--ember-2)} .badge.i{background:#e2edf4;color:var(--pilot-deep)}
+  .ritem h4{font-family:var(--display);font-weight:600;font-size:15px}
+  .ritem p{font-size:12.5px;color:var(--ink-soft);margin-top:1px}
+  .rempty{color:var(--ink-soft);font-size:14px;padding:6px 2px}
+  .rgroup{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);
+    margin:16px 0 8px;display:flex;align-items:center;gap:9px}
+  .rgroup:first-child{margin-top:0}
+  .rgroup .ct{background:var(--hair);color:var(--ink-soft);border-radius:999px;padding:1px 8px;letter-spacing:.04em}
+  .ritem .pg{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink-soft);
+    border:1px solid var(--hair);border-radius:6px;padding:3px 7px;flex:none;margin-top:1px;white-space:nowrap}
+  .ritem .snip{font-size:12.5px;color:#5d544a;margin-top:3px;line-height:1.45}
+  .ritem .snip mark{background:#ffe7b3;color:#5a4310;border-radius:3px;padding:0 2px}
+  .ritem .jump{margin-left:auto;flex:none;align-self:center;color:var(--ink-soft);opacity:.5}
+
+
+  /* tablets: two tidy rows (brand + PDF, then the switch + search); the bar tucks away while scrolling down */
+  @media(max-width:1024px){
+    header{flex-wrap:wrap;row-gap:10px;column-gap:12px;padding:10px 16px}
+    .spacer{display:none}
+    .brand{order:1;flex:1;min-width:0}
+    .brand-wrap{min-width:0} .brand small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .pdf{order:2}
+    .toggle{order:3}
+    .toggle button{min-height:40px;font-size:14px;padding:6px 18px}
+    .search{order:4;flex:1;min-height:44px}
+    .search input{font-size:16px}
+    .hdr-away header{transform:translateY(-100%)}
+    .hdr-away .secnav{top:0}
+  }
+  /* phones: one slim row (home flame, own/install switch, search icon, PDF icon) */
+  @media(max-width:720px){
+    header{flex-wrap:wrap;gap:8px;padding:7px 10px;row-gap:8px}
+    .brand{order:1;flex:0 1 auto;min-height:44px}
+    .brand small{display:none}
+    .has-role .brand-wrap{display:none}
+    .has-role .brand{min-width:44px;justify-content:center}
+    .spacer{display:block;flex:1;order:2}
+    .has-role .spacer{display:none}
+    .toggle{order:2;flex:1;min-width:0}
+    .toggle button{flex:1;justify-content:center;min-height:40px;padding:6px 8px;font-size:13.5px}
+    .qbtn{display:grid;order:3}
+    .pdf{order:4;width:44px;height:44px;padding:0;justify-content:center;min-height:0}
+    .pdf .pdf-txt{display:none}
+    .search{display:none;order:5;flex:1 1 100%;min-width:0}
+    header.searching .search{display:flex}
+    .twocol{grid-template-columns:1fr}
+    .secnav{margin:4px -16px 0;padding:8px 16px}
+  }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} header,.secnav,.totop{transition:none} }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+  /* deep-link to the exact manual page (in the drawer) */
+  .manlink{display:flex;align-items:center;gap:13px;margin-top:24px;padding:14px 16px;border-radius:12px;text-decoration:none;
+    background:linear-gradient(180deg,#fdf1e9,#fce7da);border:1px solid #f0cdb6;color:var(--ember-2);transition:transform .18s,box-shadow .18s,border-color .18s}
+  .manlink:hover{border-color:var(--ember);box-shadow:0 7px 20px rgba(232,104,44,.18);transform:translateY(-1px)}
+  .manlink.cool{background:linear-gradient(180deg,#eef4f8,#e2edf4);border-color:#c2d6e3;color:var(--pilot-deep)}
+  .manlink.cool:hover{border-color:var(--pilot);box-shadow:0 7px 20px rgba(95,147,184,.2)}
+  .manlink .ic{flex:none;width:32px;height:32px;display:grid;place-items:center;border-radius:9px;background:#fff;color:var(--ember)}
+  .manlink.cool .ic{color:var(--pilot)}
+  .manlink .tx{display:flex;flex-direction:column;line-height:1.3}
+  .manlink b{font-family:var(--display);font-weight:700;font-size:14px}
+  .manlink small{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:2px;letter-spacing:.02em}
+  .manlink .arr{margin-left:auto;flex:none;opacity:.7}
+
+  /* installer-side full-manual search (inline, light surface) */
+  .ms-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--hair);
+    border-left:3px solid var(--pilot);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .ms-bar svg{flex:none;opacity:.5}
+  .ms-bar input{flex:1;background:none;border:none;font-family:var(--body);font-size:15px;color:var(--ink);outline:none}
+  .ms-bar input::placeholder{color:var(--ink-soft)}
+  .ms-results{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+  .ms-results .ritem{background:var(--card);border:1px solid var(--hair)}
+  .ms-results .ritem:hover{border-color:var(--pilot);background:#fbfdff}
+  .ms-hint{color:var(--ink-soft);font-size:13.5px;padding:8px 2px;line-height:1.5}
+  .ms-hint mark{background:none;color:var(--pilot-deep);font-weight:600}
+
+  /* owner-side inline search (ember surface) */
+  .os-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--hair);
+    border-left:3px solid var(--ember);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .os-bar svg{flex:none;opacity:.5}
+  .os-bar input{flex:1;background:none;border:none;font-family:var(--body);font-size:15px;color:var(--ink);outline:none}
+  .os-bar input::placeholder{color:var(--ink-soft)}
+  .os-results{display:flex;flex-direction:column;gap:8px}
+  .os-results:not(:empty){margin:14px 0 4px}
+  .os-results .ritem{background:var(--card);border:1px solid var(--hair)}
+  .os-results .ritem:hover{border-color:var(--ember);background:#fffaf6}
+  .os-hint{color:var(--ink-soft);font-size:13.5px;padding:8px 2px;line-height:1.5}
+  .os-hint mark{background:none;color:var(--ember-2);font-weight:600}
+  /* ---------- v3 additions ---------- */
+  /* manual picker, for guides built from more than one PDF */
+  .pdfmenu{position:absolute;top:calc(100% + 6px);right:14px;z-index:55;background:var(--paper-2);border:1px solid var(--hair);border-radius:12px;
+    box-shadow:0 18px 40px rgba(20,14,8,.22);padding:7px;min-width:260px;display:none}
+  .pdfmenu.open{display:block}
+  .pdfmenu .ml{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);padding:6px 11px 4px}
+  .pdfmenu a{display:flex;flex-direction:column;gap:1px;padding:10px 11px;border-radius:9px;text-decoration:none;color:var(--ink)}
+  .pdfmenu a:hover{background:#fff}
+  .pdfmenu b{font-family:var(--display);font-weight:700;font-size:14px}
+  .pdfmenu small{font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+  /* fault panels (any number) */
+  .faults{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  /* display-style codes (e.g. "E1") alongside blink codes */
+  .code .cd{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--amber);margin-bottom:7px;letter-spacing:.04em}
+  .gate .foot .docs a{white-space:nowrap}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand" id="brandHome" role="button" tabindex="0" title="Back to start" style="cursor:pointer">
+    <svg class="flame" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3-2 4-2 7 0 1 .6 2 1.5 2.4C12 10 13 8.5 13 7c2 2 4 4.5 4 8a5 5 0 0 1-10 0c0-2 1-3.5 2-5 .2 1.2 1 2 2 2-.4-3 1-6 3-10Z"/></svg>
+    <div class="brand-wrap"><span>RSF</span><small>Focus ST · Two-sided wood fireplace</small></div>
+  </div>
+  <div class="spacer"></div>
+  <div class="search">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Search the whole guide…" autocomplete="off">
+  </div>
+  <button class="qbtn" id="qBtn" type="button" aria-label="Search the guide" aria-expanded="false">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+  </button>
+  <div class="toggle" id="toggle" style="display:none">
+    <button class="home" data-role="homeowner" aria-pressed="false"><span class="dot"></span>I own it</button>
+    <button class="inst" data-role="installer" aria-pressed="false"><span class="dot"></span>I install it</button>
+  </div>
+  <a class="pdf" href="#" id="pdfBtn" title="The full 24-page manual is the legal source of truth">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+    <span class="pdf-txt">Official PDF</span>
+  </a>
+  <div class="pdfmenu" id="pdfMenu"></div>
+</header>
+
+<!-- search results -->
+<div class="results" id="results"><div class="inner"><div class="rl">Results</div><div id="rlist"></div></div></div>
+
+<!-- ===== IGNITION GATE ===== -->
+<section class="gate" id="gate">
+  <div class="kicker">Factory-built wood fireplace</div>
+  <h1>RSF Focus ST</h1>
+  <p class="sub">Tell us who you are and we'll bring the right half forward — the rest is one search away.</p>
+  <p class="model">Model FOCUS ST · 8&quot; ICC EXCEL chimney · Wood-burning, no draft control</p>
+  <div class="cards">
+    <button class="ignite" data-role="homeowner">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg>
+      <h2>I own this fireplace</h2>
+      <p>Light and reload a fire, control the heat, choose your wood, clean the glass, sweep the chimney, check the warranty.</p>
+      <span class="go">Light my path →</span>
+    </button>
+    <button class="ignite cool" data-role="installer">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3Z"/></svg>
+      <h2>I'm installing or servicing it</h2>
+      <p>Clearances, hearth, mantel, outside air, the EXCEL chimney and offsets, gas logs, the install sequence and draft faults.</p>
+      <span class="go">Open field reference →</span>
+    </button>
+  </div>
+  <p class="foot">Both paths draw from the same certified manual. <a href="#" id="pdfBtn2" class="footdoc" data-doc="1">Skip straight to the full PDF →</a></p>
+  <p class="fine"><b>About these guides.</b> Manufacturers revise their manuals over the years, and a manual sometimes disagrees with itself or with the maker's website. We report what is printed and posted: where two figures differ, we show both right there, with links to the pages, and where the maker's website gives a different figure, we note it next to the manual's. Plain misprints, such as a metric conversion that doesn't match, are corrected with a small note saying what was printed. The official manual is the authority for installation; when two figures differ, ask us or your installer before relying on either.</p>
+</section>
+
+<!-- ===== HOMEOWNER ===== -->
+<section class="view" id="homeowner">
+  <div class="vhead">
+    <div class="eyebrow"><span class="pip home-pip"></span>For owners</div>
+    <h1>Your fireplace, in plain language</h1>
+    <p>The things people actually ask us about — pick one. Everything technical still lives under search and the official PDF up top.</p>
+  </div>
+  <div class="os-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="oq" type="search" placeholder="Search — lighting, outside air, creosote, glass…" autocomplete="off">
+  </div>
+  <div class="os-results" id="oResults"></div>
+  <div class="seclabel">Start here</div>
+  <div class="tiles" id="homeTiles"></div>
+  <div id="homeSec2">
+    <div class="seclabel">Good to know</div>
+    <div class="tiles" id="homeTiles2"></div>
+  </div>
+  <p class="fine"><b>About these guides.</b> Manufacturers revise their manuals over the years, and a manual sometimes disagrees with itself or with the maker's website. We report what is printed and posted: where two figures differ, we show both right there, with links to the pages, and where the maker's website gives a different figure, we note it next to the manual's. Plain misprints, such as a metric conversion that doesn't match, are corrected with a small note saying what was printed. The official manual is the authority for installation; when two figures differ, ask us or your installer before relying on either.</p>
+</section>
+
+<!-- ===== INSTALLER ===== -->
+<section class="view" id="installer">
+  <div class="vhead">
+    <div class="eyebrow"><span class="pip inst-pip"></span>For installers &amp; service</div>
+    <h1>Field reference</h1>
+    <p>The numbers you look up on your knees, the sequence you follow, and the faults you diagnose — surfaced first. Tap any spec for the surrounding detail.</p>
+  </div>
+  <nav class="secnav" id="secNav" aria-label="Jump to a section"></nav>
+
+  <div class="seclabel" id="sec-specs">Critical specs</div>
+  <div class="specs" id="specCards"></div>
+
+  <div class="seclabel" id="sec-steps">Install sequence — tap to check off</div>
+  <div class="checklist" id="checklist"></div>
+
+  <div id="faultSec">
+    <div class="seclabel" id="faultLabel">Field faults</div>
+    <div class="faults" id="faults"></div>
+  </div>
+
+  <div id="codeSec">
+    <div class="seclabel">Control codes</div>
+    <div class="codes" id="codes"></div>
+  </div>
+
+  <div class="seclabel" id="sec-manual">Search the original manual</div>
+  <div class="ms-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="mq" type="search" placeholder="Search every page of the official manual — clearance, chimney height, spark guard…" autocomplete="off">
+  </div>
+  <div class="ms-results" id="mResults"></div>
+  <p class="fine"><b>About these guides.</b> Manufacturers revise their manuals over the years, and a manual sometimes disagrees with itself or with the maker's website. We report what is printed and posted: where two figures differ, we show both right there, with links to the pages, and where the maker's website gives a different figure, we note it next to the manual's. Plain misprints, such as a metric conversion that doesn't match, are corrected with a small note saying what was printed. The official manual is the authority for installation; when two figures differ, ask us or your installer before relying on either.</p>
+</section>
+
+<!-- detail drawer -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <div class="dh">
+    <div><div class="tag" id="dTag">Detail</div><h2 id="dTitle">Title</h2></div>
+    <button class="x" id="dClose" aria-label="Close">×</button>
+  </div>
+  <div class="dcontent" id="dBody"></div>
+</aside>
+
+<button class="totop" id="toTop" type="button" aria-label="Back to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></svg>
+</button>
+
+<script>
+/* ================= content: generated from guides/content/rsf-focus-st.json ================= */
+const HOME_PRIMARY = [{"id":"light","icon":"M12 2c1 3-2 4-2 7 0 1 .6 2 1.5 2.4C12 10 13 8.5 13 7c2 2 4 4.5 4 8a5 5 0 0 1-10 0c0-2 1-3.5 2-5 .2 1.2 1 2 2 2-.4-3 1-6 3-10Z","title":"Light a fire","blurb":"Paper, kindling, outside air, and when to close the door.","fill":true},{"id":"firstfires","icon":"M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3m.1 4h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z","title":"Your first fires","blurb":"Black bricks, a paint smell and a slow start are normal."},{"id":"control","icon":"M3 12h4l3-8 4 16 3-8h4","title":"Control the heat","blurb":"No air knob: log size, placement and the door seal do it."},{"id":"reload","icon":"M6 9a3 3 0 1 0 0 6 3 3 0 1 0 0-6Zm0 0h12a3 3 0 0 1 0 6H6M6 11.5v1","title":"Reload the fire","blurb":"Add wood without letting smoke into the room."}];
+const HOME_SECONDARY = [{"id":"air","icon":"M4 7h16M4 12h16M4 17h16M8 5v4M15 10v4M11 15v4","title":"Outside air control","blurb":"Open it to burn, close it when the fire is out."},{"id":"wood","icon":"M12 2 6 10h3l-4 6h14l-4-6h3L12 2Zm0 14v6","title":"What wood to burn","blurb":"Seasoned, dry hardwood, and what never goes in."},{"id":"glass","icon":"M4 4h16v16H4Zm0 5h16M9 4v16","title":"Clean the glass","blurb":"Hot fires, dry wood, the right cleaner, and paint care."},{"id":"chimney","icon":"M7 21V8h10v13M5 8h14M9 8V5h6v3M7 13h10M7 17h10","title":"Chimney, creosote & ashes","blurb":"When to sweep, and how to store ashes safely."},{"id":"safety","icon":"M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z","title":"Safety & over-firing","blurb":"Do's and don'ts, detectors, and the warning signs."},{"id":"warranty","icon":"M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z","title":"Warranty","blurb":"30-year limited: what's covered, and when."}];
+const SPECS = [{"id":"clear","lab":"Clearances","tap":"specClear","rows":[["Combustibles to standoffs","0\""],["Side wall to opening","9\""],["Ceiling · sealed / vented","7' / 6'"],["Chimney to combustibles","2\""]]},{"id":"hearth","lab":"Hearth extension","tap":"specHearth","rows":[["Depth from front","18\""],["Width, centered","40\""],["Spark guard width","36\""]],"note":"minimums"},{"id":"mantel","lab":"Combustible mantel","tap":"specMantel","rows":[["Max. shelf depth","12\""],["Min. height above opening","24\""]]},{"id":"flue","lab":"Chimney","tap":"specFlue","rows":[["Chimney","8\" ICC EXCEL only"],["Height min / max","12' / 40'"],["Supported by fireplace","16' max."]]},{"id":"offsets","lab":"Offsets & roof","tap":"specOffset","rows":[["Max. offset","30° USA · 45° Canada"],["Max. elbows","four"],["Above roof contact","3' min."],["Rough opening","14\" square"]]},{"id":"outsideair","lab":"Outside air","tap":"specAir","rows":[["Total run under 25'","4\" duct"],["Longer runs","5\" duct"],["Max. vertical rise","12'"]]},{"id":"gaslog","lab":"Vented gas log option","tap":"specGas","rows":[["Max. gas log set","40,000 BTU/h"],["Listing","ANSI Z21.60/CSA 2.26"],["Unvented sets","not allowed"]]},{"id":"options","lab":"Options","tap":"specOptions","rows":[["Gravity vent kits","FO-V2 · FO-V3"],["Max. gravity vent length","15'"],["Rock retainer kit","FO-KR"]]}];
+const STEPS = [["Permit & prep","Check restrictions, installation requirements and permit needs with the local authority having jurisdiction. Take the doors off until all finishing work around the fireplace is complete.","<p>Check with the local authority having jurisdiction (building department, fire department, fire prevention bureau) about restrictions, installation requirements and the need for a permit.<\/p><p>Remove the doors until all finishing work around the fireplace is done, to avoid scratches or damage from drywall dust, muriatic acid, plaster, cement, paint or other sprays and liquids.<\/p><p>RSF strongly recommends installation and service by professionals certified by the National Fireplace Institute (U.S.) or Wood Energy Technology Transfer Inc. (Canada). The listing label is glued to the bottom of the fireplace; remove the bottom louver to read it.<\/p>"],["Location & ceiling height","Plan fireplace, chimney and options together; avoid cutting roof and floor joists, and run the chimney inside the house if possible (outside: insulated chase). No special floor reinforcement is needed.","<p>Plan the whole installation (fireplace, chimney, options) before starting. Choose a location that doesn't require cutting roof or floor joists. Run the chimney up through the inside of the house if at all possible; if it must run outside, enclose it in an insulated chase. A cold chimney causes poor draft.<\/p><div class=\"kv\"><div class=\"r\"><span>Min. ceiling height, sealed enclosure<\/span><span>7'<\/span><\/div><div class=\"r\"><span>Min. ceiling height, vented enclosure<\/span><span>6'<\/span><\/div><\/div><p>Measured from the base of the fireplace; applies to all ceilings above it (room ceiling, enclosure ceiling). A vented enclosure needs regular 3\"x10\" or larger grilles in holes cut within 1\" of both the floor and the ceiling, placed vertically or horizontally.<\/p><div class=\"note danger\">Never pack required air spaces with insulation or other materials.<\/div>"],["Secure to the floor","The fireplace must be attached to the floor: reuse the four crate brackets, placed as they were on the crate, with at least one screwed into a floor joist with 2\" wood screws if possible."],["Install the standoffs","Before installing the fireplace, screw the top standoff (centered) and both side standoffs to the casing with the self-tapping screws provided, bent edge flush with the facing. Seal the ¼\" gap at the top standoffs with high-temperature sealant and fill nothing behind it."],["Frame the enclosure","Combustibles no closer than the standoffs at top, back and sides; keep a 2\" open space around the chimney from the fireplace up to the ceiling (no firestop there). The ceiling firestop is never closer to the fireplace base than Table 1 (C).","<p>Frame with any suitable material (2\"x4\" or 2\"x6\" studs, plywood, gypsum board). Combustible materials must not go closer to the fireplace than the standoffs on the top, back and sides. You may completely cover the top as long as all standoff clearances and the 2\" clearance around the chased chimney are kept.<\/p><p>Leave the 2\" space around the chimney open from the fireplace up to the ceiling (no firestop). The distance from the ceiling firestop to the fireplace base must never be less than Table 1 (C): 7' sealed, 6' vented enclosure.<\/p><p>Recommended framing dimensions are shown as a drawing (Figure 6) on this page; the manual notes they are larger than required for ease of installation.<\/p>"],["Outside air duct","With the fireplace in position, run insulated aluminium flexible duct rated over 200°F (93°C) to the outside inlet: 4\" for total runs under 25', 5\" beyond, max. 12' vertical rise. The inlet sits at least 5' below the rain cap and never in an attic.","<ol><li>Pick a location for the duct and inlet; the inlet can be above or below floor level.<\/li><li>Cut a 4 ¼\" hole (5 ¼\" for 5\" duct) in the outside wall, push the inlet in from outside and seal the joint.<\/li><li>Fit the duct over the inlet's round sleeve. At both ends pull back the insulation and plastic cover, attach the duct with metal screws, push the cover back and tape it with 2\" aluminium duct tape.<\/li><\/ol><p>Loop the duct for an optional cold air trap, and don't crimp it at corners. Suggested kit: 4\" RSF outside air kit (FO-INT). Both 4\" and 5\" connecting sleeves come with the fireplace.<\/p>"],["Chimney through floors & roof","8\" ICC EXCEL only: 14\" square rough openings, a radiation shield under each floor, a radiation shield and storm collar at the attic, and the first length fixed to the fireplace with the three screws provided. Finish with flashing, storm collar and rain cap.","<ol><li>Cut and frame 14\" square openings (slightly larger is fine, never smaller) in floors, ceilings and roof.<\/li><li>From below, install a radiation shield in each floor; at the attic, a radiation shield and a storm collar.<\/li><li>Place the first length on the fireplace and secure it with the three screws provided. The chimney must extend at least 3' above its point of contact with the roof and at least 2' higher than any wall, roof or building within 10'. Over 5' above the roof, secure it with a roof brace.<\/li><li>Flashing, if the chimney is enclosed to the roof: vented flashing in the USA; vented flashing, or a roof radiation shield with regular flashing, in Canada. Seal it with roofing tar or exterior sealant, under the upper shingles and over the lower ones, and fasten with roofing nails or screws. Never block the vented flashing's openings.<\/li><li>Storm collar: a bead of clear or grey exterior sealant below, pull the collar through it, then seal again on top (not roofing tar).<\/li><li>Fit the rain cap and secure it with the screws provided.<\/li><\/ol><div class=\"note danger\">Keep 2\" or more between the chimney and combustible material, and don't fill it with insulation. The fireplace supports a maximum of 16' of chimney.<\/div>"],["Offsets & chase (if needed)","Max. offset 30° (USA) / 45° (Canada) and max. four elbows; 3 metal screws per joint and a wall or offset support above each offset. A chimney run outside goes in an insulated chase built as an extension of the home.","<p>An elbow may go directly on top of the fireplace. Use the offset charts in the EXCEL chimney installation manual. Install the elbow, enough lengths for the offset and a return elbow, securing each joint with 3 metal screws, then a wall support or offset support above each offset (elbows don't support the chimney above).<\/p><p>Through an exterior wall at an angle: use an angled wall insulated radiation shield (XM-8EWRSI30 or XM-8EWRSI45), and leave off its outside plate if the chimney is enclosed outside. Check the ceiling height.<\/p><p>Chase: insulate between the footings and the floor; in a mild climate at least to the first firestop, in a very cold climate to the top. Insulate the chase ceiling as for an attic. Insulated, vapor-sealed walls sheathed with fire rated gypsum board are strongly recommended (some codes require them); if you do this, don't insulate the wall above the front of the fireplace.<\/p>"],["Masonry chimney (if used)","Run EXCEL chimney from the fireplace top to a listed stainless liner (EXCEL, or ULC-S635, ULC-S640 or UL-1777) fitted inside the clay liner to the top, joined with the FO-FDM8 masonry adapter. Use at least one 18\" EXCEL length after the elbow, 12\" min. from the ceiling.","<div class=\"note danger\">An existing masonry chimney must first be inspected by an authority having jurisdiction: well built and fully lined per local codes and NBC or NFPA 211, cleaned of soot and creosote and in good condition, no insulation touching it or inside it, all clearances respected along its full run, and used for this fireplace only. If major repairs are needed, build a new chimney.<\/div><p>The stainless liner doesn't replace the clay liner. FO-FDM8 attaches to the liner with 3 stainless steel rivets and to the EXCEL chimney with 3 screws (provided); after mortaring, the joint should not be visible. Open the masonry from the center out, keeping three sides of the clay liner in place.<\/p><p>If a rigid liner is hard to fit, or the chimney is less than 10\"x10\" inside, use a listed flexible stainless liner with the LM-8LAF flexible/rigid adaptor. In a new chimney built around a 6\"x10\" clay liner, the stainless liner must be ovalized.<\/p>"],["Facing, hearth & mantel","Non-combustible facing only (gypsum board stays outside the standoffs); keep door swing and never block the louvers or side openings. Hearth extension 18\" deep and 40\" wide with the spark guard; combustible mantel shelf 12\" deep max., 24\" min. above the opening.","<p>Facing must be non-combustible, such as metal, brick, slate or ceramic tile; painted cement board or ceramic tile glued with high temperature silicone works. Gypsum board is not an acceptable facing and can't be closer than the side and top standoffs. Leave room for the doors to open, and don't cover or block any part of the louvers or the openings on each side of the firebox.<\/p><p>Hearth: non-combustible (brick, tile, stone, slate), at least 18\" deep from the front and 40\" total width centered on the firebox opening; no minimum thickness. Install the spark guard as described under the hearth spec.<\/p><p>Mantel: combustible shelf at most 12\" deep, its bottom at least 24\" above the top of the firebox opening. Combustible posts of any depth may sit at the side-wall distance.<\/p>"]];
+const CODES = [];
+const FAULTS = {"label":"Draft & smoke faults","panels":[{"title":"Smoke when the door opens","items":["Door opened too quickly → open it more slowly","Dirty chimney or plugged cap → screened caps clog with creosote","Chimney too short for the altitude and number of elbows (Table 2)","Range hood or bathroom exhaust fan running → house pressure","Pressure imbalance → open a window near the fireplace a little","Too little kindling → smoke is most likely while lighting"]},{"title":"Weak draft","items":["Smoke entering the room; hard to light or operate","Often wrongly blamed on a blocked air intake","Most common fix: add chimney height","Cold chimney run outside → enclose it in an insulated chase","Severely depressurized house → outside air won't stop smoking"]},{"title":"Excessive draft / over-firing","items":["Excessive draft → hotter fire, shorter burn times, less heat recovery","Burn rate won't slow, or the chimney connector behind the top louver glows red","Poorly adjusted door seal → over-firing, excess wood use, premature failure","Large amounts of paper, cardboard, mill ends or construction waste"]},{"title":"Poor fire or dirty glass","items":["Wet wood → hard to burn, little heat, more creosote, dark glass deposits","Outside air damper closed → fire may be starved for air","Fire goes out after closing the door → door shut too early","Slow fires leave deposits → a good hot fire once a day; wax firelogs dirty the glass"]}]};
+const DETAIL = {"light":{"tag":"Owner · operation","title":"Lighting a fire","cool":false,"html":"<p>Read the manual before your first fire. Then:<\/p><ol><li>Make sure the outside air damper is open.<\/li><li>Crumple newspaper as your fire starter. Use enough to light the kindling; 5-6 pieces should do.<\/li><li>Lay the kindling crisscrossed over the paper. Plenty of kindling heats the chimney quickly and builds a strong draft.<\/li><li>Light the paper. Partially close one of the doors, but don't shut it completely. When the door is in the right spot, you'll see air rushing into the fireplace.<\/li><li>Once the kindling is burning on its own, add small pieces of seasoned cordwood, always at least 3. Use the andirons on either side so the wood doesn't flatten and smother the fire. Set the pieces so the rising fire hits several of them and has air gaps to flow through.<\/li><li>Keep one door slightly open until the cordwood is lit. Close the door completely once the fire is established.<\/li><\/ol><div class=\"note\"><b>Fire went out?<\/b> The door was closed too early.<\/div><div class=\"note danger\"><b>Never<\/b> use gasoline, lantern fuel, kerosene, charcoal lighter fluid or similar liquids. Don't use a grate or raise the fire. Keep the fire behind the andirons, and move any log that falls against the glass.<\/div><div class=\"note\"><b>Note:<\/b> p. 6 says setting the outside air control lever horizontal completely opens the outside air damper; p. 9, in its steps for removing the bottom louver, calls horizontal the lever's closed position.<\/div><div class=\"note\"><b>Note:<\/b> p. 3 says to operate the fireplace with the doors fully closed, because a door left partly open can draw gas and flame out of the opening, creating fire and smoke hazards; p. 7's steps for lighting and reloading leave one door slightly open until the wood is lit (about 3-10 minutes when reloading).<\/div>"},"firstfires":{"tag":"Owner · reassurance","title":"Your first fires","cool":false,"html":"<p>Expect a slow start-up during the first few fires. That's normal.<\/p><h4>Black bricks<\/h4><p>The refractory bricks lining the firebox still hold moisture from manufacturing. It takes a few hot fires to dry them out. Until then they look black with smoke deposits. Once the moisture is gone, they turn white.<\/p><h4>No break-in fires needed<\/h4><p>Unlike a cast iron stove, this fireplace doesn't need curing with small fires that slowly get bigger. Feel free to light a large fire from the very start.<\/p><h4>A slight smell<\/h4><p>You'll notice an odor during the first few fires. It comes from the paint curing and oil burning off the metal. It may be strong enough to set off your smoke detector. Open the doors and windows so the room can air out.<\/p>"},"control":{"tag":"Owner · operation","title":"Controlling the heat","cool":false,"html":"<p>The Focus ST has no draft control. You set how hard it burns with the size and placement of the logs.<\/p><h4>For a cooler, lazy fire<\/h4><p>Load 2 to 3 large logs in the center of the hearth, between the andirons, with their sides facing you (not the ends).<\/p><h4>For a warmer, brighter fire<\/h4><p>Load a number of small logs with the ends facing you, so one end comes very close to the glass. Put half of them near one glass and half near the other. The combustion air comes in near the glass, so this makes a more vigorous fire.<\/p><h4>How it burns<\/h4><p>It burns at a fixed rate that depends on the heat inside the firebox: fast while it lights up, then gradually slower for the best efficiency and emissions reduction. Faster fires make more heat, but more of it goes up the chimney and they use much more wood.<\/p><div class=\"note\"><b>The door seal matters most.<\/b> A good door gasket seal is the most important factor in controlling the burn rate. To check it, latch the door on a sheet of paper and pull gently but firmly. If the paper tears or is hard to pull out, the seal is right. Check all sides. Replace a worn gasket; kits are available from your RSF dealer.<\/div>"},"reload":{"tag":"Owner · operation","title":"Reloading the fire","cool":false,"html":"<ol><li>Have your next load of wood ready before you open the door. The firebox cools quickly while the door is open, but don't rush.<\/li><li>Open the door slowly so smoke doesn't spill into the room.<\/li><li>Poke and stir the unburnt wood left in the firebox to revive the fire, then place the new logs.<\/li><li>Keep the door slightly ajar for about 3-10 minutes, depending on how well seasoned the wood is and how many coals were left. Close it once the new wood is well lit.<\/li><\/ol><div class=\"note\"><b>Note:<\/b> p. 3 says to operate the fireplace with the doors fully closed, because a door left partly open can draw gas and flame out of the opening, creating fire and smoke hazards; p. 7's steps for lighting and reloading leave one door slightly open until the wood is lit (about 3-10 minutes when reloading).<\/div><h4>Smoke coming into the room?<\/h4><ul><li>Open the door more slowly. Opening it quickly creates a suction of air into the room.<\/li><li>Turn off kitchen range hoods and bathroom exhaust fans. They create negative pressure that pulls smoke out of the fireplace.<\/li><li>Open a window near the fireplace a little to equalize the pressure. Close it once the draft is established.<\/li><li>Make sure the chimney is clean and the cap isn't plugged. Caps with screens clog with creosote more easily.<\/li><li>Use enough kindling to get a hot fire going quickly. Smoke is most likely to come in while you're lighting the fire.<\/li><\/ul>"},"air":{"tag":"Owner · operation","title":"The outside air control","cool":false,"html":"<p>The fireplace burns air from both inside and outside your home. Room air comes in through an opening at the bottom of both doors. Outside air comes in through the connection on the side of the fireplace when the outside air damper is open. The control lever is housed in a bottom louver.<\/p><ul><li><b>Open it to burn.<\/b> RSF recommends always using outside air for combustion. Cold, dense outside air helps start the fire. If you don't open the damper while burning wood, the fire may be starved for air.<\/li><li><b>Close it when the fireplace isn't burning<\/b>, so cold outside air doesn't come into your home.<\/li><li>You can choose to burn with room air instead.<\/li><li>Outside air can help with negative pressure in the house, but it won't stop the fireplace from smoking in a severely depressurized house.<\/li><\/ul><div class=\"note\"><b>Note:<\/b> p. 6 says setting the outside air control lever horizontal completely opens the outside air damper; p. 9, in its steps for removing the bottom louver, calls horizontal the lever's closed position.<\/div>"},"wood":{"tag":"Owner · operation","title":"What wood to burn","cool":false,"html":"<p>Burn seasoned cordwood: wood that's been cut, split and dried under cover for at least 6 months, preferably a year or more. Dry seasoned wood is generally under 20% moisture. A combination of densified fuel logs and wood is also allowed.<\/p><p>Wet wood is hard to burn. It gives lower efficiency, more creosote and dark deposits on the glass, and you can burn a lot of it and get very little heat.<\/p><p>All wood gives about the same heat per pound. Hardwood is denser, so more weight fits in the firebox and it burns longer and more evenly.<\/p><h4>Never burn<\/h4><ul><li>Scrap, driftwood, treated wood, coal, garbage or plastic.<\/li><li>Construction scraps (like 2x4 or plywood) as your only fuel. They can overheat and seriously damage the fireplace.<\/li><li>Large amounts of paper, cardboard, mill ends or construction waste. They can over-fire the fireplace, or start a chimney fire if the flue is dirty.<\/li><\/ul><div class=\"note\"><b>Note:<\/b> p. 6 says never to burn scrap; p. 3 says not to use construction scraps (such as 2x4 or plywood scraps) as your only supply of fuel.<\/div><h4>Fire logs<\/h4><p>Wax fire logs (like Duraflame) aren't recommended because they dirty the glass. If you use wax or densified firelogs, burn only one at a time and don't poke or stir it. Use only firelogs evaluated for fireplace use, and read their warnings first.<\/p>"},"glass":{"tag":"Owner · maintenance","title":"Cleaning the glass","cool":false,"html":"<p>In a slow-burning fireplace, the glass won't always stay perfectly clean. A good hot fire once a day usually burns off most of the deposits. The drier the wood, the cleaner the glass.<\/p><ul><li>Clean the glass only when it's cool. Cleaning hot glass can cause a serious burn.<\/li><li>Never use an abrasive cleaner. Use only a cleaner your dealer recommends. Wood stove glass cleaners work far better than regular glass or oven cleaners.<\/li><li>Heat won't break the glass, but impact can. Don't hit it, and don't slam the doors.<\/li><\/ul><h4>Protect the paint<\/h4><p>Don't spray glass cleaner or other cleaners on the paint. They can strip it and make touch-ups hard. Clean painted parts with a soft damp cloth, mild detergent and water, never an abrasive cleaner.<\/p><p>To touch up the face, use Stove Bright Metallic Black high temperature paint and follow the can's directions. Never paint while the fireplace is still warm, keep the can away from heat and flame, and ventilate the room until the paint is dry. If you take the glass out of the door, the gasket has to be replaced.<\/p>"},"chimney":{"tag":"Owner · maintenance","title":"Chimney, creosote & ashes","cool":false,"html":"<p>Slow fires give off tar and vapors that mix with moisture from the wood and condense in a cool chimney as creosote. If creosote ignites, it makes an extremely hot fire.<\/p><ul><li>Check the chimney for creosote every week or so, until you learn how often it needs cleaning.<\/li><li>Soot or creosote 1/8\" (3mm) thick or more means clean it right away. You may also need to change how you burn and inspect more often.<\/li><li>Close the fireplace doors before sweeping. Use an 8\" round brush.<\/li><\/ul><h4>Ashes<\/h4><ul><li>Remove ashes before they get deep enough to spill out when you open a door.<\/li><li>Put them in a metal container with a tight-fitting lid.<\/li><li>Set the closed container on a non-combustible floor or on the ground, well away from anything that can burn.<\/li><li>If you'll bury or scatter the ashes, keep them in the closed container until all the cinders are thoroughly cool.<\/li><\/ul><div class=\"note\">RSF strongly recommends having the fireplace installed and serviced by professionals certified by the National Fireplace Institute (U.S.) or Wood Energy Technology Transfer Inc. (Canada).<\/div>"},"safety":{"tag":"Owner · safety","title":"Safety & over-firing","cool":false,"html":"<ul><li>Operate the fireplace with the doors fully closed. A door left partly open can draw gas and flame out of the opening, creating fire and smoke hazards.<\/li><li>Keep furniture, firewood and other combustibles at least 4' from the front of the fireplace.<\/li><li>Have at least one smoke detector on each level of your home, and at least one carbon monoxide detector.<\/li><li>Never use gasoline, kerosene, charcoal lighter fluid or similar liquids to start or freshen a fire, and keep them well away while it's in use.<\/li><li>Don't use a grate or other products not specified for this fireplace. Don't add a flue damper, and don't install an insert in it.<\/li><li>Don't slam the doors; the glass can break.<\/li><\/ul><div class=\"note\"><b>Note:<\/b> p. 3 says to operate the fireplace with the doors fully closed, because a door left partly open can draw gas and flame out of the opening, creating fire and smoke hazards; p. 7's steps for lighting and reloading leave one door slightly open until the wood is lit (about 3-10 minutes when reloading).<\/div><h4>Signs of over-firing<\/h4><p>Don't over-fire the fireplace. You're over-firing if you can't slow down the burn rate, or if the chimney connector behind the top louver glows red. Damage from over-firing isn't covered by the warranty.<\/p><div class=\"note danger\"><b>No unvented gas logs.<\/b> This fireplace hasn't been tested with an unvented gas log set. Never install one.<\/div>"},"warranty":{"tag":"Owner · warranty","title":"Warranty at a glance","cool":false,"html":"<p>RSF Woodburning Fireplaces warrants the fireplace against defects in material and workmanship for 30 years, on these terms:<\/p><div class=\"kv\"><div class=\"r\"><span>First year<\/span><span>Defective parts repaired or replaced, plus reasonable labor<\/span><\/div><div class=\"r\"><span>Second through fifth years<\/span><span>Defective parts repaired or replaced; no labor<\/span><\/div><div class=\"r\"><span>Sixth through thirtieth years<\/span><span>Replacement parts, if available, at 50% of the published retail price; no labor<\/span><\/div><\/div><h4>Not covered<\/h4><ul><li>Electrical components after the first year (they're covered for one year only)<\/li><li>Glass and plating<\/li><li>Normal wear and tear, such as paint discoloration, worn gaskets, or eroded or cracked refractory<\/li><li>Vandalism, neglect, abuse, over-firing, improper fuel or fuel loads, or not servicing the unit<\/li><li>Repairs not authorized by RSF in advance, freight on replacement parts, and damage in transit<\/li><li>Installations that don't meet the manual's requirements<\/li><\/ul><div class=\"note\">The warranty isn't transferable. Defective parts are repaired or replaced when returned to an authorized RSF dealer. Use only genuine RSF parts: substitutes void the warranty and may put your safety at risk. This is a summary; the full terms are in the manual.<\/div>"},"specClear":{"tag":"Installer · spec","title":"Clearances","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Combustibles to side, back and top standoffs (A)<\/span><span>0\" (0,0 mm)<\/span><\/div><div class=\"r\"><span>Side wall to side of firebox opening (B)<\/span><span>9\" (229 mm)<\/span><\/div><div class=\"r\"><span>Min. ceiling height, sealed enclosure (C)<\/span><span>7' (2,13 m)<\/span><\/div><div class=\"r\"><span>Min. ceiling height, vented enclosure (C)<\/span><span>6' (1,83 m)<\/span><\/div><div class=\"r\"><span>Chimney to combustibles<\/span><span>2\" or more<\/span><\/div><\/div><p>At 9\" (B) the door can't open fully; push the side wall back at least an additional 10\" for a full swing. Ceiling height (C) runs from the base of the fireplace to the lowest point of any ceiling above it, inside and outside the enclosure. A vented enclosure needs regular 3\"x10\" or larger grilles in holes cut within 1\" of both floor and ceiling.<\/p><p>Combustibles never go closer than the standoffs on the top, back and sides. Keep the 2\" chimney space open and never pack required air spaces with insulation. In the room, combustibles stay at least 4' from the front.<\/p>"},"specHearth":{"tag":"Installer · spec","title":"Hearth extension & spark guard","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Min. depth from front of fireplace (G)<\/span><span>18\" (457 mm)<\/span><\/div><div class=\"r\"><span>Min. total width, centered on opening (H)<\/span><span>40\" (1,02 m)<\/span><\/div><div class=\"r\"><span>Min. spark guard width (I)<\/span><span>36\" (914 mm)<\/span><\/div><div class=\"r\"><span>Hearth extension thickness<\/span><span>no minimum<\/span><\/div><\/div><p>Use non-combustible material such as brick, tile, stone or slate. The spark guard provided (5\" x 36\" sheet metal) goes halfway under the fireplace and halfway under the hearth extension, centered on the door opening, extending 2½\" beneath the fireplace. It isn't required on a non-combustible floor.<\/p><p>Raised installations need a site-built guard. Z-shaped when the fireplace bottom is 2 ½\" or less above the hearth extension's non-combustible flooring: its height equals the floor-to-base distance and it goes at least 2½\" under both. Right-angle when higher than 2 ½\": sides at least 2½\" x 2½\", covered with non-combustible material. Any custom guard meets the (I) width and is centered on the door opening.<\/p>"},"specMantel":{"tag":"Installer · spec","title":"Mantel","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Max. combustible shelf depth (J)<\/span><span>12\" (305 mm)<\/span><\/div><div class=\"r\"><span>Min. height, top of firebox opening to bottom of combustible shelf (K)<\/span><span>24\" (610 mm)<\/span><\/div><\/div><p>Combustible mantel posts of any depth may go on either side if they keep the side-wall distance (B, 9\"). Masonry and other non-combustible shelves can sit directly above the top of the fireplace facing or higher; below the combustible minimum, the wall framing and facing between the top of the metal face and the shelf bottom must be non-combustible.<\/p>"},"specFlue":{"tag":"Installer · spec","title":"Chimney","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Chimney<\/span><span>8\" ICC Model EXCEL only<\/span><\/div><div class=\"r\"><span>Min. total height, fireplace top to below rain cap (D)<\/span><span>12' (3,66 m)<\/span><\/div><div class=\"r\"><span>Max. total height (E)<\/span><span>40' (12,19 m)<\/span><\/div><div class=\"r\"><span>Max. height supported by the fireplace (F)<\/span><span>16' (4,88 m)<\/span><\/div><\/div><p>Raise the minimum by approximately 6\" for every 1000' of elevation; every 15°, 30° or 45° offset (one pair of elbows) adds more. Table 2 minimum flue heights, measured from the top of the fireplace to the top of the chimney before the rain cap:<\/p><div class=\"kv\"><div class=\"r\"><span>0 - 1000 ft · straight / 1 x 30° / 2 x 30°<\/span><span>12' / 15' / 18'<\/span><\/div><div class=\"r\"><span>1001 - 2000 ft · straight / 1 x 30° / 2 x 30°<\/span><span>12'6\" / 15'6\" / 19'<\/span><\/div><div class=\"r\"><span>6001 - 7000 ft · straight / 1 x 30°<\/span><span>15' / 18'6\"<\/span><\/div><\/div><p>With two different offsets, use the two-offset column of the biggest pair. The full table (to 10000 ft, with 15° and 45° columns) is on this page. Follow the EXCEL chimney installation manual for supports, bracing and anchors.<\/p>"},"specOffset":{"tag":"Installer · spec","title":"Offsets & roof termination","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Rough opening, floors / ceilings / roof<\/span><span>14\" square, never smaller<\/span><\/div><div class=\"r\"><span>Max. offset angle<\/span><span>USA 30° · Canada 45°<\/span><\/div><div class=\"r\"><span>Max. elbows<\/span><span>four (two offsets and returns)<\/span><\/div><div class=\"r\"><span>Above roof contact point<\/span><span>3' min.<\/span><\/div><div class=\"r\"><span>Above any wall, roof or building within 10'<\/span><span>2' min.<\/span><\/div><div class=\"r\"><span>Roof brace<\/span><span>if more than 5' above the roof<\/span><\/div><\/div><p>Radiation shield under each floor the chimney passes through; radiation shield and storm collar at the attic. Chimney enclosed to the roof: vented flashing (USA); vented flashing, or a roof radiation shield with regular flashing (Canada). Never block the vented flashing's openings.<\/p><p>An elbow may sit directly on the fireplace. Fasten every joint with 3 metal screws and fit a wall or offset support above each offset; elbows don't support the chimney above. Through an exterior wall: angled wall insulated radiation shield XM-8EWRSI30 or XM-8EWRSI45.<\/p>"},"specAir":{"tag":"Installer · spec","title":"Outside air","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Duct<\/span><span>insulated aluminium flexible, rated over 200°F (93°C)<\/span><\/div><div class=\"r\"><span>Diameter, total run less than 25'<\/span><span>4\"<\/span><\/div><div class=\"r\"><span>Diameter, longer runs<\/span><span>5\"<\/span><\/div><\/div><div class=\"note small\"><b>Maker's website:<\/b> Outside Air 4\" (5\" also usable; room air operation possible). Install to the manual.<\/div><div class=\"kv\"><div class=\"r\"><span>Max. vertical rise above unit base<\/span><span>12'<\/span><\/div><div class=\"r\"><span>Inlet below chimney rain cap<\/span><span>at least 5'<\/span><\/div><div class=\"r\"><span>Wall hole<\/span><span>4 ¼\" (5 ¼\" for 5\" duct)<\/span><\/div><\/div><p>Suggested kit: 4\" RSF outside air kit (FO-INT). Both 4\" and 5\" connecting sleeves come with the fireplace. The inlet can be above or below floor level but must never terminate in an attic space. Loop the duct for an optional cold air trap, and don't crimp it at corners.<\/p>"},"specGas":{"tag":"Installer · spec","title":"Vented gas log option","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Max. gas log set<\/span><span>40,000 BTU/h<\/span><\/div><div class=\"r\"><span>Log set listing<\/span><span>ANSI Z21.60/CSA 2.26<\/span><\/div><div class=\"r\"><span>Gas line entry<\/span><span>1 ¼\" hole each side, about 12 ¾\" up<\/span><\/div><div class=\"r\"><span>Firebox floor air holes<\/span><span>four, 1\" diameter, 6\" apart center to center<\/span><\/div><\/div><div class=\"note danger\">The maximum gas output allowed in the Focus ST is 40,000 BTU/h. The gas log has to be listed to ANSI Z21.60/CSA 2.26.<\/div><p>Vented sets only; the fireplace hasn't been tested with an unvented set. Remove both bottom refractory bricks and store them (everything goes back in to burn wood again). Drill the holes in line, parallel to and halfway between both doors, centered between the side bricks, and leave them completely open. Clean the gray sealant out of the hole in the right side refractory bricks (2) on the chosen side.<\/p><p>RSF requires no minimum clearance from the firebox sides or top to the log set, but the log maker's clearances apply; the gas valve may go inside the firebox if the log maker allows it. Gas line by qualified personnel, per local ordinances and the appropriate Gas Code.<\/p>"},"specOptions":{"tag":"Installer · spec","title":"Options","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Gravity vent kits<\/span><span>FO-V2 · FO-V3<\/span><\/div><div class=\"r\"><span>Grill only, for FO-V2<\/span><span>FO-VGC<\/span><\/div><div class=\"r\"><span>Extra 5' insulated flexible duct<\/span><span>FO-DUCT5<\/span><\/div><div class=\"r\"><span>Max. gravity vent length<\/span><span>15'<\/span><\/div><div class=\"r\"><span>Rock retainer kit<\/span><span>FO-KR<\/span><\/div><div class=\"r\"><span>Decorative cast iron andirons<\/span><span>FO-A<\/span><\/div><\/div><p>Gravity vent kits duct hot air to a room above or on the same level as the fireplace; each includes 5' of insulated flexible ducting, a fireplace adapter, an outlet grill adapter and a decorative outlet grill. The rock retainer kit is for thin non-combustible facings such as ceramic tile or sliced brick, not full brick or stone; thin materials can also be glued on with high temperature silicone. Instructions come in the box with each option.<\/p><h4>General specifications<\/h4><div class=\"kv\"><div class=\"r\"><span>Pure fire viewing (2015 U.S. EPA fireplace definition)<\/span><span>more than 500 square inches<\/span><\/div><\/div><div class=\"note small\"><b>Maker's website:<\/b> Glass viewing size 288 in² / 24 ¼\" W x 11 ⅞\" H.<\/div>"}};
+const PAGEREF = {"light":7,"firstfires":7,"control":7,"reload":7,"air":6,"wood":6,"glass":8,"chimney":8,"safety":3,"warranty":24,"specClear":5,"specHearth":5,"specMantel":5,"specFlue":13,"specOffset":14,"specAir":12,"specGas":19,"specOptions":4,"step0":9,"step1":10,"step2":10,"step3":10,"step4":12,"step5":12,"step6":14,"step7":14,"step8":16,"step9":17};
+const INDEX_EXTRA = [{"k":"h","id":"chimney","t":"creosote","p":"Clean at 1/8\" (3mm) of buildup"},{"k":"h","id":"chimney","t":"ashes","p":"Metal container with a tight-fitting lid"},{"k":"h","id":"reload","t":"smoke in the room","p":"Smoke spills when the door opens"},{"k":"h","id":"light","t":"fire goes out","p":"The door was shut too early"},{"k":"h","id":"firstfires","t":"smoke detector","p":"First-fire odor can set it off"},{"k":"h","id":"safety","t":"overfiring","p":"Chimney connector behind the top louver glows red"},{"k":"h","id":"control","t":"door gasket","p":"Paper test for the door seal"},{"k":"i","id":"specGas","t":"gas log conversion","p":"Vented logs up to 40,000 BTU/h"}];
+const MANUAL_BASE = "../../var/brain-assets/";
+const MANUALS = [{"n":1,"label":"Installation & Operation Manual","short":"Manual","url":"documents/rsf/RSF-IIFST_2020-06.pdf","pages":24,"role":"installation_and_operation","kit":false,"revision":""}];
+
+/* step detail (generated; a step may carry its own drawer html as a third element) */
+STEPS.forEach((s,i)=>{ DETAIL['step'+i]={tag:'Installer · step '+(i+1), title:s[0], cool:true, html:s[2]||`<p>${s[1]}</p>`}; });
+
+/* ================= template logic (identical in every guide) ================= */
+const $=(s,r=document)=>r.querySelector(s); const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const MULTI = MANUALS.length>1;
+/* where each manual lives: a relative storage key under MANUAL_BASE, or a full URL */
+function manualHref(n){const m=MANUALS[n-1];return /^(https?:)?\/\//.test(m.url)?m.url:MANUAL_BASE+m.url;}
+function pdfHref(page,n){return manualHref(n||1)+(page?('#page='+page):'');}
+/* deep-link into a PDF at a specific page (#page=N is honored by the Chrome, Edge and Firefox viewers) */
+function openPDF(page,n){window.open(pdfHref(page,n),'_blank','noopener');}
+const MANUAL_URL = manualHref(1);
+
+function tile(d){const b=document.createElement('button');b.className='tile';b.innerHTML=
+  `<svg class="ic" viewBox="0 0 24 24" ${d.fill?'fill="currentColor"':'fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"'}><path d="${d.icon}"/></svg>
+   <h3>${d.title}</h3><p>${d.blurb}</p>`;
+  b.onclick=()=>openDrawer(d.id);return b;}
+HOME_PRIMARY.forEach(d=>$('#homeTiles').appendChild(tile(d)));
+HOME_SECONDARY.forEach(d=>$('#homeTiles2').appendChild(tile(d)));
+if(!HOME_SECONDARY.length) $('#homeSec2').style.display='none';
+
+SPECS.forEach(s=>{const el=document.createElement('div');el.className='spec';
+  el.innerHTML=`<div class="lab">${s.lab}</div><div class="rows">${s.rows.map(r=>`<div class="row"><b>${r[0]}</b><span class="v">${r[1]}</span></div>`).join('')}${s.note?`<div class="row"><b style="font-size:11px">${s.note}</b></div>`:''}</div>`;
+  el.style.cursor='pointer';el.onclick=()=>openDrawer(s.tap);$('#specCards').appendChild(el);});
+
+STEPS.forEach((s,i)=>{const el=document.createElement('div');el.className='step';
+  el.innerHTML=`<div class="num">${i+1}</div><div class="body"><h4>${s[0]}</h4><p>${s[1]}</p></div>
+   <div class="check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m5 12 4 4 10-10"/></svg></div>`;
+  el.querySelector('.body').onclick=(e)=>{e.stopPropagation();openDrawer('step'+i);};
+  el.onclick=()=>el.classList.toggle('done');
+  $('#checklist').appendChild(el);});
+
+if(FAULTS && FAULTS.panels && FAULTS.panels.length){
+  $('#faultLabel').textContent=FAULTS.label||'Field faults';
+  FAULTS.panels.forEach(p=>{const el=document.createElement('div');el.className='panel warn';
+    el.innerHTML=`<h3>⚠ ${p.title}</h3><ul>${p.items.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+    $('#faults').appendChild(el);});
+} else $('#faultSec').style.display='none';
+
+if(CODES.length){
+  const dots=Math.max(4,...CODES.filter(c=>typeof c[0]==='number').map(c=>c[0]));
+  CODES.forEach(c=>{const el=document.createElement('div');el.className='code';
+    let head='';
+    if(typeof c[0]==='number'){for(let i=0;i<dots;i++)head+=`<span class="b ${i<c[0]?'on':''}"></span>`;head=`<div class="blinks">${head}</div>`;}
+    else head=`<div class="cd">${c[0]}</div>`;
+    el.innerHTML=`${head}<div class="t">${c[1]}</div><div class="d">${c[2]}</div>`;
+    $('#codes').appendChild(el);});
+} else $('#codeSec').style.display='none';
+
+/* ---------------- role switching ---------------- */
+function setRole(role){
+  $('#gate').style.display='none';
+  $('#toggle').style.display='flex';
+  document.body.classList.add('has-role');
+  $$('.view').forEach(v=>v.classList.toggle('active',v.id===role));
+  $$('#toggle button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.role===role));
+  window.scrollTo({top:0});
+  document.body.classList.remove('hdr-away');
+  setHdrH(); requestAnimationFrame(onScroll);
+}
+$$('[data-role]').forEach(b=>b.onclick=()=>setRole(b.dataset.role));
+function currentRole(){const v=$('.view.active');return v?v.id:null;}
+
+/* return to the ignition gate (home) */
+function goHome(){
+  $('#gate').style.display='';
+  $('#toggle').style.display='none';
+  $$('.view').forEach(v=>v.classList.remove('active'));
+  $$('#toggle button').forEach(b=>b.setAttribute('aria-pressed','false'));
+  $('#results').classList.remove('open'); $('#q').value='';
+  document.body.classList.remove('has-role','hdr-away');
+  closeHeaderSearch();
+  window.scrollTo({top:0});
+  setHdrH();
+}
+$('#brandHome').onclick=goHome;
+$('#brandHome').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goHome();}});
+
+/* ---------------- drawer ---------------- */
+/* PAGEREF: the manual page where each topic is actually discussed, verified against PAGES.
+   A number is a page of the first manual; [n, page] is a page of manual n. */
+function refOf(id){const r=PAGEREF[id];if(r==null)return null;return Array.isArray(r)?{d:r[0],p:r[1]}:{d:1,p:r};}
+function openDrawer(id){const d=DETAIL[id];if(!d)return;
+  $('#dTag').textContent=d.tag;$('#dTitle').textContent=d.title;
+  const body=$('#dBody');body.className='dcontent'+(d.cool?' cool':'');
+  let html=d.html;
+  const ref=refOf(id), man=ref&&MANUALS[ref.d-1];
+  if(man) html+=`<a class="manlink${d.cool?' cool':''}" href="${pdfHref(ref.p,ref.d)}" target="_blank" rel="noopener">
+     <span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h9l5 5v11H4Z"/><path d="M13 4v5h5"/><path d="M8 13h6M8 16h6"/></svg></span>
+     <span class="tx"><b>For the specific details in the ${man.label}, go here →</b><small>Opens the official PDF at page ${ref.p}</small></span>
+     <svg class="arr" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg></a>`;
+  body.innerHTML=html;
+  $('#scrim').classList.add('open');$('#drawer').classList.add('open');}
+function closeDrawer(){$('#scrim').classList.remove('open');$('#drawer').classList.remove('open');}
+$('#dClose').onclick=closeDrawer;$('#scrim').onclick=closeDrawer;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();$('#pdfMenu').classList.remove('open');}});
+
+/* ---------------- the official PDF(s) ---------------- */
+const pdfMenu=$('#pdfMenu');
+pdfMenu.innerHTML=`<div class="ml">Official manuals</div>`+MANUALS.map((m,i)=>
+  `<a href="${pdfHref(null,i+1)}" target="_blank" rel="noopener"><b>${m.label}</b><small>${m.pages} pages${m.revision?' · '+m.revision:''}</small></a>`).join('');
+$('#pdfBtn').onclick=e=>{e.preventDefault();e.stopPropagation(); if(MULTI) pdfMenu.classList.toggle('open'); else openPDF(null,1);};
+$$('.footdoc').forEach(a=>{a.href=pdfHref(null,+a.dataset.doc);a.target='_blank';a.rel='noopener';});
+document.addEventListener('click',e=>{if(!pdfMenu.contains(e.target))pdfMenu.classList.remove('open');});
+
+/* ---------------- search ---------------- */
+/* full text of every page of every manual: {d: manual number, p: physical PDF page (cover = 1), t: text} */
+const PAGES = [{"d":1,"p":1,"t":"Owner's Manual\nResidential Factory Built Fireplace\n\nOperation • Maintenance • Installation\n\nFOCUS ST\n\nKeep these instructions for future use.\n\nIndustrial Chimney Company Inc.\n400 J.-F. Kennedy, St-Jerome, QC, Canada, J7Y 4B7\nTelephone: (450) 565-6336\nwww.icc-rsf.com\n\nRSF-IIFST_2020-06"},{"d":1,"p":2,"t":"Dear Customer,\nThe FOCUS ST incorporates technology with elegance to give you a beautiful view of the fire\nwithout compromising on heating efficiency or environmental quality.\nWe have designed your new FOCUS ST to be easy to install, operate and maintain. It is in your\nbest interest to become familiar with it. Study your manual to be sure that the installation is\ncorrect, then follow the guidelines for operation and maintenance.\nWe at RSF Woodburning Fireplaces congratulate you on your choice of the FOCUS ST, and\nare confident that you have purchased a fireplace that is simply, the best.\nSincerely,\n\nRSF Woodburning Fireplaces Team\n\nTABLE OF CONTENTS\nSAFETY FIRST\nDO'S AND DONT'S\nCREOSOTE: FORMATION AND REMOVAL\nGENERAL SPECIFICATIONS\nCONTROLLING THE HEAT OUTPUT\nOPTIONS\nUNIT DIMENSIONS AND CLEARANCES\nOPERATION\nAIR CONTROLS\nIMPORTANCE OF DRAFT\nBURN TIME VS HEAT OUTPUT\nFUEL\nFIRST FIRES\nLIGHTING\nCONTROLLING THE FIRE\nREFUELING\nTROUBLESHOOTING PROBLEMS\nMAINTENANCE\nCHIMNEY CLEANING\nDISPOSAL OF ASHES\nGENERAL CLEANING\nGLASS CLEANING\nPAINT\nDOOR ADJUSTMENT\nLOUVERS\nFOCUS ST Owner's Manual\n\n3\n\nINSTALLATION\n\n3\n3\n\n9\n\nLOCATION\nCEILING CLEARANCE\nSECURING THE FIREPLACE IN PLACE\nSTANDOFF INSTALLATION\nFRAMING\nOUTSIDE AIR DUCT\nCHIMNEY\nCHIMNEY INSTALLATION\nOFFSET CHIMNEY\nCHASE ENCLOSURE\nMASONRY CHIMNEY\nCOVERING THE FIREPLACE FACING\nHEARTH EXTENSION\nBENEATH HEARTH EXTENSION\nMANTEL\nREFRACTORY BRICKS' INSTALLATION\nGAS LOG INSTALLATION\n\n4\n4\n4\n5\n6\n6\n6\n6\n6\n7\n7\n7\n7\n8\n8\n8\n8\n8\n8\n8\n9\n9\n2\n\n10\n10\n10\n10\n12\n12\n13\n13\n14\n15\n16\n17\n17\n18\n18\n18\n19\n\nLISTING LABEL\n\n20\n\nCOMPLETE OPTIONS LIST\n\n21\n\nREPLACEMENT PARTS\n\n23\n\nLIMITED WARRANTY\n\n24\n\nRSF Woodburning Fireplaces"},{"d":1,"p":3,"t":"SAFETY FIRST\nDO'S AND DONT'S\nIf this fireplace is not properly installed, a house fire could result. For your safety and that of your family,\nfollow the installation directions. Contact your local authority having jurisdiction (such as municipal\nbuilding department, fire department, fire prevention bureau, etc.) regarding restrictions and installation\nrequirements, and the need to obtain a permit.\nTo ANYONE using this fireplace: these DO's and DONT's are for your safety.\n1. DO read this instruction manual before lighting your first fire.\n2. DO burn seasoned wood fuel or a combination of densified fuel logs and wood fuel.\n3. DO operate the fireplace with doors fully closed. If a door is left partly open, gas and flame can be drawn\nout of the fireplace opening, creating both fire and smoke hazards.\n4. DO keep all combustible materials (furniture, firewood, etc.) at least 4' away from the front of the fireplace.\n5. This fireplace needs periodic inspection and repair for proper operation. DO learn to properly use it and maintain\nit.\n6. Do have at least one smoke detector on each level of the house and at least one carbon monoxide detector.\n7. To avoid glass breakage, DO NOT slam the fireplace doors.\n8. DO NOT ever use gasoline, gasoline-type lantern fuel, kerosene, charcoal lighter fluid or similar liquids to start\nor freshen up a fire in this fireplace. Keep all such liquids well away from the fireplace while it is in use.\n9. DO NOT overfire the fireplace. If you are unable to slow down the burn rate of the fire or if the chimney\nconnector behind the top louver glows red, you are overfiring the fireplace.\n10. DO NOT use a fireplace grate or other products not specified for use with this fireplace.\n11. DO NOT install a flue damper that would allow you to reduce the chimney draft and thus slow the minimum\nburn rate.\n12. To avoid damaging the fireplace, DO NOT operate it in a manner inconsistent with the operating instructions in\nthis manual.\n13. DO NOT install an insert in this fireplace.\n NOTE: We strongly recommend that our products be installed and serviced\nby professionals who are certified by the National Fireplace Institute in the\nU.S. or by Wood Energy Technology Transfer Inc. in Canada.\n\nCREOSOTE: FORMATION AND REMOVAL\nWhen wood is burned slowly, it produces tar and other organic vapors which combine with the expelled moisture\nfrom the wood to form creosote. The creosote vapors can condense in the relatively cool chimney of a slow burning\nfire. As a result, creosote residue accumulates on the flue lining. When ignited, this creosote makes an extremely\nhot fire.\nThe chimney should be inspected periodically during the heating season to see if a creosote build-up has occurred.\nThe presence in a chimney of soot or creosote in excess of 1/8\" (3mm) thick will indicate the need for immediate\ncleaning, possible modification of burning procedures, and more frequent inspections.\n❖ WARNING: USE SOLID FUEL ONLY. BURN DRY WOOD ONLY.\nDO NOT BURN: DRIFTWOOD, TREATED WOOD, COAL, GARBAGE, OR PLASTIC.\nDo not use construction scraps (e.g. 2x4 or plywood scraps) as your only supply of fuel as you can overheat and\nseriously damage the fireplace.\n\nFOCUS ST Owner's Manual\n\n3\n\nRSF Woodburning Fireplaces"},{"d":1,"p":4,"t":"We do not recommend using wax fuel logs (e.g. Duraflame) in this fireplace because it will dirty the glass. If you\nchoose to use wax or densified firelogs, do not use more than one at a time and do not poke or stir the logs while\nthey are burning. Use only firelogs that have been evaluated for fireplace use. In Canada, they must meet the\nrequirements of ANSI/CAN/UL/ULC 2115, Processed Solid Fuel Firelogs and Firestarter. Refer to the firelog\nwarnings and caution markings prior to use.\n\nGENERAL SPECIFICATIONS\nUnder the 2015 U.S. EPA (Environmental Protection Agency) regulation, the FOCUS ST is defined as a fireplace\nprimarily for its decorative and aesthetic prominence offering more than 500 square inches of pure fire viewing.\n\nCONTROLLING THE HEAT OUTPUT\nThe FOCUS ST fireplace is not only designed to provide warm radiant heat on two sides, but also to help heat your\nhome. Although it does not come with a draft control, you will find that you can control the intensity of the fire quite\nwell by varying the size and placement of the logs.\n\nOPTIONS\nGravity Vent Options\nGravity vent kits allow hot air to be ducted from the fireplace to a room above or on the same level as the fireplace.\nEach gravity vent kit includes 5’ of insulated flexible ducting, a fireplace adapter, an outlet grill adapter, and a\ndecorative outlet grill.\nFO-V2\n\nFO-VGC (grill only for FO-V2)\n\nFO-V3\n\nAdditional 5’ lenghts of insulated flexible ducting can be ordered with the part code FO-DUCT5. Nevertheless,\ngravity vents have a maximum length of 15’.\n\nGeneral Options\nTo simplify the installation of thin non-combustible materials such as ceramic tile or sliced brick, we have designed\na rock retainer kit (FO-KR). It is not designed or required for full brick or stone. Thin materials can also be installed\ndirectly on the face of the FOCUS ST using high temperature silicone as glue, without a rock retainer kit.\nDecorative andirons (FO-A) are also an optional feature. The decorative andirons are made of cast iron and are\nmore aesthetically appealing than the basic ones included with the fireplace. The decorative andirons are also\ntaller, which reduces the chance of logs rolling forward.\nDetailed installation instructions are included in the box with each option. These can also be obtained from our\nInternet Web Site: www.icc-rsf.com.\n❖WARNING: THIS FIREPLACE HAS NOT BEEN TESTED WITH AN UNVENTED GAS LOG SET. TO REDUCE\nRISK OF FIRE OR INJURY, DO NOT INSTALL AN UNVENTED GAS LOG SET INTO THIS FIREPLACE.\n\nFOCUS ST Owner's Manual\n\n4\n\nRSF Woodburning Fireplaces"},{"d":1,"p":5,"t":"UNIT DIMENSIONS AND CLEARANCES\n\nRefer to Table 1 (K)\nfor minimum mantel\nshelf height above\nthe firebox opening\n\nRefer to\nTable 1 (J)\nfor maximum\nmantel shelf\ndepth\nRefer to Table 1\n(B) for minimum\ndistance of side\nwall to the\nfirebox\nopening\n\nRefer to Table 1 (H)\nfor minimum width\nof hearth extension\nRefer to Table 1 (G)\nfor minimum depth\nof hearth extension\n\nNon-combustible hearth extension\nand spark guard (refer to Table1\n(I) and text for particulars)\n\nFigure 1 Dimensions and Clearances\nTable 1 Dimensions and Clearances\nA\n\nDistance of combustible material from side, back and top standoffs\n\n0\"\n\n(0,0 mm)\n\nB\n\nMinimum distance of side wall to the side of the firebox opening, this does not allow\nto fully open the door. To be able to fully open the door without any interference from\nthe side wall, it must be pushed back at least an additional 10\".\n\n9\"\n\n(229 mm)\n\nSealed enclosure\n\n7'\n\n(2,13 m)\n\nC\n\nMinimum ceiling height: measured from the base of the fireplace\nto the lowest point of the ceiling above the fireplace. Applies\nboth to the inside and outside of the fireplace enclosure.\n\nVented enclosure\n\n6'\n\n(1,83 m)\n\nD\n\nMinimum chimney height: minimum total chimney height from fireplace top to below\nthe chimney rain cap – Refer to Table 2 on page 13 if elbows are present\n\n12'\n\n(3,66 m)\n\nE\n\nMaximum chimney height: maximum total chimney height from fireplace top to below\nthe chimney rain cap\n\n40'\n\n(12,19 m)\n\nF\n\nMaximum chimney height supported by the fireplace\n\n16'\n\n(4,88 m)\n\nG\n\nMinimum depth of non-combustible hearth extension: from the front of the fireplace\n\n18\"\n\n(457 mm)\n\nH\n\nMinimum width of non-combustible hearth extension: total width, must be centered\non the firebox opening\n\n40\"\n\n(1,02 m)\n\nI\n\nMinimum width of the spark guard\n\n36\"\n\n(914 mm)\n\nJ\n\nMaximum mantel shelf depth\n\n12\"\n\n(305 mm)\n\nK\n\nMinimum height of a combustible mantel shelf above the top of the firebox opening:\nto the bottom of the combustible mantel shelf (refer to the \"Installation: Mantel\"\nsection for particulars)\n\n24\"\n\n(610 mm)\n\nFOCUS ST Owner's Manual\n\n5\n\nRSF Woodburning Fireplaces"},{"d":1,"p":6,"t":"OPERATION\nAIR CONTROLS\nThe FOCUS ST uses air from both inside and outside the home for\ncombustion. The air from inside the home enters the fireplace through an\nopening in the bottom of both doors. The outside air enters through the\noutside air connection on the side of the fireplace when the outside air\ndamper is open (see Figure 2).\n\nOutside Air Control\nSetting the outside air control lever horizontal will completely open the\noutside air damper and allow fresh air into the fireplace.\nBecause outside air is generally colder and denser, it will help to start the\nfire. In some cases, fresh air will help compensate for negative pressure\nproblems within the house; however, it will not prevent the fireplace from\nsmoking in a severely depressurized house.\nWe recommend always using outside air for combustion, but you may\nchoose to use room air for combustion instead. Remember that if you do\nnot open the outside air damper while burning wood in the fireplace, the fire\nmay be starved for air.\n\nOPEN\n\nCLOSE\n\nThis outside air control should be closed when the fireplace is not burning\nto prevent cold outside air from entering the home.\nFigure 2 Outside Air Control\n\nIMPORTANCE OF DRAFT\n\nDraft is the natural force which pulls air from the fireplace up the chimney. The strength of draft in your chimney\ndepends on a variety of factors, including chimney height, nearby obstructions, altitude, etc.\nExcessive draft can result in a hotter fire than intended or reduced burn times as more air is pulled through the\nfireplace. It will also result in less heat recovery since the heat will not have as much time to radiate into the room\nbefore being sucked into the chimney.\nWeak draft can result in smoke entering the room and difficulty lighting or operating the fireplace. Weak draft is\noften incorrectly associated as a blockage in the air intake for the fireplace. Adding chimney height is the most\ncommon solution. See Table 2 for minimum chimney height recommendations.\n\nBURN TIME VS HEAT OUTPUT\nThe faster your fireplace burns the more heat it will create; however, faster fires result in much more hot air flow up\nthe chimney which means you are sacrificing efficiency. Fast burning fires (lots of air) go through much more wood\nthan slow burning fires. Your fireplace burns at a fixed rate depending on the heat inside the firebox. It will burn\nquickly during light up and then gradually slow down to offer the best efficiency and emissions reduction.\n\nFUEL\nAll modern high efficiency fireplaces and woodstoves are designed to burn best with seasoned cordwood.\nSeasoned wood can be defined as wood that has been cut, split and let dry under cover for a minimum of 6 months,\npreferably a year or more. Dry seasoned wood generally contains less than 20% moisture content. Attempting to\nburn fuel with a high moisture content will be difficult and result in lower efficiency, increased creosote buildup and\ndark deposits on the glass. It is possible to burn a very large amount of wood and get very little heat if the wood is\nwet.\nThe type of wood you select is also important. All types of wood give off more or less the same number of BTU's\nper pound. Since softer woods are less dense than hardwoods it is possible to put more weight of hardwood in the\nfirebox; in other words, all woodburning appliances will burn longer and more evenly with hardwoods. Never burn\nscrap, garbage, treated wood or driftwood as they produce much more pollution and can corrode the firebox and\nFOCUS ST Owner's Manual\n\n6\n\nRSF Woodburning Fireplaces"},{"d":1,"p":7,"t":"chimney as well. Burning large amounts of paper, cardboard, mill ends, or construction waste can easily over fire\nand damage the fireplace or even ignite a chimney fire if the flue is dirty.\n\nFIRST FIRES\nYou will experience a slow start-up during the first few fires. The refractory bricks lining the firebox contain moisture\nfrom manufacturing and require a few hot fires to evaporate the moisture. While there is still moisture in the bricks,\nthey will be black with smoke deposits. When the moisture has dissipated, the bricks will turn white. Unlike cast iron\nstoves, there is no need to cure the fireplace itself by starting with small fires and progressively larger ones. Feel\nfree to light a large fire from the very start.\nYou will experience a slight odor during the first few fires. This odor comes from curing paint and oil burning off the\nmetal. The odor may be strong enough to set off your smoke detector. Open the doors and windows to allow the\nroom to properly ventilate.\n\nLIGHTING\nMake sure that the outside air damperl is open.\nStart by laying your fire starter and kindling. Traditional fire starter is crumpled newspaper; make sure to use enough\nto light the kindling (5-6 pieces should do). Next lay the kindling crisscrossed over the newspaper. Using plenty of\nkindling ensures that the chimney will heat up quickly and establish a strong draft, never use any flammable\nliquids. Light the paper and partially close one of the doors, but don't shut it completely. If the door is positioned\ncorrectly you will see air rushing into the fireplace, this will help the lighting process.\nOnce the kindling is lit and sustaining fire, you can add some small pieces of seasoned cordwood. Use the andirons\non either sides to help position the cordwood so as not to flatten and smother the fire you've just created. Always\nadd at least 3 pieces of cordwood. Position your cordwood in a manner that the fire will hit several pieces as it rises\nand has air gaps to flow through. Continue to leave one of the doors slightly open until the cordwood is lit. Close\nthe door completely when the fire is established, if the fire goes out you've shut the door too early.\n❖ WARNING: DO NOT USE A GRATE OR ELEVATE THE FIRE.\n❖ WARNING: MAKE SURE TO KEEP THE FIRE BEHIND THE ANDIRONS. REPOSITION THE LOGS IF THEY\nFALL AGAINST THE GLASS.\n\nCONTROLLING THE FIRE\nAlthough it does not come with a draft control, you will find that you can control the intensity of the fire quite well by\nvarying the size and placement of the logs.\nFor a cooler and lazy fire, load 2 to 3 large logs with the log sides facing you (not the ends) in the center of the\nhearth, between the andirons.\nFor a warmer and brighter fire, load a number of small logs with the ends facing you so that one end comes very\nclose to the glass. Alternate the logs between both sides of the fireplace, half of the logs close to one glass while\nthe other half of the logs are closer to the other glass. Since the combustion air is near the glass, it will create a\nmore vigorous fire.\n\nREFUELING\nHave your next wood load ready when you open the door. The temperature in the firebox will decrease dramatically\nwhile the door is open, so decreasing the amount of time the door is open will allow the firebox to remain hotter.\nNevertheless, do not rush.\nThe doors should be opened slowly to keep smoke from spilling into your room. If you have a problem with smoke\nspillage, check to see that all kitchen and bathroom fans have been shut off. They can cause negative pressure in\nthe house which pulls smoke out of the fireplace.\nTake the time to poke and stir the unburnt wood that is left in the firebox. This will help revive the fire. Place the\nnew logs in the firebox. Once the new wood has been loaded, keep the door slightly ajar for about 3-10 minutes to\nget the fire going depending on how well seasoned your cordwood is and how much coals were left in the firebox.\nOnce the new wood is well lit, close the door.\n\nFOCUS ST Owner's Manual\n\n7\n\nRSF Woodburning Fireplaces"},{"d":1,"p":8,"t":"TROUBLESHOOTING PROBLEMS\nIf smoke comes into the house when the door is opened:\n•\n\nYou may have opened the door too quickly and created a suction of air into the room, this can be avoided by\nopening the door more slowly.\n\n•\n\nEnsure your chimney is clean and your chimney cap is not plugged. Chimney caps with screens are more\nlikely to become clogged with creosote buildup.\n\n•\n\nMake sure you have adequate chimney height for your system. Refer to the Chimney section of this booklet\nand make sure to take altitude, and number of elbows into consideration.\n\n•\n\nCheck to see if fans in the home are running, particularly a kitchen range hood, or bathroom exhaust fan.\nThis can affect the pressure in the home.\n\n•\n\nTry opening a window near the fireplace a little, this will equalize the pressure in the home and should correct\na draft problem. Once proper draft is established the window can be closed.\n\n•\n\nMake sure you've used enough kindling to establish a hot fire quickly. The most likely time that smoke will\nenter the home is during the lighting process.\n\nMAINTENANCE\nCHIMNEY CLEANING\nCheck the chimney for creosote buildup every week or so until experience shows how often you need to clean it. A\nbuildup of 1/8\" (3mm) or more should be cleaned before more creosote accumulates. Close the fireplace doors\nprior to sweeping. Use an 8\" round brush.\n\nDISPOSAL OF ASHES\nRemove the ashes before they become too deep before you have a spillage problem when you open any door.\nThe ashes should be placed in a metal container with a tight-fitting lid. The closed container of ashes should be\nplaced on a non-combustible floor or on the ground, well away from all combustible materials pending final disposal.\nIf the ashes are disposed of by burial, or otherwise locally dispersed, they should be retained in the closed container\nuntil all cinders have thoroughly cooled.\n\nGENERAL CLEANING\nThe high heat paint can be cleaned with a soft damp cloth. Use a mild detergent and water. Do not use abrasive\ncleaners.\n\nGLASS CLEANING\nIn a slow combustion fireplace, temperatures are not always high enough to keep the glass perfectly clean. A good\nhot fire once a day usually cleans off most of the deposits that have accumulated. Remember: the drier the wood,\nthe cleaner the glass. A word of caution: although heat will not break the glass, impact can. Be careful not to hit the\nglass.\n❖ WARNING: NEVER CLEAN THE GLASS WITH AN ABRASIVE CLEANER. USE ONLY A CLEANER\nRECOMMENDED BY YOUR DEALER. NEVER CLEAN THE GLASS WHILE IT IS HOT, A SERIOUS BURN CAN\nRESULT. THERE ARE A NUMBER OF EXCELLENT WOOD STOVE GLASS CLEANERS AVAILABLE WHICH\nARE FAR SUPERIOR TO REGULAR GLASS AND OVEN CLEANERS FOR WOOD STOVE APPLICATIONS.\n\nPAINT\n❖ WARNING: AVOID SPRAYING CERAMIC GLASS CLEANER OR OTHER CLEANERS ON THE PAINT OF\nTHE FIREPLACE. THEY MAY REMOVE THE PAINT AND MAKE TOUCHUPS DIFFICULT.\n\nFOCUS ST Owner's Manual\n\n8\n\nRSF Woodburning Fireplaces"},{"d":1,"p":9,"t":"You can touch up the face of the FOCUS ST with Stove Bright Metallic Black high temperature paint which is\navailable at most fireplaces dealers. Follow the directions outlined on the spray can. DO NOT attempt to paint the\nfireplace while it is still warm. Keep the spray can away from any source of heat or open flame. Ensure that there\nis adequate ventilation in the room from the time you start painting until the paint is dry. Stove Bright is available in\na wide range of colors if you want to change the color of your FOCUS ST.\nWe recommend that you take the time to protect or remove any item that you do not want to paint such as: the door\nglass, the fireplace surroundings, etc. The glass can be removed from the door but the gasket will have to be\nreplaced.\n\nDOOR ADJUSTMENT\nTo check for a proper door seal, insert a sheet of paper between the door and the front of the fireplace and then\nlatch the door shut. Pull gently but firmly on the sheet of paper. If the paper either tears or is hard to retrieve, the\nadjustment is correct. Repeat this procedure along all sides of the door.\nThe most important factor for controlling the burn rate of the FOCUS ST is a good seal on the door gasket. If the\ndoor gasket is worn or damaged to the point where the seal is not adequate as described above, then remove and\nreplace the gasket. Replacement kits are available from your RSF dealer.\nThe door latch is progressive, the more your turn the handle the tighter the seal on the right side of the door. Beware\nnot to always over tighten the door latch; this will result in premature failure of the door gasket or cause undue\nstress on the door handle.\nIf needed, the hinges can be adjusted to improve the alignment of the door latch with respect to the hole in the\nfireplace facing, and for easy installation/removal of the door.\n NOTE: An improperly adjusted door seal can have a significant effect on the performance and durability of the\nfireplace. A poorly adjusted door can result in reduced efficiency, over firing, excessive wood consumption and\npremature fireplace failure.\n\nLOUVERS\nAll louvers are factory installed. On occasion, you may need to remove either one. Just follow the steps below.\nAll louvers are held in place by two bolts located approximately one third of the length from either side of the louvers,\nbelow the bottom fin and by a magnet in the center at the top of the louvers.\nTo remove either louver:\n1. Using a ¼\" wrench, loosen both bolts below the bottom fin of the louver.\n2. Grasp the louver close to the center and pull to disengage the magnet at the top of the louver.\n3. Pull the louver straight out.\nFor the bottom louver which houses the outside air control, make sure the outside air control lever is in closed\nposition (horizontal). Pull the left side of the louver out while pivoting around the right bolt. Pull out gently the\nright side of the louver.\nTo reinstall the louver, follow the above steps in the reverse sequence. Please note, only one louver has a cutout\nfor the outside air control. Make sure to reinstall it in the appropriate bottom louver opening.\n\nINSTALLATION\nBefore you begin, check with your local authority having jurisdiction (such as municipal building department, fire\ndepartment, fire prevention bureau, etc.) regarding restrictions and installation requirements, and the need to obtain\na permit.\n NOTE: We recommend that you remove the doors until after all finishing work is completed around the fireplace.\nThis will reduce the possibility of scratches, vandalism, or damage to the finish caused by drywall dust, muriatic\nacid, plaster, cement, paint or any other harmful spray or liquid.\n\nFOCUS ST Owner's Manual\n\n9\n\nRSF Woodburning Fireplaces"},{"d":1,"p":10,"t":"LOCATION\nYour FOCUS ST fireplace may be installed without any special floor reinforcement (see Figure 6). We recommend\nthat you take the time to plan your entire installation (fireplace, chimney, and options) before beginning the actual\ninstallation (refer to Figure 4).\nDimensions of the fireplace along with clearances are shown in Figure 1 and Table 1.\n❖ WARNING: IF THIS FIREPLACE IS NOT PROPERLY INSTALLED, A HOUSE FIRE CAN RESULT. FOR\nYOUR SAFETY, FOLLOW THE INSTALLATION INSTRUCTIONS AND CLEARANCES. DO NOT PACK\nREQUIRED AIR SPACES WITH INSULATION OR OTHER MATERIALS.\n1. Note the location of roof and floor joists. Try to choose a location that does not require cutting them.\n2. If at all possible, run the chimney up through the inside of the house. If it must be run outside, it should be\nenclosed in an insulated enclosure (see \"INSTALLATION: Chase Enclosure\"). Remember, a cold chimney\ncauses poor draft.\n\nCEILING CLEARANCE\nCeiling clearance specified in Table 1 (C) is the distance from the base of the fireplace to the ceiling and it applies\nto ALL ceilings above the fireplace (room ceiling, enclosure ceiling).\nIf you vent the fireplace enclosure, you can then have a lower ceiling clearance as specified in Table 1 (C) for a\nvented enclosure. For a vented enclosure, you MUST install regular venting 3\"x10\" grilles or larger into holes cut\nwithin 1\" of both the floor and the ceiling, to allow room air to circulate through the fireplace enclosure and reduce\nheat buildup. These venting grilles may be placed vertically or horizontally.\n\nSECURING THE FIREPLACE IN PLACE\nThe fireplace MUST be attached to the floor.\nUsing the four small brackets that were securing the fireplace to the crate, attach the casing or base of the fireplace\nto the floor. Position the brackets all around the fireplace in the same fashion as they were on the crate. If possible,\ntry to have at least one of the brackets screwed into the floor joists with 2\" wood screws.\n\nSTANDOFF INSTALLATION\nBefore you begin installing your fireplace, you MUST install the\nstandoffs provided on both sides of the fireplace and on the top.\nPlease refer to Figure 3 to position them adequately. The bent\nedge of the standoffs should be aligned flush with the front of the\nfireplace facing.\nAligning the front edge of the return on all three standoffs with\nthe facing of the fireplace will provide a guide for the front face\nof the wall covering to align with the front face of the fireplace.\nThe top standoff MUST be screwed centered to the top of the\nfireplace casing using the self-tapping screws provided. The side\nstandoffs MUST be screwed to both sides of the fireplace casing\nusing the self-tapping screws provided.\nOnce the standoffs are in place, make sure to seal the ¼\" gap\nbetween the fireplace and the top standoffs with a high\ntemperature sealant. DO NOT fill the gap behind the sealant with\ninsulation or any other material.\n\nFigure 3 Standoffs Installation\n\nFOCUS ST Owner's Manual\n\n10\n\nRSF Woodburning Fireplaces"},{"d":1,"p":11,"t":"Rain Cap\n\nStorm Collar\n\nFlashing*\nFlashing\nAnd Roof Radiation\nShield\n\nRadiation Shield with a\nStorm Collar in the Attic\n\nRadiation Shield\n\nCeiling\n\nHearth Extension and\nBeneath Hearth\nExtension (refer to text\nfor particulars)\nNo combustible material\nover the fireplace facing\n(grayed area, refer to text\nfor particulars)\nCold air trap (optional)\nOutside Air Inlet (refer to text for particulars)\n*Refer to text to determine the appropriate flashing\n\nFigure 4 FOCUS ST General Installation\n\nFOCUS ST Owner's Manual\n\n11\n\nRSF Woodburning Fireplaces"},{"d":1,"p":12,"t":"FRAMING\nThe enclosure walls can be framed with any suitable\nmaterials (2\"x4\" or 2\"x6\" studs, plywood, gypsum\nboard, etc.). Because of the high heat output\npotential of the FOCUS ST, combustible materials\nmust NOT go closer to the fireplace than the\nstandoffs, on the top, back and sides. See Figure 6\nfor recommended framing dimensions.\n\nAlways maintain 2\" min.\nclearance with chimney\nLeave the space between\nthe chimney and the\nframing open (no firestop)\n\nAlways respect the\nfireplace standoffs\n\nYou may also completely cover the top of a FOCUS\nST as long as you maintain all fireplace standoff\nclearances and the 2\" clearances around the\nchased chimney. The 2\" clearance around the\nchimney must be open from the fireplace up to the\nceiling. See Figure 5 for an example of a close\nclearance installation.\n\nFigure 5 Close Clearance Installation of a FOCUS ST\nUnder no circumstances should the distance\nbetween the ceiling firestop and the base fireplace be less than the dimension specified in Table 1 (C).\n\n45 1/4\"\n\n37 1/4\"\n\n21 3/4\"\n\nThe framing dimensions are larger than required for ease of installation.\nFigure 6 FOCUS ST Framing Example\n\nOUTSIDE AIR DUCT\n\nBelow Floor\nExample\n\nAfter the fireplace is correctly positioned, connect the\noutside air inlet to the outside (see Figure 7).\n\nFi RS\nre F\npl\nac\ne\n\nFi RS\nre F\npl\nac\ne\n\nAbove Floor\nExample\n\nUse an insulated aluminium flexible duct rated at over\n200°F (93°C). The duct should not exceed 12' vertical\nrise above the base of the unit. We suggest using the\n4\" RSF outside air kit (FO-INT).\nThe air inlet should always be at least 5' lower than\nthe chimney rain cap and must never terminate in\nattic spaces.\n\n2\" Aluminium\nDuct Tape\n\n1. Find a convenient location for the combustion air\nduct and outside air inlet. The outside air inlet can\nbe above or below floor level (see Figure 7).\n\nFOCUS ST Owner's Manual\n\nFi RS\nre F\npl\nac\ne\n\nA 4\" diameter duct can be used if the total duct run is\nless than 25'. For longer runs, use 5\" diameter duct.\nBoth 4\" and 5\" connecting sleeves are provided with\nthe fireplace.\n\nOutside Air\nInlet\n\nInsulated Flexible Air Duct\nOutside Wall\n\nFigure 7 Outside Air Connection and Installation\nExample\n12\n\nRSF Woodburning Fireplaces"},{"d":1,"p":13,"t":"2. Make a 4 ¼\" (5 ¼\" if using a 5\" diameter duct) hole in the outside wall of the house. Push the outside air inlet\nin from the outside. Seal the joint between the air inlet and the outside wall with an appropriate sealant.\n3. Place the insulated flexible duct over the round sleeve on the outside air inlet. At both ends, carefully pull back\nthe insulation and plastic cover, exposing the flexible duct. Then at each end, attach the duct with metal screws\nto the inlet and tube. Carefully push the insulation and cover back over the duct. Tape the plastic cover in place\nwith 2\" aluminium duct tape.\nYou can make a cold air trap by looping the outside air duct as shown in Figure 4.\n❖ CAUTION: WHEN RUNNING THE DUCT AROUND CORNERS, BE SURE TO PREVENT CRIMPING THE\nDUCT IN A WAY THAT WOULD RESTRICT THE COMBUSTION AIR FLOW.\n\nCHIMNEY\nThis fireplace is certified for use with 8\" ICC Model EXCEL chimney only. Please refer to Table 1 (D-E) for the\nminimum and maximum chimney heights permitted with the FOCUS ST fireplace.\nWe recommend that the minimum height be increased by approximately 6\" for every 1000' elevation above sea\nlevel. Every 15°, 30° or 45° offset (one pair of elbows) also increases the minimum height. See Table 2 for more\nprecise recommended flue heights.\nFor example, if you are living 6015' above sea level, your chimney should terminate at least 15' from the top of the\nfireplace if it is a straight chimney or at least 18'6\" if one 30° offset is used as shown in Table 2.\nTable 2 Minimum Recommended Flue Heights\nNumber Of Offset\nElevation (ft)\n\nStraight\nChimney\n\n1 x 15°\n\n2 x 15°\n\n1 x 30°\n\n2 x 30°\n\n1 x 45°\n\n2 x 45°\n\n0 - 1000\n\nMinimum\n12’\n\n13’\n\n14’\n\n15’\n\n18’\n\n16’\n\n20’\n\n1001 - 2000\n\n12’6”\n\n13’6”\n\n14’6”\n\n15’6”\n\n19’\n\n16’6”\n\n20’\n\n2001 - 3000\n\n13’\n\n14’\n\n15’\n\n16’\n\n19’6”\n\n17’\n\n21’6”\n\n3001 - 4000\n\n13’6”\n\n14’6”\n\n15’6”\n\n17’\n\n20’\n\n18’\n\n22’6”\n\n4001 - 5000\n\n14’\n\n15’\n\n16’\n\n17’6”\n\n21’\n\n18’6”\n\n23’\n\n5001 - 6000\n\n14’6”\n\n15’6”\n\n17’\n\n18’\n\n21’6”\n\n19’\n\n24’\n\n6001 - 7000\n\n15’\n\n16’\n\n17’6”\n\n18’6”\n\n22’\n\n20’\n\n24’6”\n\n7001 - 8000\n\n15’6”\n\n16’6”\n\n18’\n\n19’\n\n23’\n\n20’6”\n\n25’6”\n\n8001 - 9000\n\n16’\n\n17’\n\n18’6”\n\n20’\n\n24’\n\n21’\n\n26’6”\n\n9001 - 10000\n\n16’6”\n\n17’6”\n\n19’\n\n20’6”\n\n24’6”\n\n22’\n\n27’\n\nFlue height is measured from the top of the fireplace to the top of the chimney before installing the rain cap.\nIf you have two different offsets (two pairs of different elbows), simply use the column for two offsets of the biggest\npair of elbows at your elevation to get your Minimum Flue Height.\n\nCHIMNEY INSTALLATION\nMake sure to read the EXCEL Chimney installation manual concerning requirements for supports, bracing, anchors,\netc. The EXCEL installation manual is available from your dealer or from our web site: www.icc-rsf.com. Refer to\nTable 1 (F) for the maximum chimney height that can be supported by the top of the fireplace.\n❖ WARNING: THE CLEARANCE BETWEEN THE CHIMNEY AND COMBUSTIBLE MATERIAL MUST BE 2\"\nOR MORE. DO NOT FILL THIS AREA WITH INSULATION.\nFOCUS ST Owner's Manual\n\n13\n\nRSF Woodburning Fireplaces"},{"d":1,"p":14,"t":"1. Cut and frame the required holes in the floor(s), ceiling(s) and roof where the chimney will pass through. The\nrough opening in the framing is 14\" square (the opening can be slightly larger, but NEVER smaller).\n2. From below, install a radiation shield in each floor\nthrough which the chimney passes. At the attic\nlevel, install a radiation shield and a storm collar\nas shown in Figure 8.\n❖ WARNING: A RADIATION SHIELD MUST BE\nINSTALLED UNDER EACH FLOOR WHERE\nTHE CHIMNEY PASSES THROUGH.\n3. Place the first chimney length on the fireplace.\nSecure the chimney length to the fireplace with the\nthree screws provided.\nThe chimney must extend at least 3' above its\npoint of contact with the roof and at least 2' higher\nthan any wall, roof, or building within 10' of it. If the\nchimney is higher than 5' above the roof, it must\nbe secured using a roof brace.\n4. Put the roof flashing into place.\nIf the chimney is enclosed to the roof:\n•\n\nIn USA: use a vented flashing;\n\n•\n\nIn Canada: use a vented flashing, or a roof\nradiation shield with a regular flashing.\n\nSeal the joint between the roof and the flashing\nwith roofing tar or an exterior sealant. For sloping\nroofs, place the flashing under the upper shingles\nand on top of the lower shingles. Secure the\nflashing to the roof using roofing nails or roofing\nscrews.\n\n* Refer to the text to determine the appropriate flashing\n\nFigure 8 General Chimney Installation\n\n❖ WARNING: DO NOT BLOCK ANY OF THE OPENINGS IN THE VENTED FLASHING WITH SEALANT,\nCAULKING OR ANY OTHER MATERIALS.\n5. Place the storm collar over the chimney and flashing. Place a bead of clear or grey exterior sealant around the\nchimney below the storm collar, pull the storm collar through the sealant and seal it once again on the top with\nthe exterior sealant (DO NOT use roofing tar).\n6. Fit the rain cap on the chimney. Secure it tightly in place with the screws provided.\n\nOFFSET CHIMNEY\nAn elbow may be installed directly on top of the fireplace if required. See the detailed offset charts in the EXCEL\nchimney installation manual. Use the offset option if you need to clear a joist or pass around a cupboard. See Figure\n9 and Figure 10 for examples.\n•\n\nMaximum offset angle:\n•\n\n•\n\n•\n\nIn USA: 30°\n\nIn Canada: 45°\n\nMaximum number of elbows: four, resulting in two offsets and returns.\n\nInstall the fireplace and chimney as described earlier. When you require an elbow, proceed as follows:\n1. Install the required elbow. Turn it in the desired direction, and fasten it to the chimney length with 3 metal screws\nprovided at the joints.\n2. Install enough lengths to obtain the desired offset. Secure each joint with 3 metal screws. Refer to the offset\ncharts provided with the EXCEL chimney installation manual for exact offset dimensions.\n3. Use another elbow to return the chimney to the vertical direction.\n\nFOCUS ST Owner's Manual\n\n14\n\nRSF Woodburning Fireplaces"},{"d":1,"p":15,"t":"4. Install a wall support, or an offset support above each offset to support the weight of the chimney (elbows are\nnot designed to support the chimney above an offset).\n\n**\n\n* Refer to the text to determine the appropriate flashing\n** See particulars under \"Through the Wall Offset\" section\n\nFigure 9 Offset Chimney Installation Example\n\nFigure 10 Offset Chimney Through a Wall\nExample\n\nThrough the Wall Offset\nYou can also go through the wall at an angle starting directly at the fireplace as depicted in Figure 9 Offset Chimney\nInstallation Example . An angled wall insulated radiation shield (XM-8EWRSI30 or XM-8EWRSI45) must be used\nwherever the chimney passed through an exterior wall. Make sure you have enough ceiling height. If not, you might\nwant to consider installing the fireplace in an outside chase.\nIf the chimney is enclosed once outside of the house, do not install the outside plate of the angled wall\ninsulated radiation shield.\nRefer to the angled wall insulated radiation shield installation sheets for more detailed installations instructions.\n\nCHASE ENCLOSURE\nIf the chimney runs up the outside of the house, we recommend that it be enclosed in a chase structure. The chase\nshould be constructed in such a way that it is an extension of the home. It should be well insulated between the\nfootings and the floor of the home to prevent heat loss. If the climate in your area is mild, insulate the chase at least\nto the first firestop. If the climate in your area is very cold, insulate the chase to the top to keep the chimney warmer,\nincrease the draft, and reduce creosote buildup. We also recommend to insulate the ceiling of the chase just as if\nit were in the attic space. This will prevent cold air from dropping down through the chase and into the room where\nthe fireplace is installed (see Figure 11).\nFOCUS ST Owner's Manual\n\n15\n\nRSF Woodburning Fireplaces"},{"d":1,"p":16,"t":"Some local codes require that the walls be insulated,\nvapor sealed and sheathed with a fire rated gypsum\nboard (see Figure 11). We strongly recommend this\nprocedure for all installations to prevent cold drafts from\noriginating in the fireplace enclosure. If you follow this\nprocedure, we recommend that you do not insulate the\nwall above the front of the fireplace.\n REMEMBER: Check local codes concerning\ninstallation requirements and restrictions in your area.\n\nMASONRY CHIMNEY\nInstalling your FOCUS ST fireplace with a masonry\nchimney still requires using EXCEL chimney from the\ntop of the fireplace to where it will connect to a listed\nliner that will run up inside the masonry chimney (see\nFigure 12).\nThe stainless-steel liner should be fitted inside the clay\nliner all the way to the top of the masonry chimney. It is\nnot meant to replace the clay liner. You can use either\nthe EXCEL liner or any other listed liner to ULC-S635,\nULC-S640 or UL-1777.\nSpecial care is to be taken to make sure that you have\na good solid connection between the EXCEL chimney\nand the liner. A masonry adapter (FO-FDM8) was\ndesigned specifically for that purpose and is available\nfrom your RSF dealer. It will attach to the liner with 3\nstainless steel rivets (provided) and to the EXCEL\nchimney with 3 screws (provided).\n\n* Refer to the text to determine the appropriate flashing\n\nAfter mortaring in place, the connection between the\nEXCEL chimney and the liner should not be visible in\norder to isolate the heat released through the liner from\nthe fireplace enclosure.\n\nFigure 11 Chimney Installed with a Chase\nEnclosure Example\n\nAs depicted in Figure 12, you must install at least one 18\" length of EXCEL chimney after the EXCEL chimney\nelbow. The uppermost part of the EXCEL chimney - where it enters the masonry chimney - must be a minimum of\n12\" from the ceiling.\n NOTE: If the ceiling is high enough, you can install one or more EXCEL chimney lengths directly on the fireplace\nbefore the elbow.\nIf you use a flexible liner, make sure to be careful when cleaning to ensure that the stainless-steel flexible liner is\nnot dislodged in any way.\n\nUsing an Existing Masonry Chimney\n❖ WARNING: IF YOU ARE CONSIDERING USING AN EXISTING CHIMNEY, IT MUST FIRST BE\nTHOROUGHLY INSPECTED BY AN AUTHORITY HAVING JURISDICTION TO DETERMINE THE FOLLOWING:\n1. The masonry chimney is well constructed and fully lined, in accordance with Local Building Codes and the\nNational Building Code of Canada (NBC) or National Fire Protection Association chimney standard (NFPA 211).\n2. It has been thoroughly cleaned of any soot or creosote residue and inspected to determine that it is in good\nworking condition.\n3. There is no insulation of any type in contact with the masonry chimney and there is no insulation stuffed\nanywhere in the chimney.\n4. All the necessary clearances around the masonry chimney, along the complete run of the chimney, are\nrespected as per NBC or NFPA 211. If the masonry chimney is enclosed in drywall, openings will probably be\nrequired in order to verify clearances at all points.\n5. The masonry chimney will only be used for the fireplace and no other appliance.\nFOCUS ST Owner's Manual\n\n16\n\nRSF Woodburning Fireplaces"},{"d":1,"p":17,"t":"If major repairs are required to meet the above conditions, a new chimney should be constructed.\nTo make the hole through the masonry chimney and make the connection to the fireplace, we recommend that you\nfollow these steps:\n1. Sight-in and mark the outline of where the EXCEL chimney will penetrate the masonry chimney.\n2. Using a large (¾\" - 2\")\nmasonry drill bit, drill a\nhole exactly in the center\nof the oval outline. With a\nmasonry hammer and drill,\nslowly enlarge the hole to\nthe\nsize\nrequired.\nRemember to work from\nthe\ncenter\nout.\nBe\nespecially careful with the\nclay liner behind the brick\nbecause three sides of it\nmust stay in place.\n\nEXCEL liner or other listed liner to\nULC-S635, ULC-S640 or UL-1777\n\n12\" min. to\ncombustible ceiling\n\nClearances as per\nNBC or NFPA 211\n\nMetal\nFirestop\nMortar\n\nEXCEL chimney\nlenght: 18\" min.\n\nLiner\nElbow\n\nEXCEL chimney\nelbow\n\nMortar\n\nIf you are using a rigid liner\nyou will need enough room\nto secure an elbow to it\nwith at least two screws or\nrivets.\n\nFi RS\nre F\npl\nac\ne\n\n3. Bring the stainless-steel\nliner down from the top of\nthe chimney.\n\nMasonry Adaptor\nFO-FDM8\nFO-FDM7\n\nFigure 12 Connection to a Masonry Chimney\n\nIf it is difficult to install rigid stainless steel liner in the existing masonry chimney or for a masonry chimney with\nless than 10\"x10\" inside, a listed stainless steel flexible liner can be used along with a flexible/rigid adaptor (LM8LAF) available from your RSF dealer.\n4. Install the liner elbow and masonry adaptor on the lower end of the liner.\n5. Move the fireplace forward enough to install the EXCEL chimney on the fireplace (elbow and length) then move\nthe fireplace back into position as you connect the masonry adaptor to the EXCEL chimney.\n\nUsing a New Masonry chimney\nSince the masonry chimney is not build yet, we recommend that you position your fireplace, install the EXCEL\nchimney on it and connect to the first length of liner before building the chimney as explained above and shown in\nFigure 12. The liner sections can easily be installed as the layers of brick are being placed. Since this is a new\nchimney, we recommend that you build it to the right size so you do not have to ovalize the liner but if you choose\nto use a 6\"x10\" clay liner you will need to ovalize the stainless steel liner to fit into the clay liner.\n REMEMBER: The stainless-steel liner should be fitted inside the clay liner all the way to the top of the masonry\nchimney. It is not meant to replace the clay liner.\n\nCOVERING THE FIREPLACE FACING\nFacing materials (see Figure 4) MUST BE NON-COMBUSTIBLE such as metal, brick, slate or ceramic tile. Gypsum\nboard is NOT an acceptable facing material. Gypsum board cannot get closer to the fireplace than the side and top\nstandoffs.\nFacing this fireplace can be as simple as using cement boards that will be painted or gluing ceramic tiles with high\ntemperature silicone sealant. Make sure to maintain a distance around the doors that will allow them to open. Do\nnot cover or block any part of the louvers or the openings on each side of the firebox.\n\nHEARTH EXTENSION\nThe area immediately in front of the fireplace must be protected by a non-combustible material such as brick, tile,\nstone, or slate. Refer to Table 1 (G-H) for the depth and width the hearth protection should extend beyond the front\nand both sides of the door opening (see Figure 1). There is no minimum thickness required for the hearth extension.\nFOCUS ST Owner's Manual\n\n17\n\nRSF Woodburning Fireplaces"},{"d":1,"p":18,"t":"BENEATH HEARTH EXTENSION\nRSF\nFireplace\n\nIf the FOCUS ST is installed on a non-combustible\nfloor, the spark guard is not required.\nInstall the spark guard provided (5\" x 36\" piece of\nsheet metal) halfway under the fireplace and halfway\nunder the hearth extension and centered on the door\nopening. The spark guard will extend 2½\" beneath\nthe fireplace. This will make certain that sparks\ncannot lodge in this area and start a fire.\n\nNonCombustible\nFlooring\n\nRight Angle\nSpark Guard\n(not provided)\n\nMore than 2 1/2\"\n\n2 1/2\" or less\n\nNonCombustible\nFlooring\n\nZ-Shaped Spark\nGuard (not\nprovided)\n\nIf you are preparing a raised installation, you will need\na custom made spark guard, either a \"Z\" shaped\nspark guard or a right angle spark guard (see Figure Figure 13 Special Custom-made Spark Guard\n13). The Z-shaped spark guard must be used if the\nheight between the bottom of the fireplace and the top of the non-combustible flooring of the hearth extension is\nless than or equal to 2 ½\". The height of the Z-shaped spark guard must equal the distance between the floor and\nthe base of the unit and go under the hearth extension and the fireplace by at least 2½\". If the unit is installed higher\nthan 2 ½\" from the top of the flooring, a right-angle spark guard is necessary. The sides of the right-angle spark\nguard should be at least 2½\" x 2½\" and must be covered with non-combustible material. Any custom-made spark\nguard must have the minimum width specified in Table 1 (I), and be installed centered on the door opening.\n NOTE: Custom-made spark guards are site built.\n\nMANTEL\nFor combustible mantels shelves, please see Table 1 (J-K) for the maximum depth of the mantel shelf and their\nclearance requirements. See Figure 1 for an example.\nCombustible mantel posts, of any depth, can be installed on either side of the fireplace as long as they respect the\nsame minimum distance as the side wall (see Table 1 (B)).\nMasonry and other non-combustible mantel shelves can be placed directly above the top of the fireplace facing or\nhigher. If a non-combustible mantel is desired at a height lower than the minimum height for a combustible mantel,\nthe wall framing & facing material used between the top of the metal fireplace face and the bottom of the mantel\nshelf must be non-combustible.\n\nREFRACTORY BRICKS' INSTALLATION\nThe refractory bricks for the FOCUS ST fireplace\nare placed in the fireplace at the factory. If, for any\nreason, they should need to be replaced, the\nfollowing order should be observed (see Figure 14).\nTo remove any of the refractory bricks, just follow\nthe installation procedure in the reverse sequence.\nRefer to Figure 14 to adequately identify which\nrefractory brick is the right and which is the left at\neach step of the installation.\n1. Insert the baffle (1) into the firebox. The baffle\nis quite heavy and must be lifted to the top of\nthe firebox. A small jack or 2\"x4\" lengths can be\nused to hold it at the top of the firebox\ntemporarily. Make sure to orient the baffle\ncorrectly. The side with the most holes should\npoint towards the floor of the fireplace.\n2. While supporting the baffle as high as it will go,\nplace the left and right side refractory bricks\n(both right (2) and both left (3)) as shown in\nFigure 14.\n\nFigure 14 Refractory Bricks Installation\n\nFOCUS ST Owner's Manual\n\n18\n\nRSF Woodburning Fireplaces"},{"d":1,"p":19,"t":"3. A 1\" diameter round gasket (replacement part #14.10.4) is required between the baffle and the side refractory\nbricks. Lay the gasket along the top of the side refractories where it will contact the baffle, then lower the baffle\nso that it is supported by the sides and is sitting on the gasket to create a seal.\n4. Install both bottom refractory bricks (both (4)).\n5. Install the front refractory bricks (both right (6) and both left (5) as shown in Figure 14.\nThese refractory have been designed specifically for the FOCUS ST and no modifications are required to ensure a\nproper fit.\n\nGAS LOG INSTALLATION\nThe FOCUS ST can be converted to use a vented gas log set as long as you make the modifications to the fireplace\nas explained below. You can use any gas log set up to a maximum of 40,000 BTU/h that is listed to ANSI\nZ21.60/CSA 2.26.\nRemember that the installation of the gas line should be done by qualified personnel. All gas installations should be\nin accordance with local ordinances and the appropriate Gas Code.\n❖ WARNING: THIS FIREPLACE HAS NOT BEEN TESTED WITH AN UNVENTED GAS LOG SET. TO REDUCE\nRISK OF FIRE OR INJURY, DO NOT INSTALL AN UNVENTED GAS LOG SET INTO THIS FIREPLACE.\nWe do not require any minimum clearances between the side or the top of the firebox and the gas log set. However,\nany clearances stated by the gas log set manufacturer must be maintained. You may install the gas valve inside\nthe firebox if the gas log set manufacturer allows this in its installation instructions, and if the required clearances\nare met.\nTo convert the FOCUS ST please carefully follow the following steps:\n1. There is a 1 ¼\" hole on both sides of the fireplace, about 12 ¾\" up from the bottom of the fireplace. The gas\nline must come into the fireplace through one of these holes. Choose the side of installation that is more\nconvenient to you.\n2. There are a few parts that you need to remove from the FOCUS ST to be able to accommodate a gas firelog.\nMake sure to store them for safekeeping, you will need to reinstall them all if you ever intend to burn wood again\nin your FOCUS ST:\n•\n\nRemove both bottom refractory bricks from the firebox.\n\n3. You will need to drill four 1\" diameter holes on the bottom of the firebox. They should be aligned, parallel to the\ndoors and half way between both doors. They should be 6\" spaced apart, center to center, and centered\nbetween both side refractory bricks.\n4. The right side refractory bricks (bricks (2) in Figure 14) already have a hole to allow the gas line through. You\nonly need to clean out the gray sealant out of the hole on the selected installation side to be able to pass the\ngas line through and into the firebox.\n5. Make sure to leave the four holes completelly open, this will bring air to the gas log.\n6. Proceed with the installation of the gas log as per the gas log manufacturer installation instructions. Make sure\nto carefully read and follow the gas log installation instructions. Make sure also to respect all clearances stated\nby the gas log manufacturer.\n❖ WARNING: THE MAXIMUM GAS OUTPUT ALLOWED IN THE FOCUS ST IS 40,000 BTU/H. THE GAS LOG\nHAS TO BE LISTED TO ANSI Z21.60/CSA 2.26.\nWhen operating an FOCUS ST with a gas log installed, make sure to follow the gas log manufacturer operating\ninstructions.\n\nFOCUS ST Owner's Manual\n\n19\n\nRSF Woodburning Fireplaces"},{"d":1,"p":20,"t":"LISTING LABEL\nThe listing label is glued to the bottom of the fireplace. Just remove the bottom louver.\n\nFOCUS ST Owner's Manual\n\n20\n\nRSF Woodburning Fireplaces"},{"d":1,"p":21,"t":"COMPLETE OPTIONS LIST\n\nFOCUS ST Owner's Manual\n\n21\n\nRSF Woodburning Fireplaces"},{"d":1,"p":22,"t":"FOCUS ST Owner's Manual\n\n22\n\nRSF Woodburning Fireplaces"},{"d":1,"p":23,"t":"REPLACEMENT PARTS\nUse only genuine RSF parts. The use of any substitutes will void the warranty and may put your safety at risk.\n\nFOCUS ST Owner's Manual\n\n23\n\nRSF Woodburning Fireplaces"},{"d":1,"p":24,"t":"LIMITED WARRANTY\n30 Years Limited Warranty\n\nAll RSF Woodburning Fireplaces models are warranted against defects in material and workmanship for a\nperiod of 30 years, subject to the following conditions:\nDuring the first year RSF Woodburning Fireplaces will repair or replace, at our option, any parts which upon\nexamination by an authorized RSF Woodburning Fireplaces representative, are found to be defective, except the\nparts listed in the EXCLUSIONS portion of this warranty. RSF Woodburning Fireplaces will also pay reasonable\nlabor costs for the repair work.\nDuring the second through fifth years RSF Woodburning Fireplaces will repair or replace, at our option, any parts\nwhich upon examination by an authorized RSF Woodburning Fireplaces representative, are found to be defective,\nexcept the parts listed in the EXCLUSIONS portion of this warranty. RSF Woodburning Fireplaces shall not be\nresponsible for any labor costs associated with this repair work.\nDuring the sixth through thirtieth years RSF Woodburning Fireplaces will provide replacement parts, if available,\nat 50% of the published retail price, except for the parts listed in the EXCLUSIONS portion of this warranty. RSF\nWoodburning Fireplaces shall not be responsible for any labor costs associated with this repair work.\nEXCLUSIONS:\n•\n\nElectrical components are warranted for one year only.\n\n•\n\nGlass and plating.\n\n•\n\nDamage due to normal wear and tear, such as paint discoloration, worn gaskets, eroded or cracked refractory\ncomponents.\n\n•\n\nRepairs or replacements necessitated by vandalism, neglect, abuse, over-firing, improper fuel or fuel loads, or\nfailure to adequately service the unit, as stated in the owner’s manual.\n\n•\n\nRepairs or replacements (particularly charges for travel and labor) not authorized by RSF Woodburning\nFireplaces in advance.\n\nLIMITATIONS:\n•\n\nAll items found to be defective will be replaced or repaired upon return of the defective part to an authorized\nRSF Woodburning Fireplaces dealer. RSF Woodburning Fireplaces will not be responsible for freight\ncosts related to shipping replacement parts.\n\n•\n\nAny complete fireplace, or part thereof, that is replaced or serviced under this warranty, will be warranted for a\nperiod not exceeding the remaining term of the original warranty.\n\n•\n\nThis warranty is not transferable.\n\n•\n\nThis warranty does not apply to damage to the appliance while in transit.\n\n•\n\nThis warranty does not apply if the installation does not conform to the installation requirements in the owner’s\nmanual.\n\nRSF Woodburning Fireplaces is free of liability for any damages caused by the appliance, as well as material and\nlabor charges incurred in the removal or re-installation of any RSF Woodburning Fireplaces fireplace under this\nwarranty. Incidental or consequential damages are not covered by this warranty.\nThe remedies set forth herein are exclusive, and the liability of the seller shall not exceed the price of the fireplace\nor part thereof upon which the liability is based.\nThis warranty is expressly in lieu of all other warranties expressed or implied, including the warranties of\nmerchantability and fitness for use and all other obligations or liabilities on the part of RSF Woodburning\nFireplaces.\n\nFOCUS ST Owner's Manual\n\n24\n\nRSF Woodburning Fireplaces"}];
+
+/* curated topic index — the hand-written, audience-tuned answers */
+const INDEX=[
+  ...HOME_PRIMARY.map(d=>({k:'h',id:d.id,t:d.title,p:d.blurb})),
+  ...HOME_SECONDARY.map(d=>({k:'h',id:d.id,t:d.title,p:d.blurb})),
+  ...SPECS.map(s=>({k:'i',id:s.tap,t:s.lab,p:s.rows.map(r=>r[0]+' '+r[1]).join(' · ')})),
+  ...STEPS.map((s,i)=>({k:'i',id:'step'+i,t:s[0],p:s[1]})),
+  ...INDEX_EXTRA,
+];
+
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const plain=s=>String(s).replace(/<[^>]+>/g,'');
+/* match regardless of line breaks, case and curly quotes */
+const fold=s=>s.toLowerCase().replace(/[‘’ʼ′]/g,"'").replace(/[“”″]/g,'"').replace(/ /g,' ');
+PAGES.forEach(pg=>{pg.s=pg.t.replace(/\s+/g,' ').trim(); pg.f=fold(pg.s); if(pg.f.length!==pg.s.length) pg.s=pg.f;});
+INDEX.forEach(x=>{x.f=fold(plain(x.t+' '+x.p)).replace(/\s+/g,' ');});
+const normQ=raw=>fold(raw).replace(/\s+/g,' ');
+function snippet(pg,q){
+  const i=pg.f.indexOf(q); if(i<0)return '';
+  const s=Math.max(0,i-55), e=Math.min(pg.s.length,i+q.length+85);
+  const frag=pg.s.slice(s,e), ff=pg.f.slice(s,e);
+  // highlight every occurrence of the query in the fragment
+  let out='',at=0,j;
+  while((j=ff.indexOf(q,at))>=0){out+=esc(frag.slice(at,j))+'<mark>'+esc(frag.slice(j,j+q.length))+'</mark>';at=j+q.length;}
+  out+=esc(frag.slice(at));
+  return (s>0?'… ':'')+out+(e<pg.s.length?' …':'');
+}
+/* which manual a reader on each side wants first */
+const PREF={homeowner:{operation:0,installation_and_operation:1,installation:2},installer:{installation:0,installation_and_operation:1,operation:3}};
+function pageHitsFor(q,role){
+  const hits=PAGES.filter(pg=>pg.f.includes(q));
+  if(!MULTI) return hits;
+  const pref=PREF[role]||{};
+  const rank=pg=>{const m=MANUALS[pg.d-1];return m.kit?2:(pref[m.role]??2);};
+  return hits.sort((a,b)=>rank(a)-rank(b)||a.d-b.d||a.p-b.p);
+}
+const pgLabel=pg=>MULTI?`${esc(MANUALS[pg.d-1].short)} p.${pg.p}`:`p.${pg.p}`;
+const pageItem=(pg,q)=>`<div class="ritem" data-kind="page" data-doc="${pg.d}" data-page="${pg.p}">
+         <span class="pg">${pgLabel(pg)}</span>
+         <div class="snip">${snippet(pg,q)}</div>
+         <svg class="jump" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg>
+       </div>`;
+const topicItem=(x,withRole)=>`<div class="ritem" data-kind="topic" data-id="${x.id}"${withRole?` data-role="${x.k==='h'?'homeowner':'installer'}"`:''}>
+         <span class="badge ${x.k}">${x.k==='h'?'Owner':'Install'}</span>
+         <div><h4>${esc(plain(x.t))}</h4><p>${esc(plain(x.p))}</p></div></div>`;
+const manualsLine=()=>MULTI?MANUALS.map(m=>`${m.label} (${m.pages} pages)`).join(' and '):`${MANUALS[0].pages}-page manual`;
+
+const res=$('#results'),rlist=$('#rlist');
+$('#q').addEventListener('input',e=>{
+  const raw=e.target.value.trim(), q=normQ(raw);
+  if(q.length<2){res.classList.remove('open');return;}
+  const curated=INDEX.filter(x=>x.f.includes(q)).slice(0,6);
+  const pageHits=pageHitsFor(q,currentRole()).slice(0,12);
+  let html='';
+  if(curated.length){
+    html+=`<div class="rgroup">Best matches <span class="ct">${curated.length}</span></div>`;
+    html+=curated.map(x=>topicItem(x,true)).join('');
+  }
+  if(pageHits.length){
+    html+=`<div class="rgroup">In the full ${MULTI?'manuals':'manual'} <span class="ct">${pageHits.length} page${pageHits.length>1?'s':''}</span></div>`;
+    html+=pageHits.map(pg=>pageItem(pg,q)).join('');
+  }
+  if(!curated.length && !pageHits.length)
+    html=`<div class="rempty">Nothing matched “${esc(raw)}”. Try a part name, a number, or open the full PDF above.</div>`;
+  rlist.innerHTML=html;
+  res.classList.add('open'); placeResults();
+  $$('.ritem',rlist).forEach(it=>it.onclick=()=>{
+    if(it.dataset.kind==='page'){ openPDF(it.dataset.page,+it.dataset.doc); }
+    else { res.classList.remove('open'); $('#q').value=''; closeHeaderSearch(); setRole(it.dataset.role); openDrawer(it.dataset.id); }
+  });
+});
+document.addEventListener('click',e=>{if(!res.contains(e.target)&&e.target.id!=='q'&&!e.target.closest('#qBtn'))res.classList.remove('open');});
+
+/* ---------------- owner-side inline search ---------------- */
+/* Curated answers (open the drawer) + full-manual page hits (open the PDF) —
+   the same two-tier logic as the header search, surfaced in the owner view. */
+const oq=$('#oq'), oResults=$('#oResults');
+function renderOwnerSearch(){
+  if(!oq||!oResults) return;
+  const raw=oq.value.trim(), q=normQ(raw);
+  if(q.length<2){ oResults.innerHTML=''; return; }
+  const curated=INDEX.filter(x=>x.f.includes(q)).slice(0,6);
+  const pageHits=pageHitsFor(q,'homeowner').slice(0,8);
+  let html='';
+  if(curated.length){
+    html+=`<div class="rgroup">Best matches <span class="ct">${curated.length}</span></div>`;
+    html+=curated.map(x=>topicItem(x,false)).join('');
+  }
+  if(pageHits.length){
+    html+=`<div class="rgroup">In the full ${MULTI?'manuals':'manual'} <span class="ct">${pageHits.length} page${pageHits.length>1?'s':''}</span></div>`;
+    html+=pageHits.map(pg=>pageItem(pg,q)).join('');
+  }
+  if(!curated.length && !pageHits.length)
+    html=`<div class="os-hint">Nothing matched “${esc(raw)}”. Try another word, or open the full <mark>Official PDF</mark> up top.</div>`;
+  oResults.innerHTML=html;
+  $$('.ritem',oResults).forEach(it=>{
+    if(it.dataset.kind==='page') it.onclick=()=>openPDF(it.dataset.page,+it.dataset.doc);
+    else it.onclick=()=>openDrawer(it.dataset.id);
+  });
+}
+oq.addEventListener('input',renderOwnerSearch);
+
+/* ---------------- installer-side full-manual search ---------------- */
+/* Same per-page PDF index as the header search, surfaced inline in the field
+   reference where installers expect it. Click a hit to deep-link the PDF page. */
+const mq=$('#mq'), mResults=$('#mResults');
+function renderManualSearch(){
+  if(!mq||!mResults) return;
+  const raw=mq.value.trim(), q=normQ(raw);
+  if(q.length<2){
+    mResults.innerHTML=`<div class="ms-hint">Searches the full text of every page of the official ${manualsLine()}. Type a part name, a number, or a term — each result opens the PDF at that page.</div>`;
+    return;
+  }
+  const hits=pageHitsFor(q,'installer');
+  if(!hits.length){
+    mResults.innerHTML=`<div class="ms-hint">Nothing in the ${MULTI?'manuals':'manual'} matched “${esc(raw)}”. Try a different term, or open the full <mark>Official PDF</mark> up top.</div>`;
+    return;
+  }
+  mResults.innerHTML=`<div class="rgroup">In the full ${MULTI?'manuals':'manual'} <span class="ct">${hits.length} page${hits.length>1?'s':''}</span></div>`+
+    hits.slice(0,30).map(pg=>pageItem(pg,q)).join('');
+  $$('.ritem',mResults).forEach(it=>it.onclick=()=>openPDF(it.dataset.page,+it.dataset.doc));
+}
+mq.addEventListener('input',renderManualSearch);
+renderManualSearch();
+
+
+/* ---------------- phones & tablets: slim header, section bar, back to top ---------------- */
+const hdr=document.querySelector('header');
+function setHdrH(){document.documentElement.style.setProperty('--hdr-h',hdr.offsetHeight+'px');}
+function placeResults(){res.style.top=Math.max(0,hdr.getBoundingClientRect().bottom)+'px';}
+function closeHeaderSearch(){hdr.classList.remove('searching');$('#qBtn').setAttribute('aria-expanded','false');setHdrH();}
+$('#qBtn').addEventListener('click',()=>{
+  const open=!hdr.classList.contains('searching');
+  hdr.classList.toggle('searching',open);$('#qBtn').setAttribute('aria-expanded',String(open));
+  document.body.classList.remove('hdr-away');setHdrH();
+  if(open){$('#q').focus();} else {res.classList.remove('open');}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&hdr.classList.contains('searching')){res.classList.remove('open');closeHeaderSearch();}});
+addEventListener('resize',()=>{setHdrH(); if(res.classList.contains('open')) placeResults();});
+setHdrH();
+
+/* the section bar lists only the sections this guide has */
+const SECS=[['sec-specs','Specs'],['sec-steps','Install steps'],['faultSec','Faults'],['codeSec','Codes'],['sec-manual','Manual']]
+  .map(([id,label])=>[document.getElementById(id),label]).filter(([el])=>el&&el.style.display!=='none');
+const secNav=$('#secNav');
+secNav.innerHTML=SECS.map(([,label],i)=>`<button type="button" data-i="${i}">${label}</button>`).join('');
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+secNav.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  $$('button',secNav).forEach(x=>x.setAttribute('aria-current',String(x===b)));
+  SECS[+b.dataset.i][0].scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'});});
+let lastY=scrollY,ticking=false,activeSec=-1;
+function onScroll(){
+  const y=scrollY, small=innerWidth<=1024, inRole=document.body.classList.contains('has-role');
+  const busy=hdr.classList.contains('searching')||$('#drawer').classList.contains('open')||res.classList.contains('open');
+  if(!small||!inRole||y<140||y<lastY-6) document.body.classList.remove('hdr-away');
+  else if(y>lastY+6&&!busy) document.body.classList.add('hdr-away');
+  lastY=y;
+  $('#toTop').classList.toggle('show',inRole&&y>700);
+  if(currentRole()==='installer'&&SECS.length){
+    const line=hdr.offsetHeight+secNav.offsetHeight+48;   /* generous: works whether the header is showing or tucked away */
+    let a=0; SECS.forEach(([el],i)=>{if(el.getBoundingClientRect().top<=line)a=i;});
+    if(innerHeight+y>=document.documentElement.scrollHeight-4)a=SECS.length-1;
+    if(a!==activeSec){activeSec=a;
+      $$('button',secNav).forEach((b,i)=>b.setAttribute('aria-current',String(i===a)));
+      const btn=$$('button',secNav)[a]; if(btn) secNav.scrollTo({left:btn.offsetLeft-16,behavior:reduceMotion?'auto':'smooth'});}
+  }
+  ticking=false;
+}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+$('#toTop').addEventListener('click',()=>scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));
+
+/* ---------------- deep links into the guide: #homeowner, #installer, or a topic id (#light) ---------------- */
+function fromHash(){const h=decodeURIComponent(location.hash.slice(1));if(!h)return;
+  if(h==='homeowner'||h==='owner'){setRole('homeowner');return;}
+  if(h==='installer'){setRole('installer');return;}
+  if(DETAIL[h]){setRole(DETAIL[h].cool?'installer':'homeowner');openDrawer(h);}}
+window.addEventListener('hashchange',fromHash);
+fromHash();
+</script>
+</body>
+</html>

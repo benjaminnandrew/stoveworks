@@ -1,0 +1,98 @@
+{
+ "id": "pacific-energy-neo-2-5-insert-le2",
+ "checked_pagerefs": 28,
+ "notes_checked": {
+  "amber": 3,
+  "correction": 0,
+  "website": 2
+ },
+ "findings": [
+  {
+   "severity": "major",
+   "where": "detail.wood (wet-wood paragraph and Never burn list); detail.safety (Every day)",
+   "guide_says": "\"Never burn overnight with wet or green wood.\" The Never burn list (treated or salt-water wood, garbage, coal or charcoal, ... solvents, paints or petroleum products, ...) leaves out wet or green wood, unseasoned wood, and paint thinners / asphalt products, and the safety drawer's precautions leave out p. 5's 'do not burn wet wood'. The guide shows only p. 8's narrower overnight rule, without p. 8's conditions and without a note, so owners can read it as daytime wet wood being fine.",
+   "manual_says": "p. 6 DO NOT BURN list: \"Wet or green wood\", \"Unseasoned wood\", \"Waste petroleum products, paints, paint thinners, or asphalt products\". p. 5, To Avoid a Chimney Fire: \"1. Burn wood cleanly. Do not burn wet wood or turn down the unit too quickly after loading.\" p. 8: \"If you feel it is necessary to burn wet or unseasoned wood, do so only with the air inlet set open enough to maintain a good strong fire and fairly high chimney temperatures. Do not attempt to burn overnight using green wood or wet wood.\"",
+   "pages": [
+    [
+     1,
+     5
+    ],
+    [
+     1,
+     6
+    ],
+    [
+     1,
+     8
+    ]
+   ],
+   "fix": "Put wet or green wood, unseasoned wood, and paint thinners or asphalt products back in the Never burn list as p. 6 prints them, and add p. 5's 'Do not burn wet wood or turn down the unit too quickly after loading' to the safety drawer. Because p. 8 allows wet or unseasoned wood under conditions, show both pages in an amber note instead of keeping only the overnight rule, e.g. <div class=\"note\"><b>Note:</b> p. 6 lists wet or green wood and unseasoned wood under \"Do not burn\", and p. 5 says not to burn wet wood; p. 8 says that if you feel you must burn wet or unseasoned wood, set the air inlet open enough to keep a good strong fire and fairly high chimney temperatures, and never burn it overnight.</div> Record it in review.conflicts as substantive."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specOutput (Maker's website note)",
+   "guide_says": "Only one website note: \"Maker's website: EPA Test Fuel Output 29,500 BTU.\" The website's other heat-output row is not shown anywhere in the guide.",
+   "manual_says": "p. 3: \"shown to deliver heat at rates ranging from 13,200 to 29,500 Btu/hr\"; \"EPA BTU Output 13,240 to 29,536 btu/hr.\" The manual prints no cordwood peak figure. website.json: \"Peak Output (Cordwood)\": \"85,000 BTU\".",
+   "pages": [
+    [
+     1,
+     3
+    ]
+   ],
+   "fix": "Add after the output rows: <div class=\"note small\"><b>Maker's website:</b> Peak Output (Cordwood) 85,000 BTU.</div> (this is the GUIDE_SPEC's own example of a cord-wood heat-output note) and record it in review.catalog_mismatches with shown: specOutput."
+  },
+  {
+   "severity": "minor",
+   "where": "step3",
+   "guide_says": "step3 has only two elements, [\"Check clearances\", summary], with no drawer HTML, unlike every other step. The summary's values (15 in., 11 1/2 in. with facing max 3-1/2 in. deep, 16 in., 68 in.) are correct.",
+   "manual_says": "p. 18: \"Side of Door to Adjacent Sidewall 15 in.(380 mm) / Side of Door to Side Facing (max 3-1/2 in. deep) 11 1/2 in.(290 mm) / The top of Surround brow to the Mantel 16 in.(405 mm) / The top of Surround brow to the Top Facing 16 in.(405 mm) / Bottom of unit to Ceiling 68 in.(1.7m)\"",
+   "pages": [
+    [
+     1,
+     18
+    ]
+   ],
+   "fix": "Add a drawer body for step3, for example the p. 18 list with its mm figures and a pointer to Figure 14 (as detail.specClear already has), so the step's drawer doesn't open empty."
+  },
+  {
+   "severity": "minor",
+   "where": "faults.Dirty glass, item 5",
+   "guide_says": "\"Excessive creosote buildup → see the first three causes above\", listed as a cause → cure item under Dirty glass, so it reads as a cause of dirty glass.",
+   "manual_says": "p. 27 lists it as its own problem: \"Excessive Creosote Buildup - See 1,2,3, above.\" Causes 1-3 there are \"Wood is wet\", \"Turning down air control or damper too soon\" and \"Draft too low\".",
+   "pages": [
+    [
+     1,
+     27
+    ]
+   ],
+   "fix": "Make 'Excessive creosote buildup' its own problem panel with the same three causes and cures as dirty glass 1-3: wet wood → use dry wood; air or damper turned down too soon → wait for a good bed of coals and charred wood; draft too low → inspect and clean, provide outside air."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specFireplace (paragraph)",
+   "guide_says": "\"The installation conforms to CAN/CSA-B365.\"",
+   "manual_says": "p. 19: \"The installation shall conform to CAN/CSA-B365, Installation Code for Solid-Fuel-Burning Appliances and Equipment.\"",
+   "pages": [
+    [
+     1,
+     19
+    ]
+   ],
+   "fix": "\"The installation shall conform to CAN/CSA-B365, Installation Code for Solid-Fuel-Burning Appliances and Equipment.\" This is a requirement on the installer, not a statement about the unit."
+  },
+  {
+   "severity": "minor",
+   "where": "step9 brick table, rows B and D",
+   "guide_says": "B \"2\" x 9\" x 1 1/4\" (57 mm x 230 mm x 32 mm)\"; D \"2\" x 4 7/16\" x 1 1/4\" (57mm x 113 mm x 32 mm)\", with no note.",
+   "manual_says": "p. 28 prints the same: \"B 2” X 9” X 1 1/4” (57 mm x 230 mm x 32 mm)\"; \"D 2\" X 4 7/16” X 1 1/4” (57mm x 113 mm x 32 mm)\". 2\" is about 51 mm. Every other dimension in the table matches its metric figure, and no page settles which figure is right.",
+   "pages": [
+    [
+     1,
+     28
+    ]
+   ],
+   "fix": "Keep both figures as printed and add a short note, e.g. 'p. 28 prints this 2\" dimension as 57 mm for bricks B and D.' Don't compute a corrected figure."
+  }
+ ],
+ "verdict": "Yes, safe to publish after the fixes: every clearance, hearth and ember figure, liner and draft requirement, electrical rating and output figure matches the manual, both amber notes (factory-built fireplace, electrical rating) are accurate, and all 28 page links are right. The one substantive fix is restoring the manual's 'do not burn wet, green or unseasoned wood' (pp. 5-6) next to p. 8's narrower overnight rule."
+}

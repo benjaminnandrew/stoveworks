@@ -1,0 +1,584 @@
+{
+ "id": "jotul-gf-300-dv-allagash",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "JØTUL",
+  "brand_line": "GF 300 DV Allagash · Direct vent gas stove",
+  "kicker": "Direct vent gas stove",
+  "title": "Jøtul GF 300 DV Allagash",
+  "model_line": "Model GF 300 DV · Allagash v.2 · Steel Burner · Direct Vent · Standing pilot, piezo ignitor",
+  "owner_noun": "stove",
+  "owner_card": "Light the pilot, set the flame, run the blower, decode first-fire smells, clean the glass, check the warranty.",
+  "installer_card": "Specs, clearances, venting and the exhaust restrictor, LP conversion, the install sequence and flame faults.",
+  "certification": "ANSI Z21.88-2019 · CSA 2.33-2019 · CAN/CGA 2.17-M91",
+  "owner_search_hint": "pilot, blower, glass, gas smell",
+  "manual_search_hint": "restrictor, clearance, snorkel"
+ },
+ "home_primary": [
+  {
+   "id": "light",
+   "icon": "flame",
+   "title": "Light the stove",
+   "blurb": "Light the standing pilot by hand, then start the burner."
+  },
+  {
+   "id": "off",
+   "icon": "off",
+   "title": "Turn it off",
+   "blurb": "Flames off at the switch, or a full shutdown at the gas knob."
+  },
+  {
+   "id": "controls",
+   "icon": "dial",
+   "title": "Burner switch & flame height",
+   "blurb": "ON / OFF / T-STAT, the HI/LOW knob and an optional thermostat."
+  },
+  {
+   "id": "sounds",
+   "icon": "sound",
+   "title": "First fires, sounds & fog",
+   "blurb": "Odor, creaks, pings, a hum and a foggy glass: what's normal."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "Only when it's cool, with a damp soft cloth. Never abrasives."
+  },
+  {
+   "id": "blower",
+   "icon": "fan",
+   "title": "The optional blower",
+   "blurb": "AUTO vs MANUAL, the speed knob, and the grounded plug."
+  },
+  {
+   "id": "flame",
+   "icon": "pilot",
+   "title": "Pilot & flame check",
+   "blurb": "What a healthy pilot and flame look like, and when to call."
+  },
+  {
+   "id": "safety",
+   "icon": "safety",
+   "title": "Safety & gas smell",
+   "blurb": "What to do if you smell gas, hot surfaces, the barrier screen."
+  },
+  {
+   "id": "service",
+   "icon": "service",
+   "title": "Annual service",
+   "blurb": "What gets checked every year, and what you can vacuum."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "What's covered, for how long, and what voids it."
+  }
+ ],
+ "specs": [
+  {
+   "id": "input",
+   "lab": "Input rate · BTU/hr",
+   "tap": "specInput",
+   "rows": [
+    [
+     "Natural gas",
+     "26,000 / 14,000"
+    ],
+    [
+     "Propane",
+     "26,000 / 14,000"
+    ]
+   ],
+   "note": "max / min"
+  },
+  {
+   "id": "inlet",
+   "lab": "Inlet pressure · in. WC",
+   "tap": "specInlet",
+   "rows": [
+    [
+     "Natural gas",
+     "5.0 – 7.0"
+    ],
+    [
+     "Propane",
+     "12.0 – 14.9"
+    ]
+   ],
+   "note": "min – max"
+  },
+  {
+   "id": "manifold",
+   "lab": "Manifold pressure · in. WC",
+   "tap": "specManifold",
+   "rows": [
+    [
+     "Natural gas",
+     "1.2 – 3.8"
+    ],
+    [
+     "Propane",
+     "2.9 – 11.0"
+    ]
+   ],
+   "note": "min – max"
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances to combustibles",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Rear",
+     "2\""
+    ],
+    [
+     "Sides (SN after 30000)",
+     "3\""
+    ],
+    [
+     "Corner",
+     "2\""
+    ],
+    [
+     "Ceiling",
+     "33\""
+    ]
+   ]
+  },
+  {
+   "id": "vertical",
+   "lab": "Vertical venting",
+   "tap": "specVertical",
+   "rows": [
+    [
+     "Min. vertical run",
+     "8 ft."
+    ],
+    [
+     "Max. vertical run",
+     "35 ft."
+    ],
+    [
+     "Co-linear horizontal",
+     "2 ft. max."
+    ]
+   ]
+  },
+  {
+   "id": "horizontal",
+   "lab": "Horizontal venting",
+   "tap": "specHorizontal",
+   "rows": [
+    [
+     "Min. vertical rise",
+     "NG 12 in. · LP 24 in."
+    ],
+    [
+     "Max. horizontal run",
+     "27 ft."
+    ],
+    [
+     "Max. vertical run",
+     "35 ft."
+    ]
+   ]
+  },
+  {
+   "id": "conv",
+   "lab": "Fuel conversion",
+   "tap": "specConv",
+   "rows": [
+    [
+     "Shipped for",
+     "Natural gas"
+    ],
+    [
+     "To propane",
+     "Kit 155372 (supplied)"
+    ],
+    [
+     "Back to natural gas",
+     "Kit 155373"
+    ]
+   ]
+  },
+  {
+   "id": "tstat",
+   "lab": "Thermostat / remote wiring",
+   "tap": "specTstat",
+   "rows": [
+    [
+     "Thermostat",
+     "750 millivolt DC, two-wire"
+    ],
+    [
+     "Wire",
+     "16 gauge min."
+    ],
+    [
+     "Wire length",
+     "25 feet max."
+    ]
+   ]
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Unpack and fit the barrier",
+   "Inspect the crate, lift off the top plate, release the two glass frame latches, and move the safety barrier screen from the pallet onto the stove front.",
+   "<ol><li>Inspect the shipping crate; notify the dealer of any damage.</li><li>Lift the top plate straight off the stove body.</li><li>Open the firebox: pull each glass frame latch handle forward to clear it from the notch in the frame.</li><li>Safety barrier screen (must be installed before operating): remove two screws and break each shipping strap off at the perforation with pliers. Hang it on the stove front by engaging its mounting brackets over the door hinge bosses, doors open or closed.</li></ol><p>Hardware bag: LP conversion kit 155372, ember stones 220702, rock wool 157259. Follow the assembly instructions in the order presented.</p>"
+  ],
+  [
+   "Location and hearth",
+   "Never directly on carpet, vinyl, linoleum or wood laminate. On combustible floors other than wood, add a floor pad covering the full width and depth of the stove.",
+   "<p>Consider heat distribution, vent termination, gas line routing, and traffic areas, furniture and draperies. Leave access around the stove for service.</p><ul><li>Not directly on carpeting, vinyl, linoleum or wood laminate flooring (such as Pergo®).</li><li>On any combustible material other than wood: a metal, wood, ceramic tile, stone or listed hearth pad, extending the full width and depth of the stove. Carpet, vinyl or linoleum underneath can stay. Minimum hearth protection is drawn in fig. 1.</li><li>Fire-resistant materials and fire-rated sheet rock count as combustible.</li></ul><h4>Mobile home (p. 16)</h4><p>Secure the stove to the floor with Floor Bracket Kit #750304, provide an electrical ground to the chassis, and install per Title 24 CFR, Part 3280 (U.S.) or CSA Z240.4 (Canada).</p>"
+  ],
+  [
+   "Vent system",
+   "Use one approved manufacturer's direct-vent components (never mixed), seal each inner-pipe joint with a 1/8\" bead of high-temperature sealant or Mil-Pac, and terminate within the vent window.",
+   "<p>Approved: M&amp;G DuraVent (Direct Vent Pro Series), American Metal Products (Amerivent), Security Chimneys International (Secure Vent), Selkirk Metalbestos (Direct Temp), Metal-Fab (Sure-Seal Direct Vent), Industrial Chimney Corp. (ExcelDirect), Bernard Delsin Mfg. (Pro Form), Olympia Chimney Supply (Ventis Direct Vent).</p><ul><li>Apply a 1/8\" bead of high-temperature sealant or Mil-Pac® to the male section of the inner vent pipe so it seals inner to outer.</li><li>Vent directly outside. Never attach to a chimney serving a solid-fuel or gas appliance; common vent systems are prohibited.</li><li>Never modify a vent component or use damaged venting. Components not made or approved by Jøtul void all warranties.</li><li>If the vent is ever disassembled, reinstall it per the original instructions.</li></ul>"
+  ],
+  [
+   "Set the exhaust restrictor",
+   "Find the zone (A–D) for your fuel and termination on the vent window, then move the pivot pin at the top right of the firebox to that slot. Factory setting: D, fully open.",
+   "<ol><li>Read the termination zone from the vent window for your fuel (NG p. 10, LP p. 11). On a division line, use the less restrictive position.</li><li>Remove the top plate.</li><li>Loosen the pivot-pin nut with a 7 mm or 9/32 nut driver, push the pin left to disengage it, and move it forward into the correct slot.</li><li>Tighten the lock nut and replace the top plate.</li></ol><div class=\"kv\"><div class=\"r\"><span>NG co-linear</span><span>Position B</span></div><div class=\"r\"><span>LP vertical co-linear</span><span>Position C</span></div><div class=\"r\"><span>Snorkel</span><span>Position D, baffle wing removed</span></div></div><p>Depending on overall vent height, more restriction may be needed: Simpson Dura-Vent Restrictor Disk #929 or a similar part from the vent manufacturer.</p>"
+  ],
+  [
+   "Fuel conversion (LP only)",
+   "Before installing, fit kit 155372: burner orifice #53, pilot orifice #30 and the propane regulator tower. Remove the baffle wing and apply the labels.",
+   "<ol><li>Gas off. Remove the top plate, glass frame, embers and logs, and the burner skirt.</li><li>Remove the air shutter wingnut under the right side (the one closest to you). Lift the burner plate and air shutter out together; no screws hold the burner.</li><li>Change the main burner orifice with a 1/2\" open-end wrench or deep-well socket.</li><li>Refit the air shutter with its gasket, wingnut loose. Seat the burner on the two front support brackets and push it back: 1/2\" (13 mm) between the burner plate and the firebox front.</li><li>LP only: remove the baffle wing from the back of the exhaust baffle (one screw) and keep it.</li><li>Pull the pilot head straight up, change the pilot orifice with the 4 mm hex key (tight and flush with the base to prevent bypass leaks), and refit the head.</li><li>Replace the regulator: three Torx T-20 screws; remove the tower, gasket, white plastic disk, spring and the black rubber gasket; fit the new one with its gasket.</li><li>Apply labels A, B and the valve label, reassemble, leak-test with soapy water or a gas detector, check pressures, then set the air shutter (start with the stem half-way in its slot).</li></ol><div class=\"note danger\">The conversion kit must be installed by an authorized service technician.</div>"
+  ],
+  [
+   "Gas connection",
+   "Connect to the left side of the valve: 3/8\" npt with a 1/2\" diameter supply, with a shut-off valve (gas cock) and union in the same room. Install the optional blower first.",
+   "<ul><li>Supply: 3/8\" npt with a 1/2\" diameter supply, or the size that gives sufficient pressure at the valve at any input setting.</li><li>Shut-off valve (gas cock) and union in the supply line, in the same room. Massachusetts: T-handle gas cock (248CMR), installed by a licensed master or journeyman plumber or gas-fitter.</li><li>Flexible gas appliance connectors are acceptable in many U.S. areas; Canadian methods vary with local code.</li><li>Propane: external regulator, and propane-resistant sealing compounds on all joints.</li><li>Fit the optional blower before the gas line to avoid clearance interference.</li></ul><p>Comply with local code or, without one, ANSI Z223.1/NFPA 54 or CAN-B149.</p>"
+  ],
+  [
+   "Leak and pressure test",
+   "Soapy water on every joint, never a flame. Manometer on test point E (inlet) and A (manifold) with the valve knob on HIGH.",
+   "<ol><li>Mix a 50-50 solution of water and dish soap.</li><li>Light the appliance.</li><li>Brush or spray all joints and connections.</li><li>Bubbles or gas odor: turn the gas control knob to OFF, tighten or reconnect the joint, retest.</li></ol><div class=\"kv\"><div class=\"r\"><span>Inlet (E) NG / LP</span><span>5.0 – 7.0 / 12.0 – 14.9 in. WC</span></div><div class=\"r\"><span>Manifold (A) NG / LP</span><span>1.2 – 3.8 / 2.9 – 11.0 in. WC</span></div></div><p>Test points are on the front of the valve under the On/Off/Pilot knob. Disconnect the appliance and its valve for supply-piping tests above 1/2 psig (3.5 kPa); close its shut-off valve for tests at or below 1/2 psig. No altitude adjustment at 2000 - 4500 ft.; do not derate.</p>"
+  ],
+  [
+   "Log set and embers",
+   "Fit the optional brick kit first. Wearing gloves, place the four logs as drawn (rear log on the two burner-skirt pegs), then spread embers loosely 1/4\" clear of the skirt edges and pilot carry-over ports.",
+   "<p>Install the optional Antique Brick Kit 155648 before the log set. The log set must be installed before operating the burner. Wear gloves: the ceramic fibers irritate skin.</p><div class=\"note small\">The log set page prints the brick kit number as 155370 (p. 21); the brick kit page (p. 27) and the parts list (p. 29) give 155648.</div><ol><li>Rear log (PN 220727): engage the holes underneath with the two pegs in the burner skirt.</li><li>Right log (PN 220729).</li><li>Left log (PN 220728).</li><li>Middle log (PN 220730).</li></ol><p>Positions are shown only in the drawings, figs. 32–36.</p><p>Spread the ember stones evenly over the burner plate and around the logs, keeping 1/4\" from the burner skirt edges and the pilot carry-over ports. Never block the pilot assembly or skirt openings. You don't need to use them all; too many can promote sooting.</p><div class=\"note\"><b>Note:</b> the hardware bag list on p. 4 gives the ember stones (PN 220702) as 4 oz.; the parts list on p. 29 gives 6 oz.</div>"
+  ],
+  [
+   "System check",
+   "Purge the line, confirm a steady pilot engulfing the thermopile and thermocouple, check the HI/LOW range, and make sure there is no soot or smoke; adjust the air shutter if there is.",
+   "<ul><li>First light: allow a few moments to purge air from the line. From a cold start, burning the pilot 10 - 15 minutes before the burner helps establish positive draft.</li><li>Pilot (view port behind the right log): steady, not lifting or floating; blue at the hood with traces of yellow toward the edges; engulfs the top 3/8\" of the thermopile and the top 1/8\" of the thermocouple; projects 1\" out of all three hood ports to the burner carry-over ports.</li><li>Burner: the HI/LOW knob adjusts flame height approximately 50%. Never alter the flame with the valve control in any position other than full ON.</li><li>No smoke or soot: check log placement first; if it persists, adjust the air shutter. More vent offsets mean a greater need for adjustment.</li></ul><h4>Air shutter (p. 20)</h4><ol><li>Loosen the wingnut under the right side of the stove (the one closest to you).</li><li>Slide the stud forward for more air, back for less, in small increments; tighten.</li><li>Burn 30 minutes on HIGH, watching the flame. Repeat if it looks weak, slow or sooty.</li></ol><p>Too much air: a blue, transparent, anemic flame. Too little: very long yellow flames and soot.</p><div class=\"note danger\">Air shutter adjustments should only be performed by a qualified professional service technician.</div>"
+  ]
+ ],
+ "faults": {
+  "label": "Flame & draft faults",
+  "panels": [
+   {
+    "title": "Too much air",
+    "items": [
+     "Blue, transparent, anemic flame → air shutter opening too large",
+     "Slide the shutter stem back in small increments; burn 30 minutes on HIGH and recheck"
+    ]
+   },
+   {
+    "title": "Too little air / sooting",
+    "items": [
+     "Very long yellow flames → air setting too small, incomplete combustion",
+     "Black deposits on the logs, firebox walls and possibly the termination cap",
+     "Check log placement first; too many ember stones also promote sooting"
+    ]
+   },
+   {
+    "title": "Draft problems",
+    "items": [
+     "Overly strong draft → poor combustion, weak flame picture: set the exhaust restrictor to the vent-window zone",
+     "Steep roofs, nearby trees, windy sites → poor draft or down-draft: a taller vent may help",
+     "Co-linear draft reversals → cold-start problems: add a reverse loop in the air intake"
+    ]
+   },
+   {
+    "title": "Pilot won't stay lit",
+    "items": [
+     "Goes out after the knob is released → repeat lighting steps 5 through 8",
+     "Still out after several tries → knob to OFF, call a service technician or the gas supplier",
+     "Knob doesn't spring back → stop and call immediately"
+    ]
+   }
+  ]
+ },
+ "codes": [],
+ "detail": {
+  "light": {
+   "tag": "Owner · operation",
+   "title": "Lighting the stove",
+   "cool": false,
+   "html": "<p>Your stove has a standing pilot you light by hand with a push-button spark ignitor. It then stays lit, and the burner switch runs the flames. These steps are also on the rating plate on the back.</p><ol><li>Stop. Smell all around the stove for gas, next to the floor too. If you smell gas, don't light it.</li><li>Open access to the lower controls.</li><li>Turn the burner switch to OFF, or set the thermostat (if used) to its lowest setting.</li><li>Check that the gas supply line shut-off valve is open.</li><li>Push the gas control knob in slightly and turn it clockwise to OFF. Don't force it.</li><li>Wait five minutes to clear out any gas. If you then smell gas, stop.</li><li>Push the knob in slightly and turn it counterclockwise to PILOT.</li><li>Push the knob all the way in and hold it. Press the red ignitor button repeatedly until the pilot lights. Hold for about one minute more, then let go; the knob should spring back.</li><li>Turn the knob counterclockwise to ON.</li><li>Turn the burner switch to ON, or set the thermostat to the temperature you want.</li></ol><div class=\"note danger\"><b>Pilot went out?</b> Repeat steps 5 through 8. If it won't stay lit after several tries, turn the knob to OFF and call your service technician or gas supplier. If the knob doesn't spring back, stop and call right away.</div><div class=\"note\">Use only your hand on the knob, never tools. The first lighting takes a few moments while air clears from the line.</div>"
+  },
+  "off": {
+   "tag": "Owner · operation",
+   "title": "Turning the stove off",
+   "cool": false,
+   "html": "<p>There are two ways to turn the stove off.</p><h4>Flames off, pilot stays on</h4><p>Turn the burner switch to OFF. It's the rocker switch at the left corner of the back panel (the rear shroud). The pilot stays lit, ready for the next fire.</p><h4>Complete shutdown</h4><ol><li>Turn the burner switch to OFF.</li><li>Open access to the lower controls.</li><li>Push the gas control knob in slightly and turn it clockwise to OFF. Don't force it.</li></ol><div class=\"note\"><b>The pilot is a flame that burns all the time.</b> Take care using anything with flammable vapors nearby. Turn off the gas supply, and unplug the optional blower, before any service work.</div><p>If the gas supply line has been shut off, the next lighting takes a few moments while air clears from the line.</p>"
+  },
+  "controls": {
+   "tag": "Owner · operation",
+   "title": "Burner switch, flame height and thermostat",
+   "cool": false,
+   "html": "<p>Once the pilot is lit, the burner is run by the rocker switch at the left corner of the back panel (the rear shroud).</p><div class=\"kv\"><div class=\"r\"><span>ON / OFF</span><span>you turn the burner on and off by hand</span></div><div class=\"r\"><span>T-STAT</span><span>an optional wall thermostat or remote runs the burner</span></div></div><h4>Flame height</h4><p>Turn the HI/LOW knob. The flame height changes by about 50% between LOW and HIGH. Keep the gas control knob fully at ON. Don't try to change the flames by setting it anywhere else.</p><h4>Thermostat or remote</h4><p>Both are optional accessories. With the switch at T-STAT, they turn the burner on and off for you. The pilot must stay lit, because it powers the thermostat. For a remote, follow the instructions that come with it.</p><div class=\"note\">Make sure everyone who uses the stove knows these controls. Never let someone who doesn't know how it works run it.</div>"
+  },
+  "sounds": {
+   "tag": "Owner · reassurance",
+   "title": "That smell or sound is probably normal",
+   "cool": false,
+   "html": "<h4>Odor or smoke during the first fires</h4><p>This is normal. Manufacturing residue is burning off and materials are curing in the heat. Extra ventilation and fresh air around the stove help.</p><h4>Creaking and pinging</h4><p>Cast iron and steel expand and contract as the temperature changes. Those creaks and pings are natural.</p><h4>A low hum</h4><p>The optional blower hums slightly on its low setting. The sound grows as the fan speeds up.</p><h4>Fog on the glass</h4><p>Condensation can form on the glass each time you light the stove. It disappears as the stove heats up.</p><div class=\"note danger\"><b>Not normal:</b> the smell of gas. Don't light anything, don't touch any switch and don't use a phone in the building. Call your gas supplier from a neighbor's phone.</div>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>Clean the glass only when it needs it, and only when it's cool.</p><ol><li>Wipe the surface with a clean, damp, soft cloth.</li><li>Dry it with a soft towel.</li><li>Take care not to scratch it.</li></ol><div class=\"note danger\"><b>Never</b> use abrasive cleaners, and never clean the glass while it's hot.</div><h4>Check for scratches</h4><p>Scratches weaken the glass. If you find any, the panel should be replaced, only with Jøtul glass part number 220576. Have a licensed or qualified service person do it.</p><h4>Handle with care</h4><p>Don't slam or strike the glass. It can shatter unexpectedly. Never run the stove with the glass removed, cracked or broken.</p>"
+  },
+  "blower": {
+   "tag": "Owner · operation",
+   "title": "Using the optional blower",
+   "cool": false,
+   "html": "<p>The optional variable-speed blower (kit 156000) moves heat from around the firebox out into the room. Its control switch has AUTO, OFF and MANUAL positions, plus a speed knob.</p><div class=\"kv\"><div class=\"r\"><span>AUTO</span><span>a heat-sensing switch starts the fan once the fire has burned for a while</span></div><div class=\"r\"><span>MANUAL</span><span>use this if you don't want automatic circulation</span></div></div><p>Turn the speed knob to set the fan speed. If the burner turns off, the fan shuts itself off once the stove cools down. A slight hum on low that grows with fan speed is normal.</p><div class=\"note danger\"><b>Plug it straight into a grounded three-prong outlet.</b> Never cut or remove the grounding prong. Unplug the blower before any service work on the stove.</div>"
+  },
+  "flame": {
+   "tag": "Owner · reassurance",
+   "title": "What the pilot and flames should look like",
+   "cool": false,
+   "html": "<p>You can see the pilot through the view port at the back of the right log.</p><h4>A healthy pilot</h4><ul><li>Steady, not lifting or floating.</li><li>Blue around the pilot hood, with traces of yellow toward the outer edges.</li></ul><h4>The main flames</h4><p>There should be no smoke or soot. Very long yellow flames that leave black deposits on the logs or inside walls mean the burner is short of air. A blue, see-through flame means too much air. Too many ember stones can also cause soot on the logs.</p><p>If you see soot or smoke, have a qualified service technician look at it. Log placement and the air shutter both affect the flame, and only a qualified professional should adjust the air shutter.</p><div class=\"note\"><b>From a cold start,</b> letting the pilot burn for 10 to 15 minutes before you turn on the burner can help set up a good draft.</div>"
+  },
+  "safety": {
+   "tag": "Owner · safety",
+   "title": "Staying safe around the stove",
+   "cool": false,
+   "html": "<h4>If you smell gas</h4><ul><li>Don't try to light any appliance.</li><li>Put out any open flame and open windows.</li><li>Don't touch any electrical switch, and don't use any phone in your building.</li><li>Call your gas supplier right away from a neighbor's phone and follow their instructions. If you can't reach them, call the fire department.</li></ul><h4>Around the stove</h4><ul><li>The surfaces get very hot. Keep everyone clear, and supervise young children in the same room. A child guard or safety gate is recommended if anyone at risk lives with you.</li><li>Keep the safety barrier screen on. If it's damaged, replace it with Jøtul's barrier, part number 157699. Put back any screen removed for service before using the stove.</li><li>Keep clothing, furniture, drapes and flammable liquids away. Burn only natural gas or propane, never wood, paper or other solids.</li><li>Don't use the stove if any part has been under water. Call a qualified service technician.</li></ul><div class=\"note danger\"><b>Massachusetts:</b> a carbon monoxide detector must be installed in the same room as the stove.</div>"
+  },
+  "service": {
+   "tag": "Owner · maintenance",
+   "title": "Annual service and upkeep",
+   "cool": false,
+   "html": "<p>Have a qualified service technician inspect the stove and its vent system before use and at least once a year. Lint from carpeting or bedding can mean more frequent cleaning.</p><h4>What gets checked</h4><ul><li>The whole vent system, including the chimney: inspected and cleaned every year.</li><li>Firebox, valve compartment, air passages and the optional blower: nothing blocking the air flow.</li><li>The pilot head and its sensors (thermopile and thermocouple): replaced if rusty or worn.</li><li>The burner ports, especially around the pilot.</li><li>The glass gasket: checked at least yearly for a good seal.</li></ul><h4>What you can do</h4><p>Keep the controls and the area under the stove free of debris, and vacuum there often, but only when the stove is cold with no hot embers. The firebox should be vacuumed once a year with a soft brush attachment. Handle the logs gently; they're fragile.</p><div class=\"note danger\"><b>Before any service work,</b> turn off the gas supply and unplug the blower.</div>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "Warranty at a glance",
+   "cool": false,
+   "html": "<p>Jøtul North America's limited warranty covers the original retail purchaser, from the date of purchase:</p><div class=\"kv\"><div class=\"r\"><span>Cast iron, steel doors, surround components, firebox</span><span>5 years</span></div><div class=\"r\"><span>Burner, burner treatments, firebox panels</span><span>2 years</span></div><div class=\"r\"><span>Enamel finish (peeling or fading)</span><span>2 years</span></div><div class=\"r\"><span>Gas and electrical parts (controls, plumbing, valve, blower)</span><span>1 year</span></div></div><h4>Not covered</h4><ul><li>Wear items: light bulbs, paint, gaskets and glass (unless damaged by thermal stress)</li><li>Installation or service by anyone other than an authorized installer, service agency or gas supplier, or not per the instructions and codes</li><li>Unauthorized modification, use or repair</li><li>Enamel damage from improper operation or misuse (bubbling, cracking, discoloration)</li><li>Travel time, loss of service, and damage in transit</li></ul><div class=\"note\"><b>To make a claim,</b> contact your authorized Jøtul dealer. Jøtul must hear about a defect within 60 days of when it's first found. Keep your dated sales receipt. The warranty isn't transferable.</div>"
+  },
+  "specInput": {
+   "tag": "Installer · spec",
+   "title": "Input rates",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>NG max / min</span><span>26,000 / 14,000 BTU/hr</span></div><div class=\"r\"><span>LP max / min</span><span>26,000 / 14,000 BTU/hr</span></div><div class=\"r\"><span>Ignition</span><span>Piezo ignitor / standing pilot</span></div><div class=\"r\"><span>HI/LOW knob</span><span>flame height adjusts approximately 50%</span></div></div><p>Shipped for natural gas only; convert with kit 155372 before installation for propane. No altitude adjustment for installations at 2000 - 4500 ft.; do not derate (p. 19). Page 2 carries a 65.75% label based on CSA P.4.1-15.</p>"
+  },
+  "specInlet": {
+   "tag": "Installer · spec",
+   "title": "Inlet (supply) pressure",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Natural gas</span><span>5.0 – 7.0 in. WC (1.24 – 1.74 kPa)</span></div><div class=\"r\"><span>Propane</span><span>12.0 – 14.9 in. WC (2.99 – 3.71 kPa)</span></div></div><p>Manometer on test point E (inlet/supply) on the front of the valve, under the On/Off/Pilot knob. Always test with the valve control knob set on HIGH. Propane requires an external regulator.</p><p>For supply-piping tests above 1/2 psig (3.5 kPa), disconnect the appliance and its main gas valve; at or below 1/2 psig, isolate it by closing its manual shut-off valve.</p>"
+  },
+  "specManifold": {
+   "tag": "Installer · spec",
+   "title": "Manifold pressure",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Natural gas</span><span>1.2 – 3.8 in. WC (.30 – .95 kPa)</span></div><div class=\"r\"><span>Propane</span><span>2.9 – 11.0 in. WC (.722 – 2.74 kPa)</span></div></div><p>Manometer on test point A (manifold: gas leaving the valve to the burner), knob set on HIGH. Establish correct pressure at installation; it is essential for efficient and safe operation.</p>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances to combustibles",
+   "cool": true,
+   "html": "<p>Measured from the stove body. The safety barrier has no effect on clearances to combustible material.</p><div class=\"kv\"><div class=\"r\"><span>Rear</span><span>2\" (51 mm)</span></div><div class=\"r\"><span>Sides, serial no. after 30000</span><span>3\" (76 mm)</span></div><div class=\"r\"><span>Left side, serial no. before 30000</span><span>10\" (254 mm)</span></div><div class=\"r\"><span>Corner</span><span>2\" (51 mm)</span></div><div class=\"r\"><span>Ceiling</span><span>33\" (838 mm)</span></div><div class=\"r\"><span>Vent pipe, horizontal run</span><span>2\" (51 mm) off the top · 1\" (25 mm) sides and bottom</span></div><div class=\"r\"><span>Vent pipe, vertical run</span><span>1\" (25 mm) all sides</span></div><div class=\"r\"><span>Alcove</span><span>24\" (610 mm) max. depth · 36\" (914 mm) min. width</span></div></div><p>Alcove dimensions come from safety-test configurations, not stove clearance specifications. Mantel and trim clearances appear only as a drawing (fig. 2); its caption says to subtract 2 1/4\" with short legs. Fire-resistant materials and fire-rated sheet rock count as combustible (p. 6).</p>"
+  },
+  "specVertical": {
+   "tag": "Installer · spec",
+   "title": "Vertical and co-linear venting",
+   "cool": true,
+   "html": "<p>Terminate within the shaded area of the vent window for your fuel (NG p. 10, LP p. 11).</p><div class=\"kv\"><div class=\"r\"><span>Vertical run</span><span>8 ft. min. · 35 ft. max.</span></div><div class=\"r\"><span>Co-linear horizontal run</span><span>2 ft. max.</span></div><div class=\"r\"><span>Elbows</span><span>four 45° or two 90°, not counting the 45° elbow on the stove</span></div><div class=\"r\"><span>Cap to roof</span><span>no discharge opening less than 18 in. horizontally from the roof surface</span></div><div class=\"r\"><span>Firestop</span><span>every floor, framed 10\" × 10\" inside</span></div><div class=\"r\"><span>Clearance</span><span>1\" all sides</span></div></div><div class=\"note small\">Cap to roof: the manual prints 18 in. (610 mm) on p. 9; the millimetre figure doesn't match 18 in., and fig. 8 on the same page is labeled 18 min.</div><p>Use 45° elbows instead of 90° where possible. Support offset runs with wall straps every three feet. Enclose any venting exposed above the first floor. Steep roofs, nearby trees and windy sites can cause poor draft or down-draft; a taller vent may help.</p><h4>Co-linear chimney installation (p. 12)</h4><p>Masonry or Class A chimney with a co-linear flexible liner system approved for solid-fuel fireplaces (Simpson Dura-Vent #923GCL adaptor, dual 3\" flex ducts). Have the flue cleaned and inspected first. Prefab chimneys: UL 103 or ULC S-629 listed, 6 inches (150 mm) min. inside diameter. The flue may serve no other appliance. Extend the air intake past the damper area or connect it to the cap (Canada: both ducts must fully connect). Stub intake (U.S. only): seal the flue from the room with a sheet-metal block-off plate above the stove. Restrictor: position B for any NG co-linear termination, position C for an LP vertical co-linear termination.</p>"
+  },
+  "specHorizontal": {
+   "tag": "Installer · spec",
+   "title": "Horizontal venting and terminal clearances",
+   "cool": true,
+   "html": "<p>Terminate within the shaded area of the vent window (fig. 9 NG, fig. 11 LP). Every horizontal termination except a snorkel needs:</p><div class=\"kv\"><div class=\"r\"><span>Min. vertical rise</span><span>NG 12 in. · LP 24 in.</span></div><div class=\"r\"><span>Min. horizontal run</span><span>NG 6 in. · LP 12 in. when vertical run is less than 8 ft.</span></div><div class=\"r\"><span>Max. vertical run</span><span>35 ft.</span></div><div class=\"r\"><span>Max. horizontal run</span><span>27 ft., reduced 5 ft. for each elbow beyond the starter</span></div><div class=\"r\"><span>Elbows</span><span>up to four 45° or two 90° plus the starter elbow</span></div><div class=\"r\"><span>Wall cut-out</span><span>10\" × 10\" (250 mm × 250 mm) min.; no insulation in the air space</span></div><div class=\"r\"><span>Overhead projections</span><span>3\" if 2 1/2\" or less · 12\" if more than 2 1/2\"</span></div></div><p>Keep the run level or rising 1/4 in. per foot toward the cap, never downward. Fit a vinyl siding standoff (Simpson Dura-Vent #950) on vinyl-sided walls, and don't recess the cap.</p><h4>Snorkel caps</h4><p>14\" snorkel: off the rear of the stove, no more than a single 12\" straight section; one 45° elbow allowed for a corner installation. 36\" snorkel: max. horizontal run 6 ft. Normally no exhaust restriction: keep the factory position D (fully open) with the baffle wing (PN 226873) removed.</p><div class=\"note small\">The fig. 17 note on p. 14 prints the baffle wing number as 226877; the snorkel text on the same page gives PN 226873, and the parts list (p. 29, item 41a) gives it as 22687392.</div><h4>Terminal clearances (p. 15)</h4><p>Same in the U.S. and Canada: 12 in. above grade, veranda, porch, deck or balcony; 18 in. below a ventilated soffit within 2 ft of the terminal centerline; 12 in. under a veranda, porch, deck or balcony (only if fully open on a minimum of two sides beneath the floor); 5 ft. / 10 ft. to a propane tank relief valve and filler connection (tanks not filled on site / filled on site from bulk truck). Windows and doors, corners, meters and regulators, air inlets and sidewalks have separate U.S. and Canadian values: read them from the table.</p><p>Row L (paved sidewalk or paved driveway on public property), footnote 3: a vent shall not terminate directly above a sidewalk or driveway which is located between two single family dwellings and serves both dwellings.</p><div class=\"note\"><b>Note:</b> the vent terminal table on p. 15 prints the unventilated-soffit clearance (row E) as 12 in. with (46 cm), and the corner rows F and G repeat it; the inch and centimetre figures don't agree.</div>"
+  },
+  "specConv": {
+   "tag": "Installer · spec",
+   "title": "Fuel conversion",
+   "cool": true,
+   "html": "<p>Shipped for natural gas only. For propane, convert with the supplied kit 155372 before the stove is installed; kit 155373 converts back to natural gas. An authorized service technician must install the kit (in Canada, per the provincial authorities and the CAN1-B149.1 and .2 installation code); the agency doing the work assumes responsibility for the conversion.</p><div class=\"kv\"><div class=\"r\"><span>Burner orifice</span><span>#39 NG · #53 LPG</span></div><div class=\"r\"><span>Pilot orifice</span><span>#51 NG · #30 LPG</span></div><div class=\"r\"><span>Regulator</span><span>tower labeled for propane + 3 screws</span></div><div class=\"r\"><span>Labels</span><span>A on the back of the stove · B on the rating plate · small label on the valve</span></div><div class=\"r\"><span>Tools</span><span>1/2\" open-end wrench or deep-well socket, Torx T20 or slotted screwdriver, 4 mm allen wrench</span></div></div><p>LP only: remove the baffle wing from the exhaust baffle and keep it. Conversion instructions also ship in the stove with the kit. After converting, check pressures with a manometer and set the air shutter.</p>"
+  },
+  "specTstat": {
+   "tag": "Installer · spec",
+   "title": "Thermostat and remote wiring",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Thermostat</span><span>750 millivolt DC two-wire circuit only</span></div><div class=\"r\"><span>Wire</span><span>16 gauge min. · 25 feet max.</span></div><div class=\"r\"><span>Placement</span><span>same room, typically 5 feet off the floor, away from drafts</span></div><div class=\"r\"><span>Accessories</span><span>Wall thermostat 750003 · Remote control 750002</span></div></div><p>Connect the two leads to the two lower terminals of the terminal block directly above the ignitor button. Don't overtighten, and don't disconnect any other wires. Wire a remote receiver to the terminal block the same way and follow the remote's own instructions. For thermostatic operation the On/Off/T-Stat switch on the back of the stove must be at T-STAT, with the pilot running: it powers the thermostat.</p><div class=\"note danger\"><b>Critical:</b> the red thermopile wire must be connected to the valve TH/TP terminal to power the thermostat. Label all wires before disconnecting them during service; wiring errors can cause improper or dangerous operation.</div>"
+  }
+ },
+ "pageref": {
+  "light": 31,
+  "off": 31,
+  "controls": 23,
+  "sounds": 2,
+  "glass": 24,
+  "blower": 26,
+  "flame": 22,
+  "safety": 5,
+  "service": 24,
+  "warranty": 30,
+  "specInput": 4,
+  "specInlet": 19,
+  "specManifold": 19,
+  "specClear": 7,
+  "specVertical": 9,
+  "specHorizontal": 14,
+  "specConv": 16,
+  "specTstat": 20,
+  "step0": 4,
+  "step1": 6,
+  "step2": 8,
+  "step3": 8,
+  "step4": 17,
+  "step5": 18,
+  "step6": 19,
+  "step7": 21,
+  "step8": 22
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "safety",
+   "t": "gas smell",
+   "p": "What to do if you smell gas"
+  },
+  {
+   "k": "h",
+   "id": "light",
+   "t": "pilot light",
+   "p": "Light the standing pilot by hand"
+  },
+  {
+   "k": "h",
+   "id": "light",
+   "t": "won't light",
+   "p": "Pilot won't stay lit after several tries"
+  },
+  {
+   "k": "h",
+   "id": "flame",
+   "t": "soot",
+   "p": "Long yellow flames and black deposits"
+  },
+  {
+   "k": "h",
+   "id": "controls",
+   "t": "thermostat",
+   "p": "T-STAT mode and the optional wall thermostat"
+  },
+  {
+   "k": "i",
+   "id": "specConv",
+   "t": "propane conversion",
+   "p": "Kit 155372 · orifices #53 / #30"
+  },
+  {
+   "k": "i",
+   "id": "specHorizontal",
+   "t": "snorkel",
+   "p": "14\" and 36\" snorkel terminations"
+  },
+  {
+   "k": "i",
+   "id": "specVertical",
+   "t": "co-linear",
+   "p": "Chimney liner venting · restrictor B (NG) / C (LP)"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "step7",
+    "issue": "Antique brick kit part number: 155370 in the log-set note vs 155648 on the brick kit page and in the accessories list.",
+    "pages": [
+     [
+      1,
+      21
+     ],
+     [
+      1,
+      27
+     ],
+     [
+      1,
+      29
+     ]
+    ],
+    "class": "clerical",
+    "corrected_to": "155648"
+   },
+   {
+    "where": "step7",
+    "issue": "Ember stones PN 220702: 4 oz. in the hardware bag list vs 6 oz. (printed '6 0z.') in the parts list.",
+    "pages": [
+     [
+      1,
+      4
+     ],
+     [
+      1,
+      29
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "specHorizontal",
+    "issue": "Exhaust baffle wing part number: 226877 (fig. 17 note) and 226873 (snorkel text) on p. 14 vs 22687392 in the parts list.",
+    "pages": [
+     [
+      1,
+      14
+     ],
+     [
+      1,
+      29
+     ]
+    ],
+    "class": "clerical",
+    "corrected_to": "226873"
+   },
+   {
+    "where": "specVertical",
+    "issue": "Cap-to-roof clearance printed as 18 in. (610 mm); the inch and mm values disagree (fig. 8 label reads 18 min.).",
+    "pages": [
+     [
+      1,
+      9
+     ]
+    ],
+    "class": "clerical",
+    "corrected_to": "18 in."
+   },
+   {
+    "where": "specHorizontal",
+    "issue": "Vent terminal table prints '12 in,. (46 cm)' for row E (unventilated soffit, both columns) and in one column of rows F-G (corners); inch and cm values disagree.",
+    "pages": [
+     [
+      1,
+      15
+     ]
+    ],
+    "class": "substantive"
+   }
+  ],
+  "catalog_mismatches": [],
+  "notes": "Single manual (137775 Rev 28, Allagash v.2, for serial 42005149 and above). Catalog BTU (14,000-26,000 NG and LP), standing-pilot ignition, optional blower and mobile-home approval all match. Catalog height/width/depth, weight and heating area can't be checked: the only dimension drawing (p. 4) has unreadable labels (only '13\" 330 mm' is legible), and weight and heating area aren't in the manual. The parts list (p. 29) has an Ivory enamel column that the catalog's finish list lacks. p. 2 shows a '65.75% Based on CSA P.4.1-15' label (Jøtul GF 300 DV MV); the text never names it, so the guide quotes it without calling it efficiency. Decoded the 29-code-point offset font for the running headers on pp. 4, 7, 10, 11, 14, 19 ('137775-Rev 28 GF 300 DV 01/22'), 'GF 300 DV Specifications' and 'Unpacking your stove' (p. 4), and on p. 14 '2) Minimum horizontal run:' and 'One 45° Elbow may be used for a corner installation'. Undecodable scrambled text (not the 29 offset) was left alone: dimension labels on p. 4, part of the alcove note and the fig. 2 mantel drawing on p. 7, the vent-window grids on pp. 10-11, figure labels on p. 14 and a heading on p. 19. Shown only as drawings and linked, not transcribed: mantel and trim clearances (fig. 2, p. 7), hearth protection size (fig. 1, p. 6; its labels read 14\" (356 mm) and 24\" (686 mm), and that 24\"/686 mm pair is itself inconsistent), vent windows and restrictor zones (pp. 10-11), and log positions (figs. 32-36, p. 21). The log order (rear, right, left, middle) comes from the figure captions. Vent terminal table (p. 15): only rows identical in both columns (A, D, M, N) are transcribed; the U.S./Canadian split for rows B-C and F-L can't be read unambiguously from the text, so the drawer sends installers to the table. Minor: p. 24 points to a maintenance-history form 'on page 30', but p. 30 is the warranty; the TOC lists a 'Coaxial Chimney Conversion' on p. 13, which holds only fig. 16; boilerplate on pp. 2 and 25 calls the unit a fireplace insert. No troubleshooting chart or code table: fault panels are built from the air shutter (p. 20), restrictor (p. 8), draft (pp. 9, 12), ember (p. 21) and lighting (p. 31) text; codes left empty. The manual doesn't cover power outages, and covers the remote only as wiring plus 'follow the remote's own instructions', so there is no power or remote tile."
+ }
+}

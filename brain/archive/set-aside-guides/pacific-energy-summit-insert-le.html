@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Summit Insert LE — Owner &amp; Installer Guide</title>
+<!-- Stoveworks owner & installer guide · template v3 · built 2026-10-08 from 100000089-Manual-Summit-Insert-LE-081124-32.pdf (100000089 081124-32)
+     Generated from guides/content/pacific-energy-summit-insert-le.json by scripts/build_guide.py — edit the content file and rebuild; don't edit this page. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* cast iron in shadow */
+    --iron:#191512; --iron-2:#241f1a; --iron-3:#322b24;
+    /* heat */
+    --ember:#e8682c; --ember-2:#c4521f; --amber:#f5a623;
+    /* gas pilot flame — the cool counter-accent, true to the subject */
+    --pilot:#5f93b8; --pilot-deep:#37607d;
+    /* warm reading surfaces */
+    --paper:#f1ece2; --paper-2:#fbf8f2; --card:#ffffff;
+    --ink:#23201b; --ink-soft:#6e655a; --hair:#e0d8c9;
+    --ok:#3f7d54; --warn:#b06a13;
+    --shadow:0 1px 2px rgba(30,22,14,.06),0 8px 24px rgba(30,22,14,.07);
+    --display:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+  .mono{font-family:var(--mono)}
+
+  /* ---------- top chrome ---------- */
+  header{position:sticky;top:0;z-index:40;background:var(--iron);color:#f3ece2;
+    display:flex;align-items:center;gap:14px;padding:11px 18px;border-bottom:1px solid #000;transition:transform .22s ease}
+  .brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;letter-spacing:.16em;font-size:14px}
+  .flame{width:18px;height:18px;flex:none}
+  .brand small{font-weight:600;letter-spacing:.02em;color:#b6ab9b;font-family:var(--body);font-size:11px;display:block;letter-spacing:.04em}
+  .brand-wrap{display:flex;flex-direction:column;line-height:1.15}
+  .spacer{flex:1}
+  /* role toggle */
+  .toggle{display:flex;background:#0e0b09;border:1px solid #3a322a;border-radius:999px;padding:3px}
+  .toggle button{font-family:var(--body);font-weight:600;font-size:12.5px;color:#9b9183;background:none;border:none;
+    padding:7px 15px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.18s;white-space:nowrap;min-height:36px}
+  .toggle button[aria-pressed="true"]{color:#fff}
+  .toggle button.home[aria-pressed="true"]{background:linear-gradient(180deg,var(--ember),var(--ember-2));box-shadow:0 0 14px rgba(232,104,44,.5)}
+  .toggle button.inst[aria-pressed="true"]{background:linear-gradient(180deg,var(--pilot),var(--pilot-deep));box-shadow:0 0 14px rgba(95,147,184,.45)}
+  .toggle .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.55}
+  .search{display:flex;align-items:center;gap:7px;background:#0e0b09;border:1px solid #3a322a;border-radius:9px;padding:7px 11px;min-width:120px}
+  .search input{background:none;border:none;color:#f3ece2;font-family:var(--body);font-size:13px;width:100%;outline:none}
+  .search input::placeholder{color:#7d7468}
+  .search svg{flex:none;opacity:.6}
+  .pdf{display:flex;align-items:center;gap:7px;background:none;border:1px solid #4a4138;color:#d9cfc0;
+    font-family:var(--body);font-weight:600;font-size:12.5px;padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;transition:.18s}
+  .pdf:hover{border-color:var(--ember);color:#fff}
+  .pdf{min-height:40px}
+  /* search icon (phones only) */
+  .qbtn{display:none;place-items:center;width:44px;height:44px;flex:none;background:none;border:1px solid #4a4138;border-radius:10px;color:#d9cfc0;cursor:pointer}
+  .qbtn[aria-expanded="true"]{border-color:var(--pilot-fill,#5f93b8);color:#fff}
+  /* installer section bar: jump to a section, current one highlighted */
+  .secnav{position:sticky;top:var(--hdr-h,58px);z-index:35;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
+    margin:6px -22px 0;padding:10px 22px;background:var(--paper);border-bottom:1px solid var(--hair);transition:top .22s ease}
+  .secnav::-webkit-scrollbar{display:none}
+  .secnav button{flex:none;font-family:var(--body);font-weight:600;font-size:14px;color:var(--ink);background:var(--card);
+    border:1px solid var(--hair);border-radius:999px;padding:0 16px;min-height:44px;cursor:pointer;white-space:nowrap}
+  .secnav button[aria-current="true"]{background:var(--pilot-deep,#2f5a78);border-color:var(--pilot-deep,#2f5a78);color:#fff}
+  .secnav button:focus-visible,.qbtn:focus-visible,.totop:focus-visible{outline:3px solid var(--amber,#f0a43c);outline-offset:2px}
+  .view .seclabel,#faultSec,#codeSec{scroll-margin-top:calc(var(--hdr-h,58px) + 74px)}
+  .hdr-away .view .seclabel,.hdr-away #faultSec,.hdr-away #codeSec{scroll-margin-top:74px}
+  /* back to top (one-handed use) */
+  .totop{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:45;width:52px;height:52px;border-radius:50%;
+    background:var(--iron);color:#f3ece2;border:1px solid #3a322a;box-shadow:0 6px 18px rgba(20,14,8,.3);display:grid;place-items:center;
+    cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s}
+  .totop.show{opacity:1;pointer-events:auto;transform:none}
+
+  /* ---------- ignition gate ---------- */
+  .gate{min-height:calc(100vh - 56px);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(120% 80% at 50% 110%,#3a1f10 0%,#1a120c 45%,#100c09 100%);color:#f3ece2;padding:40px 22px;text-align:center}
+  .gate .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.32em;color:var(--amber);text-transform:uppercase;margin-bottom:18px}
+  .gate h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,58px);line-height:1.02;letter-spacing:-.01em;max-width:14ch}
+  .gate .sub{color:#c4b8a7;max-width:46ch;margin:18px auto 6px;font-size:clamp(15px,2vw,17px)}
+  .gate .model{font-family:var(--mono);color:#8c8174;font-size:12.5px;margin-bottom:42px;letter-spacing:.04em}
+  .cards{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;width:100%;max-width:760px}
+  .ignite{position:relative;flex:1 1 300px;min-width:270px;text-align:left;cursor:pointer;border:1px solid #4a3c2e;border-radius:18px;
+    padding:26px 24px 22px;background:linear-gradient(180deg,#211913,#171009);overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s}
+  .ignite:hover{transform:translateY(-4px);border-color:var(--ember)}
+  .ignite.cool:hover{border-color:var(--pilot)}
+  .ignite::after{content:"";position:absolute;inset:auto -40% -60% -40%;height:70%;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(232,104,44,.55),transparent);opacity:0;transition:opacity .3s}
+  .ignite.cool::after{background:radial-gradient(closest-side,rgba(95,147,184,.5),transparent)}
+  .ignite:hover::after{opacity:1}
+  .ignite .ic{width:40px;height:40px;margin-bottom:16px;color:var(--ember)}
+  .ignite.cool .ic{color:var(--pilot)}
+  .ignite h2{font-family:var(--display);font-weight:700;font-size:24px;color:#fff;letter-spacing:-.01em}
+  .ignite p{color:#b3a795;font-size:14px;margin-top:7px}
+  .ignite .go{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-weight:600;font-size:13px;color:var(--ember);position:relative;z-index:1}
+  .ignite.cool .go{color:var(--pilot)}
+  .gate .foot{margin-top:38px;color:#7d7468;font-size:12.5px}
+  .gate .foot a{color:#b6ab9b}
+  .fine{margin-top:40px;padding-top:14px;border-top:1px solid var(--line,rgba(0,0,0,.08));font-size:12px;line-height:1.55;color:var(--ink-soft);max-width:72ch;margin-bottom:64px}
+  .gate .fine{border-top-color:rgba(255,255,255,.08);color:#7d7468;margin-top:18px}
+
+  /* ---------- views ---------- */
+  .view{display:none;max-width:1080px;margin:0 auto;padding:34px 22px 90px}
+  .view.active{display:block;animation:rise .4s ease}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .vhead{margin-bottom:26px}
+  .vhead .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:9px}
+  .vhead .eyebrow .pip{width:9px;height:9px;border-radius:50%}
+  .home-pip{background:var(--ember)} .inst-pip{background:var(--pilot)}
+  .vhead h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,4.5vw,38px);letter-spacing:-.015em;margin-top:8px}
+  .vhead p{color:var(--ink-soft);max-width:60ch;margin-top:7px;font-size:15px}
+
+  .seclabel{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+  .seclabel::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+  /* action tiles (homeowner) */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .tile{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 18px 16px;cursor:pointer;
+    text-align:left;font:inherit;color:inherit;box-shadow:var(--shadow);transition:transform .16s,border-color .16s}
+  .tile:hover{transform:translateY(-3px);border-color:var(--ember)}
+  .tile .ic{width:26px;height:26px;color:var(--ember);margin-bottom:12px}
+  .tile h3{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.01em}
+  .tile p{color:var(--ink-soft);font-size:13px;margin-top:4px}
+
+  /* spec cards (installer) */
+  .specs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .spec{background:var(--card);border:1px solid var(--hair);border-left:3px solid var(--pilot);border-radius:12px;padding:16px 17px;box-shadow:var(--shadow)}
+  .spec .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .spec .rows{margin-top:10px;display:flex;flex-direction:column;gap:7px}
+  .spec .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px}
+  .spec .row b{font-weight:500;color:var(--ink-soft)}
+  .spec .row .v{font-family:var(--mono);font-weight:700;font-size:14px;color:var(--ink);text-align:right}
+
+  /* checklist */
+  .checklist{background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  .step{display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid var(--hair);cursor:pointer;align-items:flex-start;transition:background .12s}
+  .step:last-child{border-bottom:none}
+  .step:hover{background:#faf6ee}
+  .step .num{flex:none;width:26px;height:26px;border-radius:7px;background:var(--iron);color:#f3ece2;font-family:var(--mono);font-weight:700;
+    font-size:12.5px;display:grid;place-items:center;margin-top:1px}
+  .step.done .num{background:var(--ok)}
+  .step .body h4{font-family:var(--display);font-weight:600;font-size:15.5px}
+  .step .body p{color:var(--ink-soft);font-size:13px;margin-top:2px}
+  .step .check{margin-left:auto;flex:none;width:20px;height:20px;border:2px solid var(--hair);border-radius:6px;margin-top:3px;display:grid;place-items:center}
+  .step.done .check{background:var(--ok);border-color:var(--ok)}
+  .step.done .check svg{display:block}
+  .step .check svg{display:none}
+
+  /* two-column callouts */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .panel{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  .panel h3{font-family:var(--display);font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px}
+  .panel.warn h3{color:var(--warn)} .panel.warn{border-left:3px solid var(--warn)}
+  .panel ul{list-style:none;margin-top:11px;display:flex;flex-direction:column;gap:9px}
+  .panel li{font-size:13.5px;color:#473f36;padding-left:16px;position:relative}
+  .panel li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--pilot)}
+  .panel.warn li::before{background:var(--warn)}
+
+  /* led codes */
+  .codes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .code{background:var(--iron);color:#f3ece2;border-radius:11px;padding:14px}
+  .code .blinks{display:flex;gap:5px;margin-bottom:9px}
+  .code .b{width:9px;height:9px;border-radius:50%;background:#3a322a}
+  .code .b.on{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+  .code .t{font-family:var(--display);font-weight:600;font-size:14px}
+  .code .d{font-size:11.5px;color:#a89c8c;margin-top:2px}
+
+  /* ---------- detail drawer ---------- */
+  .scrim{position:fixed;inset:0;background:rgba(20,14,8,.5);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:.22s;z-index:60}
+  .scrim.open{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(480px,100%);background:var(--paper-2);z-index:70;
+    transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.1,1);overflow-y:auto;box-shadow:-20px 0 50px rgba(20,14,8,.25)}
+  .drawer.open{transform:none}
+  .drawer .dh{position:sticky;top:0;background:var(--iron);color:#f3ece2;padding:18px 20px;display:flex;align-items:flex-start;gap:12px}
+  .drawer .dh .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+  .drawer .dh h2{font-family:var(--display);font-weight:700;font-size:21px;margin-top:5px;letter-spacing:-.01em}
+  .drawer .dh .x{margin-left:auto;background:#0e0b09;border:1px solid #3a322a;color:#d9cfc0;width:44px;height:44px;border-radius:10px;cursor:pointer;flex:none;font-size:22px;line-height:1}
+  .dcontent{padding:22px 24px 60px}
+  .dcontent h4{font-family:var(--display);font-weight:700;font-size:15px;margin:20px 0 8px;color:var(--ink)}
+  .dcontent h4:first-child{margin-top:0}
+  .dcontent p{font-size:14px;color:#473f36;margin-bottom:11px}
+  .dcontent ol,.dcontent ul{margin:0 0 13px 2px;display:flex;flex-direction:column;gap:9px}
+  .dcontent ol{counter-reset:s;list-style:none}
+  .dcontent ol li{position:relative;padding-left:32px;font-size:14px;color:#473f36}
+  .dcontent ol li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-1px;width:22px;height:22px;border-radius:6px;
+    background:var(--ember);color:#fff;font-family:var(--mono);font-weight:700;font-size:11.5px;display:grid;place-items:center}
+  .dcontent.cool ol li::before{background:var(--pilot)}
+  .dcontent ul{list-style:none}
+  .dcontent ul li{position:relative;padding-left:18px;font-size:14px;color:#473f36}
+  .dcontent ul li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--ember)}
+  .dcontent.cool ul li::before{background:var(--pilot)}
+  .note{background:#fcf3e3;border:1px solid #f0dcb4;border-radius:10px;padding:13px 15px;font-size:13.5px;color:#6b5320;margin:14px 0}
+  .note.danger{background:#fbe9e3;border-color:#f0c4b4;color:#8a3a1d}
+  .note b{font-weight:600}
+  .kv{font-family:var(--mono);font-size:13.5px;background:#efe9dd;border-radius:8px;padding:11px 13px;display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+  .kv .r{display:flex;justify-content:space-between;gap:12px}
+  .kv .r span:last-child{font-weight:700}
+
+  /* search results */
+  .results{position:fixed;top:56px;left:0;right:0;z-index:50;background:var(--paper-2);border-bottom:1px solid var(--hair);
+    box-shadow:0 18px 40px rgba(20,14,8,.18);max-height:70vh;overflow-y:auto;display:none}
+  .results.open{display:block}
+  .results .inner{max-width:1080px;margin:0 auto;padding:18px 22px 24px}
+  .results .rl{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px}
+  .ritem{display:flex;gap:12px;align-items:flex-start;padding:12px 13px;border-radius:11px;cursor:pointer;border:1px solid transparent}
+  .ritem:hover{background:#fff;border-color:var(--hair)}
+  .ritem .badge{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;border-radius:5px;flex:none;margin-top:1px}
+  .badge.h{background:#fbe6da;color:var(--ember-2)} .badge.i{background:#e2edf4;color:var(--pilot-deep)}
+  .ritem h4{font-family:var(--display);font-weight:600;font-size:15px}
+  .ritem p{font-size:12.5px;color:var(--ink-soft);margin-top:1px}
+  .rempty{color:var(--ink-soft);font-size:14px;padding:6px 2px}
+  .rgroup{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);
+    margin:16px 0 8px;display:flex;align-items:center;gap:9px}
+  .rgroup:first-child{margin-top:0}
+  .rgroup .ct{background:var(--hair);color:var(--ink-soft);border-radius:999px;padding:1px 8px;letter-spacing:.04em}
+  .ritem .pg{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink-soft);
+    border:1px solid var(--hair);border-radius:6px;padding:3px 7px;flex:none;margin-top:1px;white-space:nowrap}
+  .ritem .snip{font-size:12.5px;color:#5d544a;margin-top:3px;line-height:1.45}
+  .ritem .snip mark{background:#ffe7b3;color:#5a4310;border-radius:3px;padding:0 2px}
+  .ritem .jump{margin-left:auto;flex:none;align-self:center;color:var(--ink-soft);opacity:.5}
+
+
+  /* tablets: two tidy rows (brand + PDF, then the switch + search); the bar tucks away while scrolling down */
+  @media(max-width:1024px){
+    header{flex-wrap:wrap;row-gap:10px;column-gap:12px;padding:10px 16px}
+    .spacer{display:none}
+    .brand{order:1;flex:1;min-width:0}
+    .brand-wrap{min-width:0} .brand small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .pdf{order:2}
+    .toggle{order:3}
+    .toggle button{min-height:40px;font-size:14px;padding:6px 18px}
+    .search{order:4;flex:1;min-height:44px}
+    .search input{font-size:16px}
+    .hdr-away header{transform:translateY(-100%)}
+    .hdr-away .secnav{top:0}
+  }
+  /* phones: one slim row (home flame, own/install switch, search icon, PDF icon) */
+  @media(max-width:720px){
+    header{flex-wrap:wrap;gap:8px;padding:7px 10px;row-gap:8px}
+    .brand{order:1;flex:0 1 auto;min-height:44px}
+    .brand small{display:none}
+    .has-role .brand-wrap{display:none}
+    .has-role .brand{min-width:44px;justify-content:center}
+    .spacer{display:block;flex:1;order:2}
+    .has-role .spacer{display:none}
+    .toggle{order:2;flex:1;min-width:0}
+    .toggle button{flex:1;justify-content:center;min-height:40px;padding:6px 8px;font-size:13.5px}
+    .qbtn{display:grid;order:3}
+    .pdf{order:4;width:44px;height:44px;padding:0;justify-content:center;min-height:0}
+    .pdf .pdf-txt{display:none}
+    .search{display:none;order:5;flex:1 1 100%;min-width:0}
+    header.searching .search{display:flex}
+    .twocol{grid-template-columns:1fr}
+    .secnav{margin:4px -16px 0;padding:8px 16px}
+  }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} header,.secnav,.totop{transition:none} }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+  /* deep-link to the exact manual page (in the drawer) */
+  .manlink{display:flex;align-items:center;gap:13px;margin-top:24px;padding:14px 16px;border-radius:12px;text-decoration:none;
+    background:linear-gradient(180deg,#fdf1e9,#fce7da);border:1px solid #f0cdb6;color:var(--ember-2);transition:transform .18s,box-shadow .18s,border-color .18s}
+  .manlink:hover{border-color:var(--ember);box-shadow:0 7px 20px rgba(232,104,44,.18);transform:translateY(-1px)}
+  .manlink.cool{background:linear-gradient(180deg,#eef4f8,#e2edf4);border-color:#c2d6e3;color:var(--pilot-deep)}
+  .manlink.cool:hover{border-color:var(--pilot);box-shadow:0 7px 20px rgba(95,147,184,.2)}
+  .manlink .ic{flex:none;width:32px;height:32px;display:grid;place-items:center;border-radius:9px;background:#fff;color:var(--ember)}
+  .manlink.cool .ic{color:var(--pilot)}
+  .manlink .tx{display:flex;flex-direction:column;line-height:1.3}
+  .manlink b{font-family:var(--display);font-weight:700;font-size:14px}
+  .manlink small{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:2px;letter-spacing:.02em}
+  .manlink .arr{margin-left:auto;flex:none;opacity:.7}
+
+  /* installer-side full-manual search (inline, light surface) */
+  .ms-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--hair);
+    border-left:3px solid var(--pilot);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .ms-bar svg{flex:none;opacity:.5}
+  .ms-bar input{flex:1;background:none;border:none;font-family:var(--body);font-size:15px;color:var(--ink);outline:none}
+  .ms-bar input::placeholder{color:var(--ink-soft)}
+  .ms-results{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+  .ms-results .ritem{background:var(--card);border:1px solid var(--hair)}
+  .ms-results .ritem:hover{border-color:var(--pilot);background:#fbfdff}
+  .ms-hint{color:var(--ink-soft);font-size:13.5px;padding:8px 2px;line-height:1.5}
+  .ms-hint mark{background:none;color:var(--pilot-deep);font-weight:600}
+
+  /* owner-side inline search (ember surface) */
+  .os-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--hair);
+    border-left:3px solid var(--ember);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .os-bar svg{flex:none;opacity:.5}
+  .os-bar input{flex:1;background:none;border:none;font-family:var(--body);font-size:15px;color:var(--ink);outline:none}
+  .os-bar input::placeholder{color:var(--ink-soft)}
+  .os-results{display:flex;flex-direction:column;gap:8px}
+  .os-results:not(:empty){margin:14px 0 4px}
+  .os-results .ritem{background:var(--card);border:1px solid var(--hair)}
+  .os-results .ritem:hover{border-color:var(--ember);background:#fffaf6}
+  .os-hint{color:var(--ink-soft);font-size:13.5px;padding:8px 2px;line-height:1.5}
+  .os-hint mark{background:none;color:var(--ember-2);font-weight:600}
+  /* ---------- v3 additions ---------- */
+  /* manual picker, for guides built from more than one PDF */
+  .pdfmenu{position:absolute;top:calc(100% + 6px);right:14px;z-index:55;background:var(--paper-2);border:1px solid var(--hair);border-radius:12px;
+    box-shadow:0 18px 40px rgba(20,14,8,.22);padding:7px;min-width:260px;display:none}
+  .pdfmenu.open{display:block}
+  .pdfmenu .ml{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);padding:6px 11px 4px}
+  .pdfmenu a{display:flex;flex-direction:column;gap:1px;padding:10px 11px;border-radius:9px;text-decoration:none;color:var(--ink)}
+  .pdfmenu a:hover{background:#fff}
+  .pdfmenu b{font-family:var(--display);font-weight:700;font-size:14px}
+  .pdfmenu small{font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+  /* fault panels (any number) */
+  .faults{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  /* display-style codes (e.g. "E1") alongside blink codes */
+  .code .cd{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--amber);margin-bottom:7px;letter-spacing:.04em}
+  .gate .foot .docs a{white-space:nowrap}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand" id="brandHome" role="button" tabindex="0" title="Back to start" style="cursor:pointer">
+    <svg class="flame" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3-2 4-2 7 0 1 .6 2 1.5 2.4C12 10 13 8.5 13 7c2 2 4 4.5 4 8a5 5 0 0 1-10 0c0-2 1-3.5 2-5 .2 1.2 1 2 2 2-.4-3 1-6 3-10Z"/></svg>
+    <div class="brand-wrap"><span>PACIFIC ENERGY</span><small>Summit Insert LE · Wood fireplace insert</small></div>
+  </div>
+  <div class="spacer"></div>
+  <div class="search">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Search the whole guide…" autocomplete="off">
+  </div>
+  <button class="qbtn" id="qBtn" type="button" aria-label="Search the guide" aria-expanded="false">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+  </button>
+  <div class="toggle" id="toggle" style="display:none">
+    <button class="home" data-role="homeowner" aria-pressed="false"><span class="dot"></span>I own it</button>
+    <button class="inst" data-role="installer" aria-pressed="false"><span class="dot"></span>I install it</button>
+  </div>
+  <a class="pdf" href="#" id="pdfBtn" title="The full 32-page manual is the legal source of truth">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+    <span class="pdf-txt">Official PDF</span>
+  </a>
+  <div class="pdfmenu" id="pdfMenu"></div>
+</header>
+
+<!-- search results -->
+<div class="results" id="results"><div class="inner"><div class="rl">Results</div><div id="rlist"></div></div></div>
+
+<!-- ===== IGNITION GATE ===== -->
+<section class="gate" id="gate">
+  <div class="kicker">Wood fireplace insert</div>
+  <h1>Summit Insert LE</h1>
+  <p class="sub">Tell us who you are and we'll bring the right half forward — the rest is one search away.</p>
+  <p class="model">Model SUMMIT INSERT LE · Full flue liner, or direct flue connection (USA only) · Seasoned cordwood, masonry fireplaces only</p>
+  <div class="cards">
+    <button class="ignite" data-role="homeowner">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg>
+      <h2>I own this insert</h2>
+      <p>Light a fire, set the air, reload for overnight, run the blowers, clean the glass, empty ashes, check the warranty.</p>
+      <span class="go">Light my path →</span>
+    </button>
+    <button class="ignite cool" data-role="installer">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3Z"/></svg>
+      <h2>I'm installing or servicing it</h2>
+      <p>Specs, clearances, hearth and ember protection, liner and combustion air, the install sequence and the troubleshooting chart.</p>
+      <span class="go">Open field reference →</span>
+    </button>
+  </div>
+  <p class="foot">Both paths draw from the same certified manual (CAN/ULC 628 / UL1482 · EPA 2020 crib wood standards). <a href="#" id="pdfBtn2" class="footdoc" data-doc="1">Skip straight to the full PDF →</a></p>
+  <p class="fine"><b>About these guides.</b> Manufacturers revise their manuals over the years, and a manual sometimes disagrees with itself, for example giving two figures for the same thing on different pages. Where we found a difference that matters, we point it out right there, with links to both pages. The official manual is the authority for installation; when two figures differ, ask us or your installer before relying on either.</p>
+</section>
+
+<!-- ===== HOMEOWNER ===== -->
+<section class="view" id="homeowner">
+  <div class="vhead">
+    <div class="eyebrow"><span class="pip home-pip"></span>For owners</div>
+    <h1>Your insert, in plain language</h1>
+    <p>The things people actually ask us about — pick one. Everything technical still lives under search and the official PDF up top.</p>
+  </div>
+  <div class="os-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="oq" type="search" placeholder="Search — lighting, air control, creosote, glass…" autocomplete="off">
+  </div>
+  <div class="os-results" id="oResults"></div>
+  <div class="seclabel">Start here</div>
+  <div class="tiles" id="homeTiles"></div>
+  <div id="homeSec2">
+    <div class="seclabel">Good to know</div>
+    <div class="tiles" id="homeTiles2"></div>
+  </div>
+  <p class="fine"><b>About these guides.</b> Manufacturers revise their manuals over the years, and a manual sometimes disagrees with itself, for example giving two figures for the same thing on different pages. Where we found a difference that matters, we point it out right there, with links to both pages. The official manual is the authority for installation; when two figures differ, ask us or your installer before relying on either.</p>
+</section>
+
+<!-- ===== INSTALLER ===== -->
+<section class="view" id="installer">
+  <div class="vhead">
+    <div class="eyebrow"><span class="pip inst-pip"></span>For installers &amp; service</div>
+    <h1>Field reference</h1>
+    <p>The numbers you look up on your knees, the sequence you follow, and the faults you diagnose — surfaced first. Tap any spec for the surrounding detail.</p>
+  </div>
+  <nav class="secnav" id="secNav" aria-label="Jump to a section"></nav>
+
+  <div class="seclabel" id="sec-specs">Critical specs</div>
+  <div class="specs" id="specCards"></div>
+
+  <div class="seclabel" id="sec-steps">Install sequence — tap to check off</div>
+  <div class="checklist" id="checklist"></div>
+
+  <div id="faultSec">
+    <div class="seclabel" id="faultLabel">Field faults</div>
+    <div class="faults" id="faults"></div>
+  </div>
+
+  <div id="codeSec">
+    <div class="seclabel">Control codes</div>
+    <div class="codes" id="codes"></div>
+  </div>
+
+  <div class="seclabel" id="sec-manual">Search the original manual</div>
+  <div class="ms-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="mq" type="search" placeholder="Search every page of the official manual — clearance, liner, hearth, outside air…" autocomplete="off">
+  </div>
+  <div class="ms-results" id="mResults"></div>
+  <p class="fine"><b>About these guides.</b> Manufacturers revise their manuals over the years, and a manual sometimes disagrees with itself, for example giving two figures for the same thing on different pages. Where we found a difference that matters, we point it out right there, with links to both pages. The official manual is the authority for installation; when two figures differ, ask us or your installer before relying on either.</p>
+</section>
+
+<!-- detail drawer -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <div class="dh">
+    <div><div class="tag" id="dTag">Detail</div><h2 id="dTitle">Title</h2></div>
+    <button class="x" id="dClose" aria-label="Close">×</button>
+  </div>
+  <div class="dcontent" id="dBody"></div>
+</aside>
+
+<button class="totop" id="toTop" type="button" aria-label="Back to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></svg>
+</button>
+
+<script>
+/* ================= content: generated from guides/content/pacific-energy-summit-insert-le.json ================= */
+const HOME_PRIMARY = [{"id":"light","icon":"M12 2c1 3-2 4-2 7 0 1 .6 2 1.5 2.4C12 10 13 8.5 13 7c2 2 4 4.5 4 8a5 5 0 0 1-10 0c0-2 1-3.5 2-5 .2 1.2 1 2 2 2-.4-3 1-6 3-10Z","title":"Light a fire","blurb":"Paper, kindling and the door ajar: the start-up the manual gives.","fill":true},{"id":"air","icon":"M4 7h16M4 12h16M4 17h16M8 5v4M15 10v4M11 15v4","title":"Set the air control","blurb":"High to the left, low to the right, and what smoky glass means."},{"id":"reload","icon":"M6 9a3 3 0 1 0 0 6 3 3 0 1 0 0-6Zm0 0h12a3 3 0 0 1 0 6H6M6 11.5v1","title":"Reload & burn overnight","blurb":"Add wood without back puffing, set up a long burn, restart from coals."},{"id":"wood","icon":"M12 2 6 10h3l-4 6h14l-4-6h3L12 2Zm0 14v6","title":"Burn the right wood","blurb":"Seasoned wood only, a quick dryness test, and what never goes in."}];
+const HOME_SECONDARY = [{"id":"blower","icon":"M12 12a4 4 0 0 0 0-8c-.5 4-3 4-3 6s3 2 3 2Zm0 0a4 4 0 0 1 0 8c.5-4 3-4 3-6s-3-2-3-2Z","title":"Run the blowers","blurb":"Automatic or manual, and the speed to use on low air."},{"id":"glass","icon":"M4 4h16v16H4Zm0 5h16M9 4v16","title":"Clean the glass & door","blurb":"Cold glass, the right cleaner, and what the deposit tells you."},{"id":"ash","icon":"M12 3v9M8 12h8l-1.5 8h-5L8 12Z","title":"Empty the ashes","blurb":"When to empty, how much to leave, and safe storage."},{"id":"chimney","icon":"M7 21V8h10v13M5 8h14M9 8V5h6v3M7 13h10M7 17h10","title":"Creosote & chimney fires","blurb":"How often to check, the warning signs, and what to do."},{"id":"care","icon":"M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3Z","title":"Maintenance checks","blurb":"Weekly and monthly checks, the door gasket and the baffle."},{"id":"warranty","icon":"M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z","title":"Warranty","blurb":"Lifetime and 3 year coverage, exclusions, and how to claim."}];
+const SPECS = [{"id":"output","lab":"EPA output & efficiency","tap":"specOutput","rows":[["EPA BTU output","13,567 to 39,159 btu/hr"],["Emissions","1.8 g/hr"],["HHV efficiency","74%"],["LHV efficiency","80%"]]},{"id":"woodlen","lab":"Fuel & wood length","tap":"specWood","rows":[["Fuel","Seasoned cord wood"],["Max length · label","20 inches"],["Max length · p. 7","up to 18\" (457mm)"],["Ideal length","16-18 inches"]],"note":"confirm max length"},{"id":"fireplace","lab":"Min. fireplace size","tap":"specFireplace","rows":[["Width at front","28 1/4\""],["Width at rear","26 1/4\""],["Height","22 1/2\""],["Depth","19\""]],"note":"masonry fireplace only"},{"id":"clear","lab":"Clearances to combustibles","tap":"specClear","rows":[["Adjacent sidewall","8 in."],["Side facing (max 1.5 in. deep)","8 in."],["Mantel","15 in."],["Mantel facing","15 in."]],"note":"measured from insert body"},{"id":"hearth","lab":"Hearth & ember protection","tap":"specHearth","rows":[["Hearth","16\" front · 8\" each side · raised 3\""],["Flush hearth","22\" U.S. · 24\" Canada in front"],["Ember protection","16\" USA · 18\" Canada from glass"]]},{"id":"vent","lab":"Chimney & liner","tap":"specVent","rows":[["Canada","6 inch full flue liner, required"],["USA","Full liner, or direct flue connection (UL 1777 HT)"],["Liner","Stainless steel, rigid or flex"],["Chimney height","15' (minimum)"]]},{"id":"elec","lab":"Electrical · blowers","tap":"specElec","rows":[["Rating label","115V, 60HZ, 1.2 AMP"],["Electrical Supply","120V, 60 Hz, 1.2 A"]],"note":"confirm voltage"},{"id":"combair","lab":"Combustion air","tap":"specAir","rows":[["Outside air","Through the fireplace ash clean-out"],["Room air","Remove the cover box under the ash lip"]]}];
+const STEPS = [["Qualify & prep the fireplace","Masonry wood-burning fireplace only, with its own flue, a 15' minimum chimney and the minimum internal size. Sweep, inspect and repair first; lock the damper open or remove it.","<p>Minimum internal size: width 28 1/4\" at front and 26 1/4\" at rear, height 22 1/2\", depth 19\". Fireplace built to N.F.P.A. 211 or applicable codes; installation to CAN/CSA-B365.<\/p><ul><li>Check for creosote or other obstructions; have the chimney swept and inspected.<\/li><li>Repair cracks, loose mortar or other defects before installing.<\/li><li>Do not remove bricks or mortar. Exception: masonry or steel, including the damper plate, may come off the smoke shelf and adjacent damper frame to fit a liner, if that does not weaken the fireplace and chimney or reduce protection for combustibles below the National Building Code.<\/li><li>If the fireplace was modified to take the insert, fasten the supplied metal tag to its back wall.<\/li><li>Never a makeshift or \"temporary\" installation.<\/li><\/ul><div class=\"note danger\"><b>Confirm fireplace type:<\/b> the manual says not to install in a factory-built fireplace on p. 3 and p. 15, but the clearances section on p. 14 refers to installation \"into a masonry or factory built fireplace.\"<\/div>"],["Run the liner","Canada: continuous 6 inch stainless liner to the top of the chimney. USA: full liner (highly recommended) or a UL 1777 HT direct flue connection into the first flue tile with a throat seal. Fit a stove-to-liner adapter at the bottom.","<p><b>Full flue liner:<\/b> measure from the top of the existing chimney flue to the floor of the hearth, leaving extra for flashing and rain cap. Feed the stainless liner from the top, through the damper area, into the fireplace cavity, and attach a \"stove to liner\" adapter to its bottom per the liner maker's instructions.<\/p><p><b>Direct flue connection (USA only):<\/b> measure from the top of the first chimney flue liner tile to the top of the insert, plus extra to insert into the tile. Feed the liner through the damper area into the first flue tile, provide a seal in the throat, then follow full-liner steps 2-9. Local codes may require a clean-out door.<\/p><div class=\"note danger\"><b>Confirm the Canadian liner standard:<\/b> the rating label names CAN/ULC-S635 or CAN/ULC-S640 (p. 3); the installation section names the class III requirements of CAN/ULC-S365 or CAN/ULC-S640 (p. 16).<\/div>"],["Attach the flue collar","Take the flue collar from its box packed in the stove, fix it to the adapter with three stainless screws and caulk the connections with high temp stove cement. Check that the gasket is in good shape."],["Remove covers, top & baffle","Remove both blower covers (Torx screw in each top rear corner; lift and pull to free the tabs), loosen the two wing bolts and pull the cast top off, then remove the baffle.","<p><b>Baffle:<\/b> pull the retaining pin at the back top of the firebox, just under the baffle. Lift the baffle up and pull it forward off the supply tube, then tilt it sideways to drop it out. Inspect the gasket between baffle and supply tube (part 80000365).<\/p><div class=\"note\">Moving the fan speed control to the left side? The manual suggests doing it before the surround is fitted and the insert goes into the fireplace (p. 21).<\/div>"],["Set, level & draw up the collar","Push the insert into the fireplace and level it with the front or rear adjustment legs. Reach through the flue opening, pull the collar down with the tool provided until its bolts pass through, fit the clamps and nuts, center it and tighten."],["Flash & cap the chimney","Measure, trim and shape a chimney top flashing with a 1\" to 1-1/2\" overlap on each side and seat it over the liner against the flue tile. Attach a rain cap to the liner; a storm collar is optional."],["Set up combustion air","Outside air: replace the fireplace ash clean-out cover with a rodent screen, keep the air inlet uncovered and seal the surround once installed. Room air: remove and discard the cover box under the ash lip."],["Power the blowers","Plug into a properly grounded outlet that takes a three-pronged plug; never cut the grounding prong. Route the cord away from hot or sharp surfaces and never under the unit.","<div class=\"note danger\"><b>Confirm the supply voltage:<\/b> the rating label gives 115V, 60HZ, 1.2 AMP (p. 3); the Electrical Supply section gives 120V, 60 Hz, 1.2 A (p. 19).<\/div><p><b>Fan covers:<\/b> remove the screw at the top back corner of each, lift to release the catches and pull toward you, then lift up under the top and out from the bottom (Figures 11 and 12).<\/p><p><b>Speed control to the left side (p. 21-22):<\/b> disconnect the fan and thermal snap switch wires, noting how they are routed; lift off the ash lip; flip the control assembly and fix it on the left side using the upper screw holes; move the thermal switch to the left fan bracket; reconnect, and keep the power cable clear of the firebox side.<\/p>"],["Fit the surround, top & covers","Bolt surround panels A, B and C together face down with the 1/4\" x 1/2\" bolts at points D. Slide it over the unit behind the ash shelf into the bracket slots, push the insert back to the fireplace face, then refit the decorative top and fan covers.","<p>Lay the panels on a flat, non-marring surface. Stand the assembly upright and check that the front face is flat and even at the joints and sides. Refit the decorative top by aligning the wing bolts in the slots, pushing it back gently against the surround and tightening the wing bolts. The fan cover rear tabs use the same slots as the surround.<\/p><div class=\"note\">With outside air, seal the surround to the fireplace and anywhere else air may enter (p. 18).<\/div>"],["Refit the baffle, check the brick","Never fire with the baffle or its insulation out: refit it in reverse order, with the two side pieces of insulation tight against the side rails. Check that the firebrick is complete, uncracked and gap-free.","<h4>Brick pack (p. 24)<\/h4><div class=\"kv\"><div class=\"r\"><span>A · 19pcs<\/span><span>9\" X 4 1/2\" X 1 1/4\"<\/span><\/div><div class=\"r\"><span>B · 1pc<\/span><span>7 1/4\" X 4 1/2\" X 1 1/4\"<\/span><\/div><div class=\"r\"><span>B · 2pcs<\/span><span>9\" X 4 1/2\" X 1 1/4\" with corner cut<\/span><\/div><\/div><p>Floor (p. 25): a \"C\" brick in the left and right rear corners, an \"A\" next to each, the short \"B\" in the center against the baffle tube, then five full bricks along the front. Rear wall: 4 \"A\" bricks behind the brick rail tabs. Each side wall: 2 \"A\" under the side rail tabs pushed to the rear, then two more at the front. Shift bricks to close every gap. The pack is shared with other Summit models, so expect extras.<\/p><div class=\"note danger\"><b>Confirm the brick letters:<\/b> the table on p. 24 labels both the short brick and the two corner-cut bricks \"B\"; the steps on p. 25 place \"C\" bricks in the rear corners.<\/div>"]];
+const CODES = [];
+const FAULTS = {"label":"Troubleshooting chart","panels":[{"title":"Dirty glass","items":["Wet wood → use dry wood","Air control or damper turned down too soon → wait for a good bed of coals and charred wood","Draft too low (chimney height or diameter; chimney plugged or restricted) → inspect and clean; provide outside air for combustion","Door gasket leakage → replace gasket, check latch","Excessive creosote buildup has the same first three causes"]},{"title":"Low heat output","items":["Wet wood → use dry wood","Fire too small → build a larger fire","Draft too low → chimney plugged or restricted: inspect and clean"]},{"title":"Won't burn overnight","items":["Air control set too high → set it lower","Not enough wood → unsplit wood is preferred","Draft too high → excessive chimney height and/or diameter","Door gasket leaking → replace the door gasket"]},{"title":"Stove won't burn","items":["Combustion air supply blocked → check outside air supply for obstruction; check that the room air cover is removed","Draft too low → chimney plugged or restricted: inspect and clean","Chimney oversized or otherwise unsuitable → consult dealer"]}]};
+const DETAIL = {"light":{"tag":"Owner · operation","title":"Lighting a fire","cool":false,"html":"<p>Build the fire right on the firebricks. Don't use a grate or andirons.<\/p><ol><li>Slide the air control to \"High\" (all the way to the left) and open the door.<\/li><li>Put crumpled newspaper in the center and crisscross several pieces of dry kindling over it. Add a few small pieces of dry wood on top.<\/li><li>Light the paper. Leave the door open about 1/2\" (13mm) to 1\" (25mm) until the kindling is fully in flame. Never leave the insert alone with the door open.<\/li><li>Once the kindling is fully engulfed, add a few small logs and close the door.<\/li><li>Start normal operation once there's a good bed of coals and the wood has charred.<\/li><\/ol><p>From then on, keep the door closed while it burns. This insert isn't made for open-door burning.<\/p><div class=\"note danger\"><b>Never use<\/b> gasoline, lantern fuel, kerosene, charcoal lighter fluid or any similar liquid to start or \"freshen up\" a fire. Keep them well away from the insert.<\/div><h4>Your first few fires<\/h4><p>The paint bakes on during the first 2-3 fires. Open all windows and doors while it cures; the smoke and fumes can bother some people. Follow the Stove Bright (Forrest Paint) sheet that came with it. Smoke detectors may go off more often during this time. Don't disconnect them.<\/p>"},"air":{"tag":"Owner · operation","title":"Using the air control","cool":false,"html":"<div class=\"kv\"><div class=\"r\"><span>\"H\" (high)<\/span><span>all the way to the left<\/span><\/div><div class=\"r\"><span>\"L\" (low)<\/span><span>pushed to the far right<\/span><\/div><\/div><p>Once the fire is going, set the air control where you want it. Every home is different, so the right setting takes trial and error. Note what works for next time.<\/p><p>Leave the air fairly wide open for the first 10 to 30 minutes after each load. That's when most smoke forms. After about 30 minutes you can turn it down a lot without much smoke.<\/p><p>If smoke pours down across the glass (a \"waterfall\"), you turned the air down too soon or too low.<\/p><div class=\"note danger\"><b>Don't over-fire.<\/b> A glowing red top or vent pipe means the fire is too hot. It can permanently damage the insert and chimney, and may void the warranty. Use \"H\" only for starting a fire or heating up a fresh load.<\/div><p>An uncontrollable burn also points to too much draft. Smoke leaking into the room at the insert or pipe joints points to too little.<\/p><div class=\"note\">The lowest burn rate is set at the factory, and federal rules forbid changing it. Never alter the air control: tampering voids the warranty and can be very hazardous.<\/div>"},"reload":{"tag":"Owner · operation","title":"Reloading and overnight burns","cool":false,"html":"<h4>To add wood<\/h4><ol><li>Move the air control to high and give the fire time to brighten.<\/li><li>Open the door slowly, so smoke doesn't puff back into the room.<\/li><li>Load the wood endwise, leaving room for air to flow between the logs. Mixed shapes, diameters and lengths are fine.<\/li><li>Don't stack it so high, or in such a way, that opening the door becomes hazardous.<\/li><\/ol><p>For the cleanest burn, add smaller loads: two or three logs at a time, or 1/4 to 1/2 of a full load.<\/p><div class=\"note danger\"><b>Confirm the longest log:<\/b> the manual says up to 18\" (457mm) on p. 7, but the rating label lists a maximum wood length of 20 inches on p. 3.<\/div><h4>Overnight<\/h4><p>Unsplit logs work best. Char the new load completely on the maximum setting before you turn the air down for the night. Don't try an overnight burn with green or wet wood.<\/p><h4>Restarting<\/h4><p>Open the door, rake the hot embers toward the front, add a couple of dry, split logs and close the door. Set the air to high; the logs should catch in a few minutes. Once they've charred, reset the air.<\/p>"},"wood":{"tag":"Owner · operation","title":"Choosing and testing your wood","cool":false,"html":"<p>Burn natural wood only, air-dried (seasoned) for six months or more and stored under cover, away from flames or heat. Seasoned hardwoods give more heat and less smoke than softwoods or freshly cut wood.<\/p><p>Wet wood smoulders, makes heavy smoke and creosote, gives little heat and tends to go out. It can cut heat output by up to 25%.<\/p><h4>Test a piece<\/h4><p>Put a large piece on a good bed of coals:<\/p><ul><li><b>Dry:<\/b> it's burning on more than one side within one minute.<\/li><li><b>Damp:<\/b> it turns black and lights within three minutes.<\/li><li><b>Soaked:<\/b> it sizzles, hisses and blackens without lighting in five minutes. Don't burn it.<\/li><\/ul><h4>Never burn<\/h4><p>Garbage, treated or salt-water wood, coal or charcoal, cardboard and paper products, plywood or particleboard, yard waste, railroad ties, manure or animal remains, building debris, anything with plastic, rubber or asbestos, solvents, paints or petroleum products. Salt-water wood, treated wood, garbage and plastics rapidly destroy metal and void the warranty. Charcoal and other fuels can make carbon monoxide, which can kill. Fire starters made from paper, cardboard, sawdust or wax are fine for lighting.<\/p>"},"blower":{"tag":"Owner · operation","title":"Running the blowers","cool":false,"html":"<p>Your insert has two variable-speed blowers. A rocker switch picks automatic or manual, and a speed control sets how fast they run. The speed control sits under the ash lip, on the right-hand side unless your installer moved it to the left.<\/p><div class=\"kv\"><div class=\"r\"><span>Rocker switch \"OFF\"<\/span><span>automatic: the blowers start once the insert is up to temperature, and stop after the fire is out and it has cooled<\/span><\/div><div class=\"r\"><span>Rocker switch \"ON\"<\/span><span>manual: bypasses the temperature switch so you have full control<\/span><\/div><\/div><h4>Suggested settings<\/h4><ul><li>Air control at \"L\" (pushed to the far right): run the blowers on low.<\/li><li>Air control anywhere above \"L\": any speed you like.<\/li><\/ul><div class=\"note\">Clean the blowers at least every six months: remove the covers and vacuum the blower openings to clear dust and debris. Disconnect the power before servicing; there is a risk of electrical shock.<\/div>"},"glass":{"tag":"Owner · maintenance","title":"Cleaning the glass and door","cool":false,"html":"<p>Clean darkened glass with fireplace glass cleaner, and only when the insert is cold. Never scrape it with anything that could scratch it, and don't use abrasive cleaners.<\/p><h4>What the deposit tells you<\/h4><ul><li><b>Light brown and dusty, wipes off easily:<\/b> good combustion and dry, seasoned wood. Your pipes and chimney are likely fairly clean.<\/li><li><b>Black and greasy, hard to remove:<\/b> wet or green wood and too slow a burn. The same heavy deposit is building up in the chimney at least as fast.<\/li><\/ul><h4>Protect the glass and door<\/h4><ul><li>Don't slam the door. Make sure no logs stick out to hit the glass when you close it.<\/li><li>If the glass cracks or breaks, replace it before you use the insert again. Use only 9-1/2\" (240mm) x 17-1/2\" (445mm) x 5 mm ceramic glass from your dealer.<\/li><li>Clean a plated door with mild soap and water only. Abrasive cleaners void the warranty.<\/li><\/ul><div class=\"note danger\">Hot glass will cause burns. Don't touch it until it has cooled, and never let children touch it.<\/div>"},"ash":{"tag":"Owner · maintenance","title":"Removing and storing ashes","cool":false,"html":"<p>Take ashes out only when the insert is cold. Once they're 3\" (76mm) to 4\" (102mm) deep and the fire has burned down and cooled, remove the excess. Leave a bed about 1\" (25 mm) deep on the firebox floor. It helps keep a hot charcoal bed.<\/p><p>Keep the front of the firebox clear of ash buildup. That's where boost combustion air comes in, and too much ash blocks it.<\/p><h4>Storing ashes safely<\/h4><ul><li>Use a metal container with a tight-fitting lid.<\/li><li>Set the closed container on a non-combustible floor or on the ground, well away from anything that can burn.<\/li><li>If you'll bury or spread the ashes, keep them in the closed container until all cinders have thoroughly cooled.<\/li><li>Don't put any other waste in that container.<\/li><\/ul>"},"chimney":{"tag":"Owner · safety","title":"Creosote and chimney fires","cool":false,"html":"<p>Slow fires give off tar and vapours that condense in the cool chimney as creosote, and creosote burns extremely hot. Some is inevitable; regular inspection and cleaning is the answer. Dry wood and plenty of air keep it down.<\/p><ul><li>Have the chimney and connector inspected at least once every two months during the heating season. Remove creosote once it reaches 3 mm or more.<\/li><li>Until you know your pattern, check daily. Weekly cleaning may be needed in mild weather; monthly is usually enough in the coldest months.<\/li><\/ul><h4>Signs of a chimney fire<\/h4><ul><li>Flames and sparks shooting out of the top of the chimney<\/li><li>A roaring sound<\/li><li>Vibration of the chimney<\/li><\/ul><h4>If it happens<\/h4><ol><li>Get everyone ready to leave, with a meeting place outside.<\/li><li>Close the air control on the insert.<\/li><li>Call the fire department. Have a fire extinguisher handy.<\/li><li>Before the next fire, have the chimney cleaned and checked for stress and cracks. Also check combustibles around the chimney and the roof.<\/li><\/ol><div class=\"note\">Smoke and carbon monoxide detectors are strongly recommended in the area where the insert is installed.<\/div>"},"care":{"tag":"Owner · maintenance","title":"Maintenance checks","cool":false,"html":"<p>Check these parts for cracks, heavy corrosion, burned-out sections and excessive warping:<\/p><div class=\"kv\"><div class=\"r\"><span>Weekly<\/span><span>firebrick (cracking) · door gasket (sagging, placement, damage)<\/span><\/div><div class=\"r\"><span>Monthly<\/span><span>baffle, brick rails and their tabs, air riser tube, back of the airwash chamber, baffle locking pin, boost tube cover, chimney liner and connector<\/span><\/div><div class=\"r\"><span>Every six months<\/span><span>vacuum the blowers (at minimum)<\/span><\/div><div class=\"r\"><span>Yearly<\/span><span>have the liner cleaned, or more often if needed<\/span><\/div><div class=\"r\"><span>When the chimney is cleaned<\/span><span>top baffle board/blanket, top heat shield and mounting bolt, baffle gasket, brick rails, manifold<\/span><\/div><\/div><h4>Door gasket<\/h4><p>The 7/8\" (22mm) fiberglass rope gasket needs only light pressure to seal. Inspect it now and then and replace it if needed: part# 80000158 Gasket Kit from your Pacific Energy dealer.<\/p><h4>Baffle<\/h4><p>Some warping of the baffle at the top of the firebox is normal, up to 1/4\". Replace it if the warping is greater, or if it's cracked or broken. Never run the insert with the baffle or its insulation removed.<\/p><div class=\"note\">Use only materials supplied by the manufacturer. If you find damage, contact your dealer: running with broken parts can damage other parts and may void your warranty.<\/div>"},"warranty":{"tag":"Owner · warranty","title":"Warranty at a glance","cool":false,"html":"<p>Pacific Energy's coverage goes to the original registered purchaser.<\/p><div class=\"kv\"><div class=\"r\"><span>Limited lifetime<\/span><span>parts only: porcelain finish, glass (thermal breakage only, not impact), plating, firebox and baffle<\/span><\/div><div class=\"r\"><span>3 year comprehensive<\/span><span>parts and labor for any defective part from the date of purchase, including blowers, speed controls and thermal switches<\/span><\/div><\/div><div class=\"note danger\"><b>Confirm the lifetime term:<\/b> the heading gives it as \"(10 years)\", while the text calls it limited lifetime coverage (p. 28).<\/div><h4>Not covered<\/h4><ul><li>Labor under the lifetime coverage<\/li><li>Firebox rails and heat shields (left out of the lifetime coverage)<\/li><li>Firebrick, gaskets and ceramic fiber blankets<\/li><li>Misuse, abuse, improper installation, accident, lack of maintenance or modification<\/li><\/ul><p>Premature wear points to improper use, such as excessive draft, heating too large an area, or contaminated fuel. These can void your warranty.<\/p><h4>Making a claim<\/h4><p>Tell your Pacific Energy dealer, with proof of purchase, the purchase date, and the model name and serial number. The serial number is on the certification label or the cover of the installation manual. You can register the insert online at pacificenergy.net/register.<\/p>"},"specOutput":{"tag":"Installer · spec","title":"EPA output, emissions & efficiency","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>EPA BTU output<\/span><span>13,567 to 39,159 btu/hr<\/span><\/div><div class=\"r\"><span>EPA certified emissions<\/span><span>1.8 grams per hour<\/span><\/div><div class=\"r\"><span>HHV tested efficiency<\/span><span>74%<\/span><\/div><div class=\"r\"><span>LHV tested efficiency<\/span><span>80%<\/span><\/div><\/div><p>Efficiencies are weighted averages tested to CSA B415. The BTU range is based on that efficiency and the burn rates from the low and high EPA tests, using Douglas Fir dimensional lumber. Meets the EPA 2020 crib wood particulate emission standards (test Method 28R).<\/p><p>Listed solid wood fuel fireplace insert, certified for Canada and U.S.A. to CAN/ULC 628 / UL1482 (Intertek C# 4001507). The rating label is on the bottom, back corner of the side casing on the door catch side.<\/p>"},"specWood":{"tag":"Installer · spec","title":"Fuel & wood length","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Fuel<\/span><span>Seasoned cord wood<\/span><\/div><div class=\"r\"><span>Maximum wood length (label)<\/span><span>20 inches<\/span><\/div><div class=\"r\"><span>Ideal wood length (label)<\/span><span>16-18 inches<\/span><\/div><\/div><p>Cordwood only, burned directly on the firebrick: no grate, andirons or elevated fire. Operate only with the feed door closed; open it only to feed the fire.<\/p><div class=\"note danger\"><b>Confirm maximum log length:<\/b> the manual gives a maximum wood length of 20 inches on the rating label (p. 3) and \"up to 18\"(457mm)\" in Normal Operation (p. 7).<\/div>"},"specFireplace":{"tag":"Installer · spec","title":"Minimum fireplace size","cool":true,"html":"<p>Masonry wood-burning fireplace built to N.F.P.A. 211 (latest edition) or applicable codes; installation to CAN/CSA-B365. Required minimum internal sizes:<\/p><div class=\"kv\"><div class=\"r\"><span>Width (at front)<\/span><span>28 1/4\" (718 mm)<\/span><\/div><div class=\"r\"><span>Width (at rear)<\/span><span>26 1/4\" (667 mm)<\/span><\/div><div class=\"r\"><span>Height<\/span><span>22 1/2\" (572 mm)<\/span><\/div><div class=\"r\"><span>Depth<\/span><span>19\" (483 mm)<\/span><\/div><div class=\"r\"><span>Chimney height<\/span><span>15' (minimum)<\/span><\/div><\/div><p>Do not connect to a chimney flue serving another appliance. If the fireplace was modified to accommodate the insert, fasten the supplied metal tag to its back wall.<\/p><div class=\"note danger\"><b>Confirm fireplace type:<\/b> the rating label (p. 3) and the installation section (p. 15) say not to install in a factory-built fireplace, but the clearances section (p. 14) refers to installation \"into a masonry or factory built fireplace.\"<\/div><div class=\"note danger\"><b>Confirm metric sizes:<\/b> the manual gives 718 / 667 / 483 mm on p. 15 and 711 / 660 / 482mm on Figure 3 (p. 12) for the same widths and depth in inches.<\/div>"},"specClear":{"tag":"Installer · spec","title":"Clearances to combustibles","cool":true,"html":"<p>Minimum clearances to combustibles, measured from the insert body:<\/p><div class=\"kv\"><div class=\"r\"><span>Adjacent sidewall<\/span><span>8 in.(203 mm.)<\/span><\/div><div class=\"r\"><span>Side facing (max 1.5 in. deep)<\/span><span>8 in.(203 mm.)<\/span><\/div><div class=\"r\"><span>Mantel<\/span><span>15 in.(381 mm.)<\/span><\/div><div class=\"r\"><span>Mantel facing<\/span><span>15 in.(381 mm.)<\/span><\/div><\/div><p>The rating label repeats these (top facing 381 MM / 15IN) and adds the firing-side distances covered under Hearth & ember protection. Figure 6 on p. 14 shows the clearances as a drawing.<\/p>"},"specHearth":{"tag":"Installer · spec","title":"Hearth & ember protection","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Non-combustible hearth<\/span><span>16\" in front, 8\" beyond each side of the fireplace opening<\/span><\/div><div class=\"r\"><span>Hearth height<\/span><span>3\" above any adjacent combustible floor<\/span><\/div><div class=\"r\"><span>Flush hearth, min. in front<\/span><span>22\" (U.S.) · 24\" / 610mm (Canada)<\/span><\/div><div class=\"r\"><span>Ember protection, firing side<\/span><span>16\" (USA) · 18\" (Canada) from the door glass<\/span><\/div><div class=\"r\"><span>Ember protection, sides<\/span><span>8\"<\/span><\/div><\/div><p>A non-combustible hearth reaching the flush-hearth depth in front of the fireplace opening can be flush with an adjacent combustible floor. Option A (Figure 4) shows the 3\" raised hearth; option B (Figure 5) an extended masonry hearth. Consult CAN/CSA-B365 in Canada and N.F.P.A. 211 in the USA.<\/p><div class=\"note danger\"><b>Confirm Canadian ember protection (metric):<\/b> the rating label gives 457 MM / 18 IN (p. 3); Figures 4 and 5 give 18\" / 406mm (p. 13).<\/div>"},"specVent":{"tag":"Installer · spec","title":"Chimney & liner","cool":true,"html":"<p><b>Canada:<\/b> a continuous 6 inch diameter stainless steel liner, rigid or flexible, from the insert to the top of the chimney is required.<\/p><p><b>USA:<\/b> a full liner is highly recommended as the safest installation and for correct draft. Alternatively, a direct flue connection: a stainless steel rigid or flexible liner meeting the HT requirements of UL 1777 from the flue collar into the first masonry chimney flue liner, with a seal in the throat. Figure 8 labels it a 6\" stainless steel rigid or flex liner. Local codes may require a clean-out door.<\/p><div class=\"kv\"><div class=\"r\"><span>Chimney height<\/span><span>15' (minimum)<\/span><\/div><div class=\"r\"><span>Shared flue<\/span><span>not permitted<\/span><\/div><div class=\"r\"><span>Existing damper<\/span><span>locked open or removed<\/span><\/div><\/div><div class=\"note danger\"><b>Confirm the Canadian liner standard:<\/b> the rating label names CAN/ULC-S635 or CAN/ULC-S640 (p. 3); the installation section names the class III requirements of CAN/ULC-S365 or CAN/ULC-S640 (p. 16).<\/div>"},"specElec":{"tag":"Installer · spec","title":"Electrical · blowers","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Rating label (p. 3)<\/span><span>115V, 60HZ, 1.2 AMP<\/span><\/div><div class=\"r\"><span>Electrical Supply (p. 19)<\/span><span>120V, 60 Hz, 1.2 A<\/span><\/div><\/div><p>Powers the twin circulating air blowers. Use only a properly grounded outlet that accepts a three-pronged plug; don't cut or remove the grounding prong. Don't route the cord under the unit, and keep it clear of hot or sharp surfaces. Wire to local codes, or else CSA C22.2 (Canada) or ANSI/NFPA 70 (USA).<\/p><p>The fan speed controller is factory installed under the ash lip on the right; it can be moved to the left side (p. 21-22), ideally before the surround is fitted and the insert goes in.<\/p><div class=\"note danger\"><b>Confirm the supply voltage:<\/b> the rating label gives 115V, 60HZ, 1.2 AMP (p. 3); the Electrical Supply section gives 120V, 60 Hz, 1.2 A (p. 19).<\/div>"},"specAir":{"tag":"Installer · spec","title":"Combustion air","cool":true,"html":"<p>Consult local building codes on combustion air supply. Two options:<\/p><h4>Outside air<\/h4><p>Remove the cover from the ash clean-out in the existing fireplace and fit a rodent screen in its place. Install the insert without covering the air inlet opening, then seal the surround to the fireplace and anywhere else air may enter. Air is drawn from outside into the intake at the lower rear of the appliance.<\/p><h4>Room air<\/h4><p>Remove the two screws securing the center cover under the ash lip, remove the screw in the cover box front, slide the cover box out and discard it, then refit the center cover (Figure 9). Air is drawn from the room through the front of the unit.<\/p><div class=\"note\">The troubleshooting chart lists a blocked outside air supply, or a room air cover not removed, as a cause of \"stove won't burn.\"<\/div>"}};
+const PAGEREF = {"light":7,"air":7,"reload":7,"wood":6,"blower":8,"glass":9,"ash":8,"chimney":4,"care":10,"warranty":28,"specOutput":3,"specWood":3,"specFireplace":15,"specClear":14,"specHearth":12,"specVent":16,"specElec":19,"specAir":18,"step0":15,"step1":16,"step2":16,"step3":16,"step4":16,"step5":16,"step6":18,"step7":19,"step8":20,"step9":10};
+const INDEX_EXTRA = [{"k":"h","id":"chimney","t":"chimney fire","p":"Roaring sound, sparks from the chimney top"},{"k":"h","id":"air","t":"over-firing","p":"Glowing red top or vent pipe"},{"k":"h","id":"air","t":"smoke on the glass","p":"Waterfall effect: air turned down too soon"},{"k":"h","id":"light","t":"paint smell","p":"First 2-3 fires: open windows and doors"},{"k":"h","id":"care","t":"door gasket","p":"Gasket kit part# 80000158"},{"k":"h","id":"chimney","t":"creosote","p":"Inspect at least once every two months"},{"k":"i","id":"specAir","t":"outside air","p":"Ash clean-out with a rodent screen"},{"k":"i","id":"specFireplace","t":"factory-built fireplace","p":"Masonry fireplaces only; see the conflict note"}];
+const MANUAL_BASE = "../../var/brain-assets/";
+const MANUALS = [{"n":1,"label":"Installation & Operation Manual","short":"Manual","url":"documents/pacific-energy/100000089-Manual-Summit-Insert-LE-081124-32.pdf","pages":32,"role":"installation_and_operation","kit":false,"revision":"100000089 081124-32"}];
+
+/* step detail (generated; a step may carry its own drawer html as a third element) */
+STEPS.forEach((s,i)=>{ DETAIL['step'+i]={tag:'Installer · step '+(i+1), title:s[0], cool:true, html:s[2]||`<p>${s[1]}</p>`}; });
+
+/* ================= template logic (identical in every guide) ================= */
+const $=(s,r=document)=>r.querySelector(s); const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const MULTI = MANUALS.length>1;
+/* where each manual lives: a relative storage key under MANUAL_BASE, or a full URL */
+function manualHref(n){const m=MANUALS[n-1];return /^(https?:)?\/\//.test(m.url)?m.url:MANUAL_BASE+m.url;}
+function pdfHref(page,n){return manualHref(n||1)+(page?('#page='+page):'');}
+/* deep-link into a PDF at a specific page (#page=N is honored by the Chrome, Edge and Firefox viewers) */
+function openPDF(page,n){window.open(pdfHref(page,n),'_blank','noopener');}
+const MANUAL_URL = manualHref(1);
+
+function tile(d){const b=document.createElement('button');b.className='tile';b.innerHTML=
+  `<svg class="ic" viewBox="0 0 24 24" ${d.fill?'fill="currentColor"':'fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"'}><path d="${d.icon}"/></svg>
+   <h3>${d.title}</h3><p>${d.blurb}</p>`;
+  b.onclick=()=>openDrawer(d.id);return b;}
+HOME_PRIMARY.forEach(d=>$('#homeTiles').appendChild(tile(d)));
+HOME_SECONDARY.forEach(d=>$('#homeTiles2').appendChild(tile(d)));
+if(!HOME_SECONDARY.length) $('#homeSec2').style.display='none';
+
+SPECS.forEach(s=>{const el=document.createElement('div');el.className='spec';
+  el.innerHTML=`<div class="lab">${s.lab}</div><div class="rows">${s.rows.map(r=>`<div class="row"><b>${r[0]}</b><span class="v">${r[1]}</span></div>`).join('')}${s.note?`<div class="row"><b style="font-size:11px">${s.note}</b></div>`:''}</div>`;
+  el.style.cursor='pointer';el.onclick=()=>openDrawer(s.tap);$('#specCards').appendChild(el);});
+
+STEPS.forEach((s,i)=>{const el=document.createElement('div');el.className='step';
+  el.innerHTML=`<div class="num">${i+1}</div><div class="body"><h4>${s[0]}</h4><p>${s[1]}</p></div>
+   <div class="check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m5 12 4 4 10-10"/></svg></div>`;
+  el.querySelector('.body').onclick=(e)=>{e.stopPropagation();openDrawer('step'+i);};
+  el.onclick=()=>el.classList.toggle('done');
+  $('#checklist').appendChild(el);});
+
+if(FAULTS && FAULTS.panels && FAULTS.panels.length){
+  $('#faultLabel').textContent=FAULTS.label||'Field faults';
+  FAULTS.panels.forEach(p=>{const el=document.createElement('div');el.className='panel warn';
+    el.innerHTML=`<h3>⚠ ${p.title}</h3><ul>${p.items.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+    $('#faults').appendChild(el);});
+} else $('#faultSec').style.display='none';
+
+if(CODES.length){
+  const dots=Math.max(4,...CODES.filter(c=>typeof c[0]==='number').map(c=>c[0]));
+  CODES.forEach(c=>{const el=document.createElement('div');el.className='code';
+    let head='';
+    if(typeof c[0]==='number'){for(let i=0;i<dots;i++)head+=`<span class="b ${i<c[0]?'on':''}"></span>`;head=`<div class="blinks">${head}</div>`;}
+    else head=`<div class="cd">${c[0]}</div>`;
+    el.innerHTML=`${head}<div class="t">${c[1]}</div><div class="d">${c[2]}</div>`;
+    $('#codes').appendChild(el);});
+} else $('#codeSec').style.display='none';
+
+/* ---------------- role switching ---------------- */
+function setRole(role){
+  $('#gate').style.display='none';
+  $('#toggle').style.display='flex';
+  document.body.classList.add('has-role');
+  $$('.view').forEach(v=>v.classList.toggle('active',v.id===role));
+  $$('#toggle button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.role===role));
+  window.scrollTo({top:0});
+  document.body.classList.remove('hdr-away');
+  setHdrH(); requestAnimationFrame(onScroll);
+}
+$$('[data-role]').forEach(b=>b.onclick=()=>setRole(b.dataset.role));
+function currentRole(){const v=$('.view.active');return v?v.id:null;}
+
+/* return to the ignition gate (home) */
+function goHome(){
+  $('#gate').style.display='';
+  $('#toggle').style.display='none';
+  $$('.view').forEach(v=>v.classList.remove('active'));
+  $$('#toggle button').forEach(b=>b.setAttribute('aria-pressed','false'));
+  $('#results').classList.remove('open'); $('#q').value='';
+  document.body.classList.remove('has-role','hdr-away');
+  closeHeaderSearch();
+  window.scrollTo({top:0});
+  setHdrH();
+}
+$('#brandHome').onclick=goHome;
+$('#brandHome').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goHome();}});
+
+/* ---------------- drawer ---------------- */
+/* PAGEREF: the manual page where each topic is actually discussed, verified against PAGES.
+   A number is a page of the first manual; [n, page] is a page of manual n. */
+function refOf(id){const r=PAGEREF[id];if(r==null)return null;return Array.isArray(r)?{d:r[0],p:r[1]}:{d:1,p:r};}
+function openDrawer(id){const d=DETAIL[id];if(!d)return;
+  $('#dTag').textContent=d.tag;$('#dTitle').textContent=d.title;
+  const body=$('#dBody');body.className='dcontent'+(d.cool?' cool':'');
+  let html=d.html;
+  const ref=refOf(id), man=ref&&MANUALS[ref.d-1];
+  if(man) html+=`<a class="manlink${d.cool?' cool':''}" href="${pdfHref(ref.p,ref.d)}" target="_blank" rel="noopener">
+     <span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h9l5 5v11H4Z"/><path d="M13 4v5h5"/><path d="M8 13h6M8 16h6"/></svg></span>
+     <span class="tx"><b>For the specific details in the ${man.label}, go here →</b><small>Opens the official PDF at page ${ref.p}</small></span>
+     <svg class="arr" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg></a>`;
+  body.innerHTML=html;
+  $('#scrim').classList.add('open');$('#drawer').classList.add('open');}
+function closeDrawer(){$('#scrim').classList.remove('open');$('#drawer').classList.remove('open');}
+$('#dClose').onclick=closeDrawer;$('#scrim').onclick=closeDrawer;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();$('#pdfMenu').classList.remove('open');}});
+
+/* ---------------- the official PDF(s) ---------------- */
+const pdfMenu=$('#pdfMenu');
+pdfMenu.innerHTML=`<div class="ml">Official manuals</div>`+MANUALS.map((m,i)=>
+  `<a href="${pdfHref(null,i+1)}" target="_blank" rel="noopener"><b>${m.label}</b><small>${m.pages} pages${m.revision?' · '+m.revision:''}</small></a>`).join('');
+$('#pdfBtn').onclick=e=>{e.preventDefault();e.stopPropagation(); if(MULTI) pdfMenu.classList.toggle('open'); else openPDF(null,1);};
+$$('.footdoc').forEach(a=>{a.href=pdfHref(null,+a.dataset.doc);a.target='_blank';a.rel='noopener';});
+document.addEventListener('click',e=>{if(!pdfMenu.contains(e.target))pdfMenu.classList.remove('open');});
+
+/* ---------------- search ---------------- */
+/* full text of every page of every manual: {d: manual number, p: physical PDF page (cover = 1), t: text} */
+const PAGES = [{"d":1,"p":1,"t":"IMPORTANT:\nTHESE INSTRUCTIONS ARE TO\nREMAIN WITH THE HOMEOWNER\nSAVE THESE INSTRUCTIONS\n\nSERIAL #\n\nSAFETY NOTICE\nIf this stove is not properly installed, a house\nfire may result. For your safety, follow the\ninstallation instructions. Contact local\nbuilding or fire officials about restrictions and\ninstallation inspection requirements in your\narea.\n\nINSTALLATION\nAND OPERATING\nINSTRUCTIONS\n\nMeets the Environmental Protection\nAgency's 2020 Particulate Emission\nStandards (Crib Wood).\n\nMODEL:\nSUMMIT INSERT LE\nVisit www.pacificenergy.net for the most recent version of this manual\n081124-32\n\nSUMMIT INSERT LE\n\n100000089"},{"d":1,"p":2,"t":"Table of Contents\nRating Label ........................................................................3\nEfficiency and BTU Output............................................3\nSafety .................................................................................4\nChimney Smoke and Creosote Formation.....................4\nChimney Fires................................................................4\nTo Avoid a Chimney Fire................................................5\nIn Case of a Chimney Fire..............................................5\nCuring of the Paint Finish...............................................5\nDisposal of Ashes..........................................................5\nOperation ............................................................................6\nWood Selection..............................................................6\nDo not burn:...................................................................6\nHow to Test Your Wood.................................................6\nLighting a fire.................................................................7\nNormal Operation..........................................................7\nDo not overfire this heater: ..........................................7\nConvection Blower Operation........................................8\nRestarting After Extended or\nOvernight Burns.............................................................8\nProper Draft...................................................................8\nMaintenance .......................................................................9\nDoor gasket -.................................................................9\nMaintenance Checks ........................................................10\nWeekly:.........................................................................10\nMonthly........................................................................10\nWhen Cleaning the Chimney System:.........................10\nBlower:.........................................................................10\n\n!\n\nBaffle:...........................................................................10\nBaffle Removal .................................................................10\nRemoval.......................................................................10\nDimensions .......................................................................11\nSurround dimensions...................................................11\nMinimum Fireplace and Hearth Dimensions ....................12\nHearth requirements:...................................................12\nEmber Protection:........................................................12\nClearances .......................................................................14\nMinimum Clearances to Combustibles........................14\nInstallation ........................................................................15\nFireplace Specifications...............................................15\nInto a Masonry Fireplace.............................................15\nCombustion Air............................................................18\nElectrical Supply..........................................................19\nFan Cover Removal ..........................................................19\nSurround Assembly and Installation .................................20\nFan Speed Controller Relocation .....................................21\nTroubleshooting ................................................................24\nFirebrick Installation .........................................................25\nParts Diagram ...................................................................28\n\nWARNING\n\n!\n\nHOT GLASS WILL CAUSE\nBURNS.\n\nWARNING: This product can expose you to\nchemicals including ceramic fibers, which are\nknown to the state of California to cause cancer,\nand to carbon monoxide, which is known to the\nstate of California to cause birth defects or other\nreproductive harm.\n\nDO NOT TOUCH GLASS UNTIL\nCOOLED.\n\nFor more information, go to www.p65warnings.ca.gov.\n\nNEVER ALLOW CHILDREN TO\nTOUCH GLASS.\n\nThis warning is applicable to all\nPACIFIC ENERGY FIREPLACE PRODUCTS\n\nPLEASE SAVE THESE INSTRUCTIONS\nThis manual describes the installation and operation of the Pacific Energy, SUMMIT INSERT LE; Fireplace Insert\nwood heater. This heater meets the 2020 U.S. Environmental Protection Agency's crib wood emission limits for\nwood heaters sold after May 15, 2015. Under specific test conditions this heater has been shown to deliver heat\nat rates ranging from 13,567 to 39,159 btu/hr.\nNOTE: WE STRONGLY RECOMMEND THAT SMOKE AND CARBON MONOXIDE DETECTORS BE INSTALLED IN\nTHE AREA WHERE THE HEATER IS TO BE INSTALLED.\nIf smoke detectors have been previously installed, you may notice that they are operating more frequently. This may be\ndue to curing of stove paint or fumes caused by accidentally leaving the fire door open. Do not disconnect the detectors.\nSAFETY NOTICE: If this stove is not properly installed, a house fire may result. For your safety, follow the\ninstallation instructions. Contact local building or fire officials about restrictions and installation inspection\nrequirements in you area.\nPlease read this entire manual before you install and use your new room heater. Failure to follow instructions may result\nin property damage, bodily injury, or even death.\n100000089\n\n2\n\nSUMMIT INSERT LE 081124-32"},{"d":1,"p":3,"t":"Rating Label\n\nPLEASE SAVE THESE INSTRUCTIONS\n\nThis manual describes the installation and operation of the Pacific Energy, SUMMIT INSERT LE Fireplace\nInsert wood heater.\nSAFETY NOTICE:\nThis wood heater needs periodic inspection and repair for proper operation. It is against federal regulations to\noperate this wood heater in a manner inconsistent with the operating instructions in this manual.\nPlease read this entire manual before you install and use your new room heater. Failure to follow instructions\nmay result in property damage, bodily injury, or even death.\nThe rating label is located on the bottom, back corner of the side casing on the door catch side. The label is\naffixed using a permanent self-adhesive.\n\nEfficiency and BTU Output\n\nLISTED SOLID WOOD FUEL FIREPLACE INSERT /\nAPPAREIL DU TYPE INSERTION DE COMBUSTIBLE SOLIDE DE CHEMINÉE\nCERTIFIED FOR USE IN CANADA AND U.S.A./CERTIFIE AU CANADA ET AUX ETATS-UNIS\nCERTIFIED TO / CERTIFIÉ POUR:CAN/ULC 628 / UL1482\nRefer to Intertek’s Directory of Building Products for detailed information\n\nC# 4001507\n•\n•\n•\n•\n•\n\nMODEL / MODÈLE: SUMMIT INSERT LE\n\nINSTALL AND USE ONLY IN ACCORDANCE WITH PACIFIC ENERGY’S INSTALLATION AND OPERATING INSTRUCTIONS.\nCONTACT LOCAL BUILDING OR FIRE OFFICIALS ABOUT CODES, RESTRICTIONS AND INSTALLATION INSPECTION IN YOUR AREA.\nINSTALL AND USE ONLY IN MASONRY FIREPLACE. NOT TO BE INSTALLED IN A FACTORY-BUILT FIREPLACE.\nDO NOT CONNECT THIS UNIT TO A CHIMNEY FLUE SERVING ANOTHER APPLIANCE.\nCOMPONENTS REQUIRED FOR INSTALLATION : FULL FLUE LINER CONFORMING TO CAN/ULC-S635 OR CAN/ULC-S640. IN U.S.A. FLUE\nLINER CONFORMING TO UL-1777 OR DIRECT FLUE CONNECTION ASSEMBLY.\nELECTRICAL RATING 115V, 60HZ, 1.2 AMP. ROUTE POWER CORD AWAY FROM UNIT.\nDANGER: RISK OF ELECTRICAL SHOCK. DISCONNECT POWER BEFORE SERVICING UNIT.\nFOR USE WITH SOLID WOOD FUEL ONLY. DO NOT USE GRATE OR ELEVATE FIRE - BUILD WOOD FIRE DIRECTLY ON HEARTH.\nOPERATE ONLY WITH FEED DOOR CLOSED. OPEN TO FEED FIRE ONLY. REPLACE GLASS ONLY WITH CERAMIC GLASS.\nINSPECT AND CLEAN CHIMNEY FREQUENTLY. UNDER CERTAIN CONDITIONS OF USE, CREOSOTE BUILDUP MAY OCCUR RAPIDLY.\nSTOVE IS DESIGNED TO BURN CORDWOOD ONLY. BURNING OTHER MATERIALS MAY CAUSE DAMAGE TO STOVE OR HOME.\nTHIS WOOD HEATER NEEDS PERIODIC INSPECTION AND REPAIR FOR PROPER OPERATION.\nCONSULT THE OWNER’S MANUAL FOR FURTHER INFORMATION.\nIT IS AGAINST FEDERAL REGULATIONS TO OPERATE THIS WOOD HEATER IN A MANNER INCONSISTENT WITH THE OPERATING\nINSTRUCTIONS IN THE OWNER’S MANUAL\n\n•\n•\n•\n•\n•\n•\n•\n•\n•\n\nD)\nE)\nF)\n\nTOP FACING/\nREVÊTEMENT SUPÉRIEUR\nSIDE FACING/\nREVÊTEMENT LATÉRAL\nFIRING SIDE, CANADA (with 3in drop)\nFIRING SIDE, U.S.A. (with 3in. drop)\nEPREUVE DU FEU\nOTHER SIDES\nAUTRES CÔTÉS.\n\n381 MM / 15IN\n203 MM / 8 IN\n457 MM / 18 IN\n406 MM / 16 IN\n\nADJACENT SIDE WALL\n\nC)\n\nADJACENT SIDE WALL\n\nMINIMUM CLEARANCE TO COMBUSTIBLES (MEASURED FROM INSERT BODY)\nDÉGAGEMENT MINIMUM AUX COMBUSTIBLES\nA)\nADJACENT SIDEWALL/\n203 MM / 8 IN\nPAROI LATÉRALE ADJACENTE\nB)\nMANTEL/MANTEAU\n381 MM / 15IN\n\nB\n\n•\n•\n•\n•\n•\n•\n•\n\nF\n\nE\n\nF\n\nCLEARANCE TO COMBUSTIBLES\n\nCLEARANCE TO COMBUSTIBLES\n\nINSTALLEZ ET UTILISEZ SELON LES INSTRUCTIONS D’INSTALLATION ET D’UTILISATION DE PACIFIC ENERGY.\nCONTACTEZ LES AGENTS LOCAUX DU CODE DU BÂTIMENT OU DU SERVICE-INCENDIE, CONCERNANT LES CODES, RESTRICTIONS ET\nEXIGENCES D’INSPECTION D’INSTALLATION DE VOTRE RÉGION.\nINSTALLER ET UTILISER UNIQUEMENT DANS LE FOYER DE MAÇONNERIE. NE PAS INSTALLER DANS UN FOYER FABRIQUÉ EN USINE.\nCOMPOSANTS REQUIS POUR L’INSTALLATION : GAINE DE CHEMINÉE COMPLÈTE CONFORME À CAN/ULC-S635 OU CAN/ULC-S640. AUX\nÉTATS-UNIS : GAINE DE CHEMINÉE CONFORME À UL-1777 OU KIT DE GAINE DE CHEMINÉE À RACCORDEMENT DIRECT.\nALIMENTATION ÉLECTRIQUE : 115 V, 60 HZ, 1.2 AMP. ÉLOIGNEZ LE CORDON ÉLECTRIQUE DE L’APPAREIL. DANGER : RISQUE\nD’ÉLECTROCUTION.\nCOUPEZ L’ALIMENTATION ÉLECTRIQUE AVANT TOUT TRAVAIL D’ENTRETIEN SUR L’APPAREIL.\nPOUR UTILISATION AVEC BOIS SOLIDE SEULEMENT. AUCUN PORTE-BÛCHES NI FEU SURÉLEVÉ - MONTEZ LES BÛCHES DE BOIS\nDIRECTEMENT SUR L’ÂTRE. REMPLACEZ LA VITRE SEULEMENT PAR UNE VITRE EN CÉRAMIQUE.\nINSPECTEZ ET NETTOYEZ LA CHEMINÉE RÉGULIÈREMENT - EN CERTAINES CONDITIONS, DES DÉPÔTS DE CRÉOSOTE PEUVENT SE\nFORMER RAPIDEMENT.\nUTILISEZ CET APPAREIL SEULEMENT AVEC LA PORTE DE CHARGEMENT FERMÉE. OUVREZ-LA SEULEMENT POUR ALIMENTER LE FEU. CE\nPOÊLE EST CONÇU UNIQUEMENT POUR BRÛLER DU BOIS DE CORDE. BRÛLER D’AUTRES MATÉRIAUX PEUT ENDOMMAGER LE POÊLE OU\nLE BÂTIMENT.\n\nMADE IN CANADA\nU.S. ENVIRONMENTAL PROTECTION AGENCY.\nCertified to comply with 2020 crib wood\nparticulate emission standards, using test\nMethod 28R Certifié conforme aux normes sur les\némissions de particules de 2020.\n\n1.8 g/hr\n\nLHV Tested Efficiency 1\n\n80%\n\nHHV Tested Efficiency 2\n\n74%\n\nEPA BTU Output 3\n\n13,567 to 39,159 btu/hr\n\nMaximum Wood Length\n\n20 inches\n\nIdeal Wood Length\n\n16-18 inches\n\nFuel\n\nSeasoned Cord wood\n\n1 Weighted Average Lower Heating Value (LHV) efficiency as\ntested using CSA B415 Performance testing of solid-fuelburning heating appliances. LHV assumes the moisture is\nalready in a vapour state so there is no loss of energy\n\nD\n\nINSTALL ONLY ON A NON-COMBUSTIBLE HEARTH UNDER THE UNIT, EXTENDING A DISTANCE OF 16IN / 406MM IN FRONT\nOF THE FIREPLACE OPENING FACE. - 3 in./ 76mm ABOVE ADJACENT COMBUSTIBLE FLOOR. // INSTALLER UNIQUEMENT\nSUR UN COEUR NON COMBUSTIBLE SOUS L’APPAREIL, S’ÉTENDANT À UNE DISTANCE DE 16po / 406mm DEVANT LE FACE\nD’OUVERTURE DU FOYER. - 3 po / 76 mm AU-DESSUS DU PLANCHER COMBUSTIBLE ADJACENT\n•\n•\n\n1.8 grams per hour\n\nC\n\nA\n\n200 MM / 8 IN\n\nEPA Certified Emissions\n\n2 Weighted Average Higher Heating Value (HHV) efficiency\nas tested using CSA B415 Performance testing of solid-fuelburning heating appliances. HHV includes the energy required\nto vaporize the water in the fuel\n3 The range of BTU outputs is based on efficiency using\nCSA B415 Performance testing of solid-fuel-burning heating\nappliances and burn rates from the low and high EPA tests\nusing Douglas Fir dimensional lumber.\n\nDATE OF MANUFACTURE\n\nMANUFACTURED BY:\nPACIFIC ENERGY FIREPLACE PRODUCTS LTD.\n2975 ALLENBY RD., DUNCAN, BC V9L 6V8\n050523\n\nSUMMIT INSERT LE\n\n100001519\n\nFigure 1: SUMMIT INSERT LE rating Label\n\nExperience will give you the right settings for proper combustion and efficient burning. Remember the correct\nair inlet setting is affected by variables such as type of wood, outside temperature, chimney size and weather\nconditions. With practice, you will become proficient in operating your heater and will obtain the performance\nfor which it was designed.\n\nSUMMIT INSERT LE 081124-32\n\n3\n\n100000089"},{"d":1,"p":4,"t":"Safety\nCAUTION: Never use gasoline type lantern fuel, kerosene, charcoal lighter fluid or similar liquids to\nstart or \"freshen up\" a fire in this heater. Keep all such liquids well away from the heater while it is in\nuse.\nInstruct all members of your family on the safe operation of the heater. Ensure they have enough\nknowledge of the entire system if they are expected to operate it. Stress the section on chimney fires\nand the importance of following the steps outlined \"In Case of Chimney Fire\".\n\nChimney Smoke and Creosote Formation\nWhen wood is burned slowly, it produces tar and other organic vapours, which combine with expelled\nmoisture to form creosote. The creosote vapours condense in the relatively cool chimney flue of a slow\nburning fire. As a result, creosote residue accumulates on the flue lining. When ignited, this creosote makes\nan extremely hot fire. The chimney connector and chimney should be inspected periodically (at least once\nevery two months) during the heating season to determine if a creosote buildup has occurred. If creosote has\naccumulated (3 mm. or more), it should be removed to reduce the risk of a chimney fire.\n1. Highest smoke densities and emissions occur when a large amount of wood is added to a bed of hot\ncoals and the air inlet is closed. The heated wood generates smoke, but without ample air, the smoke\ncannot burn. Smoke-free, clean burning requires small fuel loads, two or three logs at a time or 1/4 to 1/2\nof fuel load and leaving the air inlet relatively wide open, especially during the first 10 to 30 minutes after\neach loading, when most of the smoke generating reactions are occurring. After 30 minutes or so, the air\ninlet can be turned down substantially without excessive smoke generation. Wood coals create very little\ncreosote-producing smoke.\n2. The cooler the surface over which the wood smoke is passing, the more creosote will be condensed.\nWet or green wood contributes significantly to c\n­ reosote formation as the excess moisture that is boiled\noff cools the fire, making it difficult for the tars and gases to ignite, thus creating dense smoke and poor\n­combustion. This moisture-laden smoke cools the chimney, ­compounding the problem by offering the\nsmoke the ideal place to condense.\nIn summary, a certain amount of creosote is inevitable. Regular inspection and cleaning is the solution. The\nuse of dry, seasoned wood and ample combustion air will help to minimize annoying smoke emissions and\ncreosote buildup.\n\nChimney Fires\nThe dangerous side effect of excessive creosote buildup is a chimney fire. This causes much higher than\nnormal temperatures in the chimney and on its exterior surfaces. Temperatures inside the chimney can\nexceed 2000°F (1100°C). Ignition of nearby or touching combustible material is more likely during a chimney\nfire. Proper clearances are critical to prevent damage during such a fire.\nChimney fires are easy to detect; they usually involve one or more of the following:\n•\n•\n•\n\nFlames and sparks shooting out of the top of the ­chimney\nA roaring sound\nVibration of the chimney\n\n100000089\n\n4\n\nSUMMIT INSERT LE 081124-32"},{"d":1,"p":5,"t":"To Avoid a Chimney Fire\n1. Burn wood cleanly. Do not burn wet wood or turn down the unit too quickly after loading.\n2. Do not let creosote build up to a point where a chimney fire is possible.\n3. Do not have fires in the heater that may ignite ­chimney fires. These are excessively hot fires, such as when\nburning household trash, cardboard, Christmas tree limbs, or even ordinary fuel wood; (eg. with a full load\non a hot bed of coals and with the air inlet wide open for more time than is needed to completely char a\nfresh fuel load.)\n4. The Chimney and connector pipe should be inspected /cleaned periodically.\n\nIn Case of a Chimney Fire\n1. Prepare to evacuate to ensure everyone's safety. Have a well understood plan of action for evacuation.\nHave a place outside where everyone is to meet.\n2. Close air inlet on stove.\n3. Call local fire department. Have a fire extinguisher handy. Contact your local municipal or provincial fire\nauthority for further information on how to handle a chimney fire. It is most important that you have a\nclearly understood plan on how to handle a chimney fire.\n4. After the chimney fire is out, the chimney must be cleaned and checked for stress and cracks before\nstarting another fire. Also check combustibles around the chimney and the roof.\n•\n\nThe services of a professionals who are certified by a “Qualified agency”;such as\nNFI (National Fireplace Institute®) in the United States,\nCSIA (Chimney Safety Institute of America) in the United States and Canada,\nWETT (Wood Energy Technology Transfer) in Canada or\nAPC (Association des Professionnels du Chauffage) in Quebec\n\nCuring of the Paint Finish\nTo achieve the best finish, the paint on your stove must be baked on. When burning your stove for the first\n2-3 times it is very important that the room be well ventilated. Open all windows and doors. Smoke and fumes\ncaused by the curing process may cause discomfort to some individuals. Follow the procedures on the information sheet included with your stove from STOVE BRIGHT (Forrest Paint).\n\nDisposal of Ashes\nAshes should be placed in a metal container with a tight fitting lid. The closed container of ashes should\nbe placed on a non-combustible floor or on the ground, well away from all combustible materials, pending\nfinal disposal. If the ashes are disposed of by burial in soil or otherwise locally dispersed, they should be\nretained in closed container until all cinders have thoroughly cooled. Other waste should not be placed in this\ncontainer.\n\nSUMMIT INSERT LE 081124-32\n\n5\n\n100000089"},{"d":1,"p":6,"t":"Operation\nCAUTION: Hot while in operation. Keep children, clothing and furniture away. Contact may cause skin\nburns.\nWARNING: Always keep loading door closed when burning. This heater is not designed for open door\nburning. Risk of sparks, embers and/or smoke coming from the unit.\nWARNING: No alteration or modification of the combustion air control assembly is permitted. Any\ntampering will void warranty and could be very hazardous.\nWARNING: Do not use grates or andirons to elevate the fuel. Burn directly on the fire bricks. Replace\nbroken or missing bricks. Failure to do so may create a hazardous condition.\n\nWood Selection\nThis heater is designed to burn natural wood only. Higher efficiency and lower emissions generally result when\nburning air-dried seasoned hardwoods, as compared to softwoods or to green or freshly cut hardwoods.\nWood should be properly air dried (seasoned) for six months or more. Wet or undried wood will cause\nthe fire to smoulder and produce large amounts of smoke and creosote. Wet wood also produces very\nlittle heat and tends to go out often. Wood should be stored under cover away from open flame or heat\nsources.\n\nDO NOT BURN :\n•\n•\n•\n•\n•\n•\n•\n•\n\nSalt water wood *\nWet or green wood\nGarbage*\nLawn clippings/yard waste\nRailroad ties\nMaterials containing rubber, including tires\nConstruction or demolition debris\nWaste petroleum products, paints, paint thinners, or asphalt products\n\n•\n•\n•\n•\n•\n•\n•\n•\n\nTreated wood *\nCoal/charcoal\nSolvents\nUnseasoned wood\nManure or animal remains\nMaterials containing plastic *\nMaterials containing asbestos\nPaper products, cardboard, plywood, or\nparticleboard.\n\n* These materials contain chlorides which will rapidly destroy metal surfaces and void warranty.\nBurning these materials may result in the release of toxic fumes or render the heater ineffective and cause\nsmoke.\nDo not burn anything but wood. Other fuels, eg. charcoal, can produce large amounts of carbon monoxide, a\ntasteless, odourless gas that can kill. Under no circumstances should you attempt to barbecue in this heater.\nThe prohibition against burning these materials does not prohibit the use of fire starters made from paper,\ncardboard, saw dust, wax and similar substances for the purpose of starting a fire in an affected wood heater.\n\nHow to Test Your Wood\nAdd a large piece of wood to the stove when it has a good large bed of coals. It is dry if it is burning on more\nthan one side within one minute. It is damp if it turns black and lights within three minutes. If it sizzles, hisses\nand blackens without igniting in five minutes it is soaked and should not be burnt.\n\n100000089\n\n6\n\nSUMMIT INSERT LE 081124-32"},{"d":1,"p":7,"t":"Lighting a fire\nWARNING: Never use chemicals or any other volatile liquid to start a fire. Do not burn garbage, or\nflammable fluids such as gasoline, naptha, or engine oil.\n1. Adjust air control to “High” position(all the way to the left) and open door.\n2. Place crumpled newspaper in the centre of the heater and crisscross with several pieces of dry kindling.\nAdd a few small pieces of dry wood on top.\n3. Ignite the paper and leave the door ajar approximately 1/2\"(13mm) - 1\"(25mm) until the wood kindling is\nfully engulfed in flame. Never leave the Stove unattended with the door open.\n4. After the kindling is fully engulfed add a few small logs. Close door.\n5. Begin normal operation after a good coal base exists and wood has charred.\n\nNormal Operation\nWARNING: This Insert has a manufacturer-set minimum low burn rate that must not be altered. It is\nagainst federal regulations to alter this setting or otherwise operate this wood heater in a manner\ninconsistent with the operating instructions in this manual.\n1. Set air control to a desired setting. If smoke pours down across the glass (waterfall effect) this indicates\nyou have shut the control down too soon or you are using too low a setting. The wide range control panel\nmakes finding the desired setting for your application easy. As every home's heating needs vary (ie.\ninsulation, windows, climate, etc.) the proper setting can only be found by trial and error and should be\nnoted for future burns.\n2. To refuel, adjust air control to high, and give the fire time to brighten. Open the door slowly, this will\nprevent back puffing.\n3. Use wood of different shape, diameter and length (up to 18\"(457mm)). Load your wood endwise and try\nto place the logs so that the air can flow between them. Always use dry wood.\n4. Do not load fuel to a height or in such a manner that would be hazardous when opening the door.\n5. For extended or overnight burns, unsplit logs are preferred. Remember to char the wood completely on\nmaximum setting before adjusting air control for overnight burn.\n•\n\nBurn wood only, dry and well seasoned. The denser or heavier the wood when dry, the greater its heat\nvalue. This is why hardwoods are generally preferred. Green or wet wood will cause a rapid buildup of\ncreosote. If you feel it is necessary to burn wet or unseasoned wood, do so only with the air inlet set\nopen enough to maintain a good strong fire and fairly high chimney temperatures. Do not attempt to burn\novernight using green wood or wet wood. Wet wood can cause up to 25% drop in heater output, as well\nas contributing significantly to creosote buildup.\n\nDO NOT OVERFIRE THIS HEATER:\n\nAttempts to achieve heat output rates that exceed heater design specifications can result in\npermanent damage to the heater and chimney. A glowing red, top or vent pipe are indications of\noverfiring. Failure to rectify an over firing condition can be hazardous and may void the manufacturer's\nwarranty.\n\nSUMMIT INSERT LE 081124-32\n\n7\n\n100000089"},{"d":1,"p":8,"t":"Convection Blower Operation\nThe Insert comes equipped with twin variable speed circulating air blowers. The blower system is\nthermostatically controlled for automatic operation, as well as manually with a convenient bypass switch.\nAutomatic Blower Operation: Allows the blowers to turn on automatically once the Insert has come up to\noperating temperature. It will also shut the blowers off after the fire has gone out and the appliance has\ncooled to below a useful heat output range. Push the rocker switch to the “OFF” position and set the fan\nspeed control to a desired setting.\nManual Blower Operation: Push the rocker switch to the “ON” position and set the fan speed control to a\ndesired setting. This will bypass the temperature switch and allow full control of the blowers.\nSuggested settings:\n- Combustion air control setting of “L” (low) position (pushed to the far right), operate blower speed control\non “Low”.\n- Combustion air control set at anything above “L” (low), operate blower speed control at desired setting.\n\nRestarting After Extended or Overnight Burns\n1. Open door and rake hot embers towards the front of the heater. Add a couple of dry, split logs on top of\nembers, close door.\n2. Adjust air control to high and in just a few minutes, logs should begin burning.\n3. After wood has charred, reset air control to desired setting.\n4. To achieve maximum firing rate, set control to high \"H\". Do not use this setting other than for starting or\npreheating fresh fuel loads.\n\nProper Draft\n1. Draft is the force which moves air from the appliance up through the chimney. The amount of draft in your\nchimney depends on the length of the chimney, local geography, nearby obstructions and other factors.\n2. Too much draft may cause excessive temperatures in the appliance. An uncontrollable burn or a glowing\nred stove part or chimney indicates excessive draft.\n3. Inadequate draft may cause back puffing into the room and plugging of the chimney. Smoke leaking into\nthe room through appliance and chimney connector joints indicates inadequate draft.\nRemember the correct air inlet setting is affected by variables such as type of wood, outside temperature,\nchimney size and weather conditions.\nAsh Removal\nCaution: Ashes are to be removed only when the heater is cold. Whenever ashes get 3\"(76mm) to 4\"(102mm)\ndeep in your firebox, and when fire has burned down and cooled, remove excess ashes. Leave an ash bed\napproximately 1\" (25 mm) deep on the firebox bottom to help maintain a hot charcoal bed.\nSee section \"Disposal of Ashes\" on page 5.\n\n100000089\n\n8\n\nSUMMIT INSERT LE 081124-32"},{"d":1,"p":9,"t":"Maintenance\nWARNING: ONLY USE MATERIALS SUPPLIED BY MANUFACTURER WHEN DOING MAINTENANCE OR\nREPLACEMENTS.\n1. If glass becomes darkened through slow burning or poor wood, it can readily be cleaned with fireplace\nglass cleaner when stove is cold. Never scrape with an object that might scratch the glass. The type and\namount of deposit on the glass is a good indication of the flue pipe and chimney buildup. A light brown\ndusty deposit that is easily wiped off usually indicates good combustion and dry, well-seasoned wood and\ntherefore relatively clean pipes and chimney. On the other hand, a black greasy deposit that is difficult to\nremove is a result of wet and green wood and too slow a burning rate. This heavy deposit is building up\nat least as quickly in the chimney.\n\nDOOR GASKETS The gasket used by Pacific Energy (7/8\"(22mm) medium density fiberglass rope) requires only light pressure to\nseal. This will prolong seal life. It is important that the door seal be maintained in good condition. Periodically\ninspect seals and replace if necessary. part# 80000158 Gasket Kit kit, obtainable from your nearest Pacific\nEnergy dealer.\n\nDOOR GLASS Do not slam loading door or otherwise impact glass. When closing door, make sure that no logs protrude to impact the glass. If the glass gets cracked or broken, it must be replaced before using the stove.\nReplacement glass can be obtained from your dealer. Use 9-1/2\"(240mm) x 17-1/2\"(445mm) x 5 mm.\nCeramic glass only. Do not substitute with any other type.\nTo remove broken glass, undo the four retaining screws and remove clamps and frame, noting position for\nre-assembly. Remove all particles of glass . Be careful as they are very sharp. Install new glass complete\nwith gasket. Replace frame, clamps and screws.\nCAUTION:\n- do not overtighten, tighten screws very carefully\n- do not clean glass when hot\n- do not use abrasive cleaners on glass\n2. The area where boost combustion air enters the firebox must be kept clear of excessive ash buildup\nwhich will block air flow. This area is at the front of the firebox.\n3. Do not store wood within heater installation clearances, or within the space required for fuel loading\nand ash removal. Keep the area around the heater clean and free of loose combustibles, furniture,\nnewspapers, etc.\n4. If the plated door requires cleaning, use mild soap and water only. Use of abrasive cleaners will void\nwarranty.\n5. Establish a routine for the fuel, wood burning and firing technique. Check daily for creosote buildup until\nexperience shows how often you need to clean to be safe.\n6. Be aware that the hotter the fire, the less creosote is deposited. Weekly cleaning may be necessary in\nmild weather, even though monthly cleaning is usually enough in the coldest months when burning rates\nare higher. When wood is burned slowly, it produces tar and other organic vapours, which combine with\nexpelled moisture to form creosote.\n\nSUMMIT INSERT LE 081124-32\n\n9\n\n100000089"},{"d":1,"p":10,"t":"Maintenance Checks\nCheck the following parts for damage such as cracks, excessive corrosion, burned out sections and\nexcessive warping: (See website for descriptions and more detail)\n\nWeekly:\n•\n•\n\nFirebrick - Visual, for cracking.\nDoor Gasket - sagging, placement, damage.\n\nMonthly\n•\n•\n•\n•\n•\n•\n•\n\nBaffle.\nBrick rail tabs and brick rails.\nAir riser tube in the back of the firebox.\nBack side of airwash chamber.\nBaffle locking pin.\nBoost tube cover.\nIt is recommended to inspect the liner and connector monthly and to have the liner cleaned\nannually or more frequently if required.\n\nWhen Cleaning the Chimney System:\n•\n•\n•\n•\n•\n\nTop baffle board/blanket.\nTop heat shield and mounting bolt.\nBaffle Gasket.\nBrick Rails.\nManifold.\n\nBlower:\n•\n\nThe blower should be cleaned out a minimum every six months by removing the covers and using a\nvacuum on the openings in the blower ,to remove any dust and debris.\n\nBaffle:\n•\n•\n\nSome warping of the baffle is normal(up to 1/4” or .65cm). Replace if the baffle has permanent warping\ngreater than this or has cracking or breakage.\nPlease contact your Dealer if you experience any of the damage listed above. Continuing to operate your\nstove with broken parts may accelerate damage to other parts and may void your warranty.\n\nBaffle Removal\nDO NOT OPERATE WITH BAFFLE ASSEMBLY OR INSULATION REMOVED.\n\nRemoval\nRemove retaining pin at the back top of the firebox, just under the baffle. Lift baffle up and pull forward to\ndisconnect from the supply tube. Tilt baffle sideways to drop down and remove from firebox. Inspect gasket\nbetween baffle and supply tube. If necessary, replace with gasket part number 80000365, available from your\nPacific Energy dealer. Re-install baffle assembly in reverse order. The two side pieces of insulation must be\ntight against the side rails.\n100000089\n\n10\n\nSUMMIT INSERT LE 081124-32"},{"d":1,"p":11,"t":"Dimensions\n7 1/2”\n190mm\n\nA\n\nB\n\n22 3/8”\n570mm\n\n22”\n560mm\n\n10 3/4”\n270mm\n\n27 3/4”\n705mm\n\n17 3/4”\n450mm\n\n25 1/2”\n650mm\n\n12 3/8”\n315mm\n\n42”\n1.067m\nFigure 2: Summit Insert LE dimensions.\n\nSURROUND DIMENSIONS\nREGULAR\nOVERSIZED\nSURROUND SURROUND\n\nSUMMIT INSERT LE 081124-32\n\nA\n\n50 3/8”\n\n54 3/8\"\n\nB\n\n32 1/4”\n\n34 1/4\"\n\n11\n\n100000089"},{"d":1,"p":12,"t":"Minimum Fireplace and Hearth Dimensions\n\n28 1/4”\n711mm\n26 1/4 ”\n660mm\n22 1/2 ”\n572mm\n\n19”\n482mm\n16”\n406mm\n\n8”\n200mm\n\n3”\n76mm\n\nFigure 3: Fireplace opening dimensions.\n\nHearth requirements:\nThe fireplace's non-combustible hearth must extend 16” in front and 8” beyond each side of the existing\nfireplace opening and be raised 3” above any adjacent combustible floor. See Figure 3.\nA non-combustible hearth that extends a minimum 24” / 610mm (in Canada) or 22\" (in the U.S.) in front of\nthe fireplace opening can be flush to an adjacent combustible floor (See Figure 5).\n\nEmber Protection:\nCombustible flooring in front of the fireplace insert must be protected from hot embers by non-combustible\nmaterial extending 16” (USA) and 18” (CANADA) from the firing side (Door Glass) and 8” to the sides of the\nunit (Figure 4).\nConsult CAN/CSA-B365 Installation Code for Solid-Fuel-Burning appliances and equipment in Canada, and\nN.F.P.A. 211 Standard for chimneys, fireplaces, vents and Solid-Fuel-Burning appliances in USA.\n100000089\n\n12\n\nSUMMIT INSERT LE 081124-32"},{"d":1,"p":13,"t":"16”\n406mm\nCAN\n18” / 406mm\nUSA: 16”\nEmber\nProtection\n\n3”/ 76mm Raised Hearth\nFigure 4: OPTION A - SIN LE Ember protection.\n\nCAN: 24” / 610mm\nUSA: 22”\nCAN\n18” / 406mm\nUSA: 16”\n\nExtended Masonry Hearth\nFigure 5: OPTION B - SIN LE Ember protection.\n\nSUMMIT INSERT LE 081124-32\n\n13\n\n100000089"},{"d":1,"p":14,"t":"Clearances\nThe minimum required clearances to surrounding combustible materials when installed into a masonry or\nfactory built fireplace are listed below and in Figure 6.\n\nMantel or Mantel Facing\n\nall\nW\nt\nen\n\njac\nAd\n\nSide Facing\n\n15”\n381mm\n\n8”\n203mm\n\nFireplace\nHearth\n\n3”\n76mm\n\n8”\n203mm\n\n37 1/2”\n946mm\n\n16”\n406mm\n\nFigure 6: SUMMIT Insert LE Clearances.ai\n\nMinimum Clearances to Combustibles\n(Measured From Insert Body)\nAdjacent Sidewall................................................................. 8 in.(203 mm.)\nSide Facing (Max 1.5 in. deep)............................................. 8 in.(203 mm.)\nMantel................................................................................... 15 in.(381 mm.)\nMantel Facing....................................................................... 15 in.(381 mm.)\n\nCAUTION: Unit hot while in operation. Parts of the appliance, especially the external surfaces,\nwill be hot to touch when in operation. Keep children, clothing and furniture away.\nContact may cause skin burns.\n\n100000089\n\n14\n\nSUMMIT INSERT LE 081124-32"},{"d":1,"p":15,"t":"Installation\n\nYour Insert is designed to be installed into a masonry wood burning fireplace. The masonry fireplace must\nbe built according to the requirements of the Standard of Chimneys, Fireplaces, Vents and Solid Fuel Burning\nappliances, N.F.P.A. 211 (Latest Edition) or applicable National, Provincial, State or local codes. The installation shall conform to CAN/CSA-B365, Installation Code for Solid-Fuel-Burning Appliances and Equipment.\nThis Insert shall not be installed in a factory-built fireplace.\nWarning: Under no circumstances is this heater to be installed in a makeshift or \"temporary\" manner.\nDO NOT CONNECT THIS UNIT TO A CHIMNEY FLUE SERVICING ANOTHER APPLIANCE.\n\nFireplace Specifications\nYour fireplace will required the following minimum internal sizes:\n\nWIDTH (at front)\nWIDTH (at rear)\nHEIGHT\nDEPTH\n\n28 1/4\" (718 mm)\n26 1/4\" (667 mm)\n22 1/2\" (572 mm)\n19\" (483 mm)\n\nChimney height\n\n15' (minimum).\n\nA metal tag is provided and is to be fastened to the back wall of the fireplace, If the fireplace has been\nmodified to accommodate the insert.\nThe fireplace and chimney system must be suitable for wood burning use. Check for creosote build up or\nother obstructions. Have the chimney swept and inspected. Inspect your fireplace for cracks, loose mortar\nor other physical defects. If repairs are required, they should be completed before installing your insert.\nWe recommend that our products be installed and/or serviced by professionals who are certified by a\n“Qualified agency”;\nNFI (National Fireplace Institute®) in the United States,\nCSIA (Chimney Safety Institute of America) in the United States and Canada,\nWETT (Wood Energy Technology Transfer) in Canada or\nAPC (Association des Professionnels du Chauffage) in Quebec\n\nInto a Masonry Fireplace\nThe existing fireplace damper is to be locked open or removed completely.\nWARNING: Do not remove bricks or mortar from your existing fireplace.\nException: Masonry or steel, including the damper plate, may be removed from the smoke shelf and\nadjacent damper frame if necessary to accommodate a chimney liner, provided that their removal will not\nweaken the structure of the fireplace and chimney, and will not reduce protection for combustible materials to\nless than that required by the National Building Code.\n\nSUMMIT INSERT LE 081124-32\n\n15\n\n100000089"},{"d":1,"p":16,"t":"The Insert must be installed in accordance with local and or national building codes.\n\nFull Flue Liner - (Required in Canada)\nFull Flue Liner: a stainless steel rigid or flexible liner extends from the Insert flue collar to the top of the chimney.\nIn Canada, this Fireplace Insert must be installed with a continuous chimney liner of 6 inch diameter extending from\nthe Fireplace Insert to the top of the chimney. The chimney liner must conform to the class III requirements of CAN/\nULC-S365, Standard for Lining Systems for Existing Masonry or Factory-Built Chimneys and Vents, or CAN/ULC-S640,\nStandard for Lining Systems for New Masonry Chimneys.\n1. Measure the chimney height from the top of the existing Chimney flue to the floor of the hearth. This will allow extra\nlength of liner for flashing and rain cap.\n2. Feed the stainless steel liner from top of the chimney, through the damper area and into the fireplace cavity. Attach a\n\"stove to liner\" adapter to the bottom of the liner as per the manufacturer's instructions.\n3. Remove the flue collar from its box packed in the\nstove. Attach the Flue Collar to the adapter and\nsecure with three Stainless screws. Caulk around\nconnections with high temp stove cement.\nEnsure the gasket is in good working shape.\n4. Remove both the right & left blower covers.\nRemove the Torx screw on each side, located in\nthe top rear corner. Lift up and pull the covers\ntowards you, to release the tabs.\n5. Remove the Cast Top by loosening the two wing\nbolts and pulling toward you. Remove the Baffle.\n6. Push unit into the fireplace. Use the front or rear\nadjustment legs, level the insert depending on\nyour hearth configuration. (NOTE: Adjustment\nlegs are located in the bottom, front and rear of\nthe insert).\n7. Reach through the flue opening and pull down\non the Flue Collar with the tool provided until\nthe bolts pass through the flue opening. Install\nthe clamps and nuts. center the collar on the\nopening and tighten the nuts while holding the\ncollar in place.\n8. Measure, trim and shape a Chimney top flashing\nto fit the existing chimney flue. Plan for a 1” to\n1-1/2” overlap on each side. Place flashing over\ntop of the liner and seat firmly against the flue\ntile.\n\nRain Cap\nStainless Steel\nChimney Flashing\n\nStainless Steel\nRigid or Flex Liner\n\nFull Flue Liner\n\nFlex Liner\nConnector\n\n9. Attach a rain cap to the end of the liner. A storm\ncollar may be used if desired.\n10. Install the surround See \"Surround Assembly and\nInstallation\" on page 20, Re-Install the top\nand Blower covers in the reverse order they were\nremoved.\nFigure 7: Full flue liner.\n100000089\n\n16\n\nSUMMIT INSERT LE 081124-32"},{"d":1,"p":17,"t":"Direct Flue Connection (USA only)\nPacific Energy highly recommends the use of a full liner as the safest installation and to provide optimum\n­performance. When connected to a full liner, the Insert is able to draft c\n­ orrectly and will prevent problems\nsuch as difficult s­ tart-ups and smoking out the door.\nA stainless steel rigid or flexible liner that meets the HT requirements of UL 1777 extends from the Insert flue\ncollar into the first masonry chimney flue liner. A seal must be provided in the throat.\nNote: A clean-out door may be required under local codes, when a direct flue connection is used. Consult\nlocal codes.\n1. Measure from the top of the first chimney flue liner tile to the top of the Insert. Allow extra length of liner to\ninsert into flue tile.\n2. Feed the stainless steel liner through the damper area and into the first chimney flue tile.\n3. Follow steps 2-9 on the previous page.\n\nChimney\nFlue tile\nLiner\n\nThroat seal\n\n6\" Stainless Steel\nRigid or Flex Liner\nFlex Liner\nConnector\n\nFigure 8: Direct flue connection.\nSUMMIT INSERT LE 081124-32\n\n17\n\n100000089"},{"d":1,"p":18,"t":"Combustion Air\nConsult local building codes regarding combustion air supply. Intake or combustion air can be supplied to the\nInsert in one of two ways:\n1. Outside air supply: Remove the cover from ash clean out in your existing fireplace. Place a rodent screen\nin place of the cover. Install the Insert as described in the \"Installation\" section, making sure not to cover\nthe opening of the air inlet. When installation is complete, seal surround to fireplace and anywhere else air\nmay enter. This will ensure combustion air is drawn from outside the house and into the intake at the lower\nrear of the appliance.\n2. Room air supply: Remove the two screws securing the center cover under the ashlip. Remove the screw\nin the cover box front and slide the cover box out and discard. Replace the center cover and tighten\nscrews (Figure 9). Combustion Air will be drawn from the room through the front of the unit.\n\nFigure 9: Room air cover.\n\nSCREWS\n\n100000089\n\n18\n\nCOVER BOX\n\nSUMMIT INSERT LE 081124-32"},{"d":1,"p":19,"t":"Electrical Supply\nCirculating air blowers electrical rating; 120V, 60 Hz, 1.2 A. For your protection against shock hazard, use\nonly a properly grounded outlet that will accept a three-pronged plug. Do not cut or remove the grounding\nprong. Do not route power cord under unit. Power cord must be routed to avoid contact with any hot or sharp\nsurfaces.\nConsult local codes or, in the absence of local codes, with the current CSA C22.2 Canadian Electrical Code\nand in the USA with the National Electrical Code, ANSI/NFPA 70 (latest edition).\n\nThermal\nSwitch\nFan Speed\nController\n\nThermal\nswitch\nbypass\n\nBlack\n\nWhite\nWhite\n\nWhite\n\nFigure 10: Wiring Diagram - Insert LE.\n\nFan Cover Removal\n1. Remove the left and right front Fan Cover panels by removing the screw located at the top back corner\n(Figure 11).\n2. Lift up on the panel to release the catches and pull towards you. Lift the cover up, and under the Top and\nthen pull out from the bottom to remove it (Figure 12).\n\ncover mounting\nscrew\n\nFigure 11: Front cover screw location.\n\nSUMMIT INSERT LE 081124-32\n\nFigure 12: Panel removal.\n\n19\n\n100000089"},{"d":1,"p":20,"t":"Surround Assembly and Installation\n\nA\nD\n\nWING BOLTS\nFigure 13: Wing bolts.\n\nB\n\nD\n\n1. Remove the Fan Covers - See \"Fan Cover\nRemoval\" on page 19\n\nC\n\n2. Remove the decorative top by loosening the\ntwo wing bolts located underneath. Pull the top\ntowards you to slide it out of its brackets (Figure\n13).\n3. Carefully unpack the Surround. Lay parts A, B and\nC face down on a flat, non-marring surface.\n\nFigure 14: Surround assy.\n\n4. Fasten the panels together with 1/4\" x 1/2\" bolts and nuts provided through holes at points “D” (Figure\n14).\n5. Lift the surround assembly to the upright position and make sure the front face is flat and even at the\njoints and sides.\n6. Carefully slide the assembled surround over the unit and behind the ash shelf, engage the tabs on the\nback, inside of the surround into the slots in surround brackets.\n7. Push the entire appliance back until the surround assembly is in contact with the fireplace face.\n8. Re-install the decorative top by aligning the wing bolts in the slots and pushing it back gently against the\nsurround. Tighten the Wing Bolts.\n9. Install the Fan Cover panels, the rear tabs use the same slots as the surround.\n\n100000089\n\n20\n\nSUMMIT INSERT LE 081124-32"},{"d":1,"p":21,"t":"Fan Speed Controller Relocation\nThe fan speed controller is factory installed under the ash lip on the right hand side. If required, it can be\nrelocated to the left side by following the instructions below. To make this as easy as possible, it is suggested\nthat this be done prior to fitting the surround and installation into the fireplace:\n\nFigure 16: Disconnecting thermal switch.\n\nFigure 15: Disconnecting fan wires.\n\n1. Remove the left and right front Fan Cover panels by removing the screw located at the top back corner.\nLift up on the panel to release the catches and pull towards you. Lift the cover up under the Top and then\nout from the bottom to remove it (Figure 12 on page 19). Set the covers aside to prevent damage.\n2. Disconnect the wires from the fans (LHS & RHS) and thermal snap switch (Figure 15 and Figure 16). Take\nnote of where the wires are routed and secured. They must be positioned correctly to avoid damage.\n3. Remove the lower front cover. Loosen the two bolts that secure the ash lip to the firebox (Figure 18),\ncarefully lift up the ash lip and remove from the firebox and unscrew the wire support tabs (Figure 19) noting how the wire are held in place.\n4. Remove the two screws securing the speed\ncontrols assembly to the ash lip (Figure 17). The\nBolts\ncover plate on the opposite side can also be\nremoved at this time.\n\nFigure 18: Bolts securing ash lip to firebox.\n\nWire Support\nTab Screw\nFigure 17: Removing speed control assy.\nFigure 19: Wire Guides.\nSUMMIT INSERT LE 081124-32\n\n21\n\n100000089"},{"d":1,"p":22,"t":"WIRE SUPPORT TABS\nFigure 20: Reinstalling the Speed control\nassy.\n\nFigure 21: Wire support tabs.\n\n5. Remove the control assembly from the right hand side of the ashlip. Flip it over with the power cord\ntowards the edge of the stove, and reattach on the left hand side of the ashlip (Figure 20). Use the upper\nscrew holes for best alignment.\n6. Route the cable from the speed control box to far fan and re-attach the wire support tabs on the\nunderside of the ash lip. Note the wire positions (Figure 21) and be careful not pinch the wires.\n7. Remove the Thermal Switch from right hand fan mounting bracket (Figure 22) and relocate to left hand fan\nmounting bracket (Figure 23).\n8. Reconnect the wires to the fans (Figure 15) and thermal snap switch (Figure 16), refit ash lip, sides and\ntop. Ensure that the power cable is correctly routed through the surround and it is not touching the\nfirebox side. Wire placement is important to prevent damage to wires.\n\nFigure 22: Removing thermal switch.\n\n100000089\n\nFigure 23: Relocating thermal switch to left\nside.\n\n22\n\nSUMMIT INSERT LE 081124-32"},{"d":1,"p":23,"t":"Troubleshooting\nProblem \t\t\t\tCause\t\t\t\tCure\nGlass is Dirty\n\n1. Wood is wet\n\n- Use dry wood\n\n2. Turning down air control\nor damper too soon\n\n- Do not turn down until\na) there is a good bed of coals\nb) the wood is charred\n\n3. Draft too low\n- Chimney plugged or restricted.\n\n- Improper chimney height and /\nor diameter\n- Inspect and clean\n- Provide outside air for\ncombustion\n\n4. Door gasket leakage\n\n- Replace gasket\n- Check latch\n\nExcessive Creosote Buildup - See 1,2,3, above.\nLow Heat Output\n\n1. Wood is wet\n2. Fire too small\n3. Draft too low\n\n- Use dry wood\n- Build a larger fire\n- Chimney plugged or restricted,\ninspect and clean\n\nWon't Burn Overnight\n\n- Set control lower\n- Unsplit wood is preferred for\novernight burns\n- Excessive chimney height and/\nor diameter\n- Replace door gasket.\n\n1. Air control is set too high\n2. Not enough wood\n\n3. Draft too high\n\n4. Door gasket leaking\n\nStove Won't Burn\n1.Combustion air supply blocked\n- Check outside air supply for\n\nobstruction\n\n- Check that room air cover is\n\nremoved\n2. Draft too low\n- Chimney plugged or restricted,\n\ninspect and clean\n\t\t\t\t\t\t\t\t\t\t- Chimney oversized or\n\t\t\t\t\t\t\t\t\t\t otherwise unsuitable,\n\t\t\t\t\t\t\t\t\t\t- Consult Dealer\n\nSUMMIT INSERT LE 081124-32\n\n23\n\n100000089"},{"d":1,"p":24,"t":"Firebrick Installation\n\nC\nB\n\nA\n\nC\nA\n\nFigure 24: Summit Insert LE Brick Pack.\n\nITEM\nA\n\nSIZE\n19pcs.............................9” X 4 1/2” X 1 1/4”\n\nB\n\n1pc.................................7 1/4” X 4 1/2” X 1 1/4”\n\nB\n\n2pcs...............................9” X 4 1/2” X 1 1/4” with Corner Cut\n\nNote: There will be extra bricks due to the \"Brick Pack\" being universal to several models of the\nSummit line of woodstoves.\n\n100000089\n\n24\n\nSUMMIT INSERT LE 081124-32"},{"d":1,"p":25,"t":"1. Begin by placing a \"C\" brick onto the left and right, rear corners of the firebox floor. Continue by placing\nsn \"A\" brick next to them, then the short \"B\" brick in the center up against the baffle tube (Figure 25).\n2.\n\nEliminate any gaps between the bricks by shifting the bricks in toward the center of the firebox.\n\n3. Place five full bricks along the front row; Eliminating any gaps between the bricks by shifting the bricks\ntowards the center of the firebox (Figure 26).\n\nFigure 25: Back row of bricks Summit Insert LE.\n\nFigure 26: Floor bricks - Summit Insert LE.\n\n4. Slip 4 \"A\" bricks up behind the two protruding brick rail tabs along the rear wall (Figure 27). Eliminate any\ngaps between the bricks by shifting the bricks in toward the baffle tube.\n5. Place 2 \"A\" bricks along one of the side walls by slipping them up under the side brick rail tabs (Figure 28)\nand pushing to the rear, past the back brick. Place two more \"A\" bricks in the remaining opening at the\nfront of the firebox and eliminate any gaps between the bricks by shifting the bricks toward the rear wall.\n\nBrick rail tabs\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nA\n\nBaffle tube\n\nFigure 27: Rear wall bricks - Summit Ins LE.\n\nFigure 28: Side wall brick - Summit Ins LE.\n\n6. Complete the brick installation by repeating step 5 on the opposite side wall.\n\nSUMMIT INSERT LE 081124-32\n\n25\n\n100000089\n\nA"},{"d":1,"p":26,"t":"Parts Diagram\n(WHEN ORDERING, INCLUDE PART NUMBER WITH DESCRIPTION)\n\nITEM......DESCRIPTION.................................................................................... PART #\n\n1.............. Bay Top, Cast, Summit Insert, (c/w Washers and Nuts)..................... 80000334\n2.............. Fan Cover, Summit Insert LE.............................................................. 80002258\n3.............. Blower Assy, c/w brackets, Latch Side, ............................................ 80002257\n4.............. Blower Only, Latch Side..................................................................... 80000904\n6.............. Blower Assy, c/w brackets, Hinge Side,............................................. 80002256\n7.............. Switch, Fan, 120-10, Air Mount.......................................................... 80001814\n8.............. Blower Only, Hinge Side..................................................................... 80000905\n9.............. Ash Lip, c/w Wire Covers, Cast.......................................................... 80000333\n10............ Door, Catch (c/w Bolt)........................................................................ 80000655\n11............ Clamps, Wood, Glass (4 pc.)............................................................. 80000369\n12............ Glass Frame, Summit (2 pc.)............................................................. 80000399\n13............ Glass, Summit, (c/w Tape).................................................................. 80000159\n14............ Gasket, DR46, Door, 7/8\" x 5.5'......................................................... 80000158\n15............ Door, Casting Only, DR46, Met Black................................................. 80000146\n................ Door, Casting Only, DR46, Nickel....................................................... 80000780\n................ Door, Casting Only, DR46, Brushed Ni............................................... 80002219\n16............ Handle, Door....................................................................................... 80000660\n17............ Baffle Kit, Summit LE.......................................................................... 80002220\n18............ Brick Rails, Summit LE, (2pc)............................................................ 80002221\n19............ Baffle, Pins, 10 packc......................................................................... 80000364\n20............ Gasket, 2\" Baffle Tube, 10 pack......................................................... 80000365\n21............ Flame Shield, ..................................................................................... 80000321\n22............ Gasket, Air Control, Secondary.......................................................... 80002222\n23............ Air Control, Secondary, (c/w Gasket)................................................. 80000841\n24............ Firebrick Set, Summit......................................................................... 80002223\n25............ Manifold, Boost, Summit LE............................................................... 80002224\n26............ Air Control, Primary (c/w Spring. Washer and Cap).......................... 80002215\n27............ Blower, Control Box............................................................................ 80000355\n28............ Switch, Rheostat................................................................................ 80000908\n29............ Switch, Rocker, SPST On/Off............................................................. 80001513\n30............ Collar, Removable, c/w Harware........................................................ 80000665\n31............ Gasket, Removable Collar.................................................................. 80001983\n32............ Handle, Removable Collar.................................................................. 80000254\n35............ Surround, Summit Insert, Regular, Met Black.................................... 11250028\n36............ Surround, Summit Insert, Over Sized, Met Black............................... 11250030\n\n54 -3/8\n\n50 - 3/8\n\n35\n\n100000089\n\n32 - 3/16\n\n26\n\n36\n\n34 - 3/16\n\nSUMMIT INSERT LE 081124-32"},{"d":1,"p":27,"t":"17\n\n30\n\n20\n\n32\n19\n\n2\n18\n\n31\n\n1\n3\n4\n\n21\n\n6\n\n10\n\n7\n11\n\n2\n\n8\n9\n\n22\n26\n\n12\n\n16\n15\n\n13\n\n23\n\n25\n\n14\n\n24\n\n28\n27\n\n29\n\nAll parts may be ordered from your nearest Pacific Energy dealer. Contact Pacific Energy for the\nlocation of the dealer nearest you.\n\nSUMMIT INSERT LE 081124-32\n\n27\n\n100000089"},{"d":1,"p":28,"t":"LI\n\nMITED\n\nLIFETIME\n\nWood Products Warranty\n\nPACIFICENERGY\n\nPacific Energy extends the following warranty coverage\nto the original registered purchaser of the product:\n\nFIREPLACE PRODUCTS\n\nAR\n\nT\n\nY\n\nW\n\nRAN\n\nLTD Lifetime Coverage (10 years)\nLimited lifetime coverage is extended to the following components (parts only) porcelain finish,\nglass (glass for thermal breakage only, not impact), plating, firebox and baffle.\n3 Year Comprehensive\nPacific Energy will replace or repair any part found to be defective (parts and labor) for three years from the\ndate of purchase.\nThis coverage includes electrical components (blowers, speed controls and thermal switches).\nPacific Energy recommends using a certified installer.\nConditions\nYour stove has been designed to perform in the harshest climates\nin North America. You can be confident that under normal use your\nstove will be trouble free for many years. If your stove is prematurely\ndeteriorating this is a significant indicator of improper usage, for\nexample; excessive draft, heating to large an area, contaminated fuel\n- such as high sodium content or plastics and chemicals. Please be\naware, these conditions may be reasons to void your warranty.\n•\nFor wood products - All installations must be installed according\nto all applicable local and national codes. It is the responsibility\nof the installer to ensure the unit is operating correctly at\ninstallation.\n•\nAny part that shows in our judgment evidence of defect shall\nbe repaired, replaced or refunded at Pacific Energy’s option. The\ndefective part may be required to be returned to Pacific Energy\nor an accredited agent, transportation prepaid.\n•\nPorcelain is warranted for gloss retention. Certain colors may\ndarken when heated and return to the original shade when cool.\nAs a man-made finish it is subject to minor imperfections.\n•\nGlass is warranted against thermal breakage.\n•\nPlating is warranted against tarnishing. Gold plating may attain a\ndeeper color with use.\n\nExclusions\n•\nLimited Lifetime coverage - Lifetime coverage is limited to the\nrepair, replacement or refund of the indicated parts only. Labor\ncharges are not covered under the lifetime warranty.\n•\nThe following items are not included in the Lifetime Warranty:\nfirebox rails and heat shields.\n•\nThe following parts are not warranted: firebrick, gaskets and\nceramic fiber blankets.\n•\nThis warranty does not apply to any part that shows evidence\nof misuse, abuse, improper installation, accident, lack of\nmaintenance, or modification.\n•\nPacific Energy shall in no event be liable for any special, indirect\nor consequential damages of any nature whatsoever which are\nin excess of the original purchase price of the product.\n•\nPacific Energy is not responsible for installation, operational or\nenvironmental conditions beyond our control.\n•\n(The company may, at its discretion, discharge all obligations by\nrefunding the wholesale price of the defective part.)\n\nIF WARRANTY SERVICE IS NEEDED: 1. If you discover a problem that you believe is covered by this warranty, report it to your Pacific Energy\nFireplace Products dealer, giving them proof of purchase, the purchase date, and the model name and serial number. 2. Pacific Energy Fireplace\nProducts Ltd. has the option of either repairing or replacing the defective component. 3. If your dealer is unable to repair your appliance’s defect,\nhe may process a warranty claim through Pacific Energy Fireplace Products Ltd., including the name of the dealership where you purchased the\nappliance, a copy of your receipt showing the date of the appliance’s purchase, and the serial number on your appliance.\n\nREGISTER YOUR PRODUCT ONLINE\nHAVE YOUR SERIAL NUMBER* AVAILABLE AND VISIT\n\npacificenergy.net/register\n*Your serial number can be found on the product certification label or on the cover of your installation manual.\n\n100000089\n\n28\n\nSUMMIT INSERT LE 081124-32"},{"d":1,"p":29,"t":"SUMMIT INSERT LE 081124-32\n\n29\n\n100000089"},{"d":1,"p":30,"t":"100000089\n\n30\n\nSUMMIT INSERT LE 081124-32"},{"d":1,"p":31,"t":"SUMMIT INSERT LE 081124-32\n\n31\n\n100000089"},{"d":1,"p":32,"t":"© 2023 Copyright Pacific Energy Fireplace Products LTD.\nReproduction, adaptation, or translation\nwithout prior written permission is prohibited\nexcept as allowed under the copyright laws.\n\nFor Technical Support please contact your dealer\nWeb site: http://www.pacificenergy.net\n2975 Allenby Rd., Duncan, B.C. V9L 6V8\n\nPrinted in Canada"}];
+
+/* curated topic index — the hand-written, audience-tuned answers */
+const INDEX=[
+  ...HOME_PRIMARY.map(d=>({k:'h',id:d.id,t:d.title,p:d.blurb})),
+  ...HOME_SECONDARY.map(d=>({k:'h',id:d.id,t:d.title,p:d.blurb})),
+  ...SPECS.map(s=>({k:'i',id:s.tap,t:s.lab,p:s.rows.map(r=>r[0]+' '+r[1]).join(' · ')})),
+  ...STEPS.map((s,i)=>({k:'i',id:'step'+i,t:s[0],p:s[1]})),
+  ...INDEX_EXTRA,
+];
+
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const plain=s=>String(s).replace(/<[^>]+>/g,'');
+/* match regardless of line breaks, case and curly quotes */
+const fold=s=>s.toLowerCase().replace(/[‘’ʼ′]/g,"'").replace(/[“”″]/g,'"').replace(/ /g,' ');
+PAGES.forEach(pg=>{pg.s=pg.t.replace(/\s+/g,' ').trim(); pg.f=fold(pg.s); if(pg.f.length!==pg.s.length) pg.s=pg.f;});
+INDEX.forEach(x=>{x.f=fold(plain(x.t+' '+x.p)).replace(/\s+/g,' ');});
+const normQ=raw=>fold(raw).replace(/\s+/g,' ');
+function snippet(pg,q){
+  const i=pg.f.indexOf(q); if(i<0)return '';
+  const s=Math.max(0,i-55), e=Math.min(pg.s.length,i+q.length+85);
+  const frag=pg.s.slice(s,e), ff=pg.f.slice(s,e);
+  // highlight every occurrence of the query in the fragment
+  let out='',at=0,j;
+  while((j=ff.indexOf(q,at))>=0){out+=esc(frag.slice(at,j))+'<mark>'+esc(frag.slice(j,j+q.length))+'</mark>';at=j+q.length;}
+  out+=esc(frag.slice(at));
+  return (s>0?'… ':'')+out+(e<pg.s.length?' …':'');
+}
+/* which manual a reader on each side wants first */
+const PREF={homeowner:{operation:0,installation_and_operation:1,installation:2},installer:{installation:0,installation_and_operation:1,operation:3}};
+function pageHitsFor(q,role){
+  const hits=PAGES.filter(pg=>pg.f.includes(q));
+  if(!MULTI) return hits;
+  const pref=PREF[role]||{};
+  const rank=pg=>{const m=MANUALS[pg.d-1];return m.kit?2:(pref[m.role]??2);};
+  return hits.sort((a,b)=>rank(a)-rank(b)||a.d-b.d||a.p-b.p);
+}
+const pgLabel=pg=>MULTI?`${esc(MANUALS[pg.d-1].short)} p.${pg.p}`:`p.${pg.p}`;
+const pageItem=(pg,q)=>`<div class="ritem" data-kind="page" data-doc="${pg.d}" data-page="${pg.p}">
+         <span class="pg">${pgLabel(pg)}</span>
+         <div class="snip">${snippet(pg,q)}</div>
+         <svg class="jump" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg>
+       </div>`;
+const topicItem=(x,withRole)=>`<div class="ritem" data-kind="topic" data-id="${x.id}"${withRole?` data-role="${x.k==='h'?'homeowner':'installer'}"`:''}>
+         <span class="badge ${x.k}">${x.k==='h'?'Owner':'Install'}</span>
+         <div><h4>${esc(plain(x.t))}</h4><p>${esc(plain(x.p))}</p></div></div>`;
+const manualsLine=()=>MULTI?MANUALS.map(m=>`${m.label} (${m.pages} pages)`).join(' and '):`${MANUALS[0].pages}-page manual`;
+
+const res=$('#results'),rlist=$('#rlist');
+$('#q').addEventListener('input',e=>{
+  const raw=e.target.value.trim(), q=normQ(raw);
+  if(q.length<2){res.classList.remove('open');return;}
+  const curated=INDEX.filter(x=>x.f.includes(q)).slice(0,6);
+  const pageHits=pageHitsFor(q,currentRole()).slice(0,12);
+  let html='';
+  if(curated.length){
+    html+=`<div class="rgroup">Best matches <span class="ct">${curated.length}</span></div>`;
+    html+=curated.map(x=>topicItem(x,true)).join('');
+  }
+  if(pageHits.length){
+    html+=`<div class="rgroup">In the full ${MULTI?'manuals':'manual'} <span class="ct">${pageHits.length} page${pageHits.length>1?'s':''}</span></div>`;
+    html+=pageHits.map(pg=>pageItem(pg,q)).join('');
+  }
+  if(!curated.length && !pageHits.length)
+    html=`<div class="rempty">Nothing matched “${esc(raw)}”. Try a part name, a number, or open the full PDF above.</div>`;
+  rlist.innerHTML=html;
+  res.classList.add('open'); placeResults();
+  $$('.ritem',rlist).forEach(it=>it.onclick=()=>{
+    if(it.dataset.kind==='page'){ openPDF(it.dataset.page,+it.dataset.doc); }
+    else { res.classList.remove('open'); $('#q').value=''; closeHeaderSearch(); setRole(it.dataset.role); openDrawer(it.dataset.id); }
+  });
+});
+document.addEventListener('click',e=>{if(!res.contains(e.target)&&e.target.id!=='q'&&!e.target.closest('#qBtn'))res.classList.remove('open');});
+
+/* ---------------- owner-side inline search ---------------- */
+/* Curated answers (open the drawer) + full-manual page hits (open the PDF) —
+   the same two-tier logic as the header search, surfaced in the owner view. */
+const oq=$('#oq'), oResults=$('#oResults');
+function renderOwnerSearch(){
+  if(!oq||!oResults) return;
+  const raw=oq.value.trim(), q=normQ(raw);
+  if(q.length<2){ oResults.innerHTML=''; return; }
+  const curated=INDEX.filter(x=>x.f.includes(q)).slice(0,6);
+  const pageHits=pageHitsFor(q,'homeowner').slice(0,8);
+  let html='';
+  if(curated.length){
+    html+=`<div class="rgroup">Best matches <span class="ct">${curated.length}</span></div>`;
+    html+=curated.map(x=>topicItem(x,false)).join('');
+  }
+  if(pageHits.length){
+    html+=`<div class="rgroup">In the full ${MULTI?'manuals':'manual'} <span class="ct">${pageHits.length} page${pageHits.length>1?'s':''}</span></div>`;
+    html+=pageHits.map(pg=>pageItem(pg,q)).join('');
+  }
+  if(!curated.length && !pageHits.length)
+    html=`<div class="os-hint">Nothing matched “${esc(raw)}”. Try another word, or open the full <mark>Official PDF</mark> up top.</div>`;
+  oResults.innerHTML=html;
+  $$('.ritem',oResults).forEach(it=>{
+    if(it.dataset.kind==='page') it.onclick=()=>openPDF(it.dataset.page,+it.dataset.doc);
+    else it.onclick=()=>openDrawer(it.dataset.id);
+  });
+}
+oq.addEventListener('input',renderOwnerSearch);
+
+/* ---------------- installer-side full-manual search ---------------- */
+/* Same per-page PDF index as the header search, surfaced inline in the field
+   reference where installers expect it. Click a hit to deep-link the PDF page. */
+const mq=$('#mq'), mResults=$('#mResults');
+function renderManualSearch(){
+  if(!mq||!mResults) return;
+  const raw=mq.value.trim(), q=normQ(raw);
+  if(q.length<2){
+    mResults.innerHTML=`<div class="ms-hint">Searches the full text of every page of the official ${manualsLine()}. Type a part name, a number, or a term — each result opens the PDF at that page.</div>`;
+    return;
+  }
+  const hits=pageHitsFor(q,'installer');
+  if(!hits.length){
+    mResults.innerHTML=`<div class="ms-hint">Nothing in the ${MULTI?'manuals':'manual'} matched “${esc(raw)}”. Try a different term, or open the full <mark>Official PDF</mark> up top.</div>`;
+    return;
+  }
+  mResults.innerHTML=`<div class="rgroup">In the full ${MULTI?'manuals':'manual'} <span class="ct">${hits.length} page${hits.length>1?'s':''}</span></div>`+
+    hits.slice(0,30).map(pg=>pageItem(pg,q)).join('');
+  $$('.ritem',mResults).forEach(it=>it.onclick=()=>openPDF(it.dataset.page,+it.dataset.doc));
+}
+mq.addEventListener('input',renderManualSearch);
+renderManualSearch();
+
+
+/* ---------------- phones & tablets: slim header, section bar, back to top ---------------- */
+const hdr=document.querySelector('header');
+function setHdrH(){document.documentElement.style.setProperty('--hdr-h',hdr.offsetHeight+'px');}
+function placeResults(){res.style.top=Math.max(0,hdr.getBoundingClientRect().bottom)+'px';}
+function closeHeaderSearch(){hdr.classList.remove('searching');$('#qBtn').setAttribute('aria-expanded','false');setHdrH();}
+$('#qBtn').addEventListener('click',()=>{
+  const open=!hdr.classList.contains('searching');
+  hdr.classList.toggle('searching',open);$('#qBtn').setAttribute('aria-expanded',String(open));
+  document.body.classList.remove('hdr-away');setHdrH();
+  if(open){$('#q').focus();} else {res.classList.remove('open');}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&hdr.classList.contains('searching')){res.classList.remove('open');closeHeaderSearch();}});
+addEventListener('resize',()=>{setHdrH(); if(res.classList.contains('open')) placeResults();});
+setHdrH();
+
+/* the section bar lists only the sections this guide has */
+const SECS=[['sec-specs','Specs'],['sec-steps','Install steps'],['faultSec','Faults'],['codeSec','Codes'],['sec-manual','Manual']]
+  .map(([id,label])=>[document.getElementById(id),label]).filter(([el])=>el&&el.style.display!=='none');
+const secNav=$('#secNav');
+secNav.innerHTML=SECS.map(([,label],i)=>`<button type="button" data-i="${i}">${label}</button>`).join('');
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+secNav.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  $$('button',secNav).forEach(x=>x.setAttribute('aria-current',String(x===b)));
+  SECS[+b.dataset.i][0].scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'});});
+let lastY=scrollY,ticking=false,activeSec=-1;
+function onScroll(){
+  const y=scrollY, small=innerWidth<=1024, inRole=document.body.classList.contains('has-role');
+  const busy=hdr.classList.contains('searching')||$('#drawer').classList.contains('open')||res.classList.contains('open');
+  if(!small||!inRole||y<140||y<lastY-6) document.body.classList.remove('hdr-away');
+  else if(y>lastY+6&&!busy) document.body.classList.add('hdr-away');
+  lastY=y;
+  $('#toTop').classList.toggle('show',inRole&&y>700);
+  if(currentRole()==='installer'&&SECS.length){
+    const line=hdr.offsetHeight+secNav.offsetHeight+48;   /* generous: works whether the header is showing or tucked away */
+    let a=0; SECS.forEach(([el],i)=>{if(el.getBoundingClientRect().top<=line)a=i;});
+    if(innerHeight+y>=document.documentElement.scrollHeight-4)a=SECS.length-1;
+    if(a!==activeSec){activeSec=a;
+      $$('button',secNav).forEach((b,i)=>b.setAttribute('aria-current',String(i===a)));
+      const btn=$$('button',secNav)[a]; if(btn) secNav.scrollTo({left:btn.offsetLeft-16,behavior:reduceMotion?'auto':'smooth'});}
+  }
+  ticking=false;
+}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+$('#toTop').addEventListener('click',()=>scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));
+
+/* ---------------- deep links into the guide: #homeowner, #installer, or a topic id (#light) ---------------- */
+function fromHash(){const h=decodeURIComponent(location.hash.slice(1));if(!h)return;
+  if(h==='homeowner'||h==='owner'){setRole('homeowner');return;}
+  if(h==='installer'){setRole('installer');return;}
+  if(DETAIL[h]){setRole(DETAIL[h].cool?'installer':'homeowner');openDrawer(h);}}
+window.addEventListener('hashchange',fromHash);
+fromHash();
+</script>
+</body>
+</html>

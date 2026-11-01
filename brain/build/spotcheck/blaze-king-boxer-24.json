@@ -1,0 +1,24 @@
+{
+ "id": "blaze-king-boxer-24",
+ "checked_pagerefs": 28,
+ "notes_checked": {"amber": 3, "correction": 1, "website": 3},
+ "findings": [
+  {
+   "severity": "minor",
+   "where": "detail.wood",
+   "guide_says": "\"Aim for 20% moisture or lower ...\" and \"Wet wood wastes heat drying itself out and greatly increases creosote.\" The \"Never burn\" danger note lists driftwood, treated wood, coal, etc. but not wet or unseasoned wood, so the manual's 'do not burn wet wood' warning (chimney-fire and house-fire risk) is softened to advice, and its warranty consequence is dropped.",
+   "manual_says": "p. 15: \"THIS APPLIANCE IS DESIGNED TO BURN NATURAL WOOD ONLY. DO NOT BURN WET UNSEASONED WOOD. DOING SO CAN CAUSE EXCESSIVE CREOSOTE ACCUMULATION AND IF IGNITED, CAN CAUSE A CHIMNEY FIRE THAT MAY RESULT IN A HOUSE FIRE CAUSING SERIOUS BODILY HARM.\" p. 21: \"ONLY BURN SEASONED WOOD. FAILURE TO DO SO MAY DAMAGE THE COMBUSTOR AND WILL VOID ALL WARRANTIES.\"",
+   "pages": [[1, 15], [1, 21]],
+   "fix": "Change \"Aim for 20% moisture or lower\" to \"Use only seasoned wood at 20% moisture or lower\", and add to the Never-burn note: \"Never burn wet or unseasoned wood: the creosote it builds up can catch fire in the chimney and lead to a house fire. Burning unseasoned wood can also damage the combustor and voids all warranties (pp. 15, 21).\""
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specFloor (kv row 'Canada, sides with a door')",
+   "guide_says": "Canada, sides with a door: 18\" (450 mm), with no note. This is a silent pick: the manual prints a second metric figure for the same Canadian door-side floor protection.",
+   "manual_says": "p. 8: \"at least 18” (450 mm) beyond the appliance on any side equipped with a door\". p. 4 label: \"Floor protection ... must extend at least 18” (456 mm) in Canada or 16” (406 mm) in U.S.A., in front of the loading door opening\". The H legend on both p. 4 and p. 8 also prints \"18” (456 mm) in Canada\".",
+   "pages": [[1, 4], [1, 8]],
+   "fix": "Keep 18\" and report both metric figures. This is floor protection, and the manual doesn't settle it (18\" matches neither exactly). Add e.g. <div class=\"note\"><b>Note:</b> p. 8 gives the Canadian ember protection on a door side as 18\" (450 mm); the label (p. 4) gives 18\" (456 mm) in front of the loading door.</div> and record it in review.conflicts."
+  }
+ ],
+ "verdict": "Yes, safe to publish after the two minor fixes: the lighting, reload, chimney-fire, ash, clearance, floor-protection, venting, chimney-height, electrical and warranty content, every number, all 7 notes and all 28 page links match the 180-BX24 v2.51 manual and website.json."
+}

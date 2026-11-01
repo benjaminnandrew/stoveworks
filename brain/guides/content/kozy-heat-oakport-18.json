@@ -1,0 +1,650 @@
+{
+ "id": "kozy-heat-oakport-18",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "KOZY HEAT",
+  "brand_line": "Oakport 18 · Direct vent gas stove",
+  "kicker": "Direct vent gas stove",
+  "title": "Kozy Heat Oakport 18",
+  "model_line": "Models OAK-18-L · OAK-18-MV · Direct vent · Proflame 2 IPI/CPI (L) or millivolt (MV)",
+  "owner_noun": "stove",
+  "owner_card": "Light it (remote or millivolt), use the remote, turn it off, clean the glass, outages, safety, warranty.",
+  "installer_card": "Specs, clearances, venting and restriction settings, the install sequence, ignition faults and LED codes.",
+  "certification": "ANSI Z21.88-2019 / CSA 2.33-2019 · CSA 2.17 2017",
+  "owner_search_hint": "lighting, remote, glass, gas smell",
+  "manual_search_hint": "clearance, vent, restrictor, pressure"
+ },
+ "home_primary": [
+  {
+   "id": "light",
+   "icon": "flame",
+   "title": "Light it (remote model)",
+   "blurb": "OAK-18-L: turn it on from the Proflame 2 remote."
+  },
+  {
+   "id": "lightmv",
+   "icon": "pilot",
+   "title": "Light it (millivolt model)",
+   "blurb": "OAK-18-MV: gas knob, push-button igniter, rocker switch."
+  },
+  {
+   "id": "remote",
+   "icon": "remote",
+   "title": "Use the remote",
+   "blurb": "Flame height, thermostat, fan speed and key lock."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "Take the glass off safely and clean it once a year."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "off",
+   "icon": "off",
+   "title": "Turn it off & the pilot",
+   "blurb": "Why the pilot may stay lit, and the 7-day shut-off."
+  },
+  {
+   "id": "flame",
+   "icon": "logs",
+   "title": "Flame look & noises",
+   "blurb": "Blue at first, then yellow. What's normal, what isn't."
+  },
+  {
+   "id": "power",
+   "icon": "battery",
+   "title": "Power & batteries",
+   "blurb": "What works in an outage and which batteries go where."
+  },
+  {
+   "id": "safety",
+   "icon": "safety",
+   "title": "Safety & gas smell",
+   "blurb": "What to do if you smell gas, the safety screen, hot glass."
+  },
+  {
+   "id": "service",
+   "icon": "service",
+   "title": "Yearly service",
+   "blurb": "What a technician checks every year, and what you do."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "Limited lifetime: what's covered and what voids it."
+  }
+ ],
+ "specs": [
+  {
+   "id": "input",
+   "lab": "Input rate · Btu/h",
+   "tap": "specInput",
+   "rows": [
+    [
+     "Natural gas",
+     "24,500 / 15,500"
+    ],
+    [
+     "Propane",
+     "24,500 / 19,000"
+    ]
+   ],
+   "note": "max / min · same for OAK-18-L and OAK-18-MV"
+  },
+  {
+   "id": "inlet",
+   "lab": "Inlet pressure",
+   "tap": "specInlet",
+   "rows": [
+    [
+     "Natural gas",
+     "5\" – 10\" WC"
+    ],
+    [
+     "NG recommended",
+     "7\" WC"
+    ],
+    [
+     "Propane",
+     "11\" – 13\" WC"
+    ]
+   ],
+   "note": "min – max"
+  },
+  {
+   "id": "manifold",
+   "lab": "Manifold pressure",
+   "tap": "specManifold",
+   "rows": [
+    [
+     "Natural gas",
+     "1.6\" – 3.5\" WC"
+    ],
+    [
+     "Propane",
+     "6.4\" – 10\" WC"
+    ]
+   ],
+   "note": "low – high"
+  },
+  {
+   "id": "vent",
+   "lab": "Venting · co-axial",
+   "tap": "specVent",
+   "rows": [
+    [
+     "Pipe",
+     "4\" exhaust × 6-5/8\" intake"
+    ],
+    [
+     "Vertical",
+     "3' min – 50' max"
+    ],
+    [
+     "Horizontal · 24\" max vertical",
+     "6\" – 48\""
+    ],
+    [
+     "Horizontal · 25' max vertical",
+     "6\" – 25'"
+    ],
+    [
+     "90° elbows",
+     "5 max"
+    ]
+   ]
+  },
+  {
+   "id": "restrict",
+   "lab": "Vent restriction · baffle setting",
+   "tap": "specRestrict",
+   "rows": [
+    [
+     "Vertical · min length",
+     "Setting (5) · restrictor, knockouts removed"
+    ],
+    [
+     "Vertical · max length",
+     "Setting (5) · restrictor, knockouts intact"
+    ],
+    [
+     "Horiz. · min vertical, NG",
+     "Setting (3) / (1) · no restrictor"
+    ],
+    [
+     "Horiz. · min vertical, LP",
+     "Setting (2) / (5) · no restrictor"
+    ],
+    [
+     "Horiz. · max vertical",
+     "Setting (5) · restrictor, knockouts intact"
+    ]
+   ],
+   "note": "(x) / (y) = min / max horizontal run"
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances to combustibles",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Top corner to side wall",
+     "1\""
+    ],
+    [
+     "Top corner to back wall",
+     "5\""
+    ],
+    [
+     "Top to ceiling",
+     "37-1/4\""
+    ],
+    [
+     "Horizontal pipe top to ceiling",
+     "3-1/8\""
+    ],
+    [
+     "Front",
+     "36\""
+    ]
+   ]
+  },
+  {
+   "id": "elec",
+   "lab": "Electrical",
+   "tap": "specElec",
+   "rows": [
+    [
+     "Junction box",
+     "120VAC, 60Hz, 6 Amps"
+    ],
+    [
+     "OAK-18-L",
+     "Hot at all times, no switch"
+    ],
+    [
+     "OAK-18-MV",
+     "Only for optional fan kit"
+    ]
+   ]
+  },
+  {
+   "id": "conv",
+   "lab": "Fuel conversion",
+   "tap": "specConv",
+   "rows": [
+    [
+     "Burner orifice (DMS)",
+     "#43 NG · #54 LP"
+    ],
+    [
+     "Kit · OAK-18-L",
+     "LCK-OP18-S30 (LP)"
+    ],
+    [
+     "Kit · OAK-18-MV",
+     "OCK-S54A (LP)"
+    ],
+    [
+     "Venturi (factory)",
+     "1/8\" NG · 5/8\" LP"
+    ]
+   ],
+   "note": "OAK-18-L also needs the stepper motor"
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Plan placement & floor",
+   "Level surface that carries the stove and vent, out of traffic and away from furniture and drapes. Set it on wood or a noncombustible surface; over carpet, tile or other combustibles use a metal or wood panel the full width and depth.",
+   "<p>General procedure (section 3.3): pick the location; decide the vent path and termination (vertical or horizontal); locate electrical (if needed) and gas; finish the surfaces below and around the stove; place and secure it; install the vent.</p><ul><li>Directly on wood or a noncombustible surface (not linoleum or carpet) covering the full depth and width. Do not install directly on carpeting, vinyl or other combustibles other than wood.</li><li>Over carpeting, tile or other combustible material other than wood flooring: a metal or wood panel the full width and depth. Above floor level: a solid, continuous platform.</li><li>Allowed in a bedroom, and in an aftermarket, permanently located manufactured home (USA only) or mobile home where local codes allow.</li><li>Covered outdoor installs: operation approved from 40°F to 110°F; keep the insulated envelope and weatherproof membrane unbroken; wiring to the outdoor requirements of NECA NFPA 70; black-painted safety barriers highly recommended.</li></ul>"
+  ],
+  [
+   "Frame the vent path",
+   "Keep 1\" (25mm) clearance on all sides of the vent pipe, including at the wall pass-through, and use a listed wall thimble. Never recess the vent cap into the wall or siding.",
+   "<ul><li>Measure from the stove's floor level to the center of the wall penetration. Elbow heights vary by vent maker; check their instructions.</li><li>Wall thimbles that meet the clearance for every horizontal run through an interior or exterior wall. Thimbles and attic insulation shields may be insulated with unfaced insulation listed noncombustible per ASTM E 136.</li><li>Horizontal sections rise 1/4\" (6mm) for every 12\" (305mm) of travel.</li><li>Build the chase to the manual's clearances and local codes; insulate outside walls against cold air.</li></ul><p>Vent pipe dimensions were tested with listed Simpson DuraVent pipe; other makers' dimensions may vary.</p>"
+  ],
+  [
+   "Gas conversion & gas line",
+   "Built for natural gas: for propane, fit the conversion kit first (OAK-18-L also needs the stepper motor, sold separately). Connect a ½\" tee-handle shut-off and flexible connector to the ½\" valve inlet.",
+   "<ul><li>Gas line by a qualified person to local codes (or ANSI Z223.1); in Massachusetts, a licensed plumber or gas fitter.</li><li>Run the line to the connection point (Figure 2.1, p. 9) without obstructing the fan.</li><li>Supplied: 3/8\" (10mm) × 18\" (457mm) flexible gas connector and manual shut-off valve.</li><li>Supply-line pressure tests above ½ psi (3.5 kPa): disconnect the appliance and its shut-off. At or below ½ psi: close its shut-off.</li><li>Check every connection, field or factory made, for leaks with soapy water.</li><li>High altitude: ask the local gas distributor or authority having jurisdiction for the rating method.</li></ul>"
+  ],
+  [
+   "Locate the termination",
+   "Site the cap per the termination clearance table, for example 12\" above grade and 9\" (US) or 12\" (Canada) from a window or door that opens. Never connect to a chimney serving any other appliance.",
+   "<p>Termination clearances (US / Canada):</p><div class=\"kv\"><div class=\"r\"><span>A · above grade, veranda, porch, deck, balcony</span><span>12\" (30cm) / 12\" (30cm)</span></div><div class=\"r\"><span>B · window or door that may be opened</span><span>9\" (23cm) / 12\" (30cm)</span></div><div class=\"r\"><span>C · permanently closed window</span><span>12\" (30cm)* / 12\" (30cm)*</span></div><div class=\"r\"><span>D · ventilated soffit above, within 2 feet</span><span>24\" (61cm)* / 24\" (61cm)*</span></div><div class=\"r\"><span>E · unventilated soffit</span><span>12\" (30cm)* / 12\" (30cm)*</span></div><div class=\"r\"><span>F · outside corner</span><span>0\" (0cm)* / 0\" (0cm)*</span></div><div class=\"r\"><span>G · inside corner</span><span>12\" (30cm) / 12\" (30cm)*</span></div><div class=\"r\"><span>J · non-mechanical air supply inlet</span><span>9\" (23cm) / 12\" (30cm)</span></div><div class=\"r\"><span>K · mechanical air supply inlet</span><span>3' (91cm) above if within 10' (3m) horizontally [Massachusetts: 10' (3m) above] / 6' (1.83m)</span></div><div class=\"r\"><span>M · under veranda, porch, deck, balcony</span><span>12\" (30cm) / 12\" (30cm)‡</span></div><div class=\"r\"><span>N, O · between two terminations</span><span>12\" (30cm)</span></div><div class=\"r\"><span>P · above furnace exhaust or inlet</span><span>12\" (30cm)</span></div></div><p>* Per local installation codes and the gas supplier. ‡ Only if fully open on a minimum of two sides beneath the floor. Canada also sets H (meter/regulator: 3' (91cm) within a height 15' (4.5m) above), I (service regulator vent outlet: 3' (91cm)) and L (above a paved public sidewalk or driveway: 7' (2.13m)†). † A vent shall not terminate directly above a sidewalk or paved driveway that is located between two single family dwellings and serves both dwellings. Clearances are to heat-resistant material, not vinyl. Vertical cap clearances are drawn in Figures 5.1 and 5.2 (p. 17).</p>"
+  ],
+  [
+   "Install the vent",
+   "4\" × 6-5/8\" co-axial pipe from an approved maker, within the run limits and elbow deductions; horizontal sections rise 1/4\" per 12\". Leave a way to visually check the vent connection at the stove.",
+   "<ul><li>Approved: American Metal Products (Ameri-Vent), BDM, ICC, Metal Fab, Olympia Chimney Supply, Selkirk, Simpson DuraVent. Not allowed: BDM cap 940264, Simpson DuraVent cap 46DVASNK14.</li><li>Vertical: 3' (914mm) min to 50' (15.24m) max + cap.</li><li>Horizontal: 24\" (609mm) max vertical + 90° elbow + 6\" (152mm) to 48\" (1219mm) horizontal + cap; or 25' (7.62m) max vertical + 90° elbow + 6\" (152mm) to 25' (7.62m) horizontal + cap.</li><li>Max 5 × 90° elbows; deduct 3' (91.4cm) for each 90° after the first and 1½' (457 mm) for each 45°.</li><li>Venting requirements are the same for natural gas and propane.</li></ul><p>Run combinations are charted in Figure 6.6 (p. 25), a drawing only. Chimney conversions: sections 6.6 and 6.7 (pp. 26–27).</p>"
+  ],
+  [
+   "Set vent restriction",
+   "Set the baffle restrictor (it ships at the natural gas minimum-horizontal position) and fit the restrictor plate where Tables 6.1–6.2 call for it.",
+   "<ol><li>Remove the safety barrier and glass frame assembly.</li><li>Baffle restrictor: remove and save (1) screw, move it to the setting for your fuel and vent run, and re-secure with the same screw.</li><li>Restrictor plate (components packet): bend its tabs to about 80° and insert it into the 4\" (102 mm) exhaust with the tabs toward you. After the vent is installed, reach the exhaust by removing the glass valance and the baffle.</li><li>Reinstall everything removed.</li></ol><p>Baffle positions are drawn in Figure 6.3 (p. 21); settings by vent run are on the Vent restriction spec card.</p>"
+  ],
+  [
+   "Logs, glass & safety barrier",
+   "Finish any propane conversion and panel set first. Seat logs OP18-1 to OP18-6 on their pins, then lava rock and rock wool embers, never over burner ports. Refit the glass frame and safety barrier.",
+   "<ol><li>OP18-1: holes onto the mounting pins on the burner plate at the back of the firebox; push down to seat.</li><li>OP18-2 and OP18-3: holes onto the burner's mounting pins; push to seat.</li><li>OP18-4: pin into the hole in OP18-2. OP18-6: pin into the hole in OP18-3. Position the notches as shown.</li><li>OP18-5: into the notch in OP18-2.</li><li>Lava rock onto the air deflector in front of the burner, clear of burner ports and airspaces.</li><li>Rock wool embers onto the logs and burner with a stiff bristle brush.</li></ol><p>Log numbers are on the bottom or side of each log; placement is drawn in Figures 7.3 and 7.4. Logs over burner port holes affect the flame and can soot the glass.</p><h4>Glass frame & barrier</h4><p>Glass: tilt the top in, set its slots over the tabs at the top of the firebox while lowering the bottom, then pull the 2 spring-loaded latches out and up. Barrier: align its notched tabs with the (4) slots on each side of the frame, raise slightly and let the tabs drop in. Overlays OP18-POL / OP18A-POL fasten to the screen front by hand-bending their (4) tabs.</p>"
+  ],
+  [
+   "Fan kit & electrical",
+   "OAK-18-L: 120VAC supply that is hot at all times, with no switch. OAK-18-MV: 120 VAC only for the optional OP18-028 fan kit, best fitted before the gas line goes on.",
+   "<h4>OAK-18-MV fan kit #OP18-028</h4><ol><li>Household breaker off. Remove the safety barrier and the heat shield underneath the firebox.</li><li>Motor end to the right, slide the fan under the firebox; fit its (4) slots over the (4) studs at the rear and secure with (4) flange nuts.</li><li>Speed control box on the left side of the gas valve bracket with (2) black Phillips screws.</li><li>Temperature control switch (magnet attached) on the firebox floor at the right, as far back toward the fan motor as possible.</li><li>Fan cord into the electrical box receptacle; speed control cord into a grounded three-prong receptacle. Reinstall parts.</li><li>Speed knob counter-clockwise to the click is OFF; clockwise past the click is the highest setting.</li></ol><h4>Wiring</h4><ul><li>Ground per local codes, or ANSI/NFPA 70 or CSA C22.1. Fan kit: code-approved line voltage wiring, 14 gauge or better.</li><li>OAK-18-L: battery backup runs flame modulation of the burner only.</li><li>OAK-18-MV: never connect 120 VAC to the gas valve; optional components are low voltage battery or direct current only.</li><li>Wall switch or thermostat: low-voltage wires (not included), on a wall near the stove. Leave the rocker switch OFF, or disconnect its wires (OAK-18-L at the control module, OAK-18-MV at the back of the gas valve), so it doesn't override them.</li></ul>"
+  ],
+  [
+   "Initialize controls (OAK-18-L)",
+   "Rocker switch OFF, 4 AA in the backup holder, 3 AAA in the remote, then connect AC power. With the firebox cleared, press the sync button (3 beeps, amber LED) and the remote's ON/OFF within 5 seconds (4 beeps, pilot lights).",
+   "<ol><li>Main ON/OFF rocker switch OFF.</li><li>(4) AA batteries (not included) in the backup holder on the control module; (3) AAA (included) in the base of the remote.</li><li>Connect the IFC module to AC power.</li><li>Remove all packaging and combustibles from the firebox: the igniter will spark repeatedly and the pilot lights if gas is supplied.</li><li>Remove the safety barrier and the bottom frame piece; slide out the control module to reach the remote sync button.</li><li>Press sync: 3 beeps and an amber LED. Within 5 seconds press ON/OFF on the remote: 4 beeps, and the pilot ignites.</li><li>Press ON/OFF again: the pilot goes out, confirming the command.</li><li>Rocker switch ON for remote operation; reinstall the safety barrier.</li></ol><p>Pilot mode is set from the remote with the system off: Mode to the CPI icon, then up arrow for CPI or down arrow for IPI.</p>"
+  ],
+  [
+   "Pressure test & flame check",
+   "Check inlet pressure at the IN tap with all other gas appliances on, then manifold pressure at the OUT tap. Burn 15 minutes, check the flame, and adjust venturi or restrictor only if needed.",
+   "<p>Inlet: natural gas 5\" – 10\" WC (7\" recommended), propane 11\" – 13\" WC. Manifold: natural gas 1.6\" – 3.5\" WC, propane 6.4\" – 10\" WC. Use a 1/4\" (6mm) I.D. hose. Reseal each tap afterward. OAK-18-L (both taps): turn off burner and pilot, disconnect the hose and tighten the tap clockwise (snug, don't over-tighten), relight pilot and burner, then re-attach the manometer to verify the tap is completely sealed: it should read no pressure. OAK-18-MV IN tap: rocker switch OFF, gas control knob OFF, disconnect the hose and tighten the tap clockwise (snug, don't over-tighten), relight the pilot and turn the knob to ON, then re-attach the manometer to verify the tap is completely sealed: it should read no pressure. OAK-18-MV OUT tap: disconnect the hose and tighten the tap clockwise (snug, don't over-tighten), then re-attach the manometer to verify it is completely sealed: it should read no pressure with pilot and burner on.</p><p>Flames start blue and turn yellow during the first 15 minutes. Factory venturi openings: natural gas 1/8\" (3mm), propane 5/8\" (16mm), fully open. Venturi adjustment must be done by a qualified service technician; slight changes make dramatic results, so burn at least 15 minutes and let it cool between adjustments. If the glass soots, check log placement first.</p><div class=\"kv\"><div class=\"r\"><span>Dark, orange flame with black tips</span><span>Venturi closed too far → open slightly</span></div><div class=\"r\"><span>Short, blue flames</span><span>Venturi open too far → close slightly</span></div><div class=\"r\"><span>Lifting (ghosting) flames</span><span>Gas pressure too high and/or venturi closed too far → check manometer, open venturi slightly</span></div><div class=\"r\"><span>Short, flickering flames</span><span>Excessive draft → add restrictor plate</span></div><div class=\"r\"><span>Lifting or ghosting</span><span>Insufficient draft → remove inner ring(s) or the restrictor plate</span></div></div><div class=\"note\"><b>Note:</b> for blue flames that lift off the burner, the OAK-18-L troubleshooting chart says to close the air shutter slightly on p. 53 (and p. 48 says opening it causes a short, blue flame that may lift), but the OAK-18-MV chart says to open it slightly on p. 56, and Table 11.6 on p. 49 says to open the venturi slightly for lifting (ghosting) flames.</div><p>Yearly check (section 13.5): the main burner lights within 4 seconds of the main gas valve opening, and the flame safety system de-energizes the safety shutoff in no more than 30 seconds.</p>"
+  ]
+ ],
+ "faults": {
+  "label": "Ignition & burner faults",
+  "panels": [
+   {
+    "title": "Pilot won't light or stay lit · OAK-18-L",
+    "items": [
+     "Power interrupted → restore power, or use fully charged backup batteries",
+     "Gas supply off → check every shut-off between the stove and the main line",
+     "No propane or low gas pressure → refill the tank; consult a plumber or gas supplier",
+     "Pilot not touching the flame sensor → pilot must envelop the top of the sensor",
+     "Pilot never goes out → system set to CPI; set it to IPI"
+    ]
+   },
+   {
+    "title": "No spark or pilot outages · OAK-18-MV",
+    "items": [
+     "No spark at the piezo button → check igniter ground and wiring; 1/8\" electrode-to-pilot gap",
+     "Sparks but no pilot → no gas: check shut-off valves and the propane tank",
+     "Pilot drops out → clean the pilot hood; thermocouple hand tight plus 1/4 turn",
+     "Thermocouple under 15 millivolts or thermopile under 350 millivolts → replace it",
+     "Frequent pilot outages → install the pilot shield"
+    ]
+   },
+   {
+    "title": "Burner won't light",
+    "items": [
+     "Rocker switch OFF → switch it ON (OAK-18-L)",
+     "No call for heat → remote ON, thermostat operation OFF (OAK-18-L)",
+     "Lighting steps not followed → knob ON, rocker ON, switch or thermostat calling for heat (OAK-18-MV)",
+     "Plugged burner orifice → remove the blockage",
+     "Faulty switch or wiring → jumper the switch terminals, then the valve terminals (OAK-18-MV)"
+    ]
+   },
+   {
+    "title": "Goes out while running",
+    "items": [
+     "No propane in the tank → refill",
+     "Glass frame installed incorrectly → see section 7.2",
+     "Vent cap blocked or installed wrong, or exhaust leaking into the firebox → clear, adjust, repair",
+     "Horizontal run without 1/4\" rise per 12\" → correct the pitch",
+     "Excessive draft → install or modify the restrictor plate",
+     "Weak thermopile or thermocouple → check millivolts (OAK-18-MV)"
+    ]
+   }
+  ]
+ },
+ "codes": [
+  [
+   1,
+   "Low backup battery",
+   "Backup pack below 4V; module double-beeps on ON/OFF. Replace the batteries"
+  ],
+  [
+   2,
+   "Pilot flame error",
+   "Contact your dealer"
+  ],
+  [
+   3,
+   "System lockout",
+   "Ignition failed twice. Verify gas is on and the sensor isn't shorted; re-initialize (section 9.2)"
+  ]
+ ],
+ "codes_label": "IFC red LED blink codes · OAK-18-L",
+ "detail": {
+  "light": {
+   "tag": "Owner · operation",
+   "title": "Lighting the remote model (OAK-18-L)",
+   "cool": false,
+   "html": "<p>The OAK-18-L lights itself: its control module sparks the pilot. You run it from the Proflame 2 remote.</p><ol><li>Check that the main ON/OFF rocker switch is <b>ON</b>. It's on the left side, behind the safety screen, and ON is the setting for remote control.</li><li>With the stove off, press <b>ON/OFF</b> on the remote. The control module beeps once.</li><li>About 4 seconds later it starts sparking at the pilot, and the stove lights.</li></ol><h4>If it doesn't light</h4><p>The module tries twice. Each try sparks for about 60 seconds, with about 35 seconds in between. If both fail, it locks out, and a red light blinks 3 times at intervals until you reset it.</p><p>To reset, turn the rocker switch OFF, wait about 2 seconds, and turn it back ON. Or press ON/OFF on the remote, wait about 2 seconds, and press it again.</p><div class=\"note\"><b>Keeps locking out?</b> Make sure the gas is turned on. Past that, troubleshooting is a job for a qualified technician.</div><h4>No remote?</h4><p>The system can be set for manual operation (section 9.3). The rocker switch then turns the burner on and off, and it runs on HI only. The manual also shows this model's operating instructions as an image on p. 37.</p>"
+  },
+  "lightmv": {
+   "tag": "Owner · operation",
+   "title": "Lighting the millivolt model (OAK-18-MV)",
+   "cool": false,
+   "html": "<p>The OAK-18-MV is lit at its gas valve, with the gas control knob and a push-button igniter. Its millivolt valve doesn't need house power to run.</p><div class=\"note danger\"><b>Follow the lighting instructions on p. 44.</b> The manual prints them as an image, so the steps aren't repeated here. If you smell gas, don't light it: leave and immediately call your gas supplier from a neighbor's phone.</div><h4>What you'll use</h4><ul><li><b>Gas control knob</b> — on the gas valve, behind the control compartment access panel. It has OFF, PILOT and ON positions.</li><li><b>Push-button igniter</b> — sparks the pilot.</li><li><b>ON/OFF rocker switch</b> — at the back of the stove. Once the knob is at ON, it turns the burner on and off. OFF turns off just the burner; the pilot stays lit.</li><li><b>HI/LO knob</b> — also on the gas valve. Turn it clockwise toward HI or counterclockwise toward LO to set flame height and heat.</li></ul><h4>Wall switch or thermostat</h4><p>If one is wired in, leave the rocker switch OFF. With the rocker ON, the stove stays on and ignores the wall switch or thermostat.</p>"
+  },
+  "remote": {
+   "tag": "Owner · operation",
+   "title": "Using the remote (OAK-18-L)",
+   "cool": false,
+   "html": "<p>The OAK-18-L's Proflame 2 remote takes 3 AAA batteries (included). The stove beeps once to confirm when you turn it on or off.</p><ul><li><b>ON/OFF</b> — turns the stove on and off.</li><li><b>Up / down arrows</b> — 6 flame levels. Down lowers the flame one step at a time until it's off; up raises it one step. If the stove is on but the flame is off, up relights it on HI.</li><li><b>Thermostat key</b> — the remote works as a room thermostat; set the temperature with the arrows. Press it until SMART appears and the stove turns the flame down by itself as the room reaches your setting. While the smart thermostat is on, you can't set the flame by hand.</li><li><b>Mode</b> — steps to the fan icon; the arrows turn the fan on, off, or through its 6 speeds.</li><li><b>Key lock</b> — press Mode and the up arrow together to lock or unlock the keys. A lock icon shows.</li><li><b>°F or °C</b> — with the stove off, press the thermostat key and Mode together.</li></ul><div class=\"note\"><b>Fan timing:</b> in thermostat mode the fan waits 5 minutes after the stove lights and runs about 12 minutes after it turns off. In manual mode it runs at its last setting and starts and stops right away.</div><p>A battery icon on the screen means the remote's batteries are low.</p>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>The manual lists cleaning the glass as a once-a-year homeowner job. Only do it when the stove is completely cool.</p><h4>Take the glass off</h4><ol><li>Clear a flat, stable surface big enough to lay the glass frame on.</li><li>Lift the safety screen straight up and out of its slots.</li><li>Find the 2 spring-loaded latches at the bottom of the firebox. Pull them out and down to free the bottom of the glass.</li><li>Lift the glass frame up and off the 2 tabs at the top.</li></ol><h4>Clean and put it back</h4><ul><li>Use a fireplace glass cleaner and a soft cloth. Never use abrasive cleaners, and take care not to scratch the glass.</li><li>Tilt the top of the frame in, hook its slots over the top tabs, and lower the bottom into place. Pull the latches out and up to lock it.</li><li>Put the safety screen back before you use the stove.</li></ul><div class=\"note danger\">Never run the stove with the glass removed, cracked or broken, and don't strike or slam it. Replacement glass comes only as a complete assembly from Hussong Mfg. Have a qualified service person fit it.</div>"
+  },
+  "off": {
+   "tag": "Owner · operation",
+   "title": "Turning it off & what the pilot does",
+   "cool": false,
+   "html": "<h4>Remote model (OAK-18-L)</h4><p>Press <b>ON/OFF</b> on the remote. The burner goes off and the remote's screen shows just the room temperature.</p><p>What the pilot does next depends on its mode:</p><ul><li><b>IPI</b> (spark-to-pilot) — the pilot is sparked each time you turn the stove on. No snowflake icon shows.</li><li><b>CPI</b> (continuous pilot) — the pilot stays lit after the burner goes off. It keeps the firebox warm and sets up a draft, so the burner lights more smoothly. A snowflake icon shows.</li></ul><p>To switch, turn the stove off, press <b>Mode</b> until the CPI icon appears, then press the up arrow for CPI or the down arrow for IPI. A beep confirms.</p><p>In CPI, if the burner doesn't light for 7 days in a row, the pilot turns itself off as a safety feature. Each time the burner lights, the 7 days start over.</p><h4>Millivolt model (OAK-18-MV)</h4><p>Flip the rocker switch to OFF to turn off just the burner. The pilot stays lit. The gas control knob has OFF, PILOT and ON positions.</p><p>Some regions require a 7-day time-out valve. If a stove with one isn't used for 7 days, the burner and/or pilot shuts off even though the knob still reads PILOT or ON, and you cycle it by hand to relight. Ask your dealer whether yours has it.</p>"
+  },
+  "flame": {
+   "tag": "Owner · reassurance",
+   "title": "Flame look & normal noises",
+   "cool": false,
+   "html": "<p>When the stove is first lit, the flames look blue. Over the first 15 minutes they gradually turn the yellow color you're after. Flame height and look also vary with how your stove is vented and which gas it burns.</p><h4>Normal</h4><ul><li>Steady flames that don't lift or float off the burner.</li><li>Some noise as parts expand and contract with heat, and some discoloration. The warranty calls these normal, not defects.</li><li>On the remote model, a brief shut-off of about 5 seconds within 24 hours of continuous pilot. It's a built-in safety check, and the stove then repeats your last command.</li></ul><h4>Worth a service call</h4><ul><li>Flames that stay blue, or turn dark orange with black tips (soot).</li><li>Soot building up on the glass. Logs out of place, or sitting over the burner ports, can cause it.</li><li>Flames that lift off the burner or \"ghost.\"</li></ul><div class=\"note\">Adjusting the air shutter (venturi) is a job for a qualified service technician only.</div>"
+  },
+  "power": {
+   "tag": "Owner · operation",
+   "title": "Power, batteries & outages",
+   "cool": false,
+   "html": "<h4>Remote model (OAK-18-L)</h4><p>It runs on house power (120 VAC) and has a backup battery pack for outages.</p><div class=\"kv\"><div class=\"r\"><span>Backup pack, on the control module</span><span>4 × AA (not included)</span></div><div class=\"r\"><span>Remote</span><span>3 × AAA (included)</span></div></div><p>In a power outage, the burner and flame height still work on the backup batteries. The fan and accent light kit don't.</p><p>When the backup batteries get low, the control module double-beeps when it gets an ON/OFF command, and its red light blinks once at intervals. It won't accept commands until you replace them, and it beeps once when it has power again. Battery life depends on battery quality and how often the stove lights.</p><h4>Millivolt model (OAK-18-MV)</h4><p>Its millivolt gas valve doesn't need 120 VAC to run. Only the optional fan kit plugs into house power. Its speed knob is off when turned counterclockwise to the click; turn it clockwise past the click for the highest setting.</p>"
+  },
+  "safety": {
+   "tag": "Owner · safety",
+   "title": "Safety & gas smell",
+   "cool": false,
+   "html": "<h4>If you smell gas</h4><ul><li>Don't try to light any appliance.</li><li>Don't touch any electrical switch, and don't use any phone in your building.</li><li>Leave the building right away.</li><li>Immediately call your gas supplier from a neighbor's phone and follow their instructions. If you can't reach them, call the fire department.</li></ul><h4>Around the stove</h4><ul><li>The viewing glass gets hot. The safety screen that comes with the stove reduces the risk of burns, especially for children and other at-risk people. Keep it on, and if it's damaged, replace it with a Hussong Mfg. screen made for this stove.</li><li>Keep the stove out of traffic and away from furniture and drapes.</li><li>Never store or use gasoline or other flammable vapors and liquids near it.</li><li>If any part has been under water, don't use it. Immediately call a qualified service technician to inspect the stove and replace any part of the control system and any gas control that has been under water.</li><li>On the remote model, the key lock helps prevent unsupervised use.</li></ul><p>Installation and service must be done by a qualified installer, service agency or the gas supplier.</p>"
+  },
+  "service": {
+   "tag": "Owner · maintenance",
+   "title": "Yearly service",
+   "cool": false,
+   "html": "<p>Have the stove inspected before use and at least once a year by a professional service person. Lint from carpeting, bedding and the like can mean more frequent cleaning.</p><h4>What the technician does each year</h4><ul><li>Vacuums the firebox and checks that the glass latches move freely, with spring tension.</li><li>Disconnects and vacuums the fan, if you have one. Its bearings are sealed and need no oil.</li><li>Inspects the vent and vent cap for soot or blockage.</li><li>Cleans the glass and inspects it for cracks, scratches and nicks.</li><li>Vacuums the burner, checks gas connections for leaks, checks the pilot, and makes sure the burner lights within 4 seconds with a steady flame.</li></ul><h4>What you do</h4><ul><li>Clean the glass once a year (see Clean the glass).</li><li>Keep the area around the stove clear of anything that burns, and of gasoline and other flammable vapors and liquids.</li></ul><div class=\"note\">Installation and repair should only be done by a qualified service person.</div>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "Limited lifetime warranty",
+   "cool": false,
+   "html": "<p>Hussong Mfg. warrants this stove to the original purchaser, from the date of purchase, to be free of defects in materials and workmanship at the time of manufacture.</p><div class=\"kv\"><div class=\"r\"><span>30 days · parts & labor</span><span>Paint, light bulbs, gasket material, glass media and media dam</span></div><div class=\"r\"><span>Year 1 · parts & labor</span><span>All other parts and material</span></div><div class=\"r\"><span>Years 2 to lifetime · parts only</span><span>Firebox, heat exchanger, logs, burner tube or pan, outer shell, heat shields, front glass (thermal shock only), refractory liner (not enamel or glass panels)</span></div></div><p>Labor is paid only to an authorized dealer. You don't need to send anything in to register; keep your proof of purchase with the serial number and model. If you notice a defect, contact your authorized dealer within 30 days.</p><h4>Coverage is void or limited if</h4><ul><li>It isn't installed by a licensed, authorized technician or contractor, or isn't installed, run and maintained per the manual.</li><li>The serial number or testing label is removed, or the stove is altered or tampered with.</li><li>It's been under water or through long periods of dampness or condensation.</li><li>The problem comes from venting, surroundings or negative air pressure. Chimney parts and non-Hussong accessories aren't covered.</li></ul><p>It isn't transferable. Parts repaired after the warranty ends get 90 days of parts coverage.</p><div class=\"note\">This is a summary. The full terms are in the manual.</div>"
+  },
+  "specInput": {
+   "tag": "Installer · spec",
+   "title": "Input rates",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>NG max / min</span><span>24,500 / 15,500 Btu/h (7.2 / 4.50 kW)</span></div><div class=\"r\"><span>LP max / min</span><span>24,500 / 19,000 Btu/h (7.2 / 5.60 kW)</span></div></div><div class=\"note small\"><b>Maker's website:</b> IPI BTU Input 24,500 BTU/hr (NG); 24,000 BTU/hr (LP). Install to the manual.</div><div class=\"kv\"><div class=\"r\"><span>Burner orifice (DMS)</span><span>#43 NG · #54 LP</span></div></div><p>Same ratings for OAK-18-L and OAK-18-MV.</p><h4>High altitude</h4><p>US: above 2,000' (610m), reduce input 4% for each 1,000' (305m) above sea level. Canada: above 4,500' (1,372m), reduce the certified high-altitude rating 4% for each additional 1,000' (305m). Listed to CSA 2.17 2017 for high altitudes; follow local codes on derating.</p>"
+  },
+  "specInlet": {
+   "tag": "Installer · spec",
+   "title": "Gas supply & inlet pressure",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>NG min / max</span><span>5\" / 10\" WC (1.25 / 2.49 kPa)</span></div><div class=\"r\"><span>NG recommended</span><span>7\" WC (1.74 kPa)</span></div><div class=\"r\"><span>LP min / max</span><span>11\" / 13\" WC (2.74 / 3.24 kPa)</span></div></div><p>Same for OAK-18-L (Table 4.1) and OAK-18-MV (Table 4.2). Test at the valve's IN tap on a 1/4\" (6mm) I.D. hose with all other gas appliances in the house on or at full capacity. If it reads too high or too low, contact the gas company; only a qualified gas service technician should adjust incoming pressure. Low pressure can cause a delayed ignition.</p><p>After the reading, reseal the IN tap (A). OAK-18-L: turn off burner and pilot, disconnect the hose and tighten the tap by turning the screw clockwise (snug, don't over-tighten), relight pilot and burner, then re-attach the manometer to the tap to verify it is completely sealed: it should read no pressure. OAK-18-MV: press the rocker switch to OFF, turn the gas control knob to OFF, disconnect the hose and tighten the tap by turning the screw clockwise (snug, don't over-tighten), relight the pilot and turn the gas control knob to ON, then re-attach the manometer to the tap to verify it is completely sealed: it should read no pressure.</p><h4>Connection</h4><ul><li>Listed (Massachusetts-approved) ½\" (13mm) tee handle manual shut-off valve and flexible gas connector to the ½\" (13mm) control valve inlet.</li><li>Supplied: 3/8\" (10mm) × 18\" (457mm) flexible gas connector and manual shut-off valve.</li><li>Pressure tests above ½ psi (3.5 kPa): disconnect the appliance and its shut-off. At or below ½ psi: close its shut-off.</li><li>Don't run the gas line where it would obstruct fan operation.</li></ul>"
+  },
+  "specManifold": {
+   "tag": "Installer · spec",
+   "title": "Manifold pressure",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>NG low / high</span><span>1.6\" / 3.5\" WC (0.41 / 0.87 kPa)</span></div><div class=\"r\"><span>LP low / high</span><span>6.4\" / 10\" WC (1.59 / 2.48 kPa)</span></div></div><p>Read at the valve's manifold (OUT) pressure tap (B) on a 1/4\" (6mm) I.D. hose. OAK-18-L: light the pilot, then the burner. OAK-18-MV: light the pilot, gas control knob to ON, rocker switch ON. Then reseal the tap. OAK-18-L: turn burner and pilot off, disconnect the manometer hose and tighten the tap by turning the screw clockwise (snug, don't over-tighten), relight pilot and burner, then re-attach the manometer to verify the tap is completely sealed. OAK-18-MV: disconnect the manometer hose and tighten the tap by turning the screw clockwise (snug, don't over-tighten), then re-attach the manometer to verify it is completely sealed. Either way it should read no pressure with pilot and burner on.</p><div class=\"note small\">The manual's manifold pressure tables label their pressure row \"Inlet Pressure Tap (A)\" (Table 11.2 on p. 46, Table 11.4 on p. 47); the test steps on the same pages read manifold pressure at the OUT tap (B).</div>"
+  },
+  "specVent": {
+   "tag": "Installer · spec",
+   "title": "Venting",
+   "cool": true,
+   "html": "<p>Co-axial 4\" (102mm) exhaust × 6-5/8\" (168mm) air intake. Approved makers (horizontal and vertical): American Metal Products (Ameri-Vent), BDM, ICC, Metal Fab, Olympia Chimney Supply, Selkirk, Simpson DuraVent. Caps not allowed: BDM 940264, Simpson DuraVent 46DVASNK14.</p><div class=\"kv\"><div class=\"r\"><span>Vertical</span><span>3' (914mm) min / 50' (15.24m) max + cap</span></div><div class=\"r\"><span>Horizontal (i)</span><span>24\" (609mm) max vertical + 90° elbow + 6\" (152mm) to 48\" (1219mm) horizontal + cap</span></div><div class=\"r\"><span>Horizontal (ii)</span><span>25' (7.62m) max vertical + 90° elbow + 6\" (152mm) to 25' (7.62m) horizontal + cap</span></div><div class=\"r\"><span>Horizontal pitch</span><span>1/4\" (6mm) rise per 12\" (305mm)</span></div><div class=\"r\"><span>Pipe clearance</span><span>1\" (25 mm) all sides</span></div></div><h4>Elbows</h4><p>Max 5 × 90°. Subtract 3' (91.4cm) for each 90° after the first and 1½' (457 mm) for each 45°. Two 45° elbows may replace one 90°.</p><h4>Chimney conversions</h4><p>Class A / masonry chimney, min 7\" ID: rigid 24\" (610mm) vertical + 90° elbow + rigid 6\" (152mm) horizontal, Retro connector, then 10' (3.05m) min to 50' (15.24m) max of 4\" aluminum flex. Co-axial to co-linear: adapter + 10' (3.05m) min of 3\" flex / 50' (15.24m) max of 3\" x 3\" flex. Fit the vent heat shield with minimum horizontal venting off the top. Have the chimney inspected first; it must not serve any other appliance.</p><p>The combination vent chart (Figure 6.6, p. 25) is a drawing only; read it in the PDF.</p>"
+  },
+  "specRestrict": {
+   "tag": "Installer · spec",
+   "title": "Vent restriction",
+   "cool": true,
+   "html": "<p>Flame look is affected by altitude, fuel quality and venting, so the exhaust is tuned with the baffle restrictor and a restrictor plate (in the components packet). The stove ships with the baffle restrictor set for natural gas minimum horizontal venting.</p><h4>Vertical terminations (Table 6.1, NG and LP)</h4><div class=\"kv\"><div class=\"r\"><span>Minimum vertical</span><span>Setting (5) · restrictor, knockouts removed</span></div><div class=\"r\"><span>Maximum vertical</span><span>Setting (5) · restrictor, knockouts intact</span></div></div><h4>Horizontal terminations (Table 6.2)</h4><div class=\"kv\"><div class=\"r\"><span>NG · min vert. / min horiz.</span><span>Setting (3) · restrictor not needed</span></div><div class=\"r\"><span>NG · min vert. / max horiz.</span><span>Setting (1) · restrictor not needed</span></div><div class=\"r\"><span>LP · min vert. / min horiz.</span><span>Setting (2) · restrictor not needed</span></div><div class=\"r\"><span>LP · min vert. / max horiz.</span><span>Setting (5) · restrictor not needed</span></div><div class=\"r\"><span>NG or LP · max vert. / min or max horiz.</span><span>Setting (5) · restrictor, knockouts intact</span></div></div><p>Restrictor plate: bend its tabs to about 80° and insert it into the 4\" (102 mm) exhaust, tabs toward you. Baffle positions are drawn in Figure 6.3 (p. 21).</p><h4>After installation (Table 11.7)</h4><ul><li>Short, flickering flames (excessive draft) → add the restrictor plate.</li><li>Lifting or ghosting (insufficient draft) → remove inner ring(s) or the restrictor plate.</li><li>Still lifting with the plate opened and the vent verified → shut off the gas and call a qualified service technician.</li></ul><div class=\"note\"><b>Note:</b> p. 20 says to remove the baffle by taking out (2) screws at the firebox back wall; p. 50 says to take out (3) screws at the firebox ceiling and lift the baffle out of slots on the back wall.</div>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances & floor",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Top corner to side wall</span><span>1\" (25mm)</span></div><div class=\"r\"><span>Top corner to back wall</span><span>5\" (127mm)</span></div><div class=\"r\"><span>Top to ceiling</span><span>37-1/4\" (946mm)</span></div><div class=\"r\"><span>Top of horizontal pipe to ceiling</span><span>3-1/8\" (79mm)</span></div><div class=\"r\"><span>Front</span><span>36\" (914mm)</span></div><div class=\"r\"><span>Vent pipe, all sides</span><span>1\" (25mm)</span></div></div><h4>Floor</h4><p>Directly on wood or a noncombustible surface (not linoleum or carpet) extending the full depth and width. Over carpeting, tile or other combustible material other than wood flooring, use a metal or wood panel the full width and depth. Above floor level, build a solid, continuous platform. The surface must be level and carry the stove and venting.</p><p>Bedroom installs are allowed. Covered outdoor installs: operation approved from 40°F to 110°F.</p>"
+  },
+  "specElec": {
+   "tag": "Installer · spec",
+   "title": "Electrical",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Junction box</span><span>120VAC, 60Hz, 6 Amps</span></div><div class=\"r\"><span>OAK-18-L</span><span>Supply hot at all times, no switch; 4 × AA backup</span></div><div class=\"r\"><span>OAK-18-MV</span><span>120 VAC only for the optional fan kit #OP18-028</span></div><div class=\"r\"><span>Fan kit (parts list)</span><span>OP18-028-IPI, standard on OAK-18-L · OP18-028, optional on OAK-18-MV</span></div></div><div class=\"note small\"><b>Maker's website:</b> Optional: Black Glass Refractory, Prairie Design Overlay, Arched Prairie Design Overlay, Fan Kit.</div><ul><li>Shut off the household breaker before working on electrical lines. Ground per local codes, or ANSI/NFPA 70 or CSA C22.1. Don't cut or remove the grounding prong.</li><li>OAK-18-L: needs 120 VAC and/or batteries; battery backup runs flame modulation of the burner only.</li><li>OAK-18-MV: don't connect 120 VAC to the gas valve; optional components are low voltage battery or direct current only. Fan kit wiring: 14 gauge or better.</li><li>Optional wall switch or thermostat on low-voltage wires (not included). The rocker switch overrides it unless left OFF or disconnected.</li></ul><p>Wiring diagrams: Figure 8.1 (OAK-18-L, p. 35) and Figure 8.2 (OAK-18-MV, p. 36), drawings only.</p>"
+  },
+  "specConv": {
+   "tag": "Installer · spec",
+   "title": "Fuel conversion, orifices & venturi",
+   "cool": true,
+   "html": "<p>Built for natural gas. For propane, follow the instructions in the conversion kit, per the provincial authorities having jurisdiction and ANSI Z223.1, and convert before installing the log set. On OAK-18-L the stepper motor is sold separately.</p><div class=\"kv\"><div class=\"r\"><span>Kit · OAK-18-L</span><span>LCK-OP18-S30 (LP) · NCK-OP18-S30 (NG)</span></div><div class=\"r\"><span>Stepper motor · OAK-18-L</span><span>700-503-1 (LP) · 700-503 (NG), 30% turndown</span></div><div class=\"r\"><span>Kit · OAK-18-MV</span><span>OCK-S54A (LP) · OCK-S43A (NG)</span></div><div class=\"r\"><span>Burner orifice</span><span>#43 NG (700-243) · #54 LP (700-254)</span></div><div class=\"r\"><span>Pilot orifice · OAK-18-L</span><span>#62 NG (700-166) · #35 LP (700-168)</span></div><div class=\"r\"><span>Pilot orifice · OAK-18-MV</span><span>700-165 NG · 700-095 LP</span></div><div class=\"r\"><span>Venturi opening (factory)</span><span>1/8\" (3mm) NG · 5/8\" (16mm) LP, fully open</span></div></div><p>Venturi adjustment must be done by a qualified service technician.</p>"
+  }
+ },
+ "pageref": {
+  "light": 39,
+  "lightmv": 44,
+  "remote": 40,
+  "glass": 58,
+  "off": 41,
+  "flame": 48,
+  "power": 38,
+  "safety": 1,
+  "service": 57,
+  "warranty": 63,
+  "specInput": 8,
+  "specInlet": 16,
+  "specManifold": 46,
+  "specVent": 19,
+  "specRestrict": 23,
+  "specClear": 12,
+  "specElec": 8,
+  "specConv": 16,
+  "step0": 11,
+  "step1": 13,
+  "step2": 16,
+  "step3": 18,
+  "step4": 19,
+  "step5": 20,
+  "step6": 29,
+  "step7": 34,
+  "step8": 38,
+  "step9": 46
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "safety",
+   "t": "gas smell",
+   "p": "What to do if you smell gas"
+  },
+  {
+   "k": "h",
+   "id": "off",
+   "t": "pilot stays on",
+   "p": "CPI keeps the pilot lit; IPI doesn't"
+  },
+  {
+   "k": "h",
+   "id": "power",
+   "t": "power outage",
+   "p": "Backup batteries run the burner and flame height"
+  },
+  {
+   "k": "h",
+   "id": "light",
+   "t": "won't light",
+   "p": "Ignition tries, lockout and reset"
+  },
+  {
+   "k": "h",
+   "id": "flame",
+   "t": "soot",
+   "p": "Black tips or soot on the glass"
+  },
+  {
+   "k": "h",
+   "id": "remote",
+   "t": "thermostat",
+   "p": "Room and smart thermostat on the remote"
+  },
+  {
+   "k": "i",
+   "id": "specConv",
+   "t": "propane conversion",
+   "p": "Kits, orifices and venturi settings"
+  },
+  {
+   "k": "i",
+   "id": "specRestrict",
+   "t": "baffle setting",
+   "p": "Baffle and restrictor plate by vent run"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "step9",
+    "issue": "Venturi fix for blue flames lifting off the burner: OAK-18-L chart says close the air shutter slightly (p. 53; p. 48 says opening it causes a short, blue flame that may lift); OAK-18-MV chart says open it slightly (p. 56); Table 11.6 says open the venturi slightly for lifting (ghosting) flames (p. 49).",
+    "pages": [
+     [
+      1,
+      53
+     ],
+     [
+      1,
+      56
+     ],
+     [
+      1,
+      49
+     ],
+     [
+      1,
+      48
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "specManifold",
+    "issue": "Manifold pressure tables label their row 'Inlet Pressure Tap (A)' (Table 11.2 p. 46, Table 11.4 p. 47); the test steps on the same pages read manifold pressure at the OUT tap (B).",
+    "pages": [
+     [
+      1,
+      46
+     ],
+     [
+      1,
+      47
+     ]
+    ],
+    "class": "clerical",
+    "corrected_to": "Manifold (OUT) pressure tap (B)"
+   },
+   {
+    "where": "specRestrict",
+    "issue": "Baffle removal: p. 20 says remove (2) screws at the firebox back wall; p. 50 says remove (3) screws at the firebox ceiling and lift the baffle out of slots on the back wall.",
+    "pages": [
+     [
+      1,
+      20
+     ],
+     [
+      1,
+      50
+     ]
+    ],
+    "class": "substantive"
+   }
+  ],
+  "catalog_mismatches": [
+   {
+    "model": "kozy-heat-oakport-18",
+    "field": "sizes['Oakport 18 IPI'].btu_input_lp_max",
+    "catalog": "24000",
+    "manual": "OAK-18-L propane maximum input 24,500 Btu/h",
+    "page": [
+     1,
+     8
+    ],
+    "shown": "specInput"
+   },
+   {
+    "model": "kozy-heat-oakport-18",
+    "field": "blower",
+    "catalog": "optional",
+    "manual": "Parts list: 'Fan Kit (OP18-L) (Standard) OP18-028-IPI'; 'Fan Kit (OP18-MV) (Optional) OP18-028'",
+    "page": [
+     1,
+     62
+    ],
+    "shown": "specElec"
+   }
+  ],
+  "notes": "One manual covers both versions: OAK-18-L (Proflame 2 IFC, spark-to-pilot IPI with selectable CPI, 120VAC plus 4 AA backup, remote) and OAK-18-MV (millivolt valve, gas control knob, push-button piezo igniter, rear rocker switch, HI/LO knob, 7-day time-out valve in some regions); the guide describes each separately. The operating-instruction pages p. 37 (OAK-18-L) and p. 44 (OAK-18-MV) are images with no text: the MV lighting steps were not transcribed and the lightmv tile links p. 44. Figure-only content not transcribed: dimensions (Fig. 2.1, p. 9), vertical cap clearances (Figs. 5.1-5.2, p. 17), baffle positions (Fig. 6.3, p. 21), combination vent chart (Fig. 6.6, p. 25), wiring diagrams (pp. 35-36), correct flame (Fig. 13.3, p. 59). The manual gives no efficiency, weight, heating area or dimensions in text, so those catalog values could not be checked. Footer reads 'Rev. 8 - November 2023' (file name says Rev. 815). Slips not flagged as conflicts: p. 41 'Turn OFF' step repeats the turn-ON wording (guide uses p. 39: press ON/OFF to turn the system OFF); safety screen part no. OPT-ES (p. 10) vs OP18-ES (p. 62), neither quoted; p. 13 says to frame the wall opening so the vent runs 'level' through the pass-through while requiring 1/4\" rise per 12\", so the guide states only the rise; cross-references point to wrong sections (p. 11 to 3.4, p. 13 to 6.0, p. 20 to 10.2.2, p. 59 to 7.5); p. 56 gives 12\" as (30mm) vs 305mm elsewhere; 'Metal Fab*' on p. 19 has no visible footnote; the TOC calls the models OP-18-L / OP-18-MV. Pressure-tap reseal: both IN-tap tests (pp. 46-47) and the OAK-18-L OUT-tap test (p. 46) turn burner and pilot off before the hose is disconnected; the OAK-18-MV OUT-tap steps (p. 47) go from noting the reading straight to disconnecting the hose, and the guide gives them as printed."
+ }
+}

@@ -1,0 +1,56 @@
+{
+ "id": "true-north-tn40-pellet-insert",
+ "checked_pagerefs": 28,
+ "notes_checked": {"amber": 9, "correction": 1, "website": 3},
+ "findings": [
+  {
+   "severity": "major",
+   "where": "detail.specHearth (small correction note, second sentence) and review.conflicts 'Ember protection metric'",
+   "guide_says": "Small (misprint) note: 'For the other sides, the rating label prints 200 MM / 6 in; ember protection is 6\" (150mm) on p. 18 and 6\"/152mm on p. 20.' The review records this as class clerical with corrected_to 6\" (150mm).",
+   "manual_says": "p. 31 rating label: 'MINIMUM HEARTH DIMENSIONS(MEASURED FROM FIREPLACE OPENING) ... E) FIRING SIDE, 406 MM / 16 in ... F) OTHER SIDES / AUTRES CÔTÉS. 200 MM / 6 in'. p. 18: 'Additional Ember Protection if required must extend 6\" (150mm) in front of and beyond each side of the Firebox Viewing Door.' p. 20, Fig. 12 label: '6\"/152mm ... Ember Protection'. The label's figure is a required minimum hearth measured from the fireplace opening. The 6\" figures on pp. 18 and 20 are for ember protection, needed only 'if required' and measured from the viewing door, so they are a different measurement. No other page gives the side-hearth figure, and the label's own mm and inch figures disagree (200 mm vs 6 in), so the manual does not settle which is right. A hearth or clearance value can't be handled as a plain misprint.",
+   "pages": [[1, 31], [1, 18], [1, 20]],
+   "fix": "Keep the first sentence (the 16\" hearth extension) as the small correction note; that one is settled. Replace the second sentence with an amber note, e.g. <div class=\"note\"><b>Note:</b> the rating label (p. 31) gives the minimum hearth on the other sides of the fireplace opening as 200 MM / 6 in, and those two figures don't match; p. 18 gives ember protection, if required, as 6\" (150mm) in front of and beyond each side of the firebox viewing door (6\"/152mm on p. 20).</div> Add a kv row 'Other sides of the opening (rating label): 200 MM / 6 in', and record the conflict as substantive with no corrected_to."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specClear (no note on Figure 11's metric labels)",
+   "guide_says": "'Top of stove to mantel or mantel facing 13\" [330mm]' and 'Side of top to mantel side facing (3-1/2\" [89mm] max. deep) 8-1/2\" [216mm]', then 'The clearance drawing (Figure 11) on p. 18 shows where each one applies.' The drawing's different metric labels are mentioned only in review.notes ('list values used'), with no note in the drawer.",
+   "manual_says": "p. 18, Figure 11: 'MANTEL DISTANCE ... 13\" MEASURED FROM TOP OF FIREBOX 380mm' and '8-1/2\" 203mm'. p. 18 list: 'Top of stove to Mantle or Mantle Facing 13\" [330mm]', 'Side of Top to 3-1/2\" [89mm] Max. deep Mantle Side Facing 8 -1/2\" [216mm]'. p. 31: 'B) SIDE FACING ... 216 MM / 8.5 in', 'C) TOP FACING ... 330 MM / 13 in', 'D) MANTEL 330 MM / 13 in'. The figure's text is out of order in the extract, so the pairing of 380mm with 13\" and 203mm with 8-1/2\" should be checked on the p. 18 page image.",
+   "pages": [[1, 18], [1, 31]],
+   "fix": "Add <div class=\"note small\">Figure 11 on p. 18 prints 380mm beside the 13\" mantel distance and 203mm beside the 8-1/2\" side facing; the clearance list on p. 18 and the rating label (p. 31) give 13\" [330mm] and 8-1/2\" [216mm].</div> and record it in review.conflicts as clerical."
+  },
+  {
+   "severity": "minor",
+   "where": "specs.clear row 5 ('In front') and detail.safety",
+   "guide_says": "Card: 'In front | 36\"', with no card note (the output card has one for its conflict). detail.safety: 'Keep furniture, wood, paper, drapes and other combustibles, pellets included, 48\" (122cm) from the front...', with no note. Only detail.specClear carries the amber note on 36\" vs 48\", which the review classes as a substantive conflict.",
+   "manual_says": "p. 18: 'In Front of unit 36\" [915mm]'. p. 5: 'Never place furniture, wood, paper, drapes or other combustible materials including Pellet Fuel within 48\" (122cm) of the front of the unit'.",
+   "pages": [[1, 18], [1, 5]],
+   "fix": "Give the clearance card a note like the output card's (e.g. 'p. 5 says 48\" for furniture and fuel') or a second front row. In detail.safety, keep the 48\" rule and add the same amber note as detail.specClear."
+  },
+  {
+   "severity": "minor",
+   "where": "step6 title",
+   "guide_says": "'Outside air (optional)'",
+   "manual_says": "p. 22: 'Connecting the True North TN40 stove to outside combustion air is optional, but recommended except when required by local building codes.'",
+   "pages": [[1, 22]],
+   "fix": "'Outside air (recommended; required where local building codes call for it)', or add that wording to the step summary."
+  },
+  {
+   "severity": "minor",
+   "where": "step2 summary",
+   "guide_says": "'Don't remove bricks or mortar beyond the smoke-shelf / damper-frame exception'. The exception's conditions are not given.",
+   "manual_says": "p. 20: 'WARNING: Do not remove bricks or mortar from your existing fireplace. Exception: Masonry or steel, including the damper plate, may be removed from the smoke shelf and adjacent damper frame if necessary to accommodate a chimney liner, provided that their removal will not weaken the structure of the fireplace and chimney, and will not reduce protection for combustible materials to less than that required by the National Building Code.'",
+   "pages": [[1, 20]],
+   "fix": "'Don't remove bricks or mortar. Masonry or steel (including the damper plate) may come out of the smoke shelf and adjacent damper frame only if needed for the liner, and only if that doesn't weaken the fireplace or chimney or reduce protection for combustibles below the National Building Code.'"
+  },
+  {
+   "severity": "minor",
+   "where": "detail.trouble ('Things you can check', third bullet)",
+   "guide_says": "'Pellets don't light after 8-10 min.: make sure the burn pot and liner are installed properly, and clean the liner holes and igniter tube.' It gives no cool-down or unplug step before the owner reaches into the firebox.",
+   "manual_says": "p. 12: 'SHUT DOWN THE STOVE, UNPLUG THE POWER CORD AND ENSURE THE APPLIANCE IS COLD BEFORE PERFORMING ANY MAINTENANCE WORK.' p. 9: 'When cooled, safely empty the burn pot liner of any unburned pellets and re-start the stove.' p. 7: 'remove the liner (when the unit is cold)'.",
+   "pages": [[1, 26], [1, 12], [1, 9]],
+   "fix": "'Pellets don't light after 8-10 min.: once the stove is shut down, unplugged and cold, make sure the burn pot and liner are installed properly, and clean the liner holes and igniter tube.'"
+  }
+ ],
+ "verdict": "Yes, safe to publish after the fixes: every number, procedure and page link checks out against the manual, and the one fix that matters is turning the rating label's side-hearth figure (200 MM / 6 in) into an amber note instead of a misprint correction."
+}

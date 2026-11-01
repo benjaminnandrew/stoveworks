@@ -1,0 +1,643 @@
+{
+ "id": "hearthstone-lincoln",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "HEARTHSTONE",
+  "brand_line": "Lincoln 8060 · Soapstone catalytic wood stove",
+  "kicker": "Wood stove",
+  "title": "Hearthstone Lincoln",
+  "model_line": "Model 8060 · 6\" flue to Type HT or lined masonry chimney · Catalytic combustor",
+  "owner_noun": "stove",
+  "owner_card": "Light a fire, break it in, work the bypass and air control, reload, clean the glass, check the warranty.",
+  "installer_card": "Specs, clearances, floor protection, chimney and draft, the install sequence and troubleshooting.",
+  "certification": "UL 1482-2022 · CAN/ULC S627:2023",
+  "owner_search_hint": "bypass, break-in, glass, creosote",
+  "manual_search_hint": "clearance, hearth, draft, chimney"
+ },
+ "home_primary": [
+  {
+   "id": "fire",
+   "icon": "flame",
+   "title": "Light a fire",
+   "blurb": "The everyday start: paper, kindling, logs, then the bypass."
+  },
+  {
+   "id": "breakin",
+   "icon": "thermometer",
+   "title": "Break-in fires",
+   "blurb": "Season the soapstone slowly: the first fire, and the first each season."
+  },
+  {
+   "id": "bypass",
+   "icon": "dial",
+   "title": "Bypass & thermometer",
+   "blurb": "When the bypass handle goes out, and when it goes in."
+  },
+  {
+   "id": "air",
+   "icon": "air",
+   "title": "Air control & burn rates",
+   "blurb": "Low to high settings, and the signs of over-firing."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "reload",
+   "icon": "logs",
+   "title": "Reload without smoke",
+   "blurb": "Bypass out, door open a crack, then burn it hot."
+  },
+  {
+   "id": "wood",
+   "icon": "tree",
+   "title": "What wood to burn",
+   "blurb": "Dry, seasoned cordwood only, and how to store it."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "The damp towel and ash trick, and what never to use."
+  },
+  {
+   "id": "chimney",
+   "icon": "chimney",
+   "title": "Creosote & chimney fires",
+   "blurb": "How often to check, how to prevent it, what to do in a fire."
+  },
+  {
+   "id": "care",
+   "icon": "ash",
+   "title": "Ashes & routine care",
+   "blurb": "Weekly ashes, catalyst and door-seal checks, season's end."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "Who's covered, the catalyst terms, and what voids it."
+  }
+ ],
+ "specs": [
+  {
+   "id": "output",
+   "lab": "Heat output · BTU/hr",
+   "tap": "specOutput",
+   "rows": [
+    [
+     "Max (Maple cordwood)",
+     "23,000"
+    ],
+    [
+     "EPA test range",
+     "14,545 – 20,507"
+    ],
+    [
+     "Heated area",
+     "up to 575 sq ft"
+    ]
+   ]
+  },
+  {
+   "id": "firebox",
+   "lab": "Firebox & logs",
+   "tap": "specFirebox",
+   "rows": [
+    [
+     "Firebox",
+     "1.0 cu ft"
+    ],
+    [
+     "Max log length",
+     "18\""
+    ],
+    [
+     "Recommended log",
+     "16\""
+    ],
+    [
+     "Burn time on low",
+     "up to 9-1/2 hrs"
+    ]
+   ]
+  },
+  {
+   "id": "emissions",
+   "lab": "Emissions & efficiency",
+   "tap": "specEmissions",
+   "rows": [
+    [
+     "Particulate",
+     "1.14 g/hr"
+    ],
+    [
+     "Efficiency (HHV)",
+     "78.5%"
+    ]
+   ],
+   "note": "EPA 2020 standard, crib wood"
+  },
+  {
+   "id": "flue",
+   "lab": "Flue & draft",
+   "tap": "specFlue",
+   "rows": [
+    [
+     "Connector",
+     "6\" · 24 or 25 MSG blued steel"
+    ],
+    [
+     "Chimney",
+     "6\" ID · Type HT or lined masonry"
+    ],
+    [
+     "Draft",
+     "-0.06\" to -0.1\" WC"
+    ]
+   ]
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Furniture & combustibles",
+     "36\""
+    ],
+    [
+     "Alcove width, unshielded",
+     "58\" min"
+    ],
+    [
+     "Alcove ceiling from floor",
+     "58-1/2\" min"
+    ],
+    [
+     "Walls, with or without shields",
+     "Fig. 6 table · p. 11"
+    ]
+   ]
+  },
+  {
+   "id": "floor",
+   "lab": "Floor protection",
+   "tap": "specFloor",
+   "rows": [
+    [
+     "US minimum",
+     "27-1/2\" x 37-1/2\""
+    ],
+    [
+     "Canada minimum",
+     "30\" x 47-1/2\""
+    ],
+    [
+     "Insulated hearth pad",
+     "not required"
+    ]
+   ]
+  },
+  {
+   "id": "dims",
+   "lab": "Dimensions & weight",
+   "tap": "specDims",
+   "rows": [
+    [
+     "H x W x D",
+     "28\" x 14\" x 24.5\""
+    ],
+    [
+     "Weight",
+     "250 lbs."
+    ]
+   ]
+  },
+  {
+   "id": "oak",
+   "lab": "Outside air",
+   "tap": "specAir",
+   "rows": [
+    [
+     "Kit",
+     "96-53400"
+    ],
+    [
+     "Duct",
+     "3\" min."
+    ],
+    [
+     "Mobile home",
+     "kit required"
+    ]
+   ]
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Unpack & inspect",
+   "Check the stove and parts for transit damage. Remove the hardware box and the three refractory floor stones from the firebox, and the packaging in the flue collar and above the baffle.",
+   "<p>Report damaged or missing parts to your Hearthstone dealer right away.</p>\n<h4>Pack list</h4>\n<p>Lincoln Model 8060 woodstove, owner's manual, hardware kit (shipped in the firebox).</p>\n<h4>Hardware kit</h4>\n<ul>\n<li>4 feet, 4 carriage leveling bolts, 4 hex head feet mounting bolts, 4 flat washers, 4 lock washers</li>\n<li>Front door handle and 3-1/4\" front door handle screw</li>\n<li>Air control handle, 1\" air control screw, nut and lock washer</li>\n<li>Catalyst temperature indicator</li>\n</ul>\n<p>The label is attached by a cable to the bottom of the stove; don't damage it when lifting. After final positioning it can be stored in the holding clip on the bottom shield.</p>"
+  ],
+  [
+   "Fit the feet",
+   "Unbolt the shipping brackets from the pallet. With a blanket behind it, flip the stove onto its back, remove the two shipping brackets and bolt on the 4 feet, with leveling bolts in the bottom of the feet.",
+   "<ol>\n<li>Unbolt the shipping brackets from the pallet; discard the lag bolts.</li>\n<li>Lay a blanket or other protective covering behind the stove. Make sure the floor refractory stone has been removed.</li>\n<li>Flip the stove onto its back (Figure 3).</li>\n<li>Unbolt the two shipping brackets from the stove; discard the bolts and brackets.</li>\n<li>Install the 4 feet where the brackets were: one hex head foot bolt, one flat washer and one lock washer per foot (Figure 4). Leveling bolts go in the bottom of the feet.</li>\n</ol>"
+  ],
+  [
+   "Stand up & fit the handles",
+   "Stand the stove on its feet and adjust the leveling bolts. Fit the wooden air control handle, the front door handle and the catalyst temperature indicator.",
+   "<ol>\n<li>Stand the stove up on its feet; adjust the leveling bolts if needed.</li>\n<li>Install the wooden handle on the air control.</li>\n<li>Install the front door handle.</li>\n<li>Install the catalyst temperature indicator. The catalyst probe should be spaced 3/8\" from the body of the stove (p. 23).</li>\n</ol>\n<h4>Location</h4>\n<p>A main living area rather than a basement or confined space, away from traffic flow, doors and hallways. Do not install the Lincoln 8060 into a factory-built fireplace, or in or near storage of gasoline, kerosene, charcoal lighter fluid or other flammable liquids.</p>"
+  ],
+  [
+   "Floor protection",
+   "On a combustible floor, a noncombustible floor protector under the stove and extending beyond it: minimum 27-1/2\" x 37-1/2\" (US), 30\" x 47-1/2\" (Canada). No insulated hearth pad or R-value required.",
+   "<div class=\"kv\">\n<div class=\"r\"><span>US minimum</span><span>27-1/2\" x 37-1/2\"</span></div>\n<div class=\"r\"><span>Canada minimum</span><span>30\" (762mm) x 47-1/2\" (1206mm)</span></div>\n</div>\n<p>Example: a hearth with a continuous layer of tile, brick, slate, glass or another noncombustible facing. How far it extends beyond the stove is shown on the Figure 5 hearth drawing on p. 10.</p>\n<p>LVP / LVT flooring: some begins to warp at 110° Fahrenheit. Check the flooring maker's limits; additional shielding may be necessary.</p>"
+  ],
+  [
+   "Clearances to combustibles",
+   "Set the stove to the Figure 6 clearance table for the connector used (single or double wall) and any optional side or rear heat shields. Alcove, mantel and through-the-wall options follow on p. 12 and p. 13.",
+   "<p>Dimensions are from the furthest point on the cast body of the stove unless otherwise indicated. The A–F values for parallel and non-parallel installs are tied to the lettered Figure 6 drawing, so read them from p. 11.</p>\n<ul>\n<li>Optional heat shields reduce clearances: rear 90-68601, side (single) 90-68605.</li>\n<li>Pipe clearances may be dictated by local code; check the pipe maker's clearances for double wall or Class A pipe.</li>\n<li>The manual's diagrams are specific to Simpson Dura-Vent DVL.</li>\n<li>Clearances can be reduced with an NFPA-approved wall protection system, with approval of the local authority (NFPA Code 211).</li>\n</ul>"
+  ],
+  [
+   "Outside air (if used)",
+   "Optional kit 96-53400 connects the stove's air intake to a minimum 3\" duct (supplied by others). Required in all mobile homes; in Canada, fasten the stove to the floor and fit a damper allowing 100% closure.",
+   "<ul>\n<li>The kit attaches to the underside of the stove; follow the kit's instructions. An adaptor for 4\" duct is available (kit #90-53308).</li>\n<li>Route the duct around structural members. Terminate on an outside wall where snow, leaves or other material can't block it; screen with ¼\" x ¼\" mesh rodent screen and a rain/wind proof hood (supplied by others).</li>\n<li>The IRC does not allow the duct to terminate higher than the appliance. Hearthstone recommends the termination at the same level as, or lower than, the air intake on the stove.</li>\n<li>Canada: request stove hold-down brackets from your dealer, with fasteners long enough to attach securely to the subfloor.</li>\n</ul>"
+  ],
+  [
+   "Chimney connector",
+   "6\" 24 MSG or 25 MSG blued steel stovepipe (no aluminum or galvanized), crimped ends toward the stove, every joint secured with three sheet metal screws. Horizontal runs rise at least 1/4\" per foot.",
+   "<ul>\n<li>Fasten the pipe to the flue collar with #10 x 1/2\" sheet metal screws in the pre-drilled holes.</li>\n<li>Keep the stove as close to the chimney as clearances allow, and the connector as short and straight as possible.</li>\n<li>The connector cannot pass through a floor, ceiling, attic or roof space, closet or similar concealed space. Through a combustible wall, use a wall thimble or pass-through and conform to NFPA Code 211 or CAN/CSA-B365; four pass-through systems (A–D) are described on p. 14.</li>\n<li>Do not install the chimney directly at the outlet of the appliance; a chimney connector is required (p. 14).</li>\n<li>A double wall connector, used with a Type HT or masonry chimney, reduces clearances; Simpson Dura Vent DVL and Metalbestos DS are recommended.</li>\n<li>Never connect to a flue used by another appliance or to any air distribution duct.</li>\n</ul>"
+  ],
+  [
+   "Chimney",
+   "A listed Type HT (2100° F) chimney per UL 103 or ULC S629, or a code-approved masonry chimney with a flue liner. 6\" inside diameter for new installations; an existing 8\" flue can be used with a reducer.",
+   "<ul>\n<li>Chimney size: not less than the flue collar, nor more than three times its cross-sectional area. An oversized flue contributes to creosote.</li>\n<li>Masonry: a maximum 6\" diameter or 8\" x 8\" tile size for best results. Have it professionally examined for cracks, loose mortar, deterioration and blockage first; the cleanout door must close with a tight seal.</li>\n<li>Masonry walls of mortared brick or modular block at least 4\" thick, or mortared rubble or stone, must use a liner: tile (minimum 5/8\" wall, refractory mortar, at least 1\" air space), UL listed 6\" stainless (insulated or wrapped, or surrounded with vermiculite), or another listed liner system meeting Type HT requirements.</li>\n<li>Interior chimney: at least 2\" to combustibles, fire stops at floors and ceilings, insulation at least 2\" away. Exterior: at least 1\".</li>\n<li>Prefabricated: follow the maker's instructions and buy the pass-through, \"T\" section, fire-stops, insulation shield, flashing and cap from the same maker. An interior chimney drafts better than an exterior one.</li>\n<li>A cleanout tee is recommended.</li>\n</ul>"
+  ],
+  [
+   "Chimney height & draft",
+   "At least 3 feet above the roof opening and 2 feet above any roof within 10 feet; 16 feet minimum and 30 feet maximum recommended from the top of the stove. Check the draft at installation: -0.06\" to -0.1\" WC.",
+   "<div class=\"kv\">\n<div class=\"r\"><span>Required draft</span><span>-0.06\" to -0.1\" WC</span></div>\n<div class=\"r\"><span>Recommended minimum height</span><span>16 feet from top of stove</span></div>\n<div class=\"r\"><span>Recommended maximum height</span><span>30 feet</span></div>\n</div>\n<p>For drafts above -0.1\" WC install a stovepipe damper; some installations may need more than one. Make sure the chimney is tall enough to give the minimum draft. The height rules are drawn in Figure 10 (p. 18) and typical chimney configurations in Figure 11 (p. 19).</p>"
+  ],
+  [
+   "Mobile home",
+   "Per 24 CFR Part 3280 (HUD): outside air kit, stove permanently attached to the floor, and a Mobile Home Chimney & Connector Kit with spark arrester. Never in a sleeping room.",
+   "<ul>\n<li>Kit (UL103 or CAN/ULC-S629) must include: stainless spark arrester cap, storm collar, adjustable vented flashing 0/12 – 6/12, two 24\" chimney pipes, 24\" support box with built-in starter section and trim.</li>\n<li>Attach the stove with hold-down clips from your dealer, or through the threaded leveling leg hole.</li>\n<li>Chimney at least 3 feet above the roof where it passes, and its top at least 2 feet above any part of the home within 10 feet.</li>\n<li>Roof terminations must be removable and re-installable at or below 13-1/2 feet above ground without special tools; mechanically secure the chimney to the ceiling support box.</li>\n<li>A chimney exiting other than through the roof, 7 feet or less above ground, needs a guard up to 7 feet.</li>\n<li>Spark arrester: net free area at least 4 times the chimney outlet, at least ½ the flue diameter above it; openings stop a ½ inch sphere and pass a 3/8\" sphere.</li>\n<li>Keep the structural integrity of walls, floor, ceiling and roof; maintain the vapor barrier; remove the chimney when transporting the home.</li>\n</ul>\n<div class=\"note\"><b>Note:</b> p. 20 says the mobile home chimney should be attached directly to the stove; p. 14 says not to install the chimney directly at the outlet of the appliance, as a chimney connector (flue pipe) is required.</div>"
+  ]
+ ],
+ "faults": {
+  "label": "Troubleshooting guide",
+  "panels": [
+   {
+    "title": "Stove smokes",
+    "items": [
+     "Technique → open the air control fully a minute before opening the door; bypass open first",
+     "Cold chimney or reverse draft → preheat the chimney; briefly open a window",
+     "Blocked chimney → check chimney and stovepipe for blockage or creosote",
+     "Oversized / undersized / too-short chimney → reline / draft inducer or replace / lengthen",
+     "Bypass not closed, or catalysts not working → close it once active; brush, vacuum lightly or replace catalysts",
+     "More than one appliance on the flue → disconnect the others and seal openings"
+    ]
+   },
+   {
+    "title": "Back-puffing or gas explosions",
+    "items": [
+     "Technique → air control fully open a minute before opening and a few minutes after reloading; bypass open",
+     "Extra low burn rate → burn at a higher rate",
+     "Chimney down-draft → install a chimney cap",
+     "Excessive ash build-up → empty ashes more often; avoid poor quality or green wood"
+    ]
+   },
+   {
+    "title": "Uncontrolled or short burn",
+    "items": [
+     "Door unsealed or open, or glass gasket leaking → close the door tightly; replace gaskets",
+     "Excessive draft → over 0.1 wc needs stovepipe damper(s); operate at low burn",
+     "Extra long or oversized chimney → shorten it or add damper(s); reline",
+     "High winds or hilltop location → install a chimney cap"
+    ]
+   },
+   {
+    "title": "Insufficient heat",
+    "items": [
+     "Poor quality, low-Btu or green wood → air-dried wood, preferably at least one year",
+     "Low burn rate → operate at a higher burn rate",
+     "Cold exterior chimney → reline or insulate it",
+     "Leaky stovepipe or chimney → check the installation",
+     "Heat loss from the house → insulate, caulk windows, seal openings"
+    ]
+   }
+  ]
+ },
+ "codes": [],
+ "detail": {
+  "fire": {
+   "tag": "Owner · operation",
+   "title": "Lighting an everyday fire",
+   "cool": false,
+   "html": "<p>This is the everyday start. Your first fire, and the first fire each season, should be a gentle break-in fire instead.</p>\n<ol>\n<li>Pull the <b>bypass handle out</b>. Open the door and put five or six double sheets of tightly twisted newspaper in the center of the firebox.</li>\n<li>Build a tee-pee of about 10 pieces of kindling over the paper, each 1/2\" in diameter and 10\" to 16\" long.</li>\n<li>Open the <b>air control fully</b>: pull the lever all the way out.</li>\n<li>Light the paper. Leave the door slightly open for a moment, until the kindling burns and the draft starts to pull. Then close the door.</li>\n<li>Once the kindling is burning, add logs, small ones first. Keep them away from the glass and off the baffle.</li>\n<li>When the fire is burning well and the catalyst thermometer shows the active range, <b>push the bypass handle in</b>.</li>\n<li>Let it run on high for around 20 minutes, then set the burn rate with the air control.</li>\n</ol>\n<div class=\"note danger\"><b>Never</b> start or freshen up a fire with gasoline, lantern fuel, kerosene, charcoal lighter fluid or similar liquids. Keep children, pets, clothing and furniture away: the stove is hot and contact can burn skin.</div>\n<p>Keep the door closed while the stove is in use. Keep the space under the stove clear too: the air intakes are on the bottom.</p>"
+  },
+  "breakin": {
+   "tag": "Owner · operation",
+   "title": "Breaking in the stove",
+   "cool": false,
+   "html": "<p>Soapstone has to be seasoned: moisture in the stone is driven out slowly and the furnace cement cures. Over-firing a new stove can crack the soapstone. Build your first fire, and the first fire each season, like this:</p>\n<ol>\n<li>Pull the bypass handle out. Put five or six double sheets of tightly twisted newspaper in the center of the firebox, with about ten pieces of 1/2\" kindling, 10\" to 16\" long, crisscrossed over it.</li>\n<li>Open the air control fully.</li>\n<li>Light the paper. Leave the door slightly open until the kindling burns and the draft pulls, then close it.</li>\n<li>Keep a steady, low-heat fire. The stove should feel warm, not hot. Add a few small chunks of wood at most.</li>\n<li>Once it's warm but not hot, push the air control fully in and let the fire die out completely.</li>\n<li>Let the stove return to room temperature.</li>\n</ol>\n<div class=\"note danger\"><b>Too hot:</b> visible steam, boiling moisture or hissing means the soapstone is too hot.</div>\n<h4>Smoke, smells and drips at first</h4>\n<p>Early fires give off some smoke and fumes as paints and oils cure, so open a few windows. Moisture can seep out as a dark liquid; set aluminum foil around each leg until it stops. Break-in fires can dirty the glass and build creosote fast, so inspect the stovepipe and chimney afterwards.</p>"
+  },
+  "bypass": {
+   "tag": "Owner · operation",
+   "title": "Bypass handle & catalyst thermometer",
+   "cool": false,
+   "html": "<p>The bypass handle sends smoke either <b>around</b> the catalytic combustor (for starting and loading) or <b>through</b> it, where it burns clean. Always move it with the spring handle; a leather stove glove is recommended.</p>\n<div class=\"kv\">\n<div class=\"r\"><span>Pulled out</span><span>bypass open · smoke goes around the catalyst</span></div>\n<div class=\"r\"><span>Pushed in</span><span>bypass closed · smoke goes through the catalyst</span></div>\n</div>\n<h4>Follow the catalyst thermometer</h4>\n<ul>\n<li><b>Inactive:</b> keep the handle out until the stove heats up.</li>\n<li><b>Active:</b> push the handle in, and leave it in while the stove burns in this range.</li>\n<li><b>Too Hot:</b> keep the bypass pulled out, close the air control fully and let the stove cool until it's back in the Catalyst Active range.</li>\n</ul>\n<p>The catalyst becomes active around 500 °F. From a cold start, keep a medium to high fire for about 20 minutes. If the fire dies down right away, it may go out or the catalyst may stop working. Once it's active, you should see little to no smoke from your chimney.</p>\n<div class=\"note\"><b>Always pull the handle out</b> before you open the front door.</div>"
+  },
+  "air": {
+   "tag": "Owner · operation",
+   "title": "Air control, burn rates & over-firing",
+   "cool": false,
+   "html": "<p>The primary air control lever is under the ash lip. More air gives a faster, hotter burn; less air gives a slower burn with less heat. It never closes completely.</p>\n<div class=\"kv\">\n<div class=\"r\"><span>Low</span><span>lever all the way in</span></div>\n<div class=\"r\"><span>Medium-low</span><span>from low, pull forward a little less than 1/4\"</span></div>\n<div class=\"r\"><span>Medium-high</span><span>from low, pull forward a little less than 3/8\"</span></div>\n<div class=\"r\"><span>High</span><span>lever all the way out, firebox fully loaded on hot coals</span></div>\n</div>\n<p>Medium-low is the typical setting, and the better choice if you leave the stove unattended. Long periods on low can build creosote, so run it on high once or twice a day for 35 to 45 minutes. The minimum burn rate is set at the factory; altering it is against federal regulations.</p>\n<h4>Don't over-fire</h4>\n<p>Over-firing means running hotter than a normal high burn. Signs include warped parts, short burn times, a roaring sound in the stove or stovepipe, and a discolored stovepipe. Too much draft, the wrong fuel or operator error can cause it. If you suspect it, stop using the stove and call your dealer immediately. Any sign of over-firing voids your warranty.</p>"
+  },
+  "reload": {
+   "tag": "Owner · operation",
+   "title": "Reloading without smoke",
+   "cool": false,
+   "html": "<ol>\n<li>Open the air control fully about a minute before you open the door.</li>\n<li><b>Pull the bypass handle out.</b></li>\n<li>Open the door just a crack and pause, so the firebox clears of smoke. Then open it fully.</li>\n<li>Load onto a bed of hot, red coals: fresh wood heats up faster and smokes less. Keep the fire toward the center, away from the glass, and don't let wood touch the baffle. Never throw wood in or use the door to force it.</li>\n<li>Close and latch the door: push it tight, then push the handle in and down. Pull gently to check it's latched.</li>\n<li>Burn at a medium to high rate until the thermometer reaches the Catalyst Active zone, then push the bypass handle in.</li>\n</ol>\n<div class=\"note\"><b>Note:</b> p. 27 says to run the stove at a medium to high firing rate for about 10 minutes when rekindling a cool fire or one burned down to coals; p. 31 says to burn it with the air control fully open for 15 to 20 minutes after reloading.</div>\n<p>Never load wood crusted with ice into a burning stove. The thermal shock can cause damage.</p>"
+  },
+  "wood": {
+   "tag": "Owner · operation",
+   "title": "What wood to burn",
+   "cool": false,
+   "html": "<p>Burn only natural firewood (cordwood). The stove isn't designed to burn other fuels.</p>\n<ul>\n<li><b>Dry wood.</b> Seasoned firewood is typically at or near 20% moisture; a hand-held moisture meter will tell you. Green wood burns poorly, so split it, stack it and let it air-dry for a year.</li>\n<li><b>Hard or soft.</b> Softwoods burn hotter and faster; hardwoods burn longer and make better coals. Air-dried, seasoned hardwoods generally give higher efficiency and lower emissions.</li>\n<li><b>Stack it right.</b> Keep the pile on skids or blocks and cover only the top. Tarps over the sides trap moisture.</li>\n<li><b>Log length:</b> up to 18\", with 16\" recommended.</li>\n</ul>\n<div class=\"note danger\"><b>Never burn</b> coal, charcoal, pellets or artificial logs: they aren't safe and will damage the catalyst. Never burn garbage or trash, flammable fluids, kiln-dried, painted, treated or pressure treated wood, unseasoned wood, plywood, particleboard, cardboard, paper products (including colored or glossy paper), driftwood (including salt water driftwood) or other previously salt water saturated materials, lawn clippings, materials containing rubber (including tires), materials containing plastic, waste petroleum products, paints or paint thinners, solvents, asphalt products, materials containing asbestos, construction or demolition debris, railroad ties, or manure or animal remains. Burning these materials may release toxic fumes, make the stove ineffective and cause smoke. Burn untreated wood only: other materials such as wood preservatives, metal foils, coal, plastic, garbage, sulphur or oil may damage the catalysts. Fire starters made of paper, cardboard, sawdust or wax are fine for lighting.</div>\n<p>Don't store firewood within the stove's clearances to combustibles. The chart on p. 24 ranks common wood species by heat content.</p>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>Clean the glass only when the fire is out and the glass is cool.</p>\n<ol>\n<li>Inside: dip a damp paper towel in gray ash and rub the glass in a circular motion.</li>\n<li>When the deposits are off, finish with window cleaner or a commercial stove-glass cleaner from your dealer. Use the same on the outside.</li>\n<li>Follow the cleaner's instructions and wipe it off with a soft cloth or black and white newsprint.</li>\n</ol>\n<div class=\"note danger\"><b>No razor blades, steel wool or other abrasives.</b> Scratching or etching weakens the glass. Use a cleaner made for woodstoves only.</div>\n<p><b>Glass always dirty?</b> The stove is running too cool or the wood is wet, which also raises the risk of creosote. A good hot fire cleans it.</p>\n<h4>Cracked or broken glass</h4>\n<p>Don't run the stove with the glass removed, cracked or broken, and never strike or slam the door. Replace broken or chipped glass right away with the ceramic glass kit, 90-58605, from your dealer.</p>\n<div class=\"note\"><b>Note:</b> the warning on p. 30 says only a qualified service person should replace the glass panel; the same page says to wear work gloves and safety glasses if you replace it yourself.</div>"
+  },
+  "chimney": {
+   "tag": "Owner · safety",
+   "title": "Creosote & chimney fires",
+   "cool": false,
+   "html": "<p>A slow, cool fire gives off tar and vapors that condense in the chimney as creosote. If it ignites, it burns extremely hot and can damage the chimney or even destroy the house.</p>\n<ul>\n<li><b>Inspect</b> the chimney connector and chimney at least once every two months in the heating season, and at least monthly once build-up appears. Check the top, where it's coolest, as well as near the stove.</li>\n<li><b>Clean</b> the stovepipe immediately if more than 1/8\" of creosote builds up. A certified chimney sweep is recommended.</li>\n<li><b>Prevent it:</b> burn with the air control fully open for 35 - 45 minutes daily, and have the whole system professionally inspected before each heating season.</li>\n</ul>\n<h4>If you have a chimney fire</h4>\n<ol>\n<li>If it's too threatening, leave and call the fire department immediately.</li>\n<li>Otherwise, close the door and the air control, close the stovepipe damper if you have one, and push the bypass handle in.</li>\n<li>Alert everyone in the house. Call the fire department if you need help.</li>\n<li>If possible, use a dry chemical extinguisher, baking soda or sand. <b>Never use water</b>: it can cause a dangerous steam explosion.</li>\n</ol>\n<p>Don't use the stove again until a qualified chimney sweep or fire department inspector has inspected the stove and chimney.</p>"
+  },
+  "care": {
+   "tag": "Owner · maintenance",
+   "title": "Ashes & routine care",
+   "cool": false,
+   "html": "<h4>Every week</h4>\n<p>Empty the ashes, sooner if they're level with the door sill. Leave a thin layer in the firebox.</p>\n<h4>Every other month</h4>\n<ul>\n<li>Check the chimney connector and chimney for creosote with a mirror through the firebox.</li>\n<li><b>Dollar bill test:</b> with the stove cool, shut the door on a dollar bill. If it pulls out with no resistance, the door isn't sealing. Adjust the latch or change the door gasket.</li>\n<li>Check the face of the catalytic combustor for fly ash and soot, and brush it off with a soft-bristled brush. Inspect it at least 3 times each heating season.</li>\n</ul>\n<h4>End of every season</h4>\n<p>Take apart and clean the chimney connector, replacing rusty pieces. Inspect and clean the chimney, clean out the stove, check the catalyst, and replace worn, frayed, cracked or hard door gasket.</p>\n<h4>Taking out ashes</h4>\n<p>Let the fire die down or go out. Push large live coals aside and shovel out the finer ash into a metal container with a tight-fitting lid. Move it outdoors right away, onto a noncombustible surface. No water, no other trash. Never put ashes in wooden or plastic containers, in trash cans with other trash, or in paper or plastic bags, no matter how long the fire has been out. Coals can stay hot for several days.</p>\n<div class=\"note\">Parts from your dealer: gasket kit 90-58600; catalyst 3050-010 or 3050-020.</div>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "Warranty at a glance",
+   "cool": false,
+   "html": "<p>Hearthstone's limited warranty covers the original retail purchaser only, for a stove installed by an authorized Hearthstone dealer or their representative. It isn't transferable. Coverage starts on the date of the original invoice, and \"Limited Lifetime\" means 10 years.</p>\n<ul>\n<li><b>Parts:</b> covered defective parts are replaced at no charge through a dealer.</li>\n<li><b>Labor:</b> paid in the first year only if a dealer installed the stove.</li>\n<li><b>How long each part is covered</b> (Limited Lifetime, 5, 2 or 1 year) is set out in a check-mark table on p. 38.</li>\n</ul>\n<h4>The catalyst</h4>\n<p>The catalytic combustor is warranted by its maker, Applied Ceramics: replaced at no charge if it stops working within two years, then at a prorated price of $130.00 in year 3, $140.00 in year 4, $150.00 in year 5 and $160.00 in year 6.</p>\n<div class=\"note\"><b>Note:</b> p. 37 says the catalyst is replaced at no charge if it stops working within two (2) years, then refers to replacement catalysts \"during the three year period.\"</div>\n<h4>Not covered</h4>\n<p>Over-firing; fuels not listed in the manual; installation, operation or service not done as the manual and codes require; wear parts such as paint, gaskets, baffles, refractory and glass; noise from expansion and heating odors. For a claim, contact your original Hearthstone dealer.</p>"
+  },
+  "specOutput": {
+   "tag": "Installer · spec",
+   "title": "Heat output & heating area",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Maximum heat output</span><span>23,000 BTUs per hour of Maple cordwood</span></div>\n<div class=\"r\"><span>EPA test conditions</span><span>14,545 to 20,507 Btu (output)</span></div>\n<div class=\"r\"><span>Heated area</span><span>up to a maximum of 575 square feet</span></div>\n</div>\n<p>Insulation, windows, floor plan, stove placement and fuel quality can reduce the area heated. Size the stove to the space: an oversized stove is forced to burn at a lower, dirtier rate. To check output, measure the stack no more than 12 inches above the flue collar; a 400° F stovepipe confirms sufficient heat (p. 32).</p>"
+  },
+  "specFirebox": {
+   "tag": "Installer · spec",
+   "title": "Firebox, logs & burn time",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Firebox capacity</span><span>1.0 cubic feet</span></div>\n<div class=\"r\"><span>Maximum log length</span><span>up to 18\"</span></div>\n<div class=\"r\"><span>Recommended log length</span><span>16\"</span></div>\n<div class=\"r\"><span>Burn time</span><span>up to 9-1/2 hrs. on low</span></div>\n<div class=\"r\"><span>Heat Life™</span><span>up to 20 hours</span></div>\n</div>\n<div class=\"note small\"><b>Maker's website:</b> HeatLife 9.5 hours (spec sheet); HeatLife 9.5 (product page). The manual gives up to 9-1/2 hrs. as the burn time on low and up to 20 hours as the Heat Life™.</div>\n<p>Wood per cubic foot of firebox can vary from 10 to 25 lbs. depending on species, moisture content and packing density. Burn directly on the firebox floor, with no grate, and keep wood off the baffle and away from the glass.</p>"
+  },
+  "specEmissions": {
+   "tag": "Installer · spec",
+   "title": "Emissions & efficiency",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Particulate</span><span>1.14 g/hr.</span></div>\n<div class=\"r\"><span>Efficiency</span><span>78.5% (HHV), weighted average</span></div>\n<div class=\"r\"><span>CO, Category 1 (low)</span><span>38.7 g/hr.</span></div>\n<div class=\"r\"><span>CO, Category 2 (med. low)</span><span>18.2 g/hr.</span></div>\n<div class=\"r\"><span>CO, Category 3 (med. high)</span><span>17.3 g/hr.</span></div>\n<div class=\"r\"><span>CO, Category 4</span><span>69.0 g/hr.</span></div>\n</div>\n<p>Certified to the U.S. EPA 2020 particulate emissions standard using crib wood (EPA Method 28R). Efficiency measured with EPA Method 28R and CSA B415-10 methodology across all 4 burn rate categories. The manufacturer-set minimum low burn rate must not be altered.</p>\n<div class=\"note small\">The manual prints the particulate rate as 1.14 gr/hr. on p. 2; its spec page (p. 7) and the maker's website give 1.14 g/hr.</div>"
+  },
+  "specFlue": {
+   "tag": "Installer · spec",
+   "title": "Flue, chimney & draft",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Connector</span><span>6\" (152 mm) diameter, 24 MSG or 25 MSG blued steel</span></div>\n<div class=\"r\"><span>Metal chimney</span><span>6\" (152 mm) inside diameter, Type HT (2100° F), UL 103 or ULC S629</span></div>\n<div class=\"r\"><span>Masonry chimney</span><span>6\" (152 mm) ID round flue · 8\" x 8\" (203 x 203 mm) square flue</span></div>\n<div class=\"r\"><span>Draft</span><span>-0.06\" to -0.1\" WC</span></div>\n<div class=\"r\"><span>Chimney height (recommended)</span><span>16 feet min. from top of stove · 30 feet max.</span></div>\n</div>\n<p>An existing 8\" (203 mm) prefabricated flue can be used with a reducer; an oversized flue contributes to creosote. For drafts above -0.1\" WC install a stovepipe damper. No aluminum or galvanized pipe, and never connect to a flue serving another appliance.</p>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances to combustibles",
+   "cool": true,
+   "html": "<p>Measured from the furthest point on the cast body of the stove unless otherwise indicated.</p>\n<div class=\"kv\">\n<div class=\"r\"><span>Furniture, drapes, other combustibles</span><span>36\"</span></div>\n<div class=\"r\"><span>Minimum unshielded alcove width</span><span>58\"</span></div>\n<div class=\"r\"><span>Min. alcove ceiling from floor (single or double wall connector)</span><span>58-1/2\"</span></div>\n<div class=\"r\"><span>Mantle, 12\" protrusion, no shield</span><span>58-1/2\" measured from floor</span></div>\n<div class=\"r\"><span>6\" protruding trim</span><span>measured 13\" from stove</span></div>\n</div>\n<p>Side, rear and corner clearances for single and double wall connector, with or without the optional heat shields (rear 90-68601, side 90-68605), are lettered dimensions A–F keyed to the Figure 6 drawing on p. 11. Through-the-wall and alcove options are on p. 12 and connector clearances (Figure 8) on p. 13. Read them from the drawings.</p><div class=\"note small\"><b>Maker's website:</b> Clearances, double-wall connector pipe, no heat shields: Side 22\", Rear 9\", Corner 13.75\"; with side &amp; rear heat shields: Side 9\", Rear 3.5\", Corner 7.25\". Install to the clearance diagrams in the manual.</div>\n<div class=\"note\"><b>Note:</b> on p. 12 the manual gives the minimum alcove ceiling height (single or double wall connector) and the mantle height as 58-1/2\" paired with 169cm; those two figures are not the same height.</div>"
+  },
+  "specFloor": {
+   "tag": "Installer · spec",
+   "title": "Floor protection",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>US minimum</span><span>27-1/2\" x 37-1/2\"</span></div>\n<div class=\"r\"><span>Canada minimum</span><span>30\" (762mm) x 47-1/2\" (1206mm)</span></div>\n<div class=\"r\"><span>Insulated hearth pad</span><span>not required · no R-value requirement</span></div>\n</div>\n<p>Required on combustible floors: a noncombustible covering under the stove and extending beyond it, such as a hearth with a continuous layer of tile, brick, slate, glass or other noncombustible facing. The extension on each side is shown on the Figure 5 hearth drawing.</p>\n<p>Some LVP and LVT flooring begins to warp at 110° Fahrenheit; check the flooring maker's limits, as additional shielding may be necessary.</p>"
+  },
+  "specDims": {
+   "tag": "Installer · spec",
+   "title": "Dimensions & weight",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Height</span><span>28\"</span></div>\n<div class=\"r\"><span>Width</span><span>14\"</span></div>\n<div class=\"r\"><span>Depth</span><span>24.5\"</span></div>\n<div class=\"r\"><span>Weight</span><span>250 lbs. (113.4 kg)</span></div>\n<div class=\"r\"><span>Crate</span><span>H-40\" W-29\" L-36\"</span></div>\n</div>\n<div class=\"note small\"><b>Maker's website:</b> Weight 245 (product page); Weight 195 lbs (spec sheet).</div>\n<p>Further dimensions are shown on the Figure 1 dimension drawing on this page.</p>"
+  },
+  "specAir": {
+   "tag": "Installer · spec",
+   "title": "Outside air",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Outside air kit</span><span>#96-53400 (optional)</span></div>\n<div class=\"r\"><span>Duct</span><span>minimum 3\" (76 mm) diameter, supplied by others</span></div>\n<div class=\"r\"><span>4\" duct adaptor</span><span>kit #90-53308</span></div>\n</div>\n<p>Required in all mobile home installations. In a well-sealed, newer home, make sure adequate air is available; p. 5 and p. 6 list the signs that outside combustion air is needed. The kit attaches to the underside of the stove. In Canada the stove must be attached to the floor and a damper allowing 100% closure installed.</p>\n<p>Terminate on an outside wall clear of snow and leaves, screened with ¼\" x ¼\" mesh and a rain/wind proof hood. The IRC does not allow termination higher than the appliance; Hearthstone recommends the same level as, or lower than, the stove's air intake.</p>"
+  }
+ },
+ "pageref": {
+  "fire": 26,
+  "breakin": 25,
+  "bypass": 22,
+  "air": 27,
+  "reload": 27,
+  "wood": 23,
+  "glass": 30,
+  "chimney": 31,
+  "care": 6,
+  "warranty": 37,
+  "specOutput": 7,
+  "specFirebox": 7,
+  "specEmissions": 2,
+  "specFlue": 17,
+  "specClear": 11,
+  "specFloor": 10,
+  "specDims": 7,
+  "specAir": 15,
+  "step0": 8,
+  "step1": 8,
+  "step2": 9,
+  "step3": 10,
+  "step4": 11,
+  "step5": 15,
+  "step6": 16,
+  "step7": 17,
+  "step8": 18,
+  "step9": 20
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "reload",
+   "t": "smoke when loading",
+   "p": "Bypass out, open the door a crack, pause"
+  },
+  {
+   "k": "h",
+   "id": "air",
+   "t": "over-firing",
+   "p": "Warped parts, roaring, discolored stovepipe"
+  },
+  {
+   "k": "h",
+   "id": "care",
+   "t": "dollar bill test",
+   "p": "Check that the door seals"
+  },
+  {
+   "k": "h",
+   "id": "care",
+   "t": "catalyst replacement",
+   "p": "Part 3050-010 or 3050-020 from your dealer"
+  },
+  {
+   "k": "h",
+   "id": "wood",
+   "t": "moisture meter",
+   "p": "Seasoned wood is at or near 20%"
+  },
+  {
+   "k": "i",
+   "id": "specFlue",
+   "t": "stovepipe damper",
+   "p": "Needed when draft exceeds -0.1\" WC"
+  },
+  {
+   "k": "i",
+   "id": "specClear",
+   "t": "heat shields",
+   "p": "Rear 90-68601 · side 90-68605"
+  },
+  {
+   "k": "i",
+   "id": "specFloor",
+   "t": "hearth pad",
+   "p": "No insulated pad or R-value needed"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "specEmissions",
+    "issue": "Particulate emission rate printed as '1.14 gr/hr.' on p. 2 and '1.14 g/hr.' on p. 7 (grains vs grams).",
+    "pages": [
+     [
+      1,
+      2
+     ],
+     [
+      1,
+      7
+     ]
+    ],
+    "class": "clerical",
+    "corrected_to": "1.14 g/hr."
+   },
+   {
+    "where": "specClear",
+    "issue": "Alcove ceiling (single and double wall connector) and 12\" mantle clearance printed as 58-1/2\" paired with 169cm; the inch and metric figures are not the same height.",
+    "pages": [
+     [
+      1,
+      12
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "reload",
+    "issue": "Burn time after reloading: about 10 minutes at a medium to high firing rate (p. 27) vs 15 to 20 minutes with the primary air control fully open (p. 31).",
+    "pages": [
+     [
+      1,
+      27
+     ],
+     [
+      1,
+      31
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "warranty",
+    "issue": "Catalyst warranty: free replacement if it ceases to function within two (2) years, but the same section refers to replacements 'during the three year period'.",
+    "pages": [
+     [
+      1,
+      37
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "step9",
+    "issue": "Mobile home: 'The chimney should be attached directly to the stove' (p. 20) vs 'Do not install the chimney directly at the outlet of the appliance. A chimney connector (flue pipe) is required.' (p. 14).",
+    "pages": [
+     [
+      1,
+      20
+     ],
+     [
+      1,
+      14
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "glass",
+    "issue": "Warning says only a qualified service person should replace the glass panel; the same page tells owners who replace the glass themselves to wear work gloves and safety glasses.",
+    "pages": [
+     [
+      1,
+      30
+     ]
+    ],
+    "class": "substantive"
+   }
+  ],
+  "catalog_mismatches": [
+   {
+    "model": "hearthstone-lincoln",
+    "field": "weight_lb",
+    "catalog": "245",
+    "manual": "250 lbs. (113.4 kg)",
+    "page": [
+     1,
+     7
+    ],
+    "shown": "specDims"
+   },
+   {
+    "model": "hearthstone-lincoln",
+    "field": "weight_lb (spec sheet)",
+    "catalog": "195 lbs",
+    "manual": "250 lbs. (113.4 kg)",
+    "page": [
+     1,
+     7
+    ],
+    "shown": "specDims"
+   },
+   {
+    "model": "hearthstone-lincoln",
+    "field": "HeatLife",
+    "catalog": "9.5 hours",
+    "manual": "Heat Life™: Up to 20 hours (Burn Time: Up to 9-1/2 hrs. on low)",
+    "page": [
+     1,
+     7
+    ],
+    "shown": "specFirebox"
+   }
+  ],
+  "notes": "Not transcribed (figure/grid only, per rule 4): wall clearances in the Figure 6 table (p. 11, columns A-F for parallel/non-parallel installs, single/double wall connector, with/without side and rear heat shields), the through-the-wall and alcove options table (p. 12) and the Figure 8 connector clearances (p. 13) use letters defined only on the drawings, and the text extraction wraps several cells so the column order is ambiguous; the guide points installers to those pages. The catalog clearances_note (side 22\"/rear 9\"/corner 13.75\" etc., product page) could not be verified from the text for that reason. Also diagram-only: floor protector extension beyond the stove (Figure 5, p. 10), dimension drawing incl. flue collar position (Figure 1, p. 7), chimney height (Figure 10, p. 18), typical chimney configurations (p. 19), catalyst warpage diagram (p. 29), safety label (p. 36, no text). The stove-components warranty periods (p. 38) are a check-mark grid by fuel (wood/gas) with some single-X rows; not transcribed, the warranty drawer refers to p. 38. Other manual inconsistencies, not flagged on the page: p. 23 calls the stove 'Lincoln Model 8640' (8060 everywhere else); p. 23 says coal could produce high levels of 'carbon dioxide' while p. 20 says other fuels could generate dangerous levels of 'carbon monoxide' (the guide doesn't name the gas); kindling is 10\" to 16\" in both fire procedures but the metric differs (254 to 457 mm on the break-in fire vs 254 to 406 mm for everyday use), so the guide uses inches only; several in-text figure references are off (controls 'Figure 13' = Figure 14, air control 'figure 17' = Figure 19, chimney height 'Figure 8' = Figure 10). The manual never says when to put back the three refractory floor stones removed before assembly (p. 8). The troubleshooting chart (p. 33) says 'empty the ash pan' although the manual otherwise has ashes shoveled from the firebox; the guide says 'empty ashes'. The 'Too Hot' thermometer instruction (keep the bypass pulled out, close the air control) is given as printed (p. 23). Reload step 1 (air control fully open a minute before opening) comes from the troubleshooting chart (p. 33). Chimney-fire steps combine p. 6 and p. 28, which agree. Applied Ceramics catalyst P/Ns on p. 37 (WF-415000106 / WF-4150001076) are not used; the guide uses Hearthstone's 3050-010 / 3050-020 (pp. 29, 35). The 4\" duct adaptor kit number is split across two lines in the text ('KIT #90-' / '53308', p. 15). No blower, electrical rating, code table or French-only text in this manual."
+ }
+}

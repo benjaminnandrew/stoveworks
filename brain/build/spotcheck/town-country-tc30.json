@@ -1,0 +1,59 @@
+{
+ "id": "town-country-tc30",
+ "checked_pagerefs": 28,
+ "notes_checked": {
+  "amber": 2,
+  "correction": 0,
+  "website": 3
+ },
+ "findings": [
+  {
+   "severity": "minor",
+   "where": "detail.light",
+   "guide_says": "\"Before lighting, smell all around the fireplace for gas, and next to the floor too. Some gas is heavier than air and settles there.\" It then goes straight to the steps for turning it on. The drawer gives what to do about a gas smell only in step 3, after a failed attempt.",
+   "manual_says": "Doc 2 p. 4, lighting label: \"B. BEFORE LIGHTING smell all around the appliance area for gas. Be sure to smell next to the floor because some gas is heavier than air and will settle on the floor. WHAT TO DO IF YOU SMELL GAS: - Do not try to light any appliance. - Do not touch any electric switch; do not use any phone in your building. - Immediately call your gas supplier from a neighbour's phone. Follow the gas supplier's instructions. - If you cannot reach your gas supplier, call the fire department.\"",
+   "pages": [
+    [
+     2,
+     4
+    ]
+   ],
+   "fix": "End the Before lighting paragraph with: \"If you smell gas, don't light it. Don't touch any electrical switch or use any phone in the building. Call your gas supplier from a neighbor's phone and follow their instructions, or call the fire department if you can't reach them (see Safety).\""
+  },
+  {
+   "severity": "minor",
+   "where": "specs.elec row 2",
+   "guide_says": "\"Power vent kit (optional): 115 volts, 60Hz, 1.8A\", with no note or pointer. The specElec drawer behind this card has an amber note saying the rating label gives 1.1 A. The Recess row on the framing card is marked \"(see note)\" for its conflict, but this row isn't.",
+   "manual_says": "p. 15: \"The optional power vent kit is rated at 115 volts, 60Hz, 1.8A.\" p. 43 (rating label): \"Optional components/ ... Powervent Kit/ ... TCVT.PVI.25, TCVT.PV7.110, TCVT.PVCV, TCVT.PVVT. Blower electrical rating: 115v, 60hz, 1.1 A\"",
+   "pages": [
+    [
+     1,
+     15
+    ],
+    [
+     1,
+     43
+    ]
+   ],
+   "fix": "Show the row as \"115 volts, 60Hz, 1.8A (see note)\", or give both figures: \"1.8A (p. 15) · label blower rating 1.1 A (p. 43)\"."
+  },
+  {
+   "severity": "minor",
+   "where": "step7 (Maker's website note)",
+   "guide_says": "\"Maker's website: Compatible Firebox Panels: Aspen, Black Porcelain, Coffee Bean Brown Porcelain, Copper Porcelain, Madison, Manhattan, Mount Vernon, Park Avenue, Titanium Porcelain.\" The note ends there, without \"Install to the manual.\"",
+   "manual_says": "p. 34: \"A Firebox Panel Set must be installed for safe operation. Do not use the fireplace without panels.\" The p. 34 TC30 PANELS list and the p. 41 parts list each name eight sets: Park Ave 22200009, Manhattan 22200006, Mt. Vernon 22200008, Black Porcelain 22200003, Coffee Bean Brown Porcelain 22200001, Madison 22200005, Titanium 22200004 and Copper 22200002. Neither lists Aspen.",
+   "pages": [
+    [
+     1,
+     34
+    ],
+    [
+     1,
+     41
+    ]
+   ],
+   "fix": "End the note with \"Install to the manual.\" The panel set is a component the manual requires for safe operation, and the website adds a set (Aspen) that the TC30 manual doesn't list."
+  }
+ ],
+ "verdict": "Yes. The lighting and shutdown steps, gas-smell steps, clearances, venting limits, gas pressures, electrical ratings, both amber notes, all three website notes and all 28 page links match the manuals, so the guide is safe to publish after three minor wording fixes."
+}

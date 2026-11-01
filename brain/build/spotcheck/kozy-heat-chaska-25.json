@@ -1,0 +1,102 @@
+{
+ "id": "kozy-heat-chaska-25",
+ "checked_pagerefs": 28,
+ "notes_checked": {
+  "amber": 4,
+  "correction": 0,
+  "website": 0
+ },
+ "findings": [
+  {
+   "severity": "minor",
+   "where": "step9; detail.specInlet",
+   "guide_says": "step9: \"After each test, tighten the tap screw snug (don't over-tighten) and confirm with the manometer that it reads no pressure.\" specInlet: \"Afterward tighten the screw snug (don't over-tighten), relight and confirm the manometer reads no pressure at the tap.\" Neither says to turn the burner and pilot off and disconnect the hose before tightening, and step9's seal check leaves out \"with pilot and burner on\" (on the OUT tap, a check made with the burner off reads zero whether the tap is sealed or not).",
+   "manual_says": "p. 35, 12.1.1 Inlet Pressure Test: \"4. Turn off burner and pilot. 5. Disconnect hose and tighten the inlet (IN) pressure tap by turning screw clockwise. Screw should be snug. Do not over tighten. 6. Relight pilot and burner. Then reattach manometer to the inlet pressure tap (A) to verify the tap is completely sealed. Manometer should read no pressure.\" 12.1.2 Manifold Pressure Test: \"5. Turn burner and pilot off. 6. Disconnect manometer hose and tighten the manifold (OUT) pressure tap by turning screw clockwise. ... 7. Attach the manometer to the manifold pressure tap (B) to verify it is completely sealed. The manometer should read no pressure when pilot and burner are on.\"",
+   "pages": [
+    [
+     1,
+     35
+    ]
+   ],
+   "fix": "step9: \"After each test, turn the burner and pilot off, disconnect the hose and tighten the tap screw snug (don't over-tighten). Then, with pilot and burner on, reattach the manometer and confirm the tap reads no pressure.\" specInlet: \"Turn off burner and pilot, disconnect the hose and tighten the screw snug (don't over-tighten). Relight pilot and burner, then reattach the manometer to confirm the tap reads no pressure.\""
+  },
+  {
+   "severity": "minor",
+   "where": "detail.sounds (Not normal box)",
+   "guide_says": "\"Not normal: a smell of gas. Don't touch any electrical switch or use any phone in the building. Leave, and call your gas supplier from a neighbor's phone.\" This leaves out \"don't try to light any appliance\", following the gas supplier's instructions, and calling the fire department.",
+   "manual_says": "p. 1 (repeated p. 29): \"WHAT TO DO IF YOU SMELL GAS • Do not try to light any appliance. • Do not touch any electrical switch; do not use any phone in your building. • Leave the building immediately. • Immediately call your gas supplier from a neighbor's phone. Follow the gas supplier's instructions. • If you cannot reach your gas supplier, call the fire department.\"",
+   "pages": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     29
+    ]
+   ],
+   "fix": "Give the full block: \"Don't try to light any appliance. Don't touch any electrical switch or use any phone in the building. Leave the building right away. Call your gas supplier right away from a neighbor's phone and follow their instructions; if you can't reach them, call the fire department.\" Or keep it short and point to the Gas smell and safety drawer."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.light (gas valve note)",
+   "guide_says": "\"Turn the gas valve by hand only, never with tools. If it won't turn by hand, don't force it. Call a qualified service technician.\" The 'don't try to repair it' instruction and the fire/explosion warning are gone.",
+   "manual_says": "p. 29, item C: \"Use only your hand to turn the gas control manual valve. Never use tools. If the valve will not turn by hand, do not try to repair it; call a qualified service technician. Force or attempted repair may result in a fire or explosion.\"",
+   "pages": [
+    [
+     1,
+     29
+    ]
+   ],
+   "fix": "\"Turn the gas valve by hand only, never with tools. If it won't turn by hand, don't try to repair it; call a qualified service technician. Forcing it or trying to repair it can cause a fire or explosion.\""
+  },
+  {
+   "severity": "minor",
+   "where": "specs.inlet row 2; detail.specInlet",
+   "guide_says": "Propane inlet \"12\" – 13\"\" (min – max), and in the drawer \"Propane min / max 12\" WC (2.99 kPa) / 13\" WC (3.24 kPa)\". No propane recommended figure is shown.",
+   "manual_says": "p. 21, Table 7.1 (extracted text): \"Propane   12” WC (2.99 kPa)   13” WC (3.24 kPa)\" followed by \"recommended\". The propane row carries a 'recommended' label with no value of its own. The text is ambiguous here: the label may mark the 12” WC figure as recommended, or a value may be missing from the extraction. Check against the page image. p. 35, Table 12.1: \"Inlet Pressure ... 12” - 13” WC\" (Min - Max).",
+   "pages": [
+    [
+     1,
+     21
+    ],
+    [
+     1,
+     35
+    ]
+   ],
+   "fix": "Check the p. 21 page image. If it prints a propane recommended inlet pressure, add it to the card and the drawer as printed. If it labels 12\" WC itself as recommended while p. 35 calls 12\" the minimum, show both in an amber note."
+  },
+  {
+   "severity": "minor",
+   "where": "step0 (summary and drawer)",
+   "guide_says": "\"Opening H / front W / D / back W: 17-5/8\" / 25-7/8\" / 15-1/4\" / 20-5/8\"\" (inch figures only, with no note). specOpening carries the inch/metric note; step0 does not.",
+   "manual_says": "p. 12: \"(A) Height....17-5/8“ (454mm)\" ... \"(D) Back Width....20-5/8” (530mm)\". For these two sizes the inch and metric figures disagree.",
+   "pages": [
+    [
+     1,
+     12
+    ]
+   ],
+   "fix": "Add the same note to step0 (\"p. 12 prints the minimum opening height as 17-5/8\" (454mm) and the back width as 20-5/8\" (530mm); for these two sizes the inch and metric figures don't agree\"), or point step0 to the Minimum fireplace opening card."
+  },
+  {
+   "severity": "minor",
+   "where": "step5",
+   "guide_says": "\"Gas line by a qualified person to local codes, or ANSI Z223.1\". The typo is corrected without a small note and is recorded only in review.notes, not as a clerical conflict.",
+   "manual_says": "p. 21, 7.2: \"If not, follow ANSI 223.1.\" (7.1 on the same page and p. 7 print \"ANSI Z223.1\")",
+   "pages": [
+    [
+     1,
+     21
+    ],
+    [
+     1,
+     7
+    ]
+   ],
+   "fix": "Keep ANSI Z223.1 and add <div class=\"note small\">p. 21 prints \"ANSI 223.1\" here; the same page (Section 7.1) and p. 7 give ANSI Z223.1.</div>. Record it in review.conflicts with class \"clerical\"."
+  }
+ ],
+ "verdict": "Yes: the safety numbers, the IPI lighting, shutdown and gas-smell procedures, venting and clearance limits, the four amber notes and all 28 page links match the manual, so it is safe to publish after these six minor wording fixes. The main one is restoring the full pressure-tap reseal steps."
+}

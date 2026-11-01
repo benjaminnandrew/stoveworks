@@ -1,0 +1,602 @@
+{
+ "id": "renaissance-linear-50",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "RENAISSANCE",
+  "brand_line": "Linear 50 · Wood-burning fireplace",
+  "kicker": "Wood-burning fireplace",
+  "title": "Renaissance Linear 50",
+  "model_line": "Model RL50 · RIS 10\" chimney · Guillotine glass door & firescreen",
+  "owner_noun": "fireplace",
+  "owner_card": "Build a fire, use the door and screen, choose and load wood, clean the glass, care for the chimney, check the warranty.",
+  "installer_card": "Specs, clearances, HRS and outside air, the chimney, the install sequence and fault diagnosis.",
+  "owner_search_hint": "damper, firescreen, creosote, ashes",
+  "manual_search_hint": "hearth, HRS, mantel, chimney"
+ },
+ "home_primary": [
+  {
+   "id": "fire",
+   "icon": "flame",
+   "title": "Build a fire",
+   "blurb": "Open the damper, light paper and kindling, keep the screen closed."
+  },
+  {
+   "id": "doors",
+   "icon": "door",
+   "title": "Glass door & firescreen",
+   "blurb": "How the sliding door and screen work, and when to keep them closed."
+  },
+  {
+   "id": "wood",
+   "icon": "tree",
+   "title": "What wood to burn",
+   "blurb": "Dry, split, seasoned logs, and what never goes in."
+  },
+  {
+   "id": "load",
+   "icon": "logs",
+   "title": "How much wood to load",
+   "blurb": "A small load is plenty. How much, and the signs of over-firing."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "air",
+   "icon": "air",
+   "title": "Outside air control",
+   "blurb": "Open it while you burn, close it when you're done."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "Cool glass, the right cleaner, and how the door swings open."
+  },
+  {
+   "id": "ash",
+   "icon": "ash",
+   "title": "Remove the ashes",
+   "blurb": "When to empty them and how to store hot ashes safely."
+  },
+  {
+   "id": "chimney",
+   "icon": "chimney",
+   "title": "Chimney & creosote",
+   "blurb": "Inspections, the 1/8\" rule and professional cleaning."
+  },
+  {
+   "id": "care",
+   "icon": "service",
+   "title": "Door rails & gaskets",
+   "blurb": "Grease the rails each season and keep the door sealing."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "30-year limited warranty: what's covered and what isn't."
+  }
+ ],
+ "specs": [
+  {
+   "id": "chim",
+   "lab": "Chimney",
+   "tap": "specChimney",
+   "rows": [
+    [
+     "Type",
+     "RIS 10\" only"
+    ],
+    [
+     "Height",
+     "12' min · 38' max"
+    ],
+    [
+     "To combustibles",
+     "2\""
+    ],
+    [
+     "Offsets",
+     "2 max"
+    ]
+   ],
+   "note": "height from top of fireplace to chimney cap"
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Side & back standoffs",
+     "0\""
+    ],
+    [
+     "Bay opening to side wall",
+     "24\""
+    ],
+    [
+     "Ceiling (from standoff base)",
+     "9'"
+    ],
+    [
+     "Combustible mantel shelf",
+     "12\" above · 12\" deep max"
+    ]
+   ]
+  },
+  {
+   "id": "hearth",
+   "lab": "Hearth extension",
+   "tap": "specHearth",
+   "rows": [
+    [
+     "Non-combustible",
+     "74.5\" W x 20\" D"
+    ],
+    [
+     "Spark guard (supplied)",
+     "74 ½\" x 9 ¾\""
+    ]
+   ],
+   "note": "centered on the door opening"
+  },
+  {
+   "id": "hrs",
+   "lab": "HRS · mandatory",
+   "tap": "specHrs",
+   "rows": [
+    [
+     "Outlet ducts",
+     "two 10\", 5' long"
+    ],
+    [
+     "Max duct length",
+     "15'"
+    ],
+    [
+     "Intake grilles",
+     "18\" max above base"
+    ],
+    [
+     "Duct slope",
+     "up ½\" per ft min"
+    ]
+   ]
+  },
+  {
+   "id": "hrsout",
+   "lab": "HRS outlet clearances",
+   "tap": "specHrsClear",
+   "rows": [
+    [
+     "Duct to combustibles",
+     "2\" horiz. · 6\" vert."
+    ],
+    [
+     "Grille top to ceiling",
+     "11\""
+    ],
+    [
+     "Grille above fireplace",
+     "26\""
+    ],
+    [
+     "Grille to side wall",
+     "6\""
+    ]
+   ]
+  },
+  {
+   "id": "oa",
+   "lab": "Outside air",
+   "tap": "specAir",
+   "rows": [
+    [
+     "Connection",
+     "4\" collar, left side"
+    ],
+    [
+     "Runs 10' or less",
+     "FO-INT kit"
+    ],
+    [
+     "Runs 20' or more",
+     "5\" duct"
+    ],
+    [
+     "Vertical rise",
+     "12' max"
+    ]
+   ],
+   "note": "optional unless local code requires it"
+  },
+  {
+   "id": "facing",
+   "lab": "Facing",
+   "tap": "specFacing",
+   "rows": [
+    [
+     "Cement board",
+     "½\" min"
+    ],
+    [
+     "Screw depth past board",
+     "½\" max"
+    ],
+    [
+     "Lintel projection",
+     "1\""
+    ],
+    [
+     "Gypsum board",
+     "not permitted"
+    ]
+   ]
+  },
+  {
+   "id": "weight",
+   "lab": "Weight",
+   "tap": "specWeight",
+   "rows": [
+    [
+     "Crated",
+     "1130 lb"
+    ],
+    [
+     "Refractory bricks",
+     "260 lb"
+    ]
+   ],
+   "note": "floor reinforcement may be required"
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Plan the location",
+   "Inside the vapor barrier only, never outdoors or in a three-season porch. Plan the chimney, HRS grilles, outside air and hearth protection together; check permits.",
+   "<p>Best chimney performance: most of the chimney inside the building envelope, centrally located, terminating as close to the peak as possible. An insulated chase enclosure may be an acceptable alternative.</p>\n<ul>\n<li>1130 lb crated: floor reinforcement may be required.</li>\n<li>The minimal framing dimensions (Fig. 3, p. 10) leave out the space for the outside air duct and the HRS air intakes; plan those per site.</li>\n<li>Steel studs are required in some areas (Fig. 3). Enclosure interior walls finished and flat; no insulation or other material in required clearance spaces.</li>\n<li>A non-combustible hearth extension is required in front.</li>\n<li>Inspect the fireplace, chimney and components for damage before starting.</li>\n</ul>\n<div class=\"note danger\">Do not install an insert, an unvented gas log set, a gas log lighter or any unapproved part. Vented gas log sets are permitted.</div>"
+  ],
+  [
+   "Move & unpack",
+   "Keep it crated and on its skid until install; move with an Escalera or equivalent dolly. Never lean it on its side or lift by the front or the door opening.",
+   "<ul>\n<li>Dolly straps: upper strap level with the reinforcement above the firebox opening, lower strap level with the metal front step. Misplaced straps can damage the guillotine system.</li>\n<li>Handle by the casing or the two supplied lifting handles (three lift positions): push the handle through one strap opening and bend the strap to face the other.</li>\n<li>Set it as close as possible to its final position.</li>\n</ul>\n<h4>Check the contents (pp. 15–16)</h4>\n<p>Crate: 2 hot air outlet ducts with grille adapters, 2 outlet grilles (6\" x 13 ½\"), 2 air intake grilles (8 3/8\" x 13 ½\"), metal baffle and 2 support brackets, 3 left side standoffs, spark guard (74 ½\" x 9 ¾\"), side/top/bottom lintel trims, 2 lifting handles, gloves, 4 anti-tip brackets, 2 bottom standoffs, attic chimney safety labels. Manual bag: removable door handle, high temperature door grease, 5\" outside air collar, screws, washers, rivets, 2 door cover buttons.</p>"
+  ],
+  [
+   "Engage the guillotine system",
+   "Release the firescreen, then the glass door, from their transport blocking. Check the cables run centered and free, close both and refit the front cover.",
+   "<h4>Firescreen</h4>\n<ol>\n<li>Remove the front finishing cover; keep the screws.</li>\n<li>Remove the two rod end caps, back-left. Leave the rods in.</li>\n<li>Pull down on the cable to lift the 10lb counterweight, remove the left blocking rods, lower until the cable is taut and centered in both pulleys.</li>\n<li>Move the screen slowly up and down; the cable stays centered.</li>\n</ol>\n<h4>Glass door</h4>\n<ol>\n<li>Remove the two rod end caps, back-right.</li>\n<li>Lift the 50lb counterweight, remove the right blocking rods, lower until taut. Don't lift the door yet.</li>\n<li>Remove the two transportation blocking brackets at the bottom of the door (¼\" hex head screws).</li>\n<li>Push the two door cover buttons from the manual bag into the holes in the door frame.</li>\n<li>Lift the door to check travel, then close the door and the screen.</li>\n<li>Reinstall the front finishing cover.</li>\n</ol>\n<p>Keep both closed for the rest of the install. To lighten the lift, the refractory bricks (260 lb) can come out now, in reverse of the firebox lining order (p. 39); don't damage the insulation.</p>"
+  ],
+  [
+   "Standoffs & spark guard",
+   "Fit the three left side standoffs. Set the two bottom standoffs 10\" each side of the centerline, backs flush with the fireplace back; spark guard under them on combustible floors.",
+   "<ul>\n<li>Left side: align the standoffs' pre-punched holes with the pre-drilled holes; fasten with six of the ½\" self-tapping screws (Fig. 10, p. 22).</li>\n<li>Bottom standoffs are required on every install, even on concrete: HRS air is drawn in through the bottom. Floor or elevated platform is fine; the surface must be level and standard framing needs reinforcement.</li>\n<li>Mark the centerline; standoffs 10\" (254 mm) either side, backs aligned with the back of the fireplace (they end up recessed from the front facing).</li>\n<li>Combustible floor: place the supplied spark guard (shipped on the back of the fireplace) under the standoffs, 2½\" (64 mm) under their front.</li>\n<li>Secure the standoffs to the floor with 16 wood screws of 1½\" (38 mm).</li>\n</ul>"
+  ],
+  [
+   "Set in place & anti-tip brackets",
+   "Door and screen closed, raise it with a pallet jack and wood blocks and transfer it onto the standoffs by the lifting handles. Fasten it to the back wall with the four anti-tip brackets.",
+   "<p>Never lay it on one side or lift it by the front or the door opening.</p>\n<p>The anti-tip brackets are mandatory. They ship attached to the top; reposition as needed to meet framing: two on top of the fireplace, two on the sides (front or back of framing is an option, Fig. 12). The manual calls for eight of the supplied 1\" self-tapping screws to attach each bracket to the fireplace and eight wood screws (not included) to secure each bracket to framing.</p>\n<div class=\"note\"><b>Note:</b> p. 24 gives eight 1\" self-tapping screws per anti-tip bracket, for four brackets, but the manual bag list on p. 16 holds 16 of these screws.</div>"
+  ],
+  [
+   "HRS intakes & outlets",
+   "Mandatory. Intake grilles no higher than 18\" above the fireplace base, open to the enclosure; outlet ducts screwed over the starters, sloping up, 15' max; outlet grilles at equal height in metal-stud and cement-board framing.",
+   "<ol>\n<li>Push the round end of each insulated duct fully over its outlet starter on top; secure with three ½\" self-tapping screws and three flat washers.</li>\n<li>Extend each duct to its full 5'. Extra 5' lengths: EO-DUCT; 15' total max.</li>\n<li>Frame the outlet locations with metal studs, respecting Table 3.</li>\n<li>Secure the outlet grille adapters to the studs.</li>\n<li>Mount cement board over the adapters; it can butt against their ½\" lip.</li>\n<li>Fasten the outlet grilles with the black screws provided.</li>\n</ol>\n<ul>\n<li>Ducts never slope down: min ½\" rise for each foot of horizontal travel. Both outlet grilles at the same height, never facing up, never on an upper level.</li>\n<li>Intakes front, side or rear facing, drawing room air from the same level (not the level below). Never block them.</li>\n<li>Free air path between outlets and intakes, no door in between. Grilles horizontal; supplied grilles only.</li>\n</ul>"
+  ],
+  [
+   "Outside air (if used)",
+   "Required only where local codes specify it. Left side only, 4\" collar; FO-INT kit for runs of 10' or less, 5\" duct for 20' or more. 12' max vertical rise.",
+   "<ol>\n<li>Choose the inlet hood location: not within 5' of the chimney top, not in an attic or crawl space.</li>\n<li>Cut a 4 ¼\" hole (5 ¼\" for 5\" duct) in the outside wall, push the hood's round sleeve in from outside and seal it to the wall with silicone.</li>\n<li>Pull back the insulation, slide the aluminum duct over the sleeve and fasten with metal screws; pull the insulation and plastic cover back over and tape with 2\" aluminum duct tape (not provided).</li>\n<li>Connect the other end to the fireplace air intake flange the same way.</li>\n</ol>\n<p>Don't crush the duct at corners. Looping the duct between its two ends makes a cold air trap.</p>"
+  ],
+  [
+   "Chimney",
+   "RIS 10\" only. Frame 16\" square openings (up to 16 ½\", never smaller) with 2\" to combustibles, no insulation; radiation shield at each floor, shield and storm collar at the attic.",
+   "<ol>\n<li>First length on the fireplace flue adapter, secured with the chimney's screws; add lengths by lining up the seams and screwing into the pre-punched holes; add supports as required.</li>\n<li>At least 3' above the highest roof penetration and 2' higher than any wall, roof or building within 10' horizontally. More than 5' above the roof: roof brace RM-10RRB.</li>\n<li>Roof top shield RM-10RTS (mandatory).</li>\n<li>Vented flashing RF-10RVF if the chimney is in a chase or enclosed to the roof (don't caulk the vents); regular unvented flashing is allowed through an open attic. Seal to the roof with roofing tar; on sloped roofs, under the upper shingles and over the lower.</li>\n<li>Storm collar over the chimney and flashing, sealed with silicone (high temperature not required).</li>\n<li>Rain Cap RM-10RRC or Rain Cap Base RM-10RRCB.</li>\n</ol>\n<p>Offsets: 30° max in the USA, 45° in Canada; four elbows max (two offsets and returns); each offset needs an offset, roof or wall support. Check the recommended minimum flue height for the elevation and offsets in Table 4 (p. 32).</p>"
+  ],
+  [
+   "Baffle, lintels & facing",
+   "Mount the baffle on the rails above the firebox, rivet the lintels around the door opening, then cover the face with ½\" cement board, screwing only in the permitted zones.",
+   "<ul>\n<li>Baffle: two support brackets and the metal baffle on the existing rails above the firebox (Fig. 25).</li>\n<li>Lintels (wrapped in brown paper on the side of the fireplace): rivet around the door opening (Fig. 26). They project 1\": ½\" for the cement board, ½\" for the finish. Use them as a template for thicker custom lintels.</li>\n<li>Door and screen closed before fitting the cement board. HardieBacker® or Durock®, ½\" min; never gypsum board.</li>\n<li>Screws only in the permitted zones (diagram, p. 38), no more than ½\" past the board; with one ½\" sheet, 1\" screws max. Move the door and screen slowly as you drive screws.</li>\n<li>Finish: non-combustible only (metal, brick, slate, ceramic tile). Heavy rock may need a custom steel lintel.</li>\n<li>Combustible mantel shelf and posts only per Table 2 (G, H) and Figure 28; non-combustible or masonry mantels anywhere around the guillotine bay opening.</li>\n</ul>"
+  ],
+  [
+   "Firebox lining check",
+   "If the bricks were removed, reinstall in order: left, right, three back, soft insulation, three bottom, then three ash step bricks, angled side to the room. Never burn without them.",
+   "<ol>\n<li>Left-side brick, as far forward as possible.</li>\n<li>Right-side brick, as far forward as possible.</li>\n<li>Three back bricks, slid under the supports at the top-back, centered with a small gap between each.</li>\n<li>Soft insulation: in toward the front, then pushed down toward the back between the back and side bricks.</li>\n<li>Three bottom bricks, centered with small gaps.</li>\n<li>Three ash step bricks, angled side toward the room.</li>\n</ol>\n<p>Leave both manuals with the homeowner. If the glass needs cleaning after the install, use a cleaner made for wood stove ceramic glass, never abrasive, and never on hot glass.</p>"
+  ]
+ ],
+ "faults": {
+  "label": "Smoke, over-firing & door faults",
+  "panels": [
+   {
+    "title": "Smoke spills into the room",
+    "items": [
+     "Kitchen / bath fans running → negative pressure pulls smoke out; shut them off",
+     "Door opened too fast when refueling → open it slowly",
+     "Tight, depressurized house → use outside air; it won't stop smoking in a severely depressurized house",
+     "Exterior chimney below 32°F (0°C) → poorer burn and venting, faster creosote; insulate the chase"
+    ]
+   },
+   {
+    "title": "Over-firing",
+    "items": [
+     "Signs: refractory bricks cracking or deteriorating quickly; warped door channel",
+     "Load beyond 4-5 medium (5\") or 3 large (6\") logs",
+     "Glass door left partly open → air rushes into the firebox",
+     "Over two densified logs, or over one wax log, at a time; construction scraps as the only fuel"
+    ]
+   },
+   {
+    "title": "Dirty glass or poor burn",
+    "items": [
+     "Fire not hot enough or wood not dry → drier wood, hotter fires",
+     "Wax firelogs burned with the door closed",
+     "Flames close to the glass or burning to one side (door closed) → a gasket may need changing",
+     "Hard to light after a long idle period → bricks have absorbed moisture"
+    ]
+   },
+   {
+    "title": "Door or screen hard to move",
+    "items": [
+     "Significant force needed → something is wrong; don't force it",
+     "Guide rails not lubricated → supplied high temperature grease at the start of each season (no Teflon or silicone products)",
+     "Debris on the hearth threshold → poor seal, gasket wear",
+     "Facing screws too long, or listing label not pushed back in → impedes door / screen travel"
+    ]
+   }
+  ]
+ },
+ "codes": [],
+ "detail": {
+  "fire": {
+   "tag": "Owner · operation",
+   "title": "Building a fire",
+   "cool": false,
+   "html": "<p>Open the chimney damper first. Its chain is inside the firebox at the front, just above the opening. Unhook the chain and the damper opens by itself. Use it fully open or fully closed, nothing in between.</p>\n<ol>\n<li>Build the fire well behind the ash step bricks, never against or close to the glass door or firescreen.</li>\n<li>Lay crumpled or loosely knotted newspaper where the wood will go.</li>\n<li>Cover it with a generous layer of kindling, with gaps for air.</li>\n<li>Stack 2-3 small-medium logs on top, close together but with small air gaps.</li>\n<li>Light the paper in several places and close the firescreen.</li>\n<li>Keep the firescreen closed for at least the first 30 minutes. After that, add wood and close either the door or the screen. Don't close the door until the fire is burning briskly.</li>\n</ol>\n<h4>Adding wood</h4>\n<p>Wear heavy fireplace gloves. Open the door slowly so smoke doesn't spill into the room. If smoke spills anyway, make sure kitchen and bathroom fans are off.</p>\n<div class=\"note\"><b>First fires:</b> you may notice a little smoke and odor from oils and paint curing, so pick a time when you can open windows. After a long time without use, the first fire may be harder to light while it dries out the bricks.</div>\n<div class=\"note danger\">Never use gasoline, kerosene, lighter fluid or similar liquids. Keep furniture, firewood and other combustibles at least 4' from the front.</div>"
+  },
+  "doors": {
+   "tag": "Owner · operation",
+   "title": "The glass door & firescreen",
+   "cool": false,
+   "html": "<p>The glass door and the firescreen both slide up and down on counterweights. Hook the removable handle into the handle eye at the lower right corner and pull up or down. Each one stays wherever you stop it. Hang the handle by its leather strap with your fireplace tools so it's always close by.</p>\n<h4>The rules</h4>\n<ul>\n<li>Whenever there's a fire, keep either the door or the firescreen closed. Never have both open.</li>\n<li>Use the door fully open or fully closed. Left partly open, air rushes in, the fire over-fires and the fireplace can be permanently damaged.</li>\n<li>Don't slam the door; the glass can break. If the glass is cracked or broken, don't burn with the door closed until it's replaced.</li>\n<li>Don't touch the door or the screen with bare hands while the fireplace is hot.</li>\n<li>Keep the hearth threshold, the black metal surface the door closes on, free of ashes and debris so the door seals. Never stand on it or rest a ladder on it.</li>\n<li>Close the glass door whenever no fire is burning, to keep cold air out.</li>\n</ul>\n<p>Burning with the door closed is more efficient. With it open you feel more radiant heat, but heat from your home goes up the chimney.</p>"
+  },
+  "wood": {
+   "tag": "Owner · operation",
+   "title": "What wood to burn",
+   "cool": false,
+   "html": "<p>Burn split, dry, seasoned wood: cut, split and stacked with the top covered and the sides open to the air for at least 6 months, and preferably a year or two. Wood that isn't dry won't burn cleanly or efficiently.</p>\n<p>Any well-seasoned species works. Softwoods dry quickly, start easily and burn quick and bright. Hardwoods take longer to season and burn longer.</p>\n<h4>Is it dry?</h4>\n<p>Look for loose or fallen bark, cracked and split ends, wood that feels light next to wood you know is dry, easy splitting, and wood that catches quickly without sizzling or dripping. A moisture meter is the surest test; a reading in the usual range of 20-25% or less is a good standard.</p>\n<h4>Only now and then, carefully</h4>\n<ul>\n<li>Construction scraps (2x4 or plywood): never your only fuel. They can overheat and seriously damage the fireplace.</li>\n<li>Densified logs: two at a time at most, with the firescreen closed.</li>\n<li>Wax firelogs: one at a time, with the firescreen closed. With the door closed, they dirty the glass.</li>\n<li>Don't poke or stir these logs while they burn.</li>\n</ul>\n<div class=\"note danger\"><b>Never burn</b> driftwood, treated wood, coal, garbage or plastic.</div>"
+  },
+  "load": {
+   "tag": "Owner · safety",
+   "title": "How much wood to load",
+   "cool": false,
+   "html": "<p>This fireplace is built to burn very hot, which is what makes its fire clean and full of flames. A small load is enough. It's mainly a decorative fireplace, less efficient than a wood stove, so bigger loads give you no benefit.</p>\n<div class=\"kv\"><div class=\"r\"><span>Small fire</span><span>3 to 4 small logs (3\" diameter)</span></div><div class=\"r\"><span>Large fire</span><span>4 to 5 small-medium logs (5\" diameter)</span></div><div class=\"r\"><span>Most at one time</span><span>4-5 medium logs (5\" diameter) or 3 large logs (6\" diameter), equivalent to 24\" pieces</span></div></div>\n<p>Keep logs to about 6\" in diameter. Overloading it regularly, or burning large loads for long stretches, causes durability problems and can overheat the room. Stacking wood tipi-style against the back is fine, but place logs carefully or you can cosmetically damage the bricks.</p>\n<h4>Signs you're over-firing</h4>\n<ul>\n<li>The refractory bricks are cracking and wearing out quickly.</li>\n<li>The door channel is warped.</li>\n</ul>\n<div class=\"note danger\">A glass door left partly open also over-fires the fireplace. Damage from over-firing isn't covered by the warranty.</div>"
+  },
+  "air": {
+   "tag": "Owner · operation",
+   "title": "The outside air control",
+   "cool": false,
+   "html": "<p>The fireplace is designed to use outside air for burning. The control is on the left side, beyond the door rail, about halfway up. Open the glass door and the firescreen fully to reach it.</p>\n<div class=\"kv\"><div class=\"r\"><span>Control down</span><span>outside air open</span></div><div class=\"r\"><span>Control up</span><span>outside air closed</span></div></div>\n<ul>\n<li><b>To close it:</b> from open, push it gently to the right, then slide it up. A spring holds it closed.</li>\n<li><b>To open it:</b> push it down past the notch that holds it open. It won't move by itself.</li>\n</ul>\n<p>Use outside air whenever you burn with the glass door or the firescreen closed. It can also help when strong kitchen or bath fans fight the chimney draft in a tightly built house, but it won't stop smoking in a severely depressurized house. Close the control when the fireplace isn't burning, to keep cold air out.</p>\n<div class=\"note danger\">The control and the parts around it can get hot enough to cause serious burns. Use a gloved hand to adjust it while the fireplace is hot.</div>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>A good hot fire now and then burns off most deposits. The drier the wood and the hotter the fire, the cleaner the glass stays.</p>\n<h4>When you clean it</h4>\n<ul>\n<li>Wait until the glass is cool. Cleaning hot glass can cause a serious burn.</li>\n<li>Use a wood stove glass cleaner your dealer recommends, never an abrasive cleaner. These work far better than regular glass or oven cleaners.</li>\n<li>Heat won't break the glass, but a knock can. Be careful not to hit it.</li>\n</ul>\n<h4>Reaching the inside of the glass</h4>\n<ol>\n<li>Lift the firescreen all the way and clear anything on the hearth that could stop the door from opening.</li>\n<li>Close the glass door completely.</li>\n<li>Using the tip of the removable handle as a screwdriver, turn the latch pin on the right of the door a quarter turn counterclockwise.</li>\n<li>Pull the door free of the guillotine frame and swing it open from right to left. You may need to lift it slightly, but not too high or it can bind against the firescreen.</li>\n</ol>"
+  },
+  "ash": {
+   "tag": "Owner · maintenance",
+   "title": "Removing the ashes",
+   "cool": false,
+   "html": "<p>Take the ashes out before they get deep enough to spill over the ash step bricks.</p>\n<ol>\n<li>Put the ashes in a metal container with a tight-fitting lid.</li>\n<li>Set the closed container on a non-combustible floor or on the ground, well away from anything that can burn, until you dispose of the ashes.</li>\n<li>If you bury or spread the ashes, keep them in the closed container until every cinder is completely out.</li>\n</ol>\n<div class=\"note danger\"><b>Hot coals hide in ashes.</b> Coals buried in the ashes can stay very hot for a long time.</div>\n<h4>Cleaning the outside</h4>\n<p>Wipe black painted parts with a soft damp cloth and a mild detergent and water. No abrasive cleaners. You can touch up the metal on the face with Stove Bright Metallic Black high temperature paint, sold at most fireplace dealers. Only paint when the fireplace is cool, keep the room well ventilated until the paint dries, and protect the glass, the surround and the hearth.</p>"
+  },
+  "chimney": {
+   "tag": "Owner · maintenance",
+   "title": "Chimney care & creosote",
+   "cool": false,
+   "html": "<p>When wood burns slowly, it gives off tar and other vapors that mix with moisture from the wood and settle in a cool chimney as creosote. If creosote catches fire, it makes an extremely hot chimney fire.</p>\n<p>This fireplace burns cleanly and doesn't make a lot of creosote, but you should still check:</p>\n<ul>\n<li>Have the chimney inspected after the first couple of months of use. Seeing how much creosote builds up tells you how often to check from then on.</li>\n<li>Check it from time to time during the heating season, and have it inspected at least once a year.</li>\n<li>Soot or creosote more than 1/8\" (3mm) thick means the chimney needs immediate cleaning. It may also mean changing how you burn and checking more often.</li>\n<li>A buildup of 1/8\" (3mm) or more calls for cleaning by a chimney professional.</li>\n</ul>\n<p>Depending on how you burn your fireplace, the chimney may need cleaning every year or every other year.</p>"
+  },
+  "care": {
+   "tag": "Owner · maintenance",
+   "title": "Door rails & gaskets",
+   "cool": false,
+   "html": "<p>The glass door and the firescreen should move without much effort. If you ever need real force to move either one, something is wrong. Don't force it, or you could damage or break something.</p>\n<h4>Grease the rails each season</h4>\n<ol>\n<li>At the start of every burning season, open the firescreen and the glass door completely.</li>\n<li>Put a small amount of the high temperature grease that came with the fireplace on each guide rail, left and right, just below the bottom of the door.</li>\n<li>Move the door up and down a couple of times to spread it. Repeat for the firescreen.</li>\n</ol>\n<p>Regular grease can't take the heat. Your Renaissance dealer sells more of the high temperature grease.</p>\n<div class=\"note danger\">Don't use Teflon-based or silicone-based products such as Jig-A-Loo. Burned Teflon can release a toxic fume.</div>\n<h4>Gaskets</h4>\n<p>Several gaskets seal the door so the air wash can keep the glass clean. The gasket on the back of the glass door needs changing every few years, depending on how often you swing the door open. The bottom gasket lasts longer if you keep the hearth threshold clean. If, with the door closed, flames come close to the glass or burn more on one side, a gasket may need changing.</p>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "30-year limited warranty",
+   "cool": false,
+   "html": "<p>All Renaissance Fireplaces models are covered against defects in material and workmanship for 30 years, subject to these conditions:</p>\n<div class=\"kv\"><div class=\"r\"><span>First year</span><span>defective parts repaired or replaced, plus reasonable labor</span></div><div class=\"r\"><span>Second through fifth years</span><span>defective parts repaired or replaced; no labor</span></div><div class=\"r\"><span>Sixth through thirtieth years</span><span>replacement parts, if available, at 50% of the published retail price; no labor</span></div></div>\n<h4>Not covered</h4>\n<ul>\n<li>Glass.</li>\n<li>Normal wear and tear, such as paint discoloration, worn gaskets, or eroded or cracked insulation panels or firebox lining parts.</li>\n<li>Damage from vandalism, neglect, abuse, over-firing, improper fuel or fuel loads, or not servicing the fireplace as the owner's manual says.</li>\n<li>Repairs, travel or labor not authorized in advance.</li>\n<li>Damage in transit, or an installation that doesn't follow the installation and owner's manuals.</li>\n</ul>\n<p>The warranty isn't transferable. Defective parts are handled through an authorized Renaissance Fireplaces dealer, and freight for replacement parts isn't covered.</p>\n<div class=\"note\">This is a summary. The full terms and limitations are in the official manual.</div>"
+  },
+  "specChimney": {
+   "tag": "Installer · spec",
+   "title": "Chimney",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Chimney size and type</span><span>RIS 10\" only</span></div><div class=\"r\"><span>Min height, top of fireplace to chimney cap</span><span>12'</span></div><div class=\"r\"><span>Max height, top of fireplace to chimney cap</span><span>38'</span></div><div class=\"r\"><span>Max height supported by the fireplace without additional supports</span><span>12'</span></div><div class=\"r\"><span>Min clearance, chimney exterior to combustibles</span><span>2\"</span></div><div class=\"r\"><span>Max offsets (2 elbows per offset)</span><span>2</span></div><div class=\"r\"><span>Max offset angle</span><span>30° USA · 45° Canada</span></div></div>\n<p>Table 4 (p. 32) raises the recommended minimum flue height with elevation and offsets; flue height is measured from the top of the fireplace to the top of the chimney before the rain cap. An elbow may sit directly on the fireplace; each offset needs an offset, roof or wall support. Through-the-wall runs use an Insulated Angled Wall Radiation Shield (RM-10WRSI30 or RM-10RWSI45); Table 6 (p. 34) gives a 10' minimum ceiling at 30° (US and Canada) and 8' 6\" at 45° (Canada only).</p>\n<p>Interior chimney preferred; an exterior chase should be insulated. Follow the RIS chimney installation manual for supports, bracing and anchors.</p>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances (Table 2)",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>A · Side and back standoffs to combustibles</span><span>0\"</span></div><div class=\"r\"><span>B · HRS outlet framing and fireplace header</span><span>Metal studs</span></div><div class=\"r\"><span>C · Guillotine bay opening to a side wall</span><span>24\" min</span></div><div class=\"r\"><span>D · Hearth extension and spark guard width, centered</span><span>74.5\" min</span></div><div class=\"r\"><span>E · Ceiling, base of bottom standoffs to lowest ceiling point</span><span>9' min</span></div><div class=\"r\"><span>F · Hearth extension depth from fireplace front</span><span>20\" min</span></div><div class=\"r\"><span>G · Combustible mantel shelf above top of opening (to shelf bottom)</span><span>12\" min</span></div><div class=\"r\"><span>H · Combustible mantel shelf depth</span><span>12\" max</span></div></div>\n<p>E applies inside and outside the enclosure, to every ceiling above the fireplace; it drops to 8' with the optional EO-SG square outlet grilles. No combustible framing directly above the fireplace, except framing that supports the facing and mantel, with restrictions (Fig. 13, Fig. 17, Tables 2 and 3). Combustible mantel and post requirements are shown as a diagram in Figure 28 (p. 39). Televisions count as combustible materials.</p>"
+  },
+  "specHearth": {
+   "tag": "Installer · spec",
+   "title": "Hearth extension & spark guard",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Min non-combustible hearth</span><span>74.5\" wide x 20\" deep, centered on the glass door opening</span></div><div class=\"r\"><span>Spark guard (supplied)</span><span>74 ½\" x 9 ¾\"</span></div><div class=\"r\"><span>Spark guard under the bottom standoffs</span><span>2 ½\"</span></div><div class=\"r\"><span>Spark guard in front of the fireplace face</span><span>2 ½\"</span></div></div>\n<p>Required when the floor in front is combustible, and every Linear 50 on a combustible floor gets the spark guard (it ships on the back of the fireplace). No combustible materials in the hearth area. Plan the hearth around the HRS air intake grilles. Standard, raised-fireplace and raised-hearth layouts are shown as diagrams in Figures 20–22 (p. 30).</p>"
+  },
+  "specHrs": {
+   "tag": "Installer · spec",
+   "title": "Heat Redistribution System (HRS)",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Required</span><span>every installation; natural draft, no blower or electricity</span></div><div class=\"r\"><span>Intake grilles (supplied)</span><span>two, 13 ½\" x 8 3/8\" with front frame</span></div><div class=\"r\"><span>Outlet grilles (supplied)</span><span>two, 6\" x 13 ½\"</span></div><div class=\"r\"><span>Outlet ducts (supplied)</span><span>two insulated flex, 10\" diameter, 5' long, grille adapters pre-installed</span></div><div class=\"r\"><span>Max total duct length</span><span>15' (extra 5' lengths: EO-DUCT)</span></div><div class=\"r\"><span>Duct slope</span><span>never down; min ½\" rise per foot of horizontal travel</span></div><div class=\"r\"><span>Intake grille height</span><span>not higher than 18\" above the fireplace base</span></div></div>\n<p>Intakes front, side or rear facing, open to the enclosure, drawing room air from the same level (never the level below). Outlets on any side of the enclosure, never on an upper level, both at the same height and never facing up. Room air must circulate freely between outlets and intakes, with no door in between. All grilles horizontal; substitute grilles are a fire risk and void the warranty. Options: EO-LLG-OUT, EO-LLG-IN, and EO-SG (required for 8' ceilings).</p>"
+  },
+  "specHrsClear": {
+   "tag": "Installer · spec",
+   "title": "HRS hot air outlet clearances (Table 3)",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>A · Outlet duct to combustibles, horizontal</span><span>2\" min</span></div><div class=\"r\"><span>B · Outlet duct to combustibles, vertical</span><span>6\" min</span></div><div class=\"r\"><span>C · Top of outlet grille to ceiling</span><span>11\" min</span></div><div class=\"r\"><span>D · Bottom of outlet grille above top of fireplace casing</span><span>26\" min</span></div><div class=\"r\"><span>E · Outside edge of grille to side wall</span><span>6\" min</span></div></div>\n<p>Frame the outlets with metal studs and finish with cement board; framing and wall finish around the outlet grilles must be non-combustible. The outlet rough opening is shown as a diagram in Figure 17 (p. 28).</p>"
+  },
+  "specAir": {
+   "tag": "Installer · spec",
+   "title": "Outside air",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Required</span><span>only where local building codes specify it</span></div><div class=\"r\"><span>Connection</span><span>left side only; 4\" collar standard</span></div><div class=\"r\"><span>Runs of 10' or less</span><span>FO-INT kit recommended (10' of 4\" insulated flex duct, inlet hood)</span></div><div class=\"r\"><span>Runs of 20' or more</span><span>increase to 5\" duct (5\" collar supplied)</span></div><div class=\"r\"><span>Max vertical rise</span><span>12'</span></div><div class=\"r\"><span>Termination</span><span>not within 5' of the chimney top; not in an attic or crawl space</span></div><div class=\"r\"><span>Wall hole</span><span>4 ¼\" (5 ¼\" for 5\" duct)</span></div></div>\n<p>Seal the inlet hood to the wall with silicone; fasten the duct to the hood sleeve and the fireplace intake flange with metal screws; tape the insulation back with 2\" aluminum duct tape (not provided). Don't crush the duct at corners.</p>"
+  },
+  "specFacing": {
+   "tag": "Installer · spec",
+   "title": "Facing, lintels & mantel",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Facing cover</span><span>cement board, ½\" min (HardieBacker® or Durock®)</span></div><div class=\"r\"><span>Gypsum board / sheet rock</span><span>not permitted, regardless of fire rating</span></div><div class=\"r\"><span>Screw penetration past the board</span><span>½\" max; 1\" screws max with one ½\" sheet</span></div><div class=\"r\"><span>Lintel projection</span><span>1\" (½\" cement board + ½\" finish)</span></div><div class=\"r\"><span>Decorative finish</span><span>non-combustible only: metal, brick, slate, ceramic tile</span></div></div>\n<p>Screws only in the permitted zones, shown as a diagram on p. 38; longer screws can damage the guillotine system or stop the door and screen from working. Close the door and screen before fitting the cement board, and move them slowly while driving screws. The supplied lintels suit thin facings; heavy rock may need a custom steel lintel. The only combustible allowed on the facing is a mantel shelf and posts at the minimum distances.</p>"
+  },
+  "specWeight": {
+   "tag": "Installer · spec",
+   "title": "Weight & handling",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Weight, crated</span><span>1130 lb</span></div></div>\n<div class=\"note small\"><b>Maker's website:</b> Shipping Weight 1,131 lbs.</div>\n<div class=\"kv\"><div class=\"r\"><span>Refractory bricks (removable)</span><span>260 lb</span></div><div class=\"r\"><span>Floor</span><span>reinforcement may be required</span></div></div>\n<p>Move it crated where possible. Never lean it on its side (the guillotine system is wider than the rest of the fireplace) and never lift by the front or the door opening; use the casing or the two lifting handles. The bricks can come out only once the door and screen are operational, and the fireplace must never be used without the lining and insulation in place.</p>"
+  }
+ },
+ "pageref": {
+  "fire": [
+   2,
+   10
+  ],
+  "doors": [
+   2,
+   8
+  ],
+  "wood": [
+   2,
+   7
+  ],
+  "load": [
+   2,
+   5
+  ],
+  "air": [
+   2,
+   9
+  ],
+  "glass": [
+   2,
+   12
+  ],
+  "ash": [
+   2,
+   11
+  ],
+  "chimney": [
+   2,
+   15
+  ],
+  "care": [
+   2,
+   13
+  ],
+  "warranty": [
+   2,
+   17
+  ],
+  "specChimney": 13,
+  "specClear": 25,
+  "specHearth": 29,
+  "specHrs": 27,
+  "specHrsClear": 28,
+  "specAir": 31,
+  "specFacing": 37,
+  "specWeight": 17,
+  "step0": 6,
+  "step1": 17,
+  "step2": 18,
+  "step3": 23,
+  "step4": 24,
+  "step5": 28,
+  "step6": 31,
+  "step7": 35,
+  "step8": 36,
+  "step9": 39
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "chimney",
+   "t": "creosote",
+   "p": "Inspect at least yearly; clean immediately past 1/8\" buildup"
+  },
+  {
+   "k": "h",
+   "id": "fire",
+   "t": "chimney damper",
+   "p": "Open the damper before every fire"
+  },
+  {
+   "k": "h",
+   "id": "fire",
+   "t": "smoke in the room",
+   "p": "Open the door slowly; turn off kitchen and bath fans"
+  },
+  {
+   "k": "h",
+   "id": "fire",
+   "t": "first fire smell",
+   "p": "Oils and paint curing during the first fires"
+  },
+  {
+   "k": "h",
+   "id": "load",
+   "t": "over-firing",
+   "p": "Cracking bricks or a warped door channel"
+  },
+  {
+   "k": "h",
+   "id": "care",
+   "t": "door sticks",
+   "p": "Grease the guide rails each season"
+  },
+  {
+   "k": "i",
+   "id": "specFacing",
+   "t": "drywall",
+   "p": "Gypsum board is not permitted on the facing"
+  },
+  {
+   "k": "i",
+   "id": "specClear",
+   "t": "TV above fireplace",
+   "p": "Televisions count as combustible materials"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "step4",
+    "issue": "Anti-tip brackets: p. 24 calls for eight of the supplied 1\" self-tapping screws to attach each bracket (four brackets), but the manual-bag list on p. 16 supplies 16 of these screws. Shown as a plain note giving both pages; not resolved.",
+    "pages": [
+     [
+      1,
+      24
+     ],
+     [
+      1,
+      16
+     ]
+    ],
+    "class": "substantive"
+   }
+  ],
+  "catalog_mismatches": [
+   {
+    "model": "renaissance-linear-50",
+    "field": "weight_lb",
+    "catalog": "1131",
+    "manual": "1130 lb (weight when crated; no uncrated weight given)",
+    "page": [
+     1,
+     8
+    ],
+    "shown": "specWeight"
+   }
+  ],
+  "notes": "No listing/certification standard is named in the text (the listing label is described on doc 1 p. 4 and doc 2 p. 16 but its content isn't in the text), so 'certification' is omitted. EPA-defined decorative fireplace: the manuals give no BTU, efficiency or emissions figures. Figure-only content not transcribed: Fig. 2 fireplace dimensions (doc 1 p. 9), Fig. 3 minimal framing (p. 10), Fig. 4 combustible/non-combustible structure (p. 11), Fig. 15 intake rough opening (shows 'MIN. 1 1/2\" MAX. 18\"'; only the 18\" max, which the text states, is used), Fig. 17 outlet rough opening (p. 28), Figs. 19-22 hearth layouts (pp. 29-30), Fig. 27 screw zones (p. 38), Fig. 28 combustible mantel/post clearances (p. 39). Because Fig. 2 is image-only, the catalog height/width/depth (66.375/70.375/28.75 in), the 44 1/2 in firebox width and the 45 7/8 x 15 3/8 in glass view could not be checked; the manual gives 710 square inches of visible fire viewing. The catalog's 'meets R2000' claim for outside air is not in the manual. Table 4 (doc 1 p. 32, recommended minimum flue height) is not transcribed: the layout splits the straight-chimney column across lines; the guide points to the page. Doc 1 p. 27 duct slope reads 'a minimum slope up of 4 (1/2\" elevation for each foot...)' - the '4' looks garbled; the guide uses only the 1/2\" per foot wording. Doc 1 p. 37 says to screw only where allowed 'see Figure 25', but Figure 25 is the baffle; the screw-zone diagram is Figure 27 on p. 38 (guide cites p. 38). Through-the-wall shield part numbers are printed as RM-10WRSI30 and RM-10RWSI45 (inconsistent pattern) and reproduced as printed. Install manual cover reads RL50-INAN - 2023-03 but the p. 41 footer reads RL50-INAN - 2020-02. Owner's manual states the maximum load two ways (p. 4: 4-5 medium 5\" logs or 3 large 6\" logs, equivalent to 24\" pieces; p. 5: no more than the equivalent of 3 logs 24\" long, max log about 6\"); read as consistent, the guide uses the p. 4 wording. The manuals have no troubleshooting chart; the fault panels are compiled from the manuals' scattered fault descriptions (doc 2 pp. 5, 7, 8, 9, 11, 12, 13, 14, 16; doc 1 pp. 32, 37)."
+ }
+}

@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hearthstone Deva — Owner &amp; Installer Guide</title>
+<!-- Stoveworks owner & installer guide · template v3 · built 2026-10-12 from hearthstone-deva-8220-manual.pdf (R 1/6/2023)
+     Generated from guides/content/hearthstone-deva.json by scripts/build_guide.py — edit the content file and rebuild; don't edit this page. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* cast iron in shadow */
+    --iron:#191512; --iron-2:#241f1a; --iron-3:#322b24;
+    /* heat */
+    --ember:#e8682c; --ember-2:#c4521f; --amber:#f5a623;
+    /* gas pilot flame — the cool counter-accent, true to the subject */
+    --pilot:#5f93b8; --pilot-deep:#37607d;
+    /* warm reading surfaces */
+    --paper:#f1ece2; --paper-2:#fbf8f2; --card:#ffffff;
+    --ink:#23201b; --ink-soft:#6e655a; --hair:#e0d8c9;
+    --ok:#3f7d54; --warn:#b06a13;
+    --shadow:0 1px 2px rgba(30,22,14,.06),0 8px 24px rgba(30,22,14,.07);
+    --display:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+  .mono{font-family:var(--mono)}
+
+  /* ---------- top chrome ---------- */
+  header{position:sticky;top:0;z-index:40;background:var(--iron);color:#f3ece2;
+    display:flex;align-items:center;gap:14px;padding:11px 18px;border-bottom:1px solid #000;transition:transform .22s ease}
+  .brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;letter-spacing:.16em;font-size:14px}
+  .flame{width:18px;height:18px;flex:none}
+  .brand small{font-weight:600;letter-spacing:.02em;color:#b6ab9b;font-family:var(--body);font-size:11px;display:block;letter-spacing:.04em}
+  .brand-wrap{display:flex;flex-direction:column;line-height:1.15}
+  .spacer{flex:1}
+  /* role toggle */
+  .toggle{display:flex;background:#0e0b09;border:1px solid #3a322a;border-radius:999px;padding:3px}
+  .toggle button{font-family:var(--body);font-weight:600;font-size:12.5px;color:#9b9183;background:none;border:none;
+    padding:7px 15px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.18s;white-space:nowrap;min-height:36px}
+  .toggle button[aria-pressed="true"]{color:#fff}
+  .toggle button.home[aria-pressed="true"]{background:linear-gradient(180deg,var(--ember),var(--ember-2));box-shadow:0 0 14px rgba(232,104,44,.5)}
+  .toggle button.inst[aria-pressed="true"]{background:linear-gradient(180deg,var(--pilot),var(--pilot-deep));box-shadow:0 0 14px rgba(95,147,184,.45)}
+  .toggle .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.55}
+  .search{display:flex;align-items:center;gap:7px;background:#0e0b09;border:1px solid #3a322a;border-radius:9px;padding:7px 11px;min-width:120px}
+  .search input{background:none;border:none;color:#f3ece2;font-family:var(--body);font-size:13px;width:100%;outline:none}
+  .search input::placeholder{color:#7d7468}
+  .search svg{flex:none;opacity:.6}
+  .pdf{display:flex;align-items:center;gap:7px;background:none;border:1px solid #4a4138;color:#d9cfc0;
+    font-family:var(--body);font-weight:600;font-size:12.5px;padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;transition:.18s}
+  .pdf:hover{border-color:var(--ember);color:#fff}
+  .pdf{min-height:40px}
+  /* search icon (phones only) */
+  .qbtn{display:none;place-items:center;width:44px;height:44px;flex:none;background:none;border:1px solid #4a4138;border-radius:10px;color:#d9cfc0;cursor:pointer}
+  .qbtn[aria-expanded="true"]{border-color:var(--pilot-fill,#5f93b8);color:#fff}
+  /* installer section bar: jump to a section, current one highlighted */
+  .secnav{position:sticky;top:var(--hdr-h,58px);z-index:35;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
+    margin:6px -22px 0;padding:10px 22px;background:var(--paper);border-bottom:1px solid var(--hair);transition:top .22s ease}
+  .secnav::-webkit-scrollbar{display:none}
+  .secnav button{flex:none;font-family:var(--body);font-weight:600;font-size:14px;color:var(--ink);background:var(--card);
+    border:1px solid var(--hair);border-radius:999px;padding:0 16px;min-height:44px;cursor:pointer;white-space:nowrap}
+  .secnav button[aria-current="true"]{background:var(--pilot-deep,#2f5a78);border-color:var(--pilot-deep,#2f5a78);color:#fff}
+  .secnav button:focus-visible,.qbtn:focus-visible,.totop:focus-visible{outline:3px solid var(--amber,#f0a43c);outline-offset:2px}
+  .view .seclabel,#faultSec,#codeSec{scroll-margin-top:calc(var(--hdr-h,58px) + 74px)}
+  .hdr-away .view .seclabel,.hdr-away #faultSec,.hdr-away #codeSec{scroll-margin-top:74px}
+  /* back to top (one-handed use) */
+  .totop{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:45;width:52px;height:52px;border-radius:50%;
+    background:var(--iron);color:#f3ece2;border:1px solid #3a322a;box-shadow:0 6px 18px rgba(20,14,8,.3);display:grid;place-items:center;
+    cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s}
+  .totop.show{opacity:1;pointer-events:auto;transform:none}
+
+  /* ---------- ignition gate ---------- */
+  .gate{min-height:calc(100vh - 56px);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(120% 80% at 50% 110%,#3a1f10 0%,#1a120c 45%,#100c09 100%);color:#f3ece2;padding:40px 22px;text-align:center}
+  .gate .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.32em;color:var(--amber);text-transform:uppercase;margin-bottom:18px}
+  .gate h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,58px);line-height:1.02;letter-spacing:-.01em;max-width:14ch}
+  .gate .sub{color:#c4b8a7;max-width:46ch;margin:18px auto 6px;font-size:clamp(15px,2vw,17px)}
+  .gate .model{font-family:var(--mono);color:#8c8174;font-size:12.5px;margin-bottom:42px;letter-spacing:.04em}
+  .cards{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;width:100%;max-width:760px}
+  .ignite{position:relative;flex:1 1 300px;min-width:270px;text-align:left;cursor:pointer;border:1px solid #4a3c2e;border-radius:18px;
+    padding:26px 24px 22px;background:linear-gradient(180deg,#211913,#171009);overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s}
+  .ignite:hover{transform:translateY(-4px);border-color:var(--ember)}
+  .ignite.cool:hover{border-color:var(--pilot)}
+  .ignite::after{content:"";position:absolute;inset:auto -40% -60% -40%;height:70%;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(232,104,44,.55),transparent);opacity:0;transition:opacity .3s}
+  .ignite.cool::after{background:radial-gradient(closest-side,rgba(95,147,184,.5),transparent)}
+  .ignite:hover::after{opacity:1}
+  .ignite .ic{width:40px;height:40px;margin-bottom:16px;color:var(--ember)}
+  .ignite.cool .ic{color:var(--pilot)}
+  .ignite h2{font-family:var(--display);font-weight:700;font-size:24px;color:#fff;letter-spacing:-.01em}
+  .ignite p{color:#b3a795;font-size:14px;margin-top:7px}
+  .ignite .go{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-weight:600;font-size:13px;color:var(--ember);position:relative;z-index:1}
+  .ignite.cool .go{color:var(--pilot)}
+  .gate .foot{margin-top:38px;color:#7d7468;font-size:12.5px}
+  .gate .foot a{color:#b6ab9b}
+  .fine{margin-top:40px;padding-top:14px;border-top:1px solid var(--line,rgba(0,0,0,.08));font-size:12px;line-height:1.55;color:var(--ink-soft);max-width:72ch;margin-bottom:64px}
+  .gate .fine{border-top-color:rgba(255,255,255,.08);color:#7d7468;margin-top:18px}
+
+  /* ---------- views ---------- */
+  .view{display:none;max-width:1080px;margin:0 auto;padding:34px 22px 90px}
+  .view.active{display:block;animation:rise .4s ease}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .vhead{margin-bottom:26px}
+  .vhead .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:9px}
+  .vhead .eyebrow .pip{width:9px;height:9px;border-radius:50%}
+  .home-pip{background:var(--ember)} .inst-pip{background:var(--pilot)}
+  .vhead h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,4.5vw,38px);letter-spacing:-.015em;margin-top:8px}
+  .vhead p{color:var(--ink-soft);max-width:60ch;margin-top:7px;font-size:15px}
+
+  .seclabel{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+  .seclabel::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+  /* action tiles (homeowner) */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .tile{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 18px 16px;cursor:pointer;
+    text-align:left;font:inherit;color:inherit;box-shadow:var(--shadow);transition:transform .16s,border-color .16s}
+  .tile:hover{transform:translateY(-3px);border-color:var(--ember)}
+  .tile .ic{width:26px;height:26px;color:var(--ember);margin-bottom:12px}
+  .tile h3{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.01em}
+  .tile p{color:var(--ink-soft);font-size:13px;margin-top:4px}
+
+  /* spec cards (installer) */
+  .specs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .spec{background:var(--card);border:1px solid var(--hair);border-left:3px solid var(--pilot);border-radius:12px;padding:16px 17px;box-shadow:var(--shadow)}
+  .spec .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .spec .rows{margin-top:10px;display:flex;flex-direction:column;gap:7px}
+  .spec .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px}
+  .spec .row b{font-weight:500;color:var(--ink-soft)}
+  .spec .row .v{font-family:var(--mono);font-weight:700;font-size:14px;color:var(--ink);text-align:right}
+
+  /* checklist */
+  .checklist{background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  .step{display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid var(--hair);cursor:pointer;align-items:flex-start;transition:background .12s}
+  .step:last-child{border-bottom:none}
+  .step:hover{background:#faf6ee}
+  .step .num{flex:none;width:26px;height:26px;border-radius:7px;background:var(--iron);color:#f3ece2;font-family:var(--mono);font-weight:700;
+    font-size:12.5px;display:grid;place-items:center;margin-top:1px}
+  .step.done .num{background:var(--ok)}
+  .step .body h4{font-family:var(--display);font-weight:600;font-size:15.5px}
+  .step .body p{color:var(--ink-soft);font-size:13px;margin-top:2px}
+  .step .check{margin-left:auto;flex:none;width:20px;height:20px;border:2px solid var(--hair);border-radius:6px;margin-top:3px;display:grid;place-items:center}
+  .step.done .check{background:var(--ok);border-color:var(--ok)}
+  .step.done .check svg{display:block}
+  .step .check svg{display:none}
+
+  /* two-column callouts */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .panel{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  .panel h3{font-family:var(--display);font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px}
+  .panel.warn h3{color:var(--warn)} .panel.warn{border-left:3px solid var(--warn)}
+  .panel ul{list-style:none;margin-top:11px;display:flex;flex-direction:column;gap:9px}
+  .panel li{font-size:13.5px;color:#473f36;padding-left:16px;position:relative}
+  .panel li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--pilot)}
+  .panel.warn li::before{background:var(--warn)}
+
+  /* led codes */
+  .codes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .code{background:var(--iron);color:#f3ece2;border-radius:11px;padding:14px}
+  .code .blinks{display:flex;gap:5px;margin-bottom:9px}
+  .code .b{width:9px;height:9px;border-radius:50%;background:#3a322a}
+  .code .b.on{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+  .code .t{font-family:var(--display);font-weight:600;font-size:14px}
+  .code .d{font-size:11.5px;color:#a89c8c;margin-top:2px}
+
+  /* ---------- detail drawer ---------- */
+  .scrim{position:fixed;inset:0;background:rgba(20,14,8,.5);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:.22s;z-index:60}
+  .scrim.open{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(480px,100%);background:var(--paper-2);z-index:70;
+    transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.1,1);overflow-y:auto;box-shadow:-20px 0 50px rgba(20,14,8,.25)}
+  .drawer.open{transform:none}
+  .drawer .dh{position:sticky;top:0;z-index:2;background:var(--iron);color:#f3ece2;padding:18px 20px;display:flex;align-items:flex-start;gap:12px}
+  .drawer .dh .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+  .drawer .dh h2{font-family:var(--display);font-weight:700;font-size:21px;margin-top:5px;letter-spacing:-.01em}
+  .drawer .dh .x{margin-left:auto;background:#0e0b09;border:1px solid #3a322a;color:#d9cfc0;width:44px;height:44px;border-radius:10px;cursor:pointer;flex:none;font-size:22px;line-height:1}
+  .dcontent{padding:22px 24px 60px}
+  .dcontent h4{font-family:var(--display);font-weight:700;font-size:15px;margin:20px 0 8px;color:var(--ink)}
+  .dcontent h4:first-child{margin-top:0}
+  .dcontent p{font-size:14px;color:#473f36;margin-bottom:11px}
+  .dcontent ol,.dcontent ul{margin:0 0 13px 2px;display:flex;flex-direction:column;gap:9px}
+  .dcontent ol{counter-reset:s;list-style:none}
+  .dcontent ol li{position:relative;padding-left:32px;font-size:14px;color:#473f36}
+  .dcontent ol li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-1px;width:22px;height:22px;border-radius:6px;
+    background:var(--ember);color:#fff;font-family:var(--mono);font-weight:700;font-size:11.5px;display:grid;place-items:center}
+  .dcontent.cool ol li::before{background:var(--pilot)}
+  .dcontent ul{list-style:none}
+  .dcontent ul li{position:relative;padding-left:18px;font-size:14px;color:#473f36}
+  .dcontent ul li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--ember)}
+  .dcontent.cool ul li::before{background:var(--pilot)}
+  .note{background:#fcf3e3;border:1px solid #f0dcb4;border-radius:10px;padding:13px 15px;font-size:13.5px;color:#6b5320;margin:14px 0}
+  .note.danger{background:#fbe9e3;border-color:#f0c4b4;color:#8a3a1d}
+  .note b{font-weight:600}
+  .note.small{background:transparent;border:0;border-left:3px solid #e2cfa9;border-radius:0;padding:3px 0 3px 11px;font-size:12.5px;color:#6f6250;margin:8px 0 12px}
+  .note.small b{color:#4f4436}
+  .kv{font-family:var(--mono);font-size:13.5px;background:#efe9dd;border-radius:8px;padding:11px 13px;display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+  .kv .r{display:flex;justify-content:space-between;gap:12px}
+  .kv .r span:last-child{font-weight:700}
+
+  /* search results */
+  .results{position:fixed;top:56px;left:0;right:0;z-index:50;background:var(--paper-2);border-bottom:1px solid var(--hair);
+    box-shadow:0 18px 40px rgba(20,14,8,.18);max-height:70vh;overflow-y:auto;display:none}
+  .results.open{display:block}
+  .results .inner{max-width:1080px;margin:0 auto;padding:18px 22px 24px}
+  .results .rl{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px}
+  .ritem{display:flex;gap:12px;align-items:flex-start;padding:12px 13px;border-radius:11px;cursor:pointer;border:1px solid transparent}
+  .ritem:hover{background:#fff;border-color:var(--hair)}
+  .ritem .badge{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;border-radius:5px;flex:none;margin-top:1px}
+  .badge.h{background:#fbe6da;color:var(--ember-2)} .badge.i{background:#e2edf4;color:var(--pilot-deep)}
+  .ritem h4{font-family:var(--display);font-weight:600;font-size:15px}
+  .ritem p{font-size:12.5px;color:var(--ink-soft);margin-top:1px}
+  .rempty{color:var(--ink-soft);font-size:14px;padding:6px 2px}
+  .rgroup{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);
+    margin:16px 0 8px;display:flex;align-items:center;gap:9px}
+  .rgroup:first-child{margin-top:0}
+  .rgroup .ct{background:var(--hair);color:var(--ink-soft);border-radius:999px;padding:1px 8px;letter-spacing:.04em}
+  .ritem .pg{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink-soft);
+    border:1px solid var(--hair);border-radius:6px;padding:3px 7px;flex:none;margin-top:1px;white-space:nowrap}
+  .ritem .snip{font-size:12.5px;color:#5d544a;margin-top:3px;line-height:1.45}
+  .ritem .snip mark{background:#ffe7b3;color:#5a4310;border-radius:3px;padding:0 2px}
+  .ritem .jump{margin-left:auto;flex:none;align-self:center;color:var(--ink-soft);opacity:.5}
+
+
+  /* tablets: two tidy rows (brand + PDF, then the switch + search); the bar tucks away while scrolling down */
+  @media(max-width:1024px){
+    header{flex-wrap:wrap;row-gap:10px;column-gap:12px;padding:10px 16px}
+    .spacer{display:none}
+    .brand{order:1;flex:1;min-width:0}
+    .brand-wrap{min-width:0} .brand small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .pdf{order:2}
+    .toggle{order:3}
+    .toggle button{min-height:40px;font-size:14px;padding:6px 18px}
+    .search{order:4;flex:1;min-height:44px}
+    .search input{font-size:16px}
+    .hdr-away header{transform:translateY(-100%)}
+    .hdr-away .secnav{top:0}
+  }
+  /* phones: one slim row (home flame, own/install switch, search icon, PDF icon) */
+  @media(max-width:720px){
+    header{flex-wrap:wrap;gap:8px;padding:7px 10px;row-gap:8px}
+    .brand{order:1;flex:0 1 auto;min-height:44px}
+    .brand small{display:none}
+    .has-role .brand-wrap{display:none}
+    .has-role .brand{min-width:44px;justify-content:center}
+    .spacer{display:block;flex:1;order:2}
+    .has-role .spacer{display:none}
+    .toggle{order:2;flex:1;min-width:0}
+    .toggle button{flex:1;justify-content:center;min-height:40px;padding:6px 8px;font-size:13.5px}
+    .qbtn{display:grid;order:3}
+    .pdf{order:4;width:44px;height:44px;padding:0;justify-content:center;min-height:0}
+    .pdf .pdf-txt{display:none}
+    .search{display:none;order:5;flex:1 1 100%;min-width:0}
+    header.searching .search{display:flex}
+    .twocol{grid-template-columns:1fr}
+    .secnav{margin:4px -16px 0;padding:8px 16px}
+  }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} header,.secnav,.totop{transition:none} }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+  /* deep-link to the exact manual page (in the drawer) */
+  .manlink{display:flex;align-items:center;gap:13px;margin-top:24px;padding:14px 16px;border-radius:12px;text-decoration:none;
+    background:linear-gradient(180deg,#fdf1e9,#fce7da);border:1px solid #f0cdb6;color:var(--ember-2);transition:transform .18s,box-shadow .18s,border-color .18s}
+  .manlink:hover{border-color:var(--ember);box-shadow:0 7px 20px rgba(232,104,44,.18);transform:translateY(-1px)}
+  .manlink.cool{background:linear-gradient(180deg,#eef4f8,#e2edf4);border-color:#c2d6e3;color:var(--pilot-deep)}
+  .manlink.cool:hover{border-color:var(--pilot);box-shadow:0 7px 20px rgba(95,147,184,.2)}
+  .manlink .ic{flex:none;width:32px;height:32px;display:grid;place-items:center;border-radius:9px;background:#fff;color:var(--ember)}
+  .manlink.cool .ic{color:var(--pilot)}
+  .manlink .tx{display:flex;flex-direction:column;line-height:1.3}
+  .manlink b{font-family:var(--display);font-weight:700;font-size:14px}
+  .manlink small{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:2px;letter-spacing:.02em}
+  .manlink .arr{margin-left:auto;flex:none;opacity:.7}
+
+  /* installer-side full-manual search (inline, light surface) */
+  .ms-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--hair);
+    border-left:3px solid var(--pilot);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .ms-bar svg{flex:none;opacity:.5}
+  .ms-bar input{flex:1;background:none;border:none;font-family:var(--body);font-size:15px;color:var(--ink);outline:none}
+  .ms-bar input::placeholder{color:var(--ink-soft)}
+  .ms-results{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+  .ms-results .ritem{background:var(--card);border:1px solid var(--hair)}
+  .ms-results .ritem:hover{border-color:var(--pilot);background:#fbfdff}
+  .ms-hint{color:var(--ink-soft);font-size:13.5px;padding:8px 2px;line-height:1.5}
+  .ms-hint mark{background:none;color:var(--pilot-deep);font-weight:600}
+
+  /* owner-side inline search (ember surface) */
+  .os-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--hair);
+    border-left:3px solid var(--ember);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .os-bar svg{flex:none;opacity:.5}
+  .os-bar input{flex:1;background:none;border:none;font-family:var(--body);font-size:15px;color:var(--ink);outline:none}
+  .os-bar input::placeholder{color:var(--ink-soft)}
+  .os-results{display:flex;flex-direction:column;gap:8px}
+  .os-results:not(:empty){margin:14px 0 4px}
+  .os-results .ritem{background:var(--card);border:1px solid var(--hair)}
+  .os-results .ritem:hover{border-color:var(--ember);background:#fffaf6}
+  .os-hint{color:var(--ink-soft);font-size:13.5px;padding:8px 2px;line-height:1.5}
+  .os-hint mark{background:none;color:var(--ember-2);font-weight:600}
+  /* ---------- v3 additions ---------- */
+  /* manual picker, for guides built from more than one PDF */
+  .pdfmenu{position:absolute;top:calc(100% + 6px);right:14px;z-index:55;background:var(--paper-2);border:1px solid var(--hair);border-radius:12px;
+    box-shadow:0 18px 40px rgba(20,14,8,.22);padding:7px;min-width:260px;display:none}
+  .pdfmenu.open{display:block}
+  .pdfmenu .ml{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);padding:6px 11px 4px}
+  .pdfmenu a{display:flex;flex-direction:column;gap:1px;padding:10px 11px;border-radius:9px;text-decoration:none;color:var(--ink)}
+  .pdfmenu a:hover{background:#fff}
+  .pdfmenu b{font-family:var(--display);font-weight:700;font-size:14px}
+  .pdfmenu small{font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+  /* fault panels (any number) */
+  .faults{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  /* display-style codes (e.g. "E1") alongside blink codes */
+  .code .cd{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--amber);margin-bottom:7px;letter-spacing:.04em}
+  .gate .foot .docs a{white-space:nowrap}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand" id="brandHome" role="button" tabindex="0" title="Back to start" style="cursor:pointer">
+    <svg class="flame" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3-2 4-2 7 0 1 .6 2 1.5 2.4C12 10 13 8.5 13 7c2 2 4 4.5 4 8a5 5 0 0 1-10 0c0-2 1-3.5 2-5 .2 1.2 1 2 2 2-.4-3 1-6 3-10Z"/></svg>
+    <div class="brand-wrap"><span>HEARTHSTONE</span><small>Deva 100 · Wood-fired cook stove</small></div>
+  </div>
+  <div class="spacer"></div>
+  <div class="search">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Search the whole guide…" autocomplete="off">
+  </div>
+  <button class="qbtn" id="qBtn" type="button" aria-label="Search the guide" aria-expanded="false">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+  </button>
+  <div class="toggle" id="toggle" style="display:none">
+    <button class="home" data-role="homeowner" aria-pressed="false"><span class="dot"></span>I own it</button>
+    <button class="inst" data-role="installer" aria-pressed="false"><span class="dot"></span>I install it</button>
+  </div>
+  <a class="pdf" href="#" id="pdfBtn" title="The full 26-page manual is the legal source of truth">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+    <span class="pdf-txt">Official PDF</span>
+  </a>
+  <div class="pdfmenu" id="pdfMenu"></div>
+</header>
+
+<!-- search results -->
+<div class="results" id="results"><div class="inner"><div class="rl">Results</div><div id="rlist"></div></div></div>
+
+<!-- ===== IGNITION GATE ===== -->
+<section class="gate" id="gate">
+  <div class="kicker">Wood-fired cook stove</div>
+  <h1>Hearthstone Deva</h1>
+  <p class="sub">Tell us who you are and we'll bring the right half forward — the rest is one search away.</p>
+  <p class="model">Model 8220 (Deva 100) · 6&quot; stovepipe to a chimney, top or rear exit · Hand-lit wood fire</p>
+  <div class="cards">
+    <button class="ignite" data-role="homeowner">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg>
+      <h2>I own this stove</h2>
+      <p>Light a fire, heat the oven, control the burn, empty ashes, keep the chimney clean.</p>
+      <span class="go">Light my path →</span>
+    </button>
+    <button class="ignite cool" data-role="installer">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3Z"/></svg>
+      <h2>I'm installing or servicing it</h2>
+      <p>Specs, clearances, floor protection, chimney and draft, the install sequence and troubleshooting.</p>
+      <span class="go">Open field reference →</span>
+    </button>
+  </div>
+  <p class="foot">Both paths draw from the same certified manual (UL 1482-2022 · ULC S627-2021). <a href="#" id="pdfBtn2" class="footdoc" data-doc="1">Skip straight to the full PDF →</a></p>
+  <p class="fine"><b>About these guides.</b> Manufacturers revise their manuals over the years, and a manual sometimes disagrees with itself or with the maker's website. We report what is printed and posted: where two figures differ, we show both right there, with links to the pages, and where the maker's website gives a different figure, we note it next to the manual's. Plain misprints, such as a metric conversion that doesn't match, are corrected with a small note saying what was printed. The official manual is the authority for installation; when two figures differ, ask us or your installer before relying on either.</p>
+</section>
+
+<!-- ===== HOMEOWNER ===== -->
+<section class="view" id="homeowner">
+  <div class="vhead">
+    <div class="eyebrow"><span class="pip home-pip"></span>For owners</div>
+    <h1>Your stove, in plain language</h1>
+    <p>The things people actually ask us about — pick one. Everything technical still lives under search and the official PDF up top.</p>
+  </div>
+  <div class="os-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="oq" type="search" placeholder="Search — oven, bypass, ashes, creosote…" autocomplete="off">
+  </div>
+  <div class="os-results" id="oResults"></div>
+  <div class="seclabel">Start here</div>
+  <div class="tiles" id="homeTiles"></div>
+  <div id="homeSec2">
+    <div class="seclabel">Good to know</div>
+    <div class="tiles" id="homeTiles2"></div>
+  </div>
+  <p class="fine"><b>About these guides.</b> Manufacturers revise their manuals over the years, and a manual sometimes disagrees with itself or with the maker's website. We report what is printed and posted: where two figures differ, we show both right there, with links to the pages, and where the maker's website gives a different figure, we note it next to the manual's. Plain misprints, such as a metric conversion that doesn't match, are corrected with a small note saying what was printed. The official manual is the authority for installation; when two figures differ, ask us or your installer before relying on either.</p>
+</section>
+
+<!-- ===== INSTALLER ===== -->
+<section class="view" id="installer">
+  <div class="vhead">
+    <div class="eyebrow"><span class="pip inst-pip"></span>For installers &amp; service</div>
+    <h1>Field reference</h1>
+    <p>The numbers you look up on your knees, the sequence you follow, and the faults you diagnose — surfaced first. Tap any spec for the surrounding detail.</p>
+  </div>
+  <nav class="secnav" id="secNav" aria-label="Jump to a section"></nav>
+
+  <div class="seclabel" id="sec-specs">Critical specs</div>
+  <div class="specs" id="specCards"></div>
+
+  <div class="seclabel" id="sec-steps">Install sequence — tap to check off</div>
+  <div class="checklist" id="checklist"></div>
+
+  <div id="faultSec">
+    <div class="seclabel" id="faultLabel">Field faults</div>
+    <div class="faults" id="faults"></div>
+  </div>
+
+  <div id="codeSec">
+    <div class="seclabel">Control codes</div>
+    <div class="codes" id="codes"></div>
+  </div>
+
+  <div class="seclabel" id="sec-manual">Search the original manual</div>
+  <div class="ms-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="mq" type="search" placeholder="Search every page of the official manual — clearance, alcove, draft…" autocomplete="off">
+  </div>
+  <div class="ms-results" id="mResults"></div>
+  <p class="fine"><b>About these guides.</b> Manufacturers revise their manuals over the years, and a manual sometimes disagrees with itself or with the maker's website. We report what is printed and posted: where two figures differ, we show both right there, with links to the pages, and where the maker's website gives a different figure, we note it next to the manual's. Plain misprints, such as a metric conversion that doesn't match, are corrected with a small note saying what was printed. The official manual is the authority for installation; when two figures differ, ask us or your installer before relying on either.</p>
+</section>
+
+<!-- detail drawer -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <div class="dh">
+    <div><div class="tag" id="dTag">Detail</div><h2 id="dTitle">Title</h2></div>
+    <button class="x" id="dClose" aria-label="Close">×</button>
+  </div>
+  <div class="dcontent" id="dBody"></div>
+</aside>
+
+<button class="totop" id="toTop" type="button" aria-label="Back to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></svg>
+</button>
+
+<script>
+/* ================= content: generated from guides/content/hearthstone-deva.json ================= */
+const HOME_PRIMARY = [{"id":"light","icon":"M12 2c1 3-2 4-2 7 0 1 .6 2 1.5 2.4C12 10 13 8.5 13 7c2 2 4 4.5 4 8a5 5 0 0 1-10 0c0-2 1-3.5 2-5 .2 1.2 1 2 2 2-.4-3 1-6 3-10Z","title":"Light a fire","blurb":"Paper, kindling, bypass out, air open — step by step.","fill":true},{"id":"oven","icon":"M14 14.8V4a2 2 0 0 0-4 0v10.8a4 4 0 1 0 4 0ZM12 9v7","title":"Heat the oven","blurb":"How the flue bypass sends heat around the oven and cooktop."},{"id":"burn","icon":"M4 7h16M4 12h16M4 17h16M8 5v4M15 10v4M11 15v4","title":"Control the burn","blurb":"The air lever, high to low burns, reloading and over-firing."},{"id":"wood","icon":"M6 9a3 3 0 1 0 0 6 3 3 0 1 0 0-6Zm0 0h12a3 3 0 0 1 0 6H6M6 11.5v1","title":"What wood to burn","blurb":"Seasoned cordwood only — which woods last longest, how to store it."}];
+const HOME_SECONDARY = [{"id":"ash","icon":"M12 3v9M8 12h8l-1.5 8h-5L8 12Z","title":"Empty the ashes","blurb":"Weekly, from a cold stove, into a lidded metal can."},{"id":"door","icon":"M4 4h16v16H4Zm0 5h16M9 4v16","title":"Door glass & gasket","blurb":"Clean the glass safely and check the seal with a dollar bill."},{"id":"cooktop","icon":"M4 10h16v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4v-6ZM2 10h20M9 6c0-1 1-1 1-2M14 6c0-1 1-1 1-2","title":"Care for the cooktop","blurb":"Protect the glass top, clean up spills, look after the enamel."},{"id":"creosote","icon":"M7 21V8h10v13M5 8h14M9 8V5h6v3M7 13h10M7 17h10","title":"Creosote & chimney","blurb":"Keep buildup down, check the pipe, know when to call a sweep."},{"id":"safety","icon":"M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z","title":"Chimney fire & safety","blurb":"What to do in a chimney fire, and the everyday rules."},{"id":"warranty","icon":"M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z","title":"Warranty registration","blurb":"How to register, and what the manual says voids coverage."}];
+const SPECS = [{"id":"firebox","lab":"Firebox & output","tap":"specFirebox","rows":[["Max heat output","46,000 BTU/hr"],["Firebox","1.6 cu ft"],["Max log length","17\" (43 cm)"]],"note":"output: cordwood, independent lab test"},{"id":"dims","lab":"Dimensions","tap":"specDims","rows":[["Height","33-3/4\" (85 cm)"],["Width","40\" (102 cm)"],["Depth","23 3/4\" (60 cm)"]]},{"id":"flue","lab":"Stovepipe & connector","tap":"specFlue","rows":[["Diameter","6\" (15.2 cm)"],["Pipe","24 or 25 MSG blued steel"],["Flue exit","top or rear"]]},{"id":"chimney","lab":"Chimney & draft","tap":"specChimney","rows":[["Flue, new install","6\" inside diameter"],["Chimney height","13 ft min · 30 ft max"],["Draft","0.06\" – 0.1\" w.c."]]},{"id":"clear","lab":"Clearances to combustibles","tap":"specClear","rows":[["Single wall, top exit","A 10\" · B 10\" · C 16\" · D 21.5\""],["Double wall, top exit","A 4\" · B 4\" · C 14\" · D 19.5\""],["Rear exit, either pipe","A 4\" · B 4\" · C 16\""]],"note":"letters are defined on the Fig. 2 drawing, p. 9"},{"id":"floor","lab":"Floor protection","tap":"specFloor","rows":[["Past the fuel door","16\" US · 46 cm Canada"],["Each side","8\" (20 cm)"],["R-value","0.89 min, or UL listed"]]},{"id":"alcove","lab":"Alcove","tap":"specAlcove","rows":[["Max depth","48\""],["Min height","96\""],["Min width","63\" single · 58\" double wall"]]}];
+const STEPS = [["Unpack & inspect","Unpack carefully and check the stove and every part for transit damage; confirm all parts are in the box. Report damage or missing parts to the dealer immediately."],["Site the stove","Freestanding only — not in a mobile home, any factory-built fireplace or a sleeping room. No outside combustion air is required (no kit exists); check clearances to walls, floor, ceiling, cabinets, fireplace and chimney.","<ul><li>Freestanding cook stove only; not for installation in any factory-built fireplace.<\/li><li>Not approved for a mobile home. Do not install in a sleeping room (p. 16).<\/li><li>No additional outside air for combustion; no kit is available.<\/li><li>Open area away from traffic flow, doors and hallways, near the chimney; never where gasoline, kerosene, charcoal lighter fluid or other flammable liquids are used or stored (p. 3).<\/li><li>Decide the floor (as is, or with a floor protector) and check clearances to walls, floor, ceiling, cabinets, fireplace and chimney before connecting.<\/li><\/ul><p>Hearthstone recommends installers certified by NFI (U.S.) or W.E.T.T. (Canada) (p. 1). Check permits, restrictions and inspection with local building or fire officials.<\/p>"],["Floor protection","Noncombustible protector, R-value 0.89 min or UL listed, extending 16\" (US) / 46 cm (Canada) past the fuel loading door and 8\" (20 cm) past each side. Horizontal connector: protect beneath it and 2\" past each side."],["Clearances & alcove","Lay out to the p. 9 table (single vs double wall, top vs rear exit; letters per Fig. 2). Alcove: 48\" max depth, 96\" min height, 63\" / 58\" min width (single / double wall connector)."],["Chimney connector","6\" (152 mm) 24 or 25 MSG blued steel, or listed close-clearance double-wall pipe; crimped ends toward the stove, at least three #10 x 1/2\" screws at the flue collar. Never through a floor, ceiling, attic or concealed space; thimble through combustible walls.","<div class=\"kv\"><div class=\"r\"><span>Single wall<\/span><span>6\" (152 mm), 24 MSG or 25 MSG blued steel<\/span><\/div><div class=\"r\"><span>Double wall (close clearance)<\/span><span>tested to UL standards and listed; e.g. Simpson Dura Vent DVL, Metalbestos DS; also acceptable: Security, GSW, Ameritec<\/span><\/div><div class=\"r\"><span>Flue collar<\/span><span>at least three #10 x 1/2\" sheet metal screws into the pre-drilled holes<\/span><\/div><\/div><p>No aluminum or galvanized pipe. Crimped ends toward the stove so creosote runs back into it. Double-wall connector must be used with a listed factory-built Type HT chimney and may also be used with a masonry chimney to reduce clearances. Through a combustible wall, conform to NFPA 211 or CAN/CSA - B365 and use a wall thimble; to a prefabricated chimney, use a wall pass-through. Don't use stovepipe as a chimney or liner. Never connect to a flue serving another appliance, or to any air distribution duct or system.<\/p>"],["Run & draft","Keep the stovepipe short and straight, horizontal runs rising at least 1/4\" per foot (21mm/m) away from the stove. Draft must be 0.06\" – 0.1\" w.c.; above 0.1\" w.c., install a stovepipe damper."],["Prefabricated chimney","Type HT (2100 deg. F), listed to UL 103 or ULC S629, installed exactly per its maker with that maker's accessories. Flue 6\" (152 mm) inside diameter for new installations; an existing 8\" (203 mm) flue with a reducer.","<p>Buy from the chimney manufacturer: the wall pass-through (or ceiling support package), \"T\" section package, fire-stops (when needed), insulation shield, roof flashing, chimney cap and any other accessories, and keep to their clearances. It can run inside (through ceiling and roof) or outside (through the wall behind the stove, then up the outside); choose an interior chimney whenever possible (p. 14). Typical layouts are shown as drawings on p. 13.<\/p><p>An oversized flue contributes to creosote — bigger is not better.<\/p>"],["Rear exit: reverse the collar","Remove the flue collar's four bolts (10mm) and the rear block-off plate; mount the collar on the rear exit gasket side toward the stove, rotated for access to the 3 connector screws. Bolt the cover plate over the top exit.","<ol><li>With a 10mm wrench or socket, remove the four bolts holding the flue collar and pull it away from the stove. Check that the gasket is in place and in working order.<\/li><li>Remove the four bolts holding the block-off plate on the back of the stove, and remove the plate.<\/li><li>Place the flue collar over the rear flue exit, gasket side toward the stove, rotated so the 3 chimney connector screws are easiest to reach. Replace the four bolts.<\/li><li>Place the cover plate over the top flue exit, using the same four bolts that were removed.<\/li><\/ol><p>Use the rear-exit columns of the clearance table (p. 9).<\/p>"],["Masonry chimney","Code-approved and lined; have a professional examine it and finish any repairs before installing. 8\" x 8\" (203 mm x 203 mm) tile for best results; the cleanout must close off completely.","<div class=\"kv\"><div class=\"r\"><span>Wall<\/span><span>brick or modular block at least 4\" (102 mm), or rubble or stone at least 12\" (305 mm)<\/span><\/div><div class=\"r\"><span>Flue liner<\/span><span>min 5/8\" (16 mm), refractory mortar, at least 1\" (25 mm) air space<\/span><\/div><div class=\"r\"><span>Interior chimney<\/span><span>at least 2\" (51 mm) to combustible structure; fire stops at floors/ceilings; insulation 2\" (51 mm) from the chimney<\/span><\/div><div class=\"r\"><span>Exterior chimney<\/span><span>at least 1\" (25 mm) to combustible structure (p. 15)<\/span><\/div><\/div><p>An equivalent flue liner must be a listed chimney liner system meeting type HT requirements, or other approved material. An interior chimney heats faster, drafts better and builds less creosote than an exterior one.<\/p>"],["Chimney height","13 feet (4 m) minimum, 30 feet (9 m) maximum. At least 3 feet (0.9 m) above the highest part of the roof opening it passes through, and 2 feet (0.6 m) above any part of the roof within 10 feet (3 m), measured horizontally from the chimney top."]];
+const CODES = [];
+const FAULTS = {"label":"Troubleshooting guide","panels":[{"title":"Stove smokes","items":["Operating technique → open the primary air fully a minute before opening doors; open the flue bypass fully","Cold chimney → preheat it when first starting a fire","Blocked chimney → check chimney and stovepipe for blockage or creosote","Oversized chimney → reline; undersized → draft inducer or new chimney; too short → lengthen it","Air leaks or another appliance on the flue → seal connections and clean-out doors; disconnect other appliances"]},{"title":"Back-puffing","items":["Operating technique → primary air fully open a minute before opening the door, and for a few minutes after reloading","Extra low burn rate → burn at a higher rate","Chimney down-draft → install a chimney cap","Excessive ash build-up → empty the ash pan more often"]},{"title":"Uncontrolled or short burn","items":["Unsealed or open door → close it tightly or replace the gaskets","Excessive draft → check the install, run at low burn, fit a stovepipe damper (over 0.1 wc); close the flue bypass completely","Deteriorated cement seals → reseal with furnace cement","Extra long chimney → shorten it or fit a stovepipe damper","High winds or hilltop location → install a chimney cap"]},{"title":"Insufficient heat","items":["Poor quality or green wood → air-dried wood only, preferably dried at least one year","Low burn rate → run at a higher burn rate","Air insulated chimney → replace with a pre-fabricated insulated system or a properly sized masonry chimney","Cold exterior chimney → reline or insulate it","Leaky stovepipe or chimney → check the installation; heat loss from the house → caulk windows, seal openings"]}]};
+const DETAIL = {"light":{"tag":"Owner · operation","title":"Lighting a fire","cool":false,"html":"<p>First find the controls: the <b>flue bypass<\/b> handle at the top center, the <b>primary air lever<\/b> on the lower part of the ash door, and the fuel door handle. Lift that handle to 9 o'clock to open the door; lower it to 6 o'clock to latch it, then pull gently to check.<\/p>\n<ol>\n<li>Open the door. Put five or six double sheets of tightly twisted newspaper in the center of the firebox. Crisscross about ten pieces of kindling over it, 1/2\" thick and 10\" to 17\" long.<\/li>\n<li>Open the bypass: pull the handle all the way out.<\/li>\n<li>Open the air fully: push the lever to the left.<\/li>\n<li>Light the paper. Leave the door slightly open for a moment, until the kindling catches and the draft starts to pull.<\/li>\n<li>Close the door and let the fire burn.<\/li>\n<li>Once the kindling is burning, add logs, small ones first. Otherwise keep the fuel door and ash door closed.<\/li>\n<li>Close the bypass: push the handle all the way in.<\/li>\n<li>When the fire is burning well, set the burn with the air lever: left for higher, right for lower.<\/li>\n<\/ol>\n<div class=\"note danger\"><b>Never open the fuel door with the bypass closed.<\/b> Pull the bypass out first.<\/div>\n<div class=\"note\"><b>First fires smoke a little.<\/b> The paint and oils are curing. Open a few windows; it usually fades after 10 to 20 minutes and stops once the stove is cured.<\/div>"},"oven":{"tag":"Owner · operation","title":"Heating the oven and cooktop","cool":false,"html":"<p>The <b>flue bypass<\/b> steers the stove's heat. It's the handle at the top center of the stove, and it pulls out and pushes in.<\/p>\n<div class=\"kv\"><div class=\"r\"><span>Pulled out (open)<\/span><span>smoke and hot gases go straight to the chimney<\/span><\/div><div class=\"r\"><span>Pushed in (closed)<\/span><span>gases travel around the oven, then out<\/span><\/div><\/div>\n<p>Keep the bypass open while you start a fire in a cold stove, until the chimney is drawing. Then push it closed — that's the most efficient way to run the stove. With the bypass open, the oven can't reach its highest temperatures. Use the bypass to control the cooktop and oven temperature.<\/p>\n<div class=\"note danger\"><b>Pull the bypass out before you open the fuel door<\/b> to add wood.<\/div>\n<h4>Oven not getting hot?<\/h4>\n<ul>\n<li>The bypass may be open. Push it in to close it.<\/li>\n<li>The oven door may not be sealing. Check the seal and repair it if needed.<\/li>\n<\/ul>\n<p>The cooktop gets very hot. Don't set anything on it that isn't meant to be there; the heat can melt or burn it, and it can drip into the firebox. Never put clothing or candles on a hot stove.<\/p>"},"burn":{"tag":"Owner · operation","title":"Controlling the burn","cool":false,"html":"<p>The <b>primary air lever<\/b> on the lower part of the ash door sets the burn. Push it left to open it (faster, hotter); push it right to close it (slower).<\/p>\n<ul>\n<li><b>High:<\/b> load the firebox fully on hot coals or a flaming fire, air fully open. Do this once or twice a day to heat the stovepipe and chimney and keep creosote down.<\/li>\n<li><b>Medium:<\/b> air mid-range. This is the normal setting, and the best one if you'll leave the stove unattended.<\/li>\n<li><b>Low:<\/b> air closed. Not for long stretches; it can build creosote.<\/li>\n<\/ul>\n<h4>Reloading<\/h4>\n<p>Pull the bypass out first. Open the door just a crack, pause, then open it fully. Load onto a bed of hot, red coals, and run with the air fully open for 20 to 30 minutes afterward.<\/p>\n<h4>Signs of over-firing<\/h4>\n<p>Short burn times, a roaring sound in the stove or stovepipe, or a discolored stovepipe. Causes: too much draft, the wrong fuel, or operator error, such as worn gaskets or burning with the fuel door or ash door open. If you suspect it, call your dealer immediately.<\/p>\n<div class=\"note danger\"><b>Never over-fire your stove.<\/b> It will damage the stove. <b>Over-firing isn't covered.<\/b> The manual says any sign of over-firing voids your warranty.<\/div>"},"wood":{"tag":"Owner · operation","title":"What wood to burn","cool":false,"html":"<p>Burn natural cordwood (firewood) only, and season it: split it, stack it and let it air-dry for a year. Green wood holds a lot of moisture and burns poorly.<\/p>\n<h4>From most heat to least<\/h4>\n<ul>\n<li><b>High:<\/b> apple, black birch, hickory, locust, white oak, black beech, mesquite<\/li>\n<li><b>Medium high:<\/b> white ash, beech, yellow birch, sugar maple, red oak<\/li>\n<li><b>Medium low:<\/b> black ash, white birch, grey birch, elm, Norway pine, pitch pine, black cherry, soft maple, tamarack<\/li>\n<li><b>Low:<\/b> white pine, white cedar, balsam fir, spruce, aspen, basswood, butternut, hemlock<\/li>\n<\/ul>\n<p>Higher-heat woods burn longer. Softwoods burn hotter and faster; hardwoods burn longer and leave more coals.<\/p>\n<h4>Storing it<\/h4>\n<p>Stack it on skids or blocks, and cover only the top. Tarps over the sides trap moisture. Don't store wood within the stove's clearances.<\/p>\n<div class=\"note danger\"><b>Never burn<\/b> coal, kiln-dried wood, painted or treated wood, solvents, plywood, driftwood, artificial or wax logs, pellets, charcoal, cardboard, colored or glossy paper, trash or garbage. Never start or liven a fire with gasoline, kerosene, lighter fluid, other liquid fuels or solid fire starters. These fuels can generate carbon monoxide, which can sap the oxygen supply or even cause an explosion. Keep all such materials away from the stove.<\/div>"},"ash":{"tag":"Owner · maintenance","title":"Emptying the ashes","cool":false,"html":"<p>Empty the ashes every week, or sooner if the firebox is full. Do it when the stove is cold; if the ash pan is still warm, wear fireplace gloves.<\/p>\n<ol>\n<li>With a poker, sift the ashes through the grate into the ash pan.<\/li>\n<li>Turn the ash door handle to 9 o'clock and pull the door open.<\/li>\n<li>Slide the ash pan out carefully by its handle.<\/li>\n<li>Dump the ashes into a metal container with a tight-fitting lid, with nothing else in it, and put the lid back on.<\/li>\n<li>Push the pan all the way back in, firmly, and close the ash door by turning the handle to 6 o'clock.<\/li>\n<\/ol>\n<p>You can also shovel ashes out through the fuel door. Keep the ash pan fully inserted while the stove is in use. Letting ash build up can cause back-puffing.<\/p>\n<div class=\"note danger\"><b>Ashes stay hot for days.<\/b> Set the closed container on a noncombustible floor or on the ground, well away from anything that burns, never on vinyl flooring. Never use wood or plastic containers, or paper or plastic bags. Keep the ashes in the closed container until every cinder is cold.<\/div>"},"door":{"tag":"Owner · maintenance","title":"Door glass and gasket","cool":false,"html":"<h4>Cleaning the glass<\/h4>\n<p>Clean it only when the fire is out and the glass is cool. Use a low-alkaline commercial stove glass cleaner from your dealer and follow its instructions. For heavier deposits, lift the door off, lay it face down on a bench, let the cleaner sit a few minutes, then wipe it off with a soft cloth.<\/p>\n<div class=\"note danger\"><b>No razor blades, steel wool or abrasives.<\/b> Scratches weaken the glass.<\/div>\n<p>Never run the stove with broken glass. Replace it right away with the ceramic glass made for this stove (fuel loading door glass, part 3030-050). Your dealer supplies it with instructions. If you fit it yourself, wear work gloves and safety glasses.<\/p>\n<h4>The door seal<\/h4>\n<p>Every other month, with the stove cool, shut the door on a dollar bill. If it pulls out with no resistance, the seal is loose: change the gasket. Gaskets normally need replacing every two to three seasons, and your dealer has a kit with instructions.<\/p>\n<p>Don't slam the door or use it to push wood in, and don't let logs rest against the glass.<\/p>"},"cooktop":{"tag":"Owner · maintenance","title":"Caring for the cooktop","cool":false,"html":"<p>The cooktop is glass. Scratches weaken it and shorten its life.<\/p>\n<ul>\n<li>Lift pots and pans; don't slide them. Check that utensils have no rough spots.<\/li>\n<li>Make sure the cooktop is clean before you start a fire.<\/li>\n<li>Avoid boil-overs: keep the heat as low as the job allows and use a big enough pan. Cover pans to stop spatters.<\/li>\n<li>Don't cook on foil. It can melt onto the glass.<\/li>\n<li>Wipe up wet spots promptly, watching for steam burns, and clean off grease regularly after cooking.<\/li>\n<\/ul>\n<h4>Cleaning up a spill<\/h4>\n<p>Remove the hot pans. Wearing an oven mitt, hold a scraper and push the spill to a cool part of the cooktop, then wipe up the excess with a paper towel. Don't use that spot again until the spill is gone. Suggested cleaners: Weiman Cooktop Cleaning Creme, Cera Care, Hopes Cooktop Cleaning Creme, Cerama Bryte.<\/p>\n<h4>The enamel<\/h4>\n<p>The outside cast iron has an enamel finish. Wipe it with a damp sponge and dry it well so it can't rust, or use a standard glass cleaner. Over time, fine crazed lines may appear under the surface. That's natural, not a flaw.<\/p>"},"creosote":{"tag":"Owner · maintenance","title":"Creosote and chimney care","cool":false,"html":"<p>Slow, cool fires give off tar and vapors that condense in the chimney as creosote. If it ignites, it burns extremely hot and can damage the chimney or even destroy the house.<\/p>\n<h4>Keep it down<\/h4>\n<ul>\n<li>Once a day, burn for 30 minutes with the primary air fully open and the flue bypass open.<\/li>\n<li>After each reload, run with the air fully open for 20 to 30 minutes.<\/li>\n<li>Avoid long stretches of low burning.<\/li>\n<\/ul>\n<h4>Check for it<\/h4>\n<ul>\n<li>Every month, look over the stovepipe and chimney and tap the pipe. Hollow means it's most likely clean; solid or full means creosote, so clean it before using the stove again.<\/li>\n<li>Check at the stove and at the chimney top, where it's coolest.<\/li>\n<li>More than 1/4\" (6 mm) built up? Have it removed. The manual recommends a certified chimney sweep; your dealer can name one.<\/li>\n<li>Every season, have a qualified technician inspect the chimney and stove. Take the stovepipe down, clean it, and replace any rusted pieces.<\/li>\n<\/ul>\n<p>During heavy use, Hearthstone suggests a technician check the system about every other month.<\/p>"},"safety":{"tag":"Owner · safety","title":"Chimney fires and everyday safety","cool":false,"html":"<h4>If you have a chimney or stovepipe fire<\/h4>\n<ol>\n<li>If it's too threatening, leave and call the fire department right away. If not:<\/li>\n<li>Close the primary air control.<\/li>\n<li>Close the stovepipe damper, if you have one.<\/li>\n<li>Keep all the stove's doors closed.<\/li>\n<\/ol>\n<div class=\"note danger\"><b>Never throw water<\/b> on the stove, stovepipe or chimney. The heat can flash it to steam and cause serious injury.<\/div>\n<p>Afterward, leave the air closed and let the fire die out completely. Don't light the stove again until the stove, stovepipe and chimney have been inspected and any damage is fixed.<\/p>\n<h4>Every day<\/h4>\n<ul>\n<li>The stove is hot while it runs. Keep children, pets, clothing and furniture away; contact can burn skin.<\/li>\n<li>Keep furniture, drapes and other things that burn at least 36\" (0.92 m) away.<\/li>\n<li>Keep the fuel door closed except when loading wood.<\/li>\n<li>Have a smoke detector, and keep an \"A B C\" fire extinguisher handy.<\/li>\n<li>Never put clothing or candles on a hot stove.<\/li>\n<\/ul>"},"warranty":{"tag":"Owner · warranty","title":"Warranty registration","cool":false,"html":"<p>Hearthstone manufactures and warrants the stove. As the original purchaser, you can register on Hearthstone's website (hearthstonestoves.com), or mail the signed registration form from the cook stove warranty packet to:<\/p>\n<p>Hearthstone Quality Home Heating Products, Inc.<br>Warranty Department<br>317 Stafford Ave<br>Morrisville, VT 05661<\/p>\n<div class=\"note\"><b>Note:<\/b> p. 3 says to return the registration card within 30 days of purchase to validate your warranty; p. 26 says sending the signed registration form is not a condition of warranty coverage.<\/div>\n<p>For warranty service, contact your dealer.<\/p>\n<h4>What the manual says voids it<\/h4>\n<p>Damage from over-firing isn't covered, and any sign of over-firing voids the warranty. This manual doesn't list what is covered or for how long.<\/p>"},"specFirebox":{"tag":"Installer · spec","title":"Firebox, oven and output","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Max heat output<\/span><span>46,000 BTUs per hour of cordwood<\/span><\/div><div class=\"r\"><span>Firebox capacity<\/span><span>1.6 cubic feet<\/span><\/div><div class=\"r\"><span>Oven capacity<\/span><span>2.47 cubic feet<\/span><\/div><\/div><div class=\"note small\"><b>Maker's website:<\/b> Oven Capacity 2.5 cu ft.<\/div><div class=\"kv\"><div class=\"r\"><span>Max log length<\/span><span>17\" (43 cm)<\/span><\/div><div class=\"r\"><span>Fuel loading door<\/span><span>7\" x 9-3/4\" (18 cm x 25 cm)<\/span><\/div><\/div><p>Output is based on independent laboratory test results. Cordwood only: no coal, pellets, charcoal or artificial logs. No additional outside air for combustion is required, and no outside-air kit is available.<\/p>"},"specDims":{"tag":"Installer · spec","title":"Dimensions","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Height<\/span><span>33-3/4\" (85 cm)<\/span><\/div><div class=\"r\"><span>Width<\/span><span>40\" (102 cm)<\/span><\/div><div class=\"r\"><span>Depth<\/span><span>23 3/4\" (60 cm)<\/span><\/div><div class=\"r\"><span>Stovepipe size<\/span><span>6\" (15.2 cm) diameter<\/span><\/div><\/div><p>Freestanding installation only. Not approved for installation in a mobile home, and not to be installed in any factory-built fireplace.<\/p>"},"specFlue":{"tag":"Installer · spec","title":"Stovepipe and chimney connector","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Connector<\/span><span>6\" (152 mm) diameter, 24 MSG or 25 MSG blued steel<\/span><\/div><div class=\"r\"><span>Not allowed<\/span><span>aluminum or galvanized steel pipe<\/span><\/div><div class=\"r\"><span>Close clearance (double wall)<\/span><span>tested to UL standards and listed<\/span><\/div><div class=\"r\"><span>Flue collar<\/span><span>at least three #10 x 1/2\" sheet metal screws<\/span><\/div><div class=\"r\"><span>Flue exit<\/span><span>top, or rear with the collar reversed (p. 14)<\/span><\/div><\/div><p>Crimped ends toward the stove. The connector shall not pass through a floor or ceiling, attic or roof space, closet or similar concealed space; through a combustible wall, conform to NFPA 211 or CAN/CSA - B365. Check the connector maker's specifications and listing for actual clearances.<\/p>\n<div class=\"note danger\">Never connect to a chimney flue serving another appliance, or to any air distribution duct or system.<\/div>"},"specChimney":{"tag":"Installer · spec","title":"Chimney and draft","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Prefab chimney<\/span><span>Type HT (2100 deg. F), listed per UL 103 or ULC S629<\/span><\/div><div class=\"r\"><span>Flue, new installations<\/span><span>6\" (152 mm) inside diameter<\/span><\/div><div class=\"r\"><span>Existing flue<\/span><span>8\" (203 mm) diameter, with a reducer<\/span><\/div><div class=\"r\"><span>Masonry tile (best results)<\/span><span>8\" x 8\" (203 mm x 203 mm)<\/span><\/div><div class=\"r\"><span>Liner<\/span><span>UL 1777 or ULC S635<\/span><\/div><div class=\"r\"><span>Chimney height<\/span><span>13 feet (4 m) min · 30 feet (9 m) max<\/span><\/div><div class=\"r\"><span>Draft<\/span><span>0.06\" w.c. – 0.1\" w.c.<\/span><\/div><\/div><p>Above 0.1\" w.c., install a stovepipe damper; some installations may need more than one. A damper isn't generally needed, but a tall chimney can over-draft. Measure with a draft gauge from a Hearthstone dealer. The flue sizes for new and existing flues come from the prefabricated-chimney section; the 8\" x 8\" tile from the masonry section (p. 14). An oversized flue promotes creosote. Roof clearances for the chimney top are on p. 15.<\/p>"},"specClear":{"tag":"Installer · spec","title":"Clearances to combustibles","cool":true,"html":"<p>Minimum clearances from the closest point of the stove, from the table on p. 9. The letters A–D are dimensions on Figure 2, a drawing on the same page; read what each letter measures there.<\/p>\n<h4>Single wall connector<\/h4>\n<div class=\"kv\"><div class=\"r\"><span>A<\/span><span>top exit 10\" (26 cm) · rear exit 4\" (11 cm)<\/span><\/div><div class=\"r\"><span>B<\/span><span>top exit 10\" (26 cm) · rear exit 4\" (11 cm)<\/span><\/div><div class=\"r\"><span>C<\/span><span>top exit 16\" (41 cm) · rear exit 16\" (41 cm)<\/span><\/div><div class=\"r\"><span>D<\/span><span>top exit 21.5\" (55 cm) · rear exit n/a<\/span><\/div><\/div>\n<h4>Double wall connector<\/h4>\n<div class=\"kv\"><div class=\"r\"><span>A<\/span><span>top exit 4\" (11 cm) · rear exit 4\" (11 cm)<\/span><\/div><div class=\"r\"><span>B<\/span><span>top exit 4\" (11 cm) · rear exit 4\" (11 cm)<\/span><\/div><div class=\"r\"><span>C<\/span><span>top exit 14\" (36 cm) · rear exit 16\" (41 cm)<\/span><\/div><div class=\"r\"><span>D<\/span><span>top exit 19.5\" (50 cm) · rear exit n/a<\/span><\/div><\/div>\n<p>The manual's diagrams are specific to Simpson Dura-Vent DVL. Clearances can't be reduced without listed close-clearance connector pipe and/or NFPA 211 surface protection. The chimney connector clearances are shown only as drawings on p. 10. Keep furniture, drapes and other combustibles at least 36\" (0.92 m) away (p. 4).<\/p>"},"specFloor":{"tag":"Installer · spec","title":"Floor protection","cool":true,"html":"<p>Set the stove on a noncombustible floor protector (from the dealer, or metal, glass, stone, tile, etc.).<\/p>\n<div class=\"kv\"><div class=\"r\"><span>Front, past the fuel loading door<\/span><span>16 inches (US) · 46 cm (Canada)<\/span><\/div><div class=\"r\"><span>Each side<\/span><span>8 inches (20 cm)<\/span><\/div><div class=\"r\"><span>Horizontal connector<\/span><span>beneath the connector and 2\" beyond each side<\/span><\/div><div class=\"r\"><span>Rating<\/span><span>R-value of at least 0.89, or UL Listed floor protection<\/span><\/div><\/div>\n<p>Example: a continuous layer of listed backer board (Micore, Wonder-Board or Durock) with a tile, brick, slate or other noncombustible facing. Figure 1 shows hearth protection for top vent installations.<\/p>\n<h4>Checking an alternate protector<\/h4>\n<ul>\n<li>R-value given: use it as is.<\/li>\n<li>K-factor with thickness T in inches: R-value = 1/K x T.<\/li>\n<li>C-factor: R-value = 1/C.<\/li>\n<li>Several layers: add the R-values.<\/li>\n<\/ul>\n<p>If the total is greater than the specified R-value, the setup is acceptable.<\/p>"},"specAlcove":{"tag":"Installer · spec","title":"Alcove installation","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Max depth<\/span><span>48\"/122cm<\/span><\/div><div class=\"r\"><span>Min height<\/span><span>96\"<\/span><\/div><div class=\"r\"><span>Min width, single wall connector<\/span><span>63\"/ 160cm<\/span><\/div><div class=\"r\"><span>Min width, double wall connector<\/span><span>58\"/ 147cm<\/span><\/div><\/div><div class=\"note small\">The manual prints the minimum alcove height as 96\"/ 2439cm (p. 10); the metric figure doesn't match 96\".<\/div>\n<h4>Alcove clearances, top exit connector (table, p. 9)<\/h4>\n<div class=\"kv\"><div class=\"r\"><span>A<\/span><span>single wall 7\" (18 cm) · double wall 4\" (11 cm)<\/span><\/div><div class=\"r\"><span>B<\/span><span>single wall 16\" (41 cm) · double wall 14\" (36 cm)<\/span><\/div><div class=\"r\"><span>C<\/span><span>single wall 16\" (41 cm) · double wall 14\" (36 cm)<\/span><\/div><div class=\"r\"><span>D<\/span><span>single wall 21.5\" (55 cm) · double wall 19.5\" (50 cm)<\/span><\/div><\/div>\n<p>The letters are dimensions on the Figure 2 drawing (p. 9). The alcove table covers the top exit connector only.<\/p>"}};
+const PAGEREF = {"light":18,"oven":16,"burn":19,"wood":17,"ash":19,"door":20,"cooktop":21,"creosote":20,"safety":5,"warranty":26,"specFirebox":6,"specDims":6,"specFlue":11,"specChimney":12,"specClear":9,"specFloor":8,"specAlcove":10,"step0":7,"step1":7,"step2":8,"step3":9,"step4":11,"step5":12,"step6":12,"step7":14,"step8":14,"step9":15};
+const INDEX_EXTRA = [{"k":"h","id":"safety","t":"chimney fire","p":"Close the air, keep the doors shut, never use water"},{"k":"h","id":"burn","t":"over-firing","p":"Short burns, roaring, a discolored stovepipe"},{"k":"h","id":"oven","t":"oven not hot","p":"Push the flue bypass in; check the oven door seal"},{"k":"h","id":"light","t":"smoke smell","p":"First fires smoke for 10 to 20 minutes"},{"k":"h","id":"door","t":"dollar bill test","p":"Check the door seal every other month"},{"k":"h","id":"creosote","t":"chimney sweep","p":"Remove buildup over 1/4\""},{"k":"i","id":"specChimney","t":"draft gauge","p":"0.06\" to 0.1\" w.c.; damper above 0.1\""},{"k":"i","id":"specFloor","t":"hearth pad","p":"R-value 0.89; 16\" front, 8\" sides"}];
+const MANUAL_BASE = "../../var/brain-assets/";
+const MANUALS = [{"n":1,"label":"Installation & Operation Manual","short":"Manual","url":"documents/hearthstone/hearthstone-deva-8220-manual.pdf","pages":26,"role":"installation_and_operation","kit":false,"revision":"R 1/6/2023"}];
+
+/* step detail (generated; a step may carry its own drawer html as a third element) */
+STEPS.forEach((s,i)=>{ DETAIL['step'+i]={tag:'Installer · step '+(i+1), title:s[0], cool:true, html:s[2]||`<p>${s[1]}</p>`}; });
+
+/* ================= template logic (identical in every guide) ================= */
+const $=(s,r=document)=>r.querySelector(s); const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const MULTI = MANUALS.length>1;
+/* where each manual lives: a relative storage key under MANUAL_BASE, or a full URL */
+function manualHref(n){const m=MANUALS[n-1];return /^(https?:)?\/\//.test(m.url)?m.url:MANUAL_BASE+m.url;}
+function pdfHref(page,n){return manualHref(n||1)+(page?('#page='+page):'');}
+/* deep-link into a PDF at a specific page (#page=N is honored by the Chrome, Edge and Firefox viewers) */
+function openPDF(page,n){window.open(pdfHref(page,n),'_blank','noopener');}
+const MANUAL_URL = manualHref(1);
+
+function tile(d){const b=document.createElement('button');b.className='tile';b.innerHTML=
+  `<svg class="ic" viewBox="0 0 24 24" ${d.fill?'fill="currentColor"':'fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"'}><path d="${d.icon}"/></svg>
+   <h3>${d.title}</h3><p>${d.blurb}</p>`;
+  b.onclick=()=>openDrawer(d.id);return b;}
+HOME_PRIMARY.forEach(d=>$('#homeTiles').appendChild(tile(d)));
+HOME_SECONDARY.forEach(d=>$('#homeTiles2').appendChild(tile(d)));
+if(!HOME_SECONDARY.length) $('#homeSec2').style.display='none';
+
+SPECS.forEach(s=>{const el=document.createElement('div');el.className='spec';
+  el.innerHTML=`<div class="lab">${s.lab}</div><div class="rows">${s.rows.map(r=>`<div class="row"><b>${r[0]}</b><span class="v">${r[1]}</span></div>`).join('')}${s.note?`<div class="row"><b style="font-size:11px">${s.note}</b></div>`:''}</div>`;
+  el.style.cursor='pointer';el.onclick=()=>openDrawer(s.tap);$('#specCards').appendChild(el);});
+
+STEPS.forEach((s,i)=>{const el=document.createElement('div');el.className='step';
+  el.innerHTML=`<div class="num">${i+1}</div><div class="body"><h4>${s[0]}</h4><p>${s[1]}</p></div>
+   <div class="check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m5 12 4 4 10-10"/></svg></div>`;
+  el.querySelector('.body').onclick=(e)=>{e.stopPropagation();openDrawer('step'+i);};
+  el.onclick=()=>el.classList.toggle('done');
+  $('#checklist').appendChild(el);});
+
+if(FAULTS && FAULTS.panels && FAULTS.panels.length){
+  $('#faultLabel').textContent=FAULTS.label||'Field faults';
+  FAULTS.panels.forEach(p=>{const el=document.createElement('div');el.className='panel warn';
+    el.innerHTML=`<h3>⚠ ${p.title}</h3><ul>${p.items.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+    $('#faults').appendChild(el);});
+} else $('#faultSec').style.display='none';
+
+if(CODES.length){
+  const dots=Math.max(4,...CODES.filter(c=>typeof c[0]==='number').map(c=>c[0]));
+  CODES.forEach(c=>{const el=document.createElement('div');el.className='code';
+    let head='';
+    if(typeof c[0]==='number'){for(let i=0;i<dots;i++)head+=`<span class="b ${i<c[0]?'on':''}"></span>`;head=`<div class="blinks">${head}</div>`;}
+    else head=`<div class="cd">${c[0]}</div>`;
+    el.innerHTML=`${head}<div class="t">${c[1]}</div><div class="d">${c[2]}</div>`;
+    $('#codes').appendChild(el);});
+} else $('#codeSec').style.display='none';
+
+/* ---------------- role switching ---------------- */
+function setRole(role){
+  $('#gate').style.display='none';
+  $('#toggle').style.display='flex';
+  document.body.classList.add('has-role');
+  $$('.view').forEach(v=>v.classList.toggle('active',v.id===role));
+  $$('#toggle button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.role===role));
+  window.scrollTo({top:0});
+  document.body.classList.remove('hdr-away');
+  setHdrH(); requestAnimationFrame(onScroll);
+}
+$$('[data-role]').forEach(b=>b.onclick=()=>setRole(b.dataset.role));
+function currentRole(){const v=$('.view.active');return v?v.id:null;}
+
+/* return to the ignition gate (home) */
+function goHome(){
+  $('#gate').style.display='';
+  $('#toggle').style.display='none';
+  $$('.view').forEach(v=>v.classList.remove('active'));
+  $$('#toggle button').forEach(b=>b.setAttribute('aria-pressed','false'));
+  $('#results').classList.remove('open'); $('#q').value='';
+  document.body.classList.remove('has-role','hdr-away');
+  closeHeaderSearch();
+  window.scrollTo({top:0});
+  setHdrH();
+}
+$('#brandHome').onclick=goHome;
+$('#brandHome').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goHome();}});
+
+/* ---------------- drawer ---------------- */
+/* PAGEREF: the manual page where each topic is actually discussed, verified against PAGES.
+   A number is a page of the first manual; [n, page] is a page of manual n. */
+function refOf(id){const r=PAGEREF[id];if(r==null)return null;return Array.isArray(r)?{d:r[0],p:r[1]}:{d:1,p:r};}
+function openDrawer(id){const d=DETAIL[id];if(!d)return;
+  $('#dTag').textContent=d.tag;$('#dTitle').textContent=d.title;
+  const body=$('#dBody');body.className='dcontent'+(d.cool?' cool':'');
+  let html=d.html;
+  const ref=refOf(id), man=ref&&MANUALS[ref.d-1];
+  if(man) html+=`<a class="manlink${d.cool?' cool':''}" href="${pdfHref(ref.p,ref.d)}" target="_blank" rel="noopener">
+     <span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h9l5 5v11H4Z"/><path d="M13 4v5h5"/><path d="M8 13h6M8 16h6"/></svg></span>
+     <span class="tx"><b>For the specific details in the ${man.label}, go here →</b><small>Opens the official PDF at page ${ref.p}</small></span>
+     <svg class="arr" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg></a>`;
+  body.innerHTML=html;
+  $('#scrim').classList.add('open');$('#drawer').classList.add('open');}
+function closeDrawer(){$('#scrim').classList.remove('open');$('#drawer').classList.remove('open');}
+$('#dClose').onclick=closeDrawer;$('#scrim').onclick=closeDrawer;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();$('#pdfMenu').classList.remove('open');}});
+
+/* ---------------- the official PDF(s) ---------------- */
+const pdfMenu=$('#pdfMenu');
+pdfMenu.innerHTML=`<div class="ml">Official manuals</div>`+MANUALS.map((m,i)=>
+  `<a href="${pdfHref(null,i+1)}" target="_blank" rel="noopener"><b>${m.label}</b><small>${m.pages} pages${m.revision?' · '+m.revision:''}</small></a>`).join('');
+$('#pdfBtn').onclick=e=>{e.preventDefault();e.stopPropagation(); if(MULTI) pdfMenu.classList.toggle('open'); else openPDF(null,1);};
+$$('.footdoc').forEach(a=>{a.href=pdfHref(null,+a.dataset.doc);a.target='_blank';a.rel='noopener';});
+document.addEventListener('click',e=>{if(!pdfMenu.contains(e.target))pdfMenu.classList.remove('open');});
+
+/* ---------------- search ---------------- */
+/* full text of every page of every manual: {d: manual number, p: physical PDF page (cover = 1), t: text} */
+const PAGES = [{"d":1,"p":1,"t":"Deva 100\n\n(Model 8220)\n\nWood-fired Cook Stove\nOWNER'S MANUAL\nINSTALLATION AND OPERATING\nINSTRUCTIONS\n\nWe recommend that our products be installed\nand serviced by professionals who are\ncertified in the U.S. by NFI (National Fireplace\nInstitute), or by W.E.T.T. (Wood Energy\nTechnology Transfer) in Canada.\nwww.nficertified.org\nwww.wettinc.ca\n\nF20-643\nTested to: UL 1482-2022\nULC S627-2021\nPLEASE READ THIS ENTIRE OWNER’S MANUAL BEFORE YOU INSTALL AND USE\nYOUR NEW Deva 100 COOK STOVE.\nTo reduce the risk of fire, follow the installation instructions. Failure to follow these\ninstructions may result in property damage, bodily injury, or even death.\nCe manuel est disponible en français sur hearthstonetech.com.\n\nCONTACT LOCAL AUTHORITIES HAVING JURISDICTION (BUILDING\nDEPARTMENT or FIRE OFFICIALS) ABOUT PERMITS REQUIRED, RESTRICTIONS\nAND INSTALLATION INSPECTION IN YOUR AREA.\nCalifornia Prop 65\n\nSAVE THESE INSTRUCTIONS FOR\nFUTURE REFERENCE!\n\nWARNING: This product can expose you to\nchemicals including glass wool fiber and carbon\nmonoxide which are known to the State of California to\ncause cancer, birth defects or other reproductive harm.\nFor more information go to www.P65Warnings.ca.gov\n\nDeva 100 Model# 8220\nManual: 6400-40460\nRevised 1/6/2023"},{"d":1,"p":2,"t":"TABLE OF CONTENTS\nINTRODUCTION .................................................................................................................................... 3\nCODES .................................................................................................................................................. 3\nSAFETY INFORMATION .......................................................................................................................... 3\nPERIODIC CHECKLIST ........................................................................................................................... 4\nEMERGENCY PROCEDURES.................................................................................................................. 5\nSPECIFICATIONS ................................................................................................................................. 6\nINSTALLATION ..................................................................................................................................... 7\nUNPACKING ........................................................................................................................................... 7\nINSTALLING YOUR STOVE ..................................................................................................................... 7\nCLEARANCES TO NFPA 211 PROTECTED SURFACES ........................................................................ 7\nHEARTH REQUIREMENTS AND FLOOR PROTECTION ........................................................................... 8\nCLEARANCES TO COMBUSTIBLES ........................................................................................................ 9\nALCOVE REQUIREMENTS: ................................................................................................................... 10\nVENTING COMPONENTS AND CONFIGURATION .................................................................................. 11\nComponents of a Venting System ......................................................................................... 11\nInstalling a Venting System .................................................................................................... 11\nCONNECTING YOUR WOOD-FIRED COOK STOVE .............................................................................. 12\nConnecting to a Prefabricated Metal Chimney .................................................................... 12\nOPERATION......................................................................................................................................... 16\nCONTROLS AND FEATURES ................................................................................................................ 16\nCHOOSING FIREWOOD ........................................................................................................................ 17\nBUILDING YOUR FIRST FIRE ............................................................................................................... 18\nBuilding A Fire .......................................................................................................................... 18\nBurn Rate .................................................................................................................................. 19\nOver-Fire Caution..................................................................................................................... 19\nRemoval And Disposal Of Ashes .......................................................................................... 19\nCreosote Formation And Need For Removal ...................................................................... 20\nGaskets...................................................................................................................................... 20\nGlass .......................................................................................................................................... 20\nMAINTENANCE OF THE GLASS COOK TOP ......................................................................................... 21\nCLEANING OF THE GLASS COOK TOP ................................................................................................ 21\nCast Iron .................................................................................................................................... 21\nTROUBLESHOOTING .................................................................................................................... 21\nTROUBLESHOOTING GUIDE ................................................................................................................ 23\nREPLACEMENT PARTS & OPTIONAL ACCESSORIES........................................................................... 24\nSAFETY LABEL .................................................................................................................................... 25\nWARRANTY REGISTRATION ...................................................................................................... 26\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n2"},{"d":1,"p":3,"t":"Introduction\nCongratulations! You have just invested in a most\nunique wood burning cook stove – the Deva 100 from\nHearthstone Quality Home Heating Products, Inc®.\nThe Deva 100 Model 8220 is a wood burning cookstove. At 1.6 cubic feet firebox and 2.47 cubic feet\noven capacity you can be proud to join the\nHearthstone family with our Premier Wood Burning\nCook stove. The generous door height allows for\nloading of wood through the front up to 17” inches\nlong!\n\nThe performance of your stove depends on many\nvariables. Since all installations are unique, the\ngeneral information and operating procedures\npresented here can only serve as useful if you have\nany questions; do not hesitate to contact your dealer\nfor additional information.\nValidate your warranty - return your warranty\nregistration card to Hearthstone within 30 days of\npurchase to validate your warranty. Contact your\ndealer for any necessary warranty service.\n\nYour purchase ensures years of clean, comfortable\nheat and cooking with minimal maintenance. The\nDeva 100 blends modern technology with the unique\nbeauty of cast iron. We trust that you will appreciate\nthe quality of our handcrafted product.\n\nThis cook stove is manufactured and warranted by:\nHearthstone Quality Home Heating Products, Inc®\n317 Stafford Ave.\nMorrisville, VT 05661\nwww.hearthstonestoves.com\n\nPlease read this manual in its entirety. Its purpose is\nto familiarize you with your cook stoves safe\ninstallation, operation and maintenance. It contains\ninformation that will be useful to you now and in years\nto come, so keep it handy and refer to it as needed.\n\nCODES\nWhen you install your Deva, it is imperative that you\nadhere to all local codes, which can be obtained from\neither of the following two national sources:\n\nUse these instructions as well as national, state, and\nlocal building codes to install your cook stove. Be\nsure to maintain the designated stovepipe and cook\nstove clearances to walls, ceilings, hearth, and other\ncombustible surfaces. This will help reduce the risk\nof fire. Failure to follow these instructions can result\nin property damage, bodily injury, and even death.\n\nAmerican National Standards Institute, Inc. (ANSI)\n1430 Broadway\nNew York, NY 10018\nwww.ansi.org\nNational Fire Protection Association, Inc. (NFPA)\nBattery March Park\nQuincy, MA 02269\nwww.nfpa.org\n\nLocate your cook stove in a safe, convenient, open\narea; away from traffic flow, doors, and hallways; and\nnear a chimney and chimney connector. Review the\nproper clearance measurements from combustible\nsurfaces. You can safely reduce required clearances\nin most cases with a special connector pipe and\nspecial wall coverings as specified by this manual, the\nNFPA 211 codes, and your local authorities having\njurisdiction.\n\nSAFETY INFORMATION\nRead and understand this Owner's Manual\nthoroughly before installing and using this\nstove.\nEnsure you install your stove:\nAccording to the manufacturer's\nrecommendations.\nIn accordance with all applicable codes.\nWith the proper sized chimney.\n\nKeep furniture, drapes, curtains, wood, paper, and\nother combustibles far away from the stove. Never\ninstall the cook stove in a location where gasoline,\nkerosene, charcoal lighter fluid or other flammable\nliquids are used or stored.\n\nWhen using your stove:\nWarn children and others unfamiliar with\nwood-fired cook stoves the danger of\ntouching hot, radiating surfaces of your stove.\nFor your additional safety, obtain hearth and\nstove guards through your local dealer. Keep\npets away from the stove to prevent\nunnecessary hazards.\nBurn natural wood only.\nHigher\nefficiencies and lower emissions result\nwhen burning air-dried, seasoned wood,\n\nSAFETY NOTICE: A HOUSE FIRE MAY\nRESULT IF THIS COOK STOVE IS NOT\nINSTALLED PROPERLY. FOR YOUR SAFETY,\nCAREFULLY FOLLOW THE INSTALLATION\nDIRECTIONS. CONTACT LOCAL BUILDING\nOR FIRE OFFICIALS ABOUT RESTRICTIONS\nAND INSTALLATION INSPECTION IN YOUR\nAREA.\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n3"},{"d":1,"p":4,"t":"as compared to green or freshly cut\nwood.\nUse caution when loading firewood into a\nhot stove.\nKeep the fuel loading door closed at all\ntimes except when loading wood.\nKeep the ash pan tray fully inserted.\nAvoid grease build-up when cooking on\nthe top surface. Clean the surface\nregularly after using the cook top surface.\nUse care when cooking on the glass\ntop. Scratching the surface will\nweaken and shorten the life of the\nglass. (Pick up your cooking pots\npans instead of sliding them on the\nsurface.)\nNever modify this cook stove in any way.\nNever burn kiln dried wood, painted or\ntreated wood, solvents, trash, plywood,\ncolored or glossy paper, artificial logs,\ncardboard, coal, garbage or driftwood.\nEspecially, do not burn coal in this stove.\nNever Use gasoline type fuel, kerosene,\ncharcoal lighter fluid, or other liquid fuels\nor solid fire starters to start or invigorate\nthe fire.\nThese fuels can possibly\ngenerate carbon monoxide, which can\nsap the supply of oxygen or even create\nan explosion. Keep all such materials\naway from the stove.\nNever use a wood grate andirons or\nother device to elevate the fire.\nDo not allow logs to rest against or\notherwise come in contact with the glass\nwhen the door is closed.\nDo not slam the door or use it to force\nwood in to the cook stove.\nNever over-fire your cook stove. (See\npage 19)\nNever put articles of clothing or candles\non a hot cook stove.\nDo not connect the cook stove to a flue\nthat is serving another appliance.\nDo not set any materials on the cook top\nthat are not intended. The surface will\nbecome very hot during operation and\neven though ignition may or may not take\nplace the heat will melt or burn most\nobjects which may in turn drip into the\nfirebox will may create an ignition.\n\nInstall a smoke detector.\nKeep a fire extinguisher handy. We\nrecommend the type rated \"A B C.\"\nDispose of ashes properly. (See page 19)\n\nPERIODIC CHECKLIST\nPerform each of these tasks at the specified intervals.\n(While these are to be used as a rule of thumb,\nHearthstone recommends that a qualified service\ntechnician inspect your wood burning system\napproximately every other month during heavy use).\nEvery Week:\nEmpty ashes from the firebox and ash pan,\nsooner if the firebox is full.\nEvery Month:\nVisually inspect chimney connector and\nchimney for creosote; clean accordingly.\no Tap the outside of the pipe to feel\nfor buildup of creosote. If the pipe\nfeels hollow, your pipe is most likely\nclean and safe for use. If the pipe\nfeels solid or full, it probably has\naccumulated creosote and should\nbe cleaned before further use.\nEvery Other Month:\nA visual inspection of the chimney connector\nand chimney for creosote is recommended\ndepending upon your use of the stove.\nCheck the fuel loading door seal using the\n\"dollar bill test.\" (When the fire is out and the\nstove is cool, shut the door on a dollar bill. If\nthe bill pulls out without any resistance, then\nyour stove’s door isn't sealed properly.) To\ntighten the seal, change the door gasket.\nEvery Season:\nHave a qualified service technician inspect your\nchimney and wood burning system.\nDismantle the chimney connector and clean\nit thoroughly. Replace any pieces that show\nsigns of rust or deterioration.\nInspect and, if necessary, clean your\nchimney.\nThoroughly clean out the inside of the stove.\nInspect all door gasket material and replace\nif worn, frayed, cracked or extremely hard.\nClean and inspect the oven and oven door\ncomponents.\n\nOther safety guidelines\nKeep all combustible items such as furniture,\ndrapes, clothing, and other items, at least 36\"\n(0.92 m) from the cook stove (See page 9) for\nmore clearance to combustibles information)\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n4"},{"d":1,"p":5,"t":"WARNING: DO NOT ATTEMPT TO PUT OUT A\nSTOVEPIPE OR CHIMNEY FIRE BY THROWING\nWATER ONTO THE STOVE, STOVEPIPE, OR\nCHIMNEY. THE EXTREMELY HIGH\nTEMPERATURE ASSOCIATED WITH SUCH FIRES\nCAN CAUSE INSTANT-ANEOUS STEAM AND\nSERIOUS BODILY HARM.\n\nEMERGENCY PROCEDURES\nIf you have a stovepipe or chimney fire, follow these\ninstructions:\n1. If the fire is too threatening, leave the area and\ncall the fire department immediately! If not,\nperform the next three steps.\n\nOnce the chimney fire has expired, leave the primary\nair control closed and let the fire in the stove die out\ncompletely. The cook stove should not be fired again\nuntil the stove, stovepipe, and chimney are all\nthoroughly inspected for any sign of damage. You\nmust correct any damage before using your cook\nstove again.\n\n2. Close the primary air control.\n3. Close the stovepipe damper (if present).\n4. Keep all doors to the stove closed!\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n5"},{"d":1,"p":6,"t":"Specifications\nOven Capacity: 2.47 cubic feet\nFirebox Capacity 1.6 cubic feet\nMaximum Heat Output: 46,000 BTUs per hour of cordwood (based on independent\nlaboratory test results)\nMaximum Log Length: 17\" (43 cm) fuel loading door\nHeight: 33-3/4\" (85 cm)\nWidth: 40” (102 cm)\nDepth: 23 3/4\" (60 cm)\nFuel loading door dimension: 7”x 9-3/4”\n(18 cm x 25 cm)\nStovepipe Size\n\n6\" (15.2 cm) diameter\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n6"},{"d":1,"p":7,"t":"Installation\nIf you use a close clearance connector pipe, it\nmust be tested to UL standards and listed.\n\nUNPACKING\nHearthstone packages your Deva 100 cook\nstove with the greatest care, so that it ships\nsafely. Under certain circumstances, however,\ndamage can occur during transit and handling.\nWhen you receive your cook stove, unpack it\ncarefully, inspecting your stove and all parts for\ndamage. Also, make sure that all parts are\nincluded in the box. If any parts are damaged\nor missing, please contact your dealer\nimmediately.\n\nCheck the listing for your pipe for actual\nclearances.\nThe diagrams in this manual\nrepresent typical installations, but are specific to\nthe Simpson Dura-Vent DVL brand. Clearances\ncannot be reduced without the use of close\nclearance connector pipe and/or by protecting the\nsurfaces per NFPA 211 standards.\nThe Deva is to be installed as a freestanding cook\nstove with the clearances in the included installation\ninstructions. The Stove is not to be installed in any\nfactory-built fireplace.\n\nINSTALLING YOUR STOVE\n\nCLEARANCES TO NFPA 211\nPROTECTED SURFACES\n\nThe Deva 100 is not approved for\ninstallation in a mobile home.\n\nYou can reduce the clearances to combustible\nsurfaces by using any National Fire Protection\nAgency (NFPA) approved wall protection system.\nPlease refer to NFPA 211 for specifications and\ncomplete details. You can obtain this information\ndirectly from NFPA.\n\nThe Deva 100 Cook stove does not require the\nuse of additional outside air for combustion.\nThere is no kit available for this installation so\nplease keep this in mind when installing and\nplanning your Deva 100.\nFirst you must decide where your stove will\nreside. After choosing an appropriate spot,\ninspect this location to make sure that the stove\nwill have enough clearance to combustible\nmaterials. These combustibles can include\nwalls, floor, ceiling, cabinets, fireplace, and\nchimney. You must carefully consider the\nclearances to all of these combustibles before\nactually connecting your cook stove. When\nconsidering these clearances, also decide the\nkind of floor the stove will rest on. Depending\non your floor, you can install your stove as it is,\nor use a floor protector, some types of flooring\nmay require additional floor protection.\n\nNational Fire Protection Agency\nBatterymarch Park\nQuincy, MA 02269\n1-800-344-3555\n1-617-770-3000\n\nPlease use this section to plan how to locate\nyour stove.\nRead this chapter to obtain a sound\nunderstanding of how to properly install your\nstove.\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n7"},{"d":1,"p":8,"t":"HEARTH REQUIREMENTS AND FLOOR\nPROTECTION\nInstall your stove on the following:\nA non-combustible floor protector that you obtain\nfrom your dealer, or any other noncombustible\nmaterial (metal, glass, stone, tile, etc,). A floor\nprotector is any noncombustible surface laid on\nthe floor underneath the stove that extends, 16\ninches -US (or 46 cm in Canada) beyond the fuel\nloading door and 8 inches (20 cm) beyond each\nside of the cook stove. (See Figure 1) The hearth\nprotection for your Deva 100 must have an Rvalue of at least 0.89, or be a UL Listed floor\nprotection.\nAn example of a non-combustible floor protector\nwould be a hearth constructed with a continuous\nlayer of a listed backer board (such as Micore,\nWonder-Board or Durock) used for ember\nprotection with a tile, brick, slate, or another\nnoon-combustible facing.\n\nFigure 1 - Hearth Protection for top vent\ninstallations\n\nFor horizontal chimney connector installations, the\nfloor protection must be installed beneath the\nconnector and 2” beyond each side.\nFloor protector’s come with various types of\nspecifications. To convert a floor protector’s\nspecification to an R-value, do one of the following:\n\n\n\n\nIf the R-value is given, use that value—no\nconversion is needed.\nIf a K-factor is given with a required\nthickness (T) in inches, use this formula:\nR-value = 1/K x T\nIf a C-factor is given, use the formula:\nR-value = 1/C\n\nTo determine the R-value of the proposed alternate\nfloor protector:\n\n\n\nUse either the K-factor or the C-factor\nformula explained above to convert\nspecifications not expressed as R-values.\nFor multiple layers of floor protectors,\nsimply add the R-values of each layer to\ndetermine the overall R-value of the layers.\n\nIf the overall R-value of your setup is greater than the\nR-value of the specified floor protector, then your\nsetup is acceptable.\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n8"},{"d":1,"p":9,"t":"You must follow minimum clearances for the Deva 100\ncook stove to combustibles such as walls and ceilings.\nYou may reduce the general clearances if installing the\nstove near Protected Surfaces.\n\nCLEARANCES TO COMBUSTIBLES\nUse this section to plan the layout for your stove.\nConsider clearance of pipe to combustibles and\ncook stove to combustibles.\n\nFigure 2 - Clearance to Combustibles\n\nMINIMUM CLEARANCES TO COMBUSTIBLES (from closest point of stove)\nClearan\nces\n\nSingle wall connector\nTop Exit\n\nDouble walls connector\n\nRear Exit\n\nTop Exit\n\nRear Exit\n\n(in)\n\n(cm)\n\n(in)\n\n(cm)\n\n(in)\n\n(cm)\n\n(in)\n\n(cm)\n\nA\nB\nC\n\n10\n10\n16\n\n26\n26\n41\n\n4\n4\n16\n\n11\n11\n41\n\n4\n4\n14\n\n11\n11\n36\n\n4\n4\n16\n\n11\n11\n41\n\nD\n\n21.5\n\n55\n\nn/a\n\nn/a\n\n19.5\n\n50\n\nn/a\n\nn/a\n\nALCOVE\nClearances\n\nTop exit connector\nSingle wall\nDouble wall\nconnector\nconnector)\n(in)\n(cm)\n(in)\n(cm)\n\nA\n\n7\n\n18\n\n4\n\n11\n\nB\n\n16\n\n41\n\n14\n\n36\n\nC\n\n16\n\n41\n\n14\n\n36\n\nD\n\n21.5\n\n55\n\n19.5\n\n50\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n9"},{"d":1,"p":10,"t":"ALCOVE REQUIREMENTS:\nMaximum alcove depth is 48”/122cm\nMinimum alcove height is 96”/ 2439cm\nMinimum alcove width is 63”/ 160cm (with single wall connector)\nMinimum alcove width is 58”/ 147cm (with double wall connector)\n\nCHIMNEY CONNECTOR\nCLEARANCE TO COMBUSTIBLES\n\nSINGLE WALL CONNECTOR\n\nDOUBLE WALL CONNECTOR\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n10"},{"d":1,"p":11,"t":"VENTING COMPONENTS AND CONFIGURATION\nCHECK THE SPECIFICATIONS FROM THE\nMANUFACTURER OF YOUR CONNECTOR.\n\nCOMPONENTS OF A VENTING SYSTEM\n\nA thimble is a manufactured (or site-constructed)\ndevice installed in combustible walls through\nwhich the chimney connector passes to the\nchimney. It keeps the walls from igniting. You\nmust use a wall thimble when installing a chimney\nconnector through a combustible wall to the\nchimney.\n\nDO NOT CONNECT THIS UNIT TO A\nCHIMNEY FLUE SERVING ANOTHER\nAPPLIANCE\nThe complete venting system consists of several\ncomponents: chimney connector, wall thimble,\nwall pass-through, chimney, and liner. It is\nabsolutely necessary that if you install all of\nthese components, they must remain within the\nclearances to combustibles discussed earlier to\ninstall your stove safely. To protect against the\npossibility of a house fire, you must properly\ninstall and constantly maintain the venting\nsystem. Upon inspection, immediately replace\nrusted, cracked, or broken components.\n\nA wall pass-through (or chimney support\npackage) also keeps the walls from igniting. You\nmust use one when connecting through a wall or\nceiling to a prefabricated chimney.\nOnly install this stove to a lined masonry chimney\nor an approved high temperature prefabricated\nresidential type building heating appliance\nchimney. Do not connect this stove to a chimney\nserving another appliance; you will compromise\nthe safe operation of both the wood cook stove\nand the connected appliance.\n\nThe chimney connector is the stovepipe from the\nwoodstove to the chimney.\nThe chimney\nconnector stove pipe must be 6\" (152 mm)\ndiameter, 24 MSG or 25 MSG blued steel\nconnector pipe.\nDo not use aluminum or\ngalvanized steel pipe - they cannot withstand the\nextreme temperatures of a wood fire.\n\nWARNING: DO NOT CONNECT THIS\nAPPLIANCE TO ANY AIR DISTRIBUTION\nDUCT OR SYSTEM.\nA liner is the UL 1777 or ULC S635 (for factory\nbuilt fireplace or masonry) chimney.\n\nDouble wall connector (close clearance pipe)\nwhich must be used with a listed factory-built\n“Type HT\" chimney and may also be used with a\nmasonry chimney to reduce clearances, is\navailable from several manufacturers, your\ndealer can help you choose. Some air insulated\nconnector pipe models available are: Simpson\nDura Vent DVL, Metalbestos DS. The following\nmodels have acceptable close clearance\nconnector pipe for the Deva 100; Security, GSW\nand Ameritec.\nChimney connector shall not pass through floor\nor ceiling, nor any attic or roof space, closet or\nsimilar concealed space.\nWhere passage\nthrough a wall or partition of combustible\nconstruction is desired, the installation shall\nconform to NFPA 211 or CAN/CSA - B365.\n\nYou must connect your stove to a chimney\ncomparable to those recommended in this\nmanual. Do not use stovepipe as a chimney or\nliner system. Use stovepipe for freestanding\ninstallations only to connect the stove to a proper\nchimney.\n\nINSTALLING A VENTING SYSTEM\nStovepipe sections must be attached to the\nstove and to each other with the crimped end\ntoward the stove. If creosote builds up, this\nallows the creosote to run into the stove and not\nthe outside of the stovepipe and onto the stove.\n\nIt is very important to follow minimum clearances\nfor chimney connectors to combustibles such as\nwalls and ceilings when installing the stove near\nnon-combustible surfaces.\nTypical chimney\nconnector clearances are outlined below. The\nsingle wall clearances are generic; the Double\nwall clearances are for Simpson Dura Vent DVL,\n\nSecure all venting joints. Attach the stovepipe to\nthe stove's flue collar, with at least three sheet\nmetal screws. Install #10 x 1/2\" (3 mm x 13 mm)\nsheet metal screws into the holes pre-drilled in\nthe flue collar.\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n11"},{"d":1,"p":12,"t":"You can simplify connecting stovepipe by using\nadditional accessories such as telescoping\npipes, slip-connectors or clean-out tees. These\naccessories ease the inspection of your\nchimney, as well as allowing you to easily\ndismantle the stovepipe (without moving the\ncook stove) when you periodically inspection the\nstovepipe connection and chimney.\n\nCONNECTING TO A PREFABRICATED\nMETAL CHIMNEY\nWhen connecting the Deva 100 to a\nprefabricated metal chimney, you must follow,\nprecisely, the manufacturer's installation\ninstructions. Use only Type HT (2100 deg. F),\nprefabricated metal chimneys listed per UL 103\nor ULC S629 standards.\n\nInstall the stove as close as practical to the\nchimney,\nwhile maintaining\nall proper\nclearances. Install stovepipe that is as short and\nas straight as possible. Horizontal runs of\nstovepipe should always rise away from the\nstove a minimum of 1/4\" per foot (21mm/m).\n\nWARNING: DO NOT CONNECT THE STOVE\nTO A CHIMNEY FLUE SERVING ANOTHER\nAPPLIANCE.\n\nMake sure the size of the chimney’s flue is\nappropriate for the Deva 100. The Deva 100\nrequires a 6\" (152 mm) inside diameter flue for\nnew installations. A 6” diameter flue provides\nadequate draft and performance. You can use\nan 8\" (203 mm) diameter existing flue with a\nreducer.\nAn oversized flue contributes to\ncreosote accumulation. (In this case, bigger is\nNOT better.)\n\nLong runs of stovepipe to increase heat\ndispersal are not recommended. Using longer\nlengths of stovepipe or more connecting elbows\nthan necessary increase the chances of draft\nresistance and the accumulation of creosote\nbuildup.\nIn general, you do not need to install a stovepipe\ndamper with the Deva. Some installations,\nhowever, could benefit from a stovepipe damper,\nsuch as a tall chimney which can create a higher\nthan normal draft. In such cases, a damper can\nhelp regulate the draft. The Deva requires a\ndraft between 0.06\" w.c. and 0.1\" w.c. For drafts\nabove 0.1\" w.c, install a stovepipe damper.\nLocate your local Hearthstone dealer to\npurchase a draft gauge to measure the draft of\nyour chimney and flue system.\n\nWhen purchasing a prefabricated chimney to\ninstall with your stove, be sure to also purchase\nfrom the same manufacturer, the wall passthrough (or ceiling support package), \"T\" section\npackage, fire-stops (when needed), insulation\nshield, roof flashing, chimney cap, and any other\nneeded accessories. Follow the manufacturer’s\ninstructions when installing the chimney and\naccessories. In addition, be sure to maintain all\nmanufacturers’ recommendations for the proper\nclearances to the chimney.\nThere are two ways to install a prefabricated\nmetal chimney:\n\nRemember, the NFPA has recommended,\nminimum clearances for chimney connectors to\ncombustibles such as walls and ceilings.\n\n\n\nAn interior installation where the chimney passes\ninside the residence through the ceiling and roof.\n\n\n\nAn exterior installation where the chimney passes\nthrough the wall behind the stove then up the\noutside of the residence.\n\nCONNECTING YOUR WOOD-FIRED COOK\nSTOVE\nYou can install your Deva 100 to a prefabricated\nmetal chimney or a masonry chimney.\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n12"},{"d":1,"p":13,"t":"Extended Roof\nSupport Bracket\n(Conduit\nnot included)\n\nChimnet Cap\nStorm Collar\n\nChimney Cap\nStorm Collar\n\nAdjustable Roof\nFlashing\n\nAdjustable Roof\nFlashing\n\nAttic Insulation Shield\nFirestop Radiation\nTwist-Lock\nChimney Sections\n\nShield\n\nClay tile or\nother Liner\n\nChimney Sections\n\nFiresafe Enclosure\n\nStovepipe\n\nSupport Box and Trim\nCollar with built-in\n\nMasonry Chimney\n\nWall Thimble\nTee\n\nStarter section\n\nTee clean-out\n\nAccess door\n\nChimney pipe through Clay tile\nor other Lined Masonry Chimney\n\nTwo story house installation with attic.\n\nChimnet Cap\n\nChimnet Cap\n\nStorm Collar\n\nStorm Collar\n\nAdjustable Roof\nFlashing\n\nAdjustable Roof\nFlashing\n\nChimney Sections\n\nInsulation\nShield\n\nChase Enclosure\nSupport Box\nwith built-in\nStarter\n\nWall Strap\n\nsection\n\nStovepipe\n\nWall Thimble\nTee\nTee clean-out\nAccess door\nTee Support Bracket\n\nChimney through outer wall with enclosed chase.\nChimney is supported by Tee Support Bracket.\n\nOne story house installation with attic.\nChimney is supported by Ceiling.\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n13"},{"d":1,"p":14,"t":"Whenever possible, choose an interior chimney.\nAn interior chimney heats up more quickly and\nretains its heat; thus promotes a better draft and\ndiscourages the formation of creosote. An\nexterior chimney does not benefit from the\nwarmth of being surrounded by the building, so\nit typically operates at lower flue temperatures\nthan an interior chimney. An exterior chimney’s\ndraft is not as strong and may experience\nincreased creosote accumulation.\n\nBefore connecting to a masonry chimney, hire a\nprofessional to examine the chimney for cracks,\nloose mortar, and other signs of deterioration\nand blockage. If the chimney needs repair,\ncomplete the project before installing and using\nyour stove. Do not install your stove until the\nchimney is safe for use.\nMake sure the chimney’s cleanout is complete\nand working properly. To avoid a loss of draft,\nthe cleanout must close off completely. If\nallowed to cool, your stove will perform poorly\nand creosote will build up in the chimney.\n\nREVERSAL OF THE FLUE COLLAR\nIn order to reverse the flue collar to vent the\nstove straight out the back, follow these simple\nsteps;\n\nMake sure the size of the chimney’s flue is\nappropriate for this stove and that it is not too\nlarge. Use a masonry chimney with an 8\" x 8\"\n(203 mm x 203 mm) tile size for best results. An\noversized flue will contribute to the accumulation\nof creosote.\n\n1) Using a 10mm wrench, or socket. Locate\nand remove the four bolts holding the flue\ncollar in place. Once all four bolts are\nremoved pull the collar away from the\nstove. Inspect the gasket, ensuring it is in\nplace, and in working order.\n\nUse the following checklist to ensure that your\nmasonry chimney meets these minimum\nrequirements:\n\n2) Locate and remove the four bolts that\nhold the block-off plate on the back of the\nstove. Remove the plate.\n\nChimney wall construction:\nBrick or modular block at least 4\" (102 mm)\nthick.\nA rubble or stone wall at least 12\" (305 mm)\nthick.\n\n3) Place the flue collar on the back of the\nstove over the rear flue exit with the\ngasket side towards the stove. Rotate the\ncollar so the 3 chimney connector screws\nare easiest to access when necessary to\ninstall later. Replace the four bolts using\nthe 10mm wrench.\n\nFlue liner:\nMinimum thickness of 5/8\" (16 mm).\nInstalled with refractory mortar.\nAt least 1\" (25 mm) air space.\nAn equivalent flue liner must be a listed\nchimney liner system meeting type HT\nrequirements or other approved material.\n\n4) Place the cover plate over the flue exit on\nthe top of the stove, using the same four\nbolts that were removed.\n\nInterior chimney requirements:\nAt least 2\" (51 mm) clearance to combustible\nstructure\nFire stops must be installed at the spaces\nwhere the chimney passes through floors\nand/or ceiling.\nInsulation must be 2\" (51 mm) from the\nchimney.\n\nCONNECTION TO A MASONRY CHIMNEY\nConsider two primary elements when connecting\nyour stove to a masonry chimney: the chimney\nitself and the thimble where the stovepipe\nconnects to the chimney. Use only Code\napproved masonry chimneys with a flue liner.\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n14"},{"d":1,"p":15,"t":"Exterior chimney requirements:\nAt least 1\" (25 mm) clearance to combustible\nstructure.\n\nThis stove requires a minimum chimney height\nof 13 feet (4 m). The maximum allowable\nchimney height is 30 feet (9 m).\n\nChimney\nheight\nrequirements:\n(See\nIllustration)\nAt least 3 feet (0.9 m) higher than the highest\npart of the roof opening through\nwhich it passes.\nAt least 2 feet (0.6 m) higher than any part\nof the roof within 10 feet (3 m) measured\nhorizontally from the top of the chimney.\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n15"},{"d":1,"p":16,"t":"Operation\nFuel Loading\nDoor\n\nFlue Bypass\nOven Door\n\nAsh Pan\nDoor\n\nOven\nThermometer\nPrimary Air\nControl\n\nOVEN\nFigure 2 - Controls and Features\n\nWARNING:\nDO NOT INSTALL IN A SLEEPING\nROOM\n\nbypass system. This is the handle at the top\ncenter of your stove that pushes and pulls in and\nout. To open the bypass, pull the handle out.\nThis opens a “bypass” channel that allows the\nhot gases to heat up the chimney quicker. This\nbypass allows for a direct outlet of the flue gases\nand smoke. With the bypass closed the gases\nfollow the normal route around the oven and\nthen out. You should keep the bypass open until\nyour flue has established a draft. Once a draft\nhas been established push the bypass closed.\nThis will ensure the most efficient use of your\nDeva.\n*Burning the Deva 100 with the bypass open will\nnot allow the oven to reach maximum\ntemperatures.\n\nWARNING:\nHOT WHILE IN OPERATION.\nKEEP\nCHILDREN,\nCLOTHING\nAND\nFURNITURE AWAY.\nCONTACT MAY\nCAUSE SKIN BURNS.\nPlease read this entire chapter before lighting\nyour first fire. It explains the controls and\nfeatures of your wood stove, how to choose\nfirewood, and how to use your stove on a daily\nbasis.\n\nFUEL LOADING DOOR HANDLE: The fuel\nloading door allows you to load wood into your\nstove. To open the door, lift the handle to the 9\no’clock position and pull the door. To latch the\ndoor, lower the handle to the 6 o’clock position.\nPull gently on the door to make sure it is\nproperly latched.\n\nCONTROLS AND FEATURES\nBefore lighting any fires, become familiar with\nthe location and operation of your stove's\ncontrols and features and learn how to use\nthem. For your own safety, do not modify these\nfeatures in any way.\nFLUE BYPASS SYSTEM: When starting a fire\nin a cold Deva 100 you will need to use the flue\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n16"},{"d":1,"p":17,"t":"PRIMARY AIR CONTROL: This feature is\nlocated on the lower portion of the ash door of\nthe stove. The primary air control allows you to\nregulate the amount of air entering the firebox.\nGenerally speaking, the more air allowed into the\nfirebox, the faster and hotter the rate of burn;\nconversely, less air creates a slower burn. Push\nthe lever to the left to open the primary air\ncontrol; push the lever to the right of the stove to\nclose the primary air control.\n\nThe following is a list of wood species and their\nrelative BTU (British Thermal Unit) content. The\nhigher the BTU the longer the burn. Firewood\nwith higher BTUs is generally considered more\nideal for a wood stove.\nHIGH: Apple, Black Birch, Hickory, Locust, White\nOak, Black Beech, Mesquite\n\nASH PAN: The ash pan is located under the\nfirebox door. The ash pan collects burned ash\nfrom a fire and allows you to conveniently\nremove the ash from your wood stove. The ash\npan is easy to remove. Sift the ashes across the\ngrate and into the ash pan, and then rotate the\nash door handle to the 9:00 o’clock and pull to\nopen. Remove the ash pan by grabbing the\nhandle and sliding it out carefully. After you have\ndisposed of the ashes, push the ash pan all the\nway into the stove and close the ash door by\nturning the handle to the 6 o’clock position.\n\nMEDIUM HIGH: White Ash, Beech, Yellow Birch,\nSugar Maple, Red Oak\nMEDIUM LOW: Black Ash, White Birch, Grey\nBirch, Elm, Norway Pine, Pitch Pine, Black\nCherry, Soft Maple, Tamarack\nLOW: White Pine, White Cedar, Balsam Fir,\nSpruce, Aspen, Basswood, Butternut, Hemlock\nMoisture content also plays a key role in the\nperformance of your stove. Wood freshly cut\nfrom a living tree (green wood) contains a great\ndeal of moisture. As you might expect, green\nwood has difficulty burning and should be\nseasoned before using it in your cook stove. To\nproperly season green wood, it should be split,\nstacked and allowed to air dry for a period of one\nyear.\n\nRemove ashes when the stove is cold. If the ash\npan is warm, use protective fireplace gloves.\nExercise extreme caution when handling, storing\nor disposing of ashes.\nCHOOSING FIREWOOD\nYour Deva 100 cook stove is designed to only\nburn firewood-also known as cordwood.\n\nStack the firewood on skids or blocks to keep it\noff the ground, cover only the top of the stack.\nPlastic or tarps that cover the sides of the\nwoodpile trap moisture and prevent the wood\nfrom drying. As for stacking, an old Vermonter\nsaid, \"The spaces between the logs should be\nlarge enough for a mouse to get through, but not\nfor the cat that's chasing it.\"\n\nCAUTION: DO NOT USE CHEMICALS OR\nFLAMMABLE FLUIDS SUCH AS\nGASOLINE, NAPHTHA, KEROSENE,\nCHARCOAL LIGHTER FLUID OR ENGINE\nOIL TO START A FIRE. DO NOT USE\nCHARCOAL, PELLETS, COAL,\nARTIFICIAL LOGS OR ANY OTHER\nMATERIALS AS FUEL; THEY ARE NOT\nSAFE. DO NOT BURN GARBAGE.\n\nFirewood should not be stored within the stove's\nspecified clearances to combustible materials.\n\nThe quality of your firewood affects heat output,\nduration of burn and performance of your stove.\nSoftwoods generally burn hotter and faster, while\nhardwoods burn longer and produce more coals.\nDensity and moisture content are two critical\nfactors to consider when purchasing wood for\nyour stove.\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n17"},{"d":1,"p":18,"t":"BUILDING YOUR FIRST FIRE\n\n6. Once the kindling is burning, open the\ndoor and add logs, small at first, to build\nthe fire up. Otherwise, keep the fuel\nloading door and ash door closed while\nthe stove is in use.\n\nOnce you understand the controls of your wood\nstove and have chosen the appropriate firewood,\nyou are ready to start a fire.\nWhen you light your first fires, the wood stove will\nemit some smoke and fumes. This is normal “offgassing” of the paints and oils used when\nmanufacturing the wood stove. If you find it\nnecessary, open a few windows to vent your\nroom. The smoke and fumes will usually subside\nafter 10 to 20 minutes of operation. The odor\nand smoke will end once the stove is “cured”.\n\nDo not open the fuel loading\ndoor with the bypass closed!\n7. Close the bypass system by pushing the\nhandle all the way in.\n\nThe first fires may produce other odors from\nimpurities that exist in the area immediately\nsurrounding the stove. Some of these impurities\ncan be cleaning solvents, paint solvents,\ncigarettes, smoke, pet hair, dust, adhesives, a\nnew carpet, and new textiles. These odors will\ndissipate over time. You can alleviate these\nodors by opening a few windows or otherwise\ncreating additional ventilation around your stove.\n\n8. Once the fire is burning well, use the\nprimary air control to regulate the desired\nrate of burn. Pushing the lever to the left\nof the stove opens the PRIMARY AIR\nCONTROL for a high rate of burn or\npushing it to the right of the stove for a\nlow rate of burn.\n\nBUILDING A FIRE\n\nNote: When opening the door to reload or\nre-arrange logs, it is advisable to open the\ndoor just a crack, pause for a moment,\nthen open the door completely. This\nprocedure will allow the firebox to clear of\nsmoke before the door is opened fully. You\nmust open the flue bypass system prior\nto opening your fuel loading door. Also,\nreloading on a bed of hot, red coals\nreduces smoking time and will bring fresh\nfuel up to a high temperature rapidly.\n\n9. The flue bypass is used to control the\ncook top and oven temperature.\n\n1. Open the door and place five or six\ndouble sheets of tightly twisted\nnewspaper in the center of the firebox.\nArrange kindling in a crisscross pattern\nover the newspaper. Kindling should be\napproximately ten pieces, 1/2\" (13 mm)\nin diameter and 10\" to 17\" (254 to 431\nmm) long.\n2. Open the flue bypass system by pulling\nthe handle out completely. (as described\non page 17)\n3. Fully open the primary air control by\npushing the lever toward the left of the\nstove.\n4. Light the paper under the kindling. Leave\nthe door slightly ajar momentarily until\nthe kindling has started to burn and draft\nbegins to pull.\n5. Close the door and allow the fire to burn.\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n18"},{"d":1,"p":19,"t":"suspect that your stove is over-firing, contact\nyour dealer immediately. Damage done by overfiring is not covered by your warranty. Results of\nover-firing can include: warped or burned out\ninternal parts, cracked refractory, discolored or\nwarped external parts, and damaged enamel.\n\nBURN RATE\nHIGH BURN: Fully load the firebox with wood on\na bed of hot coals or on an actively flaming fire\nand fully open the primary air control. A high\nburn rate is recommended once or twice a day\nto fully heat the stovepipe and chimney, which\nwill help minimize creosote accumulation.\n\nNOTE: ANY SYMPTOMS OF OVER-FIRING\nWILL VOID YOUR WARRANTY!!\n\nMEDIUM BURN: Set the primary air control to a\nmid-range setting appropriate for the heating\nneeds of the area being heated. A medium burn\nrate should be the typical setting and is\npreferable if the stove is to be left unattended.\n\nREMOVAL AND DISPOSAL OF ASHES\nAshes should be removed when the stove is\ncold. Use protective fireplace gloves when the\npan is warm. Exercise extreme caution when\nhandling, storing or disposing of ashes.\n\nLOW BURN: Close the primary air control for a\nlow burn rate. A low burn rate over extended\nperiods of time is not advisable as it may\npromote the accumulation of creosote. The\nventing system should be inspected frequently if\nlow burn rates are maintained consistently.\n\nTo remove ashes from the firebox, sift the ashes\nacross the ash grate using a poker or other\nsuitable implement. Remove the ashes by\npulling the handle on the ash pan and sliding it\ncarefully out. Dump the ashes as described\nbelow. Re-insert the ash pan by pushing it in all\nthe way. Be sure that the ash pan has been\npushed firmly into place. Alternately, the ashes\ncan be removed with a shovel through the fuel\nloading door.\n\nOVER-FIRE CAUTION\nOver-firing means the stove is operating at\ntemperatures\nabove\nthe\nrecommended\ntemperatures outlined above in the BURN RATE\nsection. Over-firing should be carefully avoided\nsince it will cause damage to the stove.\nSymptoms of over-firing include short burn\ntimes, a roaring sound in the stove or stovepipe,\nand discoloration of the stovepipe.\n\nAshes should be dumped from the ash drawer\ninto a metal container with a tight fitting lid. Do\nnot place any other items or trash into the metal\ncontainer. Replace the lid onto the container and\nallow the ashes to cool. Do not place the ash\ndisposal container on a combustible surface or\nvinyl flooring, as the container will be hot!\n\nOver-firing can be caused by excessive draft,\ninappropriate fuel, and operator error. Correct\nan over-fire situation as follows:\nEXCESSIVE DRAFT: Contact your dealer to\nhave a draft reading taken. Any draft in excess\nof 0.1 wc requires a damper in the stovepipe.\nSome installations may require more than one\ndamper.\nINAPPROPRIATE FUEL: Do not burn coal, kiln\ndried lumber, wax logs or anything other than\nnatural cordwood.\nOPERATOR ERROR: Make sure all the gaskets\nare in good condition. Replace worn out or\ncompressed gaskets. Do not burn the stove with\nthe fuel loading door, or ash pan door in the open\nposition.\n\nPending disposal, place the closed ash container\non a noncombustible floor or on the ground, well\naway from all combustible materials. Ashes\nshould be retained in the closed container until\nall cinders have thoroughly cooled.\nAshes should NEVER be placed in wooden or\nplastic containers, or in paper or plastic bags, no\nmatter how long the fire has been out. Coals\nwithin a bed of ashes can remain hot for several\ndays once removed from the firebox.\n\nMAINTENANCE\n\nMonitoring the temperature is the best way to\ndetermine that the stove is over-firing. If you\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n19"},{"d":1,"p":20,"t":"CREOSOTE FORMATION AND NEED FOR\nREMOVAL\n\nGASKETS\nGasket material should normally be replaced\nevery two to three seasons, depending on stove\nuse. If the door seal is loose, a new gasket will\nassure a tight seal and improved stove\nperformance. Contact your dealer for a gasket\nkit, which includes instructions, and gaskets for\nyour stove.\n\nWhen wood is burned slowly, it produces tar and\nother organic vapors, which combine with\nexpelled moisture to form creosote. These\ncreosote vapors condense in the relatively cool\nchimney flue of a slow-burning fire. As a result,\ncreosote residue accumulates on the flue lining.\nWhen ignited, this creosote makes an extremely\nhot fire, which may damage the chimney or even\ndestroy the house.\n\nTo replace the fuel loading door gasket, first\nremove the old gaskets with a utility or putty\nknife. Clean all gasket channels with a wire\nbrush. Apply gasket cement to the channels and\npush the new gasket into place without\nstretching the gasket material. The door should\nbe shut immediately to fully press the gasket into\nplace and assure a positive seal.\n\nTo prevent the buildup of creosote:\n1. Burn the stove with the primary air control\nfully open and the flue bypass open for\n30 minutes daily to burn out creosote\ndeposits from within the stove and the\nventing system.\n\nWe require the use of the following gaskets:\nFUEL LOADING DOOR:\n40\"\n(102\ncm)\nLength, 1/4\" Diameter, Low Density Black Rope\n\n2. After reloading with wood, burn the stove\nwith the primary air control fully open for\n20 to 30 minutes. This manner of\noperation ensures early engagement of\nthe secondary combustion system which,\nwhen engaged, minimizes creosote\nbuildup in the chimney.\n\nFUEL LOADING GLASS:\n40\"\n(102\nLength, 3/4\" adhesive backed flat tape\n\ncm)\n\nASH PAN DOOR:\n40\" (102 cm)\nLength, 1/4\" Diameter, Low Density, Black Rope\n\nThe stovepipe connector and chimney should be\ninspected regularly during the heating season to\ndetermine if a creosote build-up has occurred. If\na creosote residue greater than 1/4\" (6 mm) has\naccumulated, it should be removed to reduce the\nrisk of a chimney fire.\n\nREVERSIBLE FLUE: 28\" (71 mm) Length, 1/4\"\nDiameter, Low Density, Black Rope\n\nGLASS\nDo not operate the stove with a broken door\nglass. Do not abuse the fuel loading door by\nstriking or slamming it.\n\nThe venting system must be inspected at the\nstove connection and at the chimney top. Cooler\nsurfaces tend to build creosote deposits quicker,\nso it is important to check the chimney at the top\n(where it is coolest) as well as from the bottom\nnear the stove.\n\nWhen necessary, the glass can be cleaned with\nlow alkaline content commercial stove glass\ncleaners, which are available from your local\ndealer. Never attempt to clean the glass while\nthe fire is burning or the glass is hot. Following\nthe instructions provided with the cleaner can\nclean most deposits. To clean heavier deposits,\nremove the door from the cook stove and lay the\nit face down on a workbench or table. Apply the\ncleaner to the glass and allow it to set for a few\nminutes. By laying the door flat, it will allow the\ncleaner to penetrate rather than running off the\n\nAccumulated creosote should be removed with a\ncleaning brush specifically designed for the type\nof chimney in use. A certified chimney sweep\nshould be used to perform this service. Contact\nyour dealer for the name of a certified chimney\nsweep in your area (your dealer may be a\ncertified sweep!).\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n20"},{"d":1,"p":21,"t":"surface of the glass. Wipe the cleaner off with a\nsoft cloth.\n\n5. Peel the paper backing from the tape\ngasket. Apply the new gasket to the new\nglass as illustrated above.\n6. Place the gasketed glass onto the door.\n7. Screw the window frame back on the\ndoor.\n8. Install the door.\n\nImportant: scratching or etching the glass\nwill weaken the integrity of the glass. Do\nnot use a razor blade, steel wool, or any\nother abrasive material to clean the glass.\nUse low alkaline content cleaners only.\n\nMAINTENANCE OF THE GLASS COOK TOP\nBe sure utensils have no rough spots to scratch\nthe surface. Be sure the surface is clean before\nthe fire is started. Avoid spills and boil-overs by\nturning down heat to lowest possible setting for\ncooking task, and by using a large enough pan.\nWipe up wet spots promptly, being careful to\navoid steam burns. Don't cook with foil on the\nglass cook top. It could be damaged by foil\nmelting onto it. Cover pans to prevent spatters.\n\nThe fuel loading door glass is a ceramic, shockresistant glass, made specifically for use in\nwood-burning stoves.\nDo not use any\nreplacement glass other than the ceramic glass\nmanufactured and supplied for use in this cook\nstove. Replacement glass is available through\nyour local dealer.\nThe fuel loading door glass should be replaced\nimmediately if broken. Contact your local dealer\nfor replacement glass, which is accompanied\nwith instructions and everything needed for the\nrepair. If you replace the glass yourself, wear\nwork gloves and safety glasses.\n\nCLEANING OF THE GLASS COOK TOP\nSpecial care should be taken when removing hot\nsubstances. Turn off all surface units affected by\nthe spillover and remove the hot pans. Wearing\nan oven mitt to hold the scraper, scrape the spill\nto a cool area of the cook top and use a paper\ntowel to remove any excess. Do not continue to\nuse the soiled area until all the spillover has been\nremoved. A couple of recommended cook top\ncleaners are:\n\nThe procedure for the fuel loading door glass\nand glass gasket replacement is as follows:\n1. Remove the top hinge straight up and\n\n\n\n\n\n\nWeiman Cooktop Cleaning\nCreme\nCera Care\nHopes Cooktop Cleaning\nCreme\nCerama Bryte\"\n\nCAST IRON\nExterior cast iron parts are porcelainized with an\nenamel finish. Use a damp sponge to wipe clean.\nDry the cast iron thoroughly to prevent rusting.\n\naway from the stove.\n2. Remove the door by pulling it up and\naway from the stove.\n2. Place the door face down on a flat,\nsmooth surface.\n3. Apply penetrating oil to the 2 screws in\nthe retention frame. Remove the 2\nscrews. Separate the cast iron window\nframe from the door.\n4. Carefully lift the damaged glass from the\ndoor and discard.\n\nEnamel castings can be cleaned with a standard\nglass cleaner. With time and use, a very fine,\nsubtle network of crazed lines may appear\nseemingly beneath the surface of the enamel.\nCrazing is a natural predictable process and\ndoes not represent a flaw.\n\nTROUBLESHOOTING\nMost are correctable and generally require only\na minor adjustment of the stove, installation, or\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n21"},{"d":1,"p":22,"t":"operating technique. In cases where weather\nconditions\ndramatically\naffect\nstove\nperformance, the problems are typically\ntemporary and solve themselves once the\nweather changes.\n\nTALL TREES OR BUILDINGS:\nThese\nobstructions, when located in proximity to the top\nof the chimney can cause chronic or occasional\ndowndrafts. When selecting a site for a new\nchimney, take care to consider the placement of\nother objects in the vicinity of the proposed\nchimney location.\n\nOne common cause of poor performance is an\noversized chimney flue. Oversized chimney\nflues result in decreased pressure, which\nprevents the smoke from rising out the chimney.\nOversized flues are also more difficult to heat\neffectively, especially when burning a high\nefficiency stove. Cool flue temperatures inhibit\nthe establishment of a strong draft (and\nencourage the accumulation of creosote). The\nlack of a strong draft will cause the fire to die\ndown and may even force the smoke to pour into\nthe room.\nIf your chimney is the proper size and a strong\ndraft is not easily established, there is the\npossibility of the chimney being too cold. Again,\nhot chimneys promote a stronger draft.\n\nWIND VELOCITY: Generally, the stronger and\nsteadier a wind, the stronger (better) the draft.\nHowever, \"gusty\" wind conditions may cause\nerratic downdrafts.\nBAROMETRIC PRESSURE: Chimney drafts\nare typically sluggish on balmy, wet or muggy\ndays. This is a weather-related phenomenon,\nwhich generally is self-correcting as the weather\nchanges.\nBRISKNESS OF FIRE: The hotter the fire in\nyour stove, the hotter your chimney and,\ntherefore, the stronger the draft.\n\nOther draft guidelines are as follows:\n\nBREAKS IN THE VENTING SYSTEM: An\nunsealed clean-out door at the bottom of the\nchimney, leaky stovepipe joints, a poor\nstovepipe-to-thimble connection, or a leaky\nchimney may cause inadequate draft.\n\nAN \"AIRTIGHT\" HOUSE: If your home is superinsulated or especially well sealed, the\n(infiltration) air supply to the interior of the house\nmay be inadequate. This phenomenon of air\nstarvation within the building can be exacerbated\nif exhaust fans, such as clothes dryers, bathroom\nfans or cook-stove exhaust fans, are in operation\nwithin the home. The need for additional air may\nbe accommodated by opening a window to\nprovide the adequate air.\n\nSEASONAL FACTORS: Early fall and late\nspring are generally difficult seasons in which to\nestablish proper drafts. The colder the outside\nair (relative to room temperatures), the stronger\nthe draft.\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n22"},{"d":1,"p":23,"t":"TROUBLESHOOTING GUIDE\nPROBLEM\nPOSSIBLE CAUSE\nSTOVE SMOKES\n\nOperating Technique\nCold Chimney\nBlocked Chimney\n\nBACK-PUFFING OR\nGAS EXPLOSIONS\n\nUNCONTROLLED\nOR SHORT BURN\n\nOversized Chimney\nUndersized Chimney\nChimney Too Short\nAir Infiltration Into The\nChimney\nMore Than One\nAppliance Connected to\nthe Flue\nOperating Technique\nExtra Low Burn Rate\nChimney Down-draft\nExcessive Ash Build-up\nUnsealed or Open Door\nExcessive Draft\nDeteriorated Cement\nSeals\nExtra Long Chimney\nHigh Winds or Hilltop\nLocation:\nExcessive Draft\n\nINSUFFICIENT\nHEAT\n\nPoor Quality or Green\nWood\nLow Burn Rate\nAir Insulated Chimney\nCold Exterior Chimney\nLeaky Stovepipe or\nChimney\nToo Much Heat Loss\nFrom House\n\nSOLUTIONS\nFully open the primary air control one minute before opening\ndoors.\nFully open the flue bypass system\nPreheat the chimney when first starting a fire.\nExamine the chimney and stovepipe for blockage or creosote\naccumulations.\nReline the chimney to the appropriate diameter\nInstall a draft inducer or replace the chimney.\nLengthen the chimney.\nSeal chimney connections and openings in clean-out doors.\nDisconnect all other appliances and seal openings.\nFully open the primary air control one minute before opening\nthe door and keep it fully open for a few minutes after\nreloading.\nBurn the stove at a higher burn rate.\nInstall a chimney cap.\nEmpty ash pan more frequently.\nClose the door tightly or replace the gaskets.\nCheck the installation. Operate at LOW BURN. Install\nstovepipe damper.\nReseal the stove with furnace cement.\nShorten the chimney. Install stovepipe damper.\nInstall a chimney cap.\nDraft in excess of 0.1 wc should be corrected with a stovepipe\ndamper.\nCompletely close the flue bypass system\nUse only air-dried wood, preferably dried at least one year.\nOperate the stove at a higher burn rate.\nReplace with a pre-fabricated insulated chimney system or a\nproperly sized masonry chimney.\nReline or insulate the chimney.\nCheck the installation.\nCaulk windows, seal openings in home.\n\nINSUFFICIENT\nOVEN HEAT\n\nFuel Bypass is open\nOven door is not sealed\nproperly\n\nPush Flue Bypass in to close the bypass.\nCheck the seal and repair if necessary\n\nBLISTERING OF\nENAMEL CASTING\n\nOperating Technique\n\nDo not over-fire the stove. Monitor stove temperatures. Use\nseasoned wood only.\nCheck the DRAFT. A damper may be required. Operate the\nstove at a LOW BURN range.\n\nExcessive Draft\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n23"},{"d":1,"p":24,"t":"REPLACEMENT PARTS & OPTIONAL ACCESSORIES\nPART NUMBER:\n\nDESCRIPTION:\nGLASS\n\n3030-050\n3030-051\n91-58710\n\nFUEL LOADING DOOR GLASS\nOVEN DOOR GLASS\nTOP GLASS ASSEMBLY\n\n91-71710\n91-71711\n91-71712\n\nHANDLES\nOVEN DOOR HANDLE\nFIREBOX DOOR HANDLE\nASH DOOR HANDLE\n\nPART NUMBER:\n91-59710\n91-58711\n91-58712\n91-58713\n2650-016\n5170-005\n5170-007\n\n5170-010\n\n3060-432\n3060-433\n3060-434\n\nDESCRIPTION:\nMISC. COMPONENTS\nSIDE ASSEBLY\nOVEN DOOR ASSEMBLY\nASH DOOR ASSEMBLY\nFUEL LOADING DOOR\nASSEMBLY\nFLUE COLLAR\nHANDLE BAR SUPPORT\nHANDLE BAR\nREFRACTORY STONE BRACKET\n\nREFRACTORY STONE\nREFRACTORY BASE\nLEFT REFRACTORY\nRIGHT REFRACTORY\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n24"},{"d":1,"p":25,"t":"SAFETY LABEL\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n25"},{"d":1,"p":26,"t":"WARRANTY REGISTRATION\nThe Original Purchaser may complete the warranty registration process on our website:\nwww.hearthstonestoves.com, or send a completed and signed Warranty Registration Form, which is\nenclosed in the Cook stove warranty packet, to the following address:\nHearthstone Quality Home Heating Products, Inc.\nWarranty Department\n317 Stafford Ave\nMorrisville, VT 05661\nNOTE: SENDING IN THE SIGNED WARRANTY REGISTRATION FORM IS NOT A CONDITION OF\nWARRANTY COVERAGE OR HEARTHSTONE’S PERFORMANCE.\n\nHearthstone Quality Home Heating Products, Inc ®\nModel 8220\n\n26"}];
+
+/* curated topic index — the hand-written, audience-tuned answers */
+const INDEX=[
+  ...HOME_PRIMARY.map(d=>({k:'h',id:d.id,t:d.title,p:d.blurb})),
+  ...HOME_SECONDARY.map(d=>({k:'h',id:d.id,t:d.title,p:d.blurb})),
+  ...SPECS.map(s=>({k:'i',id:s.tap,t:s.lab,p:s.rows.map(r=>r[0]+' '+r[1]).join(' · ')})),
+  ...STEPS.map((s,i)=>({k:'i',id:'step'+i,t:s[0],p:s[1]})),
+  ...INDEX_EXTRA,
+];
+
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const plain=s=>String(s).replace(/<[^>]+>/g,'');
+/* match regardless of line breaks, case and curly quotes */
+const fold=s=>s.toLowerCase().replace(/[‘’ʼ′]/g,"'").replace(/[“”″]/g,'"').replace(/ /g,' ');
+PAGES.forEach(pg=>{pg.s=pg.t.replace(/\s+/g,' ').trim(); pg.f=fold(pg.s); if(pg.f.length!==pg.s.length) pg.s=pg.f;});
+INDEX.forEach(x=>{x.f=fold(plain(x.t+' '+x.p)).replace(/\s+/g,' ');});
+const normQ=raw=>fold(raw).replace(/\s+/g,' ');
+function snippet(pg,q){
+  const i=pg.f.indexOf(q); if(i<0)return '';
+  const s=Math.max(0,i-55), e=Math.min(pg.s.length,i+q.length+85);
+  const frag=pg.s.slice(s,e), ff=pg.f.slice(s,e);
+  // highlight every occurrence of the query in the fragment
+  let out='',at=0,j;
+  while((j=ff.indexOf(q,at))>=0){out+=esc(frag.slice(at,j))+'<mark>'+esc(frag.slice(j,j+q.length))+'</mark>';at=j+q.length;}
+  out+=esc(frag.slice(at));
+  return (s>0?'… ':'')+out+(e<pg.s.length?' …':'');
+}
+/* which manual a reader on each side wants first */
+const PREF={homeowner:{operation:0,installation_and_operation:1,installation:2},installer:{installation:0,installation_and_operation:1,operation:3}};
+function pageHitsFor(q,role){
+  const hits=PAGES.filter(pg=>pg.f.includes(q));
+  if(!MULTI) return hits;
+  const pref=PREF[role]||{};
+  const rank=pg=>{const m=MANUALS[pg.d-1];return m.kit?2:(pref[m.role]??2);};
+  return hits.sort((a,b)=>rank(a)-rank(b)||a.d-b.d||a.p-b.p);
+}
+const pgLabel=pg=>MULTI?`${esc(MANUALS[pg.d-1].short)} p.${pg.p}`:`p.${pg.p}`;
+const pageItem=(pg,q)=>`<div class="ritem" data-kind="page" data-doc="${pg.d}" data-page="${pg.p}">
+         <span class="pg">${pgLabel(pg)}</span>
+         <div class="snip">${snippet(pg,q)}</div>
+         <svg class="jump" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg>
+       </div>`;
+const topicItem=(x,withRole)=>`<div class="ritem" data-kind="topic" data-id="${x.id}"${withRole?` data-role="${x.k==='h'?'homeowner':'installer'}"`:''}>
+         <span class="badge ${x.k}">${x.k==='h'?'Owner':'Install'}</span>
+         <div><h4>${esc(plain(x.t))}</h4><p>${esc(plain(x.p))}</p></div></div>`;
+const manualsLine=()=>MULTI?MANUALS.map(m=>`${m.label} (${m.pages} pages)`).join(' and '):`${MANUALS[0].pages}-page manual`;
+
+const res=$('#results'),rlist=$('#rlist');
+$('#q').addEventListener('input',e=>{
+  const raw=e.target.value.trim(), q=normQ(raw);
+  if(q.length<2){res.classList.remove('open');return;}
+  const curated=INDEX.filter(x=>x.f.includes(q)).slice(0,6);
+  const pageHits=pageHitsFor(q,currentRole()).slice(0,12);
+  let html='';
+  if(curated.length){
+    html+=`<div class="rgroup">Best matches <span class="ct">${curated.length}</span></div>`;
+    html+=curated.map(x=>topicItem(x,true)).join('');
+  }
+  if(pageHits.length){
+    html+=`<div class="rgroup">In the full ${MULTI?'manuals':'manual'} <span class="ct">${pageHits.length} page${pageHits.length>1?'s':''}</span></div>`;
+    html+=pageHits.map(pg=>pageItem(pg,q)).join('');
+  }
+  if(!curated.length && !pageHits.length)
+    html=`<div class="rempty">Nothing matched “${esc(raw)}”. Try a part name, a number, or open the full PDF above.</div>`;
+  rlist.innerHTML=html;
+  res.classList.add('open'); placeResults();
+  $$('.ritem',rlist).forEach(it=>it.onclick=()=>{
+    if(it.dataset.kind==='page'){ openPDF(it.dataset.page,+it.dataset.doc); }
+    else { res.classList.remove('open'); $('#q').value=''; closeHeaderSearch(); setRole(it.dataset.role); openDrawer(it.dataset.id); }
+  });
+});
+document.addEventListener('click',e=>{if(!res.contains(e.target)&&e.target.id!=='q'&&!e.target.closest('#qBtn'))res.classList.remove('open');});
+
+/* ---------------- owner-side inline search ---------------- */
+/* Curated answers (open the drawer) + full-manual page hits (open the PDF) —
+   the same two-tier logic as the header search, surfaced in the owner view. */
+const oq=$('#oq'), oResults=$('#oResults');
+function renderOwnerSearch(){
+  if(!oq||!oResults) return;
+  const raw=oq.value.trim(), q=normQ(raw);
+  if(q.length<2){ oResults.innerHTML=''; return; }
+  const curated=INDEX.filter(x=>x.f.includes(q)).slice(0,6);
+  const pageHits=pageHitsFor(q,'homeowner').slice(0,8);
+  let html='';
+  if(curated.length){
+    html+=`<div class="rgroup">Best matches <span class="ct">${curated.length}</span></div>`;
+    html+=curated.map(x=>topicItem(x,false)).join('');
+  }
+  if(pageHits.length){
+    html+=`<div class="rgroup">In the full ${MULTI?'manuals':'manual'} <span class="ct">${pageHits.length} page${pageHits.length>1?'s':''}</span></div>`;
+    html+=pageHits.map(pg=>pageItem(pg,q)).join('');
+  }
+  if(!curated.length && !pageHits.length)
+    html=`<div class="os-hint">Nothing matched “${esc(raw)}”. Try another word, or open the full <mark>Official PDF</mark> up top.</div>`;
+  oResults.innerHTML=html;
+  $$('.ritem',oResults).forEach(it=>{
+    if(it.dataset.kind==='page') it.onclick=()=>openPDF(it.dataset.page,+it.dataset.doc);
+    else it.onclick=()=>openDrawer(it.dataset.id);
+  });
+}
+oq.addEventListener('input',renderOwnerSearch);
+
+/* ---------------- installer-side full-manual search ---------------- */
+/* Same per-page PDF index as the header search, surfaced inline in the field
+   reference where installers expect it. Click a hit to deep-link the PDF page. */
+const mq=$('#mq'), mResults=$('#mResults');
+function renderManualSearch(){
+  if(!mq||!mResults) return;
+  const raw=mq.value.trim(), q=normQ(raw);
+  if(q.length<2){
+    mResults.innerHTML=`<div class="ms-hint">Searches the full text of every page of the official ${manualsLine()}. Type a part name, a number, or a term — each result opens the PDF at that page.</div>`;
+    return;
+  }
+  const hits=pageHitsFor(q,'installer');
+  if(!hits.length){
+    mResults.innerHTML=`<div class="ms-hint">Nothing in the ${MULTI?'manuals':'manual'} matched “${esc(raw)}”. Try a different term, or open the full <mark>Official PDF</mark> up top.</div>`;
+    return;
+  }
+  mResults.innerHTML=`<div class="rgroup">In the full ${MULTI?'manuals':'manual'} <span class="ct">${hits.length} page${hits.length>1?'s':''}</span></div>`+
+    hits.slice(0,30).map(pg=>pageItem(pg,q)).join('');
+  $$('.ritem',mResults).forEach(it=>it.onclick=()=>openPDF(it.dataset.page,+it.dataset.doc));
+}
+mq.addEventListener('input',renderManualSearch);
+renderManualSearch();
+
+
+/* ---------------- phones & tablets: slim header, section bar, back to top ---------------- */
+const hdr=document.querySelector('header');
+function setHdrH(){document.documentElement.style.setProperty('--hdr-h',hdr.offsetHeight+'px');}
+function placeResults(){res.style.top=Math.max(0,hdr.getBoundingClientRect().bottom)+'px';}
+function closeHeaderSearch(){hdr.classList.remove('searching');$('#qBtn').setAttribute('aria-expanded','false');setHdrH();}
+$('#qBtn').addEventListener('click',()=>{
+  const open=!hdr.classList.contains('searching');
+  hdr.classList.toggle('searching',open);$('#qBtn').setAttribute('aria-expanded',String(open));
+  document.body.classList.remove('hdr-away');setHdrH();
+  if(open){$('#q').focus();} else {res.classList.remove('open');}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&hdr.classList.contains('searching')){res.classList.remove('open');closeHeaderSearch();}});
+addEventListener('resize',()=>{setHdrH(); if(res.classList.contains('open')) placeResults();});
+setHdrH();
+
+/* the section bar lists only the sections this guide has */
+const SECS=[['sec-specs','Specs'],['sec-steps','Install steps'],['faultSec','Faults'],['codeSec','Codes'],['sec-manual','Manual']]
+  .map(([id,label])=>[document.getElementById(id),label]).filter(([el])=>el&&el.style.display!=='none');
+const secNav=$('#secNav');
+secNav.innerHTML=SECS.map(([,label],i)=>`<button type="button" data-i="${i}">${label}</button>`).join('');
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+secNav.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  $$('button',secNav).forEach(x=>x.setAttribute('aria-current',String(x===b)));
+  SECS[+b.dataset.i][0].scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'});});
+let lastY=scrollY,ticking=false,activeSec=-1;
+function onScroll(){
+  const y=scrollY, small=innerWidth<=1024, inRole=document.body.classList.contains('has-role');
+  const busy=hdr.classList.contains('searching')||$('#drawer').classList.contains('open')||res.classList.contains('open');
+  if(!small||!inRole||y<140||y<lastY-6) document.body.classList.remove('hdr-away');
+  else if(y>lastY+6&&!busy) document.body.classList.add('hdr-away');
+  lastY=y;
+  $('#toTop').classList.toggle('show',inRole&&y>700);
+  if(currentRole()==='installer'&&SECS.length){
+    const line=hdr.offsetHeight+secNav.offsetHeight+48;   /* generous: works whether the header is showing or tucked away */
+    let a=0; SECS.forEach(([el],i)=>{if(el.getBoundingClientRect().top<=line)a=i;});
+    if(innerHeight+y>=document.documentElement.scrollHeight-4)a=SECS.length-1;
+    if(a!==activeSec){activeSec=a;
+      $$('button',secNav).forEach((b,i)=>b.setAttribute('aria-current',String(i===a)));
+      const btn=$$('button',secNav)[a]; if(btn) secNav.scrollTo({left:btn.offsetLeft-16,behavior:reduceMotion?'auto':'smooth'});}
+  }
+  ticking=false;
+}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+$('#toTop').addEventListener('click',()=>scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));
+
+/* ---------------- deep links into the guide: #homeowner, #installer, or a topic id (#light) ---------------- */
+function fromHash(){const h=decodeURIComponent(location.hash.slice(1));if(!h)return;
+  if(h==='homeowner'||h==='owner'){setRole('homeowner');return;}
+  if(h==='installer'){setRole('installer');return;}
+  if(DETAIL[h]){setRole(DETAIL[h].cool?'installer':'homeowner');openDrawer(h);}}
+window.addEventListener('hashchange',fromHash);
+fromHash();
+</script>
+</body>
+</html>

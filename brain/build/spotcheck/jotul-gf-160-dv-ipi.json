@@ -1,0 +1,64 @@
+{
+ "id": "jotul-gf-160-dv-ipi",
+ "checked_pagerefs": 28,
+ "notes_checked": {"amber": 5, "correction": 1, "website": 2},
+ "findings": [
+  {
+   "severity": "major",
+   "where": "detail.specVent (vertical termination row 'Max horizontal run' + its note small); review.conflicts[5]",
+   "guide_says": "Vertical termination: \"Max horizontal run 20 ft. (6.1 m)\", followed by the small correction note \"For vertical termination the manual prints 20 ft. (152 cm) (p. 11); its horizontal termination section on the same page gives 20 ft. (6.1 m).\" Recorded as class \"clerical\", corrected_to \"20 ft. (6.1 m)\".",
+   "manual_says": "p. 11, Vertical Vent Termination: \"Maximum Horizontal run is 20 ft. (152 cm) See Fig. 6.2 for related termination zone limitations.\" p. 11, Horizontal Termination: \"2) Maximum horizontal run is 20 ft. (6.1 m)\". p. 12, fig. 6.8 text: \"At minimum vertical run, the total horizontal run (A) must not exceed 5 ft. (152.4 cm).\" So the 152 cm printed for vertical termination is the manual's 5 ft. figure, not 20 ft. The vent matrix that would settle the vertical-termination limit (fig. 6.2, p. 10) is a diagram whose text is garbled. This is a venting limit the manual doesn't settle beyond doubt, so it can't be handled as a clerical misprint.",
+   "pages": [[1, 11], [1, 12], [1, 10]],
+   "fix": "Show the vertical-termination row as printed, \"20 ft. (152 cm)\", and replace the small note with an amber note, e.g. <div class=\"note\"><b>Note:</b> for vertical termination, p. 11 gives the maximum horizontal run as 20 ft. (152 cm); the horizontal termination section on the same page gives 20 ft. (6.1 m), and p. 12 pairs 152.4 cm with a 5 ft. limit.</div> Reclassify the review.conflicts entry as \"substantive\" (drop corrected_to). In the vent card, label the 20 ft. row \"(horizontal term.)\" or let it lead to that note."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specClear row 'Side, from side plate' (card specs.clear row 2)",
+   "guide_says": "\"Side, from side plate 7 3/8\\\" (178 mm)\" (card: 7 3/8\\\"), with no note.",
+   "manual_says": "p. 7: \"Side: 7 3/8” (178 mm) Side Plate\". The other rows' metric figures match their inch figures (\"Rear: 2” (51 mm)\", \"Corner: 3 3/8” (86 mm)\", \"Ceiling: 33 1/2” (850 mm)\"), but 178 mm is about 7 in. while 7 3/8 in. is about 187 mm, so the metric figure is smaller than the inch figure. No other page gives a side clearance to settle it. A clearance can't be corrected as a misprint, so per rule 3 the disagreement needs a note.",
+   "pages": [[1, 7]],
+   "fix": "Keep both figures as printed and add an amber note in specClear, e.g. <div class=\"note\"><b>Note:</b> p. 7 prints the side clearance as 7 3/8” with 178 mm, and the two figures don't match; the manual gives no other side clearance.</div> Record it in review.conflicts as substantive."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specInlet row 'LP min / max'",
+   "guide_says": "\"LP min / max 11.0 / 14.0 WC (3.0 / 3.48 kPa)\", with no note.",
+   "manual_says": "p. 4: \"Propane: 11.0 WC (3.0 kPa) 14.0 WC (3.48 kPa)\"; p. 19 table (inches water column): \"PROPANE 11.0 14.0\". Every other kPa figure on p. 4 matches its WC figure (5.0/1.25, 7.0/1.74, 14.0/3.48, 1.6/.40, 3.50/.87, 6.4/1.59, 10.0/2.49), but 3.0 kPa is not 11.0 in. WC (about 2.74 kPa). Gas pressure, so it needs a note rather than silence or a correction.",
+   "pages": [[1, 4], [1, 19]],
+   "fix": "Keep as printed and add an amber note, e.g. <div class=\"note\"><b>Note:</b> p. 4 pairs the propane minimum inlet pressure of 11.0 WC with 3.0 kPa, and the two figures don't match; the table on p. 19 gives 11.0 in. WC.</div> Record it in review.conflicts as substantive."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.safety ('If you smell gas' list)",
+   "guide_says": "\"Don't try to light any appliance. Put out any open flame. / Don't touch any electrical switch, and don't use any phone in your building. / Leave the building immediately. / Call your gas supplier from a neighbor's phone and follow their instructions. If you can't reach them, call the fire department.\"",
+   "manual_says": "p. 45: \"WHAT TO DO IF YOU SMELL GAS: • Extinguish any open flame • Open windows. • Do not light this or any other appliance. • Do not touch any electrical switches. • Do not use any phone in your building. • Immediately call your gas supplier from a neighbor's phone. • If your gas supplier cannot be reached, call the fire department.\" (p. 1's list adds \"Leave the building immediately.\") The guide merges the two lists, taking \"Extinguish any open flame\" from p. 45 but dropping \"Open windows.\"",
+   "pages": [[1, 45], [1, 1]],
+   "fix": "Add \"Open windows.\" after \"Put out any open flame.\", keeping p. 1's \"Leave the building immediately.\""
+  },
+  {
+   "severity": "minor",
+   "where": "faults.panels[1] 'Blue, weak flame' and step8 drawer",
+   "guide_says": "Fault panel \"Blue, weak flame\": \"Blue, transparent, \\\"anemic\\\" flame → air shutter setting too large\"; step8: \"If it looks weak, slow or sooty, open the shutter in 1/16\\\" - 1/8\\\" increments\". No note on the page; review.notes says the tension was \"quoted as printed\".",
+   "manual_says": "p. 24: \"Too large an air setting - the appliance will generate a flame that is blue and transparent, or an “anemic” flame.\" and \"If the flame appears weak, slow, or sooty, increase the air shutter opening in 1/16” - 1/8” increments\". p. 9: \"overly-strong draft that can cause poor combustion and weak flame picture\". The manual gives opposite directions for a weak/anemic flame, and the guide shows both in different places with no note, so an installer reading the fault panel and step8 gets conflicting air-shutter advice.",
+   "pages": [[1, 24], [1, 9]],
+   "fix": "Add an amber note in step8 and point the fault panel to it, e.g. <div class=\"note\"><b>Note:</b> p. 24 says to open the air shutter if the flame looks weak, slow or sooty; the same page says a blue, transparent, \"anemic\" flame means too much air, and p. 9 links a weak flame picture to overly strong draft.</div> Consider retitling the panel \"Blue, transparent flame\". Record it in review.conflicts as substantive."
+  },
+  {
+   "severity": "minor",
+   "where": "step6 drawer (Tumbled Stones and ember stones)",
+   "guide_says": "\"Tumbled Stones 158054 in a single layer, not fully blocking ports or the air space at the burner skirt.\" and \"Ember stones in a thin layer over the rear ports only, up to the rear flange, clear of the pilot carry-over area.\"",
+   "manual_says": "p. 22: \"The stones may cover porting, but take care that flat stones do not completely block gas flow through the ports... Also, DO NOT OBSTRUCT THE AIR SPACE BETWEEN THE BURNER PERIMETER AND THE BURNER SKIRT.\" p. 21: \"KEEP EMBER STONES AWAY FROM THE PILOT CARRY-OVER AREA AND BURNER PERIMETER.\" The guide softens \"do not obstruct\" the skirt air space to \"not fully blocking\" it, and drops \"and burner perimeter\" from the ember-stone warning.",
+   "pages": [[1, 22], [1, 21]],
+   "fix": "\"Tumbled Stones 158054 in a single layer; flat stones must not completely block the ports, and don't obstruct the air space between the burner perimeter and the burner skirt.\" and \"... clear of the pilot carry-over area and the burner perimeter.\""
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specClear ('Vent pipe to combustibles') / detail.specVent; step2 drawer",
+   "guide_says": "Vent pipe clearances \"Horizontal run, top 2\\\" (51 mm); sides and bottom 1\\\" (25 mm); Vertical run, all sides 1\\\" (25 mm)\" with no insulation warning; step2: \"Don't mix components from different manufacturers or modify any vent part.\"",
+   "manual_says": "p. 12, with the horizontal vent pipe clearances (\"From Top Surface: 2” (51 mm) From Sides: 1” (25 mm)\"): \"DO NOT FILL AIR SPACE WITH ANY TYPE OF INSULATION.\" p. 9: \"NEVER MODIFY ANY VENTING COMPONENT, OR USE ANY DAMAGED VENTING PRODUCT.\" Both are dropped prohibitions in topics the guide covers.",
+   "pages": [[1, 12], [1, 9]],
+   "fix": "Add \"Don't fill the clearance air space around the vent pipe with any type of insulation (p. 12).\" to the vent pipe clearances, and change step2 to \"Don't mix components from different manufacturers, modify any vent part, or use any damaged venting product.\""
+  }
+ ],
+ "verdict": "Yes: lighting, shutdown, IPI/CPI operation, clearances, gas pressures, electrical and mobile-home content match the manual and all 28 page links are right, so it is safe to publish once the vertical-termination vent figure becomes an amber note and the missing notes and dropped warnings are added."
+}

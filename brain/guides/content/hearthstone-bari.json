@@ -1,0 +1,727 @@
+{
+ "id": "hearthstone-bari",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "HEARTHSTONE",
+  "brand_line": "Bari 8171 · Bari Plus 8172 · Wood stove",
+  "kicker": "Wood stove",
+  "title": "Hearthstone Bari & Bari Plus",
+  "model_line": "Bari Model 8171 · Bari Plus Model 8172 · 6\" stovepipe to a solid-fuel chimney · Natural wood only",
+  "owner_noun": "stove",
+  "owner_card": "Light a fire, set the burn rate, work the bypass, turn the stove, empty ashes, check the warranty.",
+  "installer_card": "Specs, clearances, floor protection, chimney and draft, the install sequence and troubleshooting.",
+  "certification": "UL Std. 1482-2022 · ULC Std. S627:2023",
+  "owner_search_hint": "lighting, bypass, ashes, creosote",
+  "manual_search_hint": "clearance, hearth, draft, chimney"
+ },
+ "home_primary": [
+  {
+   "id": "light",
+   "icon": "flame",
+   "title": "Light a fire",
+   "blurb": "Paper, kindling, air and bypass, plus how to reload."
+  },
+  {
+   "id": "air",
+   "icon": "air",
+   "title": "Set the burn rate",
+   "blurb": "The air control from high to low, and signs of over-firing."
+  },
+  {
+   "id": "bypass",
+   "icon": "thermometer",
+   "title": "Bypass & catalyst",
+   "blurb": "When to open or close the bypass, and reading the thermometer."
+  },
+  {
+   "id": "rotate",
+   "icon": "dial",
+   "title": "Turn the stove",
+   "blurb": "Swivel it up to 90 degrees each way to face the room."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "wood",
+   "icon": "logs",
+   "title": "What wood to burn",
+   "blurb": "Seasoned wood, log length, and what never goes in."
+  },
+  {
+   "id": "ash",
+   "icon": "ash",
+   "title": "Empty the ashes",
+   "blurb": "Grate lever, ash pan and safe disposal."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass & stone",
+   "blurb": "Glass, soapstone and ceramic panels without damage."
+  },
+  {
+   "id": "chimney",
+   "icon": "chimney",
+   "title": "Creosote & chimney fires",
+   "blurb": "How often to check, how to prevent it, what to do in a fire."
+  },
+  {
+   "id": "safety",
+   "icon": "safety",
+   "title": "Safety around the stove",
+   "blurb": "Hot surfaces, clearances, detectors and fresh air."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "What's covered, for how long, and the catalyst warranty."
+  }
+ ],
+ "specs": [
+  {
+   "id": "output",
+   "lab": "Heat output",
+   "tap": "specOutput",
+   "rows": [
+    [
+     "Maximum",
+     "26,000 btu per hour"
+    ],
+    [
+     "EPA test range",
+     "14,065 to 26,036 Btu"
+    ],
+    [
+     "Heated area",
+     "Up to 1,400 square feet"
+    ]
+   ]
+  },
+  {
+   "id": "emissions",
+   "lab": "Emissions & efficiency",
+   "tap": "specEmissions",
+   "rows": [
+    [
+     "Particulate",
+     ".94 gr/hr"
+    ],
+    [
+     "Efficiency",
+     "75.9% (HHV)"
+    ],
+    [
+     "Standard",
+     "EPA 2020"
+    ]
+   ]
+  },
+  {
+   "id": "firebox",
+   "lab": "Firebox & logs",
+   "tap": "specFirebox",
+   "rows": [
+    [
+     "Capacity",
+     "1.25 cubic feet"
+    ],
+    [
+     "Max log, vertical",
+     "17\" (43 cm)"
+    ],
+    [
+     "Max log, horizontal",
+     "9\" (23cm)"
+    ]
+   ]
+  },
+  {
+   "id": "flue",
+   "lab": "Flue & chimney",
+   "tap": "specFlue",
+   "rows": [
+    [
+     "Stovepipe",
+     "6\" (152 mm)"
+    ],
+    [
+     "Flue, new install",
+     "6\" (152 mm) ID"
+    ],
+    [
+     "Draft",
+     "-0.06\" to -0.1\" WC"
+    ],
+    [
+     "Chimney height",
+     "16 feet min · 30 feet max"
+    ]
+   ]
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Combustibles",
+     "36\" (0.92 m)"
+    ],
+    [
+     "Walls & corners",
+     "Fig. 2 table, p. 23"
+    ],
+    [
+     "Alcove",
+     "Not tested or recommended"
+    ]
+   ]
+  },
+  {
+   "id": "hearth",
+   "lab": "Floor protection",
+   "tap": "specHearth",
+   "rows": [
+    [
+     "Combustible floor",
+     "Non-combustible protector"
+    ],
+    [
+     "Canada, side & front",
+     "18\" (45.72 cm)"
+    ],
+    [
+     "Pad sizes",
+     "Fig. 1, p. 9"
+    ]
+   ],
+   "note": "rotating vs locked stove"
+  },
+  {
+   "id": "dims",
+   "lab": "Dimensions & weight",
+   "tap": "specDims",
+   "rows": [
+    [
+     "Bari 8171 height",
+     "48.7\""
+    ],
+    [
+     "Bari Plus 8172 height",
+     "54.6\""
+    ],
+    [
+     "Diameter, both",
+     "18.5\""
+    ],
+    [
+     "Actual weight",
+     "475 pounds"
+    ]
+   ],
+   "note": "one weight given for both models"
+  },
+  {
+   "id": "oa",
+   "lab": "Outside air",
+   "tap": "specOutsideAir",
+   "rows": [
+    [
+     "Kit",
+     "91-53712"
+    ],
+    [
+     "Duct",
+     "Minimum 3\" (76 mm)"
+    ],
+    [
+     "Mobile home",
+     "Required · 4\" intake"
+    ]
+   ]
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Unpack & inspect",
+   "Check the stove and all parts; report damage or missing parts to the dealer. Stone panels weigh 150 pounds total (use two people); ceramic panels ship in separate boxes — remove all plastic and cardboard before the first fire."
+  ],
+  [
+   "Site, clearances & floor protection",
+   "Confirm clearances to walls, floor, ceiling and chase (Fig. 2, p. 23). On a combustible floor, lay a non-combustible protector sized for a rotating or a locked stove (Fig. 1); not for factory-built fireplaces, not tested for alcoves."
+  ],
+  [
+   "Feet & level",
+   "Remove the components shipped in the firebox and check them against the list. Attach the mounting feet, position the body aligned with the flue location, and adjust the feet to level."
+  ],
+  [
+   "Outside air kit & flue collar",
+   "Optional kit: gasket to the intake frame, intake body to the stove rear with two supplied screws. Fit the three bearings on the bearing carrier, lay it on the lower collar, and secure the top collar with screws hooked under the lower lip so it rotates freely."
+  ],
+  [
+   "Body panels & top",
+   "Bari 8171: pre-assemble and hang the soapstone or ceramic body panels, then set the ceramic, soapstone or steel top on its leveling hardware. Bari Plus 8172: skip to step 19 — fit a 12\" single wall pipe section, set the heat retaining stones with joints aligned, then the top with a slight gap."
+  ],
+  [
+   "Rotation lock (small hearth)",
+   "Required on the smaller hearth protector. With the stove at 0 degrees (index marks aligned) and the door centered, fit the two locking pieces at the rotation control behind the lower control door.",
+   "<p>Required to install the Bari on the smaller hearth protector in Fig. 1 (p. 9). Work at the rotation control behind the lower control door, with the stove in its 0-degree orientation (index marks lined up) and the door centered on the hearth. Figures 3 to 7 on p. 22 show each stage.</p>\n<div class=\"note\"><b>Note:</b> the manual prints two different rotation lock sequences. Steps 1–6 on p. 21: press the control lever, remove the hex screw and washer with a 13mm wrench, rotate the body slightly each way to slide in two Locking Stoppers, then replace the control knob. Steps 1–7 on pp. 21–22: lift the control lever, remove the hex head screw, rotate the control clockwise until the tangs release and lift it out, insert the two rotation lock tabs, then refit and tighten the screw.</div>"
+  ],
+  [
+   "Chimney connector",
+   "6\" (152 mm) 24 MSG or 25 MSG blued steel, or listed close-clearance double wall; crimped ends toward the stove, three sheet metal screws per joint (#10 x 1/2\" at the collar). Horizontal runs rise 1/4\" per foot; thimble or pass-through at combustible walls."
+  ],
+  [
+   "Chimney",
+   "Lined masonry, or Type HT (2100 deg. F) metal chimney listed to UL 103 / ULC S629; 6\" (152 mm) ID flue for new installs. Minimum 16 feet from the hearth pad, 30 feet max recommended; 3 feet above the roof opening, 2 feet above any roof within 10 feet."
+  ],
+  [
+   "Mobile home (US only)",
+   "Per 24 CFR, Part 3280: bolt down with Kit #91-99400, outside air with a 4\" intake (Kit # 90-53308) and a Dura-Vent mobile home chimney kit with spark arrester. Not approved to Canadian standards; never in a sleeping room.",
+   "<p>Install per 24 CFR, Part 3280 (HUD). Not approved for mobile home installation to Canadian standards.</p>\n<ul>\n<li>Permanently attach the stove to the floor with Kit #91-99400 (Mobile Home Lock Down Kit).</li>\n<li>Outside air is mandatory: a 4\" fresh air intake, Kit # 90-53308.</li>\n<li>Use a Dura-Vent Mobile Home Chimney &amp; Connector Kit (6DP-MH, 7DP-MH or 8DP-MH): stainless spark arrester cap, storm collar, adjustable vented flashing, two 24\" chimney pipes, 24\" support box with built-in starter section and trim.</li>\n<li>Chimney attached directly to the stove, at least 3 feet (.9 m) above the roof where it passes and 2 feet (.6 m) above any part of the home within 10 feet (3 m).</li>\n<li>Roof terminations removable at or below 13-1/2 feet (4.1 m) above ground without special tools; guard a chimney that exits other than through the roof at 7 feet (2.1 m) or less above ground.</li>\n</ul>\n<div class=\"note danger\">Do not install in a sleeping room. Maintain the structural integrity of floor, ceiling and roof, and remove the chimney when transporting the home.</div>"
+  ],
+  [
+   "Check the draft",
+   "Measure the draft at installation: the Bari requires -0.06\" to -0.1\" WC. Above -0.1\" WC install a stovepipe damper; some installations need more than one."
+  ]
+ ],
+ "faults": {
+  "label": "Troubleshooting guide",
+  "panels": [
+   {
+    "title": "Stove smokes",
+    "items": [
+     "Operating technique → fully open the primary air one minute before opening doors",
+     "Cold chimney → preheat it; briefly open a window in the room",
+     "Blocked chimney → check chimney and stovepipe for blockage or creosote",
+     "Oversized chimney → reline; undersized → draft inducer or replace",
+     "Chimney too short → lengthen it",
+     "Air infiltration or another appliance on the flue → seal openings, disconnect other appliances"
+    ]
+   },
+   {
+    "title": "Back-puffing or gas explosions",
+    "items": [
+     "Operating technique → air fully open one minute before opening and a few minutes after reloading",
+     "Extra low burn rate → burn at a higher rate",
+     "Chimney down-draft → install a chimney cap",
+     "Excessive ash build-up → empty the ash pan more often; no poor or green wood"
+    ]
+   },
+   {
+    "title": "Uncontrolled or short burn",
+    "items": [
+     "Unsealed or open door → close tightly or replace the gaskets",
+     "Open ash grate → slide it to the closed position",
+     "Excessive draft (over 0.1 WC) → check install, operate at low burn, stovepipe damper(s)",
+     "Extra long or oversized chimney → shorten or reline; damper(s)",
+     "High winds or hilltop → install a chimney cap"
+    ]
+   },
+   {
+    "title": "Insufficient heat",
+    "items": [
+     "Poor quality or green wood → air-dried wood, preferably dried at least one year",
+     "Low burn rate → operate at a higher burn rate",
+     "Air insulated or cold exterior chimney → insulated prefab or sized masonry; reline or insulate",
+     "Leaky stovepipe or chimney → check the installation",
+     "House heat loss or ash build-up → insulate and seal; empty the ash pan more often"
+    ]
+   }
+  ]
+ },
+ "codes": [],
+ "detail": {
+  "light": {
+   "tag": "Owner · operation",
+   "title": "Lighting and reloading",
+   "cool": false,
+   "html": "<p>Before you load the stove, check that the ash grate and the ash pan door are closed. If they're left open, the stove will over-fire and be damaged.</p>\n<ol>\n<li>Open the front door. Put five or six double sheets of tightly twisted newspaper in the center of the firebox.</li>\n<li>Lay about 10 pieces of kindling over the paper in a tee-pee. Each piece about 1/2\" thick and 10\" to 16\" long.</li>\n<li>Pull the primary air control all the way out. Open the catalyst bypass: the handle lines up with the flue pipe.</li>\n<li>Light the paper under the kindling. Lighting it at the front, near the glass, is quicker. Leave the door slightly open until the kindling burns and the draft pulls.</li>\n<li>Close the door and let the fire burn.</li>\n<li>When the kindling burns strongly, add logs, small ones first. Keep them away from the glass.</li>\n<li>Once the fire burns well, set the burn rate with the air control.</li>\n</ol>\n<p>On a cold stove, keep a medium to high fire for about 20 minutes. Close the bypass once the catalyst thermometer reads Active.</p>\n<h4>Reloading</h4>\n<p>Open the bypass. Open the door just a crack, pause, then open it fully. Load onto hot, red coals. Then burn with the air fully open for 15 to 20 minutes.</p>\n<div class=\"note\"><b>First fires smell.</b> Curing paints and oils give off some smoke and fumes, usually for 10 to 20 minutes. Open a few windows. It ends once the stove is cured.</div>"
+  },
+  "air": {
+   "tag": "Owner · operation",
+   "title": "Setting the burn rate",
+   "cool": false,
+   "html": "<p>The primary air control handle is at the front lower right, just under the ash pan. Pull it out for more air and a faster burn. Push it in for less air and a slower burn. It never closes completely.</p>\n<div class=\"kv\"><div class=\"r\"><span>High</span><span>Pulled all the way out</span></div><div class=\"r\"><span>Medium high</span><span>About ¼ to ½ of the way in</span></div><div class=\"r\"><span>Medium low</span><span>About ¾ of the way in</span></div><div class=\"r\"><span>Low</span><span>Pushed all the way in</span></div></div>\n<p>Medium low is the typical setting and the best choice when you leave the stove alone. A high burn once or twice a day heats the stovepipe and chimney and helps keep creosote down. Long periods on low build creosote, so check the chimney often if you burn low a lot.</p>\n<div class=\"note danger\"><b>Never over-fire the stove.</b> It will damage the stove. Signs of over-firing: warped parts, short burn times, a roaring sound in the stove or stovepipe, a discolored stovepipe. Causes: too much draft, the wrong fuel, worn gaskets, or the door, ash pan or ash grate left open. If you suspect it, contact your dealer immediately. Over-firing damage isn't covered by the warranty.</div>\n<p>Never alter the air control from its factory setup to make the stove burn hotter.</p>"
+  },
+  "bypass": {
+   "tag": "Owner · operation",
+   "title": "The bypass and catalyst thermometer",
+   "cool": false,
+   "html": "<p>Your Bari has a catalytic combustor (the catalyst) that burns up smoke the fire left behind. The bypass handle sends the smoke around the catalyst or through it.</p>\n<div class=\"kv\"><div class=\"r\"><span>Handle in line with the flue</span><span>Bypass open</span></div><div class=\"r\"><span>Handle horizontal</span><span>Bypass closed</span></div></div>\n<p>Open the bypass when you start a fire and whenever you open the door to load. Close it once the catalyst heats up, and keep it closed while the stove burns in the active range.</p>\n<h4>Reading the thermometer</h4>\n<ul>\n<li><b>Inactive:</b> keep the bypass open until the stove heats up.</li>\n<li><b>Active:</b> close the bypass.</li>\n<li><b>Too Hot:</b> keep the door closed, close the air control fully and let the stove cool back into Active.</li>\n</ul>\n<p>The catalyst becomes active around 500 °F. When it works, you should see little to no smoke from the chimney. Inspect the catalysts at least three times each heating season, and never run the stove without them.</p>\n<div class=\"note small\">The introduction (p. 4) also prints that the stove works \"without the cost and maintenance requirements of a catalytic device.\" The rest of the manual (pp. 33, 36 and 41–43) describes the catalytic combustor, including a warning that this wood heater contains one that needs periodic inspection and replacement. The maker's website lists \"TruHybrid combustion technology (primary, secondary and tertiary combustion with catalyst).\"</div>"
+  },
+  "rotate": {
+   "tag": "Owner · operation",
+   "title": "Turning the stove",
+   "cool": false,
+   "html": "<p>Your Bari turns a full 180 degrees. Centered on the hearth, it turns 90 degrees to the left and 90 degrees to the right, with 13 positions in all.</p>\n<div class=\"note small\"><b>Maker's website:</b> Stove Rotation 225 degrees (Bari and Bari Plus pages).</div>\n<ol>\n<li>Open the control door under the firebox door.</li>\n<li>Push the button to free the stove.</li>\n<li>Turn the stove to the position you want.</li>\n<li>Push the button again, then turn the stove slightly so it locks in place.</li>\n<li>Close the control door.</li>\n</ol>\n<div class=\"note\">The controls get very hot while the stove burns. Use them only when the stove is cool, or wear the hearth glove that came with it.</div>\n<div class=\"note danger\"><b>On the smaller hearth pad?</b> The manual shows two pad sizes: a larger one for a stove that turns freely and a smaller one for a stove locked in place. A stove on the smaller pad must stay locked.</div>"
+  },
+  "wood": {
+   "tag": "Owner · operation",
+   "title": "What wood to burn",
+   "cool": false,
+   "html": "<p>Burn natural firewood (cordwood) only. Dry, seasoned hardwood burns more efficiently and more cleanly than softwood or freshly cut wood. Hardwoods burn longer and leave longer-lasting coals; softwoods burn hotter and faster.</p>\n<ul>\n<li><b>How dry?</b> Burn only dry, seasoned wood; wet wood greatly reduces your efficiency. Seasoned firewood is usually at or near 20% moisture. A hand-held moisture meter can check it.</li>\n<li><b>Seasoning:</b> split, stack and let green wood air dry for one year. Stack it on skids or blocks off the ground and cover only the top. Tarps over the sides trap moisture.</li>\n<li><b>Log length:</b> up to 17\" standing upright, or 9\" lying horizontally.</li>\n<li><b>Storage:</b> don't keep firewood within the stove's clearances to combustibles.</li>\n</ul>\n<div class=\"note danger\"><b>Never burn</b> unseasoned wood (green or wet), garbage or trash, lawn clippings, coal, charcoal, pellets, artificial or wax logs, cardboard, paper products (including colored or glossy paper), plywood or particleboard, painted, treated (including pressure-treated) or kiln-dried wood, driftwood (including salt water driftwood) and other previously salt water saturated materials, railroad ties, asphalt products, construction or demolition debris, materials containing asbestos, materials containing plastic, material containing rubber (including tires), waste petroleum products, paints, paint thinners, solvents, or manure or animal remains. Burning these materials may release toxic fumes, make the stove ineffective, cause smoke and damage the catalysts. Fire starters made from paper, cardboard, sawdust, wax and similar substances are allowed for starting a fire. Never use chemicals or flammable fluids such as gasoline, naphtha, kerosene, charcoal lighter fluid or engine oil to start or boost a fire; they cause dangerous burning conditions in the stove. Keep all such materials away from the stove.</div>\n<h4>Loading</h4>\n<p>Don't throw wood in or use the door to force it. Don't load ice-covered wood into a burning stove. Don't use a log grate; burn right on the cast iron firebox bottom.</p>"
+  },
+  "ash": {
+   "tag": "Owner · maintenance",
+   "title": "Emptying the ashes",
+   "cool": false,
+   "html": "<p>Remove ashes only when the stove is cold. If the ash pan is still warm, wear protective fireplace gloves.</p>\n<ol>\n<li>Open the control door under the front door.</li>\n<li>Pull the grate lever out to open the ash grate, and sift the ashes into the ash pan.</li>\n<li>Push the lever back in to close the grate.</li>\n<li>Take out the ash pan by its handle. Dump the ashes straight into a metal container with a tight-fitting lid, and move it outdoors right away.</li>\n<li>Slide the ash pan back into place.</li>\n</ol>\n<p>Empty the ashes at least once a week, sooner if the firebox or ash pan is full. Don't let ashes build up more than 3 inches high or pile up around the door opening.</p>\n<div class=\"note danger\"><b>Never run the stove</b> unless the ash pan is in place and sealed and the grate is closed. It can overheat and be damaged.</div>\n<h4>The ash container</h4>\n<ul>\n<li>Put nothing else in it, and don't pour water into it.</li>\n<li>Close the lid. Set it on a noncombustible floor or the ground, well away from anything that burns, liquid fuels and vehicles. Never set it on a combustible surface or vinyl flooring.</li>\n<li>Keep the ashes in it until the coals are completely cool. Never use wooden or plastic containers, paper or plastic, or a trash can with other trash.</li>\n</ul>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass and stone",
+   "cool": false,
+   "html": "<p>Clean the glass only when the fire is out and the glass is cool. Use a commercial stove-glass cleaner made for woodstoves (your dealer sells them) and follow its directions.</p>\n<p>For heavy deposits, the door can come off and lie face down on a padded surface so the cleaner can soak. The door weighs 81 pounds, so get a helper. Wipe off with a soft cloth or black and white newsprint.</p>\n<div class=\"note danger\"><b>No scrapers.</b> Never use a razor blade, steel wool or anything abrasive. Scratches weaken the glass. Don't use the stove with broken glass. Replace broken or chipped glass right away with Hearthstone's glass kit (part 91-205270).</div>\n<p>Glass that always stays dirty means the fire runs too cool or the wood is wet.</p>\n<h4>Soapstone and ceramic panels</h4>\n<p><b>Soapstone:</b> wipe with water or a non-abrasive glass cleaner and a soft cloth. No chemicals, waxes or polish. Earth-tone color changes and hairline surface cracks are normal. Blend minor scratches with 240 grit sandpaper. Call your dealer if a stone breaks completely.</p>\n<p><b>Ceramic:</b> on a cold stove, wipe with a dry, clean cloth. A standard glass cleaner, used lightly, removes stains.</p>"
+  },
+  "chimney": {
+   "tag": "Owner · maintenance",
+   "title": "Creosote and chimney fires",
+   "cool": false,
+   "html": "<p>Slow, cool fires give off tar and vapors that condense in the chimney as creosote, a tar-like deposit. If it ignites, it burns extremely hot and can damage the chimney or the house.</p>\n<ul>\n<li>Check the chimney connector and chimney at least every two months in the heating season, and at least monthly if creosote is building up. Check the top, where it's coolest, as well as near the stove.</li>\n<li>Remove creosote thicker than 1/4\". A certified chimney sweep is recommended.</li>\n<li>Before each heating season, have the whole system professionally inspected, cleaned and repaired if needed.</li>\n<li>To prevent it, burn with the air fully open for 35 to 45 minutes every day, and for 15 to 20 minutes after each reload.</li>\n</ul>\n<h4>If you have a chimney fire</h4>\n<ol>\n<li>If the fire is too threatening, leave and call the fire department right away.</li>\n<li>Otherwise, close the primary air control.</li>\n<li>Close the stovepipe damper, if you have one.</li>\n<li>Keep the front door and ash pan closed.</li>\n</ol>\n<div class=\"note danger\"><b>Never throw water</b> on the stove, stovepipe or chimney. The instant steam can badly hurt you. Afterward, keep the air closed and let the fire die out. Have everything inspected and any damage fixed before you use the stove again.</div>"
+  },
+  "safety": {
+   "tag": "Owner · safety",
+   "title": "Safety around the stove",
+   "cool": false,
+   "html": "<ul>\n<li>Keep furniture, drapes, clothing and other things that burn at least 36\" from the stove.</li>\n<li>The stove and its controls get very hot. Keep children and pets away while it burns. Use the controls only when the stove is cool, or wear the hearth glove that came with it.</li>\n<li>Keep the front door closed and latched except when loading. Keep the ash pan fully in with its handle latched.</li>\n<li>Never put clothing or candles on a hot stove. Never modify the stove or over-fire it.</li>\n<li>Install smoke and carbon monoxide detectors throughout the home, including bedrooms and hallways, and test them. Keep a fire extinguisher rated \"A B C\" handy.</li>\n</ul>\n<div class=\"note\">To latch the door, push it tightly toward the firebox and keep pushing the handle until it latches. Pull gently on the handle to check.</div>\n<h4>Not enough fresh air?</h4>\n<p>Your home may need outside combustion air if the stove doesn't draw steadily, smoke rolls out, the wood burns poorly or it back-drafts, or if other fuel-burning appliances misbehave. Another sign: a slightly open window on a calm day eases these problems. An optional outside air kit (#91-53712) brings air in from outdoors.</p>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "Warranty at a glance",
+   "cool": false,
+   "html": "<p>The limited warranty covers the original retail purchaser only, for a stove installed by an authorized Hearthstone dealer or their representative. It can't be transferred and starts on the original invoice date. \"Limited Lifetime\" means 10 years.</p>\n<div class=\"kv\"><div class=\"r\"><span>Stone; cast iron not listed elsewhere</span><span>Limited Lifetime</span></div><div class=\"r\"><span>Door handles and latches; steel components and firebox</span><span>5 years</span></div><div class=\"r\"><span>Enamel finish, accessories, glass, all other components</span><span>1 year</span></div><div class=\"r\"><span>Warranty labor (dealer-installed)</span><span>First year</span></div></div>\n<p><b>Catalysts</b> are warranted by their maker, Applied Ceramics: free replacement within two years, then a prorated price ($130.00 in year 3, up to $160.00 in year 6).</p>\n<p><b>Not covered:</b> over-firing, other fuels, installation or use that doesn't follow the manual or codes, wear parts like paint, gaskets and baffles, and noise or odors from heating.</p>\n<p>Register at hearthstonestoves.com or by mail; it isn't required for coverage. Claims go through your dealer.</p>\n<div class=\"note\"><b>Note:</b> the warranty grid (p. 49) covers glass for 1 year, while exclusion 3 (p. 50) lists glass among the wear parts, subject to normal wear and tear, whose repair or replacement isn't covered. The catalyst warranty (p. 48) gives free replacement within two years, then mentions \"the three year period.\"</div>"
+  },
+  "specOutput": {
+   "tag": "Installer · spec",
+   "title": "Heat output",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Maximum heat output</span><span>26,000 btu per hour of cordwood</span></div></div>\n<div class=\"note small\"><b>Maker's website:</b> BTU Up to 35,000 (Bari and Bari Plus pages).</div>\n<div class=\"kv\"><div class=\"r\"><span>EPA test output range</span><span>14,065 to 26,036 Btu</span></div><div class=\"r\"><span>Floor size of heated area</span><span>Up to a maximum of 1,400 square feet</span></div></div>\n<p>The maximum is based on independent laboratory test results; the EPA range was measured with 9\" wood loaded horizontally (rating paragraph for the Bari 8171, p. 2). Insulation, windows, floor plan, stove placement and fuel quality can reduce the area heated. The manufacturer-set minimum low burn rate must not be altered.</p>"
+  },
+  "specEmissions": {
+   "tag": "Installer · spec",
+   "title": "Emissions and efficiency",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Particulate emission rate</span><span>.94 gr/hr</span></div><div class=\"r\"><span>Weighted average efficiency</span><span>75.9% (HHV)</span></div></div>\n<div class=\"note small\"><b>Maker's website:</b> Efficiency 76% HHV (Bari and Bari Plus pages).</div>\n<div class=\"kv\"><div class=\"r\"><span>CO · Category 1 (Low)</span><span>3.0 gr./hr.</span></div><div class=\"r\"><span>CO · Category 2 (Medium Low)</span><span>3.6 gr./hr.</span></div><div class=\"r\"><span>CO · Category 3 (Medium High)</span><span>3.6 gr./hr.</span></div><div class=\"r\"><span>CO · Category 4 (High)</span><span>6.0 gr./hr.</span></div></div>\n<p>Certified to the U.S. EPA 2020 particulate emissions standard; tested to EPA Method 28, 28A and 5H. Efficiency by EPA Method 28R, weighted with CSA B415-10 across the 4 burn rate categories. Test report PFS F20-618. The rating paragraph names the Bari 8171.</p>"
+  },
+  "specFirebox": {
+   "tag": "Installer · spec",
+   "title": "Firebox and log length",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Firebox capacity</span><span>1.25 cubic feet or 46 pounds of wood</span></div><div class=\"r\"><span>Maximum log length, vertical</span><span>17\" (43 cm)</span></div><div class=\"r\"><span>Maximum log length, horizontal</span><span>9\" (23cm)</span></div></div>\n<p>Wood weight per cubic foot of firebox varies from 15 to 36 lbs. with species, moisture and packing; the manual assumes 20 lbs. of seasoned hardwood per cubic foot for comparison. Burn directly on the cast iron firebox bottom, with no grate.</p>"
+  },
+  "specFlue": {
+   "tag": "Installer · spec",
+   "title": "Flue, chimney and draft",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Connector</span><span>6\" (152 mm), 24 MSG or 25 MSG blued steel</span></div><div class=\"r\"><span>Flue, new installation</span><span>6\" (152 mm) inside diameter</span></div><div class=\"r\"><span>Existing flue</span><span>8\" (203 mm) with a reducer</span></div><div class=\"r\"><span>Masonry tile, max</span><span>8\" x 8\" (203 mm x 203 mm)</span></div><div class=\"r\"><span>Required draft</span><span>-0.06\" to -0.1\" WC</span></div><div class=\"r\"><span>Chimney height</span><span>16 feet (5 m) min from hearth pad · 30 feet (9m) max recommended</span></div><div class=\"r\"><span>Above the roof</span><span>3 feet (0.9 m) above the opening · 2 feet (0.6 m) above any roof within 10 feet (3 m)</span></div></div>\n<p>Chimney: lined masonry, or Type HT (2100 deg. F) prefabricated metal chimney listed to UL 103 or ULC S629, suitable for solid fuel. Liner: UL 1777 or ULC S635. No aluminum or galvanized pipe. Never share a flue with another appliance or connect to an air distribution duct. Above -0.1\" WC, fit a stovepipe damper; check the draft at installation. Interior masonry chimney: 2\" (51 mm) to combustibles; exterior: 1\" (25 mm).</p>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances to combustibles",
+   "cool": true,
+   "html": "<p>Keep furniture, drapes, clothing and other combustibles at least 36\" (0.92 m) from the stove.</p>\n<p>Wall and corner clearances (dimensions A to K, single or double wall connector, parallel and corner installations) are given in Figure 2 and its table on p. 23. The letters are defined only in the drawing, so read them from the page. Single wall clearances are generic; double wall clearances are for Simpson DuraVent DVL. An NFPA 211 approved wall protection system can reduce clearances.</p><div class=\"note small\"><b>Maker's website:</b> Clearances, single/double wall connector, stove free to rotate: Side 38\", Rear 13\"; stove locked: Side 13\", Rear 11\", Corner 10\". Install to the clearance diagrams in the manual.</div>\n<div class=\"note\"><b>Note:</b> the clearance table on p. 23 gives dimension K as 27 inches but 48.2 centimeters, the same metric figure printed for J (19 inches).</div>\n<h4>Through a combustible wall (Fig. 3, p. 24)</h4>\n<ul>\n<li>A: 3.5in brick framed into the wall, 12in of brick between clay liner and combustibles.</li>\n<li>B: solid-insulated listed chimney length, same inside diameter as the connector, 1in or more of insulation, 9in air space to combustibles.</li>\n<li>C: 24 gauge connector and ventilated thimble with two 1in air channels, 6in glass fiber insulation to combustibles.</li>\n<li>D: listed chimney section 2in larger than the connector, 2in air space, 12in minimum length, connector spaced 1in.</li>\n</ul>\n<p>The connector cannot pass through a floor, ceiling, attic, roof space, closet or concealed space. Not tested or recommended for alcove installation.</p>"
+  },
+  "specHearth": {
+   "tag": "Installer · spec",
+   "title": "Hearth and floor protection",
+   "cool": true,
+   "html": "<p>A combustible floor needs a non-combustible floor protector, for example a continuous layer of listed backer board (Micore, Wonder-Board or Durock) with tile, brick, slate or other non-combustible facing.</p>\n<p>Figure 1 on p. 9 draws two hearth options: one for the freely rotating stove and a smaller one for the locked stove. Pad dimensions appear only in the drawing (measured from the stove body); the figure is labeled \"8\" from firebox opening with stove fully rotated.\" A stove on the smaller pad must be locked (rotation lock, p. 21).</p>\n<div class=\"kv\"><div class=\"r\"><span>Canada</span><span>18\" (45.72 cm) on both side and front</span></div><div class=\"r\"><span>Rear</span><span>Only if the stovepipe runs horizontally back above the top of the stove</span></div></div>\n<div class=\"note\"><b>LVP / LVT floors:</b> some begin to warp at 110° Fahrenheit. Check the flooring maker's limit; additional shielding may be required.</div>"
+  },
+  "specDims": {
+   "tag": "Installer · spec",
+   "title": "Dimensions and weight",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Bari 8171 height</span><span>48.7\"</span></div><div class=\"r\"><span>Bari Plus 8172 height</span><span>54.6\" (139cm)</span></div><div class=\"r\"><span>Diameter, both models</span><span>18.5\" (47cm)</span></div><div class=\"r\"><span>Actual weight</span><span>475 pounds (216 kg)</span></div></div>\n<div class=\"note small\"><b>Maker's website:</b> Bari: Weight (All Steel) 310 lbs; Weight (Ceramic) 430 lbs; Weight (Soapstone) 485 lbs. Bari Plus: Weight 425 lbs.</div>\n<div class=\"kv\"><div class=\"r\"><span>Crate</span><span>H-49.5\" W-32.4\" L-24.5\" (add 4\" for pallet)</span></div></div>\n<p>The manual gives one weight for both models. Stone panels weigh 150 pounds total and the door 81 pounds (37 kg); use a second person. Bari 8171 takes optional soapstone or ceramic body panels and a ceramic, soapstone or steel top; the Bari Plus 8172 has heat retaining stones under its top. Dimension drawings for each model are on p. 7.</p>\n<div class=\"note small\">The manual prints the Bari 8171 height as 48.7\" (112 cm) on p. 7; the metric figure doesn't match the inch figure, so only the inch figure is shown above.</div>"
+  },
+  "specOutsideAir": {
+   "tag": "Installer · spec",
+   "title": "Outside air",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Outside air kit</span><span>91-53712</span></div><div class=\"r\"><span>4\" air duct adapter</span><span>90-53308</span></div><div class=\"r\"><span>Duct (by others)</span><span>Minimum 3\" (76 mm) diameter</span></div></div>\n<p>The kit attaches to the back of the stove (gasket, then intake body with two supplied screws, p. 11). When using it, also install Kit #91-99400 to attach the heater to the structure. The IRC doesn't allow the duct to terminate higher than the appliance; Hearthstone recommends terminating at or below the stove's air intake. Keep the termination clear of snow and leaves, screen it with ¼\" x ¼\" mesh and cover it with a rain/wind proof hood. Canada: dampers allowing 100% closure on intakes connected directly outdoors.</p>\n<p>Mobile homes: outside air is mandatory, with a 4\" fresh air intake (Kit # 90-53308).</p>"
+  }
+ },
+ "pageref": {
+  "light": 35,
+  "air": 36,
+  "bypass": 33,
+  "rotate": 32,
+  "wood": 34,
+  "ash": 36,
+  "glass": 39,
+  "chimney": 37,
+  "safety": 5,
+  "warranty": 48,
+  "specOutput": 7,
+  "specEmissions": 2,
+  "specFirebox": 7,
+  "specFlue": 26,
+  "specClear": 23,
+  "specHearth": 9,
+  "specDims": 7,
+  "specOutsideAir": 25,
+  "step0": 8,
+  "step1": 9,
+  "step2": 10,
+  "step3": 11,
+  "step4": 12,
+  "step5": 21,
+  "step6": 26,
+  "step7": 27,
+  "step8": 29,
+  "step9": 26
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "chimney",
+   "t": "chimney fire",
+   "p": "What to do if the chimney catches fire"
+  },
+  {
+   "k": "h",
+   "id": "air",
+   "t": "over-firing",
+   "p": "Signs, causes and what to do"
+  },
+  {
+   "k": "h",
+   "id": "bypass",
+   "t": "catalytic combustor",
+   "p": "Bypass handle and catalyst thermometer"
+  },
+  {
+   "k": "h",
+   "id": "wood",
+   "t": "moisture meter",
+   "p": "Seasoned wood is at or near 20% moisture"
+  },
+  {
+   "k": "h",
+   "id": "glass",
+   "t": "soapstone",
+   "p": "Cleaning soapstone and ceramic panels"
+  },
+  {
+   "k": "h",
+   "id": "safety",
+   "t": "outside air",
+   "p": "Signs your home needs outside combustion air"
+  },
+  {
+   "k": "i",
+   "id": "specFlue",
+   "t": "draft",
+   "p": "-0.06\" to -0.1\" WC; damper above -0.1\" WC"
+  },
+  {
+   "k": "i",
+   "id": "specHearth",
+   "t": "hearth pad",
+   "p": "Rotating vs locked stove floor protection"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "bypass",
+    "issue": "Introduction says the stove gives advanced wood-burning technology 'without the cost and maintenance requirements of a catalytic device', but the manual elsewhere describes a catalytic combustor (bypass, catalyst thermometer, periodic inspection and replacement, kit 96-75400, Applied Ceramics catalyst warranty).",
+    "pages": [
+     [
+      1,
+      4
+     ],
+     [
+      1,
+      33
+     ],
+     [
+      1,
+      41
+     ]
+    ],
+    "class": "clerical",
+    "corrected_to": "The stove has a catalytic combustor: pp. 33, 36 and 41-43 describe it (p. 41 warns that this wood heater contains one needing periodic inspection and replacement), and the maker's website lists TruHybrid combustion with catalyst. The p. 4 'without ... a catalytic device' sentence is shown as what was printed."
+   },
+   {
+    "where": "specDims",
+    "issue": "Bari 8171 height printed as 48.7\" (112 cm); the inch and metric figures do not agree (Bari Plus 54.6\" (139cm) is consistent).",
+    "pages": [
+     [
+      1,
+      7
+     ]
+    ],
+    "class": "clerical",
+    "corrected_to": "48.7\" (the inch figure; the 112 cm printed beside it on p. 7 does not match)"
+   },
+   {
+    "where": "specClear",
+    "issue": "Clearance table: dimension K is 27 inches but 48.2 centimeters, the same metric value printed for J (19 inches).",
+    "pages": [
+     [
+      1,
+      23
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "step5",
+    "issue": "Two different rotation-lock procedures are printed: steps 1-6 (13mm wrench, hex screw and washer, slide two Locking Stoppers, replace control knob) and steps 1-7 (lift lever, remove hex head screw, rotate control clockwise to release tangs, insert two rotation lock tabs, refit screw).",
+    "pages": [
+     [
+      1,
+      21
+     ],
+     [
+      1,
+      22
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "warranty",
+    "issue": "Catalyst warranty gives no-charge replacement within two (2) years, then refers to one replacement per defective catalyst 'during the three year period'.",
+    "pages": [
+     [
+      1,
+      48
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "warranty",
+    "issue": "Stove components grid lists Glass with a 1 Year period for all fuels, while exclusion 3 lists glass (with paint, gaskets, baffles, refractory materials, ash grates) as wear parts not covered.",
+    "pages": [
+     [
+      1,
+      49
+     ],
+     [
+      1,
+      50
+     ]
+    ],
+    "class": "substantive"
+   }
+  ],
+  "catalog_mismatches": [
+   {
+    "model": "hearthstone-bari",
+    "field": "btu_output_max",
+    "catalog": "35000",
+    "manual": "Maximum Heat Output: 26,000 btu per hour",
+    "page": [
+     1,
+     7
+    ],
+    "shown": "specOutput"
+   },
+   {
+    "model": "hearthstone-bari-plus",
+    "field": "btu_output_max",
+    "catalog": "35000",
+    "manual": "Maximum Heat Output: 26,000 btu per hour",
+    "page": [
+     1,
+     7
+    ],
+    "shown": "specOutput"
+   },
+   {
+    "model": "hearthstone-bari",
+    "field": "weight_lb",
+    "catalog": "310",
+    "manual": "Actual Weight: 475 pounds (216 kg)",
+    "page": [
+     1,
+     7
+    ],
+    "shown": "specDims"
+   },
+   {
+    "model": "hearthstone-bari-plus",
+    "field": "weight_lb",
+    "catalog": "425",
+    "manual": "Actual Weight: 475 pounds (216 kg) (one figure for both models)",
+    "page": [
+     1,
+     7
+    ],
+    "shown": "specDims"
+   },
+   {
+    "model": "hearthstone-bari",
+    "field": "features",
+    "catalog": "Stove body rotates up to 225 degrees",
+    "manual": "rotates a full 180 degrees (90 degrees to each side)",
+    "page": [
+     1,
+     32
+    ],
+    "shown": "rotate"
+   },
+   {
+    "model": "hearthstone-bari-plus",
+    "field": "features",
+    "catalog": "Stove body rotates up to 225 degrees",
+    "manual": "rotates a full 180 degrees (90 degrees to each side)",
+    "page": [
+     1,
+     32
+    ],
+    "shown": "rotate"
+   },
+   {
+    "model": "hearthstone-bari",
+    "field": "Weight (Ceramic)",
+    "catalog": "430 lbs",
+    "manual": "Actual Weight: 475 pounds (216 kg)",
+    "page": [
+     1,
+     7
+    ],
+    "shown": "specDims"
+   },
+   {
+    "model": "hearthstone-bari",
+    "field": "Weight (Soapstone)",
+    "catalog": "485 lbs",
+    "manual": "Actual Weight: 475 pounds (216 kg)",
+    "page": [
+     1,
+     7
+    ],
+    "shown": "specDims"
+   },
+   {
+    "model": "hearthstone-bari",
+    "field": "efficiency_pct",
+    "catalog": "76% HHV",
+    "manual": "The weighted average efficiency is 75.9% (HHV).",
+    "page": [
+     1,
+     2
+    ],
+    "shown": "specEmissions"
+   },
+   {
+    "model": "hearthstone-bari-plus",
+    "field": "efficiency_pct",
+    "catalog": "76% HHV",
+    "manual": "The weighted average efficiency is 75.9% (HHV). (rating paragraph names the Bari 8171)",
+    "page": [
+     1,
+     2
+    ],
+    "shown": "specEmissions"
+   }
+  ],
+  "notes": "One manual covers both models (cover: Bari Model 8171, Bari Plus Model 8172). Model differences in the text: height (48.7\" vs 54.6\"), and assembly (8171 optional soapstone or ceramic body panels and ceramic, soapstone or steel top; 8172 skips to step 19, 12\" single wall pipe section, heat retaining stones under the top). The EPA, efficiency and CO rating paragraph (p. 2) names the Bari 8171 only; the specifications page gives one heat output, firebox, log length and weight (475 pounds) for both, so the Bari Plus has no separate figures. Figure-only content not transcribed: clearance letters A-K (Fig. 2 table, p. 23), hearth pad dimensions (Fig. 1, p. 9), dimension drawings (p. 7), chimney height drawing (p. 29), bypass handle direction (Fig. 6, p. 33). The catalog clearances_note values (side 38, rear 13; locked side 13, rear 11, corner 10) appear among the p. 23 table values, but the letter meanings live only in the drawing, so they were not verified. Warranty grid (p. 49): only rows marked for all three fuel columns are shown; rows with one or two marks (clean burning air supply system; refractory, vermiculite panels, baffles; ash grate) can't be assigned to the wood column from the text. Firebox '1.25 cubic feet or 46 pounds of wood' does not reconcile with the stated 20 lbs. per cubic foot assumption (p. 7); shown as printed. Draft is written -0.1\" WC (p. 26), -0.1 WC (p. 36) and 0.1 WC (p. 45). Particulate is printed '.94 gr/hr'. Catalog and website efficiency 76 (website: Efficiency 76% HHV) is the manual's 75.9% rounded; listed in catalog_mismatches and noted in the guide (Oct 12). Website 'EPA Certified 0.94 g/hr' is the manual's '.94 gr/hr' (same figure, not listed). Website HeatLife (Bari 14 hours, Bari Plus 16 Hours of heat) is not covered by the manual, so it is not shown. Catalog mobile_home_approved true: the manual approves US installs per 24 CFR, Part 3280 but not to Canadian standards (p. 29). Broken cross-references in the manual: p. 29 'See page 13' for outside air; p. 42 'warranty on page 35' (warranty is p. 48); p. 27 'Figure 10' (the drawing is Figure 5, p. 29); the table of contents puts the catalyst section at pp. 25-26 (it is pp. 41-43); p. 41 cites a 'Catalyst Troubleshooting section' that the manual does not contain. Door gasket and latch adjustment (pp. 37-38), vermiculite panel and glass replacement (pp. 39-40) and catalyst removal (pp. 42-43) are in the manual but not given their own tiles."
+ }
+}

@@ -1,0 +1,625 @@
+{
+ "id": "rsf-opel-plus-keystone",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "RSF",
+  "brand_line": "Opel Plus Keystone · Catalytic wood-burning fireplace",
+  "kicker": "Factory-built wood fireplace",
+  "title": "RSF Opel Plus Keystone",
+  "model_line": "Model Opel Plus Keystone · 7\" ICC EXCEL chimney · Catalytic combustor",
+  "owner_noun": "fireplace",
+  "owner_card": "Light a fire, engage the catalyst, reload, choose wood, clean the glass and chimney, check the warranty.",
+  "installer_card": "Specs, clearances, mantel heights, chimney, outside air, gravity vents, the install sequence and smoke & burn faults.",
+  "certification": "EPA 2020 particulate emission standard",
+  "owner_search_hint": "lighting, bypass, creosote, glass",
+  "manual_search_hint": "mantel, hearth, flue height"
+ },
+ "home_primary": [
+  {
+   "id": "light",
+   "icon": "flame",
+   "title": "Light a fire",
+   "blurb": "Bypass out, air open, plenty of kindling, and what the first fires are like."
+  },
+  {
+   "id": "catalyst",
+   "icon": "gauge",
+   "title": "Engage the catalyst",
+   "blurb": "When to push the bypass handle in, and the temperatures to watch."
+  },
+  {
+   "id": "air",
+   "icon": "air",
+   "title": "Control the burn",
+   "blurb": "The air lever, the automatic damper and the outside-air slider."
+  },
+  {
+   "id": "reload",
+   "icon": "logs",
+   "title": "Reload the fire",
+   "blurb": "Add wood without smoke spilling into the room."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "wood",
+   "icon": "tree",
+   "title": "What wood to burn",
+   "blurb": "Seasoned cordwood, fire logs, and what never goes in."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "Keep it clear with hot fires, and clean it safely when cool."
+  },
+  {
+   "id": "chimney",
+   "icon": "chimney",
+   "title": "Chimney & ashes",
+   "blurb": "Check for creosote, sweep the flue, dispose of ashes safely."
+  },
+  {
+   "id": "care",
+   "icon": "service",
+   "title": "Catalyst & door seal",
+   "blurb": "Inspect the catalyst, test the door gasket, judge firebrick wear."
+  },
+  {
+   "id": "safety",
+   "icon": "safety",
+   "title": "Safety & overfiring",
+   "blurb": "Clearances, detectors, what never to do, and signs of overfiring."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "30-year limited coverage, the catalyst schedule and exclusions."
+  }
+ ],
+ "specs": [
+  {
+   "id": "perf",
+   "lab": "Emissions & output",
+   "tap": "specPerf",
+   "rows": [
+    [
+     "Emissions",
+     "0.7 g/hr · EPA 2020"
+    ],
+    [
+     "Overall efficiency",
+     "70% (HHV)"
+    ],
+    [
+     "Max heat output",
+     "27 034 BTU/hr"
+    ]
+   ]
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances to combustibles",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Side, back, top standoffs",
+     "0\""
+    ],
+    [
+     "Side wall to firebox opening",
+     "16\""
+    ],
+    [
+     "Wall materials above opening",
+     "39 ¼\""
+    ],
+    [
+     "Ceiling (sealed / vented)",
+     "7' / 6'"
+    ]
+   ]
+  },
+  {
+   "id": "mantel",
+   "lab": "Combustible mantel",
+   "tap": "specMantel",
+   "rows": [
+    [
+     "Max depth",
+     "12\""
+    ],
+    [
+     "0\" to 4\" deep",
+     "32\" above opening"
+    ],
+    [
+     "12\" deep",
+     "36 ½\" above opening"
+    ]
+   ]
+  },
+  {
+   "id": "hearth",
+   "lab": "Hearth extension",
+   "tap": "specHearth",
+   "rows": [
+    [
+     "Depth from front",
+     "18\""
+    ],
+    [
+     "Width (centered)",
+     "42\""
+    ],
+    [
+     "Spark guard width",
+     "36\""
+    ]
+   ],
+   "note": "non-combustible; no minimum thickness"
+  },
+  {
+   "id": "flue",
+   "lab": "Chimney",
+   "tap": "specChimney",
+   "rows": [
+    [
+     "Listed chimney",
+     "7\" ICC EXCEL only"
+    ],
+    [
+     "Total height",
+     "12' min / 40' max"
+    ],
+    [
+     "Max supported by fireplace",
+     "18'"
+    ]
+   ]
+  },
+  {
+   "id": "oair",
+   "lab": "Outside air duct",
+   "tap": "specAir",
+   "rows": [
+    [
+     "Duct size",
+     "4\" under 25' run · 5\" longer"
+    ],
+    [
+     "Max vertical rise",
+     "12' above base"
+    ],
+    [
+     "Inlet below rain cap",
+     "5' min."
+    ]
+   ]
+  },
+  {
+   "id": "louver",
+   "lab": "Top louver & gravity vents",
+   "tap": "specLouver",
+   "rows": [
+    [
+     "Top louver (FO-OPLK) fitted",
+     "Gravity vents optional"
+    ],
+    [
+     "No top louver / louver blocked",
+     "2 gravity vent kits required"
+    ],
+    [
+     "Gravity vent max length",
+     "15'"
+    ]
+   ]
+  },
+  {
+   "id": "gaslog",
+   "lab": "Gas log option",
+   "tap": "specGas",
+   "rows": [
+    [
+     "Max gas log input",
+     "35,000 BTU"
+    ],
+    [
+     "Gas log listing",
+     "ANSI Z21.60/CSA 2.26"
+    ],
+    [
+     "Air control / bypass",
+     "Fully open / open"
+    ]
+   ]
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Plan the location & permit",
+   "Check permits and requirements with the local authority having jurisdiction. Pick a spot that avoids cutting floor and roof joists, and plan fireplace, chimney and options together before starting.",
+   "<p>No special floor reinforcement is needed. Run the chimney up inside the house if possible; an outside chimney should be in an insulated enclosure, since a cold chimney causes poor draft.</p><p>Many options need wiring or electricity: run it during framing if they may ever be added. The framing examples (Figure 6) are a dimensioned diagram on this page for the louvered unit, drawn larger than required; the Heat Dump option needs an extra 12\" on its side.</p><p>RSF strongly recommends installation and service by professionals certified by the National Fireplace Institute (U.S.) or Wood Energy Technology Transfer Inc. (Canada).</p>"
+  ],
+  [
+   "Fit the top standoff",
+   "Before installing the fireplace, make sure the back shield is open on the back side (Figure 9), then fasten the supplied standoff to the top with the screws in the manual bag. Never fill the gap between fireplace and standoff; the finishing material covers it."
+  ],
+  [
+   "Anchor to the floor",
+   "The fireplace must be attached to the floor: reuse the four small crate brackets around the casing or base, placed as they were on the crate, with at least one screwed into a floor joist with 2\" wood screws if possible."
+  ],
+  [
+   "Frame the enclosure",
+   "Any suitable material (2x4 or 2x6 studs, plywood, gypsum board), but no combustibles closer than the standoffs, top, back and sides, and none directly above the unit except framing for the facing and mantel. Hold the Table 1 (C) ceiling height: 7' sealed, 6' vented.",
+   "<p>A vented enclosure needs regular 3\"x10\" or larger grilles in holes cut within 1' of both the floor and the ceiling (vertical or horizontal). The area above the fireplace stays free of combustibles up to the Table 1 (C) height, and the ceiling firestop is never closer to the fireplace base than that. Never pack required air spaces with insulation or other materials.</p>"
+  ],
+  [
+   "Connect the outside air duct",
+   "Insulated aluminium flexible duct rated over 200° F, from the outside inlet to the fireplace sleeve: 4\" if the total run is under 25', 5\" for longer runs. Max 12' vertical rise above the unit base; the inlet sits at least 5' below the rain cap and never in an attic.",
+   "<ol><li>Cut a 4 ¼\" hole in the outside wall (5 ¼\" for 5\" duct), push the inlet in from outside and seal the joint.</li><li>At each end, pull back the insulation and plastic cover and screw the duct to the inlet and to the fireplace sleeve with metal screws.</li><li>Push the insulation and cover back and tape the cover with 2\" aluminium duct tape.</li></ol><p>Both 4\" and 5\" sleeves are supplied. Looping the duct makes a cold air trap. Don't crimp it at corners.</p>"
+  ],
+  [
+   "Run the EXCEL chimney",
+   "7\" ICC EXCEL only, at least 2\" from combustibles with no insulation in that space. Frame 13\" square openings (up to 13 ½\", never smaller), fit a radiation shield at every floor and a shield plus storm collar in the attic.",
+   "<p>Remove the flue adapter, screw it to the first chimney length, then refit it to the fireplace with the original screws. Follow the EXCEL manual for supports, bracing and anchors.</p><h4>Offsets</h4><p>An elbow may sit directly on the fireplace. Max offset angle 30° in the USA, 45° in Canada; max four elbows (two offsets and returns). Fasten every joint with 3 metal screws and add a wall or offset support above each offset. A through-wall offset needs an angled wall insulated radiation shield (XM-7EWRSI30 or XM-7EWRSI45).</p><h4>Masonry chimney</h4><p>EXCEL runs from the fireplace to a listed liner (EXCEL, or ULC-S635, ULC-S640 or UL-1777) fitted inside the clay liner to the top. Join them with the FO-FDM7 masonry adaptor (3 rivets, 3 screws), install at least one 18\" EXCEL length after the elbow, and keep the entry at least 12\" from the ceiling. An existing chimney must first be inspected by the authority having jurisdiction.</p>"
+  ],
+  [
+   "Roof, flashing & cap",
+   "Extend at least 3' above the roof contact point and 2' higher than any wall, roof or building within 10'; brace it if it stands more than 5' above the roof. Fit roof radiation shield XM-7ERRS 1\" above the roof line, then flashing, storm collar and rain cap.",
+   "<ul><li>Vented flashing if the chimney is enclosed to the roof; regular flashing if it isn't.</li><li>Seal the flashing with roofing tar (under the upper shingles, over the lower) and nail it.</li><li>Seal the storm collar to the chimney with silicone, not roofing tar.</li><li>Secure the rain cap tightly.</li></ul><p>For an outside chimney, RSF recommends a chase built as an extension of the home: insulate to at least the first firestop in a mild climate, to the top in a very cold one, and insulate the chase ceiling.</p>"
+  ],
+  [
+   "Finish the facing",
+   "Facing must be non-combustible (brick, slate, ceramic tile); gypsum board is not acceptable and stays outside the side standoffs and the 39 ¼\" top clearance. Covering the top louver requires the supplied Louver Blocking Plate and two gravity vent kits.",
+   "<p>Thin materials such as ceramic tile or sliced brick can go on with the rock retainer kit (FO-KK) or directly on the face with high temperature silicone. Without the top louver, two gravity vent kits are mandatory; leaving them out overheats the unit. Use only genuine RSF parts.</p>"
+  ],
+  [
+   "Hearth extension & spark guard",
+   "Non-combustible hearth at least 18\" deep and 42\" wide, centered on the opening; no minimum thickness. On a combustible floor, center the supplied 5\" x 36\" spark guard half under the fireplace (2½\" beneath it) and half under the hearth.",
+   "<p>Not needed on a non-combustible floor. A raised installation needs a custom guard (not supplied): Z-shaped for a gap of 2 ½\" or less, right-angle above 2 ½\". Details are in the Hearth extension spec.</p>"
+  ],
+  [
+   "Mantel",
+   "Set any combustible shelf per Table 2: 32\" to 36 ½\" above the opening for 0\" to 12\" depth. Side posts must be non-combustible unless they meet the 16\" side-wall clearance."
+  ]
+ ],
+ "faults": {
+  "label": "Smoke & burn-rate faults",
+  "panels": [
+   {
+    "title": "Smoke spills into the room",
+    "items": [
+     "Door opened too quickly → open it more slowly",
+     "Dirty chimney or plugged cap (screened caps clog with creosote)",
+     "Chimney too short → Table 3, allowing for altitude and elbows",
+     "Central heat or internal blower running → turn it off before opening",
+     "Range hood or bath fan lowering house pressure → open a nearby window a little",
+     "Too little kindling → fire not hot fast enough at lighting"
+    ]
+   },
+   {
+    "title": "Burns excessively fast",
+    "items": [
+     "Air leaking past door seals or gaskets → paper test; replace gaskets (door can't be tightened)",
+     "Excessive draft → hotter fire, shorter burns, less heat recovery",
+     "Large amounts of paper, cardboard, mill ends or construction waste → over-fire"
+    ]
+   },
+   {
+    "title": "Catalyst not giving heat",
+    "items": [
+     "Bypass closed before the fire was hot → catalyst dirties, no extra heat",
+     "Ash on the catalyst face → soft brush and vacuum when cold",
+     "No red glow in a hot fire with the bypass closed → not firing",
+     "Not firing for several days, even in a hot fire → replace (FO-CATP)"
+    ]
+   },
+   {
+    "title": "Weak draft",
+    "items": [
+     "Smoke in the room, hard to light → add chimney height (most common fix)",
+     "Often wrongly blamed on a blocked air intake",
+     "Cold outside chimney → insulated chase enclosure",
+     "Severely depressurized house → outside air won't stop the smoking"
+    ]
+   }
+  ]
+ },
+ "codes": [],
+ "detail": {
+  "light": {
+   "tag": "Owner · operation",
+   "title": "Lighting a fire",
+   "cool": false,
+   "html": "<ol><li>Pull the <b>bypass handle</b> all the way out (bypass open). Leave it out until the fire is hot, about 15-30 minutes.</li><li>Open the <b>air control lever</b>, on the right below the door, all the way to the right.</li><li>Lay crumpled newspaper (5-6 pieces should do) and crisscross plenty of kindling over it. Never use flammable liquids.</li><li>Light the paper and close the door most of the way, but not completely.</li><li>When the kindling burns steadily, add at least 3 small pieces of seasoned wood, using the andirons so you don't smother the fire.</li><li>Once the wood is lit, close the door completely. If the fire goes out, you closed it too early.</li><li>When the fire is hot, push the bypass handle in to engage the catalyst.</li></ol><div class=\"note\"><b>Note:</b> p. 11 (and p. 4, p. 28) says the air control lever is open when it's all the way to the right; p. 9 says it's all the way open when it's up.</div><div class=\"note\"><b>Note:</b> p. 11 says to leave the door slightly open while lighting, until the wood is lit; p. 3 says to operate the fireplace with the door fully closed, and warns that a partly open door can draw gas and flame out.</div><h4>Your first few fires</h4><p>Expect a slow start. The firebricks hold moisture from manufacturing and look black until a few hot fires dry them; then they turn white. No small break-in fires are needed. A slight odor from curing paint and oil can set off your smoke detector, so open doors and windows.</p>"
+  },
+  "catalyst": {
+   "tag": "Owner · operation",
+   "title": "The bypass and the catalyst",
+   "cool": false,
+   "html": "<p>The catalyst burns off smoke, so you get more heat and a cleaner burn. The bypass handle decides whether smoke goes through it.</p><div class=\"kv\"><div class=\"r\"><span>Handle pulled all the way out</span><span>Bypass open: lighting and reloading</span></div><div class=\"r\"><span>Handle pushed all the way in</span><span>Catalyst engaged: once the fire is hot</span></div></div><p>Push it in only when the fireplace is hot, typically after 15 to 30 minutes. Engaged too early, the catalyst gets dirty and gives no extra heat. Two temperatures matter. The smoke passing through the catalyst must be at least 150°C-300°F, or soot builds up on it, cutting performance and adding maintenance (p. 4). The catalyst itself must reach at least 175°C (350°F) before it starts burning off smoke.</p><h4>Reading the catalyst temperature</h4><p>A built-in probe reads within 1\" of the catalyst. Connect the optional Digital Temperature Display (FO-DTD) or any standard Type K thermocouple thermometer; the wire is on the left side, inside the casing. Read it with the bypass closed.</p><div class=\"kv\"><div class=\"r\"><span>Below 175°C (350°F)</span><span>Add wood, open the air, keep the bypass open</span></div><div class=\"r\"><span>175°C (350°F) to 700°C (1300°F)</span><span>Just right: bypass closed except to reload</span></div><div class=\"r\"><span>Above 700°C (1300°F)</span><span>No more wood; close the air and let it die down</span></div></div><p>Every overheat shortens the catalyst's life.</p>"
+  },
+  "air": {
+   "tag": "Owner · operation",
+   "title": "Controlling the burn",
+   "cool": false,
+   "html": "<p>The door seals the firebox, so all combustion air comes in through the <b>air control lever</b> on the right, below the door. More air makes a faster, hotter fire; less air slows it and extends the burn time.</p><div class=\"note\"><b>Note:</b> p. 9 says the air control lever is all the way open when it's up; p. 4, p. 11 and p. 28 say it's open when it's all the way to the right.</div><h4>Finding the right setting</h4><p>For the first few days, run with the control fully open. Then close it in steps and watch the fire. If it smolders with no visible flames, give it more air. If nothing changes, keep closing, eventually all or most of the way. You should always see flames in the firebox.</p><h4>The automatic damper</h4><p>A bi-metal coil lets in more air when the fireplace is cold and less when it's hot, so it doesn't overheat. Once it's hot, small lever moves do more. Use the lever as your main control, and never tamper with the factory-set air control. The optional thermostat kit (FO-FDHC4) runs the draft control from a wall thermostat.</p><h4>Outside or room air</h4><p>A sliding door behind the bottom louver, below the firebox, picks the air source: push it toward the back for outside air, or pull it toward the front for room air. Colder outside air helps start the fire.</p>"
+  },
+  "reload": {
+   "tag": "Owner · operation",
+   "title": "Reloading the fire",
+   "cool": false,
+   "html": "<p>Have your next load ready before you open the door: the catalyst cools fast while it's open. But don't rush.</p><ol><li>Pull the bypass handle all the way out.</li><li>Turn off the central heat and internal blowers, if you have them. Running blowers can push smoke out.</li><li>Open the door slowly.</li><li>Poke and stir the leftover wood, then add the new logs. Keep a clear path in front of the pilot, the metal tube between the two andiron posts that feeds air to the coals.</li><li>Leave the door slightly ajar for about 3-10 minutes, until the new wood is well lit, then close it.</li><li>Push the bypass handle back in.</li></ol><div class=\"note\"><b>Note:</b> p. 12 says to keep the door slightly ajar after loading, until the new wood is well lit; p. 3 says to operate the fireplace with the door fully closed, and warns that a partly open door can draw gas and flame out.</div><h4>If smoke comes into the room</h4><ul><li>Open the door more slowly.</li><li>Shut off kitchen range hoods and bathroom fans; they affect the pressure in the house.</li><li>Open a window near the fireplace a little until the draft is established.</li><li>Make sure the chimney is clean and the cap isn't plugged.</li><li>When lighting, use enough kindling to get a hot fire quickly.</li></ul>"
+  },
+  "wood": {
+   "tag": "Owner · operation",
+   "title": "What wood to burn",
+   "cool": false,
+   "html": "<p>Burn seasoned cordwood: cut, split and dried under cover for at least 6 months, preferably a year or more. Dry seasoned wood is generally under 20% moisture. Densified fuel logs, alone or mixed with wood, are also fine.</p><p>Wet wood is hard to burn, gives little heat, builds creosote and darkens the glass. Hardwoods burn longer and more evenly, because more weight fits in the firebox.</p><h4>Never burn</h4><ul><li>Driftwood, treated wood, coal, garbage or plastic</li><li>Chemical chimney cleaners, which ruin the catalyst</li><li>Construction scraps as your only fuel; they can overheat and seriously damage the fireplace</li><li>Large amounts of paper, cardboard or mill ends, which can over-fire it or start a chimney fire in a dirty flue</li></ul><h4>Wax fire logs</h4><p>Not recommended, because they dirty the glass. If you use them, burn only one at a time and don't poke or stir it. Use only fire logs evaluated for fireplace use, and read the package warnings first.</p>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>With controlled combustion, the fire isn't always hot enough to keep the glass perfectly clean. A good hot fire once a day usually burns off most deposits. The drier the wood and the hotter the fire, the cleaner the glass.</p><h4>When you do clean it</h4><ul><li>Wait until the glass is cool. Cleaning it hot can cause a serious burn.</li><li>Use a cleaner your dealer recommends. Wood stove glass cleaners work far better than regular glass or oven cleaners. Never use an abrasive cleaner.</li><li>Heat won't break the glass, but impact can. Don't hit it, and don't slam the door.</li></ul><div class=\"note danger\"><b>Keep glass cleaner off the paint.</b> It can remove the finish and make touch-ups difficult.</div><h4>The rest of the finish</h4><p>Wipe the painted and plated parts with a soft damp cloth, mild detergent and water, never abrasives. Touch up the face with Stove Bright Metallic Black high temperature paint, only when the fireplace is cool and the room is well ventilated.</p>"
+  },
+  "chimney": {
+   "tag": "Owner · maintenance",
+   "title": "Chimney, creosote and ashes",
+   "cool": false,
+   "html": "<p>Slow fires make tar and vapors that condense in the cool chimney as creosote. If it ignites, it makes an extremely hot fire.</p><ul><li>Check the chimney about every week until you learn how often it needs cleaning.</li><li>Clean it once soot or creosote reaches 1/8\" (3mm).</li><li>Soot or creosote more than 1/8\" (3mm) thick means the chimney needs cleaning immediately (p. 4). That may also mean changing how you burn and checking more often.</li><li>To sweep, close the door, open the bypass and use a 7\" round brush. Then vacuum any creosote or ash that fell into the top of the fireplace, through the bypass opening, with a flexible attachment.</li><li>Never burn chemical chimney cleaners. They ruin the catalyst.</li></ul><h4>Ashes</h4><p>Remove ashes before they get deep enough to spill when you open the door. Put them in a metal container with a tight-fitting lid, and set it on a non-combustible floor or on the ground, well away from anything combustible. Keep them in the closed container until all cinders are thoroughly cool. The optional Ash Pan Kit (FO-AP) lets you sweep ashes through a hole into a pan you empty from the bottom louver.</p>"
+  },
+  "care": {
+   "tag": "Owner · maintenance",
+   "title": "Catalyst, door seal and firebrick care",
+   "cool": false,
+   "html": "<h4>Catalyst</h4><p>Look at the catalyst at least three times each heating season. If ash is stuck to its face, clean it when it's cold: brush gently with a soft bristle brush, such as a paint brush, and vacuum near the face without touching it. Never use scrapers or hard brushes, and don't try to clean the individual openings.</p><p>Getting less heat than before? In a hot fire with the bypass closed, the catalyst should glow red. If it doesn't fire for several days, even in a hot fire, it needs replacing. It lasts about 5-10 years; your RSF retailer sells the Catalyst Replacement Kit (FO-CATP).</p><h4>Door seal</h4><p>Latch the door on a thin sheet of paper and pull gently but firmly. If it tears or is hard to pull out, the seal is good. Check all sides. The door can't be adjusted tighter, so replace worn gaskets with a kit from your RSF dealer. A leaky door wastes wood, can over-fire the fireplace and wears out the catalyst early.</p><h4>Firebricks</h4><p>Small cracks and wear are fine. Replace bricks only when pieces are missing or you can see the firebox metal through them.</p>"
+  },
+  "safety": {
+   "tag": "Owner · safety",
+   "title": "Safety and overfiring",
+   "cool": false,
+   "html": "<ul><li>Keep furniture, firewood and other combustibles at least 4' from the front of the fireplace.</li><li>Have at least one smoke detector on each level of the house and at least one carbon monoxide detector.</li><li>Never use gasoline, lantern fuel, kerosene, charcoal lighter fluid or similar liquids to start or freshen a fire, and keep them well away while it's in use.</li><li>Don't use a grate or raise the fire. Keep it behind the andirons, and move logs that fall against the glass.</li><li>Don't slam the door; the glass can break.</li><li>Don't run it with the catalyst removed or deactivated, or tamper with the factory-set air control. Both are against federal regulations.</li><li>Don't install an insert, a gas log lighter or an unvented gas log set.</li></ul><div class=\"note danger\"><b>Don't overfire it.</b> You're overfiring if you can't slow the fire down, or if the chimney connector behind the top louver glows red. Damage from over-firing isn't covered by the warranty.</div><p>RSF strongly recommends installation and service by professionals certified by the National Fireplace Institute in the U.S. or by Wood Energy Technology Transfer Inc. in Canada.</p>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "Warranty at a glance",
+   "cool": false,
+   "html": "<p>RSF warrants its wood-burning fireplaces against defects in material and workmanship for 30 years, on a sliding scale:</p><div class=\"kv\"><div class=\"r\"><span>First year</span><span>Defective parts repaired or replaced, plus reasonable labor</span></div><div class=\"r\"><span>Second through fifth years</span><span>Parts repaired or replaced; no labor</span></div><div class=\"r\"><span>Sixth through thirtieth years</span><span>Replacement parts, if available, at 50% of published retail; no labor</span></div><div class=\"r\"><span>Electrical components</span><span>One year only</span></div><div class=\"r\"><span>Catalytic combustor</span><span>5 years from original retail purchase</span></div></div><p>On a catalyst claim you pay a share of the then-current retail price: nothing for the first 2 years, then 60% in the 3rd year, 70% in the 4th and 80% in the 5th. Return it to your dealer with a Combustor Failure Report (on the RSF website) and your original proof of purchase.</p><h4>Not covered</h4><ul><li>Glass and plating</li><li>Normal wear: paint discoloration, worn gaskets, eroded or cracked refractory</li><li>Vandalism, neglect, abuse, over-firing, improper fuel or fuel loads, or skipped servicing</li><li>Installations that don't follow the manual, and damage in transit</li><li>Work not authorized by RSF in advance</li></ul><p>The warranty isn't transferable, and RSF doesn't pay freight on replacement parts.</p>"
+  },
+  "specPerf": {
+   "tag": "Installer · spec",
+   "title": "Emissions, efficiency and output",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Emission standard</span><span>2020 EPA particulate (crib wood)</span></div><div class=\"r\"><span>Emission rate</span><span>0.7 g/hr</span></div><div class=\"r\"><span>Overall efficiency</span><span>70% (higher heating value)</span></div></div><div class=\"note small\"><b>Maker's website:</b> Optimal Efficiency 80% (Low Heating Value/LHV, CSA B415.1-10); EPA Average Efficiency 70% (High Heating Value/HHV, CSA B415.1-10).</div><div class=\"kv\"><div class=\"r\"><span>Max heat output</span><span>27 034 BTU/hr</span></div></div><div class=\"note small\"><b>Maker's website:</b> BTU Output 27,034 BTU/hr (EPA certification testing with crib wood, CSA B415.1-10); Estimated BTU Potential 70,000 BTU/hr (engineering calculations).</div><div class=\"kv\"><div class=\"r\"><span>Calculation</span><span>CSA B415.1-10</span></div></div><p>Test-lab results; the manual notes field output varies with installation, chimney height and cordwood. Catalytic combustor: operating with it deactivated or removed, or altering the factory-set minimum burn rate, is against federal regulations. Don't install a flue damper to slow the minimum burn rate.</p><p>Listing label: glued to the bottom of the fireplace, below the floor shield; remove the bottom louver to read it (p. 29).</p>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances to combustibles",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>A · Side, back and top standoffs</span><span>0\" (0,0 mm)</span></div><div class=\"r\"><span>B · Side wall to side of firebox opening</span><span>16\" (406 mm)</span></div><div class=\"r\"><span>C · Ceiling height, sealed enclosure</span><span>7' (2,13 m)</span></div><div class=\"r\"><span>C · Ceiling height, vented enclosure</span><span>6' (1,83 m)</span></div><div class=\"r\"><span>L · Combustible wall materials above the opening</span><span>39 ¼\" (997 mm)</span></div><div class=\"r\"><span>Chimney to combustibles</span><span>2\" or more (p. 22)</span></div></div><p>Ceiling height runs from the base of the fireplace to the lowest point of the ceiling above it, inside and outside the enclosure. A vented enclosure needs 3\"x10\" or larger grilles in holes within 1' of both floor and ceiling (p. 20). No combustible framing directly above the fireplace except framing that supports the facing and mantel. Never pack required air spaces with insulation.</p><p>Figure 1 (p. 7) labels the side standoff at 7 1/8\" from the side of the firebox opening, and the fireplace base at 26 3/8\" below the top of the opening. Overall dimensions are shown only in that drawing.</p>"
+  },
+  "specMantel": {
+   "tag": "Installer · spec",
+   "title": "Combustible mantel heights",
+   "cool": true,
+   "html": "<p>Table 2: minimum height from the highest point of the firebox opening to below a combustible mantel shelf.</p><div class=\"kv\"><div class=\"r\"><span>0\" to 4\" deep</span><span>32\"</span></div><div class=\"r\"><span>6\" deep</span><span>33 1/8\"</span></div><div class=\"r\"><span>8\" deep</span><span>34 ¼\"</span></div><div class=\"r\"><span>10\" deep</span><span>35 3/8\"</span></div><div class=\"r\"><span>12\" deep (max, Table 1 J)</span><span>36 ½\" (Table 1 K)</span></div></div><p>Never lower than 32\" above the opening. For depths in between, interpolate between the two closest rows; the manual's example puts a 9 ¼\" mantel at 35\". With a variable-depth cross-section, the widest part must not sit below the minimum height for that depth, and the lowest point must not sit below the minimum height for its own depth.</p><p>Mantel posts beside the opening must be non-combustible unless they meet the 16\" side-wall clearance (Table 1 B). A mantel shelf is the only combustible allowed below the 39 ¼\" wall clearance (Table 1 L). Non-combustible mantels can go anywhere on the facing without blocking the top or bottom louvers, unless the blocked-louver options are installed.</p>"
+  },
+  "specHearth": {
+   "tag": "Installer · spec",
+   "title": "Hearth extension and spark guard",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>G · Min depth from the front</span><span>18\" (457 mm)</span></div><div class=\"r\"><span>H · Min total width, centered on the opening</span><span>42\" (1,07 m)</span></div><div class=\"r\"><span>I · Min spark guard width</span><span>36\" (914 mm)</span></div><div class=\"r\"><span>Thickness</span><span>No minimum</span></div></div><p>Non-combustible material such as brick, tile, stone or slate, extending beyond the front and both sides of the door opening (Table 1 values on p. 8).</p><h4>Spark guard</h4><p>Not required on a non-combustible floor. Otherwise install the supplied guard (5\" x 36\" sheet metal) halfway under the fireplace and halfway under the hearth extension, centered on the door opening; it extends 2½\" beneath the fireplace.</p><p>A raised installation needs a custom guard (not supplied), at least the Table 1 (I) width and centered. <b>Z-shaped</b> when the height from the bottom of the fireplace to the top of the hearth flooring is 2 ½\" or less: its height equals that gap and it runs at least 2½\" under both the hearth extension and the fireplace. <b>Right-angle</b> when the unit sits higher than 2 ½\": sides at least 2½\" x 2½\", covered with non-combustible material.</p>"
+  },
+  "specChimney": {
+   "tag": "Installer · spec",
+   "title": "Chimney",
+   "cool": true,
+   "html": "<p>Certified for <b>7\" ICC Model EXCEL chimney only</b>.</p><div class=\"kv\"><div class=\"r\"><span>D · Min total height, fireplace top to below the rain cap</span><span>12' (3,66 m)</span></div><div class=\"r\"><span>E · Max total height</span><span>40' (12,19 m)</span></div><div class=\"r\"><span>F · Max height supported by the fireplace</span><span>18' (5,47 m)</span></div><div class=\"r\"><span>Clearance to combustibles</span><span>2\" or more, no insulation</span></div><div class=\"r\"><span>Framed openings</span><span>13\" square (up to 13 ½\", never smaller)</span></div><div class=\"r\"><span>Above the roof</span><span>3' over the contact point; 2' over anything within 10'</span></div><div class=\"r\"><span>Max offset angle</span><span>30° USA · 45° Canada</span></div><div class=\"r\"><span>Max elbows</span><span>Four (two offsets and returns)</span></div></div><h4>Table 3: straight-chimney minimum by elevation</h4><div class=\"kv\"><div class=\"r\"><span>0 - 1000 ft</span><span>12'</span></div><div class=\"r\"><span>1001 - 2000 ft</span><span>12'6\"</span></div><div class=\"r\"><span>2001 - 3000 ft</span><span>13'</span></div><div class=\"r\"><span>3001 - 4000 ft</span><span>13'6\"</span></div><div class=\"r\"><span>4001 - 5000 ft</span><span>14'</span></div><div class=\"r\"><span>5001 - 6000 ft</span><span>14'6\"</span></div><div class=\"r\"><span>6001 - 7000 ft</span><span>15'</span></div><div class=\"r\"><span>7001 - 8000 ft</span><span>15'6\"</span></div><div class=\"r\"><span>8001 - 9000 ft</span><span>16'</span></div><div class=\"r\"><span>9001 - 10000 ft</span><span>16'6\"</span></div></div><p>Each offset (pair of elbows) raises the minimum further; Table 3 has columns for one or two 15°, 30° and 45° offsets. The manual's example: at 6015' elevation, 15' straight or 18'6\" with one 30° offset. Flue height is measured from the top of the fireplace to the top of the chimney before the rain cap. With two different offsets, use the two-offset column of the bigger pair.</p>"
+  },
+  "specAir": {
+   "tag": "Installer · spec",
+   "title": "Outside air duct",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Duct</span><span>Insulated aluminium flexible, rated over 200° F</span></div><div class=\"r\"><span>4\" duct</span><span>Total run less than 25'</span></div><div class=\"r\"><span>5\" duct</span><span>Longer runs</span></div></div><div class=\"note small\"><b>Maker's website:</b> Outside Air 4\", meets R2000 / 5\" also acceptable / can operate with room air. Install to the manual.</div><div class=\"kv\"><div class=\"r\"><span>Connecting sleeves</span><span>4\" and 5\" both supplied</span></div><div class=\"r\"><span>Wall hole</span><span>4 ¼\" (5 ¼\" for 5\" duct)</span></div><div class=\"r\"><span>Max vertical rise</span><span>12' above the unit base</span></div><div class=\"r\"><span>Inlet</span><span>At least 5' lower than the rain cap; never in an attic</span></div></div><p>The inlet can be above or below floor level. Seal it to the wall, screw the duct to the inlet and the fireplace sleeve, pull the insulation and cover back over, and tape the cover with 2\" aluminium duct tape. A loop makes a cold air trap; don't crimp the duct at corners. The owner chooses outside or room air with the slider behind the bottom louver (p. 9).</p>"
+  },
+  "specLouver": {
+   "tag": "Installer · spec",
+   "title": "Top louver and gravity vents",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Keystone Top Louver (FO-OPLK) fitted</span><span>No gravity vents required (optional)</span></div><div class=\"r\"><span>No top louver</span><span>Two gravity vent kits required</span></div><div class=\"r\"><span>Top louver covered with stone</span><span>Louver Blocking Plate (provided) + two gravity vent kits</span></div><div class=\"r\"><span>Gravity vent kits</span><span>FO-V2 or FO-V3 (FO-VGC: grill only for FO-V2)</span></div><div class=\"r\"><span>Extra 5' duct lengths</span><span>FO-DUCT5</span></div><div class=\"r\"><span>Max gravity vent length</span><span>15'</span></div></div><p>Each kit includes 5' of insulated flexible ducting, a fireplace adapter, an outlet grill adapter and a decorative outlet grill, and ducts heat to a room above or on the same level. Leaving out either gravity vent on a blocked louver overheats the unit. Use only genuine RSF parts; substitutes decertify the system.</p><p>Other options: internal blower FO-HB9 (louvered unit), thermostat kit FO-FDHC4 (install before the facing, keep accessible for service), central heat blower FO-FDHB6-1 with FO-FDHC6, FO-FDHCZ1 and FO-FDHCZ2 controls, Central Heat T FO-T (central heat on a Clean Face unit), heat dump FO-HD, rock retainer FO-KK, ash pan FO-AP. Run wiring during framing if any electrical option may be added. Which options are required, optional or not available for each configuration is shown as a check-mark chart on p. 32.</p>"
+  },
+  "specGas": {
+   "tag": "Installer · spec",
+   "title": "Gas log conversion",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Gas log set</span><span>Up to 35,000 BTU, listed to ANSI Z21.60/CSA 2.26</span></div><div class=\"r\"><span>Combustion air control</span><span>Fully open whenever the gas log runs</span></div><div class=\"r\"><span>Bypass</span><span>Open at all times</span></div><div class=\"r\"><span>Gas line entry</span><span>1 ½\" hole on each side, about 9\" up from the bottom</span></div><div class=\"r\"><span>Clearances</span><span>None required by RSF; keep the gas log maker's</span></div></div><p>Vented sets only: the fireplace has not been tested with an unvented gas log set, and its heat permanently damages a gas log lighter (p. 6). Gas line by qualified personnel, to local code.</p><ol><li>Remove and keep the round central refractory brick, the two bottom bricks, and the firebox central plug (bolt, locknut, top and bottom plates). All go back if the unit returns to wood.</li><li>On the gas side, remove the side firebrick, drill through the side of the firebox from outside, and drill or break a hole in the firebrick for the line.</li><li>Leave the ash pan hole completely open; it brings air to the gas log.</li><li>Install and run the log per its maker's instructions. The valve may sit inside the firebox if the log maker allows it and clearances are met.</li></ol>"
+  }
+ },
+ "pageref": {
+  "light": 11,
+  "catalyst": 11,
+  "air": 9,
+  "reload": 12,
+  "wood": 10,
+  "glass": 14,
+  "chimney": 14,
+  "care": 13,
+  "safety": 3,
+  "warranty": 34,
+  "specPerf": 4,
+  "specClear": 8,
+  "specMantel": 9,
+  "specHearth": 26,
+  "specChimney": 21,
+  "specAir": 20,
+  "specLouver": 5,
+  "specGas": 28,
+  "step0": 17,
+  "step1": 20,
+  "step2": 20,
+  "step3": 20,
+  "step4": 20,
+  "step5": 22,
+  "step6": 22,
+  "step7": 26,
+  "step8": 26,
+  "step9": 27
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "catalyst",
+   "t": "bypass handle",
+   "p": "Pull out to light or reload; push in once the fire is hot"
+  },
+  {
+   "k": "h",
+   "id": "chimney",
+   "t": "creosote",
+   "p": "Sweep when buildup reaches 1/8\" (3mm)"
+  },
+  {
+   "k": "h",
+   "id": "reload",
+   "t": "smoke in the room",
+   "p": "Open the door slowly; turn off fans and blowers"
+  },
+  {
+   "k": "h",
+   "id": "light",
+   "t": "smoke detector going off",
+   "p": "Curing odor during the first few fires"
+  },
+  {
+   "k": "h",
+   "id": "safety",
+   "t": "overfiring",
+   "p": "Chimney connector glowing red behind the top louver"
+  },
+  {
+   "k": "h",
+   "id": "care",
+   "t": "door gasket",
+   "p": "Paper test; replace worn gaskets"
+  },
+  {
+   "k": "i",
+   "id": "specChimney",
+   "t": "flue height",
+   "p": "Table 3 minimum by elevation and offsets"
+  },
+  {
+   "k": "i",
+   "id": "specGas",
+   "t": "gas logs",
+   "p": "Vented set up to 35,000 BTU, ANSI Z21.60/CSA 2.26"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "air",
+    "issue": "Which way the air control lever opens: p. 9 says fully open is up ('all the way open (up)'); p. 4 says 'moved to the right as far as possible', p. 11 'all the way to the right in the open position', p. 28 'all the way open (towards the right)'. Shown in the air and light drawers.",
+    "pages": [
+     [
+      1,
+      9
+     ],
+     [
+      1,
+      4
+     ],
+     [
+      1,
+      11
+     ],
+     [
+      1,
+      28
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "light",
+    "issue": "Door position: p. 3 (Do's item 3) says to operate with the door fully closed because a partly open door can draw gas and flame out; the lighting (p. 11) and reloading (p. 12) procedures say to leave the door slightly open/ajar until the wood catches. Shown in the light and reload drawers.",
+    "pages": [
+     [
+      1,
+      3
+     ],
+     [
+      1,
+      11
+     ],
+     [
+      1,
+      12
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "catalyst",
+    "issue": "Minimum catalyst temperature: p. 4 says smoke passing through the catalyst must be 'at least 150°C-300°F' or it soots up; p. 11 says the catalyst must be at least 175°C (350°F) to burn off smoke, and p. 12 says to keep the bypass open below 175°C (350°F).",
+    "pages": [
+     [
+      1,
+      4
+     ],
+     [
+      1,
+      11
+     ],
+     [
+      1,
+      12
+     ]
+    ],
+    "class": "not_a_conflict",
+    "reason": "Different quantities: p. 4 gives the temperature the smoke passing through the catalyst needs to keep soot off it (at least 150°C-300°F); pp. 11-12 give the temperature the catalyst itself needs before it burns off smoke, and the probe reading below which the bypass stays open (175°C (350°F)). Both hold together; the catalyst drawer now states each one."
+   }
+  ],
+  "catalog_mismatches": [
+   {
+    "model": "rsf-opel-plus-keystone",
+    "field": "btu_output_max",
+    "catalog": "70000",
+    "manual": "maximum heat output of 27 034 BTU/hr (crib-wood EPA test data, higher heating value); no 70,000 figure in the manual",
+    "page": [
+     1,
+     4
+    ],
+    "shown": "specPerf"
+   },
+   {
+    "model": "rsf-opel-plus-keystone",
+    "field": "efficiency_pct",
+    "catalog": "80 (LHV)",
+    "manual": "overall efficiency of 70%, established on the higher heating value; the manual gives no LHV/optimal figure",
+    "page": [
+     1,
+     4
+    ],
+    "shown": "specPerf"
+   },
+   {
+    "model": "rsf-opel-plus-keystone",
+    "field": "outside_air",
+    "catalog": "4\", meets R2000 / 5\" also acceptable / can operate with room air",
+    "manual": "a 4\" diameter duct can be used if the total duct run is less than 25'; for longer runs, use 5\" diameter duct; both 4\" and 5\" connecting sleeves are provided",
+    "page": [
+     1,
+     20
+    ],
+    "shown": "specAir"
+   }
+  ],
+  "notes": "Single 34-page installation & operation manual; text is clean pdftotext with no French or offset-font scrambling. Manual text does not state firebox volume, max log length, overall dimensions or weight, glass/view area, heating area or mobile-home approval, so those catalog values could not be checked. Figure 1 (p. 7) is a dimension drawing: only its two labeled callouts were used (side standoff to side of opening 7 1/8\"; base to top of opening 26 3/8\"); an unlabeled 5/8\" callout and the overall dimensions were not transcribed. Figure 6 framing examples (p. 17) are a dimensioned drawing with unlabeled numbers; not transcribed. Pages 30-31 (Complete Options List, including which options need electricity, referenced on p. 6) have no extractable text; the p. 32 Configured Options chart is a check-mark table, so required/optional/not-available status was not transcribed. Gravity-vent requirements come from the text on pp. 4-5 and 26. Replacement parts page (p. 33) only says parts 'will be available soon'. The manual names no safety listing standard for the fireplace; the certification line uses its stated EPA 2020 emission-standard compliance (p. 4). The listing label is on the bottom of the unit (p. 29) and is not reproduced. p. 9 says a combustible mantel 'cannot be wider than 12\"'; the guide uses Table 1 (J) wording (max depth 12\"). p. 26 says the supplied 5\" x 36\" spark guard 'can be cut to the minimum width' of Table 1 (I), which is also 36\" - worth checking. Do's item 3 on p. 3 is garbled as printed ('with the door either fully closed'). Table 3: only the straight-chimney column is transcribed; offset columns are referenced. The manual prints Table 3 with curly foot/inch marks; the guide uses straight quotes. The 'pilot' on p. 12 is an air tube between the andiron posts, not a gas pilot. Warranty years are written as words in the manual (first year, second through fifth, sixth through thirtieth) and kept that way; the catalyst schedule is printed as 'first two (2) years', '3rd year 60%' etc. Owner drawers state the air lever as 'all the way to the right' only where p. 11 does, with the conflict note alongside."
+ }
+}

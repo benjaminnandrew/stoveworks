@@ -1,0 +1,105 @@
+{
+ "id": "wilkening-granview-masonry-fireplace",
+ "checked_pagerefs": 27,
+ "notes_checked": {
+  "amber": 4,
+  "correction": 0,
+  "website": 0
+ },
+ "findings": [
+  {
+   "severity": "critical",
+   "where": "step5 (summary; this step has no drawer)",
+   "guide_says": "Build the inner walls so the upper slab base lands 72\"–80\" above the finished floor and 12\" min below headers or combustibles, with the top block row 16\" min below the ceiling.",
+   "manual_says": "p. 12, step 7: \"The finished height of the upper concrete slab to be cast must not be closer than 12 inches to the ceiling headers or any other combustible material above it.\" ... \"WARNING: No combustibles may be closer than 12” to the upper concrete slab.\" p. 13, step 10: \"allow for a minimum of a 12 inch clearance from the top of this slab to any wooden frame materials.\" p. 9: \"No framing material may be located above the fireplace structure less than 12” above the upper concrete slab.\" The manual measures the 12\" from the slab's finished top. The guide measures it from the slab base, so an installer who follows the step loses the slab's thickness (4\" min) from that clearance, leaving only about 8\" between the slab top and the header. The specClear card and step6 measure it correctly.",
+   "pages": [
+    [
+     1,
+     12
+    ],
+    [
+     1,
+     13
+    ],
+    [
+     1,
+     9
+    ]
+   ],
+   "fix": "Build the inner walls so the upper slab base lands 72\"–80\" above the finished floor, the finished top of the slab stays at least 12\" below ceiling headers or any other combustible, and the top block row is 16\" min below the finished ceiling. Check that the air control rod moves freely, then set the flue connection pipe into the flue outlet and attach it with metal screws (offsets 30 degrees max)."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specMasonry (amber Note)",
+   "guide_says": "Note: p. 4 and p. 11 call for 4\" of insulation between the inner and outer masonry walls, and p. 15 labels the gaps as 4\" insulated spaces, but the same p. 15 drawing says its dimensions are for two 4\" walls with 2\" of insulation.",
+   "manual_says": "p. 11, step 4: \"Whenever any portion of the masonry chamber extends outside of the frame wall of the home or into a garage a (4) four inch barrier of unfaced fiberglass insulation must be used between the inner heat chamber walls and the outer veneer wall.\" (Step 2 says the same: \"if an outside installation, a minimum of a 4” insulation barrier\".) Only p. 4 states it generally: \"either 2-4” thick walls of masonry with 4” of insulation between them...\". The p. 15 quotes are accurate and the disagreement is real, but the note makes p. 11's conditional requirement sound like a general one.",
+   "pages": [
+    [
+     1,
+     4
+    ],
+    [
+     1,
+     11
+    ],
+    [
+     1,
+     15
+    ]
+   ],
+   "fix": "Note: p. 4 calls for 4\" of insulation between two 4\" masonry walls, p. 11 requires a 4\" unfaced fiberglass barrier between them wherever the chamber extends outside the frame wall or into a garage, and p. 15 labels the gaps as 4\" insulated spaces, but the same p. 15 drawing says its dimensions are for two 4\" walls with 2\" of insulation."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.chimney (Cleaning steps)",
+   "guide_says": "1. Remove the steel and refractory baffles at the top of the firebox (the throat) and the angled refractory panel above the fire, so falling creosote drops to the base. ... 3. Clean the creosote out of the firebox before your next fire. (No owner drawer says to put the baffles back or not to run the fireplace without them. Safety says only \"Never run it with broken or missing firebrick panels.\")",
+   "manual_says": "Owner's manual p. 3: \"Do not operate this unit without all the baffles and inner liner in place as overheating of the chimney connector and fireplace components may occur.\" The guide's owner pages tell the reader to remove these parts but leave out this warning. It appears only on the installer side (step9, faults).",
+   "pages": [
+    [
+     2,
+     3
+    ],
+    [
+     2,
+     4
+    ]
+   ],
+   "fix": "Add to the cleaning steps: \"Put every baffle and liner piece back before your next fire. Never run the fireplace without all the baffles and inner liner in place, or the chimney connector and fireplace parts can overheat (owner's manual p. 3).\""
+  },
+  {
+   "severity": "minor",
+   "where": "specs.hearth row 2 (also detail.specHearth 'Raised hearth height', step2)",
+   "guide_says": "Raised hearth height: 10\" – 14\" (no note)",
+   "manual_says": "p. 11, step 3: \"The hearth height should be no less than (10) ten inches and no more than (14) fourteen inches in height.\" p. 6, Diagram 1 (Raised Hearth Installation), extracted drawing text: \"minimum 72”   10 to 12”\". The text alone can't show what the \"10 to 12”\" label measures, so please check it against the p. 6 page image. If it is the raised hearth height, the guide silently picks p. 11's figure. The writer flagged this only in review.notes.",
+   "pages": [
+    [
+     1,
+     6
+    ],
+    [
+     1,
+     11
+    ]
+   ],
+   "fix": "If the page image shows that \"10 to 12”\" is the raised hearth height, add to specHearth (and step2): <div class=\"note\"><b>Note:</b> p. 11 says a raised hearth should be 10\" to 14\" high; Diagram 1 on p. 6 labels it 10 to 12\".</div> Then record it in review.conflicts as substantive. If the label measures something else, no change is needed."
+  },
+  {
+   "severity": "minor",
+   "where": "shell.model_line",
+   "guide_says": "Model GVM · 8\" chimney · Outside combustion air · Single burn rate",
+   "manual_says": "p. 7: \"The GranView requires an 8” inner diameter factory built chimney or a minimum 8 x 12 clay lined masonry chimney.\" p. 14: \"This unit requires a minimum 8x12 O.D. clay flue tile.\" \"8\" chimney\" is right only for a factory-built chimney. For a masonry install, the manual's minimum is an 8 x 12 clay liner.",
+   "pages": [
+    [
+     1,
+     7
+    ],
+    [
+     1,
+     14
+    ]
+   ],
+   "fix": "Model GVM · 8\" factory-built or 8 x 12 clay-lined chimney · Outside combustion air · Single burn rate"
+  }
+ ],
+ "verdict": "Yes, once step 5's upper-slab clearance is fixed (the 12\" is measured from the slab's finished top, not its base). The rest of the guide matches both manuals, and the minor fixes are quick wording changes."
+}

@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kozy Heat Osseo X64 — Owner &amp; Installer Guide</title>
+<!-- Stoveworks owner & installer guide · template v3 · built 2026-10-12 from Osseo-X-Series-Linear-Manual-English-Rev.-4.pdf (Rev. 4)
+     Generated from guides/content/kozy-heat-osseo-x64.json by scripts/build_guide.py — edit the content file and rebuild; don't edit this page. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* cast iron in shadow */
+    --iron:#191512; --iron-2:#241f1a; --iron-3:#322b24;
+    /* heat */
+    --ember:#e8682c; --ember-2:#c4521f; --amber:#f5a623;
+    /* gas pilot flame — the cool counter-accent, true to the subject */
+    --pilot:#5f93b8; --pilot-deep:#37607d;
+    /* warm reading surfaces */
+    --paper:#f1ece2; --paper-2:#fbf8f2; --card:#ffffff;
+    --ink:#23201b; --ink-soft:#6e655a; --hair:#e0d8c9;
+    --ok:#3f7d54; --warn:#b06a13;
+    --shadow:0 1px 2px rgba(30,22,14,.06),0 8px 24px rgba(30,22,14,.07);
+    --display:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+  .mono{font-family:var(--mono)}
+
+  /* ---------- top chrome ---------- */
+  header{position:sticky;top:0;z-index:40;background:var(--iron);color:#f3ece2;
+    display:flex;align-items:center;gap:14px;padding:11px 18px;border-bottom:1px solid #000;transition:transform .22s ease}
+  .brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;letter-spacing:.16em;font-size:14px}
+  .flame{width:18px;height:18px;flex:none}
+  .brand small{font-weight:600;letter-spacing:.02em;color:#b6ab9b;font-family:var(--body);font-size:11px;display:block;letter-spacing:.04em}
+  .brand-wrap{display:flex;flex-direction:column;line-height:1.15}
+  .spacer{flex:1}
+  /* role toggle */
+  .toggle{display:flex;background:#0e0b09;border:1px solid #3a322a;border-radius:999px;padding:3px}
+  .toggle button{font-family:var(--body);font-weight:600;font-size:12.5px;color:#9b9183;background:none;border:none;
+    padding:7px 15px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.18s;white-space:nowrap;min-height:36px}
+  .toggle button[aria-pressed="true"]{color:#fff}
+  .toggle button.home[aria-pressed="true"]{background:linear-gradient(180deg,var(--ember),var(--ember-2));box-shadow:0 0 14px rgba(232,104,44,.5)}
+  .toggle button.inst[aria-pressed="true"]{background:linear-gradient(180deg,var(--pilot),var(--pilot-deep));box-shadow:0 0 14px rgba(95,147,184,.45)}
+  .toggle .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.55}
+  .search{display:flex;align-items:center;gap:7px;background:#0e0b09;border:1px solid #3a322a;border-radius:9px;padding:7px 11px;min-width:120px}
+  .search input{background:none;border:none;color:#f3ece2;font-family:var(--body);font-size:13px;width:100%;outline:none}
+  .search input::placeholder{color:#7d7468}
+  .search svg{flex:none;opacity:.6}
+  .pdf{display:flex;align-items:center;gap:7px;background:none;border:1px solid #4a4138;color:#d9cfc0;
+    font-family:var(--body);font-weight:600;font-size:12.5px;padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;transition:.18s}
+  .pdf:hover{border-color:var(--ember);color:#fff}
+  .pdf{min-height:40px}
+  /* search icon (phones only) */
+  .qbtn{display:none;place-items:center;width:44px;height:44px;flex:none;background:none;border:1px solid #4a4138;border-radius:10px;color:#d9cfc0;cursor:pointer}
+  .qbtn[aria-expanded="true"]{border-color:var(--pilot-fill,#5f93b8);color:#fff}
+  /* installer section bar: jump to a section, current one highlighted */
+  .secnav{position:sticky;top:var(--hdr-h,58px);z-index:35;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
+    margin:6px -22px 0;padding:10px 22px;background:var(--paper);border-bottom:1px solid var(--hair);transition:top .22s ease}
+  .secnav::-webkit-scrollbar{display:none}
+  .secnav button{flex:none;font-family:var(--body);font-weight:600;font-size:14px;color:var(--ink);background:var(--card);
+    border:1px solid var(--hair);border-radius:999px;padding:0 16px;min-height:44px;cursor:pointer;white-space:nowrap}
+  .secnav button[aria-current="true"]{background:var(--pilot-deep,#2f5a78);border-color:var(--pilot-deep,#2f5a78);color:#fff}
+  .secnav button:focus-visible,.qbtn:focus-visible,.totop:focus-visible{outline:3px solid var(--amber,#f0a43c);outline-offset:2px}
+  .view .seclabel,#faultSec,#codeSec{scroll-margin-top:calc(var(--hdr-h,58px) + 74px)}
+  .hdr-away .view .seclabel,.hdr-away #faultSec,.hdr-away #codeSec{scroll-margin-top:74px}
+  /* back to top (one-handed use) */
+  .totop{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:45;width:52px;height:52px;border-radius:50%;
+    background:var(--iron);color:#f3ece2;border:1px solid #3a322a;box-shadow:0 6px 18px rgba(20,14,8,.3);display:grid;place-items:center;
+    cursor:pointer;opacity:0;pointer-events:none;transform:translateY(8px);transition:.2s}
+  .totop.show{opacity:1;pointer-events:auto;transform:none}
+
+  /* ---------- ignition gate ---------- */
+  .gate{min-height:calc(100vh - 56px);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(120% 80% at 50% 110%,#3a1f10 0%,#1a120c 45%,#100c09 100%);color:#f3ece2;padding:40px 22px;text-align:center}
+  .gate .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.32em;color:var(--amber);text-transform:uppercase;margin-bottom:18px}
+  .gate h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,58px);line-height:1.02;letter-spacing:-.01em;max-width:14ch}
+  .gate .sub{color:#c4b8a7;max-width:46ch;margin:18px auto 6px;font-size:clamp(15px,2vw,17px)}
+  .gate .model{font-family:var(--mono);color:#8c8174;font-size:12.5px;margin-bottom:42px;letter-spacing:.04em}
+  .cards{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;width:100%;max-width:760px}
+  .ignite{position:relative;flex:1 1 300px;min-width:270px;text-align:left;cursor:pointer;border:1px solid #4a3c2e;border-radius:18px;
+    padding:26px 24px 22px;background:linear-gradient(180deg,#211913,#171009);overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s}
+  .ignite:hover{transform:translateY(-4px);border-color:var(--ember)}
+  .ignite.cool:hover{border-color:var(--pilot)}
+  .ignite::after{content:"";position:absolute;inset:auto -40% -60% -40%;height:70%;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(232,104,44,.55),transparent);opacity:0;transition:opacity .3s}
+  .ignite.cool::after{background:radial-gradient(closest-side,rgba(95,147,184,.5),transparent)}
+  .ignite:hover::after{opacity:1}
+  .ignite .ic{width:40px;height:40px;margin-bottom:16px;color:var(--ember)}
+  .ignite.cool .ic{color:var(--pilot)}
+  .ignite h2{font-family:var(--display);font-weight:700;font-size:24px;color:#fff;letter-spacing:-.01em}
+  .ignite p{color:#b3a795;font-size:14px;margin-top:7px}
+  .ignite .go{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-weight:600;font-size:13px;color:var(--ember);position:relative;z-index:1}
+  .ignite.cool .go{color:var(--pilot)}
+  .gate .foot{margin-top:38px;color:#7d7468;font-size:12.5px}
+  .gate .foot a{color:#b6ab9b}
+  .fine{margin-top:40px;padding-top:14px;border-top:1px solid var(--line,rgba(0,0,0,.08));font-size:12px;line-height:1.55;color:var(--ink-soft);max-width:72ch;margin-bottom:64px}
+  .gate .fine{border-top-color:rgba(255,255,255,.08);color:#7d7468;margin-top:18px}
+
+  /* ---------- views ---------- */
+  .view{display:none;max-width:1080px;margin:0 auto;padding:34px 22px 90px}
+  .view.active{display:block;animation:rise .4s ease}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .vhead{margin-bottom:26px}
+  .vhead .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:9px}
+  .vhead .eyebrow .pip{width:9px;height:9px;border-radius:50%}
+  .home-pip{background:var(--ember)} .inst-pip{background:var(--pilot)}
+  .vhead h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,4.5vw,38px);letter-spacing:-.015em;margin-top:8px}
+  .vhead p{color:var(--ink-soft);max-width:60ch;margin-top:7px;font-size:15px}
+
+  .seclabel{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+  .seclabel::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+  /* action tiles (homeowner) */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .tile{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 18px 16px;cursor:pointer;
+    text-align:left;font:inherit;color:inherit;box-shadow:var(--shadow);transition:transform .16s,border-color .16s}
+  .tile:hover{transform:translateY(-3px);border-color:var(--ember)}
+  .tile .ic{width:26px;height:26px;color:var(--ember);margin-bottom:12px}
+  .tile h3{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.01em}
+  .tile p{color:var(--ink-soft);font-size:13px;margin-top:4px}
+
+  /* spec cards (installer) */
+  .specs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .spec{background:var(--card);border:1px solid var(--hair);border-left:3px solid var(--pilot);border-radius:12px;padding:16px 17px;box-shadow:var(--shadow)}
+  .spec .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .spec .rows{margin-top:10px;display:flex;flex-direction:column;gap:7px}
+  .spec .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px}
+  .spec .row b{font-weight:500;color:var(--ink-soft)}
+  .spec .row .v{font-family:var(--mono);font-weight:700;font-size:14px;color:var(--ink);text-align:right}
+
+  /* checklist */
+  .checklist{background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  .step{display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid var(--hair);cursor:pointer;align-items:flex-start;transition:background .12s}
+  .step:last-child{border-bottom:none}
+  .step:hover{background:#faf6ee}
+  .step .num{flex:none;width:26px;height:26px;border-radius:7px;background:var(--iron);color:#f3ece2;font-family:var(--mono);font-weight:700;
+    font-size:12.5px;display:grid;place-items:center;margin-top:1px}
+  .step.done .num{background:var(--ok)}
+  .step .body h4{font-family:var(--display);font-weight:600;font-size:15.5px}
+  .step .body p{color:var(--ink-soft);font-size:13px;margin-top:2px}
+  .step .check{margin-left:auto;flex:none;width:20px;height:20px;border:2px solid var(--hair);border-radius:6px;margin-top:3px;display:grid;place-items:center}
+  .step.done .check{background:var(--ok);border-color:var(--ok)}
+  .step.done .check svg{display:block}
+  .step .check svg{display:none}
+
+  /* two-column callouts */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .panel{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  .panel h3{font-family:var(--display);font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px}
+  .panel.warn h3{color:var(--warn)} .panel.warn{border-left:3px solid var(--warn)}
+  .panel ul{list-style:none;margin-top:11px;display:flex;flex-direction:column;gap:9px}
+  .panel li{font-size:13.5px;color:#473f36;padding-left:16px;position:relative}
+  .panel li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--pilot)}
+  .panel.warn li::before{background:var(--warn)}
+
+  /* led codes */
+  .codes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .code{background:var(--iron);color:#f3ece2;border-radius:11px;padding:14px}
+  .code .blinks{display:flex;gap:5px;margin-bottom:9px}
+  .code .b{width:9px;height:9px;border-radius:50%;background:#3a322a}
+  .code .b.on{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+  .code .t{font-family:var(--display);font-weight:600;font-size:14px}
+  .code .d{font-size:11.5px;color:#a89c8c;margin-top:2px}
+
+  /* ---------- detail drawer ---------- */
+  .scrim{position:fixed;inset:0;background:rgba(20,14,8,.5);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:.22s;z-index:60}
+  .scrim.open{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(480px,100%);background:var(--paper-2);z-index:70;
+    transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.1,1);overflow-y:auto;box-shadow:-20px 0 50px rgba(20,14,8,.25)}
+  .drawer.open{transform:none}
+  .drawer .dh{position:sticky;top:0;z-index:2;background:var(--iron);color:#f3ece2;padding:18px 20px;display:flex;align-items:flex-start;gap:12px}
+  .drawer .dh .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+  .drawer .dh h2{font-family:var(--display);font-weight:700;font-size:21px;margin-top:5px;letter-spacing:-.01em}
+  .drawer .dh .x{margin-left:auto;background:#0e0b09;border:1px solid #3a322a;color:#d9cfc0;width:44px;height:44px;border-radius:10px;cursor:pointer;flex:none;font-size:22px;line-height:1}
+  .dcontent{padding:22px 24px 60px}
+  .dcontent h4{font-family:var(--display);font-weight:700;font-size:15px;margin:20px 0 8px;color:var(--ink)}
+  .dcontent h4:first-child{margin-top:0}
+  .dcontent p{font-size:14px;color:#473f36;margin-bottom:11px}
+  .dcontent ol,.dcontent ul{margin:0 0 13px 2px;display:flex;flex-direction:column;gap:9px}
+  .dcontent ol{counter-reset:s;list-style:none}
+  .dcontent ol li{position:relative;padding-left:32px;font-size:14px;color:#473f36}
+  .dcontent ol li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-1px;width:22px;height:22px;border-radius:6px;
+    background:var(--ember);color:#fff;font-family:var(--mono);font-weight:700;font-size:11.5px;display:grid;place-items:center}
+  .dcontent.cool ol li::before{background:var(--pilot)}
+  .dcontent ul{list-style:none}
+  .dcontent ul li{position:relative;padding-left:18px;font-size:14px;color:#473f36}
+  .dcontent ul li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--ember)}
+  .dcontent.cool ul li::before{background:var(--pilot)}
+  .note{background:#fcf3e3;border:1px solid #f0dcb4;border-radius:10px;padding:13px 15px;font-size:13.5px;color:#6b5320;margin:14px 0}
+  .note.danger{background:#fbe9e3;border-color:#f0c4b4;color:#8a3a1d}
+  .note b{font-weight:600}
+  .note.small{background:transparent;border:0;border-left:3px solid #e2cfa9;border-radius:0;padding:3px 0 3px 11px;font-size:12.5px;color:#6f6250;margin:8px 0 12px}
+  .note.small b{color:#4f4436}
+  .kv{font-family:var(--mono);font-size:13.5px;background:#efe9dd;border-radius:8px;padding:11px 13px;display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+  .kv .r{display:flex;justify-content:space-between;gap:12px}
+  .kv .r span:last-child{font-weight:700}
+
+  /* search results */
+  .results{position:fixed;top:56px;left:0;right:0;z-index:50;background:var(--paper-2);border-bottom:1px solid var(--hair);
+    box-shadow:0 18px 40px rgba(20,14,8,.18);max-height:70vh;overflow-y:auto;display:none}
+  .results.open{display:block}
+  .results .inner{max-width:1080px;margin:0 auto;padding:18px 22px 24px}
+  .results .rl{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px}
+  .ritem{display:flex;gap:12px;align-items:flex-start;padding:12px 13px;border-radius:11px;cursor:pointer;border:1px solid transparent}
+  .ritem:hover{background:#fff;border-color:var(--hair)}
+  .ritem .badge{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;border-radius:5px;flex:none;margin-top:1px}
+  .badge.h{background:#fbe6da;color:var(--ember-2)} .badge.i{background:#e2edf4;color:var(--pilot-deep)}
+  .ritem h4{font-family:var(--display);font-weight:600;font-size:15px}
+  .ritem p{font-size:12.5px;color:var(--ink-soft);margin-top:1px}
+  .rempty{color:var(--ink-soft);font-size:14px;padding:6px 2px}
+  .rgroup{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);
+    margin:16px 0 8px;display:flex;align-items:center;gap:9px}
+  .rgroup:first-child{margin-top:0}
+  .rgroup .ct{background:var(--hair);color:var(--ink-soft);border-radius:999px;padding:1px 8px;letter-spacing:.04em}
+  .ritem .pg{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink-soft);
+    border:1px solid var(--hair);border-radius:6px;padding:3px 7px;flex:none;margin-top:1px;white-space:nowrap}
+  .ritem .snip{font-size:12.5px;color:#5d544a;margin-top:3px;line-height:1.45}
+  .ritem .snip mark{background:#ffe7b3;color:#5a4310;border-radius:3px;padding:0 2px}
+  .ritem .jump{margin-left:auto;flex:none;align-self:center;color:var(--ink-soft);opacity:.5}
+
+
+  /* tablets: two tidy rows (brand + PDF, then the switch + search); the bar tucks away while scrolling down */
+  @media(max-width:1024px){
+    header{flex-wrap:wrap;row-gap:10px;column-gap:12px;padding:10px 16px}
+    .spacer{display:none}
+    .brand{order:1;flex:1;min-width:0}
+    .brand-wrap{min-width:0} .brand small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .pdf{order:2}
+    .toggle{order:3}
+    .toggle button{min-height:40px;font-size:14px;padding:6px 18px}
+    .search{order:4;flex:1;min-height:44px}
+    .search input{font-size:16px}
+    .hdr-away header{transform:translateY(-100%)}
+    .hdr-away .secnav{top:0}
+  }
+  /* phones: one slim row (home flame, own/install switch, search icon, PDF icon) */
+  @media(max-width:720px){
+    header{flex-wrap:wrap;gap:8px;padding:7px 10px;row-gap:8px}
+    .brand{order:1;flex:0 1 auto;min-height:44px}
+    .brand small{display:none}
+    .has-role .brand-wrap{display:none}
+    .has-role .brand{min-width:44px;justify-content:center}
+    .spacer{display:block;flex:1;order:2}
+    .has-role .spacer{display:none}
+    .toggle{order:2;flex:1;min-width:0}
+    .toggle button{flex:1;justify-content:center;min-height:40px;padding:6px 8px;font-size:13.5px}
+    .qbtn{display:grid;order:3}
+    .pdf{order:4;width:44px;height:44px;padding:0;justify-content:center;min-height:0}
+    .pdf .pdf-txt{display:none}
+    .search{display:none;order:5;flex:1 1 100%;min-width:0}
+    header.searching .search{display:flex}
+    .twocol{grid-template-columns:1fr}
+    .secnav{margin:4px -16px 0;padding:8px 16px}
+  }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} header,.secnav,.totop{transition:none} }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+  /* deep-link to the exact manual page (in the drawer) */
+  .manlink{display:flex;align-items:center;gap:13px;margin-top:24px;padding:14px 16px;border-radius:12px;text-decoration:none;
+    background:linear-gradient(180deg,#fdf1e9,#fce7da);border:1px solid #f0cdb6;color:var(--ember-2);transition:transform .18s,box-shadow .18s,border-color .18s}
+  .manlink:hover{border-color:var(--ember);box-shadow:0 7px 20px rgba(232,104,44,.18);transform:translateY(-1px)}
+  .manlink.cool{background:linear-gradient(180deg,#eef4f8,#e2edf4);border-color:#c2d6e3;color:var(--pilot-deep)}
+  .manlink.cool:hover{border-color:var(--pilot);box-shadow:0 7px 20px rgba(95,147,184,.2)}
+  .manlink .ic{flex:none;width:32px;height:32px;display:grid;place-items:center;border-radius:9px;background:#fff;color:var(--ember)}
+  .manlink.cool .ic{color:var(--pilot)}
+  .manlink .tx{display:flex;flex-direction:column;line-height:1.3}
+  .manlink b{font-family:var(--display);font-weight:700;font-size:14px}
+  .manlink small{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:2px;letter-spacing:.02em}
+  .manlink .arr{margin-left:auto;flex:none;opacity:.7}
+
+  /* installer-side full-manual search (inline, light surface) */
+  .ms-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--hair);
+    border-left:3px solid var(--pilot);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .ms-bar svg{flex:none;opacity:.5}
+  .ms-bar input{flex:1;background:none;border:none;font-family:var(--body);font-size:15px;color:var(--ink);outline:none}
+  .ms-bar input::placeholder{color:var(--ink-soft)}
+  .ms-results{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+  .ms-results .ritem{background:var(--card);border:1px solid var(--hair)}
+  .ms-results .ritem:hover{border-color:var(--pilot);background:#fbfdff}
+  .ms-hint{color:var(--ink-soft);font-size:13.5px;padding:8px 2px;line-height:1.5}
+  .ms-hint mark{background:none;color:var(--pilot-deep);font-weight:600}
+
+  /* owner-side inline search (ember surface) */
+  .os-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--hair);
+    border-left:3px solid var(--ember);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .os-bar svg{flex:none;opacity:.5}
+  .os-bar input{flex:1;background:none;border:none;font-family:var(--body);font-size:15px;color:var(--ink);outline:none}
+  .os-bar input::placeholder{color:var(--ink-soft)}
+  .os-results{display:flex;flex-direction:column;gap:8px}
+  .os-results:not(:empty){margin:14px 0 4px}
+  .os-results .ritem{background:var(--card);border:1px solid var(--hair)}
+  .os-results .ritem:hover{border-color:var(--ember);background:#fffaf6}
+  .os-hint{color:var(--ink-soft);font-size:13.5px;padding:8px 2px;line-height:1.5}
+  .os-hint mark{background:none;color:var(--ember-2);font-weight:600}
+  /* ---------- v3 additions ---------- */
+  /* manual picker, for guides built from more than one PDF */
+  .pdfmenu{position:absolute;top:calc(100% + 6px);right:14px;z-index:55;background:var(--paper-2);border:1px solid var(--hair);border-radius:12px;
+    box-shadow:0 18px 40px rgba(20,14,8,.22);padding:7px;min-width:260px;display:none}
+  .pdfmenu.open{display:block}
+  .pdfmenu .ml{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);padding:6px 11px 4px}
+  .pdfmenu a{display:flex;flex-direction:column;gap:1px;padding:10px 11px;border-radius:9px;text-decoration:none;color:var(--ink)}
+  .pdfmenu a:hover{background:#fff}
+  .pdfmenu b{font-family:var(--display);font-weight:700;font-size:14px}
+  .pdfmenu small{font-family:var(--mono);font-size:11px;color:var(--ink-soft)}
+  /* fault panels (any number) */
+  .faults{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  /* display-style codes (e.g. "E1") alongside blink codes */
+  .code .cd{font-family:var(--mono);font-weight:700;font-size:16px;color:var(--amber);margin-bottom:7px;letter-spacing:.04em}
+  .gate .foot .docs a{white-space:nowrap}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand" id="brandHome" role="button" tabindex="0" title="Back to start" style="cursor:pointer">
+    <svg class="flame" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3-2 4-2 7 0 1 .6 2 1.5 2.4C12 10 13 8.5 13 7c2 2 4 4.5 4 8a5 5 0 0 1-10 0c0-2 1-3.5 2-5 .2 1.2 1 2 2 2-.4-3 1-6 3-10Z"/></svg>
+    <div class="brand-wrap"><span>KOZY HEAT</span><small>Osseo X64 · Holographic electric fireplace</small></div>
+  </div>
+  <div class="spacer"></div>
+  <div class="search">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Search the whole guide…" autocomplete="off">
+  </div>
+  <button class="qbtn" id="qBtn" type="button" aria-label="Search the guide" aria-expanded="false">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+  </button>
+  <div class="toggle" id="toggle" style="display:none">
+    <button class="home" data-role="homeowner" aria-pressed="false"><span class="dot"></span>I own it</button>
+    <button class="inst" data-role="installer" aria-pressed="false"><span class="dot"></span>I install it</button>
+  </div>
+  <a class="pdf" href="#" id="pdfBtn" title="The full 40-page manual is the legal source of truth">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+    <span class="pdf-txt">Official PDF</span>
+  </a>
+  <div class="pdfmenu" id="pdfMenu"></div>
+</header>
+
+<!-- search results -->
+<div class="results" id="results"><div class="inner"><div class="rl">Results</div><div id="rlist"></div></div></div>
+
+<!-- ===== IGNITION GATE ===== -->
+<section class="gate" id="gate">
+  <div class="kicker">Multi-sided electric fireplace</div>
+  <h1>Kozy Heat Osseo X64</h1>
+  <p class="sub">Tell us who you are and we'll bring the right half forward — the rest is one search away.</p>
+  <p class="model">Model OSO-x64 · 120VAC, 60Hz, 1500W · Control panel + thermostatic remote</p>
+  <div class="cards">
+    <button class="ignite" data-role="homeowner">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg>
+      <h2>I own this fireplace</h2>
+      <p>Turn it on, set the heat, use the remote, change the flames and lights, clean it, check the warranty.</p>
+      <span class="go">Light my path →</span>
+    </button>
+    <button class="ignite cool" data-role="installer">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3Z"/></svg>
+      <h2>I'm installing or servicing it</h2>
+      <p>Electrical, clearances, framed openings, dimensions, mantel limits, the install sequence and part numbers.</p>
+      <span class="go">Open field reference →</span>
+    </button>
+  </div>
+  <p class="foot">Both paths draw from the same certified manual (CSA C22.2 No 46-13 Ed.9 · UL 2021:2015). <a href="#" id="pdfBtn2" class="footdoc" data-doc="1">Skip straight to the full PDF →</a></p>
+  <p class="fine"><b>About these guides.</b> Manufacturers revise their manuals over the years, and a manual sometimes disagrees with itself or with the maker's website. We report what is printed and posted: where two figures differ, we show both right there, with links to the pages, and where the maker's website gives a different figure, we note it next to the manual's. Plain misprints, such as a metric conversion that doesn't match, are corrected with a small note saying what was printed. The official manual is the authority for installation; when two figures differ, ask us or your installer before relying on either.</p>
+</section>
+
+<!-- ===== HOMEOWNER ===== -->
+<section class="view" id="homeowner">
+  <div class="vhead">
+    <div class="eyebrow"><span class="pip home-pip"></span>For owners</div>
+    <h1>Your fireplace, in plain language</h1>
+    <p>The things people actually ask us about — pick one. Everything technical still lives under search and the official PDF up top.</p>
+  </div>
+  <div class="os-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="oq" type="search" placeholder="Search — heater, remote, flame color, cleaning…" autocomplete="off">
+  </div>
+  <div class="os-results" id="oResults"></div>
+  <div class="seclabel">Start here</div>
+  <div class="tiles" id="homeTiles"></div>
+  <div id="homeSec2">
+    <div class="seclabel">Good to know</div>
+    <div class="tiles" id="homeTiles2"></div>
+  </div>
+  <p class="fine"><b>About these guides.</b> Manufacturers revise their manuals over the years, and a manual sometimes disagrees with itself or with the maker's website. We report what is printed and posted: where two figures differ, we show both right there, with links to the pages, and where the maker's website gives a different figure, we note it next to the manual's. Plain misprints, such as a metric conversion that doesn't match, are corrected with a small note saying what was printed. The official manual is the authority for installation; when two figures differ, ask us or your installer before relying on either.</p>
+</section>
+
+<!-- ===== INSTALLER ===== -->
+<section class="view" id="installer">
+  <div class="vhead">
+    <div class="eyebrow"><span class="pip inst-pip"></span>For installers &amp; service</div>
+    <h1>Field reference</h1>
+    <p>The numbers you look up on your knees, the sequence you follow, and the faults you diagnose — surfaced first. Tap any spec for the surrounding detail.</p>
+  </div>
+  <nav class="secnav" id="secNav" aria-label="Jump to a section"></nav>
+
+  <div class="seclabel" id="sec-specs">Critical specs</div>
+  <div class="specs" id="specCards"></div>
+
+  <div class="seclabel" id="sec-steps">Install sequence — tap to check off</div>
+  <div class="checklist" id="checklist"></div>
+
+  <div id="faultSec">
+    <div class="seclabel" id="faultLabel">Field faults</div>
+    <div class="faults" id="faults"></div>
+  </div>
+
+  <div id="codeSec">
+    <div class="seclabel">Control codes</div>
+    <div class="codes" id="codes"></div>
+  </div>
+
+  <div class="seclabel" id="sec-manual">Search the original manual</div>
+  <div class="ms-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="mq" type="search" placeholder="Search every page of the official manual — clearance, framed opening, hardwired…" autocomplete="off">
+  </div>
+  <div class="ms-results" id="mResults"></div>
+  <p class="fine"><b>About these guides.</b> Manufacturers revise their manuals over the years, and a manual sometimes disagrees with itself or with the maker's website. We report what is printed and posted: where two figures differ, we show both right there, with links to the pages, and where the maker's website gives a different figure, we note it next to the manual's. Plain misprints, such as a metric conversion that doesn't match, are corrected with a small note saying what was printed. The official manual is the authority for installation; when two figures differ, ask us or your installer before relying on either.</p>
+</section>
+
+<!-- detail drawer -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <div class="dh">
+    <div><div class="tag" id="dTag">Detail</div><h2 id="dTitle">Title</h2></div>
+    <button class="x" id="dClose" aria-label="Close">×</button>
+  </div>
+  <div class="dcontent" id="dBody"></div>
+</aside>
+
+<button class="totop" id="toTop" type="button" aria-label="Back to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></svg>
+</button>
+
+<script>
+/* ================= content: generated from guides/content/kozy-heat-osseo-x64.json ================= */
+const HOME_PRIMARY = [{"id":"on","icon":"M12 4v8M7.5 6.5a7 7 0 1 0 9 0","title":"Turn it on & off","blurb":"The main power switch, the fire button, and shutting it down fully."},{"id":"heat","icon":"M14 14.8V4a2 2 0 0 0-4 0v10.8a4 4 0 1 0 4 0ZM12 9v7","title":"Heat & thermostat","blurb":"Half or full heat, temperature presets, the timer and °F/°C."},{"id":"remote","icon":"M9 2h6a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm3 14h.01M9 6h6M9 9h2M13 9h2","title":"Use the remote","blurb":"Where to keep it, batteries, and pairing a new one."},{"id":"effects","icon":"M12 2c1 3-2 4-2 7 0 1 .6 2 1.5 2.4C12 10 13 8.5 13 7c2 2 4 4.5 4 8a5 5 0 0 1-10 0c0-2 1-3.5 2-5 .2 1.2 1 2 2 2-.4-3 1-6 3-10Z","title":"Flames, lights & sound","blurb":"Flame colors and effects, floor and log lights, night mode, crackle.","fill":true}];
+const HOME_SECONDARY = [{"id":"sounds","icon":"M11 5 6 9H2v6h4l5 4V5Zm5 2a5 5 0 0 1 0 10M19 4a9 9 0 0 1 0 16","title":"Beeps, sounds & smells","blurb":"Panel beeps, the crackle and that first-use smell — what's normal."},{"id":"clean","icon":"M15 3l6 6-9 9-6-6 9-9ZM6 12l-3 3v6h6l3-3M9 15l3 3","title":"Clean the fireplace","blurb":"Keep the vents free of dust and pet hair — no liquids."},{"id":"glass","icon":"M4 4h16v16H4Zm0 5h16M9 4v16","title":"Clean the glass","blurb":"Glass cleaner on a cloth, and how to handle the glass safely."},{"id":"safety","icon":"M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z","title":"Safety around it","blurb":"Hot surfaces, the 36\" clear zone, children and the vents."},{"id":"outlet","icon":"M9 2v6M15 2v6M6 8h12v3a6 6 0 0 1-12 0V8ZM12 17v5","title":"Plug & outlet","blurb":"No extension cords or power strips — and why."},{"id":"warranty","icon":"M9 12l2 2 4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z","title":"Warranty","blurb":"What's covered, for how long, and what voids it."}];
+const SPECS = [{"id":"elec","lab":"Electrical","tap":"specElec","rows":[["Rating","120VAC, 60Hz, 1500W"],["Heater draw","12.5 amps"],["Breaker (recommended)","Dedicated 15 Amp (or higher)"],["Recessed installation","Must be hardwired"]]},{"id":"heat","lab":"Heat output","tap":"specHeat","rows":[["Half heat","750W"],["Full heat","1500W"]],"note":"control panel or remote"},{"id":"clear","lab":"Clearances to combustibles","tap":"specClear","rows":[["Bottom · sides","0\" (0mm)"],["Back · top","1/4\" (6mm)"],["In front of glass","36\" (914mm)"]],"note":"minimum · Table 2.1"},{"id":"frame","lab":"Framed opening · OSO-x64","tap":"specFrame","rows":[["Standard","64-3/4\" · 23-1/2\" · 19-1/2\""],["Corner","63-3/4\" · 23-1/2\" · 19-1/2\""],["3-sided (bay)","63\" · 23-1/2\" · 19-1/2\""]],"note":"A · B · C as marked on Fig. 2.6–2.8"},{"id":"dims","lab":"Appliance dimensions · OSO-x64","tap":"specDims","rows":[["A · B","63\" · 64-1/8\""],["C · D","15-1/4\" · 22-7/8\""],["E · F","8-3/8\" · 19\""],["G · H","1/2\" · 2-3/8\""]],"note":"letters as marked on Fig. 1.1"},{"id":"mantel","lab":"Mantel & finishing","tap":"specMantel","rows":[["Wall + finish + mantel projection","max 12\" (305mm)"],["Top finishing edge to 12\" mantel","0\" (0mm)"],["Finishing material at edges","up to 1/2\" (13mm)"]]},{"id":"parts","lab":"Key part numbers · x64","tap":"specParts","rows":[["Remote control","OSX-REM"],["Front viewing glass","OSX64-FVG"],["Fan heating assembly","OSX-FHA"],["Main control board","OSX-MCB"]]}];
+const STEPS = [["Unpack & check contents","Lay every part on a clean, soft, dry surface and check it against the parts list. The unit has glass components — handle with extreme caution.","<p>Package contents (Section 1.5):<\/p><ul><li>Electric fireplace<\/li><li>Instruction manual<\/li><li>Remote control and batteries<\/li><li>Smoked crushed glass (boxed)<\/li><li>Glass suction clamp<\/li><li>Power cord<\/li><li>Log set<\/li><li>Mounting screw packet (QTY 4)<\/li><\/ul><p>Tools (not included): Phillips screwdriver, stud finder, level, tape measure, electric drill, 1/4\" wood drill bit.<\/p><div class=\"note\">Keep plastic packaging and small parts away from young children.<\/div>"],["Plan location & power","Follow national and local building and electrical codes; pick a spot not prone to moisture, away from drapes, furniture and flammable vapors or liquids. Plan an electrical box for the supplied cord, or hardwire — required for a recessed installation.","<ul><li>Location not susceptible to moisture; away from drapes and furniture.<\/li><li>Combustibles (curtains, drapes, furniture, bedding, paper) at least 36\" (914mm) from the front (p. 16).<\/li><li>Don't store or use gasoline or other flammable vapors and liquids near the heater.<\/li><li>Supplied power cord: plan where it connects to an electrical box.<\/li><li>Recessed installation: must be hardwired. All work by a licensed electrician to local and national (NFPA 70) electrical codes.<\/li><\/ul><p>Manufactured homes: meets H.U.D. construction and safety standards when installed per these instructions (p. 1).<\/p>"],["Prep the sides for your option","Single-sided keeps both block-off plates, corner removes the one on the side to be visible, 3-sided (bay) removes both. Swap the side cover plates and \"C\" finishing trim to match.","<h4>Standard (single-sided)<\/h4><p>On both sides: remove the screws holding the cover plate and finishing trim, discard the \"C\" finishing trim, then refit the cover plate and screws. Framing then sits flush with the appliance body and the finishing material butts against the 1/2\" finishing edge.<\/p><h4>Corner (left or right)<\/h4><p>Side to be exposed: remove the cover plate screws, discard the cover plate, refit the finishing trim. Other side: remove the same screws, discard the finishing trim, refit the cover plate.<\/p><h4>3-sided (bay)<\/h4><p>Both sides: remove and discard the cover plate, then refit the \"C\" finishing trim with the same screws. All 3 sides of viewing glass are then exposed.<\/p><p>On exposed sides, the finishing trim is what your finishing material butts against.<\/p>"],["Nailing flanges","Fold out the 2 top and 2 bottom nailing flanges (Fig. 2.5). They secure the appliance to the framing."],["Frame the rough opening","Build the rough opening for your installation type (Fig. 2.6–2.8) and hold the Table 2.1 clearances. Once the unit is installed and secured in the opening, remove and discard the shipping support brace.","<h4>Standard<\/h4><div class=\"kv\"><div class=\"r\"><span>A<\/span><span>64-3/4\" (1645mm)<\/span><\/div><div class=\"r\"><span>B<\/span><span>23-1/2\" (597mm)<\/span><\/div><div class=\"r\"><span>C<\/span><span>19-1/2\" (495mm)<\/span><\/div><\/div><h4>Corner<\/h4><div class=\"kv\"><div class=\"r\"><span>A<\/span><span>63-3/4\" (1619mm)<\/span><\/div><div class=\"r\"><span>B<\/span><span>23-1/2\" (597mm)<\/span><\/div><div class=\"r\"><span>C<\/span><span>19-1/2\" (495mm)<\/span><\/div><\/div><h4>3-sided (bay)<\/h4><div class=\"kv\"><div class=\"r\"><span>A<\/span><span>63\" (1600mm)<\/span><\/div><div class=\"r\"><span>B<\/span><span>23-1/2\" (597mm)<\/span><\/div><div class=\"r\"><span>C<\/span><span>19-1/2\" (495mm)<\/span><\/div><\/div><p>A, B and C are as marked on the figures (pp. 16–18). Clearances: 0\" bottom and sides, 1/4\" (6mm) back and top, 36\" (914mm) to combustibles in front of the glass (p. 15).<\/p><p>The shipping support brace comes off only after the unit is installed and secured in the framed opening (p. 12).<\/p>"],["Optional surround or trim","Both fit only a recessed single-sided installation. The rectangle surround hangs on magnetic brackets with its deeper flange at the bottom; the 4-piece finishing trim goes on with the supplied double-sided adhesive tape.","<h4>Rectangle surround (OSX64-RS)<\/h4><p>Recommended over an unfinished or exposed edge of drywall, tile or wood.<\/p><ol><li>Remove the 2 Phillips screws above the viewing glass and the heater air deflector bracket. Discard the bracket; save the screws.<\/li><li>Install the new heater air deflector bracket (support flanges on the ends).<\/li><li>Install the base brackets.<\/li><li>Install the magnetic hanging brackets with the supplied screws; adjust them to your finishing material.<\/li><li>Hang the top of the surround on the hanging brackets. The larger (deeper) flange goes at the bottom — at the top it may cover the heater vents.<\/li><li>Hold the bottom with the provided magnets on the bottom edge of the fireplace, hidden by the bottom flange.<\/li><\/ol><p>To remove it, pull the trim forward and up off the brackets.<\/p><h4>4-piece finishing trim<\/h4><p>Recommended for a smooth wall finish or very thin finishing materials. Install the top and bottom pieces, then the sides, with the supplied double-sided adhesive tape (p. 24).<\/p>"],["Electrical connection","Remove the 4 electrical box cover screws, move the cable clamp to the side, top or rear (knock-out plate) if needed, complete the connection and refit the cover. A recessed installation must be hardwired by a licensed electrician (NFPA 70).","<p>The appliance ships ready for either hardwiring or the supplied power cord; the cable clamp secures either.<\/p><ol><li>Remove the 4 screws that secure the electrical box cover (Fig. 2.17).<\/li><li>Move the cable clamp to the desired location (Fig. 2.18). Cabling can also exit the top of the appliance through the cover plate.<\/li><li>Complete the electrical connection and reinstall the electrical box cover.<\/li><\/ol><p>Supply: 120VAC, 60Hz, 1500W; a dedicated 15 Amp (or higher) breaker is recommended (p. 9).<\/p>"],["Finish the wall & mantel","Keep the combined wall projection, finishing material and combustible mantel within 12\" (305mm), and nothing inside the finishing edges or over the glass. The finishing edges take material up to 1/2\" (13mm) thick.","<ul><li>All minimum clearances to combustible material must be maintained.<\/li><li>Wall bump-out: up to 12\" (305mm) of projection, starting at the top finishing edge.<\/li><li>Combustible mantel projections must fall within that 12\" (305mm) wall projection (Fig. 3.1).<\/li><li>No material may extend inside the finishing edges or block the viewing area or glass.<\/li><li>Finishing material thicker than 1/2\" (13mm) leaves some of its edge exposed; on a single-sided install the optional rectangle surround covers it (p. 27).<\/li><\/ul>"],["Remove the glass","Front glass: suction cup on, remove the top right and left screws and brackets and the heater air deflector bracket, tilt toward you and lift out. Then the holographic pane: remove its 2 top-corner clips and lift it out of the bottom channel.","<h4>Glass front (Section 4.1)<\/h4><ol><li>Remove any front trim, if installed.<\/li><li>Attach a glass suction cup. Remove the screws and brackets at the top right and left of the glass, and the heater air deflector bracket. Save them.<\/li><li>Tilt the glass toward you, lift it up and out, and lay it face down on a soft, non-abrasive surface.<\/li><\/ol><h4>Holographic glass (Section 4.2)<\/h4><ol><li>Attach the suction cup to the holographic pane and remove the 2 glass panel clips, one in each top corner.<\/li><li>Tilt it up slightly, lift it up and out of the bottom glass channel, and set it on a soft, non-abrasive surface.<\/li><li>Note which side faced up: that side has a reflective film and must face up again.<\/li><\/ol><p>Reinstall in reverse order, then refit any front trim.<\/p><div class=\"note danger\">Don't rely on the suction cups to carry the weight of the glass — they are only for tilting it back. Wear safety gloves and glasses (p. 36).<\/div>"],["Install the x64 log set","Match each log to the numbered position on the clear floor panel, plugging the LED-lit logs into the floor connector beside them. Finish with the 20 lbs. of crushed glass and klinkers, kept back from the front edge.","<ol><li>Base logs: #1, #2, #14, #9 and #6.<\/li><li>Back row, LED-lit — plug each into the female connector in the plastic floor next to its position: #3 first, then #7, #4, #5 and #8.<\/li><li>Front row: #10, #11, #12, #13 and #15. Logs #11, #13 and #15 are LED-lit; plug them in.<\/li><li>Add the 20 lbs. of crushed glass and klinkers. Space the klinkers randomly on top; use them to hide the log wires.<\/li><\/ol><div class=\"note\">Keep the crushed glass back from the very front edge — the angled holographic glass needs space there.<\/div><p>The log LED connection is shown on p. 31; the x64 log positions on p. 32.<\/p>"]];
+const CODES = [];
+const FAULTS = null;
+const DETAIL = {"on":{"tag":"Owner · operation","title":"Turning it on and off","cool":false,"html":"<p>You can run the fireplace from the control panel on the fireplace or from the remote. The fire and the heater have separate buttons.<\/p><ol><li>On the control panel, push the <b>main power switch<\/b> to <b>I<\/b>. The main power indicator lights up.<\/li><li>Press <b>Fireplace On/Off<\/b> on the panel, or <b>on/off<\/b> on the remote, to turn the fire on or off.<\/li><li>Want heat as well? Turn the heater on too — see <b>Heat &amp; thermostat<\/b>.<\/li><\/ol><div class=\"note\">The remote can only turn the fireplace on when the main power switch on the control panel is on.<\/div><h4>Shutting it down completely<\/h4><p>To disconnect it fully, turn the controls off, then turn off the power to its circuit at your main electrical panel.<\/p><div class=\"note danger\"><b>Before the first use,<\/b> the fireplace must be properly installed. Read the whole manual, including the safety information, before you plug it in or use it.<\/div>"},"heat":{"tag":"Owner · operation","title":"Heat settings & thermostat","cool":false,"html":"<p>The heater has its own buttons, separate from the fire. It has two settings.<\/p><div class=\"kv\"><div class=\"r\"><span>Half heat<\/span><span>750W<\/span><\/div><div class=\"r\"><span>Full heat<\/span><span>1500W<\/span><\/div><\/div><h4>On the control panel<\/h4><p>Press <b>Heater<\/b> once for half heat. Press it again for full heat. A third press turns the heater off.<\/p><h4>On the remote<\/h4><ul><li><b>Heater On/Off<\/b> turns the heater on or off.<\/li><li>Press <b>Heater<\/b> once for half power, a second time for full power.<\/li><li><b>Temperature Set<\/b> steps through 8 preset temperatures.<\/li><li><b>Timer<\/b> steps through 8 timer settings.<\/li><\/ul><p>The remote works as the thermostat. Its temperature sensor tells the fireplace the room temperature, so keep it in the same room, screen up, sensor uncovered, and away from the fireplace front or a warm window.<\/p><p>To switch between Fahrenheit and Celsius, press and hold <b>Down Light<\/b> on the control panel for 3 seconds, until it beeps.<\/p><div class=\"note\">This heater is for supplemental heat only. It isn't meant to be your main heat source.<\/div>"},"remote":{"tag":"Owner · operation","title":"Using the remote","cool":false,"html":"<p>Your remote comes already paired with the fireplace. The main power switch on the fireplace's control panel must be on for the remote to turn it on.<\/p><h4>Where to keep it<\/h4><ul><li>In the same room as the fireplace, with the remote's screen facing up.<\/li><li>With its temperature sensor uncovered.<\/li><li>Not next to the front of the fireplace or in a warm spot such as a window. False temperature readings stop the fireplace turning on and off accurately with the room temperature.<\/li><\/ul><h4>Batteries<\/h4><p>When the battery indicator on the remote shows empty, replace its 2 AAA batteries with the correct type (1.5V AAA). Make sure they go in the right way round.<\/p><h4>Pairing a new remote<\/h4><ol><li>Turn the main power switch on.<\/li><li>Press and hold <b>fireplace on/off<\/b> and <b>Display Brightness<\/b> at the same time for 5 seconds.<\/li><li>You'll hear beeping. When it stops, the remote is paired.<\/li><\/ol><p>To clear the app pairing so you can re-pair the app, press and hold <b>Floor Light<\/b> on the control panel for 3 seconds, until it beeps.<\/p>"},"effects":{"tag":"Owner · operation","title":"Flames, lights & sound","cool":false,"html":"<p>Each of these remote buttons steps through its options. Keep pressing to cycle round.<\/p><div class=\"kv\"><div class=\"r\"><span>Flame Color<\/span><span>7 colors<\/span><\/div><div class=\"r\"><span>Flame Effect<\/span><span>4 effects<\/span><\/div><div class=\"r\"><span>Floor LED Colors<\/span><span>13 colors<\/span><\/div><div class=\"r\"><span>Down Light<\/span><span>3 options<\/span><\/div><div class=\"r\"><span>Log Light Brightness<\/span><span>3 levels<\/span><\/div><div class=\"r\"><span>Display Brightness<\/span><span>5 levels<\/span><\/div><\/div><h4>Night mode<\/h4><p>Night mode turns off all the lights except the log lights. Press the night mode button to go in and out of it.<\/p><h4>Crackling sound<\/h4><p>Press <b>sound<\/b> to turn the crackling sound on or off.<\/p><h4>On the fireplace itself<\/h4><p>The control panel's <b>Down Light<\/b> button cycles through 3 colors, and its <b>Floor Light<\/b> button through 13 colors.<\/p>"},"sounds":{"tag":"Owner · reassurance","title":"Those beeps and smells are normal","cool":false,"html":"<h4>Beeps<\/h4><p>The control panel beeps every time you press one of its buttons. That just tells you the press worked. Holding a panel button for 3 seconds, to switch °F/°C or clear the app pairing, also ends with a beep.<\/p><p>You'll hear beeping while a new remote pairs. When it stops, pairing is done.<\/p><h4>Crackling<\/h4><p>The crackling is a sound effect. Turn it on or off with the <b>sound<\/b> button on the remote.<\/p><h4>A slight smell at first<\/h4><p>A slight odor the first time you turn the fireplace on is normal. It shouldn't come back unless the fireplace goes unused for a long time.<\/p><div class=\"note danger\"><b>If it ever malfunctions,<\/b> stop using it. Turn off the power at the service panel and have an authorized Kozy Heat dealer inspect it before you use it again.<\/div>"},"clean":{"tag":"Owner · maintenance","title":"Cleaning the fireplace","cool":false,"html":"<p>Dust, lint and pet hair in the air vents are a fire risk, so keep the air inlet and heater area clean.<\/p><h4>First, turn off the power<\/h4><p>Make sure the toggle switch on the control panel is off. Then disconnect the power: unplug the fireplace, or turn off its circuit at the main electrical panel.<\/p><h4>Vents and heater area<\/h4><ul><li>Before use, check the air vents for dust, lint or anything blocking them.<\/li><li>Clean the air inlet and heater area regularly to keep them free of dust and pet hair.<\/li><\/ul><div class=\"note\"><b>Note:<\/b> p. 7 says to clean the vents with a vacuum only; p. 36 says to clean the air inlet and heater area with a cloth or vacuum.<\/div><h4>What to avoid<\/h4><ul><li>Don't use abrasive cleaners.<\/li><li>Don't spray liquids directly onto the fireplace.<\/li><li>Don't rinse it or let it get wet.<\/li><\/ul><p>For the glass, see <b>Clean the glass<\/b>.<\/p>"},"glass":{"tag":"Owner · maintenance","title":"Cleaning the glass","cool":false,"html":"<ol><li>Turn the power off first, as for any cleaning.<\/li><li>Spray glass cleaner onto a cloth, not onto the glass.<\/li><li>Wipe the glass, then dry it with a lint-free cloth.<\/li><\/ol><div class=\"note danger\"><b>Handle with care.<\/b> The glass is tempered for safety, and a hard impact will shatter it. Take extra care that a corner of the glass never hits a hard surface.<\/div><h4>If you take the glass out to clean it<\/h4><ul><li>Wear safety gloves and safety glasses.<\/li><li>Lay the glass on a soft surface.<\/li><li>Don't carry it by the suction cups. They're only there to tilt the glass back so it can come out.<\/li><li>A holographic glass pane comes out after the front glass. Note which side faced up: that side has a reflective film, and it must go back the same way up.<\/li><\/ul><p>The removal steps for both panes are on pages 29 and 30 of the manual.<\/p>"},"safety":{"tag":"Owner · safety","title":"Safety around the fireplace","cool":false,"html":"<ul><li>The heater is hot when in use. Don't let bare skin touch hot surfaces.<\/li><li>Keep furniture, pillows, bedding, papers, clothes and curtains at least 36\" (914mm) from the front.<\/li><li>Take extreme care when children or vulnerable adults are near it, and whenever you leave it running unattended.<\/li><li>Don't block the air intakes or exhaust, and don't let anything get into the vents. That can cause an electric shock, a fire or damage.<\/li><li>It has hot, arcing or sparking parts inside. Don't use it where gasoline, paint or other flammable vapors or liquids are used or stored.<\/li><li>Indoors only. Don't use it outdoors, and don't let it get wet.<\/li><li>Don't tamper with any controls.<\/li><li>Keep plastic packaging and small parts away from young children.<\/li><\/ul><div class=\"note danger\"><b>After a malfunction,<\/b> don't operate it. Turn off the power at the service panel and have an authorized Kozy Heat dealer inspect it before you use it again.<\/div>"},"outlet":{"tag":"Owner · safety","title":"Plug & outlet safety","cool":false,"html":"<p>This heater draws more current than other small heaters. Overheating may happen even if it never did with other heaters.<\/p><ul><li>Always plug the power cord directly into a wall outlet.<\/li><li>Never use an extension cord or a power strip.<\/li><li>Never use an outlet that's old, cracked, or has loose wires or connections. A faulty outlet can arc, overheat or catch fire.<\/li><li>Check that the plug fits tight in the outlet. A loose plug can make the outlet overheat.<\/li><\/ul><p>Your fireplace may be hardwired (connected straight into your home's wiring) instead of plugged in. A recessed installation must be hardwired, by a licensed electrician.<\/p><div class=\"note\">A dedicated 15 Amp (or higher) breaker is recommended. The 1500W heater can draw 12.5 amps.<\/div>"},"warranty":{"tag":"Owner · warranty","title":"Warranty at a glance","cool":false,"html":"<div class=\"note\"><b>Note:<\/b> the manual gives the warranty term as \"Limited Lifetime Warranty\" in the title on p. 5 and p. 40, and as \"2 Year Limited Warranty\" (all parts for 2 years, labor reimbursement for 1 year) in the coverage on p. 40.<\/div><p>It covers defects in materials and workmanship, for the original purchaser only. It can't be transferred.<\/p><div class=\"kv\"><div class=\"r\"><span>Parts<\/span><span>2 years<\/span><\/div><div class=\"r\"><span>Labor reimbursement<\/span><span>1 year, to an authorized dealer only<\/span><\/div><\/div><p>Coverage starts on the date of original purchase. For new home construction, it starts at first occupancy or six months after the dealer's sale, whichever comes first. Nothing needs to be sent in to register. Keep your dated proof of purchase with the serial number and model.<\/p><h4>Not covered, or voids it<\/h4><ul><li>Not bought through an authorized Kozy Heat dealer or distributor.<\/li><li>Not installed by a licensed, authorized technician or contractor, or not installed, operated and maintained per the manual.<\/li><li>Wear items: paint, batteries and glass discoloration.<\/li><li>Damp places, weather or water damage, such as outdoors, porches or laundry rooms.<\/li><li>Power interruptions or fluctuations, misuse, or unapproved parts or changes.<\/li><li>How well it heats your space.<\/li><\/ul>"},"specElec":{"tag":"Installer · spec","title":"Electrical","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Rating<\/span><span>120VAC, 60Hz, 1500W<\/span><\/div><div class=\"r\"><span>Heater draw<\/span><span>12.5 amps<\/span><\/div><div class=\"r\"><span>Breaker<\/span><span>Dedicated 15 Amp (or higher), recommended<\/span><\/div><div class=\"r\"><span>Cord<\/span><span>3-prong, supplied<\/span><\/div><\/div><p>Cord: two flat blades (live and neutral) and one round pin (ground). Ships for either hardwiring or the supplied cord. <b>A recessed installation must be hardwired<\/b> — licensed electrician, local and national (NFPA 70) electrical codes. The cable clamp moves to the side, top or rear via a knock-out plate (p. 25).<\/p><p>If a 3-slot receptacle is not available, an adapter (not included) must be used, with its green grounding lug connected to a permanent ground such as a properly grounded outlet box. Don't use the adapter if a three-slot grounded receptacle is available. Separately, p. 7 says always plug directly into a wall outlet — never an extension cord or power tap (outlet/power strip).<\/p><p>Listed by Intertek Testing Services: CSA C22.2 No 46-13 Ed.9 Electric Air-Heaters (R2018); UL 2021:2015 (4th Edition + R:02 Fed. 2021) Fixed and Location-Dedicated Electric Room Heaters. Meets H.U.D. construction and safety standards for manufactured homes when installed per these instructions (p. 1).<\/p>"},"specHeat":{"tag":"Installer · spec","title":"Heat output","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Half heat<\/span><span>750W<\/span><\/div><div class=\"r\"><span>Full heat<\/span><span>1500W<\/span><\/div><\/div><div class=\"note small\"><b>Maker's website:<\/b> Heater Output: 750W / 1500W @ 120V; 5,000 BTUs.<\/div><div class=\"kv\"><div class=\"r\"><span>Thermostat<\/span><span>in the remote · 8 presets<\/span><\/div><div class=\"r\"><span>Timer<\/span><span>8 settings<\/span><\/div><\/div><div class=\"note small\"><b>Maker's website:<\/b> Controls: Multi-function remote; thermostat; timer (30 min - 8 hr).<\/div><p>Control panel Heater button: 1st press half heat (750W), 2nd full heat (1500W), 3rd off. Remote: Heater On/Off; Heater once for half, twice for full; Temperature Set cycles the 8 presets (p. 35).<\/p><p>Supplemental heat only — not a primary heat source (p. 7). The remote must stay in the same room, screen up, sensor uncovered, away from the unit front and warm windows, or on/off cycling against room temperature is inaccurate (p. 34).<\/p>"},"specClear":{"tag":"Installer · spec","title":"Clearances to combustibles","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Bottom of appliance<\/span><span>0\" (0mm)<\/span><\/div><div class=\"r\"><span>Left and right sides<\/span><span>0\" (0mm)<\/span><\/div><div class=\"r\"><span>Back of appliance<\/span><span>1/4\" (6mm)<\/span><\/div><div class=\"r\"><span>Top of appliance<\/span><span>1/4\" (6mm)<\/span><\/div><div class=\"r\"><span>Top finishing edge to 12\" (305mm) mantel<\/span><span>0\" (0mm)<\/span><\/div><div class=\"r\"><span>Bottom finishing edge to unlimited hearth<\/span><span>0\" (0 mm)<\/span><\/div><div class=\"r\"><span>Combustibles in front of glass viewing area<\/span><span>36\" (914mm)<\/span><\/div><\/div><p>Table 2.1, minimum clearances. Pick a location not prone to moisture, with curtains, drapes, furniture, bedding and paper at least 36\" (914mm) from the front (p. 16). All minimum clearances to combustible material must be maintained through finishing (p. 26).<\/p>"},"specFrame":{"tag":"Installer · spec","title":"Framed opening · OSO-x64","cool":true,"html":"<h4>Standard (single-sided) · Fig. 2.6<\/h4><div class=\"kv\"><div class=\"r\"><span>A<\/span><span>64-3/4\" (1645mm)<\/span><\/div><div class=\"r\"><span>B<\/span><span>23-1/2\" (597mm)<\/span><\/div><div class=\"r\"><span>C<\/span><span>19-1/2\" (495mm)<\/span><\/div><\/div><h4>Corner · Fig. 2.7 (p. 17)<\/h4><div class=\"kv\"><div class=\"r\"><span>A<\/span><span>63-3/4\" (1619mm)<\/span><\/div><div class=\"r\"><span>B<\/span><span>23-1/2\" (597mm)<\/span><\/div><div class=\"r\"><span>C<\/span><span>19-1/2\" (495mm)<\/span><\/div><\/div><h4>3-sided (bay) · Fig. 2.8 (p. 18)<\/h4><div class=\"kv\"><div class=\"r\"><span>A<\/span><span>63\" (1600mm)<\/span><\/div><div class=\"r\"><span>B<\/span><span>23-1/2\" (597mm)<\/span><\/div><div class=\"r\"><span>C<\/span><span>19-1/2\" (495mm)<\/span><\/div><\/div><p>The text doesn't name A, B and C; read them off each framing figure. Hold the Table 2.1 clearances (p. 15). The unit fastens to the framing with 2 top and 2 bottom nailing flanges (p. 14).<\/p>"},"specDims":{"tag":"Installer · spec","title":"Appliance dimensions · OSO-x64","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>A<\/span><span>63\" (1600mm)<\/span><\/div><div class=\"r\"><span>B<\/span><span>64-1/8\" (1629mm)<\/span><\/div><div class=\"r\"><span>C<\/span><span>15-1/4\" (387mm)<\/span><\/div><div class=\"r\"><span>D<\/span><span>22-7/8\" (581mm)<\/span><\/div><div class=\"r\"><span>E<\/span><span>8-3/8\" (211mm)<\/span><\/div><div class=\"r\"><span>F<\/span><span>19\" (483mm)<\/span><\/div><div class=\"r\"><span>G<\/span><span>1/2\" (14mm)<\/span><\/div><div class=\"r\"><span>H<\/span><span>2-3/8\" (59mm)<\/span><\/div><\/div><p>Letters refer to Figure 1.1. The manual's text doesn't say which dimension each letter is, so check the figure before you rely on a number.<\/p>"},"specMantel":{"tag":"Installer · spec","title":"Mantel & finishing","cool":true,"html":"<div class=\"kv\"><div class=\"r\"><span>Wall projection from top finishing edge<\/span><span>up to 12\" (305mm)<\/span><\/div><div class=\"r\"><span>Wall projection + finishing + combustible mantel<\/span><span>max 12\" (305mm)<\/span><\/div><div class=\"r\"><span>Top finishing edge to 12\" (305mm) mantel<\/span><span>0\" (0mm)<\/span><\/div><div class=\"r\"><span>Finishing material at finishing edges<\/span><span>up to 1/2\" (13mm) thick<\/span><\/div><\/div><p>Combustible mantel projections must fall within the 12\" (305mm) combustible wall projection (Fig. 3.1). No material may extend inside the finishing edges or block the viewing area or glass. Finishing material thicker than 1/2\" (13mm) leaves some of its edge exposed; on a single-sided install the optional rectangle surround (Section 2.7) covers it (p. 27).<\/p><div class=\"note danger\">All minimum clearances to combustible material must be maintained.<\/div>"},"specParts":{"tag":"Installer · spec","title":"Replacement parts · x64","cool":true,"html":"<p>Replacement parts are available through your local dealer.<\/p><div class=\"kv\"><div class=\"r\"><span>1 Front viewing glass<\/span><span>OSX64-FVG<\/span><\/div><div class=\"r\"><span>2 Flame effect screen<\/span><span>OSX64-FES<\/span><\/div><div class=\"r\"><span>3 Remote control<\/span><span>OSX-REM<\/span><\/div><div class=\"r\"><span>4 LED floor panel<\/span><span>OSX64-LFP<\/span><\/div><div class=\"r\"><span>5 Floor LED strip<\/span><span>OSX64-FLS<\/span><\/div><div class=\"r\"><span>6 Side viewing glass<\/span><span>OSX-SVG<\/span><\/div><div class=\"r\"><span>7 Side block-off plate<\/span><span>OSX64-SBP<\/span><\/div><div class=\"r\"><span>8 LED accent down light<\/span><span>OSX64-DLS<\/span><\/div><div class=\"r\"><span>9 LCD display screen<\/span><span>OSX64-LCD<\/span><\/div><div class=\"r\"><span>10 Fan heating assembly<\/span><span>OSX-FHA<\/span><\/div><div class=\"r\"><span>11 Cooling fan<\/span><span>OSX-FAN<\/span><\/div><div class=\"r\"><span>12 Front floor panel<\/span><span>OSX64-FFP<\/span><\/div><div class=\"r\"><span>13 Wireless remote receiver<\/span><span>OSX-WRR<\/span><\/div><div class=\"r\"><span>14 Main control board<\/span><span>OSX-MCB<\/span><\/div><div class=\"r\"><span>15 Speaker<\/span><span>OSX-SPB<\/span><\/div><div class=\"r\"><span>16 Power supply A<\/span><span>OSX-POW<\/span><\/div><div class=\"r\"><span>17 Appliance control panel<\/span><span>OSX-ACP<\/span><\/div><div class=\"r\"><span>18 Logs LED hub board<\/span><span>OSX-LLH<\/span><\/div><\/div><p>Replacement logs are OSX-LOG1 through OSX-LOG15 by log number; the x64 set uses all 15 (p. 39). Optional accessories (p. 39): Osseo x64 Rectangle Surround OSX64-RS, Osseo x64 Exterior Trim OSX64-EXT.<\/p>"}};
+const PAGEREF = {"on":33,"heat":35,"remote":34,"effects":35,"sounds":33,"clean":36,"glass":36,"safety":7,"outlet":7,"warranty":40,"specElec":9,"specHeat":33,"specClear":15,"specFrame":16,"specDims":10,"specMantel":26,"specParts":38,"step0":9,"step1":11,"step2":13,"step3":14,"step4":16,"step5":19,"step6":25,"step7":26,"step8":29,"step9":32};
+const INDEX_EXTRA = [{"k":"h","id":"on","t":"won't turn on","p":"The main power switch must be on first"},{"k":"h","id":"sounds","t":"odor","p":"A slight smell on first use is normal"},{"k":"h","id":"heat","t":"Celsius","p":"Hold Down Light 3 seconds to switch °F / °C"},{"k":"h","id":"heat","t":"temperature setting","p":"8 presets on the remote's Temperature Set button"},{"k":"h","id":"remote","t":"app pairing","p":"Hold Floor Light 3 seconds to clear it"},{"k":"h","id":"outlet","t":"breaker","p":"A dedicated 15 Amp (or higher) breaker is recommended"},{"k":"i","id":"specElec","t":"hardwire","p":"Required for a recessed installation"},{"k":"i","id":"specElec","t":"grounding adapter","p":"Only where no 3-slot receptacle is available"}];
+const MANUAL_BASE = "../../var/brain-assets/";
+const MANUALS = [{"n":1,"label":"Installation & Operation Manual","short":"Manual","url":"documents/kozy-heat/Osseo-X-Series-Linear-Manual-English-Rev.-4.pdf","pages":40,"role":"installation_and_operation","kit":false,"revision":"Rev. 4"}];
+
+/* step detail (generated; a step may carry its own drawer html as a third element) */
+STEPS.forEach((s,i)=>{ DETAIL['step'+i]={tag:'Installer · step '+(i+1), title:s[0], cool:true, html:s[2]||`<p>${s[1]}</p>`}; });
+
+/* ================= template logic (identical in every guide) ================= */
+const $=(s,r=document)=>r.querySelector(s); const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const MULTI = MANUALS.length>1;
+/* where each manual lives: a relative storage key under MANUAL_BASE, or a full URL */
+function manualHref(n){const m=MANUALS[n-1];return /^(https?:)?\/\//.test(m.url)?m.url:MANUAL_BASE+m.url;}
+function pdfHref(page,n){return manualHref(n||1)+(page?('#page='+page):'');}
+/* deep-link into a PDF at a specific page (#page=N is honored by the Chrome, Edge and Firefox viewers) */
+function openPDF(page,n){window.open(pdfHref(page,n),'_blank','noopener');}
+const MANUAL_URL = manualHref(1);
+
+function tile(d){const b=document.createElement('button');b.className='tile';b.innerHTML=
+  `<svg class="ic" viewBox="0 0 24 24" ${d.fill?'fill="currentColor"':'fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"'}><path d="${d.icon}"/></svg>
+   <h3>${d.title}</h3><p>${d.blurb}</p>`;
+  b.onclick=()=>openDrawer(d.id);return b;}
+HOME_PRIMARY.forEach(d=>$('#homeTiles').appendChild(tile(d)));
+HOME_SECONDARY.forEach(d=>$('#homeTiles2').appendChild(tile(d)));
+if(!HOME_SECONDARY.length) $('#homeSec2').style.display='none';
+
+SPECS.forEach(s=>{const el=document.createElement('div');el.className='spec';
+  el.innerHTML=`<div class="lab">${s.lab}</div><div class="rows">${s.rows.map(r=>`<div class="row"><b>${r[0]}</b><span class="v">${r[1]}</span></div>`).join('')}${s.note?`<div class="row"><b style="font-size:11px">${s.note}</b></div>`:''}</div>`;
+  el.style.cursor='pointer';el.onclick=()=>openDrawer(s.tap);$('#specCards').appendChild(el);});
+
+STEPS.forEach((s,i)=>{const el=document.createElement('div');el.className='step';
+  el.innerHTML=`<div class="num">${i+1}</div><div class="body"><h4>${s[0]}</h4><p>${s[1]}</p></div>
+   <div class="check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m5 12 4 4 10-10"/></svg></div>`;
+  el.querySelector('.body').onclick=(e)=>{e.stopPropagation();openDrawer('step'+i);};
+  el.onclick=()=>el.classList.toggle('done');
+  $('#checklist').appendChild(el);});
+
+if(FAULTS && FAULTS.panels && FAULTS.panels.length){
+  $('#faultLabel').textContent=FAULTS.label||'Field faults';
+  FAULTS.panels.forEach(p=>{const el=document.createElement('div');el.className='panel warn';
+    el.innerHTML=`<h3>⚠ ${p.title}</h3><ul>${p.items.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+    $('#faults').appendChild(el);});
+} else $('#faultSec').style.display='none';
+
+if(CODES.length){
+  const dots=Math.max(4,...CODES.filter(c=>typeof c[0]==='number').map(c=>c[0]));
+  CODES.forEach(c=>{const el=document.createElement('div');el.className='code';
+    let head='';
+    if(typeof c[0]==='number'){for(let i=0;i<dots;i++)head+=`<span class="b ${i<c[0]?'on':''}"></span>`;head=`<div class="blinks">${head}</div>`;}
+    else head=`<div class="cd">${c[0]}</div>`;
+    el.innerHTML=`${head}<div class="t">${c[1]}</div><div class="d">${c[2]}</div>`;
+    $('#codes').appendChild(el);});
+} else $('#codeSec').style.display='none';
+
+/* ---------------- role switching ---------------- */
+function setRole(role){
+  $('#gate').style.display='none';
+  $('#toggle').style.display='flex';
+  document.body.classList.add('has-role');
+  $$('.view').forEach(v=>v.classList.toggle('active',v.id===role));
+  $$('#toggle button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.role===role));
+  window.scrollTo({top:0});
+  document.body.classList.remove('hdr-away');
+  setHdrH(); requestAnimationFrame(onScroll);
+}
+$$('[data-role]').forEach(b=>b.onclick=()=>setRole(b.dataset.role));
+function currentRole(){const v=$('.view.active');return v?v.id:null;}
+
+/* return to the ignition gate (home) */
+function goHome(){
+  $('#gate').style.display='';
+  $('#toggle').style.display='none';
+  $$('.view').forEach(v=>v.classList.remove('active'));
+  $$('#toggle button').forEach(b=>b.setAttribute('aria-pressed','false'));
+  $('#results').classList.remove('open'); $('#q').value='';
+  document.body.classList.remove('has-role','hdr-away');
+  closeHeaderSearch();
+  window.scrollTo({top:0});
+  setHdrH();
+}
+$('#brandHome').onclick=goHome;
+$('#brandHome').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goHome();}});
+
+/* ---------------- drawer ---------------- */
+/* PAGEREF: the manual page where each topic is actually discussed, verified against PAGES.
+   A number is a page of the first manual; [n, page] is a page of manual n. */
+function refOf(id){const r=PAGEREF[id];if(r==null)return null;return Array.isArray(r)?{d:r[0],p:r[1]}:{d:1,p:r};}
+function openDrawer(id){const d=DETAIL[id];if(!d)return;
+  $('#dTag').textContent=d.tag;$('#dTitle').textContent=d.title;
+  const body=$('#dBody');body.className='dcontent'+(d.cool?' cool':'');
+  let html=d.html;
+  const ref=refOf(id), man=ref&&MANUALS[ref.d-1];
+  if(man) html+=`<a class="manlink${d.cool?' cool':''}" href="${pdfHref(ref.p,ref.d)}" target="_blank" rel="noopener">
+     <span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h9l5 5v11H4Z"/><path d="M13 4v5h5"/><path d="M8 13h6M8 16h6"/></svg></span>
+     <span class="tx"><b>For the specific details in the ${man.label}, go here →</b><small>Opens the official PDF at page ${ref.p}</small></span>
+     <svg class="arr" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg></a>`;
+  body.innerHTML=html;
+  $('#scrim').classList.add('open');$('#drawer').classList.add('open');}
+function closeDrawer(){$('#scrim').classList.remove('open');$('#drawer').classList.remove('open');}
+$('#dClose').onclick=closeDrawer;$('#scrim').onclick=closeDrawer;
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDrawer();$('#pdfMenu').classList.remove('open');}});
+
+/* ---------------- the official PDF(s) ---------------- */
+const pdfMenu=$('#pdfMenu');
+pdfMenu.innerHTML=`<div class="ml">Official manuals</div>`+MANUALS.map((m,i)=>
+  `<a href="${pdfHref(null,i+1)}" target="_blank" rel="noopener"><b>${m.label}</b><small>${m.pages} pages${m.revision?' · '+m.revision:''}</small></a>`).join('');
+$('#pdfBtn').onclick=e=>{e.preventDefault();e.stopPropagation(); if(MULTI) pdfMenu.classList.toggle('open'); else openPDF(null,1);};
+$$('.footdoc').forEach(a=>{a.href=pdfHref(null,+a.dataset.doc);a.target='_blank';a.rel='noopener';});
+document.addEventListener('click',e=>{if(!pdfMenu.contains(e.target))pdfMenu.classList.remove('open');});
+
+/* ---------------- search ---------------- */
+/* full text of every page of every manual: {d: manual number, p: physical PDF page (cover = 1), t: text} */
+const PAGES = [{"d":1,"p":1,"t":"INSTALLATION AND\nOPERATION MANUAL\n\nHUSSONG MANUFACTURING CO., INC.\nP.o. Box 557 204 Industrial Park Drive\nLakefield, Minnesota USA 56150-0577\n\n______________________________________________________\n\nOsseo X-Series\nMul�-sided Holographic Electric Fireplace\n\nModel #OSO-x50 & #OSO-x64\n\nWARNING\nRead and understand the entire installation and operation manual, including all safety\ninformation, before plugging in or using this product. Failure to do so may result in fire,\nelectric shock, or serious personal injury.\n\nThis fireplace meets the construction and safety standards of H.U.D. for application in\nmanufactured homes when installed according to these instructions.\n\nEnglish installation manuals are\navailable through your local dealer or\nwebsite.\n\nINSTALLER: Leave this manual with the appliance.\nCONSUMER: Retain this manual for future reference.\n\nVisit our website www.kozyheat.com\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n1\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":2,"t":"Hussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n2\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":3,"t":"CONGRATULATIONS\nWe welcome you as a new owner of a Kozy Heat electric fireplace. Kozy Heat products are designed with superior\ncomponents and materials, and assembled by trained cra�smen who take pride in their work. Our commitment to quality and\ncustomer sa�sfac�on has remained the same for over 50 years. We offer a complete line of gas, wood, and electric fireplaces, along\nwith stylish accessories to complement any decor. Adding a fireplace is one of the best ways to increase the value of your home, and\nwe are proud to offer a network of dealers throughout the country to help make your experience everything you imagine. We pride\nourselves in being dedicated not only to func�onality and reliability, but also customer safety. We offer our con�nual support and\nguidance to help you achieve the maximum benefit and enjoyment from your Kozy Heat electric fireplace.\n\nJim Hussong\nPresident\n\nDudley Hussong\nBoard Chairman\n\nRead this manual before installing or opera�ng this appliance\nPlease retain this owner’s manual for future reference.\n\nHomeowner Reference Informa�on\n\nWe recommend you record the following Informa�on:\n\nModel Name: ______________________________\n\nDate Purchased / Installed: _______________________________\n\nSerial Number: _____________________________\n\nLoca�on of fireplace: ____________________________________\n\nDealership purchased from: _________________________________________________________________________________\nDealership phone number: ____________________\nNotes: __________________________________________________________________________________________________\n________________________________________________________________________________________________________\n________________________________________________________________________________________________________\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n3\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":4,"t":"Hussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n4\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":5,"t":"Table of Contents\n1.0 Introduc�on......................................................................................9\n1.1 Appliance Cer�fica�on ........................................................... 9\n1.2 California Proposi�on 65 Warning .......................................... 9\n1.3 Electrical Specifica�ons .......................................................... 9\n1.4 Appliance Prepara�on ............................................................ 9\n1.5 Parts and Hardware ................................................................ 9\n1.6 Appliance Dimensions .......................................................... 10\n2.0 Assembly and Installa�on .............................................................11\n2.1 Installa�on Planning ............................................................. 11\n2.2 Selec�ng Your Installa�on Op�ons ....................................... 11\n2.3 Appliance Prepara�on for Installa�on .................................. 12\n2.4 Nailing Flange Installa�on..................................................... 14\n2.5 Clearance to Combus�bles ................................................... 15\n2.6 Framed Appliance Opening .................................................. 16\n2.7 Rectangle Surround - Purpose and Installa�on .................... 19\n2.8 4-Piece Finishing Trim Installa�on ........................................ 24\n2.9 Electrical Connec�on ............................................................ 25\n3.0 Facing and Finishing......................................................................26\n3.1 Mantel Requirements ........................................................... 26\n3.2 Finishing Material Informa�on ............................................. 27\n4.0 Appliance Setup ............................................................................29\n4.1 Glass Front Removal and Installa�on.................................... 29\n4.2 Holographic Glass Removal and Installa�on ......................... 30\n4.3 Log Set Installa�on ............................................................... 31\n5.0 Opera�ng Instruc�ons ..................................................................33\n5.1 Methods of Opera�on .......................................................... 33\n5.2 Pairing the Remote to the Appliance .................................... 33\n5.3 Appliance Control Panel Opera�on ...................................... 33\n5.4 Remote Control Opera�on ................................................... 34\n6.0 Maintenance.................................................................................36\n7.0 Replacement Parts List .................................................................37\nLimited Life�me Warranty ....................................................................40\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n5\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":6,"t":"Hussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n6\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":7,"t":"______________________________\nImportant Instruc�ons\nWhen using electrical appliances, basic precau�ons should always be followed to reduce the risk of fire, electric shock, and injury to\npersons, including the following:\n1.\n\nRead all instruc�ons before installing or using the heater.\n\n2.\n\nThis heater is hot when in use. To avoid burns, do not let bare skin touch hot surfaces. Keep combus�ble materials, such as\nfurniture, pillows, bedding, papers, clothes, etc. and curtains at least 36” (914mm) from the front of the heater.\n\n3.\n\nExtreme cau�on is necessary when any heater used by or near children or invalids and whenever the heater is le� opera�ng and\nuna�ended.\n\n4.\n\nDo not operate any heater a�er it malfunc�ons. Disconnect power at service panel and have heater inspected by an authorized\nKozy Heat dealer before reusing.\n\n5.\n\nDo not use outdoors.\n\n6.\n\nTo disconnect the heater, turn the controls to OFF, and turn off the power to the heater circuit at the main disconnect panel.\n\n7.\n\nDo not insert or allow foreign objects to enter any ven�la�on or exhaust opening, as this may cause an electric shock, fire, or\ndamage to the heater.\n\n8.\n\nTo prevent a possible fire, do not block air intakes or exhaust in any manner not approved by the manufacturer.\n\n9.\n\nA heater has hot and arcing or sparking parts inside. Do not use in areas where gasoline, paint, flammable vapors, or liquids are\nused or stored.\n\n10. Use this heater only as described in this manual. Any other use not recommended by Hussong Mfg. Co., Inc. may cause fire,\nelectric shock, or injury to persons.\n11. ALWAYS plug the heater directly into a wall outlet/receptacle with the power cord. NEVER use with an extension cord or\nreloca�on power tap (outlet/power strip).\n12. AVOID FIRE! Inspect all air vents to make sure they are free from dust, lint, or other blockage before use. Unplug the\nappliance and clean with a vacuum ONLY. DO NOT rinse or allow the appliance to become wet.\n13. This heater is not intended to be a primary heat source. It is for supplemental heat only.\n14. ALWAYS disconnect this heater from the power supply before performing any assembly and cleaning.\n15. NEVER plug this heater into an outlet that is old, cracked, or has any loose wires or connec�ons. Plugging this heater into a\nfaulty outlet could result in electric arcing within the outlet that could cause the outlet to overheat or catch fire.\n16. Verify the plug fits �ght in the outlet. Faulty wall outlet connec�ons or loose plugs can cause the wall outlet to overheat.\n17. This heater draws more current than other small heaters. Overhea�ng may occur even if it has not occurred with the use of\nother heaters.\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n7\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":8,"t":"______________________________\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n8\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":9,"t":"1.0 Introduc�on\n1.1 Appliance Certification\n\n1.5 Parts and Hardware\n\nLaboratory: Intertek Tes�ng Services\n\nIMPORTANT: Keep any plas�c packaging and small parts away\nfrom young children as they can pose a danger.\n\nStandards:\n\nPackage Contents:\n\nCSA C22.2 No 46-13 Ed.9 Electric Air-Heaters (R2018)\n\n��\n\nElectric Fireplace (QTY 1)\n\n��\n\nInstruc�on Manual (QTY 1)\n\n1.2 California Proposition 65 Warning\n\n��\n\nRemote Control and Ba�eries (QTY 1)\n\nWARNING: Cancer and Reproduc�ve Harm -www.\nP65Warnings.ca.gov.\n\n��\n\nSmoked Crushed Glass - Boxed (QTY 1)\n\n��\n\nGlass Suc�on Clamp (QTY 1)\n\n1.3 Electrical Specifications\n\n��\n\nPower Cord (QTY 1)\n\nThis appliance is rated at 120VAC, 60Hz, 1500W.\n\n•\n\nLog Set (QTY 1)\n\nIt is recommended to Install the appliance on a dedicated 15\nAmp (or higher) breaker. The fireplace’s 1500W heater can\ndraw 12.5 amps.\n\n��\n\nMoun�ng Screw Packet (QTY 4)\n\nUL 2021:2015 (4th Edi�on + R:02 Fed. 2021) Fixed and\nLoca�on-Dedicated Electric Room Heaters\n\nThe power cord supplied with the appliance has three prongs:\ntwo flat blades (live and neutral) and one round pin (ground).\nIf a 3-slot receptacle is not available, an adapter (not\nincluded) MUST be used.\nThe green grounding lug extending from the adapter must be\nconnected to a permanent ground such as a properly\ngrounded outlet box. The adapter should not be used if a\nthree-slot grounded receptacle is available.\nIf you are installing this appliance in a recessed installa�on\napplica�on the appliance must be hardwired.\n\n1.4 Appliance Preparation\nWARNING: This product includes glass components. Always\nuse extreme cau�on when handling glass. Failure to do so\ncould result in personal injury or property damage.\nRemove all parts and hardware from the carton and place\nthem on a clean, so�, dry surface. Check the parts list to\nverify all components are there. Dispose of packaging\nmaterials properly. Please recycle whenever possible.\nYou will need the following tools (not included):\n��\n\nPhillips screwdriver\n\n��\n\nStud finder\n\n��\n\nLevel\n\n��\n\nTape measure\n\n��\n\nElectric drll\n\n��\n\n1/4” wood drill bit\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n9\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":10,"t":"______________________________\n1.6 Appliance Dimensions\n\nFigure 1.1 - Appliance Dimensions\n\nOSO-x50\n\nOSO-x64\n\nA\n\nB\n\nC\n\nD\n\nE\n\nF\n\nG\n\nH\n\n49-3/8”\n\n50-3/8”\n\n15-5/8”\n\n22-7/8”\n\n8-3/8”\n\n19”\n\n1/2”\n\n2-3/8”\n\n(1254mm)\n\n(1280mm)\n\n(397mm)\n\n(581mm)\n\n(211mm)\n\n(483mm)\n\n(14mm)\n\n(59mm)\n\n63”\n\n64-1/8”\n\n15-1/4”\n\n22-7/8”\n\n8-3/8”\n\n19”\n\n1/2”\n\n2-3/8”\n\n(1600mm)\n\n(1629mm)\n\n(387mm)\n\n(581mm)\n\n(211mm)\n\n(483mm)\n\n(14mm)\n\n(59mm)\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n10\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":11,"t":"2.0 Assembly and Installa�on\n2.1 Installation Planning\nNOTE: Follow all na�onal and local building and electrical codes.\n•\n\nTo reduce the risk of fire, do not store or use gasoline or other flammable vapors and liquids in the vicinity of the heater.\n\n•\n\nIf using the power cord supplied, plan a loca�on for the power cord to connect to an electrical box accordingly.\n\n•\n\nSelect a suitable loca�on that is not suscep�ble to moisture and is away from drapes and furniture.\n\n•\n\nIf you are installing this fireplace in a recessed installa�on then the appliance must be hardwired. All work is to be performed by\na licensed electrician. Follow all applicable local, and na�onal (NFPA 70) electrical codes.\n\n2.2 Selec�ng Your Installa�on Op�ons\nThis appliance can be installed in several different op�ons. This appliance can be:\nSingle Sided Installa�on\n•\n\nIn this installa�on you keep both block off plates installed on the fireplace. These block off plates cover the side glass viewing\nareas.\n\nCorner Installa�on (Le� or Right Sided)\n•\n\nIn this installa�on you remove the block off plate of the side glass viewing area that you want visible.\n\n3-Sided (Bay) Installa�on\n•\n\nIn this installa�on you remove both block off plates of the side glass viewing area. You have the front and both side viewing\nareas visible now.\n\nFigure 2.1 - Installa�on Op�ons\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n11\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":12,"t":"______________________________\n2.3 Appliance Preparation for Installation\n2.3.1 Shipping Brace Removal\nThe fireplace comes with a support brace that support the fireplace during shipping. Once the fireplace is installed and secured in\nthe framed opening remove and discard the support brace. See Figure 2.2.\n\nFigure 2.2 - Shipping Brace\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n12\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":13,"t":"______________________________\n2.3.2 Standard Installa�on\n1.\n\nRemove the screws that secure the cover plate on the side of the appliance. These screws secure the cover plate and the\nfinishing trim.\n\n2.\n\nRemove and discard the finishing trim. The “C” shaped finishing trim you are discarding is supplied with this appliance when\ninstalla�on the fireplace as a corner or 3-Sided installa�on. Reinstall the cover plate and screws. Complete on both sides of\nappliance. This allows your framing to be flush with the body of the appliance so finishing material bu�s up against the 1/2”\nfinishing edge.\n\n2.3.3 Corner Installa�on\n1.\n\nRemove the screws that secure the cover plate of the side of the appliance in which you want the side glass to be exposed.\nDiscard the cover plate. Reinstall the finishing trim. This trim is where your finishing material will bu� up against.\n\n2.\n\nOn the side of the appliance that will not be an exposed corner remove the same screws that secure the cover plate and\nfinishing trim. Discard the finishing trim on this side. Reinstall the screws to secure the cover plate.\n\n2.3.4 3-Sided (Bay) Installa�on\n1.\n\nRemove the screws securing the cover plate on one side of the appliance which will expose the side glass.\n\n2.\n\nDiscard the cover plate. These screws also secured the previously unused finishing trim. This finishing trim is in a shape of a “C”\nand you will reinstall this trim with the previously removed screws. This trim is where your finishing material will bu� up against.\n\n3.\n\nRepeat for the other side of the appliance. You will now have all 3 sides of the appliance viewing glass exposed.\n\nFigure 2.3 Cover Plate Removal\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n13\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":14,"t":"______________________________\n2.4 Nailing Flange Installation\nThe nailing flanges come a�ached to the appliance. There are (2) nailing flanges on the top of the appliance and (2) nailing flanges\nalong the bo�om of the appliance.\nFold out the nailing flange as shown in Figure 2.5. Use the nailing flange to secure the appliance to framing.\n\nFigure 2.4 - Nailing Flange Loca�on\n\nFigure 2.5 - Unfolding Nailing Flange\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n14\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":15,"t":"______________________________\n2.5 Clearance to Combustibles\n\nTable 2.1, Minimum Clearances to Combus�bles\nBo�om of appliance\n\n0” (0mm)\n\nLe� and right sides of appliance\n\n0” (0mm)\n\nBack of appliance\n\n1/4\"” (6mm)\n\nTop of appliance\n\n1/4” (6mm)\n\nTop finishing edge to 12” (305mm) mantel\n\n0” (0mm)\n\nBo�om finishing edge to unlimited hearth\n\n0” (0 mm)\n\nCombus�ble Material in Front of Glass Viewing Area\n\n36” (914mm)\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n15\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":16,"t":"______________________________\n2.6 Framed Appliance Opening\nSelect a loca�on not prone to moisture and is located at least 36” (914mm) away from the front of the appliance to combus�ble\nmaterials such as curtains, drapes, furniture, bedding, paper, etc.\n1. Create a rough opening specific to your type of installa�on (Single Sided Installa�on, Corner Installa�on, 3-Sided Pier Installa�on)\nSee Figure 2.6 thru Figure 2.8 for the dimensions.\n\nFigure 2.6 - Framed Opening - Standard Installa�on\n\nStandard Installa�on - Framed Opening Dimensions\nFireplace Models\nA\n\nB\n\nC\n\nOSO-x50\n\n50-3/4” (1289mm)\n\n23-1/2” (597mm)\n\n19-1/2” (495mm)\n\nOSO-x64\n\n64-3/4” (1645mm)\n\n23-1/2” (597mm)\n\n19-1/2” (495mm)\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n16\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":17,"t":"______________________________\n2.6 Framed Appliance Opening (con�nued)\n\nFigure 2.7 - Framed Opening - Corner Installa�on\n\nCorner Installa�on - Framed Opening Dimensions\nFireplace Models\nA\n\nB\n\nC\n\nOSO-x50\n\n50” (1270mm)\n\n23-1/2” (597mm)\n\n19-1/2” (495mm)\n\nOSO-x64\n\n63-3/4” (1619mm)\n\n23-1/2” (597mm)\n\n19-1/2” (495mm)\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n17\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":18,"t":"______________________________\n2.6 Framed Appliance Opening (con�nued)\n\nFigure 2.8 - Framed Opening - 3-Sided (Bay) Installa�on\n\n3-Sided (Bay) Installa�on - Framed Opening Dimensions\nFireplace Models\nA\n\nB\n\nC\n\nOSO-x50\n\n49-3/8” (1254mm)\n\n23-1/2” (597mm)\n\n19-1/2” (495mm)\n\nOSO-x64\n\n63” (1600mm)\n\n23-1/2” (597mm)\n\n19-1/2” (495mm)\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n18\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":19,"t":"______________________________\n2.7 Rectangle Surround - Purpose and Installation\nThe rectangle surround is an op�onal accessory for the Osseo x50 and x64.\n��\n\nThis surround can only be installed when the appliance is installed in a recessed single sided installa�on.\n\n��\n\nThis surround is recommended when you have an unfinished or exposed edge of drywall, �le, or wood.\n\n��\n\nThe surround is held on by magne�c brackets at the top and magnets at the bo�om. Pull trim forward and up to remove from\nbrackets.\n\nInstalla�on:\n1.\n\nLocate the (2) Phillips screws shown in Figure 2.9. The screws will located above the viewing glass area. Note: each fireplace\nmight look slightly different than shown. Remove the heater air deflector bracket. Discard the bracket but save the screws.\n\n2.\n\nInstall the new heater air deflector bracket that has the support flanges on the ends as shown in Figure 2.10.\n\n3.\n\nNext install the base brackets as shown in Figure 2.11.\n\nFigure 2.9 - Remove exis�ng heater air deflector bracket\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\n19\n\nRev. 7 - July 2025\nStar�ng Serial Number: 25 OSE5000688 21,\n25 OSE6400634 21, OSE8000139 21"},{"d":1,"p":20,"t":"______________________________\n2.7 Rectangle Surround - Purpose and Installa�on (con�nued)\n\nFigure 2.10 - Install new heater air deflector bracket\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n20\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":21,"t":"______________________________\n2.7 Rectangle Surround - Purpose and Installa�on (con�nued)\n\nFigure 2.11 - Install Base Brackets\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n21\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":22,"t":"______________________________\n2.7 Rectangle Surround - Purpose and Installa�on (con�nued)\n4.\n\nInstall the magne�c hanging brackets as shown using the supplied screws. These brackets are adjustable to accommodate your\nfinishing material. See Figure 2.12.\n\n5.\n\nInstall the rectangle surround by hanging the top of the surround on the magne�c hanging brackets as shown in Figure 2.13. The\nrectangle surround has a top and bo�om. You can tell the difference due to the larger (deeper) flange that goes back towards\nthe unit. Make sure the larger flange is on the bo�om of the viewing area. If the larger flange is at the top it may cover the\nheater vents.\n\n6.\n\nUse the provided magnets to hold the bo�om of the surround to the fireplace as shown in Figure 2.14. The magnets will sit on\nthe bo�om edge of the fireplace and should be hidden by the bo�om flange of the surround.\n\nFigure 2.12 - Hanging Brackets\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n22\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":23,"t":"______________________________\n2.7 Rectangle Surround - Purpose and Installa�on (con�nued)\n\nFigure 2.13 - Surround Installa�on\n\nFigure 2.14 - Magnet Loca�on\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n23\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":24,"t":"______________________________\n2.8 4-Piece Finishing Trim Installation\nThe finishing trim is an op�onal accessory for the Osseo x50 and x64.\n��\n\nThis finishing trim can only be installed when the appliance is installed in a recessed single sided installa�on.\n\n��\n\nThis finishing trim is recommended when you are finishing the appliance in a smooth wall finish or are using very thin finishing\nmaterials.\n\n��\n\nThe trim pieces are installed with the supplied double sided adhesive tape.\n\nInstalla�on:\n��� Install the top and bo�om trim pieces as shown in Figure 2.15.\n��� Install the sides trim pieces as shown in Figure 2.16.\n\nFigure 2.15 - Top and Bo�om Trim\n\nFigure 2.16 - Side Trim\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n24\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":25,"t":"______________________________\n2.9 Electrical Connection\nThe appliance is shipped in a manner where the electrical connec�on can be hardwired or connected with a power cord (provided).\nWhen the appliance is installed in a recessed installa�on applica�on the electrical connec�on must be hardwired. All work is to be\nperformed by a licensed electrician. Follow all applicable local, and na�onal (NFPA 70) electrical codes.\nDepending on the type of installa�on you can move the cable clamp to the side, top, or rear of the appliance. There is a knock-out\nplate to remove to move the cable clamp to the other loca�ons. This cable clamp will secure your wiring (power cord or hardwired).\nInstalla�on:\n��� Remove the (4) screws that secure the electrical box cover. See Figure 2.17.\n��� Move the cable clamp to the desired loca�on. See Figure 2.18. (Not shown is the loca�on where the cabling would terminate\nout the top of the appliance through the cover plate.)\n��� Complete electrical connec�on and reinstall electrical box cover.\n\nFigure 2.17 - Electrical Cover Plate\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nFigure 2.18 - Electrical Cable Clamp Slot\n\nRev. 4 - July 2026\n\n25\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":26,"t":"3.0 Facing and Finishing\n3.1 Mantel Requirements\nWARNING: All minimum clearances to combus�ble material MUST be maintained.\n��\n\nCombus�ble Mantel Projec�ons: Mantel projec�ons must fall within the 12” (305mm) combus�ble Wall Projec�on shown in\nFigure 3.1. The combined wall projec�on, finishing material, and combus�ble mantel cannot exceed a 12” (305mm) projec�on.\n\n��\n\nCombus�ble Wall Bump-Out / Projec�on: You are allowed up to a 12” (305mm) wall projec�on star�ng at the top finishing\nedge.\n\nNote: At no point can any material extend to the inside of the finishing edges. No material should block the viewing area or glass of\nthe appliance.\n\nFigure 3.1 - Combus�ble Projec�ons\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n26\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":27,"t":"______________________________\n3.2 Finishing Material Information\n��\n\nThis appliance has finishing edges that are designed to accommodate the edge of finishing material up to 1/2” (13mm) thick.\n\n��\n\nIf your finishing material is thicker than 1/2” (13mm) then some of the finishing material’s edge will be exposed\n\n��\n\nIf you are installing this appliance in a single-sided installa�on method you can install the op�onal rectangle surround, Sec�on\n2.7, which would cover the edge of the finishing material. This is recommended when you have an unfinished or exposed edge\nof materials such as drywall, �le, or wood.\n\nFigure 3.2 - Finishing Material on Single Sided Installa�on\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n27\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":28,"t":"______________________________\n3.2 Finishing Material Informa�on (con�nued)\n\nFigure 3.3 - Finishing Material on Corner Installa�on\n\nFigure 3.4 - Finishing Material on 3-Sided (Bay) Installa�on\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n28\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":29,"t":"4.0 Appliance Setup\n4.1 Glass Front Removal and Installation\n1.\n\nRemove any front trim, if installed. See instruc�ons in corresponding sec�on (Sec�on 2.7 or Sec�on 2.8).\n\n2.\n\nUse a glass suc�on cup and a�ach it to the glass front. Remove the screws and brackets from the top right and le� of the glass.\nRemove the heater air deflector bracket Save these components. See Figure 4.1. Tilt the glass towards you and li� up and\nremove the glass front.\n\n3.\n\nCarefully li� glass away from the appliance. Place it face down on a so�, non-abrasive surface.\n\n4.\n\nTo reinstall glass front, hold the glass in place and reinstall the previously removed components.\n\n5.\n\nReinstall front trim, if previously installed.\n\nFigure 4.1 - Glass Removal\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n29\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":30,"t":"4.2 Holographic Glass Removal and Installation\n1.\n\nFollow all steps in Sec�on 4.1 to remove the glass front.\n\n2.\n\nA�ach the provided glass suc�on cup to the holographic glass pane. Remove the (2) glass panel clips with one clip in each top\ncorner. See Figure 4.2.\n\n3.\n\nCarefully �lt the glass up slightly and then li� the glass up and out of the bo�om glass channel. Li� the glass away from the\nappliance. Place it down on a so�, non-abrasive surface. Make sure you reference which side of the glass was facing up when it\nwas removed as that side of the holographic glass has a reflec�ve film.\n\n4.\n\nTo reinstall holographic glass, follow the steps in reverse order. Make sure the same side of the holographic glass faces up as it\nwas previously removed.\n\n5.\n\nReinstall the glass front from Sec�on 4.1. Reinstall front trim, if previously installed.\n\nFigure 4.2 - Holographic Glass Installation\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n30\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":31,"t":"4.3 Log Set Installation\nNote: The clear panel on the floor of the fireplace will have\nlog posi�on numbered. Match the log number to the posi�on\non the floor.\n\n4.3.1 Osseo x50 Log Set\n1.\n\nStart off by installing base log #1, #2, #3, #4, and #5.\n\n2.\n\nThe follow logs are illuminated by LEDs so you will have\nto plug these in to the female connector in the plas�c\nfloor that is adjacent to the log loca�on. See Figure 4.4.\nFirst install log #3. Now you can install the remaining back\nrow of illuminated logs (See logs #4, and #5).\n\n3.\n\nNext we will install the front row of logs. Install logs #10,\n#9, #6, #8, #12, #11, and #13. Logs #10, #11, and #8 are\nilluminated so ensure those are plugged in.\n\n4.\n\nNext install the 15 lbs. of crushed glass and klinkers.\nRandomly space out the klinkers on top of the crushed\nglass. It is beneficial to use the klinkers to help hide the\nwires from the illuminated logs. Ensure the crushed glass\ndoes not go up to the very front edge as the angled\nholographic glass needs some space up front.\n\nFigure 4.4 - Log LED Connec�on\n\nFigure 4.3 - Osseo x50 Log Location and Identification\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n31\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":32,"t":"4.3.2 Osseo x64 Log set\n\nNote: The clear panel on the floor of the fireplace will have log posi�on numbered. Match the log number to the posi�on on the\nfloor.\n1.\n\nStart off by installing base log #1, #2, #14, #9, and #6.\n\n2.\n\nThe follow logs are illuminated by LEDs so you will have to plug these in to the female connector in the plas�c floor that is\nadjacent to the log loca�on. See Figure 4.4. First install log #3. Now you can install the remaining back row of illuminated logs\n(See logs #7, #4, #5, and #8).\n\n3.\n\nNext we will install the front row of logs. Install logs #10, #11, #12, #13, and #15. Logs #11, #13, and #15 are illuminated so\nensure those are plugged in.\n\n4.\n\nNext install the 20 lbs. of crushed glass and klinkers. Randomly space out the klinkers on top of the crushed glass. It is beneficial\nto use the klinkers to help hide the wires from the illuminated logs. Ensure the crushed glass does not go up to the very front\nedge as the angled holographic glass needs some space up front.\n\nFigure 4.4 - Osseo x64 Log Location and Identification\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n32\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":33,"t":"5.0 Opera�ng Instruc�ons\n5.1 Methods of Operation\nWARNING: Read and understand this en�re installa�on and opera�on manual, including all safety informa�on, before plugging in or\nusing this product. This appliance must be properly installed before use. Failure to do so could result in electric shock, fire, serious\ninjury, or loss of life. Do not tamper with any controls.\nNote: When the appliance is first turned on, a slight odor may be present. This is normal and should not occur again unless the\nappliance is not used for a long period of �me.\n�� This appliance has two loca�ons to perform fireplace opera�ons. The first interface loca�on is the control panel located on the\nappliance and the second interface loca�on is the remote control.\n�� The control panel located on the appliance performs a set of features that are specific to this control panel.\n�� The remote control performs a set of features that are specific to the remote control.\n\n5.2 Pairing the Remote to the Appliance\nThe remote shipped with the fireplace is already paired.\nIf you had to pair a new remote to the fireplace first turn on the main power switch on. Press and hold the “fireplace on/off” bu�on\nand the “Display Brightness” at the same �me for 5 seconds. You will hear a beeping sounds. A�er the beeping sound is over the\nremote is paired with the fireplace.\n\n5.3 Appliance Control Panel Operation\nNote: Each �me you press a bu�on on the control panel you will hear an audible beep sound indica�ng an ac�on has happened.\nMain Power Switch\n�� Push the main power switch to I, the main power indicator will illuminate.\nFireplace On/Off Bu�on\n�� Pressing the bu�on turns the fire on and off.\nHeater Bu�on\n�� Press the heater bu�on once and the heater will turn on to half heat (750w).\n�� Press the heater bu�on a second �me and the heater increases to full heat (1500w).\n�� Press the heater bu�on a third �me and the heater will turn itself off.\nDown Light Bu�on\n�� Pressing the down light bu�on quickly changes the colors. There are three different color se�ngs.\nFloor Light Bu�on\n�� Pressing the floor LED bu�on quickly changes the colors. There are thirteen different color se�ngs.\n�� Press and hold this bu�on for 3 seconds un�l a beep sounds to clear the App pairing, which is intended for re-pairing the App.\nSwitch between Fahrenheit to Celsius\n• Press and hold the Down Light bu�on for 3 seconds un�l a beep sounds to switch between Fahrenheit and Celsius.\n\nFigure 5.1 - Appliance Control Panel\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n33\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":34,"t":"______________________________\n5.4 Remote Control Operation\n��\n\nThis is a thermosta�c remote control. The remote control should always be in the same room as the electric fireplace with the\nscreen on the remote facing up.\n\n��\n\nDo not cover the temperature sensor.\n\n��\n\nDo not leave the remote control next to the front of the fireplace or a warm area such as a window. This will relate false\ntemperature informa�on to the fireplace and prevent the fireplace from turning on and off accurately in rela�on to room\ntemperature.\n\nFigure 5.3 - Remote Control\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n34\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":35,"t":"______________________________\nTurning on / off the appliance.\nNote: The main power switch on the appliance control panel must be turned on.\n�� Press the “on/off” bu�on on the remote control to turn the fireplace on or off.\nFireplace Timer\n• Press the “Timer” bu�on to cycle between the (8) �mer se�ngs.\nDown Light Op�ons\n• Press the “Down Light” bu�on to cycle between the (3) down light op�ons.\nFlame Colors\n• Press the “Flame Color” bu�on to cycle between the (7) flame color op�ons.\nFlame Effects\n• Press the “Flame Effect” bu�on to cycle between the (4) flame effect op�ons.\nDisplay Brightness\n• Press the “Display Brightness Adjustment” bu�on to cycle between the (5) brightness op�ons.\nFloor LED Colors\n• Press the “Floor LED Colors” to cycle between the (13) LED colors.\nLog Lights\n• Press the “Log Light Brightness” bu�on to cycle between the (3) brightness op�ons.\nNight Mode\n• Press this bu�on to enter and exit the night mode. “Night Mode” turns off all lights except the “Log Lights”.\nCrackling Sound\n• Press the “sound” bu�on to turn on/off the cracking sound.\nElectric Hea�ng Control\n�� Press the “Heater On/Off” bu�on to turn on or turn off the electric heater.\n�� Press the “Heater” bu�on once to turn the electric heater on. This se�ng provides half power which is 750W.\n�� Press the “Heater” bu�on a second �me to turn the electric heater to full power which is 1500W.\nTemperature Se�ng\n�� Press the “Temperature Set” bu�on to cycle between the (8) preset temperature se�ngs.\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n35\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":36,"t":"6.0 Maintenance\n6.1 Cleaning the Appliance\nThe appliance should always have power turned off when performing maintenance. Go to the appliance control panel and ensure\nthe toggle switch is in the off posi�on.\n��\n\nCarefully clean the air inlet and heater area with a cloth or vacuum on a regular basis. It is important that these areas are kept\nfree from dust / pet hairs, etc.\n\n��\n\nDo not use abrasive cleaners on this appliance.\n\n��\n\nDo not spray liquids directly onto the appliance.\n\n��\n\nWhen cleaning the glass spray glass cleaner onto a cloth and then clean the glass. Dry with a lint free cloth.\n\nIMPORTANT: The glass in the appliance is temperature for safety. If the glass receives a hard impact it will sha�er. Take extra care to\nensure the corner of the glass to not hit a hard surface.\n��\n\nIf removing the glass from the appliance to clean it then the following precau�ons need to be followed:\n��\n\nWear safety gloves and glasses.\n\n��\n\nEnsure the glass is placed on a so� surface.\n\n��\n\nDo not rely on the glass suc�on cups supplied to carry the weight of the glass. These are only provided to �lt the glass back\nso it can be removed.\n\n6.2 Ba�ery Replacement\nReplace the (2) AAA ba�eries when the ba�ery indicator is empty on the remote. Ensure to replace with the correct type of ba�ery\n(1.5V AAA), Ensure the ba�eries are installed in the correct orienta�on.\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n36\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":37,"t":"7.0 Replacement Parts List\nReplacement parts are available through your local dealer.\nContact your local dealer for availability and pricing. The\nfollowing warning is for replacement parts for this appliance.\nWARNING: Cancer and Reproduc�ve Harm -\n\nHUSSONG MANUFACTURING CO., INC.\n\nwww.P65Warnings.ca.gov.\n\nP.O. BOX 557 204 INDUSTRIAL PARK DRIVE LAKEFIELD,\nMINNESOTA USA 56150-0577\n\n10\n11\n9\n\n8\n\n7\n6\n\n18\n12\n\n13\n\n5\n\n14\n15\n16\n\n4\n7\n\n6\n\n17\n3\n2\n1\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n37\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":38,"t":"______________________________\nOsseo x50 Electric Fireplace - Replacement Parts\n1\n\nFront Viewing Glass\n\nOSX50-FVG\n\n10\n\nFan Hea�ng Assembly\n\nOSX-FHA\n\n2\n\nFlame Effect Screen\n\nOSX50-FES\n\n11\n\nCooling Fan\n\nOSX-FAN\n\n3\n\nRemote Control\n\nOSX-REM\n\n12\n\nFront Floor Panel\n\nOSX50-FFP\n\n4\n\nLED Floor Panel\n\nOSX50-LFP\n\n13\n\nWireless Remote Receiver\n\nOSX-WRR\n\n5\n\nFloor LED Strip\n\nOSX50-FLS\n\n14\n\nMain Control Board\n\nOSX-MCB\n\n6\n\nSide Viewing Glass\n\nOSX-SVG\n\n15\n\nSpeaker\n\nOSX-SPB\n\n7\n\nSide Block-Off Plate\n\nOSX50-SBP\n\n16\n\nPower Supply A\n\nOSX-POW\n\n8\n\nLED Accent Down Light\n\nOSX50-DLS\n\n17\n\nAppliance Control Panel\n\nOSX-ACP\n\n9\n\nLCD Display Screen\n\nOSX50-LCD\n\n18\n\nLogs LED Hub Board\n\nOSX-LLH\n\nOsseo x64 Electric Fireplace - Replacement Parts\n1\n\nFront Viewing Glass\n\nOSX64-FVG\n\n10\n\nFan Hea�ng Assembly\n\nOSX-FHA\n\n2\n\nFlame Effect Screen\n\nOSX64-FES\n\n11\n\nCooling Fan\n\nOSX-FAN\n\n3\n\nRemote Control\n\nOSX-REM\n\n12\n\nFront Floor Panel\n\nOSX64-FFP\n\n4\n\nLED Floor Panel\n\nOSX64-LFP\n\n13\n\nWireless Remote Receiver\n\nOSX-WRR\n\n5\n\nFloor LED Strip\n\nOSX64-FLS\n\n14\n\nMain Control Board\n\nOSX-MCB\n\n6\n\nSide Viewing Glass\n\nOSX-SVG\n\n15\n\nSpeaker\n\nOSX-SPB\n\n7\n\nSide Block-Off Plate\n\nOSX64-SBP\n\n16\n\nPower Supply A\n\nOSX-POW\n\n8\n\nLED Accent Down Light\n\nOSX64-DLS\n\n17\n\nAppliance Control Panel\n\nOSX-ACP\n\n9\n\nLCD Display Screen\n\nOSX64-LCD\n\n18\n\nLogs LED Hub Board\n\nOSX-LLH\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n38\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":39,"t":"______________________________\nOsseo x50 and x64 Replacement Logs\nLog #1\n\nOSX-LOG1\n\nLog #9\n\nOSX-LOG9\n\nLog #2\n\nOSX-LOG2\n\nLog #10\n\nOSX-LOG10\n\nLog #3\n\nOSX-LOG3\n\nLog #11\n\nOSX-LOG11\n\nLog #4\n\nOSX-LOG4\n\nLog #12\n\nOSX-LOG12\n\nLog #5\n\nOSX-LOG5\n\nLog #13\n\nOSX-LOG13\n\nLog #6\n\nOSX-LOG6\n\nLog #14\n\nOSX-LOG14\n\nLog #7\n\nOSX-LOG7\n\nLog #15\n\nOSX-LOG15\n\nLog #8\n\nOSX-LOG8\n\nNote: the Osseo x50 does not use Log #7, Log #14, and Log #15.\n\nOsseo X-Series Op�onal Accessories\nOsseo x50 Rectangle Surround\n\nOSX50-RS\n\nOsseo x50 Exterior Trim\n\nOSX50-EXT\n\nOsseo x64 Rectangle Surround\n\nOSX64-RS\n\nOsseo x64 Exterior Trim\n\nOSX64-EXT\n\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n39\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"},{"d":1,"p":40,"t":"Limited Life�me Warranty\nWarranty Coverage\n��\n\n2 Year Limited Warranty\n\nHussong Manufacturing Company, Inc. (Hussong Mfg.)\nwarrants this Kozy Heat electric appliance from the date\nof purchase to the original purchaser, that it is free of\ndefects in materials and workmanship at the �me of\nmanufacture. Registering your fireplace warranty does\nnot require any documents to be sent in to Hussong Mfg.\nPlease retain your proof of purchase reflec�ng the date\nof purchase along with the serial number and model of\nyour fireplace for any future warranty claims.\n\nWarranty Condi�ons\n\n��\n\nWarranty coverage beings on the date of original\npurchase. In the case of new home construc�on,\nwarranty coverage begins on the date of first occupancy\nof the dwelling or six months a�er the sale of the\nproduct by an independent, authorized Kozy Heat\ndealer/distributor, whichever occurs earlier. The\nwarranty shall commence no later than 24 months of the\noccupancy date.\n\n��\n\nHussong Mfg. will warranty all parts for 2 years and labor\nreimbursement for 1 year, unless any exclusions apply.\n\n��\n\nHussong Mfg. will issue labor reimbursement to an\nauthorized dealer only. Hussong Mfg. will not be liable\nfor charges occurred as a result of any service work\nperformed by a non-authorized service provider,\nwithout pre-authoriza�on.\n\n��\n\nThis warranty only covers Kozy Heat fireplaces that are\npurchased through a Kozy Heat authorized dealer or\ndistributor. A list of Kozy Heat authorized dealers is\navailable on the Kozy Heat website (www.kozyheat.com).\n\n1.\n\nThis appliance must be installed by a licensed, authorized service technician or contractor. It must be installed, operated and\nmaintained at all �mes in accordance with the instruc�ons in the owner’s manual or the warranty is void.\n\n2.\n\nThis warranty is nontransferable and is made to the original purchaser only.\n\n3.\n\nChanges in surface finishes as a result of normal opera�on. As a hea�ng appliance, some changes in the color of interior and\nexterior surface finishes may occur. This is not a flaw and is not covered under warranty.\n\n4.\n\nDamage to plated surfaces or accessories, if applicable, caused by scratches, fingerprints, melted items or other external\nsources le� on the surfaces from the use of cleaners is not covered under this warranty.\n\n5.\n\nRepair or replacement of parts that are subject to normal wear and tear during the 24 month warranty period. These parts\ninclude: paint, ba�eries, and discolora�on of glass.\n\n6.\n\nDamages resul�ng from: (1) failure to install, operate, or maintain the appliance in accordance with the installa�on instruc�ons,\nopera�ng instruc�ons, and lis�ng agent iden�fica�on label furnished with the appliance; (2) shipping or improper handling; (3)\nimproper opera�on, abuse, misuse, con�nued opera�on with damaged, corroded, or failed components, accident, or\nimproperly/incorrectly performed repairs; (4) environmental condi�ons; (5) installa�on or use of components not supplied with\nthe appliance or any other components not expressly authorized and approved by Hussong Mfg.; (6) modifica�on of the\nappliance not expressly authorized and approved by Hussong Mfg. in wri�ng; and/or (7) interrup�ons or fluctua�ons of\nelectrical power supply to the appliance.\n\n7.\n\nHussong Mfg. may require the defec�ve part to be returned using a pre-authorized RGA number or a photo of the defec�ve\ncomponent. Failure to provide either can result in a denied claim.\n\n8.\n\nThis warranty is void if: (1) the appliance is subject to, or operated in, atmospheres contaminated by chlorine, fluorine, or other\ndamaging chemicals; (2) the appliance is subjected to, or operated in, places with prolonged periods of dampness or\ncondensa�on or weather. Examples include but are not limited to outdoors, porches, and laundry rooms; and/or (3) there is any\ndamage to the fireplace or other components due to water or weather damage.\n\n9.\n\nIt is expressly agreed and understood that this warranty is Hussong Mfg.’s sole obliga�on and purchaser’s exclusive remedy for\ndefec�ve fireplace equipment. Hussong Mfg. is free of liability for any damages caused by this appliance, as well as\ninconvenience expenses and materials. Incidental or consequen�al damages are not covered by this warranty. In some states,\nthe exclusion of incidental or consequen�al damage may not apply. Hussong Mfg. shall not be held to implied warran�es and\nthis warranty shall replace all previous warran�es.\n\nEXCLUSIONS AND LIMITATIONS\n\n10. This warranty does not cover the appliances ability to heat a desired space, as there are many factors that can impact the\nhea�ng performance in each home. Considera�on should be implied to the appliance’s loca�on, room size, home design,\nenvironmental condi�ons, insula�on, and �ghtness of the home.\n11. Hussong Mfg. reserves the right to make changes at any �me, without no�ce, in design, material, specifica�ons, and prices.\nHussong Mfg. reserves the right to discon�nue models and products.\nHussong Mfg, Co, Inc\nOsseo X-Series Electric Fireplace\n\nRev. 4 - July 2026\n\n40\n\nStar�ng Serial Number: 26 OSX50-00001 24\n26 OSX64-00001 16"}];
+
+/* curated topic index — the hand-written, audience-tuned answers */
+const INDEX=[
+  ...HOME_PRIMARY.map(d=>({k:'h',id:d.id,t:d.title,p:d.blurb})),
+  ...HOME_SECONDARY.map(d=>({k:'h',id:d.id,t:d.title,p:d.blurb})),
+  ...SPECS.map(s=>({k:'i',id:s.tap,t:s.lab,p:s.rows.map(r=>r[0]+' '+r[1]).join(' · ')})),
+  ...STEPS.map((s,i)=>({k:'i',id:'step'+i,t:s[0],p:s[1]})),
+  ...INDEX_EXTRA,
+];
+
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const plain=s=>String(s).replace(/<[^>]+>/g,'');
+/* match regardless of line breaks, case and curly quotes */
+const fold=s=>s.toLowerCase().replace(/[‘’ʼ′]/g,"'").replace(/[“”″]/g,'"').replace(/ /g,' ');
+PAGES.forEach(pg=>{pg.s=pg.t.replace(/\s+/g,' ').trim(); pg.f=fold(pg.s); if(pg.f.length!==pg.s.length) pg.s=pg.f;});
+INDEX.forEach(x=>{x.f=fold(plain(x.t+' '+x.p)).replace(/\s+/g,' ');});
+const normQ=raw=>fold(raw).replace(/\s+/g,' ');
+function snippet(pg,q){
+  const i=pg.f.indexOf(q); if(i<0)return '';
+  const s=Math.max(0,i-55), e=Math.min(pg.s.length,i+q.length+85);
+  const frag=pg.s.slice(s,e), ff=pg.f.slice(s,e);
+  // highlight every occurrence of the query in the fragment
+  let out='',at=0,j;
+  while((j=ff.indexOf(q,at))>=0){out+=esc(frag.slice(at,j))+'<mark>'+esc(frag.slice(j,j+q.length))+'</mark>';at=j+q.length;}
+  out+=esc(frag.slice(at));
+  return (s>0?'… ':'')+out+(e<pg.s.length?' …':'');
+}
+/* which manual a reader on each side wants first */
+const PREF={homeowner:{operation:0,installation_and_operation:1,installation:2},installer:{installation:0,installation_and_operation:1,operation:3}};
+function pageHitsFor(q,role){
+  const hits=PAGES.filter(pg=>pg.f.includes(q));
+  if(!MULTI) return hits;
+  const pref=PREF[role]||{};
+  const rank=pg=>{const m=MANUALS[pg.d-1];return m.kit?2:(pref[m.role]??2);};
+  return hits.sort((a,b)=>rank(a)-rank(b)||a.d-b.d||a.p-b.p);
+}
+const pgLabel=pg=>MULTI?`${esc(MANUALS[pg.d-1].short)} p.${pg.p}`:`p.${pg.p}`;
+const pageItem=(pg,q)=>`<div class="ritem" data-kind="page" data-doc="${pg.d}" data-page="${pg.p}">
+         <span class="pg">${pgLabel(pg)}</span>
+         <div class="snip">${snippet(pg,q)}</div>
+         <svg class="jump" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg>
+       </div>`;
+const topicItem=(x,withRole)=>`<div class="ritem" data-kind="topic" data-id="${x.id}"${withRole?` data-role="${x.k==='h'?'homeowner':'installer'}"`:''}>
+         <span class="badge ${x.k}">${x.k==='h'?'Owner':'Install'}</span>
+         <div><h4>${esc(plain(x.t))}</h4><p>${esc(plain(x.p))}</p></div></div>`;
+const manualsLine=()=>MULTI?MANUALS.map(m=>`${m.label} (${m.pages} pages)`).join(' and '):`${MANUALS[0].pages}-page manual`;
+
+const res=$('#results'),rlist=$('#rlist');
+$('#q').addEventListener('input',e=>{
+  const raw=e.target.value.trim(), q=normQ(raw);
+  if(q.length<2){res.classList.remove('open');return;}
+  const curated=INDEX.filter(x=>x.f.includes(q)).slice(0,6);
+  const pageHits=pageHitsFor(q,currentRole()).slice(0,12);
+  let html='';
+  if(curated.length){
+    html+=`<div class="rgroup">Best matches <span class="ct">${curated.length}</span></div>`;
+    html+=curated.map(x=>topicItem(x,true)).join('');
+  }
+  if(pageHits.length){
+    html+=`<div class="rgroup">In the full ${MULTI?'manuals':'manual'} <span class="ct">${pageHits.length} page${pageHits.length>1?'s':''}</span></div>`;
+    html+=pageHits.map(pg=>pageItem(pg,q)).join('');
+  }
+  if(!curated.length && !pageHits.length)
+    html=`<div class="rempty">Nothing matched “${esc(raw)}”. Try a part name, a number, or open the full PDF above.</div>`;
+  rlist.innerHTML=html;
+  res.classList.add('open'); placeResults();
+  $$('.ritem',rlist).forEach(it=>it.onclick=()=>{
+    if(it.dataset.kind==='page'){ openPDF(it.dataset.page,+it.dataset.doc); }
+    else { res.classList.remove('open'); $('#q').value=''; closeHeaderSearch(); setRole(it.dataset.role); openDrawer(it.dataset.id); }
+  });
+});
+document.addEventListener('click',e=>{if(!res.contains(e.target)&&e.target.id!=='q'&&!e.target.closest('#qBtn'))res.classList.remove('open');});
+
+/* ---------------- owner-side inline search ---------------- */
+/* Curated answers (open the drawer) + full-manual page hits (open the PDF) —
+   the same two-tier logic as the header search, surfaced in the owner view. */
+const oq=$('#oq'), oResults=$('#oResults');
+function renderOwnerSearch(){
+  if(!oq||!oResults) return;
+  const raw=oq.value.trim(), q=normQ(raw);
+  if(q.length<2){ oResults.innerHTML=''; return; }
+  const curated=INDEX.filter(x=>x.f.includes(q)).slice(0,6);
+  const pageHits=pageHitsFor(q,'homeowner').slice(0,8);
+  let html='';
+  if(curated.length){
+    html+=`<div class="rgroup">Best matches <span class="ct">${curated.length}</span></div>`;
+    html+=curated.map(x=>topicItem(x,false)).join('');
+  }
+  if(pageHits.length){
+    html+=`<div class="rgroup">In the full ${MULTI?'manuals':'manual'} <span class="ct">${pageHits.length} page${pageHits.length>1?'s':''}</span></div>`;
+    html+=pageHits.map(pg=>pageItem(pg,q)).join('');
+  }
+  if(!curated.length && !pageHits.length)
+    html=`<div class="os-hint">Nothing matched “${esc(raw)}”. Try another word, or open the full <mark>Official PDF</mark> up top.</div>`;
+  oResults.innerHTML=html;
+  $$('.ritem',oResults).forEach(it=>{
+    if(it.dataset.kind==='page') it.onclick=()=>openPDF(it.dataset.page,+it.dataset.doc);
+    else it.onclick=()=>openDrawer(it.dataset.id);
+  });
+}
+oq.addEventListener('input',renderOwnerSearch);
+
+/* ---------------- installer-side full-manual search ---------------- */
+/* Same per-page PDF index as the header search, surfaced inline in the field
+   reference where installers expect it. Click a hit to deep-link the PDF page. */
+const mq=$('#mq'), mResults=$('#mResults');
+function renderManualSearch(){
+  if(!mq||!mResults) return;
+  const raw=mq.value.trim(), q=normQ(raw);
+  if(q.length<2){
+    mResults.innerHTML=`<div class="ms-hint">Searches the full text of every page of the official ${manualsLine()}. Type a part name, a number, or a term — each result opens the PDF at that page.</div>`;
+    return;
+  }
+  const hits=pageHitsFor(q,'installer');
+  if(!hits.length){
+    mResults.innerHTML=`<div class="ms-hint">Nothing in the ${MULTI?'manuals':'manual'} matched “${esc(raw)}”. Try a different term, or open the full <mark>Official PDF</mark> up top.</div>`;
+    return;
+  }
+  mResults.innerHTML=`<div class="rgroup">In the full ${MULTI?'manuals':'manual'} <span class="ct">${hits.length} page${hits.length>1?'s':''}</span></div>`+
+    hits.slice(0,30).map(pg=>pageItem(pg,q)).join('');
+  $$('.ritem',mResults).forEach(it=>it.onclick=()=>openPDF(it.dataset.page,+it.dataset.doc));
+}
+mq.addEventListener('input',renderManualSearch);
+renderManualSearch();
+
+
+/* ---------------- phones & tablets: slim header, section bar, back to top ---------------- */
+const hdr=document.querySelector('header');
+function setHdrH(){document.documentElement.style.setProperty('--hdr-h',hdr.offsetHeight+'px');}
+function placeResults(){res.style.top=Math.max(0,hdr.getBoundingClientRect().bottom)+'px';}
+function closeHeaderSearch(){hdr.classList.remove('searching');$('#qBtn').setAttribute('aria-expanded','false');setHdrH();}
+$('#qBtn').addEventListener('click',()=>{
+  const open=!hdr.classList.contains('searching');
+  hdr.classList.toggle('searching',open);$('#qBtn').setAttribute('aria-expanded',String(open));
+  document.body.classList.remove('hdr-away');setHdrH();
+  if(open){$('#q').focus();} else {res.classList.remove('open');}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&hdr.classList.contains('searching')){res.classList.remove('open');closeHeaderSearch();}});
+addEventListener('resize',()=>{setHdrH(); if(res.classList.contains('open')) placeResults();});
+setHdrH();
+
+/* the section bar lists only the sections this guide has */
+const SECS=[['sec-specs','Specs'],['sec-steps','Install steps'],['faultSec','Faults'],['codeSec','Codes'],['sec-manual','Manual']]
+  .map(([id,label])=>[document.getElementById(id),label]).filter(([el])=>el&&el.style.display!=='none');
+const secNav=$('#secNav');
+secNav.innerHTML=SECS.map(([,label],i)=>`<button type="button" data-i="${i}">${label}</button>`).join('');
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+secNav.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  $$('button',secNav).forEach(x=>x.setAttribute('aria-current',String(x===b)));
+  SECS[+b.dataset.i][0].scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'});});
+let lastY=scrollY,ticking=false,activeSec=-1;
+function onScroll(){
+  const y=scrollY, small=innerWidth<=1024, inRole=document.body.classList.contains('has-role');
+  const busy=hdr.classList.contains('searching')||$('#drawer').classList.contains('open')||res.classList.contains('open');
+  if(!small||!inRole||y<140||y<lastY-6) document.body.classList.remove('hdr-away');
+  else if(y>lastY+6&&!busy) document.body.classList.add('hdr-away');
+  lastY=y;
+  $('#toTop').classList.toggle('show',inRole&&y>700);
+  if(currentRole()==='installer'&&SECS.length){
+    const line=hdr.offsetHeight+secNav.offsetHeight+48;   /* generous: works whether the header is showing or tucked away */
+    let a=0; SECS.forEach(([el],i)=>{if(el.getBoundingClientRect().top<=line)a=i;});
+    if(innerHeight+y>=document.documentElement.scrollHeight-4)a=SECS.length-1;
+    if(a!==activeSec){activeSec=a;
+      $$('button',secNav).forEach((b,i)=>b.setAttribute('aria-current',String(i===a)));
+      const btn=$$('button',secNav)[a]; if(btn) secNav.scrollTo({left:btn.offsetLeft-16,behavior:reduceMotion?'auto':'smooth'});}
+  }
+  ticking=false;
+}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
+$('#toTop').addEventListener('click',()=>scrollTo({top:0,behavior:reduceMotion?'auto':'smooth'}));
+
+/* ---------------- deep links into the guide: #homeowner, #installer, or a topic id (#light) ---------------- */
+function fromHash(){const h=decodeURIComponent(location.hash.slice(1));if(!h)return;
+  if(h==='homeowner'||h==='owner'){setRole('homeowner');return;}
+  if(h==='installer'){setRole('installer');return;}
+  if(DETAIL[h]){setRole(DETAIL[h].cool?'installer':'homeowner');openDrawer(h);}}
+window.addEventListener('hashchange',fromHash);
+fromHash();
+</script>
+</body>
+</html>

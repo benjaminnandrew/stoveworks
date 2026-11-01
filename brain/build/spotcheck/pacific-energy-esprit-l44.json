@@ -1,0 +1,131 @@
+{
+ "id": "pacific-energy-esprit-l44",
+ "checked_pagerefs": 28,
+ "notes_checked": {
+  "amber": 4,
+  "correction": 1,
+  "website": 0
+ },
+ "findings": [
+  {
+   "severity": "critical",
+   "where": "faults 'Won't light or stay lit' item 2 · index_extra 'won't light' (owner search entry)",
+   "guide_says": "Faults: \"Burner doesn't light → off at the remote, wait at least 5 minutes, retry\". Owner search entry: \"Wait at least 5 minutes, retry, then call for service\". Neither keeps the gas-smell check before retrying.",
+   "manual_says": "p. 6, Lighting Instructions: \"4. Push the \"On/ Off\" button on the Remote to the fireplace Off. 5. Allow sufficient length of time (minimum 5 minutes) for any gas in the combustion chamber to escape. If you still smell gas, STOP! Follow \"B\" in the safety information above on this label. If you do not smell gas, go to step 3.\"",
+   "pages": [
+    [
+     1,
+     6
+    ]
+   ],
+   "fix": "Keep the manual's stop condition in both summaries. Faults: \"Burner doesn't light → off at the remote, wait at least 5 minutes; if you still smell gas, stop and follow the gas-smell steps; if not, retry\". Search entry: \"Off, wait at least 5 minutes; if you still smell gas, stop. If not, retry, then call for service\"."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.light (Turn it on, step 3)",
+   "guide_says": "\"If you still smell gas, stop. If not, try again.\"",
+   "manual_says": "p. 6: \"If you still smell gas, STOP! Follow \"B\" in the safety information above on this label.\" (B is the smell-before-lighting item that includes WHAT TO DO IF YOU SMELL GAS.)",
+   "pages": [
+    [
+     1,
+     6
+    ]
+   ],
+   "fix": "\"If you still smell gas, stop and follow 'Safety & gas smell'. If not, try again.\""
+  },
+  {
+   "severity": "minor",
+   "where": "step2 (roof pitch table paragraph)",
+   "guide_says": "\"over 8/12 to 9/12 2.00\" (minimum, ft) with no note; the manual's metric figure for this row is dropped silently.",
+   "manual_says": "p. 27, Roof Pitch Table (minimum), ft / m: \"Over 8/12 to 9/12   2.00   0.51\". Every other row's metric figure matches its feet figure (\"Over 7/12 to 8/12 1.50 0.46\", \"Over 9/12 to 10/12 2.50 0.76\"); no other page prints this value.",
+   "pages": [
+    [
+     1,
+     27
+    ]
+   ],
+   "fix": "This is a venting value that no other page settles, so show both instead of dropping one: <div class=\"note\"><b>Note:</b> the roof pitch table on p. 27 gives 2.00 ft and 0.51 m for over 8/12 to 9/12.</div> Record it in review.conflicts."
+  },
+  {
+   "severity": "minor",
+   "where": "step3 (summary)",
+   "guide_says": "\"Choose one of the 5 supplied restrictor rings from the NG or LP venting chart and bolt it to the underside of the firebox top, behind the outlet cover plate.\" This reads as though a ring is always fitted.",
+   "manual_says": "p. 32: \"It may be necessary to install a restrictor in the outlet of the firebox to control the amount of combustion air and to correct flame appearance.\" pp. 30-31: \"Depending on the vent configuration, one of these rings may need to be installed to achieve proper operation and flame appearance.\" Both charts include a \"NO RESTRICTOR\" zone.",
+   "pages": [
+    [
+     1,
+     30
+    ],
+    [
+     1,
+     31
+    ],
+    [
+     1,
+     32
+    ]
+   ],
+   "fix": "\"If the NG or LP venting chart calls for a restrictor (the charts also have a no-restrictor zone), fit that ring from the 5 supplied, bolted to the underside of the firebox top behind the outlet cover plate.\""
+  },
+  {
+   "severity": "minor",
+   "where": "step4 item 6 · detail.specInput (kit contents)",
+   "guide_says": "specInput: \"Convert NG to LP only with kit 12180011 (EV burner orifice, LP pilot orifice, propane stepper motor pressure regulator); no other components.\" step4: \"swap the pilot orifice (4mm hex key) for the LP pilot orifice, snug.\" There is no note about the different pilot wording on p. 34.",
+   "manual_says": "p. 34: \"This kit comes with a Propane Burner Orifice (EV), and a Propane Stepper Motor Pressure Regulator assembly. Do not use any other components.\" and \"To change the burner orifice and adjust the pilot orifice Slider Strip, follow the instruction below:\". p. 35 step 11: \"Unscrew the pilot orifice and remove (4mm Hex Key) Figure 42. Replace with the LP Pilot Orifice provided with the kit\".",
+   "pages": [
+    [
+     1,
+     34
+    ],
+    [
+     1,
+     35
+    ]
+   ],
+   "fix": "Keep the p. 35 steps and add an amber note to step4, citing both pages for the kit contents in specInput: <div class=\"note\"><b>Note:</b> p. 34 says kit 12180011 comes with an EV burner orifice and a propane stepper motor pressure regulator, and calls the pilot step adjusting the pilot orifice slider strip; p. 35 says to replace the pilot orifice with the LP pilot orifice provided with the kit.</div>"
+  },
+  {
+   "severity": "minor",
+   "where": "detail.power (During an outage)",
+   "guide_says": "\"The fireplace keeps working on the backup batteries for up to two weeks, depending on how long the outage lasts and how often you use it.\" p. 8's figure appears only in review.notes.",
+   "manual_says": "p. 8: \"Battery life varies between one and two weeks, depending on how many times the fireplace is used during the outage.\" p. 15: \"Back-up batteries can last up to two weeks, depending on length of power outage and how many times the fireplace is used during the outage.\" p. 38: \"the fireplace will continue to operate under battery power for up to two weeks.\"",
+   "pages": [
+    [
+     1,
+     8
+    ],
+    [
+     1,
+     15
+    ],
+    [
+     1,
+     38
+    ]
+   ],
+   "fix": "Word it so both figures show, e.g. \"for up to two weeks (p. 8 says battery life varies between one and two weeks), depending on how long the outage lasts and how often you use it\". Record it in review.conflicts."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.lights (after the media tray lights amber note)",
+   "guide_says": "Amber note only: \"p. 12 says the fireplace is equipped with dimmable media tray lighting, but p. 55 and p. 61 list the under-burner light kit as an optional item.\" There is no Maker's website note, and review.catalog_mismatches is empty.",
+   "manual_says": "p. 12: \"This fireplace is equipped with dimable Media Tray accent lighting.\" p. 61, Optional Items: \"Burner Light Kit ... 12160039\". website.json lists \"Design Options: Three firebox panel options; Decorative driftwood logset; Ember bed lighting kit\" and \"Standard Features: ... Top interior lighting ...\". The website speaks directly to the disagreement this drawer reports.",
+   "pages": [
+    [
+     1,
+     12
+    ],
+    [
+     1,
+     55
+    ],
+    [
+     1,
+     61
+    ]
+   ],
+   "fix": "Add after the amber note: <div class=\"note small\"><b>Maker's website:</b> Design Options: Ember bed lighting kit; Standard Features: Top interior lighting.</div> Record it in review.catalog_mismatches with \"shown\": \"lights\"."
+  }
+ ],
+ "verdict": "Yes, after the fixes: every spec, clearance, venting limit, gas pressure, electrical rating and the 28 page links match the manual. The one safety fix is putting the manual's 'if you still smell gas, stop' check back into the two relight summaries; the rest are minor note and wording fixes."
+}

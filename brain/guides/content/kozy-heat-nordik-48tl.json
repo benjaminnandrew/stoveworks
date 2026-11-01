@@ -1,0 +1,634 @@
+{
+ "id": "kozy-heat-nordik-48tl",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "KOZY HEAT",
+  "brand_line": "Nordik 48TL · Direct vent gas fireplace",
+  "kicker": "Direct vent gas fireplace",
+  "title": "Kozy Heat Nordik 48TL",
+  "model_line": "Model NDK-48-TL · Direct Vent · Proflame 2 IPI / CPI electronic ignition",
+  "owner_noun": "fireplace",
+  "owner_card": "Light it, use the remote, know what's normal, clean the glass, and check service and warranty.",
+  "installer_card": "Specs, clearances, venting and terminations, the install sequence, troubleshooting and LED codes.",
+  "certification": "ANSI Z21.88-2019/CSA 2.33-2019 · CSA 2.17 2017",
+  "owner_search_hint": "lighting, remote, pilot, gas smell",
+  "manual_search_hint": "clearance, vent, restrictor, pressure"
+ },
+ "home_primary": [
+  {
+   "id": "light",
+   "icon": "flame",
+   "title": "Light the fireplace",
+   "blurb": "Turn it on from the remote, and what to do if it won't light."
+  },
+  {
+   "id": "remote",
+   "icon": "remote",
+   "title": "Use the remote",
+   "blurb": "Flame height, thermostat, key lock, and running it without the remote."
+  },
+  {
+   "id": "normal",
+   "icon": "sound",
+   "title": "Is that normal?",
+   "blurb": "Blue flames at first, noises, a pilot that goes out, a fan that keeps running."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "Your once-a-year job: take the glass off safely and clean it."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "pilot",
+   "icon": "pilot",
+   "title": "Pilot modes: IPI or CPI",
+   "blurb": "Why the pilot stays lit (or doesn't), and how to switch."
+  },
+  {
+   "id": "power",
+   "icon": "battery",
+   "title": "Power outages & batteries",
+   "blurb": "What works on the backup batteries, and the low-battery signs."
+  },
+  {
+   "id": "lights",
+   "icon": "light",
+   "title": "Fan & lights",
+   "blurb": "Fan speeds and delays, the top accent light and the ember bed light."
+  },
+  {
+   "id": "safety",
+   "icon": "safety",
+   "title": "Safety & gas smell",
+   "blurb": "What to do if you smell gas, hot glass, and children."
+  },
+  {
+   "id": "service",
+   "icon": "service",
+   "title": "Yearly service",
+   "blurb": "What a service person checks, and how often."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "Limited lifetime: what's covered, for how long, what voids it."
+  }
+ ],
+ "specs": [
+  {
+   "id": "input",
+   "lab": "Input rate · Btu/h",
+   "tap": "specInput",
+   "rows": [
+    [
+     "Natural gas",
+     "51,000 / 34,000"
+    ],
+    [
+     "Propane",
+     "51,000 / 40,000"
+    ]
+   ],
+   "note": "max / min"
+  },
+  {
+   "id": "inlet",
+   "lab": "Inlet pressure · WC",
+   "tap": "specInlet",
+   "rows": [
+    [
+     "Natural gas",
+     "5\" – 10\""
+    ],
+    [
+     "Propane",
+     "11\" – 13\""
+    ]
+   ],
+   "note": "min – max · NG 7\" recommended"
+  },
+  {
+   "id": "manifold",
+   "lab": "Manifold pressure · WC",
+   "tap": "specManifold",
+   "rows": [
+    [
+     "Natural gas",
+     "1.6\" – 3.5\""
+    ],
+    [
+     "Propane",
+     "6.4\" – 10\""
+    ]
+   ],
+   "note": "low – high"
+  },
+  {
+   "id": "vent",
+   "lab": "Venting · natural draft",
+   "tap": "specVent",
+   "rows": [
+    [
+     "Co-axial pipe",
+     "5\" × 8\""
+    ],
+    [
+     "Vertical",
+     "3' min · 50' max"
+    ],
+    [
+     "Max horizontal",
+     "25' (on a 25' rise)"
+    ],
+    [
+     "Horizontal rise",
+     "1/4\" per 12\""
+    ]
+   ]
+  },
+  {
+   "id": "term",
+   "lab": "Vent termination",
+   "tap": "specTerm",
+   "rows": [
+    [
+     "Window or door that opens",
+     "9\" US · 12\" Canada"
+    ],
+    [
+     "Above grade, deck, porch",
+     "12\""
+    ],
+    [
+     "Between two terminations",
+     "12\""
+    ],
+    [
+     "Mechanical air inlet",
+     "3' above US · 6' Canada"
+    ]
+   ]
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances to combustibles",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Base to ceiling",
+     "84\""
+    ],
+    [
+     "Top finishing edge to ceiling",
+     "50-3/8\""
+    ],
+    [
+     "Side finishing edge to sidewall",
+     "3\""
+    ],
+    [
+     "From fireplace front",
+     "36\""
+    ],
+    [
+     "6\" mantel above top edge",
+     "12-1/2\""
+    ]
+   ]
+  },
+  {
+   "id": "elec",
+   "lab": "Electrical",
+   "tap": "specElec",
+   "rows": [
+    [
+     "Junction box",
+     "120VAC · 60Hz · 6 Amps"
+    ],
+    [
+     "Remote",
+     "(3) AAA"
+    ],
+    [
+     "Power outage",
+     "battery backup: burner only"
+    ]
+   ]
+  },
+  {
+   "id": "fuel",
+   "lab": "Fuel & conversion",
+   "tap": "specFuel",
+   "rows": [
+    [
+     "Factory",
+     "Natural gas"
+    ],
+    [
+     "Propane kit",
+     "LCK-NK48TL-P30"
+    ],
+    [
+     "LP stepper motor",
+     "700-503-1 (sold separately)"
+    ],
+    [
+     "NG orifices",
+     "#48 · #54 bottom"
+    ],
+    [
+     "LP orifices",
+     "#1.10mm · #64 bottom"
+    ]
+   ]
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Plan the location & design option",
+   "Pick standard, Komfort Zone Kit, heat transfer kit(s) or Kozy Power Vent first: framing, clearances and venting follow from it. Level base that carries the unit and vent; 84\" minimum enclosure and ceiling height.",
+   "<ul>\n<li>Read all documentation for your installation and design options first. KZK-062 (combustible facing above, heat reduction for a TV, lower mantel clearances) and HTK-EXT / HTK-INT have their own manuals and may change framing; up to (2) heat transfer kits can be fitted.</li>\n<li>Kozy Power Vent (#KPV): fan-powered mechanical draft, horizontal terminations only; see its manual.</li>\n<li>Install on a level surface able to support the fireplace and venting. The fireplace isn't load-bearing; framing, facing and finishing must be self-supported.</li>\n<li>Set it directly on wood or a non-combustible surface. On carpeting, tile or other combustibles other than wood, use a metal or wood panel the full width and depth. Above floor level, build a solid, continuous platform.</li>\n<li>Fireplace chamber and ceiling: 84\" (2134mm) minimum height, standard and KZK.</li>\n<li>Out of traffic, away from furniture and draperies; a bedroom is allowed. Outdoor covered installation (protected from direct precipitation): operation approved from 40°F to 110°F (4°C to 43°C); black painted safety barriers recommended.</li>\n<li>Propane? Converting before setting the unit in the framed opening is easier.</li>\n</ul>"
+  ],
+  [
+   "Frame the opening",
+   "Frame to Figure 3.5 (the same rough-in for every design option) on nominal 2\" x 4\" framing, allowing for wall covering and facing thickness. Lay out the vent path before setting the unit.",
+   "<p>Minimum framing is shown only in Figure 3.5 (p. 18), appliance dimensions in Figure 2.2 (p. 10) and the wall thimble rough-in in Figure 3.8 (p. 21, measured with Simpson DuraVent pipe). All three are diagrams: read them from the PDF.</p>\n<ul>\n<li>Cold air transfer area: the enclosure must meet every clearance and local building codes; insulate outside walls.</li>\n<li>Leave room in front for barrier removal, component access, gas line installation and service.</li>\n<li>Masonry: a foundation for the full load, and a lintel over the appliance.</li>\n<li>TV above: the KZK option is highly recommended, with its plenum discharge above the TV and a mantel. The allowed TV recess is 4-1/4\" (108mm), from the front of the 2x4 framing to the back of the pocket's finishing material.</li>\n<li>Exterior termination location must meet Section 7.2 (see the Vent termination card).</li>\n</ul>"
+  ],
+  [
+   "Top stand-offs & nailing flanges",
+   "Do any KZK or heat transfer kit prep first. Attach the top stand-off brackets ((4) screws) and horizontal heat shields ((8) screws), which hold the 10-7/8\" header clearance, then fit both nailing flanges with the stand-off flanges facing out.",
+   "<ol>\n<li>KZK: remove the (16) screws and the (2) top cover plates (discard the plates), fit the KZK collars with those screws, then remove and discard the (3) convection baffles and their screws. HTK: remove the side HTK cover plate ((4) screws) and the lifting handle ((9) screws), then fit the HTK-NTL air chute and its collar; the damper stays for HTK-EXT and comes out for HTK-INT.</li>\n<li>Attach the top stand-off brackets to the top of the fireplace with (4) screws. Bend up the screw-hole tabs of the horizontal heat shields and attach them with (8) screws.</li>\n<li>Remove the (2) nailing flanges, align them with the holes on the outside corners, stand-off flanges facing away from the fireplace, and screw them on through the slots.</li>\n<li>Bend the perforation until it's parallel with the fireplace face, never toward it.</li>\n</ol>\n<div class=\"note danger\">Non-combustible material only in the header zone above the stand-offs, the full width of the fireplace: no wood or sheetrock. Never permanently remove the stand-off or flange assemblies.</div>\n<div class=\"note\"><b>Note:</b> p. 13 says KZK / HTK preparation must be completed before setting the appliance in the framed opening, but the HTK preparation steps recommend installing the fireplace in the framed opening before removing the lifting handle (p. 26).</div>"
+  ],
+  [
+   "Set & secure the fireplace",
+   "Team-lift it by the side lift handles (a 2\" x 4\" fits through them), set it in the framed opening flush with the framing, and secure the framing to the nailing flanges.",
+   "<ul>\n<li>The appliance is heavy: use a team lift to move, place and position it. The lift handles on both sides take a hand lift or a 2\" x 4\" through them.</li>\n<li>Position a framing stud against the small stand-off on the back of each nailing flange and secure it with nails or screws. The flanges hold the minimum 4\" (102mm) from the fireplace sides to framing; the stand-off brackets themselves need 0\".</li>\n<li>Next, per the manual's general procedure: KZK (if used), vent pipe, gas line, electrical wiring, then finishing material.</li>\n</ul>"
+  ],
+  [
+   "Vent heat shield, restrictor & vent",
+   "Fit the required vent heat shield(s) and the restrictor plate before attaching vent. 5\" x 8\" co-axial from an approved maker; 1/4\" rise per 12\" on horizontal runs; 11-3/8\" above horizontal pipe in the chamber, 1\" elsewhere.",
+   "<ul>\n<li>Vent heat shields are required in all venting scenarios: the front vertical shield alone when the pipe terminates at the enclosure ceiling; front vertical plus top horizontal shield when it terminates at the wall at the minimum vent run (Figure 3.7, p. 18).</li>\n<li>Restrictor plate (components packet): install per Figure 7.3 before attaching venting; fine-tune later per 11.2.3.</li>\n<li>Wall thimbles that keep the 1\" (25mm) top clearance are required wherever a horizontal run passes through a wall; they and attic insulation shields may be insulated with unfaced non-combustible insulation (ASTM E 136).</li>\n<li>Elbow heights vary by vent maker: adjust the thimble rough opening to keep clearances. After the thimble, keep 1\" (25mm) on all surfaces of the pipe.</li>\n<li>Don't recess the vent cap into the wall or siding. Leave a way to visually check the vent connection after installation.</li>\n<li>Runs, elbows and termination limits: see the Venting and Vent termination cards.</li>\n</ul>"
+  ],
+  [
+   "Gas line + leak test",
+   "Ships for natural gas: convert first if using propane. Run the line through the gas line hole, clear of the fan, with a listed ½\" tee-handle shut-off and flexible connector to the ½\" valve inlet. Leak-test every joint with soapy water.",
+   "<ul>\n<li>Qualified person only, to local codes or ANSI Z223.1; in Massachusetts, a licensed plumber or gas fitter.</li>\n<li>The fireplace comes with a 3/8\" (10mm) x 18\" (457mm) flexible gas connector and manual shut-off valve. Substituting? Check local codes.</li>\n<li>Line pressure tests above ½ psi (3.5 kPa): disconnect the appliance and its shut-off valve. At ½ psi or less: isolate it by closing its manual shut-off valve.</li>\n<li>Supply pressure: natural gas 5\" WC min (7\" WC recommended), 10\" WC max; propane 11\" WC min, 13\" WC max.</li>\n<li>High altitude: consult the local gas distributor or authority having jurisdiction for rating methods.</li>\n<li>Before start-up, check all connections, field or factory made, with soapy water.</li>\n</ul>"
+  ],
+  [
+   "Electrical",
+   "120VAC, 60Hz, 6 Amps to the junction box, hot at all times with no switch in the supply. Plug into a properly grounded three-prong receptacle; ground per local codes, ANSI/NFPA 70 or CSA C22.1.",
+   "<ul>\n<li>Shut off the household breaker before working on any electrical lines. Never cut or remove the grounding prong.</li>\n<li>Fan kit #SL42-028 (optional, qualified installer only): two fans, one per fan channel with the motor toward the center; the cord plugs into the receptacle on the IFC control module. Don't let a fan rest on electrical cords.</li>\n<li>Spade connectors are labeled \"M\" (male) and \"F\" (female). Wiring diagrams: Figures 9.1 to 9.3 (p. 56 to 58).</li>\n<li>Outdoor installations: wiring to the outdoor requirements of NECA NFPA 70.</li>\n</ul>"
+  ],
+  [
+   "Facing, finishing & mantel",
+   "Non-combustible (ASTM E 136) material only where Figure 5.6 calls for it. Combustible mantel: 6\" deep starting 12-1/2\" above the top finishing edge, then 1\" deeper per 1\" higher; sidewall from 3\"; hearth unlimited from 0\".",
+   "<ul>\n<li>Paper-faced gypsum board (drywall, including Type X) and WonderBoard backerboard are not non-combustible materials.</li>\n<li>Non-combustible mantel: up to 8\" (203mm) deep at 0\" from the top finishing edge, then 1\" up for every 1\" deeper. Non-combustible surround: up to 8\" (203mm) at 0\" from the side and top finishing edges.</li>\n<li>Finishing material can't obstruct ventilation air. Figure 5.6 (p. 34, a diagram) also marks where screws aren't allowed.</li>\n<li>Optional rectangle surround #NK48TL-RS covers the finishing edge on all 4 sides and takes up to 1-5/8\" (41mm) of non-combustible facing plus finishing material.</li>\n<li>Against cracking above the unit: dry, dust-free materials; heat-resilient tape, mesh and joint compound (such as Durabond), cured per its maker; a quality acrylic latex primer and finish, avoiding flat or light colors. Never a one-piece U-shaped stone surround; stone must tolerate more than 160°F.</li>\n</ul>"
+  ],
+  [
+   "Light kits, logs, glass & screen",
+   "Convert to propane first if needed. Fit the (7) halogen bulbs in the front bottom light kit (not installed at the factory), then the optional panel set and the log set, refit the glass and hang the safety screen.",
+   "<ul>\n<li>Disconnect power. Never touch halogen bulbs with bare hands; use a soft cloth. Front kit: lift out the front ember media tray ((2) screws), install the bulbs, refit the tray. The back bottom and top light kits come with their bulbs installed.</li>\n<li>The optional panel set goes in before the logs. Log set per its own instructions: Traditional #NK48TL-500 or Birch #NK48TL-B501.</li>\n<li>Glass: reverse the removal steps (support rail at the bottom; (4) spring-loaded latches at the top, worked with the glass latch tool).</li>\n<li>Safety screen barrier #NK48TL-ES must be installed: align its hooks with the slots on each side, between the glass frame and the side finishing edge, then lift and push it in so they latch around the glass frame. Even spacing to the finishing edges on all four sides means it's seated.</li>\n</ul>"
+  ],
+  [
+   "Initialize, pressure-test & check flames",
+   "Rocker switch OFF, (3) AAA in the remote, plug in, clear the firebox. Press the remote sync button (3 beeps, amber LED), then remote ON/OFF within 5 seconds (4 beeps, pilot lights), ON/OFF again, rocker ON. Check inlet and manifold pressures; burn 15 minutes, then adjust venturis or the restrictor plate.",
+   "<ol>\n<li>Rocker switch OFF; (3) AAA batteries in the remote; connect the IFC module to AC power. Remove all packaging and combustible material from the firebox: the next steps spark the pilot.</li>\n<li>Remove the safety screen and component access cover. Press the remote sync button (SW1, red): 3 beeps and an amber LED.</li>\n<li>Within 5 seconds press ON/OFF on the remote: 4 beeps, and the pilot lights. Press it again: the pilot goes out. The system is initialized.</li>\n<li>Rocker switch ON; refit the cover and screen.</li>\n<li>Pressures: manometer on a 1/4\" (6mm) I.D. hose at the IN tap (other gas appliances on) and at the OUT tap on low and high; reseal each tap snug and confirm it reads no pressure.</li>\n<li>Flames start blue and turn yellow over the first 15 minutes. Venturis are factory set; any adjustment is for a qualified service technician, in slight increments, burning at least 15 minutes and cooling between changes. If soot shows, check media placement first.</li>\n</ol>\n<div class=\"kv\">\n<div class=\"r\"><span>Lazy, yellow flames</span><span>ideal; no adjustment</span></div>\n<div class=\"r\"><span>Short, blue flames</span><span>venturis too open: close slightly</span></div>\n<div class=\"r\"><span>Dark orange, black tips</span><span>venturis closed too far: open slightly</span></div>\n<div class=\"r\"><span>Active, compact flame (vertical runs)</span><span>install or modify the restrictor plate</span></div>\n</div>\n<div class=\"note\"><b>Note:</b> p. 69 says opening the air shutter gives a short, blue flame that may lift off the burner, and the troubleshooting chart says to close the shutter slightly for a blue flame that lifts (p. 75); but Figure 11.3 says lifting (ghosting) flames mean the venturis are closed too far and should be opened slightly, or that the gas pressure is too high, measured with a manometer (p. 70).</div>"
+  ]
+ ],
+ "faults": {
+  "label": "Troubleshooting chart · qualified technician",
+  "panels": [
+   {
+    "title": "Pilot won't light, stay lit or go out",
+    "items": [
+     "Power interrupted or disconnected → restore power, or use the battery backup with fully charged batteries",
+     "Wiring disconnected → check every connection against the wiring schematic (Section 9.0)",
+     "Gas supply off → check the shut-off valves; there may be more than one between appliance and main line",
+     "No propane, or low gas pressure (bent line, too-narrow pipe, low line pressure) → refill the tank; consult a plumber or gas supplier",
+     "Pilot adjustment screw not sealed → seal it; don't over-tighten",
+     "Pilot not contacting the flame rectification sensor → it must envelop the top of the sensor and reach far enough onto the burner",
+     "Pilot always on, won't go out → control is in CPI mode; set it to IPI"
+    ]
+   },
+   {
+    "title": "Burner won't light, or remote does nothing",
+    "items": [
+     "ON/OFF rocker switch OFF → switch it ON",
+     "Gas supply off or low → check for multiple shut-offs and the propane tank; consult a plumber or gas supplier",
+     "Wiring disconnected or improper → check against Section 9.0",
+     "Plugged burner orifice → remove the blockage",
+     "Pilot not directed to ignite the burner → see the pilot causes",
+     "No call for heat → remote powered ON and thermostat operation OFF; replace remote batteries",
+     "No reaction to the SIT remote → replace remote or backup batteries, reprogram the remote to the IFC module, or reset the IFC after too many failed ignitions"
+    ]
+   },
+   {
+    "title": "Pilot & burner go out while running",
+    "items": [
+     "Glass assembly installed incorrectly → refit per Section 8.1",
+     "Vent cap installed incorrectly or blocked → adjust; remove debris",
+     "Horizontal vent without 1/4\" (6mm) rise per 12\" (305mm) of travel → correct the pitch",
+     "Exhaust pipe leaking exhaust gases back into the firebox → find and repair leaks",
+     "Excessive draft → install or modify the restrictor plate (11.2.3)"
+    ]
+   },
+   {
+    "title": "Blue, lifting flames or soot on glass",
+    "items": [
+     "Blue flame lifting off the burner → chart: close the venturi air shutter slightly (Figure 11.3 disagrees; see the last install step)",
+     "Blue, lifting flame: vent cap wrong, vent leaking or cap blocked → adjust; repair leaks; remove debris",
+     "Soot on glass → check log placement and burner / perimeter media placement",
+     "Soot on glass, improper venturi setting → open the air shutter slightly for more air",
+     "Soot on glass, vent cap wrong or blocked → adjust; remove debris"
+    ]
+   }
+  ]
+ },
+ "codes": [
+  [
+   1,
+   "Low backup battery",
+   "Backup pack below 4V; low double-beep on ON/OFF and no commands accepted. Replace the batteries."
+  ],
+  [
+   2,
+   "Pilot flame error",
+   "Contact your dealer."
+  ],
+  [
+   3,
+   "System lockout",
+   "No flame after 2 ignition tries. Verify gas is on and the sensor isn't shorted; reset (OFF, wait about 2 seconds, ON) or re-initialize (10.2)."
+  ]
+ ],
+ "codes_label": "IFC module red LED codes",
+ "detail": {
+  "light": {
+   "tag": "Owner · operation",
+   "title": "Lighting the fireplace",
+   "cool": false,
+   "html": "<p>Your fireplace lights itself: an igniter sparks the pilot, and the pilot lights the burner. Never try to light the pilot by hand.</p>\n<h4>Every day</h4>\n<p>Press <b>ON/OFF</b> on the remote. The fireplace beeps once, and about 4 seconds later it starts sparking at the pilot. Press ON/OFF again to turn it off. The main ON/OFF rocker switch, behind the component access cover, must be ON for the remote to work.</p>\n<h4>If it doesn't light</h4>\n<p>The control makes 2 tries, sparking about 60 seconds each, with about 35 seconds between. Then it locks out, and its red light blinks 3 times at intervals. To reset, press ON/OFF to turn the system off, wait about 2 seconds, and press it again.</p>\n<h4>The full lighting steps</h4>\n<ol>\n<li>Press OFF on the remote, then turn off all electric power to the fireplace.</li>\n<li>Turn the manual gas valve clockwise to OFF. Wait 5 minutes, then smell for gas, including near the floor. If you smell gas, stop and follow the gas-smell steps under Safety.</li>\n<li>If you don't, turn the valve counterclockwise to ON, turn the power back on, and press ON on the remote.</li>\n</ol>\n<div class=\"note danger\"><b>Still won't work?</b> Press OFF on the remote, turn the manual valve clockwise to OFF, and call your service technician or gas supplier. Turn the valve by hand only, never with tools. If it won't turn by hand, don't try to repair it: call a qualified service technician. Force or attempted repair may result in a fire or explosion.</div>"
+  },
+  "remote": {
+   "tag": "Owner · operation",
+   "title": "Using the remote",
+   "cool": false,
+   "html": "<p>The remote takes 3 AAA batteries. The fireplace answers each command with a single beep.</p>\n<ul>\n<li><b>ON/OFF</b>: turns the fireplace on and off.</li>\n<li><b>Up / Down arrows</b>: flame height, in 6 levels. Down lowers it one level at a time until the flame is off; Up raises it. If the system is on but the flame is off, Up relights it on HI.</li>\n<li><b>Thermostat key</b>: press it once and the remote works as a room thermostat, showing the room and set temperatures; the arrows change the set temperature. Press it until SMART shows and the fireplace turns its flame down by itself as the room reaches your setting. You can't adjust the flame by hand while Smart is on.</li>\n<li><b>Mode key</b>: steps to the fan, top light and AUX (ember bed light) settings.</li>\n</ul>\n<h4>Handy extras</h4>\n<ul>\n<li><b>Key lock</b> against unsupervised use: press Mode and Up together. A lock icon shows; repeat to unlock.</li>\n<li><b>°F or °C</b>: with the system off, press Thermostat and Mode together.</li>\n<li><b>Low batteries</b>: a battery icon shows before they run out.</li>\n</ul>\n<div class=\"note\"><b>No remote?</b> Remove the safety screen and component access cover, slide out the control module and set the rocker switch OFF. Hold the remote sync button until it beeps 3 times, then press it again within 5 seconds. The pilot lights, and the rocker switch now turns the burner on (HI only) and off.</div>"
+  },
+  "normal": {
+   "tag": "Owner · reassurance",
+   "title": "That's probably normal",
+   "cool": false,
+   "html": "<h4>Blue flames at first</h4>\n<p>When the fireplace is first lit, the flames look blue. Over the first 15 minutes they gradually turn yellow. If they stay blue, or turn dark orange with black tips (soot), the burner's air shutters may need adjusting. That's a job for a qualified service technician.</p>\n<h4>Noise as it heats and cools</h4>\n<p>Some parts expand, contract and move slightly, and that makes noise. The warranty calls this, and some discoloring, normal and not a defect.</p>\n<h4>The pilot goes out on its own</h4>\n<ul>\n<li>When the pilot has been lit continuously, the control turns the fireplace off for about 5 seconds within 24 hours as a safety check, then repeats your last command.</li>\n<li>In CPI (standing pilot) mode, the pilot turns off after 7 days in a row without the main burner lighting. That's a standard safety feature.</li>\n</ul>\n<h4>The fan keeps running</h4>\n<p>In thermostat mode the fan starts 5 minutes after the fire lights and keeps going about 12 minutes after it's off.</p>\n<div class=\"note danger\"><b>A gas smell is different.</b> If you smell gas, don't light anything or touch any switch. Leave the building and immediately call your gas supplier from a neighbor's phone.</div>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>Cleaning the glass is your once-a-year job. Do it only when the fireplace is completely cool: never remove or clean the glass while it's hot.</p>\n<ol>\n<li>Clear a flat, stable work surface big enough to lay the glass assembly on.</li>\n<li>Lift the safety screen up and out of its slots.</li>\n<li>Find the 4 spring-loaded latches at the top of the firebox. With the glass latch tool from the components packet, pull each latch out and up to free the top of the glass.</li>\n<li>Tilt the top of the glass toward you and lift it off the support rail at the bottom.</li>\n<li>Clean it with a fireplace glass cleaner and a soft cloth. Never use abrasive cleaners, and take care not to scratch it.</li>\n<li>Put the glass back in reverse order. Rehang the screen so its hooks latch around the glass frame; the gap to the fireplace edges should be even all around.</li>\n</ol>\n<div class=\"note danger\"><b>Never run the fireplace</b> with the glass off, cracked or broken, or without the safety screen. Don't strike or slam the glass. A damaged glass assembly should be replaced by a qualified service person.</div>\n<div class=\"note\"><b>Note:</b> the manual's glass removal steps put the latches at the top of the firebox (p. 46), but its yearly service list mentions a bottom latch assembly (p. 72).</div>"
+  },
+  "pilot": {
+   "tag": "Owner · operation",
+   "title": "Pilot modes: IPI or CPI",
+   "cool": false,
+   "html": "<p>The pilot can run two ways, and you choose on the remote.</p>\n<h4>IPI: spark to pilot</h4>\n<p>The igniter lights the pilot each time the fireplace turns on. With the fireplace on, the screen shows no snowflake icon.</p>\n<h4>CPI: continuous (standing) pilot</h4>\n<p>The pilot stays lit. That keeps the firebox warm and starts a draft in the vent, so the burner lights with less disruption to the air flow. With the fireplace on, the screen shows a snowflake icon. If the main burner doesn't light for 7 days in a row, the pilot turns itself off, a standard safety feature. Each time the burner lights, the 7 days start over.</p>\n<h4>To switch</h4>\n<ol>\n<li>Turn the fireplace off with the remote.</li>\n<li>Press <b>Mode</b> until the CPI icon shows.</li>\n<li>Press <b>Up</b> for CPI, or <b>Down</b> for IPI. A single beep confirms.</li>\n</ol>\n<div class=\"note\">Pilot lit all the time and won't go out? The system is set to CPI. Switch it to IPI.</div>"
+  },
+  "power": {
+   "tag": "Owner · operation",
+   "title": "Power outages & batteries",
+   "cool": false,
+   "html": "<p>The fireplace runs on household power (120 VAC), with a backup battery pack for outages.</p>\n<h4>In a power outage</h4>\n<p>The burner still lights and you can still change the flame height, running on the backup batteries. The fan and accent lights won't work until the power is back.</p>\n<h4>Low-battery signs</h4>\n<div class=\"kv\">\n<div class=\"r\"><span>Remote (3 AAA)</span><span>Battery icon on the screen</span></div>\n<div class=\"r\"><span>Backup battery pack</span><span>Red light blinks once at intervals; a low double-beep when you press ON/OFF</span></div>\n</div>\n<p>After the backup pack's low-battery alert, the fireplace won't accept any commands until you replace those batteries. Once they're replaced, it beeps as soon as it has power.</p>\n<p>How long batteries last depends on their quality and how often the fireplace lights; for the remote, also on how often you change the thermostat setting.</p>"
+  },
+  "lights": {
+   "tag": "Owner · operation",
+   "title": "Fan & lights",
+   "cool": false,
+   "html": "<p>The fan and lights run on household power only. In an outage the burner keeps working on the backup batteries, but these don't.</p>\n<h4>Fan (optional kit)</h4>\n<p>Press <b>Mode</b> until the fan icon shows, then use the arrows to turn it on, off, or through its 6 speeds.</p>\n<ul>\n<li>Thermostat mode: the fan waits 5 minutes after the fireplace lights, so heat can build, and runs about 12 minutes after it turns off.</li>\n<li>Manual mode: it runs at your last setting, with no delay starting or stopping.</li>\n</ul>\n<h4>Top accent light</h4>\n<p>Press <b>Mode</b> until the light icon shows, then use the arrows to pick one of 6 brightness levels.</p>\n<h4>Ember bed light</h4>\n<p>Press <b>Mode</b> until AUX shows. Up turns it on, Down turns it off. To change its brightness, lift the safety screen up and out of its slots, remove the component access cover, and turn the knob under the firebox: clockwise is brighter, counterclockwise dimmer. Put both back afterward.</p>\n<div class=\"note\">Each feature can be switched on (SEL) or off (CLR) in the remote's setup. If its icon never shows, the setup steps are on pages 65 to 67 of the manual.</div>"
+  },
+  "safety": {
+   "tag": "Owner · safety",
+   "title": "Safety & gas smell",
+   "cool": false,
+   "html": "<h4>If you smell gas</h4>\n<ul>\n<li>Don't try to light any appliance.</li>\n<li>Don't touch any electrical switch, and don't use any phone in your building.</li>\n<li>Leave the building right away.</li>\n<li>Immediately call your gas supplier from a neighbor's phone and follow their instructions. If you can't reach them, call the fire department.</li>\n</ul>\n<p>Before lighting, smell all around the fireplace, including next to the floor: some gas is heavier than air and settles there.</p>\n<h4>Hot glass and children</h4>\n<p>Hot glass will burn. Don't touch it until it has cooled, and never let children touch it. Keep the safety screen on: it's there to protect children and other at-risk people. If it's damaged, replace it with the maker's screen for this fireplace. Watch young children closely in the same room, and consider a safety gate to keep toddlers away from hot surfaces.</p>\n<h4>Every day</h4>\n<ul>\n<li>Keep clothing and anything flammable off and away from it, and never store or use gasoline or other flammable vapors or liquids nearby.</li>\n<li>Don't use it if any part has been under water. Immediately call a qualified service technician to inspect the fireplace and replace any part of the control system and any gas control that has been under water.</li>\n<li>Turn the gas valve by hand only, never with tools. If it won't turn by hand, don't try to repair it: call a qualified service technician. Force or attempted repair may result in a fire or explosion.</li>\n</ul>"
+  },
+  "service": {
+   "tag": "Owner · maintenance",
+   "title": "Yearly service",
+   "cool": false,
+   "html": "<p>Have the fireplace inspected by a professional service person before use and at least once a year. Lint from carpeting, bedding or pets can mean cleaning more often.</p>\n<h4>What the yearly visit covers</h4>\n<ul>\n<li>Vacuuming the firebox, burners, control compartment and air passages, and the fan (its bearings are sealed and need no oil).</li>\n<li>Checking the vent and vent cap for soot or blockage, and that combustion and ventilation air flow freely.</li>\n<li>Checking gas tubes and connections for leaks, and the pilot and burner: the burner should light within 4 seconds of the gas valve opening, with steady flames that don't lift or float.</li>\n<li>Inspecting the glass for cracks, scratches and nicks, and checking that its spring-loaded latches move freely. The glass and latches are the fireplace's pressure-relief mechanism.</li>\n<li>Replacing light bulbs as needed.</li>\n</ul>\n<h4>Your part</h4>\n<p>Clean the glass once a year, and keep the area around the fireplace clear of anything that burns.</p>\n<div class=\"note\">Anything taken apart for service, from wiring to the vent, must go back exactly as the instructions say, and a safety screen removed for service goes back on before the fireplace is used.</div>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "Warranty at a glance",
+   "cool": false,
+   "html": "<p>Hussong Mfg. warrants this Kozy Heat fireplace to the original purchaser, from the date of purchase, against defects in materials and workmanship. It's a limited lifetime warranty and can't be transferred.</p>\n<div class=\"kv\">\n<div class=\"r\"><span>30 days · parts and labor</span><span>Paint, light bulbs, gasket material, glass media and media dam</span></div>\n<div class=\"r\"><span>Year 1 · parts and labor</span><span>All other parts and material</span></div>\n<div class=\"r\"><span>Years 2 to lifetime · parts only</span><span>Firebox, heat exchanger, logs, burner tube or pan, outer shell, heat shields, front glass (thermal shock only), refractory liner (not enamel or glass panels)</span></div>\n</div>\n<p>Labor is paid to authorized dealers only. Nothing needs to be sent in to register: keep your proof of purchase with the model and serial number. If you notice a defect, contact your authorized dealer within 30 days.</p>\n<h4>What voids it</h4>\n<ul>\n<li>Installation by anyone but a licensed, authorized technician or contractor, or not installing, running and maintaining it per the manual.</li>\n<li>A removed serial number or testing label, or any alteration.</li>\n<li>Submersion, long dampness or condensation, or water damage from improper venting.</li>\n</ul>\n<div class=\"note\">This is a summary. The full terms and exclusions are in the official PDF.</div>"
+  },
+  "specInput": {
+   "tag": "Installer · spec",
+   "title": "Input rates & orifices",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>NG max / min</span><span>51,000 / 34,000 Btu/h (14.95 / 9.96 kW)</span></div>\n<div class=\"r\"><span>LP max / min</span><span>51,000 / 40,000 Btu/h (14.95 / 11.72 kW)</span></div>\n<div class=\"r\"><span>NG orifices (DMS)</span><span>Left, Center, Right #48 · Bottom #54</span></div>\n<div class=\"r\"><span>LP orifices</span><span>Left, Center, Right #1.10mm · Bottom #64</span></div>\n</div>\n<p>Burner positions (Left, Center, Right, Bottom) are identified in Figure 2.1 (p. 9).</p>\n<h4>High altitude</h4>\n<p>US: above 2,000' (610m), reduce input ratings 4% for each 1,000' (305m) above sea level. Canada: above 4,500' (1,372m), reduce the certified high-altitude rating 4% for each additional 1,000' (305m). Also follow ANSI Z223.1/NFPA 54, CSA-B149.1 and local authorities on derating.</p>"
+  },
+  "specInlet": {
+   "tag": "Installer · spec",
+   "title": "Inlet (supply) pressure",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Natural gas min</span><span>5\" WC (1.25 kPa) · 7\" WC (1.74 kPa) recommended</span></div>\n<div class=\"r\"><span>Natural gas max</span><span>10\" WC (2.49 kPa)</span></div>\n<div class=\"r\"><span>Propane min / max</span><span>11\" WC (2.74 kPa) / 13\" WC (3.24 kPa)</span></div>\n</div>\n<h4>Inlet test, IN tap (p. 68)</h4>\n<ol>\n<li>Test with all other gas appliances in the house on, at full capacity.</li>\n<li>Loosen the IN tap screw counter-clockwise; attach a manometer with a 1/4\" (6mm) I.D. hose.</li>\n<li>Light pilot and burners; the reading must fall between the minimum and maximum.</li>\n<li>Burners and pilot off; remove the hose and tighten the tap clockwise, snug, not over-tight.</li>\n<li>Relight and reattach the manometer: it should read no pressure, proving the tap is sealed.</li>\n</ol>\n<p>Too high or too low: contact the gas company; only a qualified gas service technician adjusts incoming pressure. Line pressure tests above ½ psi (3.5 kPa): disconnect the appliance and its shut-off valve; at ½ psi or less, close its manual shut-off valve.</p>"
+  },
+  "specManifold": {
+   "tag": "Installer · spec",
+   "title": "Manifold pressure",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Natural gas high / low</span><span>3.5\" WC (0.87 kPa) / 1.6\" WC (0.40 kPa)</span></div>\n<div class=\"r\"><span>Propane high / low</span><span>10\" WC (2.49 kPa) / 6.4\" WC (1.59 kPa)</span></div>\n</div>\n<h4>Manifold test, OUT tap (p. 68)</h4>\n<ol>\n<li>Light the pilot; loosen the OUT tap screw counter-clockwise.</li>\n<li>Attach a manometer with a 1/4\" (6mm) I.D. hose.</li>\n<li>Light the burners; read at the low and high settings.</li>\n<li>Burners and pilot off; remove the hose and tighten the tap clockwise, snug, not over-tight.</li>\n<li>Reattach the manometer: no pressure with pilot and burner on means it's sealed.</li>\n</ol>\n<p>Both taps are on the valve: OUT measures outgoing (manifold) pressure, IN incoming.</p>"
+  },
+  "specVent": {
+   "tag": "Installer · spec",
+   "title": "Venting (natural draft)",
+   "cool": true,
+   "html": "<p>Equipped for a 5\" (127mm) exhaust by 8\" (203mm) air intake co-axial vent system. Approved makers, horizontal and vertical: American Metal Products (Ameri-Vent), BDM, ICC, Metal Fab., Selkirk and Simpson DuraVent; cap part numbers in Tables 7.2 and 7.3. ICC TM-5HT and TM-4HT caps require ICC wind / heat shield HTS. Natural gas and propane follow the same rules.</p>\n<h4>Vertical</h4>\n<div class=\"kv\">\n<div class=\"r\"><span>5\" x 8\"</span><span>3' (914mm) min · 50' (15.24m) max + cap</span></div>\n<div class=\"r\"><span>With 4\" x 6-5/8\" reducer</span><span>3' (914mm) min · 50' (15.24m) max + cap</span></div>\n<div class=\"r\"><span>45° elbows with reducer</span><span>10' (3.05m) min total run · up to (4) 45° · no 90° · subtract 18\" (457mm) per 45°</span></div>\n</div>\n<h4>Horizontal: rise, 90° elbow, run, cap</h4>\n<div class=\"kv\">\n<div class=\"r\"><span>18\" rise (12\" + 6\" pipe)</span><span>max run 3' (0.91m)</span></div>\n<div class=\"r\"><span>24\" (610mm) rise</span><span>max run 8' (2.44m)</span></div>\n<div class=\"r\"><span>36\" (914mm) rise</span><span>max run 12' (3.66m)</span></div>\n<div class=\"r\"><span>25' (7.62m) max rise</span><span>max run 25' (7.62m)</span></div>\n<div class=\"r\"><span>Basement: 36\" 5\"x8\" rise + 4\" x 6-5/8\" reducer</span><span>max run 24\" (610mm)</span></div>\n</div>\n<p>Each minimum is the rise, a 90° elbow and the cap. Combination venting (5\" x 8\" only): termination inside the shaded area of Figure 7.8 (p. 44, a diagram); 25' (7.62m) max rise + 25' (7.62m) max run = 50' (15.2m) total; max (5) 90° elbows, subtract 3' (914mm) for each 90° after the first; (2) 45° may replace (1) 90°, subtract 18\" (457mm) per 45°. Horizontal sections need 1/4\" (6mm) rise per 12\" (305mm).</p>\n<ul>\n<li>Restrictor plate (components packet): install per Figure 7.3 before attaching vent. It ships with both inner rings intact (most restriction); knock out one or both for less.</li>\n<li>Flexible vent pipe only outside the appliance enclosure, and never to terminate.</li>\n<li>Existing Class A / masonry chimney (minimum 7\" ID, inspected first): 4\" x 6-5/8\" reducer + retro connector + 10' (3.05m) to 50' (15.24m) of 4\" aluminum flex + top adapter + cap, with 0\" to 24\" (610mm) of horizontal (p. 45).</li>\n<li>Never connect to a chimney flue serving a solid-fuel appliance. Kozy Power Vent (#KPV): see its manual.</li>\n</ul>\n<div class=\"note\"><b>Note:</b> p. 40 says reduced 4\" x 6-5/8\" venting is only approved for vertical terminations, excluding #KPV, but p. 42 lists a basement horizontal install with a 4\" x 6-5/8\" reducer and up to 24\" of horizontal, under Figure 7.7 \"5\"x8\" and Reduced 4\"x6-5/8\" Horizontal Terminations\" (p. 43).</div>"
+  },
+  "specTerm": {
+   "tag": "Installer · spec",
+   "title": "Vent termination clearances",
+   "cool": true,
+   "html": "<p>Table 7.1; the lettered locations are drawn in Figure 7.2 (p. 37).</p>\n<div class=\"kv\">\n<div class=\"r\"><span>A · Above grade, veranda, porch, deck, balcony</span><span>12\" (30cm) US and Canada</span></div>\n<div class=\"r\"><span>B · Window or door that may be opened</span><span>9\" (23cm) US · 12\" (30cm) Canada</span></div>\n<div class=\"r\"><span>C · Permanently closed window</span><span>12\" (30cm)*</span></div>\n<div class=\"r\"><span>D · Ventilated soffit above, within 2 feet (61cm)</span><span>24\" (61cm)*</span></div>\n<div class=\"r\"><span>E · Unventilated soffit</span><span>12\" (30cm)*</span></div>\n<div class=\"r\"><span>F · Outside corner</span><span>0\" (0cm)*</span></div>\n<div class=\"r\"><span>G · Inside corner</span><span>3\" (8cm) US · 3\" (8cm)* Canada</span></div>\n<div class=\"r\"><span>H · Each side of meter / regulator center line</span><span>Canada 3' (91cm) within a height 15' (4.5m) above · US *</span></div>\n<div class=\"r\"><span>I · Service regulator vent outlet</span><span>Canada 3' (91cm) · US *</span></div>\n<div class=\"r\"><span>J · Non-mechanical air supply or combustion air inlet</span><span>9\" (23cm) US · 12\" (30cm) Canada</span></div>\n<div class=\"r\"><span>K · Mechanical air supply inlet</span><span>3' (91cm) above US** · 6' (1.83m) Canada</span></div>\n<div class=\"r\"><span>L · Above public paved sidewalk or driveway</span><span>Canada 7' (2.13m)† · US *</span></div>\n<div class=\"r\"><span>M · Under veranda, porch deck or balcony</span><span>12\" (30cm) US · 12\" (30cm)‡ Canada</span></div>\n<div class=\"r\"><span>N / O · Two horizontal / two vertical terminations</span><span>12\" (30cm)</span></div>\n<div class=\"r\"><span>P · Above furnace exhaust or inlet</span><span>12\" (30cm)</span></div>\n</div>\n<p>* Per local installation codes and the gas supplier. ** Massachusetts: 10' (3m) above if within 10' (3m) horizontally. † Not directly above a sidewalk or paved driveway between two single-family dwellings that serves both. ‡ Only if fully open on a minimum of two sides beneath the floor.</p>\n<h4>Vertical: minimum height above the roof (Figure 7.1, p. 36)</h4>\n<div class=\"kv\">\n<div class=\"r\"><span>Flat to 6/12</span><span>1.0 ft (0.30 m)</span></div>\n<div class=\"r\"><span>Over 6/12 to 7/12</span><span>1.25 ft (0.38 m)</span></div>\n<div class=\"r\"><span>Over 7/12 to 8/12</span><span>1.5 ft (0.46 m)</span></div>\n<div class=\"r\"><span>Over 8/12 to 9/12</span><span>2.0 ft (0.61 m)</span></div>\n<div class=\"r\"><span>Over 9/12 to 10/12</span><span>2.5 ft (0.76 m)</span></div>\n<div class=\"r\"><span>Over 10/12 to 11/12</span><span>3.25 ft (0.99 m)</span></div>\n<div class=\"r\"><span>Over 11/12 to 12/12</span><span>4.0 ft (1.22 m)</span></div>\n<div class=\"r\"><span>Over 12/12 to 14/12</span><span>5.0 ft (1.52 m)</span></div>\n<div class=\"r\"><span>Over 14/12 to 16/12</span><span>6.0 ft (1.83 m)</span></div>\n<div class=\"r\"><span>Over 16/12 to 18/12</span><span>7.0 ft (2.13 m)</span></div>\n<div class=\"r\"><span>Over 18/12 to 20/12</span><span>7.5 ft (2.27 m)</span></div>\n<div class=\"r\"><span>Over 20/12 to 21/12</span><span>8.0 ft (2.44 m)</span></div>\n</div>\n<ul>\n<li>Don't recess the vent cap into wall or siding. Vinyl and PVC siding can bend or deform from a horizontal cap's heat; ask the vent maker about siding protectors. Clearances are to heat-resistant materials (wood, metal), not vinyl soffits, ceilings or overhangs.</li>\n<li>Massachusetts, sidewall terminations less than 7 feet above grade: hard-wired CO detector with alarm and battery backup on the appliance's floor level, detectors on other levels, and a sign at least 8 feet above grade in line with the vent reading \"GAS VENT DIRECTLY BELOW. KEEP CLEAR OF ALL OBSTRUCTIONS\" (p. 7).</li>\n</ul>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances to combustibles",
+   "cool": true,
+   "html": "<p>Table 3.1, standard installation, based on nominal 2\" x 4\" framing. A Komfort Zone Kit (KZK-062) can change clearances: see its manual.</p>\n<div class=\"kv\">\n<div class=\"r\"><span>Min. height of fireplace enclosure</span><span>84\" (2134mm)</span></div>\n<div class=\"r\"><span>Base of fireplace to ceiling</span><span>84\" (2134mm)</span></div>\n<div class=\"r\"><span>Top finishing edge to ceiling</span><span>50-3/8\" (1280mm)</span></div>\n<div class=\"r\"><span>Top, side (nailing flange) and back stand-off brackets</span><span>0\" (0mm)</span></div>\n<div class=\"r\"><span>Side finishing edge to adjacent sidewall</span><span>3\" (76mm)</span></div>\n<div class=\"r\"><span>From fireplace corners</span><span>2-5/8\" (67mm)</span></div>\n<div class=\"r\"><span>From fireplace front</span><span>36\" (914mm)</span></div>\n<div class=\"r\"><span>6\" (152mm) mantel, from top finishing edge</span><span>12-1/2\" (317mm)</span></div>\n<div class=\"r\"><span>6\" (152mm) mantel, from base of fireplace</span><span>46-1/8\" (1171mm)</span></div>\n<div class=\"r\"><span>Unlimited hearth, from bottom finishing edge</span><span>0\" (0mm)</span></div>\n<div class=\"r\"><span>Horizontal vent in enclosure: top of pipe</span><span>11-3/8\" (289mm)</span></div>\n<div class=\"r\"><span>Horizontal vent: left, right, bottom</span><span>1\" (25mm)</span></div>\n<div class=\"r\"><span>Vertical vent in enclosure: all surfaces</span><span>1\" (25mm)</span></div>\n</div>\n<ul>\n<li>Combustible mantels may go 1\" (25mm) deeper for every 1\" (25mm) higher, starting from the 6\" mantel. Non-combustible mantel: up to 8\" (203mm) deep at 0\" from the top finishing edge, then 1\" up for every 1\" deeper. Non-combustible surround: up to 8\" (203mm) at 0\" from the side and top finishing edges.</li>\n<li>Floor protection in front isn't required. A combustible hearth may be flush (0\") with the bottom finishing edge, unlimited projection. Combustible sidewall: unlimited, starting 3\" (76mm) from the side finishing edge.</li>\n<li>The top stand-offs give the 10-7/8\" (276mm) minimum to the header: non-combustible material only in that zone, full width. Nailing flanges give 4\" (102mm) from the sides to framing.</li>\n<li>TV above: the KZK option is highly recommended; the allowed TV recess is 4-1/4\" (108mm).</li>\n</ul>\n<p>The non-combustible facing zone and the no-screw areas are shown only as a diagram, Figure 5.6 (p. 34).</p>"
+  },
+  "specElec": {
+   "tag": "Installer · spec",
+   "title": "Electrical",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Junction box</span><span>120VAC, 60Hz, 6 Amps</span></div>\n<div class=\"r\"><span>Remote (Proflame 2)</span><span>(3) AAA, in components packet</span></div>\n<div class=\"r\"><span>Front bottom light kit</span><span>(7) halogen bulbs, installed in the field</span></div>\n<div class=\"r\"><span>Back bottom light kit</span><span>(3) halogen bulbs, preinstalled</span></div>\n<div class=\"r\"><span>Top light kit</span><span>(2) halogen bulb locations, preinstalled</span></div>\n</div>\n<ul>\n<li>AC supply hot at all times, with no switch installed in it. Shut off the household breaker before working on electrical lines.</li>\n<li>Three-prong grounding plug into a properly grounded three-prong receptacle; never cut or remove the grounding prong. Ground per local codes, or ANSI/NFPA 70 or CSA C22.1.</li>\n<li>Battery backup runs the burner and flame modulation; fan and lights don't run on it.</li>\n<li>Optional fan kit #SL42-028 plugs into the receptacle on the IFC control module.</li>\n<li>Never touch halogen bulbs with bare hands. Label all wires before disconnecting controls.</li>\n</ul>\n<p>Wiring diagrams: Figures 9.1 to 9.3 (p. 56 to 58).</p>"
+  },
+  "specFuel": {
+   "tag": "Installer · spec",
+   "title": "Fuel & conversion",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Factory fuel</span><span>Natural gas</span></div>\n<div class=\"r\"><span>PSE conversion kit: propane / natural gas</span><span>LCK-NK48TL-P30 / NCK-NK48TL-P30</span></div>\n<div class=\"r\"><span>Valve stepper motor: propane / natural gas</span><span>700-503-1 / 700-503 (sold separately)</span></div>\n<div class=\"r\"><span>S.I.T. IPI gas valve: NG / LP</span><span>700-660 / 700-660-1</span></div>\n<div class=\"r\"><span>Burner orifices NG</span><span>#48 Left, Center, Right · #54 Bottom</span></div>\n<div class=\"r\"><span>Burner orifices LP</span><span>#1.10mm Left, Center, Right · #64 Bottom</span></div>\n<div class=\"r\"><span>Pilot orifice NG / LP</span><span>#.023NG (700-123) / #.014LP (700-114)</span></div>\n<div class=\"r\"><span>Venturi openings NG</span><span>1/8\" (3mm) Left, Center, Right, Bottom</span></div>\n<div class=\"r\"><span>Venturi openings LP</span><span>1/2\" (13mm) Left, Center, Right · 3/8\" (10mm) Bottom</span></div>\n</div>\n<ul>\n<li>A conversion kit is supplied with the appliance; the stepper motor is sold separately. Follow the kit's instructions, and convert per the provincial authorities having jurisdiction and ANSI Z223.1.</li>\n<li>Convert before setting the unit in the framed opening (easier), and before installing light kit components, the panel set and the log set.</li>\n</ul>"
+  }
+ },
+ "pageref": {
+  "light": 59,
+  "remote": 63,
+  "normal": 69,
+  "glass": 72,
+  "pilot": 63,
+  "power": 60,
+  "lights": 65,
+  "safety": 59,
+  "service": 72,
+  "warranty": 80,
+  "specInput": 8,
+  "specInlet": 35,
+  "specManifold": 8,
+  "specVent": 40,
+  "specTerm": 38,
+  "specClear": 16,
+  "specElec": 9,
+  "specFuel": 35,
+  "step0": 12,
+  "step1": 18,
+  "step2": 14,
+  "step3": 13,
+  "step4": 39,
+  "step5": 35,
+  "step6": 56,
+  "step7": 28,
+  "step8": 47,
+  "step9": 60
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "safety",
+   "t": "gas smell",
+   "p": "What to do if you smell gas"
+  },
+  {
+   "k": "h",
+   "id": "light",
+   "t": "won't light",
+   "p": "Two tries, then lockout; how to reset"
+  },
+  {
+   "k": "h",
+   "id": "light",
+   "t": "blinking red light",
+   "p": "3 blinks means lockout; reset with ON/OFF"
+  },
+  {
+   "k": "h",
+   "id": "pilot",
+   "t": "pilot stays on",
+   "p": "CPI keeps a standing pilot; switch to IPI"
+  },
+  {
+   "k": "h",
+   "id": "power",
+   "t": "power outage",
+   "p": "Backup batteries run the burner, not the fan or lights"
+  },
+  {
+   "k": "i",
+   "id": "specFuel",
+   "t": "propane conversion",
+   "p": "LCK-NK48TL-P30 kit plus 700-503-1 stepper motor"
+  },
+  {
+   "k": "i",
+   "id": "specInput",
+   "t": "high altitude",
+   "p": "US: above 2,000', reduce input 4% per 1,000'"
+  },
+  {
+   "k": "i",
+   "id": "specClear",
+   "t": "TV above fireplace",
+   "p": "KZK recommended; 4-1/4\" TV recess"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "specVent",
+    "issue": "Reduced 4\" x 6-5/8\" venting: 7.6.2 says it is only approved for vertical terminations (excluding #KPV), but 7.7.2 (v) lists a basement horizontal install (36\" 5\"x8\" vertical + 4\" x 6-5/8\" reducer + 90° elbow + 24\" max horizontal + cap) and Fig. 7.7 is titled '5\"x8\" and Reduced 4\"x6-5/8\" Horizontal Terminations'.",
+    "pages": [
+     [
+      1,
+      40
+     ],
+     [
+      1,
+      42
+     ],
+     [
+      1,
+      43
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "step9",
+    "issue": "Venturi direction for lifting flames: 11.2.1 says opening the air shutter gives a short, blue flame that may lift off the burner, and the troubleshooting chart says close the shutter slightly for a flame that burns blue and lifts; Fig. 11.3 says lifting (ghosting) flames mean the venturis are closed too far (open slightly) or gas pressure is too high.",
+    "pages": [
+     [
+      1,
+      69
+     ],
+     [
+      1,
+      70
+     ],
+     [
+      1,
+      75
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "step2",
+    "issue": "Heat transfer kit prep timing: 3.4 says KZK/HTK preparation (Section 4.0) must be completed before setting the appliance in the framed opening; the 4.2 HTK note recommends installing the fireplace in the framed opening before removing the lifting handle, which HTK prep steps 2-3 require.",
+    "pages": [
+     [
+      1,
+      13
+     ],
+     [
+      1,
+      26
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "glass",
+    "issue": "Glass latch location: 8.1.1 removal steps use (4) spring-loaded latches at the top of the firebox (glass lifts off a bottom support rail); the 12.1 annual service list says to inspect and operate the 'bottom latch assembly' of the glass frame.",
+    "pages": [
+     [
+      1,
+      46
+     ],
+     [
+      1,
+      72
+     ]
+    ],
+    "class": "substantive"
+   }
+  ],
+  "catalog_mismatches": [],
+  "notes": "Section banners and the table of contents (p. 5) are images; pages 2, 4, 6 and 82 have no text. Shown only as diagrams, so not transcribed (the guide names the figure and page): appliance dimensions Fig. 2.2 (p. 10), safety screen dimensions Fig. 2.3 (p. 11), minimum framing Fig. 3.5 (p. 18), wall thimble rough-in Fig. 3.8 (p. 21), non-combustible facing zone and no-screw areas Fig. 5.6 (p. 34; a lone 65-1/2\" label isn't explained in the text), termination locations Fig. 7.2 (p. 37), combination-venting shaded area Fig. 7.8 (p. 44), correct pilot/burner flame photos (p. 74). Tables 11.1-11.5 (pressure, venturi and vent-restriction tables cited on p. 68-71) are not in the text; the guide uses the p. 8 spec table and Table 6.1 (p. 35). Catalog checks: BTU (NG 51,000/34,000, LP 51,000/40,000), 5 x 8 vent, IPI ignition, optional blower, 4 x 6-5/8 reduction for vertical and Class A/masonry conversion all match the manual. Not in the manual text, so not compared: efficiency (71.62% NG / 72.07% LP AFUE), height/width/depth, weight (335 lb) and view area (48\" x 20\"; the manual only lists the 49-5/8\" x 22-1/8\" glass part, p. 79). The backup battery pack's battery type, count and location aren't stated anywhere in the text, so the guide doesn't name them. The lighting label (p. 59) calls the pilot 'on-demand' and says it shuts off after 7 days; p. 60 ties the 7-day shutoff to CPI mode; the guide follows p. 60. Troubleshooting rows on p. 75-76 don't group unambiguously in the text (which issue 'Low gas pressure' and the second 'No propane in tank' belong to), so the guide merges pilot won't-light / won't-stay-lit into one panel and leaves 'No propane in tank' out of the goes-out-while-running panel. Parts list p. 78: the S.I.T. board assemblies (NG/LP) and transmitter numbers (N48TL-130, 700-248, 700-408) and the unlabeled 700-264 and 900-007 can't be matched to items reliably from the text; not used. 3.9.6 says to frame the thimble so the vent can 'run level' through it while horizontal sections need 1/4\" rise per 12\" (p. 20, 39, 42); treated as wording, not flagged. 50' is given as 15.24m (p. 41, 45) and 15.2m (p. 44): metric rounding only. The 'No remote?' note follows the unlabeled second procedure on p. 60 (sync button held, pressed again within 5 seconds; burner on HI only from the rocker switch)."
+ }
+}

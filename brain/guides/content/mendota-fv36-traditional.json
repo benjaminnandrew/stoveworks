@@ -1,0 +1,796 @@
+{
+ "id": "mendota-fv36-traditional",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "MENDOTA",
+  "brand_line": "FV36 Traditional · Direct vent gas fireplace",
+  "kicker": "Direct vent gas fireplace",
+  "title": "Mendota FV36 Traditional",
+  "model_line": "Model AA-11-02980 · FV36 FullView · Direct Vent · IPI / CPI electronic ignition",
+  "owner_noun": "fireplace",
+  "owner_card": "Light it, use the remote, get through the first fire, clean the glass, reset a lockout, check the warranty.",
+  "installer_card": "Specs, clearances, framing, hearth pad, venting, the install sequence and flame troubleshooting.",
+  "certification": "ANSI Z21.88-2019(R2024) · CSA 2.33-2019(R2024)",
+  "owner_search_hint": "lighting, remote, lockout, gas smell",
+  "manual_search_hint": "clearance, vent, hearth pad, pressure"
+ },
+ "home_primary": [
+  {
+   "id": "light",
+   "icon": "flame",
+   "title": "Light the fireplace",
+   "blurb": "Start it from the remote, and what to do if the pilot won't light."
+  },
+  {
+   "id": "remote",
+   "icon": "remote",
+   "title": "Use the remote",
+   "blurb": "Thermostat modes, flame height, fan, accent light and child lock."
+  },
+  {
+   "id": "firstfire",
+   "icon": "sound",
+   "title": "First fire, smells & sounds",
+   "blurb": "The curing smoke, later odors and ticking: what's normal."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "Take the glass off safely and clear the white film."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "modes",
+   "icon": "pilot",
+   "title": "Pilot modes: IPI or CPI",
+   "blurb": "Why the pilot stays lit in winter, and how to switch."
+  },
+  {
+   "id": "lockout",
+   "icon": "alert",
+   "title": "Won't turn on?",
+   "blurb": "Reset a lockout, check the master switch, re-pair the remote."
+  },
+  {
+   "id": "power",
+   "icon": "battery",
+   "title": "Power outages & batteries",
+   "blurb": "What works on the backup pack, and which batteries go where."
+  },
+  {
+   "id": "safety",
+   "icon": "safety",
+   "title": "Safety & gas smell",
+   "blurb": "What to do if you smell gas, shutting off the gas, hot glass and children."
+  },
+  {
+   "id": "service",
+   "icon": "service",
+   "title": "Yearly service & soot",
+   "blurb": "What your service person does, your monthly check, and soot signs."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "Limited lifetime: who's covered, how to claim, what voids it."
+  }
+ ],
+ "specs": [
+  {
+   "id": "input",
+   "lab": "Input rate · BTUH",
+   "tap": "specInput",
+   "rows": [
+    [
+     "Natural gas",
+     "44,000 / 14,100"
+    ],
+    [
+     "Propane (L.P.)",
+     "44,000 / 18,600"
+    ]
+   ],
+   "note": "high fire / low fire"
+  },
+  {
+   "id": "inlet",
+   "lab": "Supply pressure · W.C.",
+   "tap": "specInlet",
+   "rows": [
+    [
+     "Natural gas",
+     "7\" (5.0\" min. · 11\" max.)"
+    ],
+    [
+     "Propane (L.P.)",
+     "11\" (11\" min. · 13\" max.)"
+    ]
+   ]
+  },
+  {
+   "id": "manifold",
+   "lab": "Manifold pressure · WC",
+   "tap": "specManifold",
+   "rows": [
+    [
+     "Natural gas",
+     "3.5\" +/- 1/8\""
+    ],
+    [
+     "Propane (LP)",
+     "10.0\" +/- 1/8\""
+    ]
+   ]
+  },
+  {
+   "id": "vent",
+   "lab": "Venting · 5\" × 8\" coaxial rigid",
+   "tap": "specVent",
+   "rows": [
+    [
+     "Min. vertical off collar",
+     "9\""
+    ],
+    [
+     "Max horizontal (4'–12' starter)",
+     "32'"
+    ],
+    [
+     "Max vertical",
+     "40'"
+    ],
+    [
+     "Max vent system length",
+     "44'"
+    ]
+   ],
+   "note": "p. 60 also prints 51 ft once (see drawer)"
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances to combustibles",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Unit to floor",
+     "0\""
+    ],
+    [
+     "Enclosure side & back walls",
+     "1/2\""
+    ],
+    [
+     "Side wall",
+     "16\""
+    ],
+    [
+     "Unit base to room ceiling",
+     "72\""
+    ],
+    [
+     "8\" mantel above top air opening",
+     "22\""
+    ]
+   ]
+  },
+  {
+   "id": "framing",
+   "lab": "Rough framing · minimum",
+   "tap": "specFraming",
+   "rows": [
+    [
+     "Enclosure width",
+     "50\""
+    ],
+    [
+     "Finished width",
+     "43\""
+    ],
+    [
+     "Height",
+     "41\""
+    ],
+    [
+     "Depth",
+     "20\""
+    ]
+   ],
+   "note": "unit 300 lbs. · team lift"
+  },
+  {
+   "id": "hearth",
+   "lab": "Hearth pad",
+   "tap": "specHearth",
+   "rows": [
+    [
+     "On the floor",
+     "R-1 · 18\" deep"
+    ],
+    [
+     "Each 1\" raised",
+     "2\" less depth"
+    ],
+    [
+     "No pad required",
+     "raised 6\"+ (p. 17: more than 6\")"
+    ],
+    [
+     "Max thickness",
+     "1-1/2\""
+    ]
+   ]
+  },
+  {
+   "id": "elec",
+   "lab": "Electrical",
+   "tap": "specElec",
+   "rows": [
+    [
+     "Supply",
+     "120 VAC · always hot"
+    ],
+    [
+     "Rating",
+     "1.5 A (p. 15) · 2 A (p. 39)"
+    ],
+    [
+     "Outage backup",
+     "6V DC pack"
+    ],
+    [
+     "Remote",
+     "3 × AAA"
+    ]
+   ]
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Unpack & check the packet",
+   "Unpack the unit and check the white manual-packet box: glass latch tool, remote with 3 AAA, backup battery holder with 4 AA and the backup power harness, all of which stay with the homeowner. Log set, firebox lining and decorative front are separate purchases.",
+   "<p>Remove the outer box; the white manual-packet box holds:</p><div class=\"kv\"><div class=\"r\"><span>Glass latch tool</span><span>#HA-77-00256</span></div><div class=\"r\"><span>Remote transmitter</span><span># HA-110-00105 · 3-AAA batteries # 65-06-01270</span></div><div class=\"r\"><span>Backup battery holder</span><span>#05-02-00345 · 4 AA batteries #65-06-01147</span></div><div class=\"r\"><span>Backup power harness</span><span>#10-03-00128</span></div></div><p>These and the owner's manual must stay with the homeowner. Contact Mendota Technical Service if anything is missing. Log set, firebox lining and decorative front are not included and are bought separately. Inspect the unit at delivery: freight damage must be reported within 48 hours.</p>"
+  ],
+  [
+   "Frame, set & level",
+   "Frame at least 50\" W × 41\" H × 20\" D with room on the left for gas and electrical. Unbolt from the pallet, bend up the shipping clips, set it in the chase, level, plumb and secure it to the studs, then frame the front to 43\".",
+   "<div class=\"kv\"><div class=\"r\"><span>Enclosure framing width</span><span>50\"</span></div><div class=\"r\"><span>Finished framing width</span><span>43\"</span></div><div class=\"r\"><span>Framing height</span><span>41\"</span></div><div class=\"r\"><span>Framing depth</span><span>20\"</span></div></div><ul><li>Leave room on the left for the gas and electrical hookups.</li><li>Unbolt the unit from the pallet and bend up the shipping clips. The four lifting handles (remove two screws, pull the top section out) are for lifting and shifting short distances only, never for carrying; team lift (300 lbs.).</li><li>Set it on a wood, masonry or metal floor that runs its full width and depth (never carpet or vinyl), then level, plumb and secure it to the framing studs.</li><li>Finish the front framing to 43\" with two 2 X 4 studs.</li><li>Build a chase like an outside wall: insulated, with vapor and air barriers, fire stops and gas line holes sealed with high temp caulk. On a cement slab, plywood under the unit keeps cold from conducting up.</li><li>Mobile home: bolt the unit to the floor and ground it.</li></ul>"
+  ],
+  [
+   "LP conversion (propane only)",
+   "Kit #HA-110-00084, ideally before the unit goes into its cavity: #54 orifices front and rear, pilot clip pushed in to LP, and the motorized LP regulator #907.012 on the valve. Fill out and attach the LP conversion label.",
+   "<p>Kit #HA-110-00084: motorized LP pressure regulator #907.012, two cap orifices #65-14-00054 (drill #54), an L-shaped Torx wrench and an LP conversion label. Qualified service agency only; convert before the unit goes into its cavity if you can.</p><ol><li>Remove the burners (3 screws) and the airbox (2 screws) with a ¼\" hex driver.</li><li>With a ½\" deep well socket, swap the front and rear orifices for #54, holding the brass fitting with a wrench.</li><li>Hold the pilot base with vice grips, loosen its hex base ¼ turn with a 7/16\" open end wrench, push the NAT/LP clip in until \"NAT\" isn't visible, and retighten.</li><li>Refit the airbox and burners: front burner parallel to the unit face, both pilot hoods pointed at the burners' flame propagation ports.</li><li>Gas and power off. Through the left side access panel, remove and discard the regulator's two mounting screws, tower and spring and diaphragm assembly (Torx T20), check the pre-fitted rubber gasket is in place, and fit the stepper motor regulator with the supplied M4 x 0.7 screws at 25lb-in plus or minus 5. If the valve threads are stripped or damaged, replace the valve. Fix the identification label to the valve body.</li><li>Fill out the LP conversion label and attach it to the fireplace.</li></ol><p>Connect the gas, verify minimum inlet and outlet pressures, then light it: the main burner must light immediately without lifting, and the pilot flames must be at least 1\" long, overlapping the propagation ports on both burners. LP air shutter setting: see the test-fire step.</p>"
+  ],
+  [
+   "Vent system & damper",
+   "5\" × 8\" rigid coaxial, one brand and series, every joint fully twist-locked, no silicone; at least 9\" vertical off the starter collar and 1\" to combustibles. Then set the vent damper with the glass latch tool, never fully closed on a horizontal termination.",
+   "<ul><li>Twist-lock every joint: line up the four indentations with the entry slots, push fully together, turn clockwise about ¼ turn. Prefer fixed lengths to telescoping sections, and never separate telescoping sections.</li><li>1\" to combustibles on the sides and bottom, 3\" above horizontal runs and horizontal discharge elbows. Don't fill air spaces with insulation.</li><li>Wall thimble at every combustible wall, interior or exterior; combustible wall thickness 4\" to 8\" maximum. Ceiling openings 10\" x 10\" with a fire stop spacer at each floor; attic insulation shield in the attic.</li><li>Minimum-rise horizontal termination: 9\" vertical, a 90° elbow (centerline 46 ⅜\" above the fireplace floor) and up to 12\" horizontal. Screw the cap to the wall and caulk it; don't recess it. Heat shield #AA-11-00458 on vinyl, wood or other combustible siding.</li><li>Exterior cap (from cap center): 18 inches above grade, decks and porches and from windows or doors that open; 7 feet above a public sidewalk or driveway; 3 feet from a service regulator vent outlet. Full lettered diagram on p. 37.</li><li>Roof cap height above the roof: 2 ft from flat to 9/12 pitch, 4 ft at 10/12 to 12/12, 6 ft at 13/12 to 16/12, 8 ft at 17/12 to 21/12. Finish with storm collar and cap.</li></ul><h4>Vent damper</h4><p>Adjust the damper to match the vertical chimney length. The damper rod is above the glass frame, centered in the convection chamber. Hook the glass latch tool in it, pull out about 1/8\" and turn clockwise to close. Never close it completely on a horizontal termination. Judge the flame after 20 minutes of burn; if flames ghost off the burners or LP units soot, open it fully and work back in increments.</p><div class=\"note\"><b>Note:</b> the manual gives a 10-3/4\" x 10-3/4\" wall opening for the minimum-rise horizontal termination (p. 57) and a 10 ½\" x 10 ½\" wall opening for the vertical-rise horizontal termination (p. 58).</div><div class=\"note\"><b>Note:</b> the manual gives a 3\" clearance above horizontal runs (pp. 15, 54, 57, 58) but <i>2\" above horizontal runs</i> in the vertical venting steps (p. 60).</div>"
+  ],
+  [
+   "Gas supply + leak test",
+   "Run a line sized from the table on p. 42 to the 1/2\" female NPT inlet on the left; drip leg recommended. Leak-test every field and factory joint with soap and water solution or a gas sniffer, and check supply pressure at the valve tap.",
+   "<p>Size the line from the supply regulator to the factory manual shutoff valve:</p><div class=\"kv\"><div class=\"r\"><span>Pipe length (feet)</span><span>Sch. 40 I.D. NAT / L.P. · Type L O.D. NAT / L.P.</span></div><div class=\"r\"><span>0-10</span><span>1/2\" / 3/8\" · 1/2\" / 3/8\"</span></div><div class=\"r\"><span>10-40</span><span>1/2\" / 1/2\" · 5/8\" / 1/2\"</span></div><div class=\"r\"><span>40-100</span><span>1/2\" / 1/2\" · 3/4\" / 1/2\"</span></div><div class=\"r\"><span>100-150</span><span>3/4\" / 1/2\" · 7/8\" / 5/8\"</span></div><div class=\"r\"><span>150-200</span><span>3/4\" / 1/2\" · 7/8\" / 3/4\"</span></div></div><ul><li>The inlet is a 1/2\" female NPT, so supply a ½\" NPT male fitting. Piping enters on the left side.</li><li>CSST with brass-to-brass fittings; never plastic pipe. Drip leg / sediment trap recommended. External keyed shutoff if local code requires one.</li><li>Pressure-testing the supply piping: disconnect the appliance above 1/2 psi (3.5 kPa); close its shutoff valve at or below 1/2 psi.</li><li>Leak-test all field-installed joints and the factory gas train joints with soap and water solution or a combustible gas sniffer. Supply pressure: NG 7\" W.C. (5.0\" min., 11\" max.), LP 11\" W.C. (11\" min., 13\" max.).</li></ul>"
+  ],
+  [
+   "Verify orifices & input rate",
+   "Confirm the stamped orifices (NG #38 rear / #44 front, LP #54 / #54) and manifold pressure (NG 3.5\" WC, LP 10.0\" WC, +/- 1/8\"). On natural gas, clock the meter over 30 minutes at maximum flame: at least 44,000 Btu/hr.",
+   "<ol><li>Read the size stamped on each main orifice body: NG #38 rear, #44 front; LP #54 rear, #54 front.</li><li>Check manifold pressure: NG 3.5\" WC +/- 1/8\"; LP 10.0\" WC +/- 1/8\".</li><li>Natural gas input check: turn off all other appliances and their pilots, read the gas meter, run the fireplace 30 minutes on maximum flame, turn off the burner and pilot, read the meter again.</li><li>Final minus initial reading = therms used. Multiply by 100,000, then by 2. The result must be at least 44,000 Btu/hr.</li></ol><p>De-rating at altitude: fill in the High Altitude De-Rating Label from the manual packet and attach it to the back of the listing label plate, with any LP conversion labels on the same surface. For high altitude rating methods, consult the local gas distributor or the authority having jurisdiction.</p>"
+  ],
+  [
+   "Electrical + backup DC inlet",
+   "Always-hot 120 VAC, no switch, into the left-side junction box through the supplied TO HOUSE POWER plug, grounded to code. Mount the backup DC inlet box on the 6' harness up to 5 feet left of the unit, 18\" maximum to box center.",
+   "<ol><li>Remove the junction box cover plate (two screws) on the left-side access box cover and route the house power cable through its strain relief.</li><li>Take the plug labeled TO HOUSE POWER from the manual packet. Strip the house power wires and the three color-coded wires, and join each color pair with the supplied wire nuts. Braided to braided: strip both at least ½\" and twist. Braided to solid: strip the solid ½\" and the braided ¾\".</li><li>Plug it into the plug in the back of the outlet box: house power goes in the plug towards the front of the fireplace (they can't go in the wrong place). Tuck the wire into the junction box and refit the cover plate.</li></ol><p>The supply must be hot at all times with no switch; ground per local codes or NFPA 70 / CSA C22.1. Label wires before disconnecting them during service.</p><h4>Backup DC power inlet</h4><p>Install the supplied harness, single gang box and cover plate (white or beige) on the left: the 6' harness reaches up to 5 feet left of the unit; box center 18\" maximum high, or match the room's other outlets. Don't staple the harness to the studs. Attach the DC Power Inlet decal, and show the homeowner how to connect the backup pack.</p>"
+  ],
+  [
+   "Liner, logs & glass door",
+   "Install the firebox liner kit and one log set (Norway Spruce, White Oak or Birch) with coals and inswool media per their own instructions; nothing may block the pilot or burner flame. Check the glass gasket, then refit and latch the door centered in the opening.",
+   "<ul><li>Install the firebox inner liner kit per its own instructions.</li><li>Install one log set (Norway Spruce, White Oak or Birch), coals and inswool media per the instructions that come with the set, and give a copy of them to the homeowner.</li><li>Logs and coals must not block the pilot flame or the main burner flame.</li><li>Check the glass gasket: a 4-piece assembly whose corner joints must butt together. Gaps cause exhaust leaks and acrid smells.</li><li>Refit the glass door: bottom tabs in the firebox slots, centered left to right, rotated in until the gasket touches, then hook both spring latches with the glass latch tool.</li></ul>"
+  ],
+  [
+   "Test fire & air shutters",
+   "Sync the remote and confirm the pilot lights both burners immediately and the burner cycles on/off without delay, with a stable, non-lifting flame after 5 minutes. Fine-tune the air shutters from the left air gap, about ½ hr per change.",
+   "<ul><li>Fresh batteries in the remote; synchronize it to the ignition module (sync button, then the remote's on button within seven seconds).</li><li>The pilot must light immediately and light both front and rear burners, with flame running promptly along the entire burner.</li><li>Don't proceed unless the burner cycles on/off without delays and the flame is stable, not lifting, after 5 minutes. If it lifts, check every vent pipe is twist-locked and leak-proof and the cap is right side up.</li><li>The pilot should light within five to eight seconds of sparking and rectify within five seconds.</li></ul><h4>Air shutters</h4><p>Cables in the air gap on the left side of the glass door frame: top = rear burner, bottom = front burner. With the glass latch tool in the ring terminal, push to close, pull to open. Too blue: close in small 1/8\" increments. Sooting: open fully and burn four to six hours, then close back in 1/8\" increments. LP: aim for an approximate 2\" high blue base. Try each setting approx. ½ hr. Qualified installer, service agency or gas supplier only.</p><div class=\"note\"><b>Note:</b> the lighting checklist gives an air shutter opening of 0\" to ⅛\" for natural gas and ¼\" to ½\" for LP (p. 66); section 4.13 gives 1/8\" open for natural gas and 1/2\" minimum open for LP (p. 67).</div>"
+  ],
+  [
+   "Cure & hand over",
+   "Run the 3-step curing cycle before finishing materials go on (Hi with fan level 3 for at least 2 hours, then Hi with fan off, then fan level 1). Train the owner, leave the manual packet, and complete the warranty registration.",
+   "<p>Run it before the wall finishing materials go on. Step 1 needs the blowers on so the curing smoke doesn't stain the wall finish above the fireplace.</p><ol><li>Barrier screen (required), surround, front or doors installed. Manual (Off) thermostat mode, flame Hi, fan level 3, at least 2 hours. Turn off and cool.</li><li>Manual mode, flame Hi, fan off, until curing odors diminish; leave it on.</li><li>Fan to level 1; if new odors appear, run until they diminish.</li></ol><p>More than 10 continuous hours on high isn't unusual. The smoke will set off smoke alarms; open doors and windows. Finishing materials in the non-combustible zone can see around 350° F and must be rated for it.</p><h4>Hand over</h4><p>Work through the final checklist (p. 87): leave the manual packet; train the owner on the remote and the thermostat modes, CPI and IPI, lockout reset, the backup battery, the master switch and the manual shutoff valve; explain the barrier screen and periodic maintenance; complete the online warranty registration (p. 46).</p>"
+  ]
+ ],
+ "faults": {
+  "label": "Flame & ignition troubleshooting",
+  "panels": [
+   {
+    "title": "Soot on the viewing glass",
+    "items": [
+     "Burner air shutter closed too much → open it fully",
+     "Exhaust damper closed too much → check its position and open it",
+     "Improper log and/or ember placement → check the log and coal installation",
+     "Glass door seal compromised → corners can't bulge; replace the gasket if the top-middle bulb is white through its thickness and the adhesive has failed",
+     "Incorrect gas pressure or orifice size → service person checks orifices and outlet pressure (3.5\" W.C. Nat. Gas; 10\" W.C. LP Gas)"
+    ]
+   },
+   {
+    "title": "Pilot slow to light or keeps sparking",
+    "items": [
+     "Pilot takes more than ten seconds to light (should be five to eight) → check spark rod position and ignitor wires for pinched or damaged areas",
+     "Sparking continues past five seconds after the pilot lights → dirty flame sensor: clean it with emery cloth and retry",
+     "Still sparking after cleaning → check the flame sensor lead wire for damage or grounding",
+     "Frequent lockouts → many possible causes; diagnose properly, never assume the ignition control is faulty"
+    ]
+   },
+   {
+    "title": "Delayed ignition or lifting flame",
+    "items": [
+     "Delay in ignition or flame lifting off the burner → check log/coal installation, the vent system and pilot flame impingement on the burner",
+     "Flame lifts off the burner → check all vent pipes are twist-locked and leak-proof and the vent cap is right side up",
+     "Slow flame propagation along the burner → remove obstructing debris and vacuum the burner ports",
+     "Logs or coals in the pilot or burner flame → they must not block either flame"
+    ]
+   },
+   {
+    "title": "Flame color & ghosting",
+    "items": [
+     "Flame too blue → close the air shutter in small 1/8\" increments",
+     "LP: yellow flame starting at burner level → air shutter closed too far and will soot; open it",
+     "Flames ghost off the burners, or LP sooting → open the vent damper fully, then work back in increments",
+     "Log hanging inside the yellow part of the flame → soot forms easily on that part of the log"
+    ]
+   }
+  ]
+ },
+ "codes": [],
+ "detail": {
+  "light": {
+   "tag": "Owner · operation",
+   "title": "Lighting the fireplace",
+   "cool": false,
+   "html": "<p>Your fireplace lights itself. An igniter lights the pilot, and the pilot lights the burners. Never try to light the pilot by hand, and use only the supplied remote.</p><h4>Before you start</h4><ul><li>Smell all around the fireplace for gas, including next to the floor. Some gas is heavier than air and settles low.</li><li>The master switch must be on (up). The remote can't talk to the fireplace while it's off.</li><li>Keep the glass door on. It must stay in place while the pilot lights.</li></ul><h4>Light it</h4><ol><li>Press <b>On/Off</b> on the remote. The fireplace beeps, then the igniter starts to spark.</li><li>Once the pilot is lit and steady, the gas valve opens and the burner lights at full flame.</li><li>Turn the flame down to a look you like with the remote.</li></ol><p>In a thermostat mode it only lights if your set temperature is above the room temperature. To turn it off, press <b>On/Off</b>.</p><div class=\"note danger\"><b>If the pilot doesn't light,</b> the system locks out. Press On/Off to turn it off and reset the lockout, then wait five minutes for any gas to clear before you try again. If it still won't work, turn off the gas (see Safety) and call your service technician or gas supplier.</div>"
+  },
+  "remote": {
+   "tag": "Owner · operation",
+   "title": "Using the remote",
+   "cool": false,
+   "html": "<p>The remote comes paired to your fireplace. It takes 3 AAA batteries and has to stay within 20' of the fireplace. You'll hear a beep each time a command is received. No beep? Press the button again.</p><h4>The four buttons</h4><ul><li><b>On/Off</b> starts and stops the fireplace.</li><li><b>Thermostat</b> picks the mode (below).</li><li><b>Mode</b> steps through flame height, fan speed, accent light and rear burner.</li><li><b>Up / Down</b> changes the one showing, or the set temperature.</li></ul><h4>Thermostat modes</h4><div class=\"kv\"><div class=\"r\"><span>OFF (manual)</span><span>Runs whatever the room temperature. Shuts itself off after 24 hours of continuous use.</span></div><div class=\"r\"><span>ON (thermostat)</span><span>Turns itself on and off to hold the temperature you set.</span></div><div class=\"r\"><span>SMART</span><span>Holds the temperature by turning the flame down for you as the room warms.</span></div></div><p>In ON and SMART it shuts off if it hears nothing from the remote for 60 minutes, for example if the remote is in another room or its batteries are very weak. In these modes the fan comes on five minutes after the fire starts.</p><p>Flame height, fan speed and the accent light each have six levels. Pressing Down at flame level one turns the burners off. For less heat, turn off the rear burner and lower the flame.</p><p><b>Child lock:</b> press Mode and Up together. Do it again to unlock.</p><div class=\"note danger\">Don't leave it burning unattended for long in manual mode. The room can overheat. In a bedroom or study, always use a thermostat mode.</div>"
+  },
+  "firstfire": {
+   "tag": "Owner · reassurance",
+   "title": "First fire, smells & sounds",
+   "cool": false,
+   "html": "<p>A new fireplace has to cure. Lubricants from manufacturing burn off and the paint hardens. Expect visible smoke and a strong smell while it does. That's normal. Your installer should run this before the wall finish goes on.</p><h4>The 3-step curing cycle</h4><ol><li>With the barrier screen on, run it in manual mode (thermostat OFF), flame on Hi, fan at level 3, for at least 2 hours. Turn it off and let it cool.</li><li>Run it again in manual mode on Hi, with the fan off, until the smell fades. Leave it on.</li><li>Turn the fan to level 1. If new smells appear, keep it running until they fade.</li></ol><p>More than 10 continuous hours on high isn't unusual. The smoke will set off smoke alarms, so open doors and windows.</p><h4>Later on</h4><ul><li>Slight smells at start-up fade as you use it.</li><li>After three months or more unused, expect a burnt dust and lint smell, like your furnace in the fall.</li><li>Ticks and creaks are the steel expanding and contracting. That's normal.</li><li>The wall and trim around it can get too hot to touch. That's normal too, as long as the clearances were met.</li></ul><div class=\"note\"><b>Before the first fire,</b> wipe fingerprints off the plated trim so skin oils don't etch it. Clean plated surfaces only with denatured alcohol.</div>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>Clean the glass now and then, but only once it has cooled to room temperature.</p><ul><li><b>Outside:</b> any glass cleaner you like.</li><li><b>Inside:</b> Kel Kem Polish Plus (part # 65-06-00455) or a comparable product.</li><li>Never use oven cleaner or abrasive cleaners.</li></ul><h4>That white film</h4><p>The additives that give gas its smell can harm the glass and leave a white film. It comes off if you clean it in a timely manner.</p><h4>Taking the glass off</h4><p>To reach the inside, remove the glass frame with the glass latch tool:</p><ol><li>Put the tool in the hole of each of the two top latches, pull toward you and turn 90 degrees to release it.</li><li>With both hands, tilt the top of the frame out about 8\", lift it 1\" and move it away.</li><li>To refit, set the two bottom tabs in their slots, center the frame, tilt it in until the gasket touches, and hook the latches back on with the tool.</li></ol><p>Check the gasket each time the glass is off.</p><div class=\"note danger\">Never run the fireplace with the glass off, cracked or broken, and don't strike it or slam it. Replacement glass is a job for a qualified person. A thin black film is soot, not dirt: turn the fireplace off and tell your dealer.</div>"
+  },
+  "modes": {
+   "tag": "Owner · operation",
+   "title": "Pilot modes: IPI or CPI",
+   "cool": false,
+   "html": "<p>Your fireplace lights a small pilot flame first, and the pilot then lights the burners. You choose what the pilot does between fires.</p><div class=\"kv\"><div class=\"r\"><span>IPI (Intermittent Pilot Ignition)</span><span>The pilot lights only when you call for heat, and goes out when the burners do.</span></div><div class=\"r\"><span>CPI</span><span>The pilot stays lit. It shuts off after 7 days with no use, and each use restarts the 7 days.</span></div></div><h4>To switch</h4><p>With the fireplace off, press <b>Mode</b>. The screen shows CPI or IPI. Press <b>Up</b> for CPI or <b>Down</b> for IPI, then press <b>On/Off</b> to start the fireplace. A snowflake icon shows the whole time you're in CPI.</p><h4>Why keep the pilot on in winter</h4><p>A lit pilot keeps the chimney warm, so it draws well when the burners light and lockouts are less likely. It also cuts condensation on the glass, keeps the firebox warm, and stops cold drafts and heat loss through the glass.</p><div class=\"note\"><b>Note:</b> the manual says leaving the pilot running in winter is required when daily highs stay at 50°F or lower (p. 10), and that Mendota recommends CPI when the average daily high falls below 50°F (p. 73).</div>"
+  },
+  "lockout": {
+   "tag": "Owner · operation",
+   "title": "When it won't turn on",
+   "cool": false,
+   "html": "<p>If the remote works but the fireplace won't start, it may be in lockout. That's a safety shutdown after the pilot fails to light.</p><h4>Check first</h4><ul><li>The master switch is on (up). Down turns the main burners off.</li><li>The remote is within 20' of the fireplace.</li></ul><h4>Reset a lockout</h4><ol><li>Turn the remote off.</li><li>Turn it on and wait two seconds.</li><li>Turn it off and wait two seconds.</li><li>Turn it on and wait two seconds.</li><li>Turn it off. Then turn it on and start the fireplace.</li></ol><p>After a lockout, always wait at least five minutes before you light it again. If it still won't start, or lockouts keep happening, call your Mendota dealer.</p><h4>No beep from the remote?</h4><p>Pair it again. With the master switch on, press and release the sync button. The fireplace beeps three times. Within seven seconds, press the remote's on button. Four beeps means it's paired.</p><div class=\"note\"><b>Note:</b> the manual says the master switch and sync switch are at the bottom left corner of the fireplace in the left side air gap, then that the sync switch is \"above master switch in the right-side air gap\" (both p. 69).</div>"
+  },
+  "power": {
+   "tag": "Owner · operation",
+   "title": "Power outages & batteries",
+   "cool": false,
+   "html": "<p>Normally the fireplace runs on house power. In a power outage you can still use it on the supplied backup battery pack.</p><h4>During an outage</h4><p>Plug the battery pack (6V DC maximum) into the backup power inlet. That's a wall plate with a label on it, up to 5 feet to the left of the fireplace.</p><p>The burner and flame height adjustment work on battery. The fan and accent light need house power, so they won't.</p><div class=\"note\">Keep the battery pack and its connecting harness somewhere safe so you can find them in an outage. Your installer should show you how to connect it.</div><h4>Batteries</h4><div class=\"kv\"><div class=\"r\"><span>Remote</span><span>3 AAA · change at least every 6 months</span></div><div class=\"r\"><span>Backup battery holder</span><span>4 AA</span></div></div><p>A battery icon appears on the remote's screen when its batteries are low, before they run out.</p><div class=\"note danger\">If a Versiheat or FlexHeat heat transfer system was installed so a TV can hang above the fireplace, that system must run whenever the fireplace does. Then the fireplace can't be used in a power outage.</div>"
+  },
+  "safety": {
+   "tag": "Owner · safety",
+   "title": "Safety & gas smell",
+   "cool": false,
+   "html": "<h4>If you smell gas</h4><ul><li>Don't light any appliance.</li><li>Don't touch any light switch or other electrical switch, and don't use any phone in your building.</li><li>Immediately call your gas supplier from a neighbor's phone and follow their instructions.</li><li>If you can't reach them, call the fire department.</li></ul><h4>Shutting it off</h4><p>In an emergency, flip the master switch down to turn off the main burners. To shut off the gas: press On/Off, turn off CPI pilot mode, then close the manual shutoff valve inside the left side of the fireplace. Put the tip of the glass latch tool in the hole in the valve bracket and turn it 90 degrees counterclockwise until it stops. Close any outside shutoff valve too, and turn off the power before service.</p><h4>Every day</h4><ul><li>The barrier screen must always be on when the fireplace runs. If it's damaged, replace it with Mendota's barrier.</li><li>Keep furniture and other objects at least 60\" from the screen, and nothing on the front edge of a mantel.</li><li>The glass, trim and nearby walls get very hot. Supervise children and pets. A safety gate is a good idea.</li><li>Never burn wood, paper or anything else in it.</li><li>Don't use it if any part has been under water.</li></ul>"
+  },
+  "service": {
+   "tag": "Owner · maintenance",
+   "title": "Yearly service & soot",
+   "cool": false,
+   "html": "<p>Your fireplace needs service every year, in the summer or early fall, by a qualified installer, service agency or the gas supplier. Under the warranty, keeping up with it is your job.</p><h4>What they do</h4><ul><li>Clean lint and dust from the controls and blowers, and check the wiring.</li><li>Clean the pilot flame sensor and sparker, vacuum the pilot and burner ports, and check the pilot and burner flames.</li><li>Clean the burner and logs, check the logs for carbon, and put them back as instructed.</li><li>Check the glass gasket, clean the glass and look over the vent cap.</li></ul><h4>Between service visits</h4><ul><li>Check the outside vent cap monthly for leaves, twigs and other debris.</li><li>Change the remote batteries at least every 6 months.</li><li>Expect more frequent cleaning if carpet or bedding makes a lot of lint.</li></ul><h4>Watch for soot</h4><p>A few small soot spots on the logs are acceptable. Soot areas larger than 1\"x1\" on the logs, a thin black film on the glass, or soot on the house around the vent cap mean: turn the fireplace off right away and tell your Mendota dealer. Only a qualified person should adjust the burner, pilot or logs.</p>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "Warranty at a glance",
+   "cool": false,
+   "html": "<p>Mendota (a division of Johnson Gas Appliance Company) gives the original purchaser a limited lifetime warranty, as long as the fireplace stays where it was first installed. It can't be transferred. It starts from the date of Mendota's invoice to your installing dealer, and only covers new units sold through an authorized Mendota dealer.</p><p>How long each part is covered is set out in a table on p. 88 that the manual shows only as a graphic, so check the PDF or ask your dealer.</p><h4>To make a claim</h4><p>Report the problem to your Mendota dealer within 30 days, with proof of purchase, the purchase date, the model name and the serial number. The model and serial numbers are on the listing label, a pull-out label in an air gap around the glass frame.</p><div class=\"note\"><b>Note:</b> the manual puts the listing label in the left side air gap between the glass frame and the outer edge (p. 13), and in the air gap below the bottom edge of the glass door frame (p. 75).</div><h4>What can void or limit it</h4><ul><li>Installation by anyone but an authorized dealer, or without the required permits and inspections.</li><li>Skipping annual maintenance, misuse, or over-firing.</li><li>Water damage.</li></ul><p>Discoloration, minor warping and noises from the steel expanding are normal and not covered.</p>"
+  },
+  "specInput": {
+   "tag": "Installer · spec",
+   "title": "Input rates & orifices",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Natural gas · high / low fire</span><span>44,000 / 14,100 BTUH</span></div><div class=\"r\"><span>L.P. gas · high / low fire</span><span>44,000 / 18,600 BTUH</span></div><div class=\"r\"><span>P.4 fireplace efficiency</span><span>75%</span></div></div><div class=\"note small\"><b>Maker's website:</b> CSA P.4.1 Efficiency 75%.</div><div class=\"kv\"><div class=\"r\"><span>Orifices · NG</span><span>#38 rear burner · #44 front burner</span></div><div class=\"r\"><span>Orifices · LP</span><span>#54 rear burner · #54 front burner</span></div></div><p>p. 15 lists the same orifices for 0-2000ft (610 m) and 2000-4500ft (610-1370 m); p. 45 says they apply for all elevations. Ships configured for natural gas; LP needs conversion kit # HA-110-00084. Above 7,500 ft., understand gas input derating first: check with the local gas company or Mendota Technical Service.</p><p>Never over-fire or under-fire by changing orifice sizes or adjusting gas pressure above nameplate specifications. On a \"backyard\" natural gas well, send Mendota formal gas analysis data sheets for orifice sizing before first firing.</p>"
+  },
+  "specInlet": {
+   "tag": "Installer · spec",
+   "title": "Gas supply pressure",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Natural gas</span><span>7\" W.C. (5.0\" W.C. min., 11\" W.C. max.)</span></div><div class=\"r\"><span>L.P. gas</span><span>11\" W.C. (11\" W.C. min., 13\" W.C. max.)</span></div><div class=\"r\"><span>Inlet</span><span>1/2\" N.P.T. female, piping enters on the left side</span></div></div><p>Two pressure taps on the main gas valve check input and output pressure. Disconnect the appliance and its main valve from the supply piping for test pressures above 1/2 psi (3.5 kPa); close its shutoff valve for tests at or below 1/2 psi.</p><p>Drip leg / sediment trap recommended. CSST with brass-to-brass fittings; never plastic pipe. A manual shutoff valve is factory installed in the left-side convection chamber; add an external keyed shutoff if local code requires one.</p>"
+  },
+  "specManifold": {
+   "tag": "Installer · spec",
+   "title": "Manifold pressure",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Natural gas</span><span>3.5\" WC +/- 1/8\"</span></div><div class=\"r\"><span>LP gas</span><span>10.0\" WC +/- 1/8\"</span></div></div><p>Set at the main gas valve's pressure taps during installation. The soot troubleshooting chart quotes the same outlet pressures (3.5\" W.C. Nat. Gas; 10\" W.C. LP Gas). LP conversion fits the motorized LP pressure regulator #907.012 from kit #HA-110-00084.</p><p>Pilot flames must be at least 1\" long and overlap the flame propagation ports on both the rear and front burners.</p>"
+  },
+  "specVent": {
+   "tag": "Installer · spec",
+   "title": "Venting",
+   "cool": true,
+   "html": "<p>Coaxial rigid 5\" diameter exhaust and 8\" diameter air inlet with approved vent caps. All UL Listed coaxial rigid 5\"X8\" pipe and caps are approved; don't mix brands or series. No \"low profile\" caps (exhaust recirculation and ghosting flames). Its own vent only: never common-vented or attached to a chimney serving another appliance.</p><h4>Master Venting Chart (NG and LP): vertical starter → max horizontal</h4><div class=\"kv\"><div class=\"r\"><span>9\"</span><span>12\"</span></div><div class=\"r\"><span>12\"</span><span>3' 5\"</span></div><div class=\"r\"><span>2'</span><span>12' 11\"</span></div><div class=\"r\"><span>3'</span><span>22' 6\"</span></div><div class=\"r\"><span>4' – 12'</span><span>32'</span></div><div class=\"r\"><span>12' – 40'</span><span>varies (read from the chart)</span></div></div><div class=\"kv\"><div class=\"r\"><span>Max vertical run</span><span>40'</span></div><div class=\"r\"><span>Max vent system length</span><span>44' (all straight sections combined)</span></div><div class=\"r\"><span>Horizontal terminations</span><span>up to three 90° elbows with a 4' to 12' starter</span></div><div class=\"r\"><span>Vertical terminations</span><span>four 90° elbows (4 feet minimum starter); the fourth points straight up to the cap</span></div></div><p>Starter under 4': the chart already counts one 90° elbow; subtract 3' for each additional 90° elbow. Each horizontally positioned 45° elbow takes 1½' off the maximum horizontal distance, and two 45° elbows can replace one 90°. Run horizontal pipe level or with a ¼\" rise per foot toward the cap, never downward, with a support every 3 ft. Above 7500, contact Mendota technical service.</p><p>Power venting: 1' to 80' total, up to 6 90° elbows, 4\" x 6 5/8\" pipe (reducer in the kit; 5\" x 8\" adapter 45-01-00424 sold separately). Kits AA-11-04071 (horizontal, under 25 feet), AA-11-04072 (horizontal, over 25 feet), AA-11-04100 (vertical).</p><div class=\"note\"><b>Note:</b> the chart on p. 55 and p. 60 (twice) give the maximum vertical run as 40'; for two 45° elbows on top of the fireplace, p. 60 also says \"Doing so will continue to allow the use of the 51 feet maximum vertical run.\" The whole vent system is limited to 44'.</div><div class=\"note\"><b>Note:</b> the manual says sealant isn't required at vent joints and never to use silicone, with stove gasket cement optional (pp. 34, 46, 54), but also \"Be sure 1000°F sealant is used in the inner pipe joints of all pipe sections manufactured by Simpson DuraVent\" (p. 58).</div>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances, mantels & side walls",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Unit to floor</span><span>0in. (0mm)</span></div><div class=\"r\"><span>Unit to enclosure sidewall</span><span>1/2in. (13mm)</span></div><div class=\"r\"><span>Unit to enclosure back wall</span><span>1/2in. (13mm)</span></div><div class=\"r\"><span>Unit bottom to enclosure ceiling</span><span>54 in. (137 cm)</span></div><div class=\"r\"><span>Unit bottom to room ceiling</span><span>72 in. (1829 mm)</span></div><div class=\"r\"><span>Inner guide edge to adjacent sidewall</span><span>16in. (406 mm)</span></div><div class=\"r\"><span>Vent pipe top / sides / bottom</span><span>3in. (76mm) / 1in. (25mm) / 1in. (25mm)</span></div><div class=\"r\"><span>8\" mantel above top convection air opening</span><span>22 in. (559 mm)</span></div></div><h4>Mantels</h4><p>An 8\" combustible mantel goes at least 22\" above the top of the heat outlet, 48-1/2\" up from the fireplace floor (floor to top air gap is 26-1/2\"). Deeper mantels rise 1:1: a 12\" mantel goes 26\" above the convection air opening. Non-combustible mantels can go at any height. A pre-existing combustible mantel must fit the allowable mantel profile chart, which the manual gives only as a diagram (Figure 3-11, p. 24).</p><h4>Side walls</h4><p>16\" from the side edge of the visible glass to a combustible side wall; walls, corbels, mantel legs and decorative objects must stay behind a 45-degree line from the glass edges unless more than 16\" away. NFPA 211 reductions: a 20-gauge or heavier steel shield on 1\" standoffs, 12\" larger than the heat source each way, takes 16\" to 5-3/8\" (66%); R-1 ceramic or mineral board takes it to 8\" (50%).</p><h4>TV above the fireplace</h4><p>Mendota's recommendations (pp. 32-33): a mantel at least 2 inches deeper than the TV and as wide, its top at least 12 inches above the top air gap (if the mantel is combustible, make certain the entire mantel meets the clearances to combustible mantel requirements); or a recessed cavity 6 inches taller and wider than the TV, its bottom at least 16 inches above the top air gap, with the TV recessed 2 inches; or a Cool Wall, Versiheat (two fans) or FlexHeat heat transfer system, tested for a TV 12\" above the top air gap, with the convection fans off.</p><div class=\"note\"><b>Note:</b> the manual gives a 3\" clearance above horizontal vent pipe (pp. 15, 54, 57, 58 and the first paragraph of p. 60) and <i>2\" above horizontal runs</i> in the vertical venting steps (p. 60).</div>"
+  },
+  "specFraming": {
+   "tag": "Installer · spec",
+   "title": "Framing, unit size & finishing",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Enclosure framing width</span><span>50\"</span></div><div class=\"r\"><span>Finished framing width</span><span>43\"</span></div><div class=\"r\"><span>Framing height</span><span>41\"</span></div><div class=\"r\"><span>Framing depth</span><span>20\"</span></div><div class=\"r\"><span>Finish material thickness</span><span>1\"</span></div><div class=\"r\"><span>Unit base to room ceiling</span><span>72\"</span></div><div class=\"r\"><span>To side wall</span><span>16\"</span></div><div class=\"r\"><span>To 8\" mantel</span><span>48 ½\"</span></div></div><h4>The unit (Figure 3-4)</h4><div class=\"kv\"><div class=\"r\"><span>Overall width / width at front</span><span>46 5/8\" / 42\"</span></div></div><div class=\"note small\"><b>Maker's website:</b> Front Width 43″; Rear Width 50″.</div><div class=\"kv\"><div class=\"r\"><span>Height / depth</span><span>40 1/2\" / 19 1/2\"</span></div></div><div class=\"note small\"><b>Maker's website:</b> Height 41″; Depth 20″.</div><div class=\"kv\"><div class=\"r\"><span>Net weight</span><span>300 lbs. (team lift recommended)</span></div><div class=\"r\"><span>Gas inlet</span><span>1/2\" FNPT, left side</span></div></div><p>Leave room on the left for the gas and electrical hookups, then frame the front to 43\" once the unit is in place. In a cavity deeper than 20\", all framing and finish protruding past the fireplace face must be non-combustible.</p><h4>Finishing</h4><ul><li>Non-combustible zone materials must meet NFPA 220 or pass ASTM E 136. Paper-faced gypsum board (including Type X) and WonderBoard are not non-combustible.</li><li>That zone can see around 350° F. For a smooth wall, float the board over the face from the framing (never screwed to the metal face), with no seams above the fireplace.</li><li>Finishing guides protrude 1\". Grace, Willowbrook and Mission fronts need a Flush Mount (finish under 3\") or Recessed Mount guide kit; wall finish deeper than 2 ½\" needs the Recessed Mount kit. Door installation needs a faceplate.</li></ul>"
+  },
+  "specHearth": {
+   "tag": "Installer · spec",
+   "title": "Hearth pad",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Directly on the floor</span><span>R-1 non-combustible, 18\" in front</span></div><div class=\"r\"><span>Raised</span><span>2\" less depth for every 1\" raised</span></div><div class=\"r\"><span>Raised 6\" or more</span><span>no R-1 hearth protector required (pp. 12, 25)</span></div><div class=\"r\"><span>Pad thickness</span><span>1-1/2\" maximum (pp. 12, 17)</span></div></div><p>No R-1 rating is needed under the fireplace itself, which can sit on a wood or cement floor. Raising it only removes the R-1 requirement: the floor in front still gets hot up to 200 °F, and with carpet, vinyl or laminate in front, raising it at least 12\" is recommended. The pad's top surface can reach 250°F, which is normal.</p><p>The standard bottom finishing guide sits 1 1/2\" above the bottom of the fireplace. Build the pad level with it, or raise the fireplace and cover the gap with non-combustible wall finish; a 4\" pad means raising the fireplace 2 1/2\".</p><h4>Insulating boards (only under other non-combustible finish)</h4><div class=\"kv\"><div class=\"r\"><span>Ceramic board, Rescor 360, 1/2\"</span><span>R 1.11</span></div><div class=\"r\"><span>Ceramic board, Fiberfrax Duraboard LD, 1/2\"</span><span>R 1.10</span></div><div class=\"r\"><span>Mineral fiber board, Micore 160 / 300 / SB, 1/2\"</span><span>R 1.27 – 1.47 (p. 25) · 1.2 – 1.4 (p. 27)</span></div></div><p>Most finishes add little: 1\" granite is 0.05, 1\" marble 0.08, 1/4\" ceramic tile 0.25.</p><div class=\"note\"><b>Note:</b> the manual gives the R-value of 1/2\" Micore mineral fiber board as 1.27 – 1.47 on p. 25 and 1.2 – 1.4 on p. 27.</div><div class=\"note\"><b>Note:</b> the manual says no hearth pad is required when the fireplace is raised <i>6\" or higher</i> (p. 12) or <i>6\" or more</i> (p. 25), but <i>more than 6\"</i> on p. 17.</div>"
+  },
+  "specElec": {
+   "tag": "Installer · spec",
+   "title": "Electrical",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>AC supply</span><span>120 VAC · hot at all times, no switch</span></div><div class=\"r\"><span>Rating</span><span>1.5 Amps (p. 15) · 2 Amp (p. 39)</span></div><div class=\"r\"><span>Minimum line voltage</span><span>110 Volts AC</span></div><div class=\"r\"><span>Outage backup</span><span>battery pack, 6V DC maximum</span></div><div class=\"r\"><span>In the manual packet</span><span>backup battery holder (4 AA) and backup power harness</span></div><div class=\"r\"><span>Remote transmitter</span><span>3 AAA</span></div><div class=\"r\"><span>Convection blowers</span><span>dual, 190 CFM (in free air)</span></div><div class=\"r\"><span>Accent light bulb</span><span>G9 Xenon 25W · 10-11-00020</span></div></div><p>Junction box with strain relief on the left-side access box cover; connect with the supplied wire nuts and ground per local codes or NFPA 70 / CSA C22.1. On battery backup the burner and flame height work; the fan and accent light don't. The backup DC inlet box goes up to 5 feet left of the unit on the 6' harness.</p><div class=\"note\"><b>Note:</b> the manual gives the electrical rating as 120 Volts AC, 1.5 Amps in the ratings information (p. 15) and 120 VAC, 2 Amp power in the AC power requirements (p. 39).</div>"
+  }
+ },
+ "pageref": {
+  "light": 74,
+  "remote": 70,
+  "firstfire": 11,
+  "glass": 77,
+  "modes": 73,
+  "lockout": 78,
+  "power": 76,
+  "safety": 74,
+  "service": 76,
+  "warranty": 88,
+  "specInput": 15,
+  "specInlet": 15,
+  "specManifold": 45,
+  "specVent": 55,
+  "specClear": 15,
+  "specFraming": 20,
+  "specHearth": 25,
+  "specElec": 39,
+  "step0": 47,
+  "step1": 20,
+  "step2": 50,
+  "step3": 54,
+  "step4": 42,
+  "step5": 45,
+  "step6": 39,
+  "step7": 65,
+  "step8": 66,
+  "step9": 11
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "safety",
+   "t": "shut off gas",
+   "p": "Master switch down, then the manual shutoff valve"
+  },
+  {
+   "k": "h",
+   "id": "lockout",
+   "t": "won't light",
+   "p": "Reset a lockout; wait five minutes before relighting"
+  },
+  {
+   "k": "h",
+   "id": "lockout",
+   "t": "sync remote",
+   "p": "Sync button, then the remote's on button within seven seconds"
+  },
+  {
+   "k": "h",
+   "id": "modes",
+   "t": "pilot light stays on",
+   "p": "CPI keeps the pilot lit for 7 days"
+  },
+  {
+   "k": "h",
+   "id": "firstfire",
+   "t": "smoke alarm",
+   "p": "Curing smoke sets off smoke alarms; open doors and windows"
+  },
+  {
+   "k": "i",
+   "id": "step2",
+   "t": "propane conversion",
+   "p": "Kit #HA-110-00084: #54 orifices, motorized LP regulator"
+  },
+  {
+   "k": "i",
+   "id": "specClear",
+   "t": "TV above fireplace",
+   "p": "Mantel, recessed cavity or a heat transfer system"
+  },
+  {
+   "k": "i",
+   "id": "specVent",
+   "t": "power vent",
+   "p": "Kits AA-11-04071, AA-11-04072, AA-11-04100"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "specVent",
+    "issue": "Maximum vertical run: 40' (Master Venting Chart, p. 55; twice in Vertical Through-The Roof Venting, p. 60) vs \"the 51 feet maximum vertical run\" with two 45° elbows on top of the fireplace (p. 60).",
+    "pages": [
+     [
+      1,
+      55
+     ],
+     [
+      1,
+      60
+     ]
+    ],
+    "class": "substantive",
+    "reason": "The manual settles it: the same p. 60 sentence says the offset 'will continue to allow' the maximum vertical run, which that page gives twice as 40 ft; p. 55 gives 40'; and a 51' vertical run would exceed the manual's 44' maximum vent system length (pp. 55, 56, 58)."
+   },
+   {
+    "where": "specVent",
+    "issue": "Vent joint sealant: not required / no silicone, stove gasket cement optional (pp. 34, 46, 54) vs \"Be sure 1000°F sealant is used in the inner pipe joints of all pipe sections manufactured by Simpson DuraVent\" (p. 58).",
+    "pages": [
+     [
+      1,
+      34
+     ],
+     [
+      1,
+      46
+     ],
+     [
+      1,
+      54
+     ],
+     [
+      1,
+      58
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "specClear",
+    "issue": "Clearance above horizontal vent pipe: 3\" (pp. 15, 54, 57, 58 and first paragraph of p. 60) vs '2\" above horizontal runs' (p. 60, step 4). Also flagged in step3.",
+    "pages": [
+     [
+      1,
+      15
+     ],
+     [
+      1,
+      54
+     ],
+     [
+      1,
+      57
+     ],
+     [
+      1,
+      58
+     ],
+     [
+      1,
+      60
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "step3",
+    "issue": "Wall opening for a horizontal termination: 10-3/4\" x 10-3/4\" (Minimum Rise Horizontal Termination, p. 57) vs 10 ½\" x 10 ½\" (Vertical Rise Horizontal Termination, p. 58).",
+    "pages": [
+     [
+      1,
+      57
+     ],
+     [
+      1,
+      58
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "specElec",
+    "issue": "Electrical rating: 120 Volts AC, 1.5 Amps (ratings information, p. 15) vs 120 VAC, 2 Amp (3.3 AC power requirements, p. 39).",
+    "pages": [
+     [
+      1,
+      15
+     ],
+     [
+      1,
+      39
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "step8",
+    "issue": "Air shutter opening: 0\" to ⅛\" NG and ¼\" to ½\" LP (4.12 Lighting Checklist, p. 66) vs 1/8\" open NG and 1/2\" minimum open LP (4.13, p. 67).",
+    "pages": [
+     [
+      1,
+      66
+     ],
+     [
+      1,
+      67
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "lockout",
+    "issue": "Master/sync switch location: both \"on the bottom left corner of the fireplace in the left side air gap\" (note) vs sync switch \"above master switch in the right-side air gap\" (step 2), both p. 69.",
+    "pages": [
+     [
+      1,
+      69
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "modes",
+    "issue": "Winter pilot: \"It is required to activate the Standing Pilot Mode\" when daily highs remain 50°F or lower (p. 10) vs \"Mendota recommends that CPI mode is used\" when the average daily high falls below 50°F (p. 73); the final checklist says CPI \"is suggested during cold season\" (p. 87).",
+    "pages": [
+     [
+      1,
+      10
+     ],
+     [
+      1,
+      73
+     ],
+     [
+      1,
+      87
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "warranty",
+    "issue": "Listing label location: left side air gap between the glass frame and outer edge, on a chain (p. 13; \"air gap on the side\", p. 45) vs the air gap below the bottom edge of the glass door frame, on a cable (p. 75).",
+    "pages": [
+     [
+      1,
+      13
+     ],
+     [
+      1,
+      45
+     ],
+     [
+      1,
+      75
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "specHearth",
+    "issue": "R-value of 1/2\" Micore mineral fiber board: 1.27 – 1.47 (p. 25) vs 1.2 – 1.4 (p. 27).",
+    "pages": [
+     [
+      1,
+      25
+     ],
+     [
+      1,
+      27
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "specHearth",
+    "issue": "Hearth pad threshold: none required when raised '6\" or higher' (p. 12), '6\" or more' (p. 25) and 'at least 6\"' (p. 10) vs 'more than 6\"' (p. 17).",
+    "pages": [
+     [
+      1,
+      10
+     ],
+     [
+      1,
+      12
+     ],
+     [
+      1,
+      17
+     ],
+     [
+      1,
+      25
+     ]
+    ],
+    "class": "substantive"
+   }
+  ],
+  "catalog_mismatches": [
+   {
+    "model": "mendota-fv36-traditional",
+    "field": "height_in",
+    "catalog": "41",
+    "manual": "Unit height 40 1/2\" (Figure 3-4). 41\" is the minimum framing height (p. 20).",
+    "page": [
+     1,
+     18
+    ],
+    "shown": "specFraming"
+   },
+   {
+    "model": "mendota-fv36-traditional",
+    "field": "width_in",
+    "catalog": "43",
+    "manual": "Overall unit width 46 5/8\", unit width at front 42\" (Figure 3-4). 43\" is the finished framing width (p. 20).",
+    "page": [
+     1,
+     18
+    ],
+    "shown": "specFraming"
+   },
+   {
+    "model": "mendota-fv36-traditional",
+    "field": "depth_in",
+    "catalog": "20",
+    "manual": "Unit depth 19 1/2\" (Figure 3-4). 20\" is the minimum framing depth (p. 20).",
+    "page": [
+     1,
+     18
+    ],
+    "shown": "specFraming"
+   },
+   {
+    "model": "mendota-fv36-traditional",
+    "field": "rear_width_in",
+    "catalog": "50″",
+    "manual": "Overall unit width 46 5/8\" (Figure 3-4); the manual gives no separate rear width. 50\" is the minimum enclosure framing width (pp. 15, 17, 20).",
+    "page": [
+     1,
+     18
+    ],
+    "shown": "specFraming"
+   },
+   {
+    "model": "mendota-fv36-traditional",
+    "field": "efficiency_basis",
+    "catalog": "CSA P.4.1 Efficiency 75%",
+    "manual": "P.4 FIREPLACE EFFICIENCY 75% (ratings information).",
+    "page": [
+     1,
+     15
+    ],
+    "shown": "specInput"
+   }
+  ],
+  "notes": "One manual: FV36 FullView Installation and Operating Instructions 85-03-01110-T (92 pp.). The word 'Traditional' never appears; the guide covers the log-set FV36 the manual describes (Norway Spruce, White Oak or Birch log sets), and 'Mendota FV36 Traditional' comes from the catalog/plan name. Catalog BTU (NG 14,100-44,000, LP 18,600-44,000) and 75% efficiency match p. 15 (the manual says 'P.4', the catalog 'P.4.1'). Catalog view_area 37 1/8 x 25 1/8 equals the manual's finishing guide width/height (p. 18); the manual states no viewing area, so it isn't listed as a mismatch. Not transcribed (graphic only): the warranty coverage-period table on p. 88 (no text; the warranty drawer says so), the allowable mantel profile chart (Fig. 3-11, p. 24), the curve values on the Master Venting Chart (only its V min / H max text table is used, p. 55), the p. 59 V / H1+H2 table (it sits between a three-elbow and a dual-elbow diagram and the text doesn't say which it belongs to), and the side wall / body clearance figures (p. 22 has no text). Exterior termination letters A-N on p. 37 pair differently in the raw and layout text, so only plainly worded items are quoted (permanently closed window and non-mechanical air inlet minimums left out). Wording differences noted but not shown as conflicts: fan run-on after the flames go out is 12-1/2 minutes (p. 70) vs 12 minutes (p. 87), so the guide gives no run-on time; 'AUX On function is not used in this fireplace' (p. 71) vs Auxiliary turns optional heat transfer kits on and off (p. 72), so AUX isn't mentioned; p. 54 says the FV36 'must be vented vertically to the outside' while pp. 36, 57-58 approve horizontal terminations after a vertical starter (guide gives the approved configurations); power is 110VAC on pp. 18 and 76 and 120 VAC with a 110 V minimum on pp. 15 and 39 (owner drawers just say house power); the accent light 'comes installed' (p. 49) though the checklist says to install it (p. 46), so it isn't an install step. The manual names CPI 'Pilot on Demand' (p. 73) and also 'Standing Pilot Mode' (p. 10); the guide doesn't expand CPI. Two lockout resets exist: press ON/OFF and wait five minutes (p. 74) and the off/on sequence (p. 78); both are used. p. 70 prints the manual-mode auto shut-off as '2 4 hours' (text spacing); the guide says 24 hours. Pages 61, 84 and 92 are nearly text-free figures/back cover."
+ }
+}

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jøtul GF 300 BV Allagash — Owner &amp; Installer Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* cast iron in shadow */
+    --iron:#191512; --iron-2:#241f1a; --iron-3:#322b24;
+    /* heat */
+    --ember:#e8682c; --ember-2:#c4521f; --amber:#f5a623;
+    /* gas pilot flame — the cool counter-accent, true to the subject */
+    --pilot:#5f93b8; --pilot-deep:#37607d;
+    /* warm reading surfaces */
+    --paper:#f1ece2; --paper-2:#fbf8f2; --card:#ffffff;
+    --ink:#23201b; --ink-soft:#6e655a; --hair:#e0d8c9;
+    --ok:#3f7d54; --warn:#b06a13;
+    --shadow:0 1px 2px rgba(30,22,14,.06),0 8px 24px rgba(30,22,14,.07);
+    --display:"Bricolage Grotesque",system-ui,sans-serif;
+    --body:"Inter",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.5}
+  .mono{font-family:var(--mono)}
+
+  /* ---------- top chrome ---------- */
+  header{position:sticky;top:0;z-index:40;background:var(--iron);color:#f3ece2;
+    display:flex;align-items:center;gap:14px;padding:11px 18px;border-bottom:1px solid #000}
+  .brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;letter-spacing:.16em;font-size:14px}
+  .flame{width:18px;height:18px;flex:none}
+  .brand small{font-weight:600;letter-spacing:.02em;color:#b6ab9b;font-family:var(--body);font-size:11px;display:block;letter-spacing:.04em}
+  .brand-wrap{display:flex;flex-direction:column;line-height:1.15}
+  .spacer{flex:1}
+  /* role toggle */
+  .toggle{display:flex;background:#0e0b09;border:1px solid #3a322a;border-radius:999px;padding:3px}
+  .toggle button{font-family:var(--body);font-weight:600;font-size:12.5px;color:#9b9183;background:none;border:none;
+    padding:7px 15px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.18s}
+  .toggle button[aria-pressed="true"]{color:#fff}
+  .toggle button.home[aria-pressed="true"]{background:linear-gradient(180deg,var(--ember),var(--ember-2));box-shadow:0 0 14px rgba(232,104,44,.5)}
+  .toggle button.inst[aria-pressed="true"]{background:linear-gradient(180deg,var(--pilot),var(--pilot-deep));box-shadow:0 0 14px rgba(95,147,184,.45)}
+  .toggle .dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.55}
+  .search{display:flex;align-items:center;gap:7px;background:#0e0b09;border:1px solid #3a322a;border-radius:9px;padding:7px 11px;min-width:120px}
+  .search input{background:none;border:none;color:#f3ece2;font-family:var(--body);font-size:13px;width:100%;outline:none}
+  .search input::placeholder{color:#7d7468}
+  .search svg{flex:none;opacity:.6}
+  .pdf{display:flex;align-items:center;gap:7px;background:none;border:1px solid #4a4138;color:#d9cfc0;
+    font-family:var(--body);font-weight:600;font-size:12.5px;padding:8px 13px;border-radius:9px;cursor:pointer;text-decoration:none;transition:.18s}
+  .pdf:hover{border-color:var(--ember);color:#fff}
+
+  /* ---------- ignition gate ---------- */
+  .gate{min-height:calc(100vh - 56px);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(120% 80% at 50% 110%,#3a1f10 0%,#1a120c 45%,#100c09 100%);color:#f3ece2;padding:40px 22px;text-align:center}
+  .gate .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.32em;color:var(--amber);text-transform:uppercase;margin-bottom:18px}
+  .gate h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,58px);line-height:1.02;letter-spacing:-.01em;max-width:14ch}
+  .gate .sub{color:#c4b8a7;max-width:46ch;margin:18px auto 6px;font-size:clamp(15px,2vw,17px)}
+  .gate .model{font-family:var(--mono);color:#8c8174;font-size:12.5px;margin-bottom:42px;letter-spacing:.04em}
+  .cards{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;width:100%;max-width:760px}
+  .ignite{position:relative;flex:1 1 300px;min-width:270px;text-align:left;cursor:pointer;border:1px solid #4a3c2e;border-radius:18px;
+    padding:26px 24px 22px;background:linear-gradient(180deg,#211913,#171009);overflow:hidden;transition:transform .22s,border-color .22s,box-shadow .22s}
+  .ignite:hover{transform:translateY(-4px);border-color:var(--ember)}
+  .ignite.cool:hover{border-color:var(--pilot)}
+  .ignite::after{content:"";position:absolute;inset:auto -40% -60% -40%;height:70%;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(232,104,44,.55),transparent);opacity:0;transition:opacity .3s}
+  .ignite.cool::after{background:radial-gradient(closest-side,rgba(95,147,184,.5),transparent)}
+  .ignite:hover::after{opacity:1}
+  .ignite .ic{width:40px;height:40px;margin-bottom:16px;color:var(--ember)}
+  .ignite.cool .ic{color:var(--pilot)}
+  .ignite h2{font-family:var(--display);font-weight:700;font-size:24px;color:#fff;letter-spacing:-.01em}
+  .ignite p{color:#b3a795;font-size:14px;margin-top:7px}
+  .ignite .go{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-weight:600;font-size:13px;color:var(--ember);position:relative;z-index:1}
+  .ignite.cool .go{color:var(--pilot)}
+  .gate .foot{margin-top:38px;color:#7d7468;font-size:12.5px}
+  .gate .foot a{color:#b6ab9b}
+
+  /* ---------- views ---------- */
+  .view{display:none;max-width:1080px;margin:0 auto;padding:34px 22px 90px}
+  .view.active{display:block;animation:rise .4s ease}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .vhead{margin-bottom:26px}
+  .vhead .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:9px}
+  .vhead .eyebrow .pip{width:9px;height:9px;border-radius:50%}
+  .home-pip{background:var(--ember)} .inst-pip{background:var(--pilot)}
+  .vhead h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,4.5vw,38px);letter-spacing:-.015em;margin-top:8px}
+  .vhead p{color:var(--ink-soft);max-width:60ch;margin-top:7px;font-size:15px}
+
+  .seclabel{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+  .seclabel::after{content:"";flex:1;height:1px;background:var(--hair)}
+
+  /* action tiles (homeowner) */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .tile{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px 18px 16px;cursor:pointer;
+    text-align:left;font:inherit;color:inherit;box-shadow:var(--shadow);transition:transform .16s,border-color .16s}
+  .tile:hover{transform:translateY(-3px);border-color:var(--ember)}
+  .tile .ic{width:26px;height:26px;color:var(--ember);margin-bottom:12px}
+  .tile h3{font-family:var(--display);font-weight:700;font-size:17px;letter-spacing:-.01em}
+  .tile p{color:var(--ink-soft);font-size:13px;margin-top:4px}
+
+  /* spec cards (installer) */
+  .specs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .spec{background:var(--card);border:1px solid var(--hair);border-left:3px solid var(--pilot);border-radius:12px;padding:16px 17px;box-shadow:var(--shadow)}
+  .spec .lab{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .spec .rows{margin-top:10px;display:flex;flex-direction:column;gap:7px}
+  .spec .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px}
+  .spec .row b{font-weight:500;color:var(--ink-soft)}
+  .spec .row .v{font-family:var(--mono);font-weight:700;font-size:14px;color:var(--ink);text-align:right}
+
+  /* checklist */
+  .checklist{background:var(--card);border:1px solid var(--hair);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+  .step{display:flex;gap:14px;padding:14px 16px;border-bottom:1px solid var(--hair);cursor:pointer;align-items:flex-start;transition:background .12s}
+  .step:last-child{border-bottom:none}
+  .step:hover{background:#faf6ee}
+  .step .num{flex:none;width:26px;height:26px;border-radius:7px;background:var(--iron);color:#f3ece2;font-family:var(--mono);font-weight:700;
+    font-size:12.5px;display:grid;place-items:center;margin-top:1px}
+  .step.done .num{background:var(--ok)}
+  .step .body h4{font-family:var(--display);font-weight:600;font-size:15.5px}
+  .step .body p{color:var(--ink-soft);font-size:13px;margin-top:2px}
+  .step .check{margin-left:auto;flex:none;width:20px;height:20px;border:2px solid var(--hair);border-radius:6px;margin-top:3px;display:grid;place-items:center}
+  .step.done .check{background:var(--ok);border-color:var(--ok)}
+  .step.done .check svg{display:block}
+  .step .check svg{display:none}
+
+  /* two-column callouts */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .panel{background:var(--card);border:1px solid var(--hair);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  .panel h3{font-family:var(--display);font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px}
+  .panel.warn h3{color:var(--warn)} .panel.warn{border-left:3px solid var(--warn)}
+  .panel ul{list-style:none;margin-top:11px;display:flex;flex-direction:column;gap:9px}
+  .panel li{font-size:13.5px;color:#473f36;padding-left:16px;position:relative}
+  .panel li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--pilot)}
+  .panel.warn li::before{background:var(--warn)}
+
+  /* led codes */
+  .codes{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .code{background:var(--iron);color:#f3ece2;border-radius:11px;padding:14px}
+  .code .blinks{display:flex;gap:5px;margin-bottom:9px}
+  .code .b{width:9px;height:9px;border-radius:50%;background:#3a322a}
+  .code .b.on{background:var(--amber);box-shadow:0 0 8px var(--amber)}
+  .code .t{font-family:var(--display);font-weight:600;font-size:14px}
+  .code .d{font-size:11.5px;color:#a89c8c;margin-top:2px}
+
+  /* ---------- detail drawer ---------- */
+  .scrim{position:fixed;inset:0;background:rgba(20,14,8,.5);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:.22s;z-index:60}
+  .scrim.open{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(480px,100%);background:var(--paper-2);z-index:70;
+    transform:translateX(100%);transition:transform .28s cubic-bezier(.4,0,.1,1);overflow-y:auto;box-shadow:-20px 0 50px rgba(20,14,8,.25)}
+  .drawer.open{transform:none}
+  .drawer .dh{position:sticky;top:0;background:var(--iron);color:#f3ece2;padding:18px 20px;display:flex;align-items:flex-start;gap:12px}
+  .drawer .dh .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+  .drawer .dh h2{font-family:var(--display);font-weight:700;font-size:21px;margin-top:5px;letter-spacing:-.01em}
+  .drawer .dh .x{margin-left:auto;background:#0e0b09;border:1px solid #3a322a;color:#d9cfc0;width:32px;height:32px;border-radius:8px;cursor:pointer;flex:none;font-size:18px;line-height:1}
+  .dcontent{padding:22px 24px 60px}
+  .dcontent h4{font-family:var(--display);font-weight:700;font-size:15px;margin:20px 0 8px;color:var(--ink)}
+  .dcontent h4:first-child{margin-top:0}
+  .dcontent p{font-size:14px;color:#473f36;margin-bottom:11px}
+  .dcontent ol,.dcontent ul{margin:0 0 13px 2px;display:flex;flex-direction:column;gap:9px}
+  .dcontent ol{counter-reset:s;list-style:none}
+  .dcontent ol li{position:relative;padding-left:32px;font-size:14px;color:#473f36}
+  .dcontent ol li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:-1px;width:22px;height:22px;border-radius:6px;
+    background:var(--ember);color:#fff;font-family:var(--mono);font-weight:700;font-size:11.5px;display:grid;place-items:center}
+  .dcontent.cool ol li::before{background:var(--pilot)}
+  .dcontent ul{list-style:none}
+  .dcontent ul li{position:relative;padding-left:18px;font-size:14px;color:#473f36}
+  .dcontent ul li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--ember)}
+  .dcontent.cool ul li::before{background:var(--pilot)}
+  .note{background:#fcf3e3;border:1px solid #f0dcb4;border-radius:10px;padding:13px 15px;font-size:13.5px;color:#6b5320;margin:14px 0}
+  .note.danger{background:#fbe9e3;border-color:#f0c4b4;color:#8a3a1d}
+  .note b{font-weight:600}
+  .kv{font-family:var(--mono);font-size:13.5px;background:#efe9dd;border-radius:8px;padding:11px 13px;display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+  .kv .r{display:flex;justify-content:space-between;gap:12px}
+  .kv .r span:last-child{font-weight:700}
+
+  /* search results */
+  .results{position:fixed;top:56px;left:0;right:0;z-index:50;background:var(--paper-2);border-bottom:1px solid var(--hair);
+    box-shadow:0 18px 40px rgba(20,14,8,.18);max-height:70vh;overflow-y:auto;display:none}
+  .results.open{display:block}
+  .results .inner{max-width:1080px;margin:0 auto;padding:18px 22px 24px}
+  .results .rl{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:12px}
+  .ritem{display:flex;gap:12px;align-items:flex-start;padding:12px 13px;border-radius:11px;cursor:pointer;border:1px solid transparent}
+  .ritem:hover{background:#fff;border-color:var(--hair)}
+  .ritem .badge{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:3px 7px;border-radius:5px;flex:none;margin-top:1px}
+  .badge.h{background:#fbe6da;color:var(--ember-2)} .badge.i{background:#e2edf4;color:var(--pilot-deep)}
+  .ritem h4{font-family:var(--display);font-weight:600;font-size:15px}
+  .ritem p{font-size:12.5px;color:var(--ink-soft);margin-top:1px}
+  .rempty{color:var(--ink-soft);font-size:14px;padding:6px 2px}
+  .rgroup{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);
+    margin:16px 0 8px;display:flex;align-items:center;gap:9px}
+  .rgroup:first-child{margin-top:0}
+  .rgroup .ct{background:var(--hair);color:var(--ink-soft);border-radius:999px;padding:1px 8px;letter-spacing:.04em}
+  .ritem .pg{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--ink-soft);
+    border:1px solid var(--hair);border-radius:6px;padding:3px 7px;flex:none;margin-top:1px;white-space:nowrap}
+  .ritem .snip{font-size:12.5px;color:#5d544a;margin-top:3px;line-height:1.45}
+  .ritem .snip mark{background:#ffe7b3;color:#5a4310;border-radius:3px;padding:0 2px}
+  .ritem .jump{margin-left:auto;flex:none;align-self:center;color:var(--ink-soft);opacity:.5}
+
+  .demo-tag{position:fixed;left:14px;bottom:14px;z-index:30;background:var(--iron);color:#cdbfab;font-size:11.5px;
+    padding:7px 12px;border-radius:999px;border:1px solid #3a322a;font-family:var(--mono);letter-spacing:.03em}
+
+  @media(max-width:720px){
+    header{flex-wrap:wrap;gap:9px;padding:10px 13px}
+    .brand{order:1} .pdf{order:2;margin-left:auto} .search{order:4;flex:1 1 100%;min-width:0}
+    .toggle{order:3;flex:1 1 100%;justify-content:center}
+    .toggle button{flex:1;justify-content:center}
+    .twocol{grid-template-columns:1fr}
+    .results{top:auto}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto}}
+  /* deep-link to the exact manual page (in the drawer) */
+  .manlink{display:flex;align-items:center;gap:13px;margin-top:24px;padding:14px 16px;border-radius:12px;text-decoration:none;
+    background:linear-gradient(180deg,#fdf1e9,#fce7da);border:1px solid #f0cdb6;color:var(--ember-2);transition:transform .18s,box-shadow .18s,border-color .18s}
+  .manlink:hover{border-color:var(--ember);box-shadow:0 7px 20px rgba(232,104,44,.18);transform:translateY(-1px)}
+  .manlink.cool{background:linear-gradient(180deg,#eef4f8,#e2edf4);border-color:#c2d6e3;color:var(--pilot-deep)}
+  .manlink.cool:hover{border-color:var(--pilot);box-shadow:0 7px 20px rgba(95,147,184,.2)}
+  .manlink .ic{flex:none;width:32px;height:32px;display:grid;place-items:center;border-radius:9px;background:#fff;color:var(--ember)}
+  .manlink.cool .ic{color:var(--pilot)}
+  .manlink .tx{display:flex;flex-direction:column;line-height:1.3}
+  .manlink b{font-family:var(--display);font-weight:700;font-size:14px}
+  .manlink small{font-family:var(--mono);font-size:11px;color:var(--ink-soft);margin-top:2px;letter-spacing:.02em}
+  .manlink .arr{margin-left:auto;flex:none;opacity:.7}
+
+  /* installer-side full-manual search (inline, light surface) */
+  .ms-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--hair);
+    border-left:3px solid var(--pilot);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .ms-bar svg{flex:none;opacity:.5}
+  .ms-bar input{flex:1;background:none;border:none;font-family:var(--body);font-size:15px;color:var(--ink);outline:none}
+  .ms-bar input::placeholder{color:var(--ink-soft)}
+  .ms-results{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+  .ms-results .ritem{background:var(--card);border:1px solid var(--hair)}
+  .ms-results .ritem:hover{border-color:var(--pilot);background:#fbfdff}
+  .ms-hint{color:var(--ink-soft);font-size:13.5px;padding:8px 2px;line-height:1.5}
+  .ms-hint mark{background:none;color:var(--pilot-deep);font-weight:600}
+
+  /* owner-side inline search (ember surface) */
+  .os-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--hair);
+    border-left:3px solid var(--ember);border-radius:12px;padding:13px 15px;box-shadow:var(--shadow)}
+  .os-bar svg{flex:none;opacity:.5}
+  .os-bar input{flex:1;background:none;border:none;font-family:var(--body);font-size:15px;color:var(--ink);outline:none}
+  .os-bar input::placeholder{color:var(--ink-soft)}
+  .os-results{display:flex;flex-direction:column;gap:8px}
+  .os-results:not(:empty){margin:14px 0 4px}
+  .os-results .ritem{background:var(--card);border:1px solid var(--hair)}
+  .os-results .ritem:hover{border-color:var(--ember);background:#fffaf6}
+  .os-hint{color:var(--ink-soft);font-size:13.5px;padding:8px 2px;line-height:1.5}
+  .os-hint mark{background:none;color:var(--ember-2);font-weight:600}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand" id="brandHome" role="button" tabindex="0" title="Back to start" style="cursor:pointer">
+    <svg class="flame" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3-2 4-2 7 0 1 .6 2 1.5 2.4C12 10 13 8.5 13 7c2 2 4 4.5 4 8a5 5 0 0 1-10 0c0-2 1-3.5 2-5 .2 1.2 1 2 2 2-.4-3 1-6 3-10Z"/></svg>
+    <div class="brand-wrap"><span>JØTUL</span><small>GF 300 BV · Allagash</small></div>
+  </div>
+  <div class="spacer"></div>
+  <div class="search">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Search the whole guide…" autocomplete="off">
+  </div>
+  <div class="toggle" id="toggle" style="display:none">
+    <button class="home" data-role="homeowner" aria-pressed="false"><span class="dot"></span>I own it</button>
+    <button class="inst" data-role="installer" aria-pressed="false"><span class="dot"></span>I install it</button>
+  </div>
+  <a class="pdf" href="#" id="pdfBtn" title="The full 52-page manual is the legal source of truth">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+    Official PDF
+  </a>
+</header>
+
+<!-- search results -->
+<div class="results" id="results"><div class="inner"><div class="rl">Results</div><div id="rlist"></div></div></div>
+
+<!-- ===== IGNITION GATE ===== -->
+<section class="gate" id="gate">
+  <div class="kicker">Natural vent gas stove</div>
+  <h1>Jøtul GF 300 BV Allagash</h1>
+  <p class="sub">Tell us who you are and we'll bring the right half forward — the rest is one search away.</p>
+  <p class="model">Model GF 300 BV · Allagash · Standing Pilot · Piezo Ignition</p>
+  <div class="cards">
+    <button class="ignite" data-role="homeowner">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/></svg>
+      <h2>I own this stove</h2>
+      <p>Light it, adjust the flame, use the remote, clean the glass, check service.</p>
+      <span class="go">Light my path →</span>
+    </button>
+    <button class="ignite cool" data-role="installer">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3Z"/></svg>
+      <h2>I'm installing or servicing it</h2>
+      <p>Specs, clearances, B-vent runs, the install sequence, and pilot &amp; draft fault diagnosis.</p>
+      <span class="go">Open field reference →</span>
+    </button>
+  </div>
+  <p class="foot">Both paths draw from the same certified manual (ANSI Z21.88-2019 · CSA 2.33-2019 · CAN/CSA 2.17-M91). <a href="#" id="pdfBtn2">Skip straight to the full PDF →</a></p>
+</section>
+
+<!-- ===== HOMEOWNER ===== -->
+<section class="view" id="homeowner">
+  <div class="vhead">
+    <div class="eyebrow"><span class="pip home-pip"></span>For owners</div>
+    <h1>Your stove, in plain language</h1>
+    <p>The things people actually ask us about — pick one. Everything technical still lives under search and the official PDF up top.</p>
+  </div>
+  <div class="os-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="oq" type="search" placeholder="Search — lighting, pilot flame, glass, gas smell…" autocomplete="off">
+  </div>
+  <div class="os-results" id="oResults"></div>
+  <div class="seclabel">Start here</div>
+  <div class="tiles" id="homeTiles"></div>
+  <div class="seclabel">Good to know</div>
+  <div class="tiles" id="homeTiles2"></div>
+</section>
+
+<!-- ===== INSTALLER ===== -->
+<section class="view" id="installer">
+  <div class="vhead">
+    <div class="eyebrow"><span class="pip inst-pip"></span>For installers &amp; service</div>
+    <h1>Field reference</h1>
+    <p>The numbers you look up on your knees, the sequence you follow, and the faults you diagnose — surfaced first. Tap any spec for the surrounding detail.</p>
+  </div>
+
+  <div class="seclabel">Critical specs</div>
+  <div class="specs" id="specCards"></div>
+
+  <div class="seclabel">Install sequence — tap to check off</div>
+  <div class="checklist" id="checklist"></div>
+
+  <div class="seclabel">Field faults</div>
+  <div class="twocol">
+    <div class="panel warn">
+      <h3>⚠ Pilot won't stay lit</h3>
+      <ul>
+        <li>Pilot doesn't engulf the top 3/8" of the thermopile → weak millivolt, burner drops out</li>
+        <li>Dirty or corroded thermopile / thermocouple, or a loose TH/TP connection</li>
+        <li>Pilot orifice blocked, or the wrong size after a fuel conversion</li>
+        <li>Embers or debris covering the pilot carry-over ports</li>
+      </ul>
+    </div>
+    <div class="panel warn">
+      <h3>⚠ Spill switch tripping / draft</h3>
+      <ul>
+        <li>Blocked or disassembled vent, or an obstructed termination cap</li>
+        <li>Down-draft or flow reversal — common on outside or basement chimneys</li>
+        <li>House depressurization competing with the atmospheric B-vent</li>
+        <li>Vent under 7 ft / over 35 ft, or more than 4 ft of horizontal run</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="seclabel">Search the original manual</div>
+  <div class="ms-bar">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input id="mq" type="search" placeholder="Search every page of the official manual — orifice, clearance, pressure…" autocomplete="off">
+  </div>
+  <div class="ms-results" id="mResults"></div>
+</section>
+
+<!-- detail drawer -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+  <div class="dh">
+    <div><div class="tag" id="dTag">Detail</div><h2 id="dTitle">Title</h2></div>
+    <button class="x" id="dClose" aria-label="Close">×</button>
+  </div>
+  <div class="dcontent" id="dBody"></div>
+</aside>
+
+<div class="demo-tag">Concept prototype · representative content</div>
+
+<script>
+/* ---------------- content model (real values from the GF 300 BV Allagash manual) ---------------- */
+const HOME_PRIMARY = [
+  {id:'light', icon:'M12 2c1 3-2 4-2 7 0 1 .6 2 1.5 2.4C12 10 13 8.5 13 7c2 2 4 4.5 4 8a5 5 0 0 1-10 0c0-2 1-3.5 2-5 .2 1.2 1 2 2 2-.4-3 1-6 3-10Z',
+    fill:true, title:'Light the stove', blurb:'Light the pilot and burner by hand, step by step.'},
+  {id:'flame', icon:'M3 12h4l3-8 4 16 3-8h4',
+    title:'Adjust the flame', blurb:'Turn the heat up or down with the HI/LOW knob.'},
+  {id:'remote', icon:'M9 2h6a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm3 14h.01M9 6h6M9 9h2M13 9h2',
+    title:'Remote & thermostat', blurb:'Optional hands-off control of the burner.'},
+  {id:'off', icon:'M12 4v8M7.5 6.5a7 7 0 1 0 9 0',
+    title:'Turn it off', blurb:'Pause the flame, or shut the stove down fully.'},
+];
+const HOME_SECONDARY = [
+  {id:'pilot', icon:'M12 3c.8 2.2-1.4 3-1.4 5 0 1.3 1 2.3 2.3 2.1.9-.7 1-1.8.6-3 1.4 1.3 2.5 3 2.5 5a4 4 0 0 1-8 0c0-1.6.8-2.8 1.6-3.8C9.9 7 11 5 12 3Z',
+    fill:true, title:'Check the pilot', blurb:'What a healthy pilot flame should look like.'},
+  {id:'glass', icon:'M4 4h16v16H4Zm0 5h16M9 4v16',
+    title:'Clean the glass', blurb:'Do it right so you don\'t scratch or stain it.'},
+  {id:'blower', icon:'M12 12a4 4 0 0 0 0-8c-.5 4-3 4-3 6s3 2 3 2Zm0 0a4 4 0 0 1 0 8c.5-4 3-4 3-6s-3-2-3-2Z',
+    title:'Run the blower', blurb:'The optional fan that pushes warm air into the room.'},
+  {id:'sounds', icon:'M11 5 6 9H2v6h4l5 4V5Zm5 2a5 5 0 0 1 0 10M19 4a9 9 0 0 1 0 16',
+    title:'Odors, fog & first fires', blurb:'New-stove smell and a foggy glass — what\'s normal.'},
+  {id:'safety', icon:'M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3Z',
+    title:'Safety & gas smell', blurb:'Hot glass, children, the barrier, and what to do if you smell gas.'},
+  {id:'service', icon:'M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3Z',
+    title:'Service & warranty', blurb:'Annual care and what\'s covered, for how long.'},
+];
+
+const SPECS = [
+  {id:'input', lab:'Input rate · BTU/hr', tap:'specInput', rows:[
+    ['Natural gas','26,000 / 15,000'],['Propane','26,000 / 15,500']],note:'max / min'},
+  {id:'inlet', lab:'Inlet pressure · in. WC', tap:'specInlet', rows:[
+    ['Natural gas','5.0 – 7.0'],['Propane','12.0 – 14.9']]},
+  {id:'manifold', lab:'Manifold pressure · in. WC', tap:'specManifold', rows:[
+    ['Natural gas','1.2 – 3.8'],['Propane','2.9 – 11.0']]},
+  {id:'vent', lab:'Venting · 4" Type B', tap:'specVent', rows:[
+    ['Vertical height','7 – 35 ft'],['Total horizontal','4 ft max']]},
+  {id:'clear', lab:'Clearances to combustibles', tap:'specClear', rows:[
+    ['Rear (draft hood)','2"'],['Sides / corner','3"'],['Ceiling','32¼"']]},
+  {id:'hearth', lab:'Hearth / floor pad', tap:'specHearth', rows:[
+    ['Min. pad','24" × 14"'],['On carpet / vinyl','not allowed']]},
+];
+
+const STEPS = [
+  ['Unpack & fit the barrier','Lift the top plate, release the two glass-frame latches, and install the certified safety barrier (157727) before operating. Review all requirements first.'],
+  ['Location, hearth & clearances','Floor pad 24" × 14" min (never on carpet, vinyl, linoleum or Pergo). Rear 2" from the draft hood, sides and corner 3", ceiling 32¼". Alcove min 36"W × 24"D × 44¼"H.'],
+  ['Fuel conversion (if LP)','Ships for natural gas. For propane, convert with kit 155592 before installing — swap to the #53 burner and #30 pilot orifices and the LP regulator tower. Authorized technician only.'],
+  ['Vent system — 4" Type B','Vertical B-vent only, 7–35 ft off the draft hood; ≤4 ft total horizontal; max three 90° or four 45° elbows; firestop at each floor; listed B-vent cap. Above 2000 ft, 12 ft minimum rise.'],
+  ['Gas connection + pressure test','3/8" NPT supply with a manual shut-off (T-handle in MA) and union in the same room. Leak-test with soap solution — never a flame. Verify inlet and manifold pressure with a manometer on HIGH.'],
+  ['Log set & embers','Install the rear, right, left and middle logs; spread embers, keeping them off the pilot carry-over ports and 1/4" clear of the burner-skirt edges. Wear gloves.'],
+  ['Optional blower & controls','Install the blower before the gas line for clearance; ground per code. Wire the remote / thermostat to the terminal block — the red thermopile lead lands on the valve TH/TP terminal.'],
+  ['System check & air shutter','Purge the line on first light. Confirm the pilot engulfs the top 3/8" of the thermopile and 1/8" of the thermocouple, then adjust the air shutter for a clean flame with no soot.'],
+];
+
+const CODES = [];  /* standing-pilot / piezo ignition — no control board, no flash codes */
+
+/* drawer detail content */
+const DETAIL = {
+  light:{tag:'Owner · operation', title:'Lighting the stove', cool:false, html:`
+    <div class="note danger"><b>Before lighting,</b> smell all around the stove for gas, including near the floor. If you smell gas, stop — see <b>Safety &amp; gas smell</b>.</div>
+    <p>This stove has a standing pilot you light by hand with the spark ignitor.</p>
+    <ol>
+      <li>Open the lower control door and set the rear <b>ON/OFF rocker switch to OFF</b>.</li>
+      <li>Confirm the gas supply shut-off valve is open.</li>
+      <li>Push the gas control knob in slightly and turn it <b>clockwise to OFF</b>. Wait 5 minutes. Still smell gas? Stop.</li>
+      <li>Push the knob in slightly and turn it <b>counter-clockwise to PILOT</b>.</li>
+      <li>Push the knob all the way in and hold it. Press the red <b>spark ignitor</b> button repeatedly until the pilot lights, then keep holding about one minute.</li>
+      <li>Release the knob — it should spring back and the pilot stays lit. If it goes out, repeat from step 3.</li>
+      <li>Turn the knob <b>counter-clockwise to ON</b>.</li>
+      <li>Set the rear rocker switch to <b>ON</b> (or set your thermostat).</li>
+    </ol>
+    <div class="note"><b>First light after the gas was off</b> takes a moment while air purges from the line. If the pilot won't stay lit after several tries, turn the knob to OFF and call a service technician.</div>`},
+  flame:{tag:'Owner · operation', title:'Adjusting the flame & heat', cool:false, html:`
+    <p>The <b>HI/LOW knob</b> in the center of the valve face sets flame height and heat output — up to about a 50% swing between low and high. Turn it to dial in your level.</p>
+    <div class="note danger"><b>Use only the HI/LOW knob.</b> Don't try to change the flame by setting the gas valve in any position other than full ON.</div>
+    <h4>If the flame looks wrong</h4>
+    <p>Long yellow flames and soot (black deposits on the logs or glass) mean the air shutter needs adjusting — that's a job for a qualified technician, not a homeowner setting.</p>`},
+  remote:{tag:'Owner · operation', title:'Remote & thermostat', cool:false, html:`
+    <p>The stove works with an optional low-voltage (750&nbsp;mV) wall thermostat or remote receiver.</p>
+    <ol>
+      <li>Light the pilot first (see <b>Light the stove</b>) — the pilot is what powers the control.</li>
+      <li>Set the rear rocker switch to <b>T-STAT</b>.</li>
+      <li>Operate from the thermostat or remote per its own instructions.</li>
+    </ol>
+    <div class="note"><b>Wiring is an installer job.</b> The thermostat runs on a two-wire millivolt circuit, and the burner only responds in the T-STAT position with the pilot lit.</div>`},
+  off:{tag:'Owner · operation', title:'Turning it off', cool:false, html:`
+    <h4>Pause the flame</h4>
+    <p>Set the rear rocker switch to <b>OFF</b>. The pilot stays lit for normal standby.</p>
+    <h4>Turn off the pilot too</h4>
+    <p>Open the lower control door, push the gas control knob in slightly, and turn it <b>clockwise to OFF</b>. Don't force it.</p>
+    <h4>Shut it down fully</h4>
+    <p>Close the supply-line gas cock.</p>`},
+  pilot:{tag:'Owner · reassurance', title:'Checking the pilot flame', cool:false, html:`
+    <p>You can see the pilot through the small view port at the rear, under the right log.</p>
+    <p>A healthy pilot is <b>steady</b> — not lifting or floating — <b>blue</b> around the hood with a little yellow at the edges, and reaches about <b>1 inch</b> out of all three ports.</p>
+    <div class="note"><b>Weak or won't stay lit?</b> That's a service call — have a technician check the pilot, thermopile and thermocouple.</div>`},
+  glass:{tag:'Owner · maintenance', title:'Cleaning the glass', cool:false, html:`
+    <div class="note danger"><b>Never</b> clean the glass while it's hot, never use abrasive cleaners, and never run the stove with the glass removed, cracked or broken.</div>
+    <ol>
+      <li>Let the glass cool completely.</li>
+      <li>Wipe with a clean, damp soft cloth.</li>
+      <li>Dry with a soft towel, taking care not to scratch the surface.</li>
+    </ol>
+    <p>A little "fog" on the glass each time you light it is normal and clears as the glass warms.</p>
+    <div class="note">Replacement glass is the <b>Jøtul Ceramic Glass Replacement Kit 155599</b> only — no substitutes.</div>`},
+  blower:{tag:'Owner · operation', title:'Running the blower', cool:false, html:`
+    <p>The optional variable-speed blower pushes warm air off the firebox and into the room.</p>
+    <div class="kv">
+      <div class="r"><span>AUTO</span><span>turns on once the stove heats, off when it cools</span></div>
+      <div class="r"><span>MANUAL</span><span>runs regardless of temperature</span></div>
+      <div class="r"><span>OFF</span><span>blower off</span></div>
+    </div>
+    <p>Use the rheostat knob to set the fan speed.</p>`},
+  sounds:{tag:'Owner · reassurance', title:'Odors, fog & the first few fires', cool:false, html:`
+    <h4>A faint odor or some smoke at first</h4>
+    <p>During the first few fires it's normal to smell manufacturing residue burning off and materials curing. Open a window and let fresh air move through; it passes.</p>
+    <h4>Fog on the glass</h4>
+    <p>Condensation each time you light the stove is normal and clears as the glass warms up.</p>
+    <div class="note danger"><b>A strong gas smell is different.</b> If you smell gas, don't touch switches or phones inside — leave and call your gas supplier. See <b>Safety &amp; gas smell</b>.</div>`},
+  safety:{tag:'Owner · safety', title:'Safety & what to do if you smell gas', cool:false, html:`
+    <ul>
+      <li>Surfaces and the <b>glass get very hot</b> — keep children and at-risk individuals away.</li>
+      <li>The certified <b>safety barrier (157727)</b> reduces burn risk at the glass and must be installed; if it's ever damaged, replace it with the same part before using the stove.</li>
+      <li>Never store or use gasoline or flammable liquids near the stove.</li>
+      <li><b>Gas or propane only</b> — never burn wood, paper or any solid fuel in it.</li>
+    </ul>
+    <div class="note danger"><b>If you smell gas:</b> do NOT try to light anything, do NOT touch electrical switches or use a phone in the building. Leave and call your gas supplier from a neighbor's phone. If you can't reach them, call the fire department.</div>
+    <div class="note"><b>Massachusetts:</b> a carbon-monoxide detector must be installed in the same room as the appliance.</div>`},
+  service:{tag:'Owner · service', title:'Annual service & warranty', cool:false, html:`
+    <p>Have the stove and its vent inspected and cleaned at least once a year by a qualified technician. Always shut off the gas (and unplug the blower) before any service.</p>
+    <div class="kv">
+      <div class="r"><span>Cast iron, firebox</span><span>5 years</span></div>
+      <div class="r"><span>Burner, firebox panels</span><span>2 years</span></div>
+      <div class="r"><span>Enamel finish</span><span>2 years</span></div>
+      <div class="r"><span>Gas & electrical (valve, controls, blower)</span><span>1 year</span></div>
+    </div>
+    <div class="note">This is a summary. The full warranty terms and exclusions are in the official PDF.</div>`},
+  /* installer details */
+  specInput:{tag:'Installer · spec', title:'Input rates', cool:true, html:`
+    <div class="kv">
+      <div class="r"><span>NG max / min</span><span>26,000 / 15,000 BTU/hr</span></div>
+      <div class="r"><span>LP max / min</span><span>26,000 / 15,500 BTU/hr</span></div>
+    </div>
+    <p>EnerGuide rating 58.68% (CSA P.4.1-15). Orifice sizing changes on fuel conversion — see the conversion kit (155592 to LP, 155593 back to NG).</p>`},
+  specInlet:{tag:'Installer · spec', title:'Inlet (supply) pressure', cool:true, html:`
+    <div class="kv">
+      <div class="r"><span>Natural gas</span><span>5.0 – 7.0 in. WC</span></div>
+      <div class="r"><span>Propane</span><span>12.0 – 14.9 in. WC</span></div>
+    </div>
+    <p>Measure at the <b>E</b> (inlet) test point on the front of the valve with the control knob on HIGH. An external regulator is required for propane.</p>`},
+  specManifold:{tag:'Installer · spec', title:'Manifold pressure', cool:true, html:`
+    <div class="kv">
+      <div class="r"><span>Natural gas</span><span>1.2 – 3.8 in. WC</span></div>
+      <div class="r"><span>Propane</span><span>2.9 – 11.0 in. WC</span></div>
+    </div>
+    <p>Measure at the <b>A</b> (manifold) test point, knob on HIGH. The pilot should be blue at the hood with yellow at the edges, project ~1", and engulf the top 3/8" of the thermopile and the top 1/8" of the thermocouple.</p>`},
+  specVent:{tag:'Installer · spec', title:'Venting — 4" Type B', cool:true, html:`
+    <div class="note danger"><b>Natural-vent / B-vent only.</b> Exactly 4" Type B pipe, vertical, vented directly outside. Never connect to a chimney serving any other appliance. Single-wall connector pipe is prohibited.</div>
+    <div class="kv">
+      <div class="r"><span>Pipe</span><span>4" Type B (or listed flex gas liner)</span></div>
+      <div class="r"><span>Height off draft hood</span><span>7 ft min · 35 ft max</span></div>
+      <div class="r"><span>Total horizontal</span><span>4 ft max</span></div>
+      <div class="r"><span>Elbows</span><span>≤ three 90° or four 45°</span></div>
+    </div>
+    <p>Slope horizontal runs 1/4" per foot up toward the cap; firestop at each floor; a listed B-vent termination cap is required. Above 2000 ft, the minimum vertical rise is 12 ft.</p>`},
+  specClear:{tag:'Installer · spec', title:'Clearances to combustibles', cool:true, html:`
+    <p>Measured from the stove body, standard legs. With short legs, subtract 2¼" from floor-referenced figures.</p>
+    <div class="kv">
+      <div class="r"><span>Rear (from draft hood)</span><span>2"</span></div>
+      <div class="r"><span>Sides</span><span>3"</span></div>
+      <div class="r"><span>Corner</span><span>3"</span></div>
+      <div class="r"><span>Ceiling (from stove top)</span><span>32¼"</span></div>
+    </div>
+    <p>Vent-pipe clearances: 1" on all sides of vertical runs; 2" top, sides and bottom on horizontal runs. Minimum alcove 36"W × 24"D × 44¼"H.</p>`},
+  specHearth:{tag:'Installer · spec', title:'Hearth / floor protection', cool:true, html:`
+    <div class="kv">
+      <div class="r"><span>Minimum pad</span><span>24" W × 14" D</span></div>
+      <div class="r"><span>Coverage</span><span>full width & depth of the stove</span></div>
+    </div>
+    <p>The stove cannot sit directly on carpet, vinyl, linoleum or Pergo. On any combustible other than wood, install a metal or wood pad, or a listed hearth pad. Carpet, vinyl or linoleum may remain underneath the floor protection.</p>`},
+};
+
+/* step detail (generated) */
+STEPS.forEach((s,i)=>{ DETAIL['step'+i]={tag:'Installer · step '+(i+1), title:s[0], cool:true, html:`<p>${s[1]}</p>`}; });
+
+/* ---------------- render ---------------- */
+const $=(s,r=document)=>r.querySelector(s); const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+function tile(d){const b=document.createElement('button');b.className='tile';b.innerHTML=
+  `<svg class="ic" viewBox="0 0 24 24" ${d.fill?'fill="currentColor"':'fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"'}><path d="${d.icon}"/></svg>
+   <h3>${d.title}</h3><p>${d.blurb}</p>`;
+  b.onclick=()=>openDrawer(d.id);return b;}
+HOME_PRIMARY.forEach(d=>$('#homeTiles').appendChild(tile(d)));
+HOME_SECONDARY.forEach(d=>$('#homeTiles2').appendChild(tile(d)));
+
+SPECS.forEach(s=>{const el=document.createElement('div');el.className='spec';
+  el.innerHTML=`<div class="lab">${s.lab}</div><div class="rows">${s.rows.map(r=>`<div class="row"><b>${r[0]}</b><span class="v">${r[1]}</span></div>`).join('')}${s.note?`<div class="row"><b style="font-size:11px">${s.note}</b></div>`:''}</div>`;
+  el.style.cursor='pointer';el.onclick=()=>openDrawer(s.tap);$('#specCards').appendChild(el);});
+
+STEPS.forEach((s,i)=>{const el=document.createElement('div');el.className='step';
+  el.innerHTML=`<div class="num">${i+1}</div><div class="body"><h4>${s[0]}</h4><p>${s[1]}</p></div>
+   <div class="check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="m5 12 4 4 10-10"/></svg></div>`;
+  el.querySelector('.body').onclick=(e)=>{e.stopPropagation();openDrawer('step'+i);};
+  el.onclick=()=>el.classList.toggle('done');
+  $('#checklist').appendChild(el);});
+
+CODES.forEach(c=>{const el=document.createElement('div');el.className='code';
+  let dots='';for(let i=0;i<4;i++)dots+=`<span class="b ${i<c[0]?'on':''}"></span>`;
+  el.innerHTML=`<div class="blinks">${dots}</div><div class="t">${c[1]}</div><div class="d">${c[2]}</div>`;
+  $('#codes').appendChild(el);});
+
+/* ---------------- role switching ---------------- */
+function setRole(role){
+  $('#gate').style.display='none';
+  $('#toggle').style.display='flex';
+  $$('.view').forEach(v=>v.classList.toggle('active',v.id===role));
+  $$('#toggle button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.role===role));
+  window.scrollTo({top:0});
+}
+$$('[data-role]').forEach(b=>b.onclick=()=>setRole(b.dataset.role));
+
+/* return to the ignition gate (home) */
+function goHome(){
+  $('#gate').style.display='';
+  $('#toggle').style.display='none';
+  $$('.view').forEach(v=>v.classList.remove('active'));
+  $$('#toggle button').forEach(b=>b.setAttribute('aria-pressed','false'));
+  $('#results').classList.remove('open'); $('#q').value='';
+  window.scrollTo({top:0});
+}
+$('#brandHome').onclick=goHome;
+$('#brandHome').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();goHome();}});
+
+/* ---------------- drawer ---------------- */
+/* the page in the official manual where each topic is discussed,
+   verified against the embedded PAGES text. Per-model data. */
+const PAGEREF={
+  light:27, flame:16, remote:16, off:27, pilot:17, glass:19, blower:21, sounds:18, safety:1, service:26, specInput:4, specInlet:14, specManifold:14, specVent:8, specClear:7, specHearth:6, step0:5, step1:7, step2:11, step3:9, step4:14, step5:15, step6:21, step7:17,
+};
+function openDrawer(id){const d=DETAIL[id];if(!d)return;
+  $('#dTag').textContent=d.tag;$('#dTitle').textContent=d.title;
+  const body=$('#dBody');body.className='dcontent'+(d.cool?' cool':'');
+  let html=d.html;
+  const pg=PAGEREF[id];
+  if(pg) html+=`<a class="manlink${d.cool?' cool':''}" href="#" data-page="${pg}">
+     <span class="ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h9l5 5v11H4Z"/><path d="M13 4v5h5"/><path d="M8 13h6M8 16h6"/></svg></span>
+     <span class="tx"><b>For the specific details in the Installation Manual, go here →</b><small>Opens the official PDF at page ${pg}</small></span>
+     <svg class="arr" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg></a>`;
+  body.innerHTML=html;
+  const ml=body.querySelector('.manlink'); if(ml) ml.onclick=(e)=>{e.preventDefault();openPDF(pg);};
+  $('#scrim').classList.add('open');$('#drawer').classList.add('open');}
+function closeDrawer(){$('#scrim').classList.remove('open');$('#drawer').classList.remove('open');}
+$('#dClose').onclick=closeDrawer;$('#scrim').onclick=closeDrawer;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+
+/* ---------------- search ---------------- */
+/* On your real site, point this at the hosted PDF. The #page=N fragment is
+   honored by the in-browser PDF viewers in Chrome, Edge and Firefox. */
+const MANUAL_URL = 'Jotul_GF_300_BV_ver_2_Allagash_Manual.pdf';
+
+/* full-text, per-page index extracted from the actual manual (const PAGES) */
+const PAGES=[{"p": 1, "t": "137945_22 GF 300 BV 01/22 WARNING: If the information in these instructions is not followed exactly, a fire or explosion may result causing property damage, personal injury or loss of life. – Do not store or use gasoline or other flammable vapors and liquids in the vicinity of this or any other appliance. – WHAT TO DO IF YOU SMELL GAS • Do not try to light any appliance. • Do not touch any electrical switch; do not use any phone in your building. • Immediately call your gas supplier Jøtul GF 300 BV Ver. 2 from a neighbor’s phone. Follow the gas supplier’s instructions. Allagash • If you cannot reach your gas supplier, call the fire department. Natural Vent Gas Stove – Installation and service must be performed by a qualified installer, service agency or the gas supplier. – In the Commonwealth of Massachusetts, Installation and a carbon monoxide (CO) detector shall be installed in the same room as the Operation Instructions appliance. This appliance may be installed in an aftermarket, permanently located, manufactured home or mobile home, where not prohibited by local codes. This appliance is only for use with the types of gas indicated on the rating plate. A conversion kit is supplied with the appliance. \u0013\u0019\u0017\u001b\u0016\u0014 \u001b\u001a\u0019\u0018\u0018 \u001b\u001a\u0019\u0018\u0017 \u0016\u0019\u0015\u0014\u0018\u0013 \u0013 \u0017 \u0012\u0011 \u001b\u001a\u0019\u0018\u0018 \u0019\u0014\u000f \u001b\u0012\u0012 \u0017\u0010\u0013 \u0017\u0016\u0015\u0016\u0014 \u001a \u0012 \u001b\u0011 \u0010\u0015\u0017\u0014 \u000f\u0012 \u000f\u0012\u0019\u001b\u0011 \u000e \u001a\u0018\u0018\u0013 \u001b\u001b\u001a\u0019\u001b \u0018\u0019\u0017\u001a\u0016\u0015\u0019\u0018 \u0014\u0013 \u001b\u0019\u0018\u0012\u0011\u0019 \u0014\u0010\u0019 \u0012\u001b\u0015 \u0010 \u000f \u001b\u0018 INSTALLER: Leave this manual with the appliance. \u000e\u001b\u0013 \u0014\u0010\u0019 \u0016 \u0017\u0017 \u001a\u0019 \u001a\u0015\u0016 \u001b\u0019 \u001a\u0017 \u001b\u0013 \u001a\u0018\u0019\u0018 \u001a\u0014\u0010 \u0014\u0010\u001a\u0017 CONSUMER: Retain this manual for future reference. \u001a \u0015\u0011\u0019 \u0015\u0018 \u0017\u0010 \u0019 \u001a\u0015\u0017\u0014 \u0019\u0018 \u000e\u0013\u001b \u0014\u0010\u0019 \u001b\u0013\u0014\u0019\u0011\u0014\u001a\u0013\u0015 \u0013\u000e \u0011\u0010\u001a \u0018\u001b\u0019\u0015 \u0015\u0018 \u0013\u0014\u0010\u0019\u001b \u0014\b\u001b\u001a\u0017\u0007 \u001a\u0015\u0018\u001a \u001a\u0018\u0012 \u0017\u0006 1"}, {"p": 2, "t": "137945_22 GF 300 BV 01/22 THIS OWNER’S MANUAL PROVIDES INFORMATION TO ENSURE Installation Requirements for the SAFE INSTALLATION AND EFFICIENT, DEPENDABLE OPERATION OF YOUR GAS STOVE. PLEASE READ THESE INSTRUCTIONS IN Commonwealth of Massachusetts THEIR ENTIRETY AND MAKE THEM AVAILABLE TO ANYONE THIS PRODUCT MUST BE INSTALLED BY USING OR SERVICING THIS APPLIANCE. A LICENSED MASTER OR JOURNEYMAN DO NOT ATTEMPT TO ALTER OR MODIFY THE CONSTRUCTION PLUMBER OR GAS-FITTER WHEN INSTALLED IN THE COMMONWEALTH OF OF THIS APPLIANCE OR ITS COMPONENTS. ANY MASSACHUSETTS. MODIFICATION OR ALTERATION WILL VOID THE WARRANTY, CERTIFICATION AND LISTING OF THIS APPLIANCE. MA Approval Code G3-0817-12 THIS HEATER MUST BE INSTALLED AND MAINTAINED BY A 1. If there is not one already present, on each QUALIFIED SERVICE AGENCY. floor level where there are bedroom(s), a carbon monoxide detector and alarm shall be placed in the living area outside the bedroom(s). The carbon monoxide detector shall comply with NFPA 720 Suggested Tools for (2005 Edition). Installation and Service • External regulator (for Propane only) 2. A carbon monoxide detector shall: a) Be located in the room that houses the • Piping which complies with local code appliance or equipment; • Manual shut-off valve - b) Be either hard-wired or battery T-Handle required in Massachusetts powered or both; and • Sediment trap - if required by code c) Shall comply with NFPA 720 (2005 • Tee joint • Flat head screwdriver Edition). • Pipe wrench • 1/4” nut driver 3. A Product-approved vent terminal must • Pipe sealant • Gloves be used, and if applicable, a Product- • 10 mm open end wrench • Safety glasses approved air intake must be used. • 1/2”, 7/16” open end wrench • Torx T-20 screwdriver Installation shall be in strict compliance • Phillips head screwdriver • Tin snips with the manufacturer’s instructions. A copy of the installation instructions must remain with the appliance or equipment at the completion of the installation. PLEASE NOTE: It is normal for smoke and odor to occur during We� recommend that the initial stages of operation, depending upon our gas products be temperatures generated over time. This “curing” installed and serviced by condition can be alleviated by promoting fresh professionals who are air circulation within the immediate vicinity of certified in the U.S. by the appliance. the National Gas stove Institute® (NFI) as NFI Gas Specialists. 58.68% Based on CSA P.4.1-15 Jøtul GF 300 BV 2"}, {"p": 3, "t": "137945_22 GF 300 BV 01/22 Table of Contents Jøtul GF 300 BV Allagash Service Tools .............................................. 2 Specifications.............................................4 Natural Vent Gas Stove General Information................................. 5 Manufactured and Distributed by: Unpacking Your Stove ............................. 5 Jøtul North America 55 Hutcherson Dr. Safety Information ................................... 5 Gorham, Maine 04038 Installation Requirements Location .................................................6 Test Standards This appliance complies with National Safety Hearth Requirements .........................6 standards and is tested and listed by Intertek Clearances.............................................. 7 Testing Services of Middleton, Wisconsin to ANSI Z21.88-2019 • CSA 2.33-2019, Mantel & Trim....................................... 7 and CAN/CSA 2.17-M91. Alcove ..................................................... 7 DO NOT ATTEMPT TO ALTER OR MODIFY Vent Requirements...................................8 THE CONSTRUCTION OF THE APPLIANCE OR ITS COMPONENTS. ANY MODIFICATION Fuel Conversion......................................... 11 OR ALTERATION WILL VOID THE WARRANTY, Gas Supply Connection...........................13 CERTIFICATION AND LISTING OF THIS APPLIANCE. Gas Pressure............................................. 14 Log Set Installation..................................15 Your stove has a unique serial number stamped on the Flame Adjustment ................................. 16 rating plate which is hung on the back. Please record the serial number in the space below. You may also wish Optional Wall Thermostat..................... 16 to attach your purchase receipt to this page for future Remote Control........................................ 16 reference. Decorative Pipe ........................................17 MODEL NAME: Jøtul GF 300 BV Gas Stove System Check............................................17 Stove Operation....................................... 18 SERIAL NUMBER:_______________________________ Maintenance............................................ 19 DATE OF PURCHASE:____________________________ Annual Cleaning.................................. 19 AUTHORIZED DEALER:__________________________ Glass Replacement.............................. 19 ADDRESS ___________________________________ Optional Blower .................................... 20 PHONE: ____________________________________ Optional Antique Brick Kit ...................22 High Altitude Adjustment....................23 INSTALLER:__________________________________ Mobile Home Installation ....................23 FUEL TYPE:____________________________________ Illustrated Parts Breakdown.................24 FUEL CONVERSION: NO _______ YES_____ Replacement Parts List...........................25 NOTES:________________________________________ Warranty Statement.............................. 26 ______________________________________________ Lighting Instructions............................. 27 ______________________________________________ ______________________________________________ ______________________________________________ 3"}, {"p": 4, "t": "137945_22 GF 300 BV 01/22 GF 300 BV Allagash Specifications The Jøtul GF 300 BV Allagash is an atmospherically- vented gas heater designed only for vertical venting THIS GAS STOVE IS SHIPPED FROM THE directly to the outside of the house, using listed, Type FACTORY FOR USE WITH NATURAL GAS ONLY. B-vent pipe. FOR USE WITH PROPANE, THE APPLIANCE MUST FIRST BE CONVERTED USING #155592 Input Rates FUEL CONVERSION KIT PROVIDED. CONVERSION Natural Gas SHOULD BE MADE BEFORE THE APPLIANCE IS 26,000 BTU/hr. maximum input INSTALLED. SEE PG. 11. 15,000 BTU/hr. minimum input Propane 26,000 BTU/hr. maximum input 15,500 BTU/hr. minimum input Inlet Pressure: MIN. MAX. Natural Gas: 5.0 WC (1.24 kPa) 7.0 WC (1.74 kPa) Propane: 12.0 WC (2.99 kPa) 14.9 WC (3.71 kPa) Manifold Pressure: MIN. MAX. Natural Gas: 1.2 WC (.30 kPa) 3.8 WC (.95 kPa) Propane: 2.9 WC (.722 kPa) 11.0 WC (2.74 kPa) Piezo Ignitor / Standing Pilot \u0012 \u0018\u0018 \u0016 \u0016 \u0018\u0018 16 1/2” 419 mm 157724 Top Plate Cover Kit This optional kit is available for rear-exit vent applications. The kit includes a steel Top Plate Insert, Insert Support, fasteners, and instructions. \u0017 \u0014\u001b \u001a\u0013\u0019 \u0018\u0018 \u0019 \u0017 \u0016\u001b \u0019\u0015\u001a \u0018\u0018 25” \u001a\u001b \u0019 \u0017 \u0016\u001b With Short Legs, reduce 635 mm \u0013 \u001a \u0018\u0018 \u0019\u0015\u001a \u0018\u0018 height by 2 1/4” ( 57 mm) \u001a \u0014\u001b \u001a\u001a\u0015 \u0018\u0018 \u0017\u001b \u001b \u0017\u0017\u0015 \u0018\u0018 \u001a\u0019 \u0018\u0018 \u0014 \u0017 \u0016\u001b Safety Screen Barrier 157727 \u0016\u0019\u001a \u0018\u0018 4"}, {"p": 5, "t": "137945_22 GF 300 BV 01/22 General Information  THIS HEATER MUST BE INSTALLED AND MAINTAINED BY A QUALIFIED SERVICE AGENCY. Glass Panel  The installation and repair of this appliance must be Do not operate this appliance with the glass done by a qualified service person. Failure to properly front removed, cracked, or broken. Replacement install and maintain this heater could result in an of the glass should be done by a licensed or unsafe or hazardous installation, which may result in a qualified service person. Only remove glass for fire, explosion, property damage, personal injury or loss routine service. Always handle glass carefully. of life.  This appliance may be installed in an aftermarket permanently located, manufactured (mobile) home, where not prohibited by local codes. This appliance is only for use with the type(s) of gas Unpacking the stove indicated on the rating plate. This appliance is not convertible for use with other gases, unless a certified 1. Remove the Top Plate of the stove by simply lifting it kit is used. straight off of the stove body.  This appliance should be inspected before use and at 2. To open the firebox, disengage least annually. More frequent cleaning may be required the two Glass Frame Latches due to excessive lint from carpeting, bedding material, located on top of the firebox. etc. It is imperative that control compartments, burners, Pull each handle forward to and circulating air passageways of the appliance be kept clear the latch from the notch clean. in the frame.  THIS APPLIANCE MUST NOT BE CONNECTED TO A 3. SAFETY BARRIER SCREEN: This CHIMNEY OR FLUE SERVING ANY OTHER APPLIANCE. appliance is shipped with a Certified Barrier Screen that  The installation must conform to local codes. Your must be installed before Shipping local Jøtul dealer can assist you in determining what is Strap operating the unit. It is secured required in your area for a safe and legal installation. to the shipping pallet. Remove Some areas require a permit to install a gas burning those two screws and break appliance. Always consult your local building inspector, both perforated shipping straps or authority having jurisdiction, to determine what off of the barrier attachment regulations apply in your area. brackets as shown in grey at  CODE COMPLIANCE: Your local officials have final right. authority in determining if a proposed installation Attach the barrier assembly to the stove front by is acceptable. Any requirement that is requested by engaging its brackets over the stove door hinge bosses. the local authority having jurisdiction, that is not The barrier may be installed with the stove doors specifically addressed in this manual, defaults to local either open or closed. code. In the absence of local codes, the installation 4. Familiarize yourself with the installation requirements requirements must comply with the current edition specified in this manual before beginning the of National codes. In the U.S., these requirements are installation. established in the National Fuel Code, ANSI Z223.1.(NFPA 54) current edition. In Canada, the codes have been established in CAN/CGA B149 Fuel Installation Code, current edition. Hardware Bag Contents Consult the local or national installation code(s) to assure that adequate combustion and ventilation air is available. • Fuel Conversion Kit - LP ...................................155592 • Decorative Pipe Brackets ................................129469  DO NOT OPERATE THIS STOVE IF ANY PART HAS BEEN UNDER WATER. Call a qualified service technician to • Rock Wool, .006 kg. ...........................................224136 inspect the heater and to replace any part of the control system and any gas control which may have been under water. 5"}, {"p": 6, "t": "137945_22 GF 300 BV 01/22 Safety Information Location  Due to the high operating temperatures this appliance In selecting a location for the stove, consider the should be located out of traffic and away from following points: furniture and draperies. Maintain proper clearance to 1) Heat distribution combustible mantels and gas stove trim. 2) Vent termination requirements  Children and adults should be alerted to the hazards 3) Gas supply line routing of high surface temperatures and should stay away to 4) Traffic areas, furniture, draperies, etc. avoid burns or clothing ignition. The GF 300 BV may be located on or near conven-  Young children should be supervised while they are tional construction materials, however, proper clearance in the same room as the appliance. Toddlers, young to combustibles must be maintained in order to provide children and others may be susceptible to accidental adequate air circulation around the appliance. Also, it is contact burns. A physical barrier, such as a child important to provide adequate access around the stove guard, is recommended to be used if there are at-risk for servicing and proper operation. individuals in the house. To restrict access to a gas stove or stove, install an adjustable safety gate to keep The clearance and hearth specifications listed in this toddlers, young children and other at-risk individuals manual are the minimum requirements for combustible out of the room and away from hot surfaces. material. A combustible material is anything that can  A barrier designed to reduce the risk of burns from the burn (i.e. sheet rock, wall paper, wood, fabrics etc.). These hot viewing glass is provided with this appliance and surfaces are not limited to those that are visible and also shall be installed for the protection of children and include materials that may be located behind non-com- other at-risk individuals. bustibles. If you are not sure of the combustible nature of a  If the safety barrier becomes damaged, the barrier shall material, consult your local fire officials. “Fire Resistant” be replaced with the manufacturer’s barrier for this materials are considered combustible: they are difficult to appliance, PN 157727. ignite, but will burn. Also, “fire-rated” sheet rock is consid-  Any safety screen, guard, or barrier removed for ered combustible. servicing an appliance must be replaced prior to operating the appliance.  Clothing or other flammable materials should not be Hearth Requirements placed on or near the gas stove. The GF 300 BV gas stove CANNOT be installed directly on  Never allow anyone to use the gas stove if they are carpeting, vinyl, linoleum or Pergo®. unfamiliar with its operation. If this appliance will be installed on any combustible  NEVER store or use gasoline or any other flammable material other than wood, a floor pad must be installed vapors or liquids in the vicinity of this appliance. that is either metal or wood, or a listed hearth pad. This floor protection must extend the full width and depth of  Never burn any solid materials (wood, cardboard, paper, the appliance. It is not necessary to remove carpeting, coal, etc.) in this appliance. Use with natural gas or vinyl or linoleum from underneath the floor protection. propane fuel ONLY. See fig. 1.  Do not slam or strike the glass panel.  This appliance is NOT for use with aftermarket glass doors.  Wear gloves and safety glasses while installing or Figure 1. Minimum Hearth Protection. performing maintenance procedures on this appliance. 14” (356 mm) 24” (610 mm) 6"}, {"p": 7, "t": "137945_22 GF 300 BV 01/22 Stove and Vent Clearance Requirements The clearances specified and diagrammed here are es- tablished from the stove body. The safety barrier has no 2” affect on clearances to combustible material. (51 mm) To Rear Wall Minimum Clearances from the Stove to Combustibles See figs. 2-3. Rear: 2” (51 mm) - measured from Draft Hood Ceiling: 32 1/4” (819 mm) - measured from stove top 3” 3” (76 mm) (76 mm) Corner: 3” (76 mm) - measured from stove top Sides: 3” (76 mm) - measured from stove top Figure 2. Parallel Installation Clearances. Minimum Clearances from the Vent Pipe to Combustibles Horizontal Run: \u001a\u001a\u0019\u0018\u0017\u0016\u0015 Top: Off the top of the pipe 2” (50 mm) \u0014\u0013\u0012\u0011\u0019\u0010\u0010\u000f Sides: Off the sides and bottom 2” (50 mm) \u0018\u0015 Vertical Run: \u0014 \u000e\u0019\u0010\u0010\u000f \u0018\u0016\u0015 \u0014\u0011\u000e\u0016\u0019\u0010\u0010\u000f \u001a\u001a\u0019\u0018\u0017\u0016\u0015 \u0014\u0013\u0012\u0011\u0019\u0010\u0010\u000f All sides: 1” (25 mm) All vent components must be installed in accordance with the manufacturer’s instructions and within the terms of their listing. Refer to the manufacturer’s instructions for approved clearances from the vent pipe to combustible materials. \u001b \u0018\u0015 Minimum Alcove Dimensions \u0014 \u000e\u0019\u0010\u0010\u000f Maintain clearances to combustibles as noted above. Width: 36” (914 mm) Figure 3. Vent adaptor centerline at minimum clearance Depth: 24” (610 mm) to corner walls. Ceiling Height: 44 1/4” (1124mm) Mantel Clearances - Stove shown with standard legs. With Short Legs, subtract 2 1/4” (57 mm) from the clearances when measured from the floor. \u0019\u0018\u0017 \u0016\u0019\u0018\u0015\u0014\u0013\u0012\u0016\u0011\u0013\u0010\u0014\u000f \u001b \u001a \b\u0007 \u0006\b\u0012 \u0005\u0004 \b\u0007 \u0005\b\u0010\u0007 \u0004 \u0010 \u0003\u0010\u0002\u0001\u001a\u0001 \u0010 \u0001 \u001a \u0002 \u0001 \u0004 \b\b\u0007 \u0019\u000e\u0015 \u0016\u0019\u0018\u0015\u0014\u0013\u0012\u0016\u0011\u0013\u0010\u0014\u000f \u0019 \u0010\b \u0014 \u000e\u0019 \u0004\u0012 \b\u0011\u0004 \u0019\u0018\u0017 \u0016\u0007\u0006\u0010\u0016\u0007\u0005\u000e\b \u0011\u0013\u0010\u0014\u000f\u0016\u0004\u0016 1” \u0015\u0014 \u0013\u0014\u0012 \u0013\u0011\u0010\u0016 25\u0002 \u0001\u0001\u0016\b\b mm 11” \u0016 279\u0002 \u0001\u0001\u0016\b\b mm \u001a\u001a \u000e\u001b\u001a\u0019 \u001a\u000e \u000e\u001b\u001a\u0019 \u000f \u000e\u001b\u001a\u0019 \u000e\u000e \u001a \u0016\u0016 \u000e\u0018\u001a \u0016\u0016 \u0016\u0016 \u0001\u0016 \u0016 \u0016 \u001a \u001b\u001a\u0019 \u001b\u001a\u0019 \u001b\u001a\u0019 \u0016\b\b \u0001 \u0016\b\b \u0003\u001b\u0016\b\b \u000e\u0018\u000f \u0016\u0016 \u000e\u0018\u000e\u0018 \u0016\u0016 \u0018\u0017 \u0016\u0016 \u0016 \u0016 \u001a\u0016 \u0016\b\b \u001a\u0016\b\b \u001a \u0016\b\b \u0001  \u000e\u001b \u0019 \u000e\u0017 \u0016\u0016 Figure 4. Mantel and Trim specifications - Figure 4a. Mantel specifications - Stove installed flush with gas stove face. Stove recessed into gas stove no more than 6 1/2”. 7"}, {"p": 8, "t": "137945_22 GF 300 BV 01/22 Vent Requirements The GF 300 BV Allagash is specifically designed to operate \u0011 \u0007\u0010\u0016\u0019 \u0006\u001a\u0016\u0018\u0017 \u0005\u0010 Roof Pitch H (Ft.) using 4” Type B vent pipe components or a Listed Flexible \u0011\u001a\u0016\u0019\u0010\u000f \u0004\b\u0010 \u001a \u0005 gas liner. Flat to 6/12......................... 1.0* \u000e\u0010 \u001a \u0019\u001a Over 6/12 to 7/12.............. 1.25* \b • All venting components must be installed in Over 7/12 to 8/12............... 1.5* \u0011\u001a\u0016\u0019\u0010\u000f accordance with the terms of their listing and Over 8/12 to 9/12.............. 2.0*  \u0016 \u0010 \u0019 \u001b manufacturer’s instructions. Over 9/12 to 10/12............ 2.5* Over 10/12 to 11/12............ 3.25 \u001b\u001a\u0019\u0018\u0017 • The minimum height of a vertically terminated system \u001a\u0016 \u0015 \u0014 \u0013\u0012 Over 11/12 to 12/12............ 4.0 shall be no less than 7’, and the maximum height shall Over 12/12 to 14/12........... 5.0 \u001a\u0003 \u0002\u001a \u001a \u0001 \u0017\u0010\u001a\u0005\u0017\u0019 be no more than 35’. See diagrams on page 10. Over 14/12 to 16/12........... 6.0 \u0019  \u0007\u0010\u0016\u0019 \u000f\u001a\u0016\u0018\u0017 \u0005\u0010 \b\u0010 \u001a \u0005 Over 16/12 to 18/12........... 7.0 • With steep roofs, nearby trees, and in predominant Over 18/12 to 20/12.......... 7.5 * 3 foot (91 cm) minimum in snow regions windy conditions, poor draft or down draft conditions Over 20/12 to 21/12........... 8.0 can occur. In these cases, increasing the height of the vent or high wind termination caps may improve the \u001a\u0019 \u0018 \u0017 \u0018\u001b \u0016\u0015 \u0014 \u0015\u0015 \u001b\u0019\u0013\u0018 \u0012 \u0011 \u001b situation. \u0011\u0010\u000f\u000e \u0013\u0014\u0014 \u0017 \u0018\u001b \u001b \u0010\u000e\u0016\u0018\u0013\u001b\u0016\u000f\u0018 \u000e \u0015\u001b \u000e\u0016\u0018\u0016\u000e \u000e \u0011 \u001b \u0013 \u000f\u0017 \u0013\u0014\u0014 • ELBOWS: If an offset or elbow is necessary in the \b\u0007 \u0006\u0007\u0005 \u0004\u0006\u0003\u0005\u0002\u0001\u0001   \u0014\u000f \u0013\u0010\u0013 \u001b\u0015 vertical rise, it is important to support the vent pipe  \u0018 \u0010 \u0013\u0017 \u0015 every three feet, to avoid excessive stress on the \u001b  \u0002 \u0013­ \u0018\u001b \u001b\u000f \u0013\u0014\u0014\u0015 offsets. • Whenever possible use 45° elbows opposed to 90° elbows. This offers less restrictions for the flow of flue gases. Maximum number of 90° elbows: three Maximum number of 45° elbows: four • TOTAL MAXIMUM HORIZONTAL RUN ANYWHERE IN Figure 5. Termination Height Requirements. THE VENTING CONFIGURATION IS 4 FEET. The distance between any 45° elbows is considered a horizontal run. See diagrams, page 10. • Any Type B vent passing through a roof must have a flashing, storm collar, thimble and a Type B cap is • Passage through combustibles (walls, ceilings) must required. See diagrams, page 10. be with Type B venting and must maintain listed • Venting on the Allagash CANNOT be less than 4” in clearances. diameter or greater than 4” in diameter. • Any horizontal run should have an upward slope of • Any unused chimney flue enclosure, (masonry or 1/4” per foot toward the termination cap. prefabricated) can be used as a passage way for • When venting through a thimble into a masonry venting, but the flue must be relined using Type B flue, any venting exposed in the room must be Type 4” vent or Listed Flexible Gas Liner. See fig. 6. The B venting, or a flexible liner sleeved within 24 ga. 6” remaining space around the liner in a masonry or stove pipe. zero-clearance flue CANNOT be used to vent any other • Listed Flexible Gas Liners may not be exposed in any appliance. living space. • When terminating through the roof refer to the Gas Vent Rule for proper vent termination height. See fig. 5. • NO venting may terminate horizontally or below roof eaves. 8"}, {"p": 9, "t": "137945_22 GF 300 BV 01/22 Venting through a Masonry or • When 6” diameter decorative pipe is installed to cover the venting any Listed Flexible Gas liner must Prefabricated Manufactured be connected directly to the stove’s draft hood. Chimney • Use of single wall connector pipe as a vent is prohibited for use with the GF300 Allagash B-Vent Listed termi- Storm collar nation cap stove. required Top sealing required • A firestop is required at every floor. achor plate • Any venting that is exposed above the first floor, regardless of attic space or living space, must be enclosed. Always maintain the required clearance from all sides of the vertical vent system according to manufacture. • Installation of any components not manufactured Type B vent or or approved by Jøtul or failure to meet all clearance Listed Flexible Gas requirements will void all warranties and could Liner. result in property damage, bodily injury, or serious Use of Type B fire. vent liner within outside chimneys • Never modify any venting component, or use any is recommended to damaged venting product. help keep the gases warm and stabilize • THE GAS APPLIANCE AND VENT SYSTEM MUST draft. BE VENTED DIRECTLY TO THE OUTSIDE OF THE Max. Height 35 ft. BUILDING, AND NEVER ATTACHED TO A CHIMNEY Min. Height 7 ft. Always SERVING A SOLID FUEL OR GAS BURNING maintain the proper APPLIANCES. clearance to • BE SURE TO MAINTAIN THE PROPER CLEARANCES mantel and TO COMBUSTIBLES AS DEFINED IN THIS MANUAL trim AND IN THE INSTRUCTIONS PROVIDED WITH EACH VENTING COMPONENT. • When installing at an altitude above 2000’ the Maximum minimum vertical rise becomes 12’ fr om the draft offset is 4 ft. hood. Recommended damper sealing plate to seal flue chamber to prevent heat loss NOTE: A chimney system located outside the building envelope may be subject to downdrafting and/or flow reversal. Atmospherically-vented ap- pliances, such as B-Vents, may not be compatible with these chimney systems. All atmospherically-vented appliances (B-Vents) are affected by atmospheric conditions and house pressurization. For example, a B-Vent appliance vented to an outside chimney system in a base- ment will likely be subject to negative pressure. WARNING: FAILURE TO POSITION THE PARTS IN ACCOR- This type of installation is not recommended. DANCE WITH THIS DIAGRAM OR FAILURE TO USE ONLY PARTS SPECIFICALLY APPROVED WITH THIS APPLIANCE MAY RESULT IN PROPERTY DAMAGE OR PERSONAL INJURY. Figure 6. GF 300 BV venting through a masonry chimney. 9"}, {"p": 10, "t": "137945_22 GF 300 BV 01/22 Approved B-Vent Configurations Listed B-Vent Termination Listed B-Vent Termi- Cap required. nation Cap required. Maximum NOTE: total horizontal Maximum Installation at anywhere in chimney altitude greater NOTE: venting configu- height off than 2000’ re- Installation at ration Draft Hood is quires minimum Minimum chimney altitude greater is 4 feet. 35 feet. 12 ft. vertical rise height from Draft than 2000’ re- quires minimum from Draft Hood. Hood 12 ft. vertical rise is 7 feet. Minimum from Draft Hood. chimney Max. Four, 45° height off or Three, 90° Draft Hood is Elbows 7 feet. Figure 7. Figure 8. Listed B-Vent Listed B-Vent termination cap Maximum termination required. total horizontal cap required. anywhere in venting configu- ration NOTE: Maximum NOTE: is 4 feet. Installation at chimney Installation at altitude greater height off altitude greater than 2000’ re- Draft Hood is than 2000’ re- Minimum chimney quires minimum 35 feet. quires minimum height from Draft 12 ft. vertical rise 12 ft. vertical rise Hood from Draft Hood. Minimum from Draft Hood. is 7 feet. chimney height off Max. Four, 45° Draft Hood is or Three, 90° 7 feet. Elbows Maximum total horizontal any- where in venting configuration is 4 feet. Figure 9. Figure 10. 10"}, {"p": 11, "t": "137945_22 GF 300 BV 01/22 Fuel Conversion Conversion Kit Contents: • 1, regulator tower labeled for propane • 3, regulator tower screws The GF 300 BV gas stove is shipped from the factory • 1, burner orifice (#39 for NG, #53 for LPG) equipped to burn NATURAL GAS only. If PROPANE gas is to be used as fuel, the appliance must first be converted • 1, pilot orifice (#51 for NG, #30 for LPG) for use with propane. Use Propane Conversion Kit 155592, • Label A - to be completed and applied to supplied with the appliance. the back of the stove Order and install NG Conversion Kit 155593 to change • Label B - apply to the stove’s Rating Plate back to use with natural gas. • Small valve label - apply to valve body Conversion instructions are also shipped in the stove with the conversion kit. WARNING: THE CONVERSION KIT IS TO BE INSTALLED BY AN Fuel Conversion Procedure AUTHORIZED SERVICE TECHNICIAN IN ACCORDANCE 1. Turn off gas supply to stove. WITH THE MANUFACTURER’S INSTRUCTION AND 2. Remove the stove Top Plate. ALL CODES AND REQUIREMENTS OF THE AUTHORITY HAVING JURISDICTION. FAILURE TO FOLLOW THESE 3. Disengage the two Glass Frame Latches at the top of INSTRUCTIONS COULD RESULT IN SERIOUS INJURY the firebox. See fig. 39, page 22. Carefully lift the glass OR PROPERTY DAMAGE. THE QUALIFIED AGENCY panel up and out of the stove. PERFORMING THIS WORK ASSUMES RESPONSIBILITY 4. If installed, remove the Embers and Log Set using care FOR THIS CONVERSION. not to damage the fragile log parts. IN CANADA: 5. Lift out the Burner Skirt shown in fig.11. THE CONVERSION SHALL BE CARRIED OUT IN AC- CORDANCE WITH THE REQUIREMENTS OF THE PRO- 6. Reach under the stove and remove the Air Shutter VINCIAL AUTHORITIES HAVING JURISDICTION AND wingnut from its stud. As you face the right side, it is IN ACCORDANCE WITH THE REQUIREMENTS OF THE the one closest to you. See fig. 12. CAN1-B149.1 AND .2 INSTALLATION CODE. AVERTISEMENT: Burner Skirt CET EQUIPEMENT DE CONVERSION SERA IN- STALLE PAR UNE AGENCE QUALKFIEE DE SERVICE CONFORMENMENT AUX INSTRUCTIONS DU FAB- RICANT ET TOUTES EXIGENCES ET CODES APPLE- CABLES DE L’AUTORISES AVOIR LA JURIDICTION. SI L’INFORMAITON DANS CETTE INSTRUCTION N’EST PAS SUIVIE EXACTEMENT, UN FEU, EXPLOSION OU PRODUCTION DE PROTOXYDE DE CARBONE PEUT RESULTER LE DOMMAGES CAUSER DE PRO- PRIETE, PERTE OU BLESSURE PERSONNELLE DE VIE. L’AGENCE QUALIFIEE’ DE SERVICE EST ESPONSABLE DE L’INSTALLATION PROPRE DE CET EQUIPEMENT. L’INSTALLATION N’EST PAS PROPRE ET COMPLETE Figure 11. Lift and remove the Burner Skirt from within JUSQU’A L’OPERATION DE L’APPAREIL CONVERTI EST the firebox. CHEQUE SUIVANT LES CRITERES ETABLIS DANS LES INSTRUCTIONS DE PROPRIETAIRE PROVISIONNEES AVEC L’EQUIPEMENT. \u001b\u001a\u0019\u0018\u0017 \u0016\u0015\u001a\u0014 Tools required: \u0013\u0012 \u0014\u0012\u0011\u0016\u0010\u001a \u000f\u0012\u0011 • 1/2” open ended wrench or deep-well socket, Torx T20 or slotted screwdriver, 4 mm allen wrench. \u0010\u0018 \u000e \u0019 Figure 12. Locate and remove the Air Shutter wingnut from under the right side of the stove. 11"}, {"p": 12, "t": "137945_22 GF 300 BV 01/22 7. Lift out the Burner Plate: NOTE: There are no screws securing the Burner to the floor of the firebox. Pull the Air Shutter forward and lift the burner together Air Shutter with shutter up and out of the stove as a unit. See fig. 13. 8. Change the Burner Orifice. See fig. 14. Using a 1/2” open ended wrench or deep-well socket, remove the burner orifice from its brass elbow housing and re- Burner Plate place with the appropriate orifice supplied in the kit. 9. Replace the Air Shutter with its gasket and push it all the way back to allow replacement of the Burner Plate. Reattach the wingnut to the shutter stem un- der the stove, but do not tighten. You will set its final position later. Figure 13. Remove the Air Shutter and Burner as a unit. 10. Replace the Burner Plate. Engage the burner tube with the Air Shutter assembly as in fig. 13. Be sure the burner is securely engaged with the two support brackets at the front of the firebox and push the plate Burner Orifice back toward the rear of the firebox. When correctly positioned, there will be 1/2” (13 mm) clearance be- tween the burner plate and the front of the firebox. See fig. 15. 11 . CHANGE THE PILOT ORIFICE: From within the firebox, remove the Pilot Head by pulling it straight up from the pilot base. See fig. 16. Using the 4 mm hex key included with the kit, unscrew the pilot orifice (coun- terclockwise). Replace with the appropriate orifice: 12. Tighten orifice into the base of the pilot assembly. To prevent bypass leaks, be sure the orifice is secured Figure 14. Change the Burner Orifice. tightly and flush with the base. Replace pilot head by pushing it down onto the pilot base. 13. Remove the Variable Regulator. Using a Torx T-20 screwdriver, remove the three screws from the front of the valve regulator. See fig. 17. 14. Remove the Regulator Tower, Gasket, white plastic disk, and Spring. Remove the black rubber gasket from the valve. See fig. 17. 1/2” Figure 15. Correct Burner Position - maintain 1/2 inch clearance between burner and firebox front. 12"}, {"p": 13, "t": "137945_22 GF 300 BV 01/22 Pilot Head Regulator Tower Thermopile Ignitor Orifice Remove black gasket from regulator assembly Retainer Thermocouple Clip Valve Pilot Base Figure 16. Pilot orifice removal and replacement. Figure 17 Regulator disassembly. 15. Install the new regulator: Be sure the new gasket is properly positioned and tighten screws securely. Gas Supply Connection 16. Install the identification labels to the stove so that they can be seen by any person that may be servicing BLOWER NOTE: Install the optional blower before the stove. connecting the gas line in order to ensure adequate Label A: apply to back of stove. clearance between both. Label B: apply to stove’s rating plate. Small conversion label: apply to valve. The gas supply line connection is made to the left side of 17. Reassemble the stove, apply gas to the system and the front-mounted valve. The gas supply line should be check for leaks using a soapy water solution or gas 3/8” npt with a 1/2” diameter supply, or the appropriate detector. size to provide sufficient gas pressure to the valve regard- NEVER USE AN OPEN FLAME TO CHECK FOR GAS LEAKS. less of the input setting. 18. Correct gas pressure is essential for efficient and safe The use of Flexible Gas Appliance Connectors is ac- operation of this appliance. Use a manometer to check ceptable in many areas in the U.S. However, Canadian pressures as specified in the Gas Pressure section of methods vary depending on local code. this manual (page 14). ALL INSTALLATIONS MUST COMPLY WITH LOCAL CODE 19. Adjust the Air Shutter. You will need to position the OR IN THE ABSENCE OF LOCAL CODE, MUST COMPLY WITH shutter to provide a gas/air mixture that will achieve THE MOST RECENT EDITION OF THE NATIONAL FUEL GAS the best flame picture with your particular installation. CODE ANSI Z223.1/NFPA 54 OR CAN-B149. Start with the shutter stem at the half-way position in All codes require a gas shut-off valve (gas cock) and the slot in the bottom of the stove. See fig. 12. Pushing union, to be installed in the supply line, and in the same the stem back will restrict air, while pushing it for- room as the appliance. This allows for the disconnection ward will open the shutter and increase air. With some of the stove for servicing and maintenance. See fig. 18. experimentation, you will find the shutter position that works best for your installation. ALWAYS REFER TO THE LIGHTING INSTRUCTIONS ON THE A T-HANDLE GAS COCK IS REQUIRED IN INSIDE BACK COVER OF THIS MANUAL WHEN LIGHTING MASSACHUSETTS TO COMPLY WITH CODE 248CMR. YOUR STOVE. Secure all joints tightly using appropriate tools and sealing compounds. For propane units be sure to use compounds that are propane resistant. Turn on gas supply and test for gas leaks using a soapy water solution or gas detector. Never use an open flame to check for leaks. 13"}, {"p": 14, "t": "137945_22 GF 300 BV 01/22 \u0019 \u0018 \u001b\u0004\u0003 \u001b\u001a\u001b\u0019 \u0018 \u0017\u0016\u0015\u0014\u0013\u001b\u0017\u0007\u000f\u000f\u0007\u0006\u0005 \u001b\u001a\u001b\u0019 \u0018 \u001b\u0017\u0016\u0015\u0014\u0013 \u0012\u0011\u0010\u000f\u000e \u001b \u0015\u0016 \u0013 \u0019 \u0018 \u001b\u0017\u0016\u0013\u001a\u001b \u0010\b\u0007\u0006\u0005 \u0019 \u0018 \u0004\u0007\u0002\u0002\u0016\u0013 E A Figure 19. Pressure test points. \u0019 \u0018 \u001b\u0006\u0007 \u0006 \u0001\u0015\u001b\u0012\u000f\u0010\b \u0019 \u0018 \u001b\u0016 \u0013\u001b\u0004\u0007\u0002\u0002\u0016\u0013 \u0019 \u0018 \u001b\u0012\u0011\u0010\u000f\u000e \u0015\u0016 \u0013 INLET GAS PRESSURES \u001b\u001a\u001b\u0019 \u0018 \u0013\u0010\u0013\u0014 (inches water column) Figure 18. Supply valve connection fittings. MIN MAX NATURAL GAS 5.0 7.0 PROPANE 12.0 14.9 Leak test: The appliance and its appliance main gas valve 1. Mix a 50-50 solution of water and dish must be disconnected from the gas supply piping soap. system during any pressure testing on that system 2. Light appliance- see lighting instructions at test pressures in excess of 1/2 psig (3.5 kPa). on the inside back cover of this manual or The appliance must be isolated from the gas on the stove’s rating plate. supply line by closing its individual manual gas 3. Brush or spray all joints and connections shut-off valve (gas cock) during any pressure testing with the soapy water solution. of the gas supply piping system that is equal to or 4. If bubbles appear at any connection or less than pressures of 1/2 psig (3.5 kPa). seam or a gas odor is detected, imme- MANIFOLD PRESSURES diately turn gas control knob to the OFF (inches water column) position. MIN MAX 5. Tighten or reconnect the leaking joint NATURAL GAS 1.2 3.8 and retest for any gas leaks. PROPANE 2.9 11.0 Gas Pressure Correct gas pressure is essential for efficient and safe operation of the GF 300 BV gas stove. It is important that the correct pressure is established at the time of the installation. Proper gas pressure provides a consis- tent flow of gas to the appliance and is instrumental in checking for gas leaks. Pressure Test: Attach a manometer to the appro- priate test point on the valve. See fig. 19. The gauge connections are located on the front of the valve under the On/Off/Pilot- knob. Gauge connections are identi- fied by: E - for Inlet or Supply Pressure (the amount of gas coming to the valve.) A - for Manifold Pressure (the amount of gas that is coming out of the valve to the burner.) ALWAYS TEST PRESSURES WITH VALVE CONTROL KNOB SET ON HIGH. 14"}, {"p": 15, "t": "137945_22 GF 300 BV 01/22 PN 220729 Log Set Installation Brick Kit Note: Install the optional Antique Brick Kit 155648 before installing the logset. See page 22 and the instructions provided with that kit. The GF 300 BV logset must be installed before operating the burner. The logset includes four log pieces, pack- aged inside the firebox, and a quantity of ember stones packaged in the Miscellaneous Parts bag. To install the log set, remove the packaging and place the parts inside Figure 21. Install Right Log the firebox as illustrated in figures 20-24. Do not handle the log set with your bare hands. Always wear gloves to prevent skin irritation from the ceramic fibers. PN 220728 IMPORTANT The ember stones realistically simulate glow- ing coals when the burner is operating. These should be spread evenly over the burner plate and around the logs. TO INSURE PROPER BURNER FUNCTION, DO NOT OBSTRUCT THE PILOT ASSEMBLY AND BURN- ER SKIRT OPENINGS WITH EMBER STONES. KEEP Figure 22. Install Left Log EMBERS OFF OF THE PILOT CARRY-OVER PORTS. SEE FIG. 24. You do not need to use all of the ember PN 220730 stones. With some experimentation, you will find the arrangement and quantity of embers that works best with your stove. Depending upon the characteristics of your installation, it is possible that too many ember stones can promote sooting on the logs. Adjust the quantity of ember stones as appropriate to maintain the best overall flame picture and burner performance. Figure 23. Install Middle Log PN 220727 KEEP CARRY-OVER PORTS CLEAR Pilot Assembly 1/4 1/4 6 mm 6 mm Figure 20. Engage the holes in the underside ot the Rear Figure 24. Position embers loosely and maintain 1/4” Log with the two pegs in the burner skirt. clearance from the burner skirt edges. 15"}, {"p": 16, "t": "137945_22 GF 300 BV 01/22 Flame Appearance / Air Shutter Optional Wall Thermostat or Adjustment Remote Control The GF 300 BV gas stove is shipped from the factory Use only a 750 millivolt DC two-wire circuit thermostat equipped to burn Natural gas. If the stove has been with this appliance. The thermostat should be placed in the converted for use with propane, the Air Shutter may same room as the heater, typically 5 feet off the floor. Avoid require adjustment to achieve the desired flame drafty areas or any area that may affect the accuracy of the appearance. Other installation related variables can also thermostat. affect the flame picture. The Air Shutter may be opened or • The thermostat should be connected to the stove using a closed to provide the best flame picture for your specific minimum of 16 gauge wire with a maximum length of 25 installation. feet of wire. Too large an air opening - the appliance will generate a • Connect the two thermostat wire leads to the two left flame that is blue and transparent, or an “anemic” flame. terminals on the terminal block located directly above the Too small an air setting - the appliance will generate ignitor button. Do not overtighten the connections. IT IS NOT very long yellow flames resulting in soot. Sooting NECESSARY TO DISCONNECT ANY OTHER WIRES. See Fig. 26. produces black deposits on the logs, on the inside walls of • For thermostatic operation, the On/Off/T-Stat switch on the appliance, and potentially on the exterior termination the back of the stove must be in the T-stat position, and cap. Sooting is caused by incomplete combustion in the the pilot light must be running, as it is the power source flames and lack of combustion air entering the air shutter for the thermostat. opening. • At the thermostat, the two wires should be connected to the two connection screws on the thermostat base plate To adjust the air shutter: per the manufacturer’s instructions. 1. Reach under the right side of the stove and loosen the Remote Control wingnut located closest to you. See fig. 25. Slide the When using a remote, the remote receiver should be wired wingnut stud forward to open the air shutter and back to the terminal block the same way the thermostat would to provide less air. Make adjustments in small incre- be. See the instructions above. ments. Follow the operating instructions included with the 2. Tighten the wingnut to secure the shutter at the de- Remote Control unit. sired setting. 3. Allow the stove to burn for 30 minutes on the HIGH set- WARNING! ting, observing the flame continuously. If the flame ap- LABEL ALL WIRES PRIOR TO DISCONNECTION WHEN SERVICING pears weak, slow, or sooty, repeat the process described THE CONTROLS. WIRING ERRORS CAN CAUSE IMPROPER OR above until the flame is as desired. DANGEROUS OPERATION LEADING TO SERIOUS INJURY. ALWAYS VERIFY PROPER OPERATION AFTER SERVICING THE APPLIANCE. \u001b\u001a \u0019\u0018\u0017\u0016\u0015 \u0012\u0016\u0015 \u0010\u0012\u0011\u0015\u001b\u0014\u001a WARNING: AIR SHUTTER ADJUSTMENTS SHOULD ONLY BE PERFORMED BY A QUALIFIED PROFESSIONAL SERVICE TECHNICIAN. Black \u0019\u0017\u0014\u0013 \u0019 Red Black \u0012\u0011\u0015\u001b\u0014\u001a White Orange ON Purple Purple TH OFF White TP \u001b \u0019\u0018\u0015\u000f Yellow STAT TH Red/Black \u0017\u0014\u0013 TP \u0017\u0016\u001b\u0015\u0017\u000f \u001b\u001a \u0019\u0018\u0017\u0012\u001b \u001b Orange \u000e Black \u0019 \u0018\u0017\u001b \u0014\u0017\u000f\u001b\u0019\u0017 \u001b\u001a \u0019 Yellow Figure 26. B-vent valve and accessory wiring diagram. CRITICAL NOTE: THE RED THERMOPILE WIRE MUST BE CONNECTED TO THE Figure 25. Loosen the wingnut to adjust the air shutter. VALVE TH/TP TERMINAL TO POWER THE THERMOSTAT. 16"}, {"p": 17, "t": "137945_22 GF 300 BV 01/22 Installing Decorative Pipe System Check The use of decorative pipe is optional. No decorative 1. PURGING THE GAS LINE: When lighting the appliance pipe is included with the Jøtul GF 300 BV Allagash, for the first time, it will take a few moments to clear however, four locator brackets are included with the the gas line of air. Once this purge is complete, the stove in the hardware bag. The brackets are used to appliance will operate as described in the lighting center the decorative pipe over the draft hood on instructions. See the inside back cover of this manual which the pipe rests. Follow the procedure below to or the stove Rating Plate attached to the rear shroud. attach the brackets to the stove. Subsequent burner starts will not require purging the gas line unless the supply line is shut off. 1. Remove the four 1/4” hex head screws that attach the 4” Flue Collar to the draft hood, but do not 2. PILOT FLAME: See figs. 28 and 28a. You can monitor remove the Flue Collar. See Figure 27. the pilot flame through the view port located at the rear under the Right Log. The pilot flame should be 2. Align the “L”- shaped pipe brackets with the holes steady - not lifting or floating. The flame should be on the Flue Collar and attach using the four 1/4” blue in color around the pilot hood, with traces of yel- hex head screws, located in the Misc. Hardware low toward the outer edges. Bag. The pilot flame should engulf the top 3/8” of the Reminder: Do not use single wall stove pipe as the thermopile (to generate millivolt current) and the vent pipe on this appliance. top 1/8” of the thermocouple. The pilot flame should project out of the pilot hood 1” at all three ports and align with the burner carry-over ports as shown in fig. 28a. 3. BURNER ADJUSTMENT: This stove is equipped with a Draft Hood Flue Collar variable gas regulator in the valve that allows easy adjustment of the flame height appearance and heat output. To adjust the flame between the HI and LOW Spill setting, rotate the HI/LOW knob, located in the center Switch of the valve face. Fire intensity can be adjusted up to 50% between the LOW and HIGH settings. See fig. 29. NO SMOKE OR SOOT SHOULD BE PRESENT. CHECK LOG PLACEMENT IF ANY SOOT OR SMOKE IS PRESENT. IF SOOT OR SMOKE PERSISTS, THE AIR SHUTTER MAY 6 Decorative Pipe Brackets NEED TO BE ADJUSTED. See Flame Appearance/Air Shutter section of this manual for proper air shutter settings and adjust- ments. Note: the more offsets there are in the vent Figure 27. Decorative pipe attachment. system, the greater the need for an air shutter adjust- ment. See page 16. \u001b\u001a\u001a\u0019 \u0018\u0017\u0016 \u0017\u0016 \u0016\u001a\u001a\u0019 \u0018\u001a\u001a\u0019 \u0015\u0014\u0013\u0012 \u0015\u0014\u0013\u0012 Figure 28. Proper pilot flame appearance. Figure 28a. Proper pilot flame / carry-over port alignment. 17"}, {"p": 18, "t": "137945_22 GF 300 BV 01/22 WARNING: If a vacuum is used during any service on the stove, AIR SHUTTER ADJUSTMENTS SHOULD ONLY BE ALWAYS be sure the stove is cold and there are NO hot PERFORMED BY A QUALIFIED PROFESSIONAL embers. SERVICE TECHNICIAN. 5. This appliance has a continuous burning pilot flame. Exercise caution when using products having combus- tible vapors. Always shut-off gas supply while servicing the stove. 6. CAUTION: DO NOT OPERATE THIS APPLIANCE WITH THE GLASS REMOVED CRACKED OR BROKEN. Replacement of the glass should be done by a licensed or qualified service person. Use only replacement glass provided by your authorized Jøtul dealer. Never use any substitute materials. WARNING: OBSERVE CAUTION WITH THE GLASS. THE GLASS PANEL MAY SHATTER UNEXPECTEDLY IF STRUCK WITH AN OBJECT. ALWAYS HANDLE THE GLASS PANEL WITH CARE. WHEN SERVICING THE STOVE ALWAYS Figure 29. Flame appearance on the “high” setting after PULL THE GLASS ASSEMBLY STRAIGHT UP FOR REMOV- approximately 15 to 20 minutes burning. AL. 7. Clean the glass only when necessary. Wipe surface with a clean, damp soft cloth. Follow with a dry, soft CAUTION: towel as desired. Take care not to scratch the glass DO NOT ATTEMPT TO ALTER THE FLAME APPEARANCE surface. BY POSITIONING THE GAS VALVE CONTROL IN ANY WARNING: DO NOT USE ABRASIVE CLEANERS ON THE POSITION OTHER THAN THE FULL “ON” POSITION. GLASS. NEVER CLEAN THE GLASS WHEN IT IS HOT. BLOCKED FLUE SWITCH Operation NOTE: This appliance is equipped with a Spill Switch Familiarize yourself with the controls of the GF 300 BV. which will disable the burner in the event that the Make sure that anyone else using the appliance is also vent system becomes blocked or draft is reversed familiar with the controls and operation procedures. or too low which could result in toxic CO emissions. Always follow the Lighting Instructions on the inside back Located on the side of the Draft Hood, at the back of cover of this manual and also located on the Rating Plate the stove, the switch has a reset button that, when attached to the rear shroud of the stove. pressed, will re-enable burner function. See Fig. 27. 1. Once the pilot is lit, burner operation is controlled by If the Spill Switch repeatedly shuts the burner off, the rocker switch located at the left corner of the rear turn off the gas supply and call your dealer or service shroud. See fig. 30. technician. The Spill Switch will continue to shut off ON / OFF - use for manual control of the burner. the burner until the vent problem has been correct- T-STAT - use for optional thermostatic or remote con- ed. Not all vent problems can be corrected as B-Vent trol operation. The burner will be controlled by those appliances are affected by atmospheric conditions accessories. and house pressurization. 2. During the first few fires, you may notice odor and/ or smoke from the stove. This is normal and results from burn-off of manufacturing residue and curing of materials. You may find it helpful to provide additional \u001b\u0018 ventilation and fresh air to alleviate this condition. \u001a\u001a \u001b 3. Condensation may occur on the glass upon each light- \u001a\u001a \u0019\u001b ing of the appliance. This “fog” will disappear as the appliance heats up. \u0017\u0016 \u0015\u0014\u0013 \u0017\u0018\u0013 \u0014\u0013 4. Keep the controls and the area under the appliance free of debris, vacuum this area frequently. Always keep the appliance area clear and free from combustible ma- terials, gasoline and other flammable liquids. Figure 30. Burner Switch and Optional Blower Controls 18"}, {"p": 19, "t": "137945_22 GF 300 BV 01/22 Maintenance Your Jøtul GF 300 BV Allagash and its venting system should be inspected before use and at least annually by a FOR REPLACEMENT, USE ONLY JØTUL CERAMIC GLASS qualified service technician. REPLACEMENT KIT 155599. DO NOT USE ANY OTHER Use the form on page 3 to keep a fuel conversion and TYPE OF GLASS WITH THIS APPLIANCE. maintenance history of your stove. Glass Panel and/or Gasket Removal 1. Lift the Top Plate off of the stove. IMPORTANT: 2. Release the two Glass Frame Latches. Pull each latch ALWAYS TURN OFF THE GAS SUPPLY TO THE GAS STOVE handle forward to disengage the latch from the AND UNPLUG THE FORCED AIR BLOWER BEFORE ANY SERVICE WORK IS PERFORMED ON THE APPLIANCE. notches in the glass frame. 3. Lift the glass frame all the way up and out of the top of the stove. Lay this assembly on a flat surface, protect- Annual Cleaning ing the frame from scratches using a blanket or towel. 4. The glass panel is held in place by two steel tabs. Use a Vent System screwdriver or small pliers to pry these up off the edge The entire vent system, including the chimney, should of the glass retaining walls. See fig. 31. be inspected and cleaned every year. If the intake and 5. Remove the old gasket material. See fig. 32. Glass Panel exhaust venting is disassembled for any reason, it should or Gasket Replacement be reassembled and sealed according to the manufac- turer’s instructions provided at the initial installation. Firebox Components Periodically inspect the Firebox, Valve Compartment, Convection Airways and optional Blower to BE CERTAIN THAT THE FLOW OF COMBUSTION AND VENTILATION AIR IS UNOBSTRUCTED. • The firebox should be vacuumed annually to remove any surface build up. Use a soft brush attachment and handle the logs carefully as they are fragile. • Inspect the pilot head, thermopile and thermocouple for signs of rust or deterioration and replace any Figure 31. Use small pliers to pry up the two retainer tabs. components that do. Check that the pilot head is properly engaged with the throat and is oriented correctly. See fig. 28, page 17. Glass Panel and/or Gasket Replacement • Inspect the burner and confirm that all the ports are 1. Wrap the new gasketing material evenly around the unobstructed, particularly at the pilot area. Vacuum edge of the glass, peeling back the protective strip to the burner plate if necessary. expose the adhesive as you go. See fig. 32. Press the ad- hesive side down onto the glass surface. Do not stretch the gasket. Glass Care 2. Place the gasketed glass within the frame and press each of the retainer tabs back into place to secure the Clean the glass only when necessary. Wipe the surface panel within the frame. with a clean, dampened, soft cloth. Follow with a dry, soft towel. Take care not to scratch the glass surface. WARNING: DO NOT USE ABRASIVE CLEANERS ON THE GLASS. NEVER CLEAN THE GLASS WHEN IT IS HOT. Gasket Inspection It is important that the glass gasket be inspected at least annually. Examine the ribbon gasket for signs of dete- rioration and make sure the gasket has a positive seal. Replace the gasket if necessary. Refer to the replacement parts list on page 25. Figure 32. Wrap the gasket around the glass panel. 19"}, {"p": 20, "t": "137945_22 GF 300 BV 01/22 Optional Blower # 155620 CONNECT THE GAS SUPPLY TO THE STOVE BEFORE INSTALLING THIS BLOWER. IF NECESSARY, USE A 90° ELBOW OFF THE GAS VALVE TO CREATE 5 ADEQUATE GAS LINE CLEARANCE. 4 BE SURE ALL WIRE CONNECTIONS HAVE BEEN MADE BEFORE CONNECTING TO POWER SUPPLY. 1 6 2 1. Unpack and check the contents of the blower kit. Contact your dealer if any damage is evident or parts 3 are missing. See fig. 33. 2. Attach the Snapstat Bracket to the studs located un- derneath the stove in the middle of the firebox floor using the two M6 hex nuts and a 10 mm wrench. See fig. 34. 7 3. Attach the Blower to the stove with the screen open- ing to the rear using the two M6 flange head hex bolts as shown in fig. 35. Contents Tools Required 4. Attach either Snapstat wire connector to either 1. Blower • 10 mm wrench Snapstat terminal. See fig. 35. 2. Snapstat Wire Harness 3. Control Switch Wire Harness 5. Install the Snapstat by sliding it all the way into the 4. Snapstat slot in the Snapstat Bracket as shown in fig. 34. 5. Snapstat Bracket 6. Connect the female Control Switch quick-connector 6. M6 Flange Nuts, (2) to the male control switch wire harness already 7. M6 x 12 Hex Bolts, (2) installed in the stove. See fig. 35. Figure 33. Blower Kit Components 7. Connect power cord to the nearest outlet.  THIS BLOWER MUST BE ELEC- TRICALLY GROUNDED IN AC- CORDANCE WITH LOCAL CODES OR, IN THE ABSENCE OF LOCAL CODES, WITH THE CURRENT ANSI/NFPA 70, NATIONAL ELEC- TRICAL CODE OR CSA C22.1-CA- NADIAN ELECTRICAL CODE. Snapstat Bracket  THIS UNIT IS SUPPLIED WITH A THREE-PRONG (GROUNDING) PLUG FOR PROTECTION AGAINST Hex Head SHOCK HAZARD AND SHOULD Flange Nuts BE PLUGGED DIRECTLY INTO A PROPERLY GROUNDED THREE- PRONG RECEPTACLE. DO NOT CUT OR REMOVE THE GROUND- ING PRONG FROM THE PLUG. Figure 34. Attach Snapstat Bracket.  ALWAYS DISCONECT THE POW- ER SUPPLY WHEN PERFORMING ANY SERVICE ON THE APPLI- ANCE. 20"}, {"p": 21, "t": "137945_22 GF 300 BV 01/22 Figure 35. Attach Blower to the stove bottom and connect wires to Snapstat and female control quick connect. Male Quickconnector Snapstat Connectors Female Quickconnector M6 x 12 mm Hex Bolts Blower Operation The optional variable-speed blower will enhance heat \u001a\u0019\u0018\u0017\u0016\u0015 circulation around the firebox and out into the room. The blower is controlled by a heat activated switch (snapstat) G W BK that will ONLY function when the control switch is in BK BK W AUTO setting. After the fire has been burning for a time, G the snapstat will react to the heat and activate the BL BK BK BK blower. Fan speed may be manually adjusted with the BK \u0015\u0012\u0016\u0018 \u001b \u001b rheostat knob. If the burner turns off, the blower will be \u0018\u0017\u0016\u0015 GY \u001b \u001b \u0014 \u0019\u0013 shut off automatically when the stove cools down. BR If automatic blower circulation is not desired, place BL GY BR \u000f= QuickConnector Pin the blower control switch in the MANUAL position. \u0017\u0011\u001b\u0010\u0012 AUTO OFF MANUAL Figure 37. Blower Wiring Diagram Manual or Speed Automatic Control Modes CAUTION: LABEL ALL WIRES PRIOR TO DISCONNECTION WHEN \u001b\u0018 SERVICING CONTROLS. WIRING ERRORS CAN CAUSE \u001a\u001a IMPROPER AND DANGEROUS OPERATION. \u001b VERIFY OPERATION AFTER SERVICING. \u001a\u001a \u0019\u001b \u0017\u0016 \u0015\u0014\u0013 ATTENTION: \u0017\u0018\u0013 \u0014\u0013 Au moment de l’entrentien des commandes, etiquietez tous le fils avant le debranchement. es erreurs de ceblage peuvent entra tun fonctionnement inadequat et dangereux. Figure 36. Blower Controls 21"}, {"p": 22, "t": "137945_22 GF 300 BV 01/22 Optional Antique Brick Kit # 155648 CAUTION! THE BRICK PANELS AND LOG PARTS ARE Figure 39. EXTREMELY FRAGILE. HANDLE WITH CARE. Disengage the compression latches Read these instructions before beginning the installation. to remove the glass frame. 1. Remove the Top Plate. Simply lift it up off of the stove body. It is not fastened. 2. Remove the Glass Frame. Disengage the two com- pression latches located at the top of the firebox and lift the glass frame up and off of the stove. See fig. 39. 3. If installed, remove the Logset. These parts are not fastened. Simply lift them out of the firebox. You do not have to remove the embers. 4. Install the Lower Rear Panel. Position it up against the back wall, resting on the burner skirt. Fig. 40. 5. Install a Side Panel. Tilt the panel, bottom edge first, into position against the side wall. The panel will stand on its own against the wall, fitting snugly be- tween the rear panel and the front wall of the firebox. Fig. 41. Figure 40. Install Lower Rear Panel 6. Install the Upper Rear Panel. Simply rest it on the other two panels. Fig. 42. 7. Install the other Side Panel. 8. Reinstall the Logset. Refer to the Owner’s Manual if necessary. BE CERTAIN THAT NO EMBER STONES ARE BLOCKING THE PILOT ASSEMBLY OPENING. Refer to fig. 24. 9. Replace the Glass Frame. Slide the frame down the slot in the front of the firebox. Be sure to push the frame into the slot in the bottom to ensure it is fully seated. The gasket at the top of the frame should be flush with the top of the firebox. Pull the compression latches out to engage with the Figure 41. Install Side Panel top lip of the glass frame. 10. Replace the Top Plate. Upper Rear Panel 220745 Left Panel Right Panel 220998 220999 Lower Rear Panel 220990 Figure 38. Brick Kit Contents Figure 42. Install Upper Rear Panel 22"}, {"p": 23, "t": "137945_22 GF 300 BV 01/22 High Altitude Adjustment Installations burning natural gas and located at altitudes from 2000 - 4500 ft. (610 M - 1370 M), require compensa- Replace with #40 tion for the thinner air (less volume of air per cubic foot). orifice Higher altitudes affect the atmospheric pressure and heat value of gaseous fuels. The lower oxygen content in the air and the lower gas viscosity require the use of a differ- ent orifice to achieve efficient, clean combustion at the burner tube. For high altitude installations consult the local gas distributor or the authority having jurisdiction for proper rating methods. If the installer must convert the unit to adjust for varying altitudes, use Jøtul High Altitude Kit, #155810-NG. Figure 43. Change the Burner Orifice. DO NOT DERATE THE BURNER FOR PROPANE. In the U.S: THE DERATING KIT MUST BE INSTALLED BY AN AUTHORIZED SERVICE TECHNICIAN IN ACCORDANCE WITH THE MANUFACTURER’S INSTRUCTIONS AND ALL Mobile Home Installation CODES AND REQUIREMENTS OF THE AUTHORITY HAV- ING JURISDICTION. THE INFORMATION STICKER MUST The GF 300 BV can be installed for use in a mobile home BE COMPLETED BY THE INSTALLER AND APPLIED TO THE in the U.S. and Canada provided: APPLIANCE AT THE TIME OF THE CONVERSION. THE QUALI- 1. The stove is secured to the floor of the mobile home. FIED SERVICE AGENCY PERFORMING THIS WORK ASSUMES Use Jøtul Floor Bracket Kit #750304. RESPONSIBILITY FOR THIS DERATING. 2. Provision must be made to secure an electrical ground In Canada: This unit has been tested for installation at between the stove and the mobile home chassis. high altitudes in accordance with Canadian test standard 3. The stove is installed in accordance with Title 24 CFR, CAN/CGA-2.17. THE DERATING SHALL BE CARRIED OUT IN Part 3280-Manufactured Home Construction and ACCORDANCE WITH THE REQUIREMENTS OF THE PROVIN- Safety Standard, in the U.S. In Canada, comply with CSA CIAL AUTHORITIES HAVING JURISDICTION AND IN ACCOR- Z240.4, Gas Equipped Recreational Vehicles and Mobile DANCE WITH THE REQUIREMENTS OF THE CAN1-B-149.1 Housing. AND .2 INSTALLATION CODE. 4. Always contact your local officials about installation WARNING restrictions and requirements in your area. THIS CONVERION KIT SHALL BE INSTALLED BY A QUALIFIED SERVICE AGENCY IN ACCORDANCE WITH THE MANUFACTURER’S INSTRUCTIONS AND ALL APPLICABLE THIS APPLIANCE MAY BE INSTALLED AS AN OEM CODES AND REQUIREMENTS OF THE AUTHORITY INSTALLATION IN A MANUFACTURED (MOBILE) HOME HAVING JURSDICTION. IF THE INFORMATION IN THESE AND MUST BE INSTALLED IN ACCORDANCE WITH INSTRUCTIONS IS NOT FOLLOWED EXACTLY, A FIRE, THE MANUFACTURER’S INSTRUCTIONS AND THE EXPLOSION, OR PRODUCTION OF CARBON MONOXIDE MANUFACTURED HOME CONSTRUCTION AND SAFETY MAY RESULT, CAUSING PROPERTY DAMAGE, PERSONAL STANDARD, TITLE 24 CFR, PART 3280. THIS APPLIANCE IS INJURY, OR LOSS OF LIFE. THE QUALIFIED SERVICE AGENCY ONLY FOR USE WITH THE TYPE OF GAS THAT IS INDICATED IS RESPONSIBLE FOR PROPER INSTALLAION OF THIS KIT. ON THE STOVE’S RATING PLATE. A GAS CONVERSION KIT IS THE INSTALLATION IS NOT PROPER AND COMPLETE UNTIL PROVIDED WITH THE GF 300 BV GAS STOVE. OPERATION OF THE CONVERTED APPLIANCE IS CHECKED AS SPECIFIED IN THE INSTRUCTION SUPPLIED WITH THE KIT. THIS APPLIANCE MAY BE INSTALLED IN AN AFTERMARKET Derating Procedure PERMANENTLY LOCATED, MANUFACTURED (MOBILE) 1. Follow Steps 1-10 of the Fuel Conversion procedure HOME, WHERE NOT PROHIBITED BY LOCAL CODES. outlined on pages 11 and 12. 2. Replace the original orifice with the #40 orifice in the kit. CET APPAREIL PEUT ETRE INSTALLE DANS UN MAISON 3. Fill out the high altitude conversion label from the kit PREFABRIQUEE (MOBILE) DEJA INSTALLEE A DEMEURE SI and attach to the rating plate or gas valve. LES REGLEMENTS LOCAUX LE PERMETTENT. CET APPAR- EIL DOIT ETRE UTILISE UNIQUEMENT AVEC LES TYPES DE 4. Reassemble the firebox components. GAS INDIQUES SUR LA PLAQUE SIGNALETIQUE. NE PAS 5. It may be necessary to adjust the air shutter on the L’UTILISER AVEC D’AUTRES GAS SAUF SI UN KITDE CON- burner tube. See AIR SHUTTER/FLAME APPEARANCE on VERSION CERTIFIE EST INSTALLE. page 16 for more details. 23"}, {"p": 24, "t": "24 GF 300 BV Allagash Illustrated Parts Breakdown NOTE: Models beginning at Serial No. 137945_22 GF 300 BV 01/22 30000 are configured with a front- mounted gas control valve. ONLY USE REPLACEMENT PARTS PROVIDED BY AN AUTHORIZED JØTUL DEALER. Figure 44."}, {"p": 25, "t": "137945_22 GF 300 BV 01/22 GF 300 BV Allagash Parts List Blue Black Ivory Brown Linen Cast Iron Parts Matte Black Enamel Enamel Majolica Enamel Enamel 1. Side Plate 10463292 10463227 10463229 10463247 10463254 2. Base Plate 10390092 10390027 10390029 10390047 10390054 3. Legs, (4) 10192592 101966 102251 10192547 10192554 4. Front Asy.* 15746192 157462 157463 157464 158157 * Front Assembly includes After Serial No. 33600 15769892 157717 157718 157720 5, 6, 7, 75, and 76. 5. Top Plate 10390292 10390227 1039022 10390247 10390254 65. Glass Gasket, Tadpole................................................ 129124 8. Side Clip .........................................................................128401 Replacement Glass Kit ...............................................155599 9. Bolt, M6 x 25 mm (Side to Base)............................... 118019 66. Firebox, Heat Exchanger ............................................221192 10. Bolt, M6 x 16 mm (Side to Front)...............................99625 67. Screw, #8 x 1/2” Blk ...................................................... 117917 11. Rating Plate ................................................................. 220912 68. Nut, M6 Flange (2)....................................................... 117968 12. Lanyard, Rating Plate ................................................. 129159 69. Exhaust Baffle............................................................. 220763 13. Rivet, 1/8”....................................................................... 117946 70. Lower Draft Hood ...................................................... 220914 14. Spill Switch .................................................................. 220916 71. Screw, #8 x 1/2” Blk (4)................................................ 117917 15. Screw, 7 x 1/2” phillips (2)............................................118015 72. Upper Draft Hood .......................................................220915 16. Switch Box....................................................................220765 73. Draft Hood Cover Plate .............................................. 129183 17. Screw, #8 x 1/2” slotted hex....................................... 117917 74. Starter Collar.................................................................129189 18. Rocker Switch, (2)........................................................220703 75. Screw, #8 1/2” Blk (4).................................................... 117917 19. Rheostat, 26” leads.................................................... 220970 76. Glass Frame Latch ........................................................129135 20. Rheostat Nut................................................................. 220717 77. Screw, #8 1/2” Blk (4).................................................... 117917 21. Rheostat Knob............................................................ 220709 78. Heat Fins, (2)................................................................. 155653 22. Bolt, M6 x 20 (Front to Base)........................................117117 79. Nut, M6 Flange (2)....................................................... 117968 23. Nut, M6 Flange............................................................. 117968 80. Controls Heat Shield, (2) ........................................... 220918 24. Bolt, M6 x 20 mm (Leg to Base, 4)..............................117117 81. Rear Shroud .................................................................220764 25. Washer, M6 Fender.................................................... 120004 82. Right Log ......................................................................220729 26. Ignitor ......................................................................... 3902573 83. Middle Log ...................................................................220730 27. Screw, M4 x 8 phillips ................................................ 117920 84. Rear Log ........................................................................ 220727 28. Ignitor Bracket...........................................................3902576 85. Left Log ......................................................................... 220728 29. Gas Valve, NG - 50% TD............................................. 222263 86. Screw, #8 x 1/2” Blk (4)................................................ 117917 30. Nut, M6 Flange............................................................. 117968 87. Control Door...................................................................221187 31. Screw, 10-32 x 3/8 phillips (4)...................................... 117911 88. Air Deflector, Lower Rear ......................................... 220979 32. Valve Bracket (2)...........................................................220721 89. Wire Harness Assembly ........................................... 155604 33. Screw, M4 x 12 phillips (2)........................................... 117921 90. Air Deflector, Top ........................................................220978 34. Terminal Block, 2 Pole................................................. 129154 91. Hinge Bolt, M6 x 130 mm Hex Hd .......................... 118033 35. Nut, M4............................................................................117922 92. Fender Washer .250 x 1.500dia................................ 118029 36. Bracket, 2 Pole Terminal Block.................................. 220614 93. Spacer, .375 o.d. x 3.172 .............................................. 118040 37. Screw, 10-32 x 3/8” phillips (2).................................... 117911 94. Spacer, .375 o.d x .172...................................................118039 38. Brass Elbow, 90° 3/8” NPT.......................................... 129129 95. Hinge Washers, 4 12mm OD x 6mm ID...................117588 39. Compression Sleeve (2)............................................. 129463 96. Burner Assembly........................................................... 158118 40. Compression Nut (2).................................................. 129464 41. Main Gas Flex Tube, 5/16” ........................................ 129462 Not Illustrated 42. Jam Nut...........................................................................129152 96. Ember Stones, 4 oz. * (included in Logset)............220702 43. Orifice Holder...............................................................220643 97. Orifice Retainer............................................................ 221367 44. Burner Orifice , NG -#39 ...........................................129367 98. Safety Barrier ................................................................157727 Burner Orifice, LP - #53............................................... 220731 45. Wing Nut, M6................................................................117975 46. Washer, 2 1/4” O.D......................................................... 118023 47. Gasket, 2 1/4” O.D. ....................................................... 220734 48. Shutter Tube.................................................................224903 48A. Handle Air Shutter...................................................... 224953 54. Steel Burner Assembly ............................................... 158273 Crimped Burner Replacement Kit............................ 158232 55. Burner Skirt.................................................................. 221999 Accessories 56. Pilot Gasket.................................................................. 129670 Antique Brick Panel Kit ............................................................155648 57. Pilot Spacer Weldment .............................................226978 Variable Speed Blower ............................................................155620 58. Pilot Assembly, NG........................................................129471 Fuel Conversion Kit to Propane.............................................. 155592 Thermopile ................................................................3094527 Thermocouple ............................................................. 129766 Fuel Conversion Kit to Natural Gas....................................... 155593 Ignitor ......................................................................... 3902573 High Altitude Kit, NG................................................................ 155810 59. Screw, #8 x 3/4” sheet metal (2).............................. 117986 Spark Screen (not a listed Safety Barrier).............................129174 60. Glass, Ceramic..............................................................220576 Wall Thermostat...................................................................... 750003 61. Door Magnet, .375” dia. x 1/4”.................................. 224909 Remote Control System......................................................... 750002 62. Door Magnet Cap, Hi-temp Vinyl .375” ID.............224905 Floor Bracket Kit.......................................................................750304 63. Door Hinge Pin (4) - Nickel....................................... 125960 Top Plate Insert, Rear Exit Vent.............................................. 157724 Matte Black....................................... 127075 Torx T20 screwdriver................................................................ 110002 64. Glass Frame............................................................ 22076292 4 mm Allen wrench..................................................................129646 25"}, {"p": 26, "t": "137945_22 GF 300 BV 01/22 Jøtul Gas Product Warranty 3) Damage due to service performed by an installer, service agency or gas supplier, unless otherwise agreed to in writing by JØTUL. A. LIMITED FIVE YEAR WARRANTY - Cast Iron, Steel Doors, Surround 4) Labor or other costs associated with the repair of gas controls, Components, Firebox: plumbing, burners, log set, or sheet metal firebox beyond the warranty Jøtul North America Inc. (JØTUL) warrants, to the original retail period. purchaser, that those components of your Jøtul gas heater will be free of 5) Damage caused by unauthorized modification, use or repair. defects in material and workmanship for a period of five (5) years from 6) Damage to enameled surfaces caused by improper operation or the date of purchase. This warranty is subject to the terms, exclusions misuse, including use that is not in conformance with the operating and limitations set forth in the following text. instructions contained in this owner’s manual. Such damage can typically B. LIMITED TWO YEAR WARRANTY - Burner, Burner Treatments, Firebox be identified by bubbling, cracking, or discoloration of the enamel finish. Panels: 7) Costs incurred by travel time and/or loss of service. JØTUL warrants, to the original retail purchaser, that those components 8) Damage incurred while the Jøtul, Scan, or Atra Gas Stove or Gas stove of the Jøtul, Scan, or Atra Gas Stove or Gas stove specified above will is in transit. be free of defects in material and workmanship for a period of two (2) IN NO EVENT SHALL JØTUL, ITS PARENT COMPANY, SHAREHOLDERS, years from the date of purchase. This warranty is subject to the terms, AFFILIATES, OFFICERS, EMPLOYEES, AGENTS OR REPRESENTATIVES BE exclusions, and limitations set forth in the following text. LIABLE OR RESPONSIBLE TO YOU FOR ANY SPECIAL, INDIRECT, INCIDENTAL, C. LIMITED TWO YEAR WARRANTY - Enamel Finish: CONSEQUENTIAL, PUNITIVE OR OTHER SIMILAR DAMAGES, INCLUDING, JØTUL warrants, to the original retail purchaser, the enamel finish on BUT NOT LIMITED TO, LOST PROFITS, LOST SALES, INJURY TO PERSON OR cast iron components of the Jøtul Stove or Gas stove Insert specified PROPERTY, OR DAMAGES TO A STRUCTURE OR ITS CONTENTS, ARISING above against peeling or fading for a period of two (2) years from the UNDER ANY THEORY OF LAW WHATSOEVER. ALL IMPLIED WARRANTIES, date of purchase. This warranty is subject to the terms, exclusions and INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY AND limitations set forth below. FITNESS FOR A PARTICULAR PURPOSE, OR OTHERWISE, ARE LIMITED IN D. LIMITED ONE YEAR WARRANTY - Gas & Electrical Components DURATION TO THE LENGTH OF THIS WRITTEN WARRANTY. EXCEPT AS (controls, plumbing, valve, blower): EXPRESSLY SET FORTH HEREIN, JØTUL MAKES NO ORAL, WRITTEN OR JØTUL warrants, to the original retail purchaser, that those components OTHER WARRANTY WITH RESPECT TO JØTUL, SCAN OR ATRA GAS STOVES of the Jøtul, Scan, or Atra Gas Stove or Gas stove specified above will OR Gas stoveS. be free of defects in material and workmanship for a period of one (1) Some states do not allow the exclusion or limitation of incidental year from the date of purchase. This warranty is subject to the terms, or consequential damages, or limitations on the length of implied exclusions, and limitations set forth in the following text. warranties. Therefore, the above exclusions or limitations may not apply to you. This warranty gives you specific legal rights, and you may have JØTUL will repair or replace (including parts & labor), at its option, any other rights, which vary from state to state. of the above components determined by JØTUL to be covered by this JØTUL reserves the right to discontinue, modify or change the materials used warranty. You must, at your own expense, arrange to deliver or ship the to produce the Jøtul, Scan, or Atra Gas Stove or Gas stove. JØTUL shall have component to an authorized Jøtul, Scan, or Atra dealer and arrange for the right to replace any defective component with substitute components pickup or delivery of the component after repairs have been made. If, determined by JØTUL to be of substantially equal quality and price. upon inspection, JØTUL determines that the component is covered by The dollar value of JØTUL’s liability for breach of this warranty shall be this warranty, the repair or replacement will be made as set forth above. limited exclusively to the cost of furnishing a replacement component. This warranty is not transferable and is extended only to, and is solely for JØTUL shall not in any event be liable for the cost of labor expended the benefit of, the original retail purchaser of the Jøtul, Scan, or Atra Gas by others in connection with any defective component. Any costs or Stove or Gas stove. This paragraph sets forth the sole remedy available expenses beyond those expressly assumed by JØTUL under the terms of under this warranty in the event of any defect in the Jøtul, Scan, or Atra this warranty shall be the sole responsibility of the owner(s) of the Jøtul, Gas Stove or Gas stove. Scan, or Atra Gas Stove or Gas stove. The warranty period for any replaced component will be the remaining No dealer, distributor, or other person is authorized to modify, augment, unexpired portion of the warranty period for the original component. or extend this limited warranty on behalf of JØTUL. NO MODIFICATION Please retain your dated sales receipt in your records as proof of purchase. OR CHANGE TO THIS WARRANTY WILL BE EFFECTIVE UNLESS IT IS MADE IN A WRITTEN DOCUMENT MANUALLY SIGNED BY AN AUTHORIZED OFFICER EXCLUSIONS AND LIMITATIONS OF JØTUL. NOTICE: This warranty is void if installation or service is performed An authorized installer may have been provided with certain information by someone other than an authorized installer, service agency or gas related particularly to the Jøtul, Scan, or Atra Gas Stove or Gas stove; supplier, or if installation is not in conformance with the installation and however, no authorized installer or other person who may service the operating instructions contained in this owner’s manual or local and/ appliance is an agent of JØTUL. No inference should be made that JØTUL or national fire and building regulations. A listing of local authorized has tested, certified, or otherwise pronounced any person as qualified installers, service agencies and gas suppliers can be obtained from the to install or service the appliance. JØTUL shall not be liable or otherwise National Gas stove Institute at http://www.nficertified.org/. responsible for any error or omission by a person installing or servicing a This warranty does not cover the following: Jøtul, Scan, or Atra Gas Stove or Gas stove. 1) Repair or replacement of parts that are subject to normal wear If you believe your Jøtul, Scan, or Atra Gas Stove or Gas stove is defective, and tear during the warranty period or to parts that may require you should contact your nearest authorized Jøtul, Scan, or Atra dealer, replacement in connection with normal maintenance. These parts who will process a warranty claim. IN ORDER TO QUALIFY FOR WARRANTY include paint, lamp bulbs, gaskets, and glass (except to the extent such COVERAGE, JØTUL MUST RECEIVE NOTICE OF A POSSIBLE DEFECT WITHIN parts suffer damage from thermal stress). SIXTY (60) DAYS OF THE DATE THE DEFECT IS FIRST DISCOVERED, OR 2) Damage due to incorrect installations not in conformance with the REASONABLY COULD HAVE BEEN DISCOVERED. installation instructions contained in this owner’s manual or local and/ or national fire and building regulations. This warranty is given by Jøtul North America, Inc., 55 Hutcherson Drive, Gorham, Maine 04038 USA 26"}, {"p": 27, "t": "137945_22 GF 300 BV 01/22 LIGHTING INSTRUCTIONS FOR YOUR SAFETY, READ BEFORE LIGHTING. WARNING: IF YOU DO NOT FOLLOW THESE INSTRUCTIONS EXACTLY, A FIRE OR EXPLOSION MAY RESULT CAUS- ING PROPERTY DAMAGE, PERSONAL INJURY, OR LOSS OF LIFE. A. This appliance has a pilot which must be lit • If your gas supplier cannot be reached, call the by hand. When lighting the pilot, follow these fire department. instructions exactly. C. Use only your hand to push in or turn the gas B. BEFORE LIGHTING, smell all around the appli- control knob. Never use tools. If the knob will not ance area for gas. Be sure to smell next to the push in or turn by hand, do not try to repair it. floor because some gas is heavier than air and Call a qualified technician. Force or attempted will settle to the floor. repair may result in a fire or explosion. WHAT TO DO IF YOU SMELL GAS: D. Do not use this appliance if any part has been • Extinguish any open flame. under water. Immediately call a qualified service • Open windows. technician to inspect the appliance and to re- • Do not light any appliance. place any part of the control system and any gas • Do not touch any electrical switches. control which has been under water. • Do not use any phone in your building. • Immediately call your gas supplier from a neighbor’s phone. LIGHTING INSTRUCTIONS 1. STOP! Read the safety information above. 7. Push in gas control knob slightly and turn 2. Access the lower controls. counterclockwise to “PILOT”. 3. Turn the stove ON/OFF switch to “OFF”, or set the 8. Push in control knob all the way and hold in. thermostat to lowest setting (if used). Immediately light the pilot by triggering the spark ignitor (push the red button repeatedly) 4. Confirm that the gas supply line shut-off valve is until pilot lights. Continue to hold the control open. knob in for about one Control Valve minute after the pilot Control lights. Release knob and Knob ON it should spring back. PILOT OFF The pilot should remain lit. If it goes out, repeat Steps 5 through 8. • If knob does not Pilot Assembly 5. Push in gas control knob slightly and turn clock- return when released, wise to “OFF”. stop and immediately call your service techni- cian or gas supplier. NOTE: Knob cannot be turned from “PILOT” to “OFF” unless the knob is pushed in slightly. Do • If pilot will not stay lit after several tries, not force. turn the control knob to OFF and call your service technician or gas supplier. 6. Wait five (5) minutes to clear out any gas. If you then smell gas, STOP! Follow “B” in the safety 9. Turn gas control knob counterclockwise information above on this page. If you do not to “ON”. smell gas, go to the next step. 10.Turn the stove ON/OFF switch to “ON”, or set thermostat (if used) to desired temperature. TO TURN OFF GAS TO THE APPLIANCE: 1. At the rear of the stove, place the rocker switch 3. Depress gas control knob slightly and turn clockwise to” OFF”. The pilot will remain lit for normal service. to “OFF”. Do not force. 2. To turn off the pilot, access the lower controls. 4. To shut down completely, turn the supply line gas cock to the OFF position. 27"}, {"p": 28, "t": "137945_22 GF 300 BV 01/22 January 2022 137945-22 This appliance must be installed in conformance with local and national building regulations. Before beginning the installation, it is important that these instructions be carefully read and understood. Jøtul maintains a policy of continual product development. Consequently, products may differ in specification, color or type of accessories from those illustrated or described in various publications. Jøtul AS P.O. Box 1411 N-1602 Fredrikstad Norway Jøtul North America 55 Hutcherson Drive Gorham, Maine 04038-2634 www.jotul.us 28"}];
+
+/* curated topic index — the hand-written, audience-tuned answers */
+const INDEX=[
+  ...HOME_PRIMARY.map(d=>({k:'h',id:d.id,t:d.title,p:d.blurb})),
+  ...HOME_SECONDARY.map(d=>({k:'h',id:d.id,t:d.title,p:d.blurb})),
+  ...SPECS.map(s=>({k:'i',id:s.tap,t:s.lab,p:s.rows.map(r=>r[0]+' '+r[1]).join(' · ')})),
+  ...STEPS.map((s,i)=>({k:'i',id:'step'+i,t:s[0],p:s[1]})),
+  {k:'h',id:'safety',t:'gas smell',p:'What to do if you smell gas'},
+  {k:'h',id:'pilot',t:'pilot light view port',p:'How the pilot flame should look'},
+  {k:'h',id:'flame',t:'soot sooty yellow flame',p:'Flame appearance and sooting'},
+  {k:'i',id:'step2',t:'propane lp conversion orifice kit 155592',p:'Convert to propane before installing'},
+  {k:'i',id:'specVent',t:'b-vent chimney flue spill switch blocked downdraft',p:'4-inch Type B vertical venting'},
+  {k:'i',id:'specManifold',t:'pilot flame thermopile thermocouple millivolt',p:'Pilot must engulf the top 3/8 inch of the thermopile'},
+  {k:'i',id:'specClear',t:'clearance alcove mantel combustible',p:'Clearances to combustibles'},
+];
+
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function snippet(text,q){
+  const i=text.toLowerCase().indexOf(q); if(i<0)return '';
+  let s=Math.max(0,i-55), e=Math.min(text.length,i+q.length+85);
+  let frag=text.slice(s,e);
+  if(s>0)frag='… '+frag; if(e<text.length)frag+=' …';
+  // highlight every occurrence of the query in the fragment
+  const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig');
+  return esc(frag).replace(re,'<mark>$1</mark>');
+}
+
+const res=$('#results'),rlist=$('#rlist');
+$('#q').addEventListener('input',e=>{
+  const raw=e.target.value.trim(), q=raw.toLowerCase();
+  if(q.length<2){res.classList.remove('open');return;}
+
+  // curated matches (best answers)
+  const curated=INDEX.filter(x=>(x.t+' '+x.p).toLowerCase().includes(q)).slice(0,6);
+  // full-manual page matches
+  const pageHits=PAGES.filter(pg=>pg.t.toLowerCase().includes(q)).slice(0,12);
+
+  let html='';
+  if(curated.length){
+    html+=`<div class="rgroup">Best matches <span class="ct">${curated.length}</span></div>`;
+    html+=curated.map(h=>
+      `<div class="ritem" data-kind="topic" data-id="${h.id}" data-role="${h.k==='h'?'homeowner':'installer'}">
+         <span class="badge ${h.k}">${h.k==='h'?'Owner':'Install'}</span>
+         <div><h4>${esc(h.t)}</h4><p>${esc(h.p)}</p></div></div>`).join('');
+  }
+  if(pageHits.length){
+    html+=`<div class="rgroup">In the full manual <span class="ct">${pageHits.length} page${pageHits.length>1?'s':''}</span></div>`;
+    html+=pageHits.map(pg=>
+      `<div class="ritem" data-kind="page" data-page="${pg.p}">
+         <span class="pg">p.${pg.p}</span>
+         <div class="snip">${snippet(pg.t,q)}</div>
+         <svg class="jump" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg>
+       </div>`).join('');
+  }
+  if(!curated.length && !pageHits.length)
+    html=`<div class="rempty">Nothing matched “${esc(raw)}”. Try a part name, a number, or open the full PDF above.</div>`;
+
+  rlist.innerHTML=html;
+  res.classList.add('open');
+
+  $$('.ritem',rlist).forEach(it=>it.onclick=()=>{
+    if(it.dataset.kind==='page'){ openPDF(it.dataset.page); }
+    else { res.classList.remove('open'); $('#q').value=''; setRole(it.dataset.role); openDrawer(it.dataset.id); }
+  });
+});
+document.addEventListener('click',e=>{if(!res.contains(e.target)&&e.target.id!=='q')res.classList.remove('open');});
+
+/* deep-link into the PDF at a specific page */
+function openPDF(page){
+  const url = MANUAL_URL + (page?('#page='+page):'');
+  // In this prototype the PDF isn't hosted, so show the exact link it builds.
+  // On your site this single line is all the deep-link needs:  window.open(url,'_blank');
+  window.open(url,'_blank');
+}
+function pdfNote(e){e.preventDefault();openPDF(null);}
+$('#pdfBtn').onclick=pdfNote; $('#pdfBtn2').onclick=pdfNote;
+/* ---------------- owner-side inline search ---------------- */
+/* Curated answers (open the drawer) + full-manual page hits (open the PDF) —
+   the same two-tier logic as the header search, surfaced in the owner view. */
+const oq=$('#oq'), oResults=$('#oResults');
+function renderOwnerSearch(){
+  if(!oq||!oResults) return;
+  const raw=oq.value.trim(), q=raw.toLowerCase();
+  if(q.length<2){ oResults.innerHTML=''; return; }
+  const curated=INDEX.filter(x=>(x.t+' '+x.p).toLowerCase().includes(q)).slice(0,6);
+  const pageHits=PAGES.filter(pg=>pg.t.toLowerCase().includes(q)).slice(0,8);
+  let html='';
+  if(curated.length){
+    html+=`<div class="rgroup">Best matches <span class="ct">${curated.length}</span></div>`;
+    html+=curated.map(x=>
+      `<div class="ritem" data-kind="topic" data-id="${x.id}">
+         <span class="badge ${x.k}">${x.k==='h'?'Owner':'Install'}</span>
+         <div><h4>${esc(x.t)}</h4><p>${esc(x.p)}</p></div></div>`).join('');
+  }
+  if(pageHits.length){
+    html+=`<div class="rgroup">In the full manual <span class="ct">${pageHits.length} page${pageHits.length>1?'s':''}</span></div>`;
+    html+=pageHits.map(pg=>
+      `<div class="ritem" data-kind="page" data-page="${pg.p}">
+         <span class="pg">p.${pg.p}</span>
+         <div class="snip">${snippet(pg.t,q)}</div>
+         <svg class="jump" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg>
+       </div>`).join('');
+  }
+  if(!curated.length && !pageHits.length)
+    html=`<div class="os-hint">Nothing matched “${esc(raw)}”. Try another word, or open the full <mark>Official PDF</mark> up top.</div>`;
+  oResults.innerHTML=html;
+  $$('.ritem',oResults).forEach(it=>{
+    if(it.dataset.kind==='page') it.onclick=()=>openPDF(it.dataset.page);
+    else it.onclick=()=>openDrawer(it.dataset.id);
+  });
+}
+oq.addEventListener('input',renderOwnerSearch);
+
+/* ---------------- installer-side full-manual search ---------------- */
+const mq=$('#mq'), mResults=$('#mResults');
+function renderManualSearch(){
+  if(!mq||!mResults) return;
+  const raw=mq.value.trim(), q=raw.toLowerCase();
+  if(q.length<2){
+    mResults.innerHTML=`<div class="ms-hint">Searches the full text of every page of the official ${PAGES.length}-page manual. Type a part name, a number, or a term — each result opens the PDF at that page.</div>`;
+    return;
+  }
+  const hits=PAGES.filter(pg=>pg.t.toLowerCase().includes(q));
+  if(!hits.length){
+    mResults.innerHTML=`<div class="ms-hint">Nothing in the manual matched “${esc(raw)}”. Try a different term, or open the full <mark>Official PDF</mark> up top.</div>`;
+    return;
+  }
+  mResults.innerHTML=`<div class="rgroup">In the full manual <span class="ct">${hits.length} page${hits.length>1?'s':''}</span></div>`+
+    hits.slice(0,30).map(pg=>
+      `<div class="ritem" data-page="${pg.p}">
+         <span class="pg">p.${pg.p}</span>
+         <div class="snip">${snippet(pg.t,q)}</div>
+         <svg class="jump" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M17 7H8m9 0v9"/></svg>
+       </div>`).join('');
+  $$('.ritem',mResults).forEach(it=>it.onclick=()=>openPDF(it.dataset.page));
+}
+mq.addEventListener('input',renderManualSearch);
+renderManualSearch();
+</script>
+</body>
+</html>

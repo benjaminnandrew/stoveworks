@@ -1,0 +1,600 @@
+{
+ "id": "hearthstone-stowe",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "HEARTHSTONE",
+  "brand_line": "Stowe 8325 · Direct vent gas stove",
+  "kicker": "Direct vent gas stove",
+  "title": "Hearthstone Stowe",
+  "model_line": "Model 8325 · Direct Vent · Push-button piezo pilot, SIT 820 millivolt valve",
+  "owner_noun": "stove",
+  "owner_card": "Light the pilot, set the heat, know what's normal at first, clean the glass, check the warranty.",
+  "installer_card": "Specs, clearances, venting, the gas connection, the install sequence and pilot / burner troubleshooting.",
+  "certification": "ANSI Z21.88-2017 · CSA 2.33-2017 · CSA 2.17-2017",
+  "owner_search_hint": "pilot, thermostat, glass, gas smell",
+  "manual_search_hint": "orifice, vent run, pressure"
+ },
+ "home_primary": [
+  {
+   "id": "light",
+   "icon": "pilot",
+   "title": "Light the pilot",
+   "blurb": "Step by step with the push-button igniter at the gas valve."
+  },
+  {
+   "id": "heat",
+   "icon": "thermometer",
+   "title": "Set the heat",
+   "blurb": "The ON / OFF / T-stat switch, thermostat and flame height."
+  },
+  {
+   "id": "firstfire",
+   "icon": "flame",
+   "title": "First fires: what's normal",
+   "blurb": "Smoke and odor, foggy glass and blue flames early on."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "Cool glass, a mild cleaner, and what to look for."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "off",
+   "icon": "off",
+   "title": "Pilot timeout & shutdown",
+   "blurb": "Why the pilot goes out after 7 days, and turning it off for summer."
+  },
+  {
+   "id": "flame",
+   "icon": "sound",
+   "title": "Flame or sound not right?",
+   "blurb": "What a good flame looks like, and the signs to stop and call."
+  },
+  {
+   "id": "logs",
+   "icon": "logs",
+   "title": "Logs & embers",
+   "blurb": "Handle with care, place them exactly, keep embers off the ports."
+  },
+  {
+   "id": "care",
+   "icon": "service",
+   "title": "Yearly cleaning & service",
+   "blurb": "The annual firebox clean-out and professional inspection."
+  },
+  {
+   "id": "safety",
+   "icon": "safety",
+   "title": "Safety & gas smell",
+   "blurb": "What to do if you smell gas, hot surfaces and children."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "What's covered, for how long, and what voids it."
+  }
+ ],
+ "specs": [
+  {
+   "id": "input",
+   "lab": "Input rate · Btu/hr",
+   "tap": "specInput",
+   "rows": [
+    [
+     "Natural gas",
+     "22,400 / 15,000"
+    ],
+    [
+     "Propane",
+     "22,400 / 15,000"
+    ]
+   ],
+   "note": "max / min"
+  },
+  {
+   "id": "inlet",
+   "lab": "Inlet pressure · in.w.c.",
+   "tap": "specInlet",
+   "rows": [
+    [
+     "Natural gas",
+     "5.0 / 7.0"
+    ],
+    [
+     "Propane",
+     "11.0 / 13.0"
+    ]
+   ],
+   "note": "LO / HI setting"
+  },
+  {
+   "id": "manifold",
+   "lab": "Manifold pressure · in.w.c.",
+   "tap": "specManifold",
+   "rows": [
+    [
+     "Natural gas",
+     "1.2 / 3.6"
+    ],
+    [
+     "Propane",
+     "4.2 / 10.1"
+    ]
+   ],
+   "note": "LO / HI setting"
+  },
+  {
+   "id": "orifice",
+   "lab": "Burner orifice · DMS",
+   "tap": "specOrifice",
+   "rows": [
+    [
+     "NG, 0-2000 ft",
+     "#43"
+    ],
+    [
+     "NG, 2000-4500 ft",
+     "#42"
+    ],
+    [
+     "LP, both altitude bands",
+     "#54"
+    ]
+   ]
+  },
+  {
+   "id": "vent",
+   "lab": "Venting",
+   "tap": "specVent",
+   "rows": [
+    [
+     "Collar",
+     "4\" x 6-5/8\""
+    ],
+    [
+     "Max vertical run",
+     "35'"
+    ],
+    [
+     "Horizontal run at min. rise",
+     "10' max"
+    ],
+    [
+     "Min. rise, horizontal term.",
+     "9\""
+    ]
+   ]
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Walls, corners, mantel",
+     "diagrams, Figs. 5–8"
+    ],
+    [
+     "LVP / LVT to front glass",
+     "6\""
+    ],
+    [
+     "Vent pipe: vertical / horiz. top",
+     "1\" / 2\""
+    ]
+   ]
+  },
+  {
+   "id": "gas",
+   "lab": "Gas connection",
+   "tap": "specGas",
+   "rows": [
+    [
+     "Valve inlet",
+     "3/8\" male NPT"
+    ],
+    [
+     "Supply line",
+     "½\""
+    ],
+    [
+     "Sediment trap",
+     "required"
+    ]
+   ]
+  },
+  {
+   "id": "pilot",
+   "lab": "Pilot circuit",
+   "tap": "specPilot",
+   "rows": [
+    [
+     "Thermopile",
+     "325 to 500 mV"
+    ],
+    [
+     "Thermocouple",
+     "15 mV min."
+    ],
+    [
+     "Electrode gap",
+     "1/8\""
+    ]
+   ]
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Unpack & inspect",
+   "Check for transit damage (chipped or cracked enamel, bent or dented sheet metal) and the packing list: heater, pan burner, owner's packet, LP conversion kit, 5 logs, embers. Don't install a damaged or incomplete heater."
+  ],
+  [
+   "Dismount & open the firebox",
+   "Remove the four pallet lag screws and lift off with a helper, clear of the parts under the stove. Lift off the top and front panel, then release the glass clips and lift out the glass."
+  ],
+  [
+   "Floor & clearances",
+   "Non-combustible surface or wood floor; other combustible floors need a metal, wood, stone or glass panel the full width and depth of the stove. Wall, corner and mantel clearances per Figs. 5–8; LVP/LVT 6\" from the front glass."
+  ],
+  [
+   "Vent layout & limits",
+   "One approved manufacturer, never mixed or shared with another appliance. Stay within the rise, run and elbow limits and the termination clearances.",
+   "<p>Use components from one approved manufacturer (Simpson Dura-Vent, AmeriVent, Selkirk, Secure Vent, ICC, Metal-Fab). Don't mix brands, and never vent jointly with another gas or solid-fuel appliance. The starter collar is installed by Hearthstone.</p>\n<div class=\"kv\">\n<div class=\"r\"><span>Vertical termination</span><span>10' vertical pipe min.; 35' max vertical run</span></div>\n<div class=\"r\"><span>Elbows, vertical termination</span><span>two 90° or four 45° max, incl. the 45° off the outlet</span></div>\n<div class=\"r\"><span>Horizontal termination</span><span>9\" rise min., directly off the heater or a 14\" snorkel min.</span></div>\n<div class=\"r\"><span>Horizontal run at min. rise</span><span>10' max</span></div>\n<div class=\"r\"><span>Each 90° after 2</span><span>remove 5' of horizontal run (Canada: 4')</span></div>\n<div class=\"r\"><span>Horizontal sections</span><span>1/4\" rise every 12\"</span></div>\n<div class=\"r\"><span>Wall pass-through</span><span>10\" x 10\" min. (2\" at top, 1\" other sides)</span></div>\n<div class=\"r\"><span>Floor penetration</span><span>listed fire stop</span></div>\n</div>\n<h4>Cap height above the high side of a pitched roof</h4>\n<div class=\"kv\">\n<div class=\"r\"><span>Flat to 6/12</span><span>1 ft</span></div>\n<div class=\"r\"><span>7/12 to 9/12</span><span>2 ft</span></div>\n<div class=\"r\"><span>10/12 to 12/12</span><span>4 ft</span></div>\n<div class=\"r\"><span>13/12 to 16/12</span><span>6 ft</span></div>\n<div class=\"r\"><span>17/12 to 21/12</span><span>8 ft</span></div>\n</div>\n<h4>Termination clearances (U.S. / Canada)</h4>\n<div class=\"kv\">\n<div class=\"r\"><span>Any roof or vertical surface, horizontally</span><span>18\" min.</span></div>\n<div class=\"r\"><span>A · Above grade, veranda, porch, deck, balcony</span><span>12 inches</span></div>\n<div class=\"r\"><span>B · Window or door that may be opened</span><span>9 inches / 12 inches</span></div>\n<div class=\"r\"><span>D · Ventilated soffit within 2 feet</span><span>18 inches</span></div>\n<div class=\"r\"><span>E · Unventilated soffit</span><span>12 inches</span></div>\n<div class=\"r\"><span>F · Outside corner</span><span>9 inches / 12 inches</span></div>\n<div class=\"r\"><span>G · Inside corner</span><span>6 inches / 12 inches</span></div>\n<div class=\"r\"><span>L · Above public paved sidewalk or driveway</span><span>7 feet</span></div>\n</div>\n<p>Footnote to L: a vent shall not terminate directly above a sidewalk or driveway which is located between two single family dwellings and serves both dwellings.</p>\n<p>Hearthstone recommends 12 in. for windows (B, C) to prevent condensation, and 12 inches for corners (F, G) where winds are strong. The full A–M list is in Fig. 12 (p. 15); terminations must also fall within Figs. 9, 12 and 13. Steep roofs, nearby trees or strong winds can cause poor draft or downdraft; a taller vent may help, and vertical terminations may need extra restriction (restrictor plate, Figs. 29 &amp; 30). Chimney conversions: fireclay or listed steel liner (masonry) or UL103 / ULC S-629 prefab, 6\" min. inside diameter, 35' max vent length.</p>"
+  ],
+  [
+   "Minimum horizontal vent",
+   "45° elbow on the outer collar, 9\" pipe, 90° elbow; frame a 10\" x 10\" pass-through, fit the thimble and cap, and strap the cap to the pipe.",
+   "<ol>\n<li>Fit the 45° elbow over the outer collar, twist-lock end pointing up.</li>\n<li>Insert a 9\" pipe section into the elbow and turn about ¼ turn clockwise to lock; add the 90° elbow the same way.</li>\n<li>Move the stove and pipe back until the 90° elbow is flush to the wall, with the 9\" vertical pipe parallel to it. Mark around the pipe and use the circle's center for a 10\" x 10\" square pass-through; cut and frame it.</li>\n<li>Fit the interior wall thimble (4 screws, not provided), then the exterior portion, overlapping the 2 sections.</li>\n<li>Run a bead of non-hardening mastic around the horizontal termination's outside edges and mount it with the arrow pointing up and both retaining straps through the interior thimble. On vinyl siding, fit a vinyl siding standoff between cap and wall.</li>\n<li>Put the thimble cover on the 90° elbow. Insert the 9\" pipe at least 1-1/4\" into the cap, move the stove into position and twist-lock the pipe into the 90° elbow. Fix the straps to the pipe with 2 sheet metal screws close to the thimble, trim the excess, and screw the thimble cover to the wall.</li>\n</ol>\n<p>Dimensions in Figs. 10–11 use typical Simpson Dura-Vent GS components and centerlines are approximate: dry-fit and measure. Never recess the cap into the wall or siding, or fill air spaces with insulation.</p>"
+  ],
+  [
+   "Gas supply & fuel",
+   "3/8\" male NPT at the valve (bottom right center), ½\" supply, manual shutoff and a dedicated sediment trap. Factory NG; for LP fit the included conversion kit and an external regulator."
+  ],
+  [
+   "Initial leak test",
+   "Gas on, before operating: approved non-corrosive leak detection fluid on every joint; bubbles mean a leak. Tighten and retest, then do a secondary leak check after lighting. Never use it with any leak."
+  ],
+  [
+   "Log set & embers",
+   "Gloves and goggles. Logs 1–5 exactly as in Figs. 17–23; embers in small tufts, clear of the burner ports. Close the firebox and refit the cast iron panels."
+  ],
+  [
+   "First light & flame check",
+   "Light per the lighting instructions; off-gassing fades after 10 to 20 minutes. Run 10 minutes at the highest setting and compare the flame with Fig. 28.",
+   "<p>Hearthstone tests each Stowe before shipment, so ignition should take place without failure. Light it per the lighting instructions (pp. 22–23). Expect smoke and odor from the paints and oils; it subsides after the first 10 to 20 minutes of operation.</p>\n<p>Run it 10 minutes at the highest valve output, then compare the flame with Fig. 28 (p. 24): not dirty, smoky or sooty, not licking the top of the stove, not lifting off the pan burner, and not impinging heavily on the logs. Then do the secondary leak check of the gas supply.</p>"
+  ],
+  [
+   "Air shutter & restrictor",
+   "Shutter rod at lower rear center: push in to open, pull out to close. The restrictor ships fully open; adjust it at the left side of the firebox to cut excess draft.",
+   "<h4>Air shutter</h4>\n<p>Factory set; adjustments by a qualified gas technician only. The adjusting rod is hot. With the stove burning, loosen the set screw on the rod at the lower rear center, push in to open or pull out to close (Figs. 26–27), then tighten without letting the rod move. Very little movement changes the flame substantially; some conditions need a gas pressure adjustment instead.</p>\n<h4>Restrictor plate</h4>\n<p>A rotating flap in front of the firebox exhaust port, behind the baffle, used to control excess draft. It ships fully open: leave it open until installation is complete, then adjust if needed. Loosen the screw at the left side of the firebox (from front), set the position (Figs. 29–30) and tighten.</p>"
+  ]
+ ],
+ "faults": {
+  "label": "Pilot & burner faults",
+  "panels": [
+   {
+    "title": "Pilot won't light",
+    "items": [
+     "Low gas pressure, air in the pilot line, dirty or kinked line → check inlet pressure",
+     "Pilot orifice plugged, or dirty after the off season → clean or replace the pilot assembly",
+     "Electrode defective or misaligned → 1/8\" gap in the flame area",
+     "Defective igniter → check connection and wire insulation; no spark, replace igniter"
+    ]
+   },
+   {
+    "title": "Pilot won't stay lit",
+    "items": [
+     "Gas pressure low or too high → check inlet pressure for the gas used",
+     "Faulty connections → valve body to blue-wire solder joint, no less than 7 mV",
+     "Defective thermocouple → tighten at the valve; under 15 mV across the leads, replace pilot assembly",
+     "Pilot flame too low or blowing → clean / adjust for full impingement on thermopile and thermocouple"
+    ]
+   },
+   {
+    "title": "Pilot on, burner won't run",
+    "items": [
+     "Thermostat, switch or wiring → jumper at the thermostat, then at the gas valve",
+     "Thermopile not over 325 mV → replace pilot assembly; reading OK but no burner → replace gas valve",
+     "Plugged burner orifice → clean or replace; no metal cleaning device",
+     "Goes out after warm-up → aim pilot flame at the thermopile; check line pressure (LP: water at the regulator)"
+    ]
+   },
+   {
+    "title": "Flame faults",
+    "items": [
+     "Lazy, floating, yellow-tipped flames, soot → check input rate; clear burner, primary and secondary air; then air shutter",
+     "Flashback (blowtorch roar) → air shutter; input rate, pressure and orifice size; valve leak → replace valve",
+     "Delayed ignition (whoosh), more on LP → air shutter, open plugged ports, reposition logs",
+     "Blue flames past 20 minutes → adjust the air shutter"
+    ]
+   }
+  ]
+ },
+ "codes": [],
+ "detail": {
+  "light": {
+   "tag": "Owner · operation",
+   "title": "Lighting the pilot",
+   "cool": false,
+   "html": "<p>The pilot is lit with the piezo spark igniter: the red or black push button next to the gas control valve, behind the valve access door. Never use a match or anything other than the igniter. Turn the gas control knob by hand only, never with tools. If the knob won't push in or turn by hand, don't try to repair it. Call a qualified service technician. Force or attempted repair will void the warranty and can result in a fire or explosion.</p>\n<ol>\n<li>Set the on/off/T-stat switch or thermostat to off. Unplug the blower, if you have one.</li>\n<li>Push in the gas control knob and turn it clockwise to \"OFF\".</li>\n<li>Wait five minutes. Then smell for gas all around the stove, down by the floor too. If you smell any, stop (see Safety &amp; gas smell).</li>\n<li>Turn the knob counterclockwise to \"PILOT\".</li>\n<li>Push the knob all the way in and hold it. Click the igniter button several times until the pilot lights. Keep holding the knob about 20 seconds, then let go. It pops back out and the pilot should stay lit. If it goes out, repeat.</li>\n<li>Turn the knob counterclockwise to \"ON\". Set the switch to \"ON\" or \"T-STAT\" and close the access door.</li>\n<li>Plug the blower back in. Set the thermostat to \"ON\" and choose your temperature.</li>\n</ol>\n<div class=\"note danger\"><b>Call a qualified service technician or your gas supplier</b> if the knob doesn't pop back out, or the pilot won't stay lit after several tries (turn the knob to \"OFF\" first).</div>\n<div class=\"note\"><b>Note:</b> p. 8 says the pilot is lit using the remote control; p. 22 says it is lit with the push-button piezo igniter at the gas valve.</div>"
+  },
+  "heat": {
+   "tag": "Owner · operation",
+   "title": "Setting the heat",
+   "cool": false,
+   "html": "<p>With the pilot lit and the gas control knob at \"ON\", choose \"ON\" or \"T-STAT\" on the on/off/T-stat switch. In \"T-STAT\", your thermostat cycles the main burner on and off to hold the room temperature you set.</p>\n<h4>Flame height</h4>\n<p>The gas control valve has a variable output control. It changes the heat by varying the gas pressure to the burner. A low flame gives longer burn cycles at reduced output. A high flame gives shorter, hotter cycles. Try a few settings to find what suits your room and the season.</p>\n<h4>Options from your Hearthstone dealer</h4>\n<ul>\n<li>A wall-mounted 750 millivolt thermostat, or another programmable thermostat</li>\n<li>The optional remote (remote control kit #90-56914)</li>\n<li>The optional variable-speed blower (blower assembly kit 93-57230)</li>\n</ul>\n<div class=\"note\">A programmable thermostat set to run the stove for a while at least once a week, outside peak heating season, also keeps the 7-day pilot timeout from putting the pilot out.</div>"
+  },
+  "firstfire": {
+   "tag": "Owner · reassurance",
+   "title": "What's normal in the first fires",
+   "cool": false,
+   "html": "<h4>Smoke and odor</h4>\n<p>The first time it's lit, the Stowe gives off some smoke and odor. That's normal \"off-gassing\" of the paints and oils used to build it. Open windows to air out the room if you need to.</p>\n<p>The manual says this subsides after the first 10 to 20 minutes of operation (p. 22). It also says smoke or odor is normal during the first several burns, and again after long periods when the stove hasn't been used (p. 6).</p>\n<h4>Foggy glass</h4>\n<p>Fog on the glass is a normal result of burning gas. It should clear once the stove has warmed up.</p>\n<h4>Blue flames</h4>\n<p>Blue flames are normal for the first 20 minutes. They should start to turn more yellow after that. If they stay blue, have a qualified gas technician adjust the air shutter (the burner's air setting).</p>\n<div class=\"note\">Built-up dust, spider webs or lint can also cause odors when the stove is hot. Clean around, under and behind it regularly.</div>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>Gas can contain impurities, so the inside of the glass needs cleaning now and then. The manual lists it as monthly, or as needed.</p>\n<ol>\n<li>Turn the stove off and let the glass cool. Never clean it hot.</li>\n<li>Apply a mild window cleaning fluid, or the gas appliance window cleaner sold by Hearthstone dealers.</li>\n<li>Don't use abrasive cleaners. Scratches weaken the glass.</li>\n</ol>\n<p>The glass comes out through the firebox access steps: lift off the top, lift off the front panel, then hold the glass at the top middle while you free the spring-loaded clips one side at a time, and lift it straight up (pp. 9–10).</p>\n<h4>Check it while you're there</h4>\n<p>Look for micro-cracking or etching. If you see any, stop using the stove until the glass is replaced with parts from your Hearthstone dealer. Never run it with the glass removed, cracked or broken. Glass replacement should be done by a licensed or qualified service person.</p>\n<div class=\"note\"><b>Note:</b> p. 26 says the glass needs to be replaced every 5 years the stove is in service; p. 26 and p. 33 also say it must be inspected after 5 years of use and replaced if micro-cracking or etching is found.</div>"
+  },
+  "off": {
+   "tag": "Owner · operation",
+   "title": "Pilot timeout & turning it off",
+   "cool": false,
+   "html": "<h4>Day to day</h4>\n<p>The thermostat or the on/off/T-stat switch turns the main burner on and off. The pilot stays lit between burner cycles, up to the 7-day timeout below.</p>\n<h4>The 7-day pilot timeout</h4>\n<p>To meet regional efficiency rules, the gas valve puts the pilot out after 7 days without the main burner running. You'll then need to relight it with the normal lighting steps. A programmable thermostat that runs the stove for a while at least once a week, outside peak heating season, prevents this.</p>\n<h4>Relighting right after use</h4>\n<p>A safety interlock stops the pilot relighting straight away if the stove was just burning. It waits until a safety sensor (the thermocouple) cools, about 60 seconds after all gas flow is off.</p>\n<h4>Off for the summer</h4>\n<p>Turn the gas control knob clockwise to \"OFF\" and shut off the gas supply to the valve. The pilot's heat is wasted in summer, so this improves efficiency. Use the lighting steps when you put the stove back into service.</p>\n<div class=\"note\">In high-wind areas and very cold climates, let the pilot run 5 minutes before lighting the main burner. That warms the vent so all the burner ports light properly.</div>"
+  },
+  "flame": {
+   "tag": "Owner · safety",
+   "title": "Flame or sound not right?",
+   "cool": false,
+   "html": "<p>Check the flame now and then. Turn the flame-height control to its highest setting and let the stove run 10 minutes first. A good flame:</p>\n<ul>\n<li>isn't dirty, smoky or sooty, and doesn't lick the top of the stove</li>\n<li>stays on the pan burner instead of rising off it (\"lifting\")</li>\n<li>fits through the gaps in the log set without hitting the logs hard</li>\n</ul>\n<h4>Signs to stop and call</h4>\n<ul>\n<li><b>Lazy, floating flames</b> that roll around, sometimes right off the burner, maybe with yellow tips, soot and an odor (the manual says aldehydes). The manual calls this potentially dangerous incomplete combustion.</li>\n<li><b>A roar like a blowtorch:</b> gas lighting inside the burner near the orifice (flashback).</li>\n<li><b>A sudden \"whoosh\" as the burner lights:</b> gas building up before it ignites (delayed ignition). It's more common on propane.</li>\n</ul>\n<div class=\"note danger\">If the stove isn't working properly in any way, stop using it until qualified service personnel have inspected and approved it. Air shutter and gas pressure adjustments are only for qualified technicians.</div>"
+  },
+  "logs": {
+   "tag": "Owner · maintenance",
+   "title": "Logs & embers",
+   "cool": false,
+   "html": "<p>Your Stowe has a 5-piece ceramic log set and Platinum Bright Embers. Put only the supplied log set in the firebox. Never add other logs, wood or anything else, and never burn paper or wood in it.</p>\n<h4>Handling</h4>\n<ul>\n<li>The logs are fragile. Wear gloves and safety goggles when you handle them.</li>\n<li>The logs, burner and embers hold heat. Allow 2 to 3 hours to cool after the pilot is turned off.</li>\n<li>Replace damaged or missing logs only with the same or approved Hearthstone parts (log set kit 97-67000). Your dealer can help.</li>\n</ul>\n<h4>Placement matters</h4>\n<p>Each log has an exact spot. The manual numbers them 1 to 5 and shows each position in its figures (pp. 20–21). Wrong placement can cause carbon build-up, extra stress on the logs and stove, lower efficiency, and high levels of carbon monoxide. If the logs won't fit as shown, contact your dealer.</p>\n<p>Embers go on the burner and log surfaces in small tufts, for extra glow. Don't block the burner ports.</p>"
+  },
+  "care": {
+   "tag": "Owner · maintenance",
+   "title": "Yearly cleaning & service",
+   "cool": false,
+   "html": "<p>A qualified service person should inspect the stove before first use and at least once a year, venting included. Lint from carpets, bedding or pets can mean more frequent cleaning.</p>\n<h4>Annual firebox cleaning</h4>\n<ol>\n<li>Set the switch to \"OFF\" and turn off the gas supply to the valve. Wait for the stove to cool.</li>\n<li>Remove the front panel and glass. Lift out the logs carefully and remove all the ember material.</li>\n<li>Clean the baffle and burner. Vacuum the logs with a soft brush attachment, then the burner ports and the pilot assembly.</li>\n<li>With the logs still out, close the firebox and light the stove briefly. Check that every burner port has a proper flame. Don't run it more than 1-2 minutes without the logs.</li>\n<li>Put the logs back exactly as shown, refit the glass and front panel, turn on the gas, light it and check it runs properly.</li>\n</ol>\n<h4>Year-round</h4>\n<p>Clean on, under and around the stove to stop dust and lint building up. Wipe the outside with soap, water and a soft cloth. Avoid abrasive or chemical cleaners and wax polishes: they can discolor the cast iron or enamel when heated.</p>"
+  },
+  "safety": {
+   "tag": "Owner · safety",
+   "title": "Safety & gas smell",
+   "cool": false,
+   "html": "<h4>If you smell gas</h4>\n<ul>\n<li>Don't try to light any appliance.</li>\n<li>Don't touch electrical switches, and don't use any phone in your building.</li>\n<li>Call your gas supplier right away from a phone outside the building. Follow their instructions.</li>\n<li>If you can't reach your gas supplier, call the fire department or 911.</li>\n</ul>\n<h4>Around the stove</h4>\n<ul>\n<li>Its surfaces get very hot. Keep children and adults away, and watch young children closely in the same room. A physical barrier, such as a safety gate, is recommended if anyone at risk lives with you.</li>\n<li>Keep furniture, drapes, clothing and anything flammable away. Never store or use gasoline or other flammable vapors or liquids nearby.</li>\n<li>Don't run the stove with the glass removed, cracked or broken. Put back any screen or guard removed for service before using it.</li>\n<li>If any part has been under water, don't use it. Call a qualified service technician to inspect it.</li>\n</ul>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "Warranty at a glance",
+   "cool": false,
+   "html": "<p>Hearthstone's limited warranty covers defects in material or workmanship. It's for the original retail purchaser only, on a stove installed by an authorized Hearthstone dealer or their designated representative. It can't be transferred, and it starts on the date of the original invoice. \"Limited Lifetime\" means 10 years.</p>\n<div class=\"kv\">\n<div class=\"r\"><span>Cast iron not listed elsewhere</span><span>Limited Lifetime</span></div>\n<div class=\"r\"><span>Steel components and firebox; door handles and latches</span><span>5 years</span></div>\n<div class=\"r\"><span>Appliance electrical and gas components</span><span>2 years</span></div>\n<div class=\"r\"><span>Enamel finish (peeling or fading), glass, accessories, all else</span><span>1 year</span></div>\n</div>\n<p>Some rows, such as burner and logs, apply only to certain fuels; the manual shows which in a check-mark grid on p. 33. Hearthstone pays dealer labor in the first year (dealer-installed stoves only) and parts shipping for the first 90 days.</p>\n<h4>Not covered, among others</h4>\n<ul>\n<li>Installing, running or maintaining it other than as the manual says, or against code</li>\n<li>Over-firing, parts not supplied or approved by Hearthstone, or unapproved changes</li>\n<li>Wear parts such as paint, gaskets and glass; noise from expansion and contraction; odors from heating</li>\n</ul>\n<div class=\"note\">To claim, contact your original Hearthstone dealer (or the current local one) within the warranty period. This is a summary; the full terms are in the manual.</div>"
+  },
+  "specInput": {
+   "tag": "Installer · spec",
+   "title": "Input rates",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>NG max / min</span><span>22,400 / 15,000 Btu/hr</span></div>\n<div class=\"r\"><span>LP max / min</span><span>22,400 / 15,000 Btu/hr</span></div>\n</div>\n<p>The specifications table gives the same 22,400 Btu/hr input for 0-2000 ft and 2000-4500 ft; only the NG orifice changes. Heat rate is set with the variable output control on the gas control valve.</p>\n<p>Listed as a direct vent gas heater (PFS File #20-640; tested by Intertek). Approved for mobile home installation: aftermarket, in a permanently located manufactured home (USA only), where local codes allow.</p>"
+  },
+  "specInlet": {
+   "tag": "Installer · spec",
+   "title": "Inlet (supply) pressure",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Natural gas · LO / HI setting</span><span>5.0 / 7.0 in.w.c.</span></div>\n<div class=\"r\"><span>Propane · LO / HI setting</span><span>11.0 / 13.0 in.w.c.</span></div>\n</div>\n<p>Propane needs an external regulator. If the pilot won't light or stay lit, or the burner drops out after warm-up, check the inlet pressure for the gas in use; on LP with inconsistent pressure, check for water condensation at the regulator.</p>"
+  },
+  "specManifold": {
+   "tag": "Installer · spec",
+   "title": "Manifold pressure",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Natural gas · LO / HI setting</span><span>1.2 / 3.6 in.w.c.</span></div>\n<div class=\"r\"><span>Propane · LO / HI setting</span><span>4.2 / 10.1 in.w.c.</span></div>\n</div>\n<p>The valve's variable output control sets the heat rate by varying gas pressure to the main burner tube. Supply-line and manifold pressure adjustments must be made by qualified service personnel. Some flame conditions can't be corrected with the air shutter and need a gas pressure adjustment instead.</p>"
+  },
+  "specOrifice": {
+   "tag": "Installer · spec",
+   "title": "Orifices, conversion & altitude",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>NG, 0-2000 ft</span><span>#43 DMS</span></div>\n<div class=\"r\"><span>NG, 2000-4500 ft</span><span>#42 DMS</span></div>\n<div class=\"r\"><span>LP, both altitude bands</span><span>#54 DMS</span></div>\n<div class=\"r\"><span>Fuel conversion kit (NG)</span><span>93-56250</span></div>\n<div class=\"r\"><span>Fuel conversion kit (LP)</span><span>93-56251</span></div>\n<div class=\"r\"><span>High altitude kit (NG)</span><span>93-56242</span></div>\n</div>\n<p>Factory-equipped for natural gas and for 0 to 2000 feet (0-610 meters). To burn propane, install the included LP conversion kit; LP also needs an external regulator. Above 2000 feet, consult the local gas distributor or the authority having jurisdiction for proper rating; NG high-altitude adjustment follows the kit's instructions.</p>\n<div class=\"note small\">The manual also prints #93-56241 for the included LP conversion kit (p. 7); its parts list gives 93-56251, Fuel Conversion Kit (LP) (p. 28).</div>\n<div class=\"note small\">The manual also prints #95-56242 for the NG high altitude kit (p. 18); its parts list gives 93-56242, High Altitude Kit (NG) (p. 28).</div>"
+  },
+  "specVent": {
+   "tag": "Installer · spec",
+   "title": "Venting",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Collar, inlet / exit</span><span>4\" x 6-5/8\"</span></div>\n<div class=\"r\"><span>Vertical termination</span><span>10' vertical pipe min.</span></div>\n<div class=\"r\"><span>Max vertical run</span><span>35'</span></div>\n<div class=\"r\"><span>Horizontal termination rise</span><span>9\" min., or 14\" snorkel min.</span></div>\n<div class=\"r\"><span>Max horizontal run at min. rise</span><span>10'</span></div>\n<div class=\"r\"><span>Pipe to combustibles</span><span>1\" all sides, 2\" from top of horizontal runs</span></div>\n</div>\n<p>Approved vent systems only (Simpson Dura-Vent, AmeriVent, Selkirk, Secure Vent, ICC, Metal-Fab), never mixed and never shared with another appliance. Three configurations: vertical venting / vertical termination, vertical venting / horizontal termination, horizontal venting / snorkel termination. Elbow, slope and termination limits are in the vent steps; the termination chart (Fig. 13, p. 16) is a diagram only.</p>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances & floor protection",
+   "cool": true,
+   "html": "<p>Minimum clearances from the stove to walls, corners and mantels are given only as diagrams: Figs. 5–8 on p. 11 (wall, corner, horizontal-vent mantel and snorkel-termination mantel). Take those values from the manual.</p>\n<div class=\"note small\"><b>Maker's website:</b> Clearances: Side 4″; rear 3″; corner 4″; floor protection: non-combustible surface or wood floor. Install to the clearance diagrams in the manual.</div>\n<div class=\"kv\">\n<div class=\"r\"><span>LVP / LVT flooring to front glass</span><span>6\" min.</span></div>\n<div class=\"r\"><span>Vent pipe, vertical runs</span><span>1\"</span></div>\n<div class=\"r\"><span>Horizontal runs: sides and below / top</span><span>1\" / 2\"</span></div>\n</div>\n<p>Floor: directly on any non-combustible surface or a wood floor. Any other combustible floor needs a metal, wood, stone or glass panel under the stove, the full width and depth of the appliance. LVP/LVT begins to warp at 110 degrees Fahrenheit. Rear clearance is set by the unit's or the vent pipe's minimum, depending on vertical rise in the room or a rear through-the-wall exit. Allow access to the gas control valve door on the front, room for cleaning and service, and for a blower if fitted or planned.</p>"
+  },
+  "specGas": {
+   "tag": "Installer · spec",
+   "title": "Gas connection",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Connection</span><span>3/8\" male NPT, valve at bottom right center</span></div>\n<div class=\"r\"><span>Supply line</span><span>½\" diameter, or sized for max. demand</span></div>\n<div class=\"r\"><span>Sediment trap</span><span>dedicated, just upstream of the unit</span></div>\n<div class=\"r\"><span>Piping test above ½ psig</span><span>disconnect stove and its shutoff valve</span></div>\n</div>\n<p>A flexible line is recommended (check local codes). Tubing: no pipe joint compound or PTFE tape; nut and ferrule, finger-tight, then about 1 turn with a wrench. Pipe: no PTFE tape, correct thread length, approved sealant on the pipe only, leaving the two end threads bare. Don't over-tighten, bend tubing at the valve after tightening, or remove valve screws. Operate the gas control knobs by hand only, never with tools: if a knob won't push in or turn by hand, don't try to repair it; call a qualified service technician. Force or attempted repair will void the warranty and can result in a fire or explosion. Valve damage from a missing sediment trap isn't covered by warranty. Massachusetts: gas lines and fittings by a licensed gas fitter or licensed plumber.</p>\n<div class=\"note\"><b>Note:</b> p. 6 says to isolate the stove by closing its shutoff valve during pressure testing of the gas supply piping at test pressures \"equal to or less than ½ psig\"; p. 18 says at test pressures \"equal to or greater than ½ psig\".</div>"
+  },
+  "specPilot": {
+   "tag": "Installer · spec",
+   "title": "Pilot & millivolt checks",
+   "cool": true,
+   "html": "<div class=\"kv\">\n<div class=\"r\"><span>Thermopile output</span><span>325 to 500 mV</span></div>\n<div class=\"r\"><span>Thermocouple, leads off the valve</span><span>under 15 mV: replace pilot assembly</span></div>\n<div class=\"r\"><span>Valve body to blue-wire solder joint</span><span>no less than 7 mV</span></div>\n<div class=\"r\"><span>Igniter electrode gap</span><span>1/8\" in the flame area</span></div>\n<div class=\"r\"><span>Optional wall thermostat</span><span>750 millivolt</span></div>\n</div>\n<p>The pilot is preset at the factory. If needed, adjust it at the pilot adjustment screw on the gas control valve (remove the ash lip casting for access). The flame must engulf the thermopile and thermocouple without excessive noise or gas use. Parts: pilot 7211-370, SIT universal valve 7211-325.</p>"
+  }
+ },
+ "pageref": {
+  "light": 22,
+  "heat": 23,
+  "firstfire": 22,
+  "glass": 25,
+  "off": 23,
+  "flame": 24,
+  "logs": 20,
+  "care": 25,
+  "safety": 1,
+  "warranty": 33,
+  "specInput": 5,
+  "specInlet": 5,
+  "specManifold": 5,
+  "specOrifice": 5,
+  "specVent": 12,
+  "specClear": 11,
+  "specGas": 18,
+  "specPilot": 22,
+  "step0": 9,
+  "step1": 9,
+  "step2": 10,
+  "step3": 12,
+  "step4": 14,
+  "step5": 18,
+  "step6": 19,
+  "step7": 20,
+  "step8": 22,
+  "step9": 23
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "safety",
+   "t": "gas smell",
+   "p": "What to do if you smell gas"
+  },
+  {
+   "k": "h",
+   "id": "off",
+   "t": "pilot went out",
+   "p": "The 7-day pilot timeout"
+  },
+  {
+   "k": "h",
+   "id": "firstfire",
+   "t": "foggy glass",
+   "p": "Normal; clears as the stove warms up"
+  },
+  {
+   "k": "h",
+   "id": "flame",
+   "t": "whoosh",
+   "p": "Delayed ignition: have it serviced"
+  },
+  {
+   "k": "h",
+   "id": "heat",
+   "t": "remote",
+   "p": "Optional remote control kit"
+  },
+  {
+   "k": "i",
+   "id": "specOrifice",
+   "t": "propane conversion",
+   "p": "LP conversion kit and orifice sizes"
+  },
+  {
+   "k": "i",
+   "id": "specOrifice",
+   "t": "high altitude",
+   "p": "Above 2000 ft: NG high altitude kit"
+  },
+  {
+   "k": "i",
+   "id": "specPilot",
+   "t": "thermopile",
+   "p": "325 to 500 mV"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "light",
+    "issue": "How the pilot is lit: p. 8 says the pilot is lit using the remote control; the lighting instructions on p. 22 use the push-button piezo spark igniter at the gas control valve (the remote is an optional kit, p. 23).",
+    "pages": [
+     [
+      1,
+      8
+     ],
+     [
+      1,
+      22
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "glass",
+    "issue": "Glass replacement: p. 26 says the glass needs to be replaced every 5 years the stove is in service; p. 26 and p. 33 say inspect after 5 years of use and replace if micro-cracking/etching is found (p. 3: inspect yearly, replace as needed).",
+    "pages": [
+     [
+      1,
+      26
+     ],
+     [
+      1,
+      33
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "specOrifice",
+    "issue": "LP conversion kit number: #93-56241 on p. 7 vs 93-56251 (Fuel Conversion Kit (LP)) in the parts list on p. 28.",
+    "pages": [
+     [
+      1,
+      7
+     ],
+     [
+      1,
+      28
+     ]
+    ],
+    "class": "clerical",
+    "corrected_to": "93-56251"
+   },
+   {
+    "where": "specOrifice",
+    "issue": "NG high altitude kit number: #95-56242 on p. 18 vs 93-56242 (High Altitude Kit (NG)) in the parts list on p. 28.",
+    "pages": [
+     [
+      1,
+      18
+     ],
+     [
+      1,
+      28
+     ]
+    ],
+    "class": "clerical",
+    "corrected_to": "93-56242"
+   },
+   {
+    "where": "specGas",
+    "issue": "Pressure-test isolation: p. 6 says isolate (close the shutoff valve) at test pressures equal to or less than ½ psig; p. 18 says equal to or greater than ½ psig. Both say disconnect above ½ psig.",
+    "pages": [
+     [
+      1,
+      6
+     ],
+     [
+      1,
+      18
+     ]
+    ],
+    "class": "substantive"
+   }
+  ],
+  "catalog_mismatches": [
+   {
+    "field": "clearances",
+    "catalog": "Side 4″; rear 3″; corner 4″; floor protection: non-combustible surface or wood floor",
+    "manual": "Wall, corner and mantel clearances shown only as diagrams (Figs. 5–8); floor: any non-combustible surface or a wood floor",
+    "page": 11,
+    "shown": "specClear"
+   }
+  ],
+  "notes": "Figure-only content, not transcribed: wall/corner/mantel clearances (Figs. 5–8, p. 11), vent termination chart (Fig. 13, p. 16), dimension drawing (Fig. 1, p. 5; only '12”' and '20 ½”' survive as text), wiring diagram (p. 17), log positions (Figs. 17–23) and the rating label (p. 32, image only). So the catalog's side 4\" / rear 3\" / corner 4\" clearances, 75.7% efficiency, 155 lb weight and 1200 sq ft heating area could not be checked; BTU, vent collar 4\"x6-5/8\", blower, mobile-home approval, finishes and floor protection match. Warranty grid (p. 33): only rows with an X in all three fuel columns were summarized; single-X rows (e.g. burner and logs, 5 year) are ambiguous in the text, so the drawer points to the grid. The grid lists glass at 1 year while exclusion 3 (p. 34) names glass among wear parts; both are shown in the drawer, not flagged. Off-gassing is given as 'first few hours / first several burns' (p. 6) and 'subsides after the first 10 to 20 minutes' (p. 22); both are shown. Troubleshooting (p. 29) says 'If a match lights a pilot, check the electrode gap', despite the never-light-by-hand warnings (pp. 8, 22); the match test was left out of the faults panel. Manifold LO NG is printed '1.2/.030' (in.w.c./kPa); the kPa figure looks misprinted, so only in.w.c. is used. Chimney-conversion text cites 'ANSI Z21.88 / CSA 2.33-2016' test methods while the listing is 2.33-2017. Tool list prints '5/23” (4mm) allen wrench' (p. 9); not used. No electrical rating, battery or code table appears in the manual (millivolt valve; codes left empty). French text duplicates the English cover and safety blocks; nothing was translated."
+ }
+}

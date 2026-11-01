@@ -1,0 +1,629 @@
+{
+ "id": "jotul-f-445-holliday-cf",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "JØTUL",
+  "brand_line": "F 445 Holliday CF · Catalytic wood stove",
+  "kicker": "Catalytic wood stove",
+  "title": "Jøtul F 445 Holliday CF",
+  "model_line": "Model F 445 Holliday (Clean Face) · 6\" chimney connector, top or rear exit · Catalytic combustor",
+  "owner_noun": "stove",
+  "owner_card": "Start a fire, break it in, set the air, reload, care for the catalyst, check the warranty.",
+  "installer_card": "Specs, clearances, floor protection, chimney and connector, the install sequence and draft / over-firing faults.",
+  "certification": "ANSI/UL 1482 · ANSI CAN/ULC-S627 · CAN/ULC 628",
+  "owner_search_hint": "break-in, air control, ash pan, creosote",
+  "manual_search_hint": "clearance, hearth, chimney height"
+ },
+ "home_primary": [
+  {
+   "id": "light",
+   "icon": "flame",
+   "title": "Start a fire",
+   "blurb": "Traditional or top-down, with the air wide open."
+  },
+  {
+   "id": "breakin",
+   "icon": "thermometer",
+   "title": "Break in a new stove",
+   "blurb": "Three gentle fires before the first hot one."
+  },
+  {
+   "id": "air",
+   "icon": "air",
+   "title": "Air control & burn rates",
+   "blurb": "One lever: right for heat, left for longer burns."
+  },
+  {
+   "id": "reload",
+   "icon": "logs",
+   "title": "Reload & empty ashes",
+   "blurb": "Add wood without smoke, and empty the ash pan safely."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "combustor",
+   "icon": "gauge",
+   "title": "The catalytic combustor",
+   "blurb": "Read the monitor, inspect it, and test it if heat drops."
+  },
+  {
+   "id": "wood",
+   "icon": "tree",
+   "title": "What wood to burn",
+   "blurb": "Dry, seasoned hardwood, and what never goes in."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "The right cleaner, and the dollar-bill door seal check."
+  },
+  {
+   "id": "chimney",
+   "icon": "chimney",
+   "title": "Chimney & creosote",
+   "blurb": "When to sweep, and what to do in a chimney fire."
+  },
+  {
+   "id": "safety",
+   "icon": "safety",
+   "title": "Safety & over-firing",
+   "blurb": "Kids, alarms, closed doors, and when it's too hot."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "What's covered, for how long, and what voids it."
+  }
+ ],
+ "specs": [
+  {
+   "id": "output",
+   "lab": "Heat output & capacity",
+   "tap": "specOutput",
+   "rows": [
+    [
+     "EPA range",
+     "13,726 to 35,722 BTU/hr"
+    ],
+    [
+     "Max heat output",
+     "55,000 BTU"
+    ],
+    [
+     "Heating capacity",
+     "Up to 1600 sq. ft."
+    ],
+    [
+     "Max burn time",
+     "Up to 9 hours"
+    ],
+    [
+     "Max log length",
+     "20\" (508 mm)"
+    ]
+   ]
+  },
+  {
+   "id": "emissions",
+   "lab": "Emissions & efficiency",
+   "tap": "specEmissions",
+   "rows": [
+    [
+     "Particulate",
+     ".49 g/hr."
+    ],
+    [
+     "CO",
+     ".60 g/min."
+    ],
+    [
+     "EPA efficiency",
+     "HHV 72% · LHV 78%"
+    ]
+   ],
+   "note": "2020 EPA limits · catalytic"
+  },
+  {
+   "id": "flue",
+   "lab": "Flue & connector",
+   "tap": "specFlue",
+   "rows": [
+    [
+     "Connector",
+     "6\" (152mm) black steel, 24 ga min."
+    ],
+    [
+     "Max horizontal run",
+     "36\" (915mm)"
+    ],
+    [
+     "Rise",
+     "1/4\" (6,35mm) per foot"
+    ],
+    [
+     "Elbows",
+     "No more than two 90°"
+    ]
+   ]
+  },
+  {
+   "id": "stack",
+   "lab": "Chimney",
+   "tap": "specStack",
+   "rows": [
+    [
+     "Type",
+     "Masonry + liner, or UL 103 HT"
+    ],
+    [
+     "Min. height",
+     "15 feet (4.57 m)"
+    ],
+    [
+     "Above roof",
+     "3 ft; 2 ft above anything within 10 ft"
+    ],
+    [
+     "Flue area",
+     "≥ collar, ≤ 3× (2× exterior)"
+    ]
+   ]
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances · no heat shield",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Side (unprot. / prot.)",
+     "14\" / 6\""
+    ],
+    [
+     "Rear (unprot. / prot.)",
+     "16\" / 12\""
+    ],
+    [
+     "Corner (unprot. / prot.)",
+     "13\" / 9\""
+    ]
+   ],
+   "note": "single-wall pipe · protected per NFPA 211"
+  },
+  {
+   "id": "mantel",
+   "lab": "Mantel & trim",
+   "tap": "specMantel",
+   "rows": [
+    [
+     "Side trim (1\" or less)",
+     "12\""
+    ],
+    [
+     "Upper trim (1\" or less)",
+     "16\""
+    ],
+    [
+     "Mantel (12\" max depth)",
+     "30\""
+    ]
+   ]
+  },
+  {
+   "id": "floor",
+   "lab": "Floor protection",
+   "tap": "specFloor",
+   "rows": [
+    [
+     "U.S. front / sides",
+     "16\" / 6\""
+    ],
+    [
+     "U.S. minimum",
+     "33\" W × 40\" D"
+    ],
+    [
+     "Canada front / sides",
+     "18\" / 8\""
+    ],
+    [
+     "Canada minimum",
+     "41\" W × 48\" D"
+    ]
+   ],
+   "note": "UL 1618 listed"
+  },
+  {
+   "id": "outsideair",
+   "lab": "Outside air & kits",
+   "tap": "specOutsideAir",
+   "rows": [
+    [
+     "Outside air kit",
+     "#154335 · 3\" adapter"
+    ],
+    [
+     "Blower kit",
+     "156431 · 120 cfm"
+    ],
+    [
+     "Rear heatshield",
+     "158374"
+    ]
+   ]
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Check codes & permits",
+   "A building permit may be required, and NFPA 211 or similar regulations may apply. Confirm with the local building inspector or authority having jurisdiction."
+  ],
+  [
+   "Prepare the stove",
+   "The flue collar ships on top; for rear exit remove the two M6 bolts (10 mm wrench), turn the collar and refit. Take out the loose front ash lip and fit accessories before final placement.",
+   "<ul>\n<li>Ships with the flue collar in the top position; the front ash lip and combustor monitor are packed inside the stove.</li>\n<li><b>Rear exit:</b> hold the M6 flange nuts inside the collar so they don't drop into the stove, remove the two M6 bolts and M6 fender washers with a 10 mm wrench, turn the collar to the rear and refit with the same hardware.</li>\n<li>Take out the front ash lip, which sits loose on the base plate.</li>\n<li>Install accessories (rear heatshield, blower, outside air, short legs) before locating the stove in its final position, using the kit instructions. The Short Leg Kit lowers the rear exit by 2 1/4\".</li>\n</ul>\n<p>Overall dimensions are shown as drawings (Figs. 1.1–1.3) on this page.</p>"
+  ],
+  [
+   "Chimney connector",
+   "6\" (152mm) black steel, 24 gauge min., crimped ends toward the stove, three sheet metal screws per joint. No more than two 90° elbows; horizontal run 36\" (915mm) max, rising 1/4\" per foot.",
+   "<ul>\n<li>Single-wall 6\" (152mm) pipe, minimum 24 gauge black steel. No aluminum or galvanized pipe.</li>\n<li>Attach to the flue collar with 2 self-drilling screws from the miscellaneous kit; secure every joint with three sheet metal screws, male (crimped) end toward the stove.</li>\n<li>Keep it short and direct: no more than two 90° elbows; max horizontal run 36\" (915mm), sloping up 1/4\" (6,35mm) per foot; total length recommended not over 10 feet.</li>\n<li>Never through an attic, roof space, closet, concealed space, floor or ceiling. All sections accessible for cleaning. Not into a flue serving another appliance, and never used as a chimney.</li>\n</ul>"
+  ],
+  [
+   "Verify the chimney",
+   "Code-approved masonry with a flue liner, or a UL 103 Type HT prefab. Flue area no smaller than the collar and no more than three times it (two times with walls exposed outside); inspect an existing chimney first.",
+   "<ul>\n<li>Existing chimneys must pass a UL 1482 Level II inspection by a qualified technician or building official.</li>\n<li>Masonry: fireclay liner (or equivalent) at least 5/8\" (16mm) thick in refractory mortar, with at least 1/4\" (6,35mm) air space to the chimney wall. Nominal 8\" X 8\", not larger than 8\" X 12\"; round liners 6\" (157mm) to 8\" (208mm) inside diameter. Oversized flues must be relined.</li>\n<li>Brick or block walls at least 4\" (106mm) nominal; rubble stone at least 12\" (310mm). Airtight clean-out door at the base.</li>\n<li>Prefab: listed to UL 103 HT (ULC S629 in Canada), installed and cleared to the maker's instructions (usually a minimum of 2\" (56mm)).</li>\n<li>No other appliance vented into the same flue.</li>\n</ul>"
+  ],
+  [
+   "Connect to the chimney",
+   "Masonry: through a lined, cemented thimble, the connector reaching the inner face of the flue liner without protruding, sealed with refractory cement. Prefab: the maker's adaptor plus three sheet metal screws.",
+   "<ul>\n<li>Thimble lined with ceramic tile or metal and securely cemented in place. Slide the connector fully in to the inner surface of the flue liner, never protruding into the flue. A slip connector may be used for adjustment and cleaning.</li>\n<li>Seal the connector at the thimble with refractory cement; three sheet metal screws at each joint.</li>\n<li>Combustible wall, U.S.: an NFPA 211 method. Common method: clear combustibles 12\" (310mm) around the connector (31\" x 31\" (792x792mm) for a 6\" (157mm) liner) and fill with at least 12\" (310mm) of solid brick around a fireclay liner, at least 18\"(457mm) from the ceiling.</li>\n<li>Canada: CAN/CSA-B365. Common method clears 18\" around the connector (43\" x 43\" opening for a 6\" liner), at least 18\" from combustible ceiling materials.</li>\n<li>Prefab chimney: the maker's adaptor on the bottom section, connector secured with three sheet metal screws.</li>\n</ul>"
+  ],
+  [
+   "Hearth-mount option",
+   "Masonry fireplace only: seal the flue from room air with a sealed block-off plate, or run a full listed liner to a sealed cap. Never into a factory-built fireplace.",
+   "<ul>\n<li>NFPA 211 (12.4.5.1): either replace the damper with a fixed steel plate the connector passes through to the first flue tile (or fit a non-combustible plate at the fireplace opening), sealed with high-temperature sealant; or install a full listed liner from the stove to a sealed chimney cap.</li>\n<li>If the flue is too large for the stove, install a code-approved relining system.</li>\n<li>Rear flue collar height: 28 1/4\" (718 mm) on standard legs; short legs lower it by 2 1/4\" to 26\" (660 mm).</li>\n<li>Meet the mantel and trim clearances and the floor protection rules.</li>\n</ul>\n<div class=\"note\"><b>Note:</b> p. 10 gives a rear flue collar height of 28 1/4\" (718 mm) on standard legs, but the dimension drawings on p. 5, which include the rear-exit centerline height (Fig. 1.3), show only 26 1/4\", 29\" and 25\" (635 mm) dimensions.</div>"
+  ],
+  [
+   "Floor protection & bottom shield",
+   "Bolt the supplied bottom heat shield under the ash compartment, then set the stove on UL 1618 floor protection: U.S. 16\" in front and 6\" each side (33\" W × 40\" D minimum).",
+   "<p><b>Bottom heat shield (Fig. 4.3, p. 13):</b> bend the flattened shield on its perforations, painted side down; remove the two bolts from the bottom of the ash compartment with a 10 mm wrench; attach the shield to the stove bottom with those two bolts.</p>\n<ul>\n<li>Listed UL 1618 floor protection in every installation unless on concrete over earth: continuous non-combustible material, sections mortared or sealed, carpet removed.</li>\n<li>U.S.: 16\" in front, 6\" each side measured from the door opening; 33\" W × 40\" D minimum.</li>\n<li>Canada: 18\" (457mm) in front, 8\" (200mm) at sides and back; 41\" W × 48\" D (1041mm x 1219mm) minimum.</li>\n<li>Rear vent: extend under the pipe 2\" (50mm) beyond each side.</li>\n<li>Alcoves and the Short Leg Kit need hearth protection with an R-value of 1.6.</li>\n</ul>"
+  ],
+  [
+   "Clearances",
+   "Set clearances from the table for your heat shield and pipe combination; only Jøtul Rear Heatshield 158374 may reduce them. Alcoves need double-wall pipe and the bottom heat shield.",
+   "<ul>\n<li>Use the table on p. 14 with the lettered diagrams on p. 15.</li>\n<li>Rear Heatshield 158374 reduces rear clearance only; no other heat shield may be used.</li>\n<li>Pipe shields start 1\" (25,4mm) above the lowest exposed point of the connector and extend at least 25\" (635mm) above the stove top; listed double-wall pipe is an accepted alternative.</li>\n<li>Alcove (clearances measured between the stove plates and the combustible wall): listed double-wall pipe; walls protected per NFPA 211 with protection 1\" (24,5mm) off the floor and the wall and 48\" (1219mm) high; bottom heat shield; listed Type II thermal floor protector or R-value 1.6; ceiling at least 41\" (1041 mm) above the stove top, 15\" (380mm) if protected.</li>\n<li>Keep air moving through the clearance space; don't block it off.</li>\n</ul>"
+  ],
+  [
+   "Mobile home extras",
+   "Bolt down with Floor Mounting Kit #750304, connect Outside Air Kit #154335, use a UL 103 chimney with a spark arrester, and never install in a bedroom or sleeping area.",
+   "<ul>\n<li>Secure the stove to the floor (kit #750304) and keep the structural integrity of floor, walls and roof.</li>\n<li>Direct outside air is required: Outside Air Kit #154335 only, with the duct termination no higher than the stove's bottom air inlet.</li>\n<li>Chimney attached directly to the stove, at least 3 ft. (0.9m) above the roof and 2 ft. (0.6m) above any part of the home within 10 ft. (3m); removable at or below 13.5 ft. (4.1 m) for transport.</li>\n<li>Spark arrester: net free area at least four times the chimney outlet, height at least half the flue diameter; openings stop a 1/2\" (12.7 mm) sphere and pass a 3/8\" (9.6 mm) one.</li>\n<li>A chimney exiting 7 ft. (2.1 m) or less above ground needs a guard up to 7 ft.</li>\n</ul>"
+  ],
+  [
+   "Combustor monitor & break-in",
+   "Remove the lower set screw on the right side panel (3mm hex key), refit the monitor's magnet, and insert the probe fully. Then run the three break-in fires.",
+   "<ol>\n<li>Remove the lower set screw on the right side panel with a 3mm hex key. Do not remove the upper set screw; it secures the top plate to the sides.</li>\n<li>Take the magnet off the Combustor Monitor (PN 226609) and refit it in the orientation shown in Figs. 5.6-5.8.</li>\n<li>Insert the monitor fully into the hole, with the magnet holding to the cast iron side plate.</li>\n</ol>\n<p>Before any hot fire, the stove needs the three-fire break-in in section 5.7 (200°F, 400°F, then 500°F on the stove-top thermometer).</p>"
+  ]
+ ],
+ "faults": {
+  "label": "Draft, over-firing & combustor faults",
+  "panels": [
+   {
+    "title": "Weak draft · smoke in the room",
+    "items": [
+     "Back puffing: smoke leaks into the room through stove or connector joints",
+     "Hard to hold a steady burn; creosote builds in the chimney or combustor",
+     "Chimney under 14 feet: smoke spills when loading or with the door open",
+     "Short exterior masonry chimney: hard to reach and hold draft temperatures",
+     "Exhaust fan or clothes dryer lowers room pressure → flow reversal (Outside Air Kit #154335 may help)"
+    ]
+   },
+   {
+    "title": "Excessive draft",
+    "items": [
+     "High stove temperatures and short burn times",
+     "Can come from chimney height; correct with a butterfly damper (consult the dealer)"
+    ]
+   },
+   {
+    "title": "Over-firing",
+    "items": [
+     "Any part of the stove or connector glows (other than the combustor)",
+     "Warped plates, rust-colored cast iron, paint turned dusty white",
+     "Causes: door left partly open, ash door open, firing beyond design output",
+     "Combustor above 1750°F (954°C), even briefly, can be damaged"
+    ]
+   },
+   {
+    "title": "Combustor not working",
+    "items": [
+     "Monitor won't hold 500°F in the confirmation test → clean or replace",
+     "Lost heating efficiency, more creosote and emissions",
+     "Faster fly-ash buildup from junk mail or heavy newsprint starts",
+     "Ash door left open → large amounts of fly ash, over-fired combustor"
+    ]
+   }
+  ]
+ },
+ "codes": [],
+ "detail": {
+  "light": {
+   "tag": "Owner · operation",
+   "title": "Starting a fire",
+   "cool": false,
+   "html": "<p>Build every fire right on the bottom of the firebox, and never raise it up. Keep the front door fully closed and the ash door shut while it burns. New stove? Do the break-in fires first.</p>\n<h4>Traditional fire</h4>\n<ol>\n<li>Push the air lever all the way right (fully open).</li>\n<li>Lay several sheets of crumpled newspaper in the bottom of the firebox. Add several pieces of small, dry kindling (about 1\" across), then two or three small logs (about 3\" to 5\" across).</li>\n<li>Light it, close the door, and build the fire slowly with larger and larger logs.</li>\n<li>When the stove-top thermometer reads between 500° and 600° (260°C -316°C), set the air lever for the heat and burn time you want.</li>\n</ol>\n<div class=\"note\"><b>Note:</b> p. 21 says to set the air once the stove-top thermometer reads 500° to 600°; p. 19 says the air may be set to a mid-range position once the stove reaches 400°F - 600°F (204°C -316°C).</div>\n<h4>Top-down fire (less start-up smoke)</h4>\n<ol>\n<li>With the air fully open, lay two short quarter-split logs on the firebox floor, about 6 inches apart, running front to back.</li>\n<li>Lay kindling across them, then one or two smaller logs on top.</li>\n<li>Tuck newspaper between the two bottom logs, under the kindling. Light it and close the door.</li>\n<li>Add kindling and small logs as needed. Keep the air fully open until the fire is well established.</li>\n</ol>\n<div class=\"note\">Never use gasoline, lighter fluid, kerosene or similar liquids to start or freshen up a fire.</div>"
+  },
+  "breakin": {
+   "tag": "Owner · operation",
+   "title": "Breaking in a new stove",
+   "cool": false,
+   "html": "<p>Your stove is built from cast iron plates sealed with furnace cement. Cast iron expands as it heats, so it has to be warmed up gradually at first. Burn three small-to-medium fires, letting the stove cool to room temperature after each one.</p>\n<ol>\n<li><b>First fire:</b> open the air fully and light a small fire of newspaper and kindling. Let the stove-top thermometer reach only 200°F (93° C). Hold it there for about 1 hour, then let the stove cool.</li>\n<li><b>Second fire:</b> let it reach no more than 400°F (204°C) for 1 hour, then let it cool.</li>\n<li><b>Third fire:</b> bring it up gradually to 500°F (260°C) and hold it there, then let it cool. Break-in is done.</li>\n</ol>\n<div class=\"note\"><b>Getting too hot?</b> In every break-in fire except the last, keep the stove under 400°F (204°C). If it goes over, slide the air lever all the way left. The temperature may keep rising until the wood burns down a bit. That's normal. Never take burning logs out to cool it.</div>\n<h4>A smell and some smoke</h4>\n<p>A new painted stove normally gives off some odor and smoke in its first fires while the high-temperature paint and materials cure. Open a window or door for extra fresh air.</p>"
+  },
+  "air": {
+   "tag": "Owner · operation",
+   "title": "Air control & burn rates",
+   "cool": false,
+   "html": "<p>One lever, front and center just below the door, controls the air that feeds the fire. More air burns hotter and faster. Less air gives lower heat and a longer burn.</p>\n<div class=\"kv\"><div class=\"r\"><span>Low</span><span>Fully left · blower minimum</span></div><div class=\"r\"><span>Medium-low</span><span>3/16\" right · blower minimum</span></div><div class=\"r\"><span>Medium-high</span><span>3/8\" right · blower medium</span></div><div class=\"r\"><span>High</span><span>Fully right · blower high</span></div></div>\n<ul>\n<li>To start or revive a fire, push the lever fully right.</li>\n<li>For low, medium-low and medium-high, leave it fully open for the first five minutes, then set it.</li>\n<li>Watching the combustor monitor: keep the lever fully open at least until the monitor reads 500°F (260°C). Hold that for 15-20 minutes, then turn it down to medium-low or medium-high.</li>\n<li>The manual notes that most modern wood heaters run best and most efficiently at medium to medium-low.</li>\n</ul>\n<p>Air for the catalyst is set automatically by a heat-sensitive coil at the back, so there's nothing else to adjust. Blower speeds apply only if you have the optional blower kit.</p>\n<div class=\"note\">A stove-top thermometer in either rear corner helps you read the fire. Short spells at 700-800 won't harm the stove, but long periods in that range can.</div>"
+  },
+  "reload": {
+   "tag": "Owner · operation",
+   "title": "Reloading & emptying ashes",
+   "cool": false,
+   "html": "<p>Reload while there's still a bed of hot embers.</p>\n<ol>\n<li>Put on stove gloves and push the air lever fully open (far right).</li>\n<li>Open the door slightly first, then fully, so the airflow settles and smoke doesn't spill out.</li>\n<li>Spread the hot embers evenly with a poker, away from the air inlets at the front center of the floor.</li>\n<li>Load the wood, usually smaller logs first. Don't stack it higher than the holes in the air baffle. A traditional three-log load works best.</li>\n<li>Close the door and latch it tightly.</li>\n<li>Wait 5 – 10 minutes, then set the air for the heat you want. With an ember bed at least 2\" thick, you may be able to set it right away.</li>\n</ol>\n<h4>Emptying the ash pan</h4>\n<p>The ash pan door is under the front ash lip. Empty it only before reloading, when the fire is low or out. Turn the handle counterclockwise to open and clockwise to latch, and close the ash door before you carry the ashes away.</p>\n<p>Put ashes in a metal container with a tight lid, on a noncombustible floor or the ground, well away from anything that can burn. Leave about a one-inch bed of ash in the firebox.</p>\n<div class=\"note danger\"><b>Never burn with the ash door open.</b> It over-fires and can damage the stove, and that damage isn't covered by the warranty.</div>"
+  },
+  "combustor": {
+   "tag": "Owner · maintenance",
+   "title": "The catalytic combustor",
+   "cool": false,
+   "html": "<p>The catalytic combustor (the catalyst) sits above the baffle at the top of the firebox. It burns smoke that would otherwise go up the chimney. It's against federal regulations to run the stove with it removed or deactivated.</p>\n<h4>Signs it's working</h4>\n<ul>\n<li>The combustor monitor reads between 500°F and 800° (260°C -371°C), the most efficient range.</li>\n<li>Above 500°F, you'll see jets of flame at the baffle ports and the catalyst glowing bright red.</li>\n<li>Little or no smoke comes out of the chimney.</li>\n</ul>\n<h4>Check and clean it</h4>\n<ul>\n<li>Look at it at least three times each heating season: open the front door and look up at it with a flashlight.</li>\n<li>Sweep loose fly ash off the cells with a soft brush. The cells are fragile.</li>\n<li>Starting fires with lots of newspaper or junk mail makes fly ash build up faster.</li>\n</ul>\n<h4>Less heat than usual? Test it</h4>\n<p>Burn at medium to high for two or three hours above 500°F to build a full bed of coals, then set the air to medium or medium-low. If the monitor doesn't stay at 500°F or higher, the combustor may need cleaning or replacing. Repeat the test 2-3 times to be sure. A combustor that isn't working must be replaced.</p>"
+  },
+  "wood": {
+   "tag": "Owner · operation",
+   "title": "What wood to burn",
+   "cool": false,
+   "html": "<p>Burn only natural, untreated wood. Air-dried, seasoned hardwood gives the cleanest, most efficient heat. Logs up to 20\" long fit.</p>\n<ul>\n<li><b>Seasoning:</b> wood air-dried for 6 to 14 months burns best. Wood seasoned more than 2 years burns too fast.</li>\n<li><b>How to tell:</b> seasoned logs have lots of cracks across the ends and feel lighter. A moisture meter with probes should read 12 - 20%.</li>\n<li><b>Wet wood</b> wastes its heat driving off water, and that moisture condenses in the chimney as creosote.</li>\n<li>Store wood somewhere dry, outside the stove's clearance area.</li>\n<li>Keep logs off the glass so air can move freely.</li>\n</ul>\n<h4>Never burn</h4>\n<p>Coal, garbage, synthetic logs, anything containing rubber, plastic or asbestos, waste petroleum products, asphalt products, paints, paint thinners or solvents, construction debris, railroad ties or pressure-treated wood, manure or animal remains, yard waste, salt-water driftwood, unseasoned wood, colored paper, cardboard, junk mail, plywood or particle board. Fire starters made of paper, sawdust or wax are fine for lighting.</p>\n<div class=\"note danger\">These can give off toxic fumes, including carbon monoxide, and can permanently damage the catalytic combustor, which voids its warranty.</div>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>Pre-heated air delivered above the door creates an air-wash that, with the stove's normal heat, keeps heavy deposits off the glass. Now and then you'll still need to clean off carbon and fly ash. Left too long, they can etch the glass and make it cloudy.</p>\n<ul>\n<li>Use only an ammonia-free, non-abrasive stove glass cleaner.</li>\n<li>Clean it only at room temperature, never while it's hot.</li>\n<li>The glass is fragile. Don't strike it or slam the door.</li>\n</ul>\n<div class=\"note danger\"><b>Broken glass?</b> Don't use the stove until it's replaced, and use only genuine Jøtul ceramic glass (226852), never a substitute.</div>\n<h4>Check the door seal</h4>\n<p>Close and latch the door on a dollar bill, then slowly pull it out. You should feel resistance. If it slips out easily, the seal is too loose. Try several spots, and the ash pan door too. The latch can be tightened by removing a shim plate, and a worn gasket replaced (gasket kit 157050).</p>"
+  },
+  "chimney": {
+   "tag": "Owner · maintenance",
+   "title": "Chimney care & creosote",
+   "cool": false,
+   "html": "<p>Slow fires and green wood make tar and vapors that condense in the cool chimney as creosote. Creosote is highly flammable. It's what fuels chimney fires.</p>\n<ul>\n<li>Inspect the chimney and stovepipe at the start of each heating season, then every other month while you're using the stove.</li>\n<li>Clean it whenever creosote and fly ash build up more than 1/4 inch anywhere. Your dealer can refer you to a professional chimney sweep.</li>\n<li>A stove that's run well leaves mostly fly ash, with little or no creosote.</li>\n</ul>\n<h4>If you think you have a chimney fire</h4>\n<p>It often sounds like a roar, with crackling as burning flakes of creosote break loose.</p>\n<ol>\n<li>Close the air lever and make sure the stove door is shut.</li>\n<li>Get everyone out of the house and call the fire department.</li>\n<li>Don't try to put out the fire in the stove. When the noise dies down, don't open the door to check. It could flare up again.</li>\n<li>Don't use the stove again until the chimney and stovepipe have been cleaned and inspected.</li>\n</ol>"
+  },
+  "safety": {
+   "tag": "Owner · safety",
+   "title": "Safety & over-firing",
+   "cool": false,
+   "html": "<ul>\n<li>The stove is extremely hot while it burns. Keep children, clothing and furniture away, and use a child guard screen so small children can't touch it.</li>\n<li>Put smoke and carbon monoxide (CO) detectors in the living area and bedrooms. Test them regularly and change the batteries twice a year. In the stove's room, place the detector as far from the stove as you can so it doesn't go off when you add wood.</li>\n<li>Burn only with the front door fully closed and the ash door latched. A door left partly open can over-fire the stove and draw flame and smoke out.</li>\n<li>Exhaust fans and clothes dryers can lower the air pressure in the room and pull air backward through the chimney and stove.</li>\n<li>Don't use the stove with broken glass.</li>\n<li>Never alter the factory-set minimum burn rate. It's against federal regulations.</li>\n</ul>\n<h4>Signs of over-firing</h4>\n<p>Do not over-fire the stove. If any part of the stove or stovepipe glows, other than the catalyst, you're over-firing. That can cause a house fire or serious damage. Warped plates, rust-colored cast iron or paint turned dusty white are also signs. Over-firing damage isn't covered by the warranty.</p>\n<p>The combustor's maximum recommended operating temperature is 1600°F (870°C). It can be damaged if it goes above 1750°F (954°C), even for brief periods of time.</p>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "Warranty at a glance",
+   "cool": false,
+   "html": "<p>Jøtul North America warrants the stove to the original retail purchaser, from the date of purchase. It can't be transferred. Keep your dated sales receipt.</p>\n<div class=\"kv\"><div class=\"r\"><span>Baffle & air manifold parts</span><span>Limited lifetime · parts only</span></div><div class=\"r\"><span>Cast iron & steel</span><span>5 years</span></div><div class=\"r\"><span>Enamel finish (peeling, fading)</span><span>2 years</span></div><div class=\"r\"><span>Blowers, thermostatic switches, combustion monitor</span><span>1 year</span></div><div class=\"r\"><span>High Flow catalytic combustor</span><span>10 years</span></div></div>\n<div class=\"note\"><b>Note:</b> p. 30 lists baffle and air-manifold parts under the limited lifetime warranty, and also among the normal-wear parts the warranty doesn't cover.</div>\n<h4>Not covered</h4>\n<ul>\n<li>Installation or service not done by an authorized installer or service agency, or not done to the manual and local codes</li>\n<li>Over-firing, burning with the ash door open, or other misuse</li>\n<li>Wear parts: paint, gaskets, burn plates, firebricks, fire grates, and glass except thermal breakage</li>\n<li>Unauthorized modification, and damage in transit</li>\n</ul>\n<p>If the combustor fails a second time within 10 years, the replacement is 50% off current retail; any further replacement is at current retail. Burning improper materials or abusing it voids the combustor warranty. If you think something is defective, contact your Jøtul dealer: Jøtul must get notice within 60 days of when the defect was first discovered.</p>"
+  },
+  "specOutput": {
+   "tag": "Installer · spec",
+   "title": "Heat output & capacity",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>EPA heat output range</span><span>13,726 to 35,722 BTU/hr. (4.0-10.5 kW)</span></div><div class=\"r\"><span>Max heat output</span><span>55,000 BTU</span></div><div class=\"r\"><span>Heating capacity</span><span>Up to 1600 sq. ft.</span></div><div class=\"r\"><span>Maximum burn time</span><span>Up to 9 hours</span></div><div class=\"r\"><span>Fuel</span><span>Up to 20\" logs (508 mm)</span></div></div><div class=\"note small\"><b>Maker's website:</b> Max Output (kW) 55000, the same number labeled kW rather than BTU.</div><p>The output range comes from EPA emissions testing. Heating capacity and burn time vary with home design, chimney, climate, wood type and operation. Listed to burn solid wood only.</p>"
+  },
+  "specEmissions": {
+   "tag": "Installer · spec",
+   "title": "Emissions & efficiency",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Particulate</span><span>.49 g/hr. (EPA Test Method 28-R)</span></div><div class=\"r\"><span>Carbon monoxide</span><span>.60 g/min. (CSA B415.1-10)</span></div><div class=\"r\"><span>EPA efficiency</span><span>HHV 72% · LHV 78%</span></div><div class=\"r\"><span>Max HHV efficiency</span><span>77.7%</span></div><div class=\"r\"><span>Combustion</span><span>Catalytic · secondary combustion baffle and Jøtul High Flow catalytic combustor</span></div></div><div class=\"note small\"><b>Maker's website:</b> Combustion technology, from the product description: non-catalytic technology plus Jøtul High Flow™ Combustor; no bypass.</div><p>Meets the 2020 U.S. EPA emission limits for wood heaters. HHV/LHV per CSA B415.1-10; the manual states the 77.7% maximum HHV value exceeds the 75% HHV minimum for the tax credit. Emissions tested by PFS-TECO (Portland, OR); safety tested by Intertek (Middleton, WI).</p>\n<div class=\"note danger\">Catalytic heater: operating it with the catalytic element deactivated or removed, or altering the manufacturer-set minimum low burn rate, is against federal regulations.</div>"
+  },
+  "specFlue": {
+   "tag": "Installer · spec",
+   "title": "Flue collar & chimney connector",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Connector diameter</span><span>6\" (152mm)</span></div><div class=\"r\"><span>Material</span><span>Black steel, 24 gauge min.</span></div><div class=\"r\"><span>Elbows</span><span>No more than two 90°</span></div><div class=\"r\"><span>Max horizontal run</span><span>36\" (915mm)</span></div><div class=\"r\"><span>Slope</span><span>Up 1/4\" (6,35mm) per foot toward the chimney</span></div><div class=\"r\"><span>Total stovepipe</span><span>Recommended not over 10 feet</span></div></div><p>The flue collar ships in the top position and can be turned to rear exit (two M6 bolts, 10 mm wrench). Attach the connector to the collar with 2 self-drilling screws; crimped ends toward the stove, three sheet metal screws at every joint. Aluminum and galvanized pipe are not acceptable. No part of the connector may pass through an attic, roof space, closet, concealed space, floor or ceiling.</p>"
+  },
+  "specStack": {
+   "tag": "Installer · spec",
+   "title": "Chimney",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Masonry</span><span>Code-approved, with flue liner</span></div><div class=\"r\"><span>Prefabricated</span><span>UL 103 Type HT (2100°F); ULC S629 in Canada</span></div><div class=\"r\"><span>Minimum height</span><span>15 feet (4.57 m)</span></div><div class=\"r\"><span>Above roof</span><span>3 feet above the roof penetration; 2 feet above anything within 10 feet</span></div><div class=\"r\"><span>Flue area</span><span>Not less than the collar; max 3× (interior), 2× (walls exposed below roofline)</span></div><div class=\"r\"><span>Draft (as printed, p. 20)</span><span>.05 - 1.0 w.c.</span></div></div><div class=\"note\"><b>Note:</b> p. 8 gives a 15-foot (4.57 m) minimum chimney height, and the same page says chimneys shorter than 14 feet may not provide adequate draft.</div>\n<p>An existing chimney must pass a UL 1482 Level II inspection. No other appliance on the same flue; never install in a factory-built fireplace. Excessive draft (high temperatures, short burns) can be corrected with a butterfly damper.</p>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances to combustibles",
+   "cool": true,
+   "html": "<p>Side · rear · corner, unprotected / protected per NFPA 211:</p><div class=\"kv\"><div class=\"r\"><span>No heat shield, single-wall pipe</span><span>14\" · 16\" · 13\" / 6\" · 12\" · 9\"</span></div><div class=\"r\"><span>Rear heat shield, single-wall pipe</span><span>14\" · 10\" · 9\" / 6\" · 10\" · 9\"</span></div><div class=\"r\"><span>Rear heat shield + connector shields or double-wall pipe</span><span>14\" · 6\" · 9\" / 6\" · 6\" · 6\"</span></div><div class=\"r\"><span>Horizontal connector, single-wall</span><span>18\" / 12\"</span></div><div class=\"r\"><span>Horizontal connector, double-wall</span><span>6\" / 6\"</span></div></div><p>Stove clearances come from Intertek tests with the chimney connector in place; connector clearances are from NFPA 211. The lettered installation diagrams are drawings on p. 15. Only Jøtul Rear Heatshield 158374 may reduce clearances, and it doesn't change side clearance. Pipe shields start 1\" (25,4mm) above the lowest exposed point of the connector and extend at least 25\" (635mm) above the stove top.</p>\n<p>Alcove: listed double-wall pipe and the bottom heat shield; minimum ceiling height above the stove top 41\" (1041 mm) unprotected, 15\" (380mm) protected. Alcove dimensions are drawings on p. 13.</p>"
+  },
+  "specMantel": {
+   "tag": "Installer · spec",
+   "title": "Mantel & trim clearances",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Stove side to side trim, 1\" thick or less</span><span>12\" (305mm)</span></div><div class=\"r\"><span>Stove top to upper trim, 1\" thick or less</span><span>16\" (406mm)</span></div><div class=\"r\"><span>Stove top to mantel, 12\" maximum depth</span><span>30\" (762mm)</span></div></div><p>Mantel and trim clearances may be reduced by 50% with the protection methods in NFPA 211 or similar local rules. A hearth-mount in a masonry fireplace must also meet the floor protection requirements and seal the flue from room air.</p>"
+  },
+  "specFloor": {
+   "tag": "Installer · spec",
+   "title": "Floor protection",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Required</span><span>Listed UL 1618, unless on concrete over earth</span></div><div class=\"r\"><span>U.S. front</span><span>16\" min.</span></div><div class=\"r\"><span>U.S. sides</span><span>6\" each side, from the front door opening</span></div><div class=\"r\"><span>U.S. minimum size</span><span>33\" W × 40\" D</span></div><div class=\"r\"><span>Canada front</span><span>18\" (457mm) min.</span></div><div class=\"r\"><span>Canada sides & back</span><span>8\" (200mm), from side and back panels</span></div><div class=\"r\"><span>Canada minimum size</span><span>41\" W × 48\" D (1041mm x 1219mm)</span></div><div class=\"r\"><span>Rear vent</span><span>Under the pipe, 2\" (50mm) beyond each side</span></div><div class=\"r\"><span>Alcove / Short Leg Kit</span><span>R-value 1.6</span></div></div><p>The supplied bottom heat shield must be installed. Use continuous non-combustible material, mortar or seal the joints, and remove carpet underneath. For an alternate material, compare R-values using the manual's method. Hearth layouts are drawings (Figs. 4.1 and 4.2) on p. 11.</p>\n<div class=\"note\"><b>Note:</b> p. 12 recommends no luxury vinyl flooring within 57\" of the front of the stove, but that note names the F 500 V3, not the F 445 covered on p. 1.</div>"
+  },
+  "specOutsideAir": {
+   "tag": "Installer · spec",
+   "title": "Outside air & kits",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Outside Air Kit</span><span>154335 · 3 inch adapter to the combustion chamber</span></div><div class=\"r\"><span>Also needed</span><span>Metallic flex pipe, rain/weather cap, rodent screen no larger than 1/4\" (6,4mm) mesh</span></div><div class=\"r\"><span>Blower Kit</span><span>156431 · 120 cfm, thermostatic; requires Rear Heat Shield 158374</span></div><div class=\"r\"><span>Short Leg Kit</span><span>#350074 · four 4 1/4\" legs, 2 1/4\" lower; 1.6 R value hearth pad</span></div><div class=\"r\"><span>Floor Bracket Kit</span><span>750304 · required in mobile homes</span></div></div><p>Outside air may be required by local code, and direct connection is required in mobile homes (duct termination no higher than the air inlet at the bottom of the stove). It won't necessarily cure negative-pressure problems in the home or chimney. Install accessories before setting the stove in its final position.</p>"
+  }
+ },
+ "pageref": {
+  "light": 21,
+  "breakin": 20,
+  "air": 19,
+  "reload": 22,
+  "combustor": 26,
+  "wood": 17,
+  "glass": 23,
+  "chimney": 21,
+  "safety": 4,
+  "warranty": 30,
+  "specOutput": 3,
+  "specEmissions": 3,
+  "specFlue": 6,
+  "specStack": 8,
+  "specClear": 14,
+  "specMantel": 14,
+  "specFloor": 11,
+  "specOutsideAir": 2,
+  "step0": 3,
+  "step1": 5,
+  "step2": 6,
+  "step3": 7,
+  "step4": 9,
+  "step5": 10,
+  "step6": 11,
+  "step7": 14,
+  "step8": 16,
+  "step9": 19
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "chimney",
+   "t": "chimney fire",
+   "p": "Roaring and crackling in the chimney: what to do"
+  },
+  {
+   "k": "h",
+   "id": "breakin",
+   "t": "new stove smell",
+   "p": "Odor and smoke during the first fires"
+  },
+  {
+   "k": "h",
+   "id": "safety",
+   "t": "over-firing",
+   "p": "A glowing stove or stovepipe means it's too hot"
+  },
+  {
+   "k": "h",
+   "id": "wood",
+   "t": "moisture meter",
+   "p": "Firewood should read 12 - 20%"
+  },
+  {
+   "k": "h",
+   "id": "combustor",
+   "t": "catalyst",
+   "p": "Check, clean and test the catalytic combustor"
+  },
+  {
+   "k": "h",
+   "id": "glass",
+   "t": "door gasket",
+   "p": "The dollar-bill seal test"
+  },
+  {
+   "k": "i",
+   "id": "specStack",
+   "t": "3-2-10 rule",
+   "p": "Chimney height above the roof"
+  },
+  {
+   "k": "i",
+   "id": "specFloor",
+   "t": "hearth pad",
+   "p": "Floor protector size and R-value"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "specStack",
+    "issue": "Minimum chimney height is given as 15 feet (4.57 m), while the same page says chimneys shorter than 14 feet may not provide adequate draft.",
+    "pages": [
+     [
+      1,
+      8
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "step5",
+    "issue": "Rear exit flue collar height is 28 1/4\" (718 mm) on standard legs in the text on p. 10; the p. 5 dimension drawings, which include the rear-exit centerline height (Fig. 1.3), carry only 26 1/4\", 29\" and 25\" (635 mm) labels. Which drawing value is the centerline cannot be confirmed from text.",
+    "pages": [
+     [
+      1,
+      10
+     ],
+     [
+      1,
+      5
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "light",
+    "issue": "When to turn the air down by stove-top thermometer: 500° to 600° (260°C -316°C) on p. 21 vs 400°F - 600°F (204°C -316°C) on p. 19.",
+    "pages": [
+     [
+      1,
+      21
+     ],
+     [
+      1,
+      19
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "warranty",
+    "issue": "Baffle and air manifold components get a limited lifetime warranty (section A) and are also listed among normal-wear parts the warranty does not cover (exclusion 1).",
+    "pages": [
+     [
+      1,
+      30
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "specFloor",
+    "issue": "The luxury vinyl flooring note (damage within 57\" of the stove front) names the F 500 V3, not the F 445 this manual covers.",
+    "pages": [
+     [
+      1,
+      12
+     ],
+     [
+      1,
+      1
+     ]
+    ],
+    "class": "substantive"
+   }
+  ],
+  "catalog_mismatches": [
+   {
+    "field": "Max heat output",
+    "catalog": "Max Output (kW): 55000",
+    "manual": "Max Heat Output: 55,000 BTU (same number; the website labels it kW)",
+    "page": 3,
+    "shown": "specOutput"
+   },
+   {
+    "field": "Combustion technology",
+    "catalog": "non-catalytic technology plus Jøtul High Flow™ Combustor; no bypass",
+    "manual": "Catalytic wood heater (p. 1, p. 3); secondary combustion baffle and catalytic combustor (p. 19); Jøtul High Flow Catalytic Combustor (p. 32); no bypass mentioned",
+    "page": 3,
+    "shown": "specEmissions"
+   }
+  ],
+  "notes": "Manual 130167-3 (Oct 2024) covers both Classic and Clean Face models; the only CF-specific item in the text is the front door part (Door, Frnt, Cln Face 158383 vs Arched 158382, p. 29). Catalog specs checked and matching: 13,726-35,722 BTU/hr, 55,000 BTU max, 1600 sq. ft., 9 hr, HHV 72%, .49 g/hr, 20\" logs, 6\" flue, catalytic, 2020 EPA, mobile home approved, optional blower, outside air kit. Not in the manual (unverified): firebox 2.03 cu ft, weight 418 lb. Overall dimensions appear only as unlabeled figure dimensions on p. 5 (26 1/4\", 29\", 25\", 25\"); they agree with catalog W/H/D but were not transcribed. Figure-only content not transcribed: lettered clearance diagrams (p. 15; their garbled labels appear to give a Canadian hearth width of 42\" vs 41\" W in the p. 11 text), hearth Figs. 4.1/4.2 (p. 11; also carry 50,5\" (1283mm) depth and 56\" (1422 mm) width labels not explained in text), alcove Figs. 4.4/4.5 (p. 13), Fig. 3.2 note 'Max Depth is 10\" measured from the front of the front leg' (p. 10), monitor magnet orientation Figs. 5.6-5.8 (p. 20). Wording differences: p. 4 says 'do not use a grate... build the fire directly on the hearth' while p. 21 says 'burn directly on the bottom grate of the stove' (the stove has a grate, part 77); both say never elevate the fire, so owner text says build on the bottom of the firebox. p. 22 mentions burning 'with the screen in place' though no screen is listed for the F 445 (omitted). p. 6 'Canada Only' liner paragraph refers to 'this fireplace insert' (likely carried over; omitted). Chimney draft printed '.05 - 1.0 w.c.' (p. 20) used as printed; may be a typo. Warranty p. 30 says repair or replace 'including parts & labor' but p. 31 limits liability to a replacement component and excludes others' labor; labor coverage not stated in the guide. Combustor warranty: item 5 (second failure 50% off) and item 8 (subsequent replacement at current retail) both summarized. Cross-reference errors: p. 4 points to break-in 'Sect. 5.6' (it is 5.7, p. 20); p. 16 points to 'page 15' for outside air (p. 15 is clearance diagrams); TOC page numbers from 6.7 onward are off (parts p. 28-29, warranty p. 30-32). Floor kit 750304 is called Floor Bracket Kit (p. 2) and Floor Mounting Kit (p. 16). Enamel care (p. 23) not used; parts list shows matte black only. No French-only or scrambled text. No error code table, so codes are empty."
+ }
+}

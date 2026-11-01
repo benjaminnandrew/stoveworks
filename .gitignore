@@ -12,6 +12,7 @@ var/
 
 .env.local
 
-# brain: local-only copies (sync bundles, backups), not part of the site
-brain/archive/
+# brain: its sync bundles and backups stay local (git commits are the checkpoints now, Ben,
+# 1 Nov 2026); the rest of brain/, archive/'s reference files included, is committed
+brain/archive/*.tgz
 brain/guides-save.tgz

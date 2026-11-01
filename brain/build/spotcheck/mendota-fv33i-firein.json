@@ -1,0 +1,105 @@
+{
+ "id": "mendota-fv33i-firein",
+ "checked_pagerefs": 28,
+ "notes_checked": {
+  "amber": 7,
+  "correction": 1,
+  "website": 0
+ },
+ "findings": [
+  {
+   "severity": "minor",
+   "where": "detail.lockout",
+   "guide_says": "Full reset: 'Turn the remote off. Turn it on and wait two seconds. Turn it off and wait two seconds. Turn it on and wait two seconds. Turn it off.' then 'Then turn the remote on and start the fireplace.' This path has no wait before relighting. The five-minute wait appears only under Quick reset, so someone who locks out again and then does the full reset relights right away.",
+   "manual_says": "p. 11: \"If the ignition control system goes into lockout mode, always wait 5 minutes before attempting to relight.\" p. 79: \"If the ignition system goes into lockout mode, be sure to wait a minimum of five minutes before attempting to re-light.\" p. 73: \"Allow five minutes for any gas in the unit to dissipate before attempting to re-light the pilot.\" The p. 77 reset sequence itself ends \"This should clear the lockout mode. Turn on the remote and start the fireplace.\" with no wait, so the gap starts in the manual, but its rule on pp. 11, 66, 73 and 79 covers every lockout.",
+   "pages": [
+    [
+     1,
+     11
+    ],
+    [
+     1,
+     73
+    ],
+    [
+     1,
+     77
+    ],
+    [
+     1,
+     79
+    ]
+   ],
+   "fix": "End the full reset with: 'Wait at least five minutes, then turn the remote on and start the fireplace. Check that the master switch is on.'"
+  },
+  {
+   "severity": "minor",
+   "where": "specs.clear row 2",
+   "guide_says": "'Floor to 8\" mantel: 30-1/8\"'. On the installer card this reads as the room floor. Where the insert sits on a raised firebox floor, measuring from the room floor would put the mantel well under the required 12\" above the heat outlet.",
+   "manual_says": "p. 29: \"An 8” combustible mantel may be installed at a minimum of 12\" above the top of the heat outlet (30.125” up from the floor level of this Insert).\" and \"Note: The distance from the Floor Level of this Insert to the Top Air Gap is 18-1/8”.\" (The figure caption shortens this to \"Minimum Distance from Floor to 8\" Mantel is 30-1/8”\".) The specClear drawer gets the reference point right: \"30-1/8\" from the insert's floor level\".",
+   "pages": [
+    [
+     1,
+     29
+    ]
+   ],
+   "fix": "Label the card row 'Insert floor to 8\" mantel: 30-1/8\"' (12\" above the heat outlet top), matching the specClear drawer."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.light",
+   "guide_says": "'Before you start: Sniff all around the fireplace for gas, including down by the floor. Some gas is heavier than air and settles low.' The drawer never says what to do if you do smell gas, and it doesn't point to the gas-smell steps.",
+   "manual_says": "p. 73, at the head of the lighting instructions: \"Warning: If you do not follow these instructions exactly, a fire or explosion may result causing property damage, personal injury, and loss of life.\" / \"WHAT TO DO IF YOU SMELL GAS • Do not light any appliance. • Do not touch any light switch. • Do not use any phone in your building. • Call your gas supplier from a neighbor's phone. • Follow the provider representative's instructions. • If you cannot reach your gas supplier, call the fire department for assistance.\"",
+   "pages": [
+    [
+     1,
+     73
+    ]
+   ],
+   "fix": "After the sniff step add: 'If you smell gas, don't light it. Follow What to do if you smell gas (see Gas smell & safety).'"
+  },
+  {
+   "severity": "minor",
+   "where": "detail.safety",
+   "guide_says": "'Keep furniture at least 60\" in front of the barrier screen, and nothing on the front edge of the mantel.' This narrows the manual's 'any object' to furniture.",
+   "manual_says": "p. 2: \"Do not place any object directly in front (within 60”) or directly above (on the front edge of the mantel). ... Keep Furniture pieces at least 60” away in front of the barrier screen.\" p. 18: \"Do not place any object directly in front (within 60” from barrier screen surface)\". p. 9: \"Do not place furniture or any other combustible household objects within 60” of the fireplace front, per fire safety code.\"",
+   "pages": [
+    [
+     1,
+     2
+    ],
+    [
+     1,
+     9
+    ],
+    [
+     1,
+     18
+    ]
+   ],
+   "fix": "'Keep furniture and any other objects at least 60\" in front of the barrier screen, and nothing on the front edge of the mantel.'"
+  },
+  {
+   "severity": "minor",
+   "where": "detail.remote",
+   "guide_says": "'On ON or SMART, the fan starts five minutes after the fireplace does and runs 12-1/2 minutes after the flames go out.' There is no note, although the manual prints two figures. This is a silent pick: the writer recorded the difference only in review.notes.",
+   "manual_says": "p. 21: \"there will be a five-minute delay before the blower comes on and a 12-1/2 minutes extended blower operation after fireplace flames turn off\" (the text extraction splits it as \"12 - 1/2\"); p. 69: \"will turn off 12-1/2 minutes after the flames turn off, in this mode\"; p. 86 checklist: \"Fan delayed 5 minutes in ON and runs 12 minutes after.\"",
+   "pages": [
+    [
+     1,
+     21
+    ],
+    [
+     1,
+     69
+    ],
+    [
+     1,
+     86
+    ]
+   ],
+   "fix": "Keep 12-1/2 and add a small note: 'The p. 86 checklist says the fan runs 12 minutes after; pp. 21 and 69 say 12-1/2 minutes.' Record it in review.conflicts (clerical, corrected_to 12-1/2)."
+  }
+ ],
+ "verdict": "Yes. Every safety procedure, gas pressure, clearance, venting limit, electrical rating and number checks out against the manual, as do all 7 amber notes, the one correction (the 4\" exhaust that the p. 17 rating and the 3\" x 3\" caps and collars settle) and all 28 page links; it is safe to publish once the five minor fixes are made, chiefly adding the five-minute wait to the full lockout reset."
+}

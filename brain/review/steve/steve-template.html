@@ -1,0 +1,287 @@
+<title>Steve's Safety List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column of review rows, grouped by topic, safety topics first; a sticky filter bar on top. */
+:root{
+  --bg:#f3f5f6; --surface:#ffffff; --ink:#1b2127; --muted:#56616b; --line:#dbe1e5; --soft:#eaeef1;
+  --accent:#2c5a78; --accent-ink:#ffffff; --amber:#9a5b00; --amber-bg:#fdf3e2; --ok:#2f6b45; --ok-bg:#e6f3ea; --ask:#8a3b12; --ask-bg:#fbe9df; --tell:#2c5a78; --tell-bg:#e3eef6;
+  --c-vent:#6d55b8; --c-clear:#b0602a; --c-gas:#2d7f8a; --c-elec:#a3801a; --c-air:#4f7f3a; --c-op:#5b6670; --c-other:#8a8f95;
+  --display:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111518; --surface:#181d22; --ink:#e4e9ed; --muted:#9aa6b0; --line:#2a3239; --soft:#20272d;
+  --accent:#7db0d6; --accent-ink:#0d1418; --amber:#e3a755; --amber-bg:#2c2416; --ok:#7cc495; --ok-bg:#16291e; --ask:#f0a07a; --ask-bg:#311d14; --tell:#7db0d6; --tell-bg:#14232e;
+  --c-vent:#a693f0; --c-clear:#e39a63; --c-gas:#6cc3cf; --c-elec:#e0c25c; --c-air:#8fc276; --c-op:#9aa6b0; --c-other:#7d858c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111518; --surface:#181d22; --ink:#e4e9ed; --muted:#9aa6b0; --line:#2a3239; --soft:#20272d;
+  --accent:#7db0d6; --accent-ink:#0d1418; --amber:#e3a755; --amber-bg:#2c2416; --ok:#7cc495; --ok-bg:#16291e; --ask:#f0a07a; --ask-bg:#311d14; --tell:#7db0d6; --tell-bg:#14232e;
+  --c-vent:#a693f0; --c-clear:#e39a63; --c-gas:#6cc3cf; --c-elec:#e0c25c; --c-air:#8fc276; --c-op:#9aa6b0; --c-other:#7d858c; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);padding-inline:16px;padding-block:0 48px}
+.wrap{max-width:1040px;margin:0 auto}
+header.top{padding-block:28px 18px;display:grid;gap:10px}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:700 clamp(26px,4vw,34px)/1.15 var(--display);margin:0;text-wrap:balance;letter-spacing:-.01em}
+.lede{margin:0;max-width:68ch;color:var(--muted)}
+.lede b{color:var(--ink);font-weight:600}
+.summary{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;font:500 13px/1.2 var(--body);cursor:pointer}
+.chip .n{font:500 12px/1 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.chip[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.dot{width:9px;height:9px;border-radius:50%;flex:none;background:var(--c-other)}
+.dot.vent{background:var(--c-vent)}.dot.clear{background:var(--c-clear)}.dot.gas{background:var(--c-gas)}.dot.elec{background:var(--c-elec)}.dot.air{background:var(--c-air)}.dot.op{background:var(--c-op)}
+.progress{font:500 13px/1.4 var(--body);color:var(--muted)}
+.progress b{color:var(--ink);font-variant-numeric:tabular-nums}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding-block:10px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.bar input[type=search],.bar select{font:14px/1.2 var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-height:38px}
+.bar input[type=search]{flex:1 1 220px;min-width:0}
+.bar select{flex:0 1 auto;max-width:100%}
+.bar label.tog{display:inline-flex;align-items:center;gap:6px;font:500 13px/1.2 var(--body);color:var(--ink);padding:0 4px;min-height:38px}
+.btn{font:600 13px/1 var(--body);background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:11px 14px;cursor:pointer}
+.btn:focus-visible,.chip:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.count{font:500 12px/1 var(--mono);color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums}
+.notice{margin:14px 0 0;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--muted);font-size:13px}
+section.group{margin-top:26px}
+section.group>h2{display:flex;align-items:center;gap:10px;font:700 17px/1.3 var(--display);margin:0 0 10px}
+section.group>h2 .n{font:500 12px/1 var(--mono);color:var(--muted);font-weight:500}
+.item{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;gap:8px;margin-bottom:10px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline}
+.model{font-weight:700}
+.topic{color:var(--muted)}
+.tag{font:500 11px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;padding:4px 6px;border-radius:4px;background:var(--amber-bg);color:var(--amber)}
+.tag.web{background:var(--soft);color:var(--muted)}
+.text{margin:0;max-width:78ch;overflow-wrap:anywhere}
+.cmp{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.cmp div{background:var(--soft);border-radius:8px;padding:8px 10px;min-width:0;overflow-wrap:anywhere}
+.cmp span{display:block;font:500 11px/1.2 var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.refs{display:flex;flex-wrap:wrap;gap:6px 14px;font:500 13px/1.3 var(--mono)}
+.refs a{color:var(--accent);text-decoration:none}
+.refs a:hover{text-decoration:underline}
+.review{display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-top:1px dashed var(--line);padding-top:10px}
+.review select,.review input{font:14px/1.2 var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 9px;min-height:36px}
+.review input{flex:1 1 240px;min-width:0}
+.review select.s-ok{background:var(--ok-bg);color:var(--ok);border-color:transparent}
+.review select.s-ask{background:var(--ask-bg);color:var(--ask);border-color:transparent}
+.review select.s-tell{background:var(--tell-bg);color:var(--tell);border-color:transparent}
+.by{font:12px/1.3 var(--body);color:var(--muted)}
+.empty{padding:40px 0;text-align:center;color:var(--muted)}
+footer{margin-top:36px;color:var(--muted);font-size:13px;max-width:72ch}
+@media (max-width:560px){.bar{gap:6px;position:static}.count{margin-left:0;width:100%}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Hayward Stoveworks · owner &amp; installer guides</div>
+    <h1>Steve's Safety List</h1>
+    <p class="lede">Every place a maker contradicts itself on something that matters for a safe install, gathered from all <b id="nGuides">186</b> guides. <b>Manual vs manual</b>: two pages of a manual (or a table and the rating label) print different figures or instructions. <b>Website vs manual</b>: the maker's website prints a different safety figure than its manual. The guides already show both to customers; this list is for knowing where they are. Mark each one and add a note: everyone who opens this page sees the same marks.</p>
+    <div class="summary" id="summary"></div>
+    <div class="progress" id="progress"></div>
+  </header>
+
+  <div class="bar" role="search">
+    <input type="search" id="q" placeholder="Search models, topics, figures" aria-label="Search">
+    <select id="fPart" aria-label="Kind"><option value="">Both kinds</option><option value="manual">Manual vs manual</option><option value="website">Website vs manual</option></select>
+    <select id="fBrand" aria-label="Brand"><option value="">All brands</option></select>
+    <select id="fStatus" aria-label="Mark"><option value="">Any mark</option><option value="none">Not reviewed</option><option value="ok">Fine as shown</option><option value="ask">Ask the maker</option><option value="tell">Tell installers</option></select>
+    <label class="tog"><input type="checkbox" id="fSafety" checked> Safety topics only</label>
+    <button class="btn" id="csv" type="button" hidden>Download as CSV</button>
+    <span class="count" id="count"></span>
+  </div>
+  <p class="notice" id="dbNotice" hidden></p>
+
+  <main id="list"></main>
+  <footer>Built Oct 12, 2026 from the guides' review records. Page links open the maker's PDF at that page. A mark doesn't change a guide: guides change only when a maker publishes a correction.</footer>
+</div>
+
+<script type="application/json" id="data">/*__DATA__*/null</script>
+<script>
+(function(){
+const DATA = JSON.parse(document.getElementById('data').textContent);
+const CATS = DATA.cats, ORDER = ['vent','clear','gas','elec','air','op','other'];
+const STATUS = {'':'Not reviewed', ok:'Fine as shown', ask:'Ask the maker', tell:'Tell installers'};
+const items = DATA.items;
+const byId = new Map(items.map(i => [i.id, i]));
+let notes = {};            // id -> {status, note, by, at}
+let canWrite = false, dbRef = null, userRef = null, myId = null;
+const $ = s => document.querySelector(s);
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+
+// ---- remembered filters (per viewer only)
+const KEY = 'steve-list-filters';
+function loadFilters(){ try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ return {}; } }
+function saveFilters(f){ try { localStorage.setItem(KEY, JSON.stringify(f)); } catch(e){} }
+const saved = loadFilters();
+
+// ---- brand options
+[...new Set(items.map(i => i.brand))].sort().forEach(b => { const o = el('option', null, b); o.value = b; $('#fBrand').append(o); });
+if (saved.part != null) $('#fPart').value = saved.part;
+if (saved.brand != null) $('#fBrand').value = saved.brand;
+if (saved.status != null) $('#fStatus').value = saved.status;
+if (saved.safety != null) $('#fSafety').checked = saved.safety;
+if (saved.q) $('#q').value = saved.q;
+let catFilter = saved.cat || '';
+
+// ---- render rows once
+const rows = new Map();
+const groups = {};
+const list = $('#list');
+ORDER.forEach(c => {
+  const sec = el('section', 'group'); sec.dataset.cat = c;
+  const h = el('h2'); const d = el('span', 'dot ' + c); const t = el('span', null, CATS[c]); const n = el('span', 'n');
+  h.append(d, t, n); sec.append(h); list.append(sec); groups[c] = {sec, n};
+});
+items.forEach(i => {
+  const a = el('article', 'item'); a.dataset.id = i.id;
+  const meta = el('div', 'meta');
+  meta.append(el('span', 'model', i.model), el('span', 'topic', i.topic), el('span', 'tag' + (i.part === 'website' ? ' web' : ''), i.part === 'website' ? 'Website vs manual' : 'Manual vs manual'));
+  a.append(meta);
+  if (i.part === 'website') {
+    const cmp = el('div', 'cmp');
+    const w = el('div'); w.append(el('span', null, "Maker's website"), document.createTextNode(i.website));
+    const m = el('div'); m.append(el('span', null, 'Manual'), document.createTextNode(i.manual));
+    cmp.append(w, m); a.append(cmp);
+  } else {
+    a.append(el('p', 'text', i.text));
+  }
+  const refs = el('div', 'refs');
+  (i.pages || []).forEach(p => { if (!p.url) { refs.append(el('span', null, p.label)); return; } const l = el('a', null, p.label + ' ↗'); l.href = p.url; l.target = '_blank'; l.rel = 'noopener'; refs.append(l); });
+  if (i.site) { const l = el('a', null, "Maker's page ↗"); l.href = i.site; l.target = '_blank'; l.rel = 'noopener'; refs.append(l); }
+  if (refs.childNodes.length) a.append(refs);
+  const rv = el('div', 'review'); rv.hidden = true;
+  const sel = el('select'); sel.id = 'st-' + i.id; sel.setAttribute('aria-label', 'Mark for ' + i.model + ', ' + i.topic);
+  Object.entries(STATUS).forEach(([v, t]) => { const o = el('option', null, t); o.value = v; sel.append(o); });
+  const inp = el('input'); inp.type = 'text'; inp.id = 'nt-' + i.id; inp.placeholder = 'Note (shared)'; inp.setAttribute('aria-label', 'Note for ' + i.model + ', ' + i.topic);
+  const by = el('span', 'by');
+  rv.append(sel, inp, by); a.append(rv);
+  sel.addEventListener('change', () => { sel.className = sel.value ? 's-' + sel.value : ''; write(i.id, {status: sel.value, note: inp.value}); });
+  let timer = null;
+  inp.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(() => write(i.id, {status: sel.value, note: inp.value}), 900); });
+  inp.addEventListener('blur', () => { clearTimeout(timer); const cur = notes[i.id] || {}; if ((cur.note || '') !== inp.value) write(i.id, {status: sel.value, note: inp.value}); });
+  groups[i.cat].sec.append(a);
+  rows.set(i.id, {a, sel, inp, by, rv});
+});
+
+// ---- summary chips
+function renderSummary(){
+  const s = $('#summary'); s.textContent = '';
+  const safetyOnly = $('#fSafety').checked;
+  const all = el('button', 'chip'); all.type = 'button'; all.setAttribute('aria-pressed', String(!catFilter));
+  all.append(el('span', null, safetyOnly ? 'All safety topics' : 'All topics'), el('span', 'n', String(items.filter(i => !safetyOnly || i.safety).length)));
+  all.onclick = () => { catFilter = ''; apply(); };
+  s.append(all);
+  ORDER.forEach(c => {
+    const n = items.filter(i => i.cat === c).length;
+    if (!n || (safetyOnly && !['vent','clear','gas','elec','air'].includes(c))) return;
+    const b = el('button', 'chip'); b.type = 'button'; b.setAttribute('aria-pressed', String(catFilter === c));
+    b.append(el('span', 'dot ' + c), el('span', null, CATS[c]), el('span', 'n', String(n)));
+    b.onclick = () => { catFilter = catFilter === c ? '' : c; apply(); };
+    s.append(b);
+  });
+}
+
+function statusOf(id){ return (notes[id] && notes[id].status) || ''; }
+
+function apply(){
+  const q = $('#q').value.trim().toLowerCase();
+  const part = $('#fPart').value, brand = $('#fBrand').value, st = $('#fStatus').value, safety = $('#fSafety').checked;
+  if (catFilter && safety && !['vent','clear','gas','elec','air'].includes(catFilter)) catFilter = '';
+  saveFilters({q, part, brand, status: st, safety, cat: catFilter});
+  let shown = 0; const per = {};
+  items.forEach(i => {
+    const r = rows.get(i.id);
+    let ok = (!safety || i.safety) && (!catFilter || i.cat === catFilter) && (!part || i.part === part) && (!brand || i.brand === brand);
+    if (ok && st) ok = st === 'none' ? !statusOf(i.id) : statusOf(i.id) === st;
+    if (ok && q) ok = [i.model, i.topic, i.text, i.website, i.manual, i.brand, (notes[i.id] || {}).note].join(' ').toLowerCase().includes(q);
+    r.a.hidden = !ok; if (ok) { shown++; per[i.cat] = (per[i.cat] || 0) + 1; }
+  });
+  ORDER.forEach(c => { const g = groups[c]; const n = per[c] || 0; g.sec.hidden = !n; g.n.textContent = n + (n === 1 ? ' item' : ' items'); });
+  $('#count').textContent = shown + ' of ' + items.length + ' shown';
+  let empty = $('#emptyMsg');
+  if (!shown) { if (!empty) { empty = el('p', 'empty', 'Nothing matches these filters.'); empty.id = 'emptyMsg'; list.append(empty); } }
+  else if (empty) empty.remove();
+  renderSummary(); renderProgress();
+}
+
+function renderProgress(){
+  const safe = items.filter(i => i.safety);
+  const done = safe.filter(i => statusOf(i.id)).length;
+  const counts = {ok:0, ask:0, tell:0}; items.forEach(i => { const s = statusOf(i.id); if (s) counts[s]++; });
+  const p = $('#progress'); p.textContent = '';
+  const b = el('b', null, done + ' of ' + safe.length);
+  p.append(b, document.createTextNode(' safety items marked · ' + counts.ok + ' fine as shown · ' + counts.ask + ' ask the maker · ' + counts.tell + ' tell installers'));
+}
+
+['#q','#fPart','#fBrand','#fStatus','#fSafety'].forEach(s => $(s).addEventListener(s === '#q' ? 'input' : 'change', apply));
+apply();
+
+// ---- notes in the shared store
+const pending = {};   // id -> promise chain, one write at a time per doc
+function write(id, body){
+  if (!dbRef || !canWrite) return;
+  const doc = {status: body.status || '', note: (body.note || '').slice(0, 2000), by: myId || null, at: new Date().toISOString()};
+  const prev = notes[id] || {};
+  if ((prev.status || '') === doc.status && (prev.note || '') === doc.note) return;
+  pending[id] = (pending[id] || Promise.resolve()).then(() => dbRef.collection('notes').doc(id).set(doc)).catch(e => {
+    if (e && e.code === 'invalid_argument') { canWrite = false; setReadOnly('Your access to this page is view-only, so marks and notes can\'t be saved.'); }
+    else if (e && e.code === 'quota_exceeded') showNotice('The notes store is full. Clear some notes, then try again.');
+    else showNotice('A note didn\'t save. Check your connection and try again.');
+  });
+}
+function showNotice(t){ const n = $('#dbNotice'); n.textContent = t; n.hidden = false; }
+function setReadOnly(msg){ rows.forEach(r => { r.sel.disabled = true; r.inp.disabled = true; }); if (msg) showNotice(msg); }
+
+async function paintNotes(){
+  const ids = [...new Set(Object.values(notes).map(n => n.by).filter(Boolean))];
+  let ps = {};
+  if (userRef && ids.length) { try { ps = await userRef.profiles(ids); } catch(e) { ps = {}; } }
+  rows.forEach((r, id) => {
+    const n = notes[id];
+    if (document.activeElement !== r.inp) r.inp.value = (n && n.note) || '';
+    if (document.activeElement !== r.sel) { r.sel.value = (n && n.status) || ''; r.sel.className = r.sel.value ? 's-' + r.sel.value : ''; }
+    if (n && n.at) {
+      const who = n.by && ps[n.by] ? (ps[n.by].name || 'Someone') : 'Someone';
+      const when = new Date(n.at); r.by.textContent = 'Marked by ' + who + ' · ' + (isNaN(when) ? '' : when.toLocaleDateString(undefined, {month:'short', day:'numeric'}));
+    } else r.by.textContent = '';
+  });
+}
+
+(async () => {
+  const claude = window.claude;
+  if (!claude || !claude.use) { showNotice('Marks and notes are saved on claude.ai. Open this page there to add them.'); return; }
+  const [db, user, downloads] = await Promise.all([claude.use('db'), claude.use('user'), claude.use('downloads')]);
+  userRef = user;
+  if (downloads) { const b = $('#csv'); b.hidden = false; b.onclick = () => exportCsv(downloads); }
+  if (!db) { showNotice('Marks and notes need you signed in to claude.ai. You can still read and filter the list.'); return; }
+  dbRef = db;
+  myId = user ? await user.id() : null;
+  const w = user ? await user.can('data.write') : null;
+  canWrite = w !== false;
+  rows.forEach(r => { r.rv.hidden = false; });
+  if (!canWrite) setReadOnly('Your access to this page is view-only, so you can read marks but not change them.');
+  db.collection('notes').onSnapshot(snap => {
+    const next = {};
+    snap.docs.forEach(d => { if (d.exists && byId.has(d.id)) next[d.id] = d.data(); });
+    notes = next; paintNotes(); apply();
+  }, e => { showNotice('Marks stopped updating. Reload the page to see the latest.'); });
+})();
+
+function csvCell(v){ v = v == null ? '' : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+async function exportCsv(downloads){
+  const head = ['Topic group','Kind','Brand','Model','Topic','What the maker prints','Pages','Mark','Note'];
+  const lines = [head.join(',')];
+  items.forEach(i => {
+    const n = notes[i.id] || {};
+    const what = i.part === 'website' ? "Maker's website: " + i.website + ' | Manual: ' + i.manual : i.text;
+    lines.push([CATS[i.cat], i.part === 'website' ? 'Website vs manual' : 'Manual vs manual', i.brand, i.model, i.topic, what, (i.pages || []).map(p => p.label).join('; '), STATUS[n.status || ''], n.note || ''].map(csvCell).join(','));
+  });
+  try { await downloads.save({filename: 'steves-safety-list.csv', data: '﻿' + lines.join('\r\n')}); }
+  catch(e) { if (e && e.code !== 'declined') showNotice('The download didn\'t start. Try again in a moment.'); }
+}
+})();
+</script>

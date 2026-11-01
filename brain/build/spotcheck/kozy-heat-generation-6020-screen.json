@@ -1,0 +1,75 @@
+{
+ "id": "kozy-heat-generation-6020-screen",
+ "checked_pagerefs": 28,
+ "notes_checked": {
+  "amber": 1,
+  "correction": 2,
+  "website": 3
+ },
+ "findings": [
+  {
+   "severity": "minor",
+   "where": "detail.light (\"Still won't work?\" note)",
+   "guide_says": "Still won't work? Press OFF on the remote, turn the manual valve clockwise to OFF, and call your service technician or gas supplier. Turn the valve by hand only. If it won't turn, don't force it or use tools.",
+   "manual_says": "p. 78 lighting label, step 11: \"If the appliance will not operate, follow the instructions, 'To Turn Off Gas To Appliance' and call your service technician or gas supplier.\" TO TURN OFF GAS TO APPLIANCE: \"1. Press the wireless remote OFF button. 2. Turn off all electric power to the appliance if service is to be performed. 3. Locate the manual valve installed by your qualified service technician. 4. Turn the manual valve clockwise to OFF position.\" Item C: \"Use only your hand to turn the gas control manual valve. Never use tools. If the valve will not turn by hand, do not try to repair it; call a qualified service technician. Force or attempted repair may result in a fire or explosion.\"",
+   "pages": [
+    [
+     1,
+     78
+    ]
+   ],
+   "fix": "Follow the label's shut-off steps in full: \"Press OFF on the remote, turn off all electric power to the fireplace if it is going to be serviced, turn the manual valve clockwise to OFF, and call your service technician or gas supplier. Use only your hand to turn the valve, never tools. If it won't turn by hand, don't try to repair it; call a qualified service technician. Force or attempted repair may cause a fire or explosion.\" (The safety drawer already has the power step; this note drops it.)"
+  },
+  {
+   "severity": "minor",
+   "where": "detail.safety (If you smell gas; Every day, under-water bullet)",
+   "guide_says": "\"Call your gas supplier from a neighbor's phone and follow their instructions.\" and \"If any part has been under water, don't use it. Call a qualified service technician.\"",
+   "manual_says": "p. 1 and p. 78: \"Immediately call your gas supplier from a neighbor's phone. Follow the gas supplier's instructions.\" p. 78 item D (also p. 77): \"Do not use this appliance if any part has been under water. Immediately call a qualified service technician to inspect the appliance and to replace any part of the control system and any gas control that has been under water.\"",
+   "pages": [
+    [
+     1,
+     1
+    ],
+    [
+     1,
+     78
+    ],
+    [
+     1,
+     77
+    ]
+   ],
+   "fix": "Keep the urgency and the replacement instruction: \"Immediately call your gas supplier from a neighbor's phone and follow their instructions.\" and \"If any part has been under water, don't use it. Immediately call a qualified service technician to inspect it and replace any part of the control system and any gas control that has been under water.\""
+  },
+  {
+   "severity": "minor",
+   "where": "step3 (amber Note) / review.conflicts[2]",
+   "guide_says": "Note: p. 26 says to frame the wall pass-through opening so the vent system runs level through the wall thimble; pp. 56, 60 say horizontal vent sections require at least 1/4\" (6mm) rise for every 12\" (305mm) of travel. (Recorded as a substantive conflict, so the guide presents the vent pitch as unsettled.)",
+   "manual_says": "p. 26 (rough-in framing steps for Figure 4.5): \"Cut and frame an opening in the wall to allow the vent system to run level through the wall thimble.\" The venting section states the pitch as a requirement every time: p. 56 \"Horizontal vent sections require at least 1/4\" (6mm) rise for every 12\" (305mm) of travel.\"; p. 60 \"IMPORTANT: Horizontal vent sections require 1/4\" (6mm) of rise for every 12\" (305mm) of travel.\"; p. 63 the same; and the troubleshooting chart, p. 92, lists \"Improper pitch on horizontal venting\" as a cause of \"Pilot and burner extinguish while in operation\": \"1/4\" (6mm) rise for ever 12\" (305mm) of travel is required on horizontal venting.\"",
+   "pages": [
+    [
+     1,
+     26
+    ],
+    [
+     1,
+     56
+    ],
+    [
+     1,
+     60
+    ],
+    [
+     1,
+     63
+    ],
+    [
+     1,
+     92
+    ]
+   ],
+   "fix": "Treat it as not_a_conflict (p. 26 is a rough-opening framing step; the manual settles the pitch) and word it so an installer can't read it as permission for a dead-level run, e.g. \"Frame the wall pass-through so the pipe passes straight through the wall thimble (p. 26, Figure 4.5). Every horizontal section still needs at least 1/4\" (6mm) rise per 12\" (305mm) of travel (pp. 56, 60, 63); the troubleshooting chart lists a run without that pitch as a cause of the pilot and burner going out (p. 92).\""
+  }
+ ],
+ "verdict": "Yes: every number, clearance, venting limit, gas pressure, electrical rating, the IPI/CPI lighting procedure and all 28 page links match the manual, and the two corrections and three website notes are sound; after the three minor wording fixes (restore the label's full shut-off step, the dropped 'Immediately's, and reword the vent-pitch note) the guide is safe to publish."
+}

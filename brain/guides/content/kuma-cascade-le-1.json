@@ -1,0 +1,631 @@
+{
+ "id": "kuma-cascade-le-1",
+ "schema": 3,
+ "shell": {
+  "brand_mark": "KUMA",
+  "brand_line": "Cascade LE-1 · Hybrid catalytic wood insert",
+  "kicker": "Wood-burning fireplace insert",
+  "title": "Kuma Cascade LE-1",
+  "model_line": "Model K-251 · Masonry fireplace, 6\" HT liner · Hybrid catalytic (burn tubes + catalyst)",
+  "owner_noun": "insert",
+  "owner_card": "Light a fire, use the air and bypass, reload, choose wood, clean the glass, empty ashes, check the warranty.",
+  "installer_card": "EPA ratings, liner and flue height, clearances, floor protection, catalyst and parts, the install sequence and troubleshooting.",
+  "certification": "UL 1482-2022 (safety) · ASTM 3053-2017 (emissions)",
+  "owner_search_hint": "bypass, burn time, glass, ashes",
+  "manual_search_hint": "liner, clearance, catalyst"
+ },
+ "home_primary": [
+  {
+   "id": "light",
+   "icon": "flame",
+   "title": "Light a fire",
+   "blurb": "Air open, bypass open, a top-down load, then close the bypass."
+  },
+  {
+   "id": "controls",
+   "icon": "air",
+   "title": "Air, bypass & thermometer",
+   "blurb": "What each control does, burn times, and reading the catalyst gauge."
+  },
+  {
+   "id": "reload",
+   "icon": "logs",
+   "title": "Add more wood",
+   "blurb": "Reload without smoke in the room and keep the catalyst working."
+  },
+  {
+   "id": "firstfire",
+   "icon": "sound",
+   "title": "First fires: smell & sounds",
+   "blurb": "Paint-curing smell, popping and creaking, and lazy early fires."
+  }
+ ],
+ "home_secondary": [
+  {
+   "id": "wood",
+   "icon": "tree",
+   "title": "What wood to burn",
+   "blurb": "Seasoned, 20% moisture or less, 18\" long, and what never to burn."
+  },
+  {
+   "id": "glass",
+   "icon": "glass",
+   "title": "Clean the glass",
+   "blurb": "Let the air wash do the work; what to use when it doesn't."
+  },
+  {
+   "id": "ash",
+   "icon": "ash",
+   "title": "Ashes & routine checks",
+   "blurb": "When to empty, how much to leave, and the gasket and catalyst checks."
+  },
+  {
+   "id": "chimney",
+   "icon": "chimney",
+   "title": "Chimney & creosote",
+   "blurb": "How creosote builds up and keeping the chimney clean."
+  },
+  {
+   "id": "safety",
+   "icon": "safety",
+   "title": "Safety & over-firing",
+   "blurb": "Glowing parts, hot surfaces, detectors and the door."
+  },
+  {
+   "id": "warranty",
+   "icon": "warranty",
+   "title": "Warranty",
+   "blurb": "Register within 30 days; what's covered and for how long."
+  }
+ ],
+ "specs": [
+  {
+   "id": "epa",
+   "lab": "EPA test results",
+   "tap": "specEPA",
+   "rows": [
+    [
+     "Heat output",
+     "11,219 – 30,612 Btu/hr"
+    ],
+    [
+     "Efficiency (HHV)",
+     "77.8%"
+    ],
+    [
+     "Particulate",
+     "1.11 g/hr"
+    ],
+    [
+     "CO (average)",
+     "0.49 g/min"
+    ]
+   ]
+  },
+  {
+   "id": "liner",
+   "lab": "Flue liner",
+   "tap": "specLiner",
+   "rows": [
+    [
+     "Liner",
+     "6\" · type HT (2100°)"
+    ],
+    [
+     "Standard",
+     "UL 1777"
+    ],
+    [
+     "Minimum",
+     "6\" or 28 square inches"
+    ],
+    [
+     "Fireplace",
+     "Masonry (NFPA 211) only"
+    ]
+   ]
+  },
+  {
+   "id": "height",
+   "lab": "Min. flue height",
+   "tap": "specHeight",
+   "rows": [
+    [
+     "No offsets",
+     "14 ft"
+    ],
+    [
+     "30° or 45° offsets",
+     "15 ft"
+    ],
+    [
+     "90° offsets",
+     "16 ft"
+    ],
+    [
+     "90° + 2-3 feet horizontal",
+     "20 ft"
+    ],
+    [
+     "90° into exterior chimney",
+     "22 ft"
+    ]
+   ],
+   "note": "recommended"
+  },
+  {
+   "id": "clear",
+   "lab": "Clearances",
+   "tap": "specClear",
+   "rows": [
+    [
+     "Insert to side wall",
+     "15\""
+    ],
+    [
+     "Insert to wood trim",
+     "8.5\""
+    ],
+    [
+     "12\" mantel above top plate",
+     "19.25\""
+    ]
+   ],
+   "note": "trim no thicker than 3/4\""
+  },
+  {
+   "id": "floor",
+   "lab": "Floor protection",
+   "tap": "specFloor",
+   "rows": [
+    [
+     "Insert 4\"+ above floor",
+     "Type 1 · ember"
+    ],
+    [
+     "Less than 4\" above",
+     "Type 2 · R-value 1.4"
+    ]
+   ]
+  },
+  {
+   "id": "fuel",
+   "lab": "Fuel",
+   "tap": "specFuel",
+   "rows": [
+    [
+     "Wood length",
+     "18\" recommended"
+    ],
+    [
+     "Moisture",
+     "20% or less"
+    ],
+    [
+     "Seasoning",
+     "1 full year"
+    ]
+   ]
+  },
+  {
+   "id": "cat",
+   "lab": "Catalyst",
+   "tap": "specCatalyst",
+   "rows": [
+    [
+     "Combustor",
+     "Applied Catalysts ACI-5M"
+    ],
+    [
+     "Part #",
+     "KR-CT-01"
+    ],
+    [
+     "Light-off",
+     "500° to 700°F"
+    ],
+    [
+     "Recommended max",
+     "1300°F"
+    ]
+   ]
+  },
+  {
+   "id": "parts",
+   "lab": "Service parts",
+   "tap": "specParts",
+   "rows": [
+    [
+     "Door glass + gasket",
+     "KR-GL-25-2"
+    ],
+    [
+     "Door gasket",
+     "KR-GK-058"
+    ],
+    [
+     "Flame guard",
+     "KR-FG-01"
+    ],
+    [
+     "Baffle insulation",
+     "KR-IN-25"
+    ]
+   ]
+  }
+ ],
+ "specs_label": "Critical specs",
+ "steps": [
+  [
+   "Check clearances",
+   "Insert to side wall 15\"; to wood trim (3/4\" max thick) 8.5\"; a 12\" mantel at least 19.25\" above the top plate. Shallower mantels: use the manual's chart."
+  ],
+  [
+   "Room & floor protection",
+   "Never in a sleeping room; keep floor, walls and ceiling/roof structurally intact. Insert bottom 4\"+ above a combustible floor: ember protection; under 4\": Type 2, R-value 1.4."
+  ],
+  [
+   "Inspect the chimney",
+   "Masonry fireplace and chimney to NFPA 211 only. Have a certified chimney inspector clean and inspect it; re-line or rebuild if damaged or not to code.",
+   "<p>This insert connects, with a liner, only to a masonry fireplace that meets NFPA 211. It cannot be installed in a factory-built fireplace or a mobile home.</p><ul><li>Have a certified chimney inspector clean and inspect the chimney and fireplace for code violations, cracks, damaged mortar joints or blockages.</li><li>If the chimney is damaged or does not meet code, re-line or rebuild it.</li><li>For proper draft, the chimney must exit the roof a minimum of 3 feet and at least 2 feet above any portion of the roof within 10 feet (p. 9).</li></ul>"
+  ],
+  [
+   "Install the chimney liner",
+   "6\" liner meeting type HT (2100°) per UL 1777, installed to the liner maker's instructions; never under 6\" or 28 square inches. Insulated liner recommended.",
+   "<div class=\"kv\"><div class=\"r\"><span>Liner</span><span>6\" · type HT (2100°) per UL 1777</span></div><div class=\"r\"><span>Never smaller than</span><span>6\" diameter or 28 square inches</span></div></div><p>Install it to the liner manufacturer's instructions; a liner meets UL 1777 only if those instructions are followed (p. 10). Kuma recommends an insulated liner for improved performance. Any reduction in flue size may result in smoking or poor performance.</p>"
+  ],
+  [
+   "Set & level the insert",
+   "Uncrate; each piece comes in its own box with instructions. The insert is heavy: two people, proper lifting. Place it in the fireplace and level it."
+  ],
+  [
+   "Connect the liner",
+   "Connect the liner to the insert. Never to a flue servicing another appliance, or to any air distribution or duct system."
+  ],
+  [
+   "Install the surround",
+   "Fit the fireplace surround; its kit includes the hardware for leveling the insert."
+  ],
+  [
+   "Catalyst & flame diffuser",
+   "Install the catalyst and flame diffuser. Never run the stove without the baffle boards and ceramic insulation packaged with it."
+  ],
+  [
+   "Door, then blower (optional)",
+   "Install the door, then the optional blower, each per the instructions in its box."
+  ],
+  [
+   "Break-in fire",
+   "Start small and raise the heat slowly over a 4 to 5-hour period to cure the paint; ventilate the area. The smell and haze subside after a few hours.",
+   "<p>Start small and increase the heat slowly over a 4 to 5-hour period so the paint cures. It gives off a smell and sometimes a visible haze; make sure the area is well ventilated. The first few fires may seem lazy until moisture evaporates from the brick.</p><p>Normal operation: air open and bypass open to light; close the bypass after 15 minutes or once the catalytic thermometer is in the active range; leave the air open 20-30 minutes before setting the burn rate (p. 13–14).</p>"
+  ]
+ ],
+ "faults": {
+  "label": "Draft, smoke & catalyst faults",
+  "panels": [
+   {
+    "title": "Smoke into the room",
+    "items": [
+     "At start-up: bypass rod not pulled open",
+     "Cold chimney → reverse draft: open a door or window for about 5 minutes, restart with small strips of newspaper and small kindling",
+     "Out the open door: door opened before the bypass (open it 1 minute first) or opened too fast (crack it, let the stove breathe a few seconds)",
+     "Chimney or chimney cap needs cleaning; screened caps can block in a few weeks"
+    ]
+   },
+   {
+    "title": "Lazy or cool burn",
+    "items": [
+     "Chimney still cool: allow more time to warm up",
+     "Green wood or surface moisture: season about 1 year; cover the pile on top, open on the sides",
+     "Stove shut down too soon: leave the air open longer",
+     "Catalytic combustor plugged with ash: clean in place with ~20-30 psi air through the baffle grid",
+     "Barometric episodes: a sudden drop usually goes away within a few days",
+     "Fuel load too small or wood too large for the coal bed"
+    ]
+   },
+   {
+    "title": "Won't shut down · short burns",
+    "items": [
+     "Main door or glass gasket not sealing",
+     "Chimney too tall: check the flue height recommendations",
+     "Coal bed not hot enough: large charred chunks left after the fire goes out",
+     "Softer woods give shorter burn times than harder, denser woods"
+    ]
+   },
+   {
+    "title": "Catalyst problems",
+    "items": [
+     "Plugged with creosote: wet wood or pushing in the bypass rod too soon; burn a hot fire, then brush the face with a soft bristle brush",
+     "Masked with soot or fly ash: bypass rod pushed in too soon (remove the flame guard, leave the catalyst in place, brush the face or blow out the cells with canned dusting air), or cardboard, coal or wrapping paper burned (burn only dry seasoned natural wood)",
+     "Plugged with fly ash: bypass rod pushed in too soon (make sure you achieve catalyst light-off), or material that produces fly ash and char (remove the flame guard, gently blow out the cells with canned dusting air)",
+     "Lower efficiency: flames contacting the catalyst from excessive draft; use less wood or lower the air, or install a damper",
+     "Poisoned by colored paper, cardboard, paneling, painted or treated wood: don't burn them"
+    ]
+   }
+  ]
+ },
+ "codes": [],
+ "detail": {
+  "light": {
+   "tag": "Owner · operation",
+   "title": "Lighting a fire",
+   "cool": false,
+   "html": "<p>Build every fire right on the firebrick. Don't use a grate or raise the fire up.</p><ol><li><b>Open the air.</b> Slide the air control (lower right) out until it stops. The air is now fully open.</li><li><b>Open the bypass.</b> Pull the bypass control (upper right) toward you about ¾\" and down. The chimney heats quickly, and smoke stays out of the room while the door is open.</li><li><b>Load a top-down fire.</b> Open the door. Put larger pieces on the bottom, stack smaller pieces on top of them, and finish with kindling. A fire starter such as shredded paper can go on top.</li><li><b>Light it.</b> You can leave the door slightly cracked to help it get going. Close the door once the fire is well lit.</li><li><b>Close the bypass</b> after 15 minutes, or once the catalytic thermometer enters the active range. Just lift the control and you'll feel it return to closed.</li><li><b>Leave the air open for 20-30 minutes,</b> then slide it in to set your burn rate. Shut it down too soon and the fire may go out or the catalyst may stop working.</li></ol><div class=\"note\">Don't start a fire with unsplit wood unless the pieces are small, like twigs and branches.</div><div class=\"note danger\">Never use flammable liquids to start or freshen up a fire. Don't leave the insert unattended with the door open. Do not over-fire the insert: trying to get more heat than it's designed for can permanently damage the insert and its catalyst.</div>"
+  },
+  "controls": {
+   "tag": "Owner · operation",
+   "title": "Air control, bypass & thermometer",
+   "cool": false,
+   "html": "<h4>Air control (lower right)</h4><p>This sets the burn rate. Slide it out for more heat and in for less. Any position in between works too. Never over-fire the insert by leaving the air control on high for too long.</p><div class=\"kv\"><div class=\"r\"><span>Fully open · start-up or high</span><span>about 2-3 hours</span></div><div class=\"r\"><span>About ¼\" open · medium</span><span>about 6-8 hours</span></div><div class=\"r\"><span>Fully closed · low</span><span>about 10-12 hours</span></div></div><div class=\"note small\"><b>Maker's website:</b> Burn Time 12 hours.</div><h4>Bypass control (upper right)</h4><p><b>Start/Reload:</b> pull it forward about ¾\" and down. Smoke and heat skip the catalyst, so the chimney warms up fast and smoke stays out of the room when the door is open.<br><b>Run:</b> lift it and you'll feel it return. Keep it here except when you're starting or reloading.</p><h4>Catalytic thermometer</h4><ul><li><b>In the active range</b> (anywhere in the light grey area): perfectly normal.</li><li><b>Above it:</b> you're past the catalyst's recommended 1300°F. That's fine for short periods, but if the probe is climbing, slide the air control in so that you do not over-fire the insert or the catalyst.</li><li><b>Below it:</b> the insert is getting too cool. Reload before the catalyst stops working.</li></ul><div class=\"note\">The burn tubes have no controls. They draw in air on their own to re-burn smoke before it reaches the catalyst.</div>"
+  },
+  "reload": {
+   "tag": "Owner · operation",
+   "title": "Adding more wood",
+   "cool": false,
+   "html": "<ol><li><b>Open up first.</b> Slide the air control fully open and pull the bypass open, as you do at start-up. Wait 5 minutes so the coals become active and smoke drafts up the chimney.</li><li><b>Open the door slowly.</b> Rake the coals, breaking up any larger pieces. Add wood and shut the door.</li><li><b>Close the bypass</b> once the catalytic thermometer is in the active range and the new wood is well lit.</li><li><b>Let it burn with the air open</b> until the fire is well established, then set your burn rate. This matters most when you're rekindling a cool fire or one that has burned down to charcoal.</li></ol><div class=\"note\"><b>Note:</b> the reload steps on p. 15 say to leave the air open for 10-20 minutes after adding wood, and the tips below them say 20-30 minutes (plus 10-30 minutes for starting or reloading on the same page); p. 18 and p. 21 say 20 to 30 minutes.</div><ul><li>Put large chunks only on a very hot, active bed of coals. A small coal bed needs re-kindling first.</li><li>Make sure no piece is too long. Closing the door on it will break the glass.</li><li>Now and then, look for smoke from the chimney and adjust the burn rate and load to cut it.</li></ul>"
+  },
+  "firstfire": {
+   "tag": "Owner · reassurance",
+   "title": "Your first fires: smell & sounds",
+   "cool": false,
+   "html": "<h4>Cure the paint slowly</h4><p>For your first fire, start small and raise the heat slowly over 4 to 5 hours. The paint cures with heat. As it does, it gives off a smell and sometimes a visible haze. Keep the room well ventilated. The smell fades after a few hours of use.</p><h4>Popping and creaking</h4><p>Metal moves as it heats up and cools down. That popping or creaking is normal and will likely ease after the first several weeks.</p><h4>Lazy first fires</h4><p>The first few fires often seem a bit lazy. As moisture evaporates from the brick, the fire becomes more active. A layer of ash in the bottom helps keep the coal bed hot. A good thick coal bed and a full load of wood are the keys to the best performance.</p><div class=\"note\">Changes in the color of the insert's surface happen naturally with firing and are considered normal.</div>"
+  },
+  "wood": {
+   "tag": "Owner · operation",
+   "title": "What wood to burn",
+   "cool": false,
+   "html": "<p>Moisture in the wood is the leading cause of creosote. Burn natural wood only.</p><ul><li><b>Season it</b> for 1 full year, protected from rain. If it was cut green, split it and stack it loosely.</li><li><b>Measure it.</b> Moisture content must be 20% or less. You'll need a moisture meter.</li><li><b>Cut it to 18\".</b> That's the recommended length.</li><li><b>Cover the pile on top</b> but leave the sides open so air can help it dry.</li><li><b>Choose hardwood.</b> Air-dried, seasoned hardwood generally gives higher efficiency and lower emissions than softwood or green wood. Harder, denser woods also burn longer.</li></ul><h4>Never burn</h4><p>Garbage; lawn clippings or yard waste; anything with rubber (including tires) or plastic; waste petroleum products, paints, paint thinners or asphalt products; asbestos; construction or demolition debris; railroad ties or pressure-treated wood; manure or animal remains; salt water driftwood; unseasoned wood; paper products, cardboard, plywood or particleboard.</p><p>These can release toxic fumes, make the insert ineffective and cause smoke. Colored paper, paneling and painted or treated wood can also poison the catalyst. Fire starters made from paper, cardboard, sawdust or wax are fine.</p>"
+  },
+  "glass": {
+   "tag": "Owner · maintenance",
+   "title": "Cleaning the glass",
+   "cool": false,
+   "html": "<p>An air wash system keeps the glass clean on its own. Run the insert on high for 20 to 30 minutes every time you add wood; that reduces creosote on the glass. If smoke deposits have built up from slow burning, set the air to high for 20 to 30 minutes.</p><h4>When you do clean it</h4><ul><li>Never clean the glass while it's hot.</li><li>Use a soft cloth and stove glass cleaner.</li><li>No steel wool, sandpaper or abrasive cleaners.</li></ul><div class=\"note danger\"><b>If the glass breaks,</b> shut off the air control and let the fire burn out. Don't leave the insert unattended, and don't use it again until the glass is replaced.</div><p>Closing the door on a piece of wood that's too long will break the glass, and glass shattered by wood impact isn't covered by the warranty. Kuma replacement glass comes with the gasket pre-installed. The manual shows how to fit it, and your dealer has the parts.</p>"
+  },
+  "ash": {
+   "tag": "Owner · maintenance",
+   "title": "Ashes & routine checks",
+   "cool": false,
+   "html": "<h4>Emptying the ashes</h4><ul><li>Empty them when they're 3\" to 4\" deep, and only when the fire is out. Emptying during an active or full fire will overheat the insert.</li><li>Wear gloves, and scoop the ashes out through the loading door.</li><li>Leave 1\" of ash in the bottom to help keep a hot charcoal bed.</li><li>Put them in a metal container with a tight-fitting lid, kept away from the house.</li></ul><div class=\"note danger\">Never use a plastic bucket, paper bag or other combustible container, and never leave ashes near the house or garage.</div><h4>Regular checks</h4><div class=\"kv\"><div class=\"r\"><span>Catalyst, for damage</span><span>at least three times a heating season</span></div><div class=\"r\"><span>Door and glass gaskets</span><span>at least once a year</span></div><div class=\"r\"><span>Bricks and ceramic insulation</span><span>once a year</span></div></div><p>To see the catalyst, pull the flame deflector forward off the face of the baffle. If it isn't falling apart, crushed or badly warped, it's likely working. A good gasket feels somewhat soft; hard or frayed gaskets leak air. Cracked bricks are fine if they stay in place. Parts come from your dealer.</p>"
+  },
+  "chimney": {
+   "tag": "Owner · maintenance",
+   "title": "Chimney & creosote",
+   "cool": false,
+   "html": "<p>Slow fires produce tar and other vapors that combine with moisture to form creosote. It condenses in the cooler chimney flue and builds up on the lining. When creosote ignites, it makes an extremely hot fire that can damage both the chimney and the insert.</p><ul><li>Have the chimney connector and chimney inspected for creosote during the heating season. If it has built up, have it removed to reduce the risk of a chimney fire.</li><li>Kuma recommends a licensed, professional chimney sweep for cleaning and inspection. A damaged chimney must be replaced.</li><li>Pay close attention to the chimney cap, especially a screened one. It can block enough to restrict flow in just a few weeks.</li></ul><div class=\"note\"><b>Note:</b> p. 20 says the chimney connector and chimney should be inspected for creosote at least once every two months during the heating season; p. 25 says the chimney should be checked and cleaned, if necessary, every few months.</div><h4>Make less creosote</h4><ul><li>Burn dry, seasoned wood.</li><li>Run the air open after every start and reload. Shutting it down too soon causes excess creosote.</li><li>Small hot fires make less creosote than long, low, smoldering fires.</li></ul>"
+  },
+  "safety": {
+   "tag": "Owner · safety",
+   "title": "Safety & over-firing",
+   "cool": false,
+   "html": "<div class=\"note danger\"><b>Do not over-fire the insert.</b> If any part of the insert or chimney glows, it's over-firing. <b>Shut the air control off immediately.</b> Trying to get more heat than it's designed for can permanently damage the insert and its catalyst.</div><ul><li><b>It's hot while it runs.</b> Keep children, clothing and furniture away. Contact can burn skin.</li><li><b>Detectors.</b> Smoke detectors and carbon monoxide monitors are recommended in the same room. An insert that isn't drafting properly can let smoke and carbon monoxide into the home.</li><li><b>No flammable liquids.</b> Never use gasoline, engine oil, charcoal lighter fluid or similar to start or freshen up a fire, and keep them well away while it's in use.</li><li><b>Keep the door closed,</b> except for cracking it open during start-up. Running with the door open can overheat the insert and expose embers to nearby combustibles.</li><li><b>Glass.</b> Don't use it with broken glass, and don't strike the glass or slam the door.</li><li><b>Fire extinguisher.</b> Keep a type A:B:C extinguisher and check it regularly. NFPA recommends one on each floor, and everyone at home should know where it is.</li></ul>"
+  },
+  "warranty": {
+   "tag": "Owner · warranty",
+   "title": "Warranty at a glance",
+   "cool": false,
+   "html": "<p>Register within 30 days of purchase at kumastoves.com, or return the registration card in your owner's packet. Coverage is for the original owner, from the time of purchase, and isn't transferable.</p><div class=\"kv\"><div class=\"r\"><span>Bricks, gasket, ceramic insulation, paint</span><span>3 years parts · no labor</span></div><div class=\"r\"><span>Blowers, brick supports, removable wear items (ash grate, baffle plate, bypass mechanism, catalytic support tray, flame guard)</span><span>5 years parts · 3 years labor</span></div><div class=\"r\"><span>Firebox, burn tubes, legs, glass (thermal breakage), door casting</span><span>Forever parts · 3 years labor</span></div></div><h4>The catalyst</h4><p><b>6-year structural:</b> if it loses its structural integrity from a manufacturing defect, Kuma replaces it free. You return the old one, and it must not have been over-fired or run on unauthorized fuels. <b>12-year performance:</b> you can buy one replacement at 50% off MSRP.</p><h4>Not covered</h4><ul><li>Glass shattered by wood impact, surface color changes, discoloration of plating or glass, and noise from the firebox expanding and contracting.</li><li>Abuse, over-firing, wrong fuel, unauthorized repairs or changes, or improper installation or service.</li></ul><p>To make a claim, contact your dealer first. Have your proof of purchase, model name and serial number ready. Shipping and handling aren't covered.</p>"
+  },
+  "specEPA": {
+   "tag": "Installer · spec",
+   "title": "EPA test results",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Heat output (test conditions)</span><span>11,219 – 30,612 Btu/hr</span></div></div><div class=\"note small\"><b>Maker's website:</b> Cordwood BTU's 82,000 (30,612 EPA est.)*.</div><div class=\"kv\"><div class=\"r\"><span>Efficiency</span><span>77.8% (High Heating Value)</span></div></div><div class=\"note small\"><b>Maker's website:</b> Efficiency (HHV) 78%.</div><div class=\"kv\"><div class=\"r\"><span>Particulate</span><span>1.11 grams per hour</span></div><div class=\"r\"><span>CO (average)</span><span>0.49 grams per minute</span></div></div><p>Catalytic-equipped wood heater meeting the 2020 U.S. EPA crib wood emission limits for heaters sold after May 15, 2020. Hybrid: secondary burn tubes plus a catalytic combustor. Emissions tested to ASTM 3053-2017 (report 0123WM014E); safety tested to UL 1482-2022 (report 0123WN012S); tested and listed by OMNI-Test Laboratories.</p><div class=\"note\">The manufacturer-set minimum low burn rate must not be altered; doing so is against federal regulations.</div><p>The certification tag (p. 5) and dimensional drawings (p. 6) appear only as images in this manual.</p>"
+  },
+  "specLiner": {
+   "tag": "Installer · spec",
+   "title": "Fireplace & flue liner",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Fireplace</span><span>Code-approved masonry (e.g. NFPA 211)</span></div><div class=\"r\"><span>Liner</span><span>6\" · type HT (2100°) per UL 1777</span></div><div class=\"r\"><span>Never smaller than</span><span>6\" diameter or 28 square inches</span></div></div><p>Not for factory-built fireplaces or mobile homes. Any reduction in flue size may cause smoking or poor performance. Kuma recommends an insulated liner for improved performance, and double wall connector pipe for improved draft and less creosote.</p><p>Don't connect to a chimney flue servicing another appliance, or to any air distribution or duct system.</p>"
+  },
+  "specHeight": {
+   "tag": "Installer · spec",
+   "title": "Minimum flue height",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>No offsets</span><span>14 ft</span></div><div class=\"r\"><span>30° or 45° offsets</span><span>15 ft</span></div><div class=\"r\"><span>90° offsets</span><span>16 ft</span></div><div class=\"r\"><span>90° offsets with 2-3 feet of horizontal run</span><span>20 ft</span></div><div class=\"r\"><span>90° offsets into exterior chimney</span><span>22 ft</span></div></div><p>Manufacturer recommendations. For proper draft, the chimney must also exit the roof a minimum of 3 feet and be at least 2 feet above any portion of the roof within 10 feet (p. 9).</p><p>A chimney that is too short reduces draft. One that is too tall increases it and can keep the stove from shutting down.</p>"
+  },
+  "specClear": {
+   "tag": "Installer · spec",
+   "title": "Clearances to combustibles",
+   "cool": true,
+   "html": "<p>Side clearances are to the side wall of the insert; top clearances are to the top plate of the insert.</p><div class=\"kv\"><div class=\"r\"><span>J · insert to side wall</span><span>15\"</span></div><div class=\"r\"><span>K · insert to wood trim (no thicker than 3/4\")</span><span>8.5\"</span></div><div class=\"r\"><span>Mantel depth</span><span>12\" or less</span></div><div class=\"r\"><span>12\" mantel above the top plate</span><span>19.25\" min.</span></div></div><p>For a mantel shallower than 12\", the manual gives the minimum height in a chart on this page, which isn't reproduced here. Clearances may only be reduced by means approved by the regulatory authority.</p>"
+  },
+  "specFloor": {
+   "tag": "Installer · spec",
+   "title": "Floor protection",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Raised hearth, min. 4\" non-combustible</span><span>Type 1 · ember protection</span></div><div class=\"r\"><span>Cantilevered insert, min. 4\" air space</span><span>Type 1 · ember protection</span></div><div class=\"r\"><span>At floor level or less than 4\" above</span><span>Type 2 · 1.4 R-value</span></div></div><p>Measured from the bottom of the insert to the combustible floor. At 4\" or more, a hearth with ember protection only (no R-value) is sufficient; below that, Type 2 thermal protection with an R-value of 1.4 is required.</p><p>The minimum hearth size is shown as lettered dimensions on the drawing on this page.</p>"
+  },
+  "specFuel": {
+   "tag": "Installer · spec",
+   "title": "Fuel",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Recommended wood length</span><span>18\"</span></div><div class=\"r\"><span>Moisture content</span><span>20% or less (moisture meter)</span></div><div class=\"r\"><span>Seasoning</span><span>1 full year, protected from rain</span></div></div><p>Natural wood only, burned directly on the firebrick with no grate. Air-dried seasoned hardwoods generally give higher efficiency and lower emissions. Prohibited materials can release toxic fumes, make the heater ineffective and cause smoke; colored paper, cardboard, paneling and painted or treated wood can poison the catalyst.</p>"
+  },
+  "specCatalyst": {
+   "tag": "Installer · spec",
+   "title": "Catalytic combustor",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Combustor</span><span>Applied Catalysts ACI-5M</span></div><div class=\"r\"><span>Kuma part #</span><span>KR-CT-01 (includes gasket KR-GK-01)</span></div><div class=\"r\"><span>Light-off (gases entering)</span><span>500° to 700°F</span></div><div class=\"r\"><span>Working normally</span><span>in excess of 500°F, often in excess of 1,000°F</span></div><div class=\"r\"><span>Recommended max</span><span>1300°F</span></div></div><p>Visually inspect at least three times per heating season; remove it only if decreased performance warrants a closer look. Smoke check: with light-off achieved, compare chimney smoke through the catalyst against smoke in bypass (Start/Reload); there will be significantly more in bypass.</p><p>Clean in place with a soft brush, or ~20-30 psi of air blown through the cells. To replace: pull the flame guard forward, draw the catalyst out by its 2 handles, clear old gasket from the cavity, and slide the new one in with its tape and film left on. Gaps over 1/8\" get extra gasket, which expands 2-3 times its thickness when heated.</p><div class=\"note danger\">Operating the heater with the catalytic element deactivated or removed is against federal regulations.</div>"
+  },
+  "specParts": {
+   "tag": "Installer · spec",
+   "title": "Service parts",
+   "cool": true,
+   "html": "<div class=\"kv\"><div class=\"r\"><span>Catalytic combustor (with gasket)</span><span>KR-CT-01</span></div><div class=\"r\"><span>Catalytic flame guard</span><span>KR-FG-01</span></div><div class=\"r\"><span>Burn tube · front</span><span>KR-BT-251</span></div><div class=\"r\"><span>Burn tube · middle front or middle rear</span><span>KR-BT-252</span></div><div class=\"r\"><span>Burn tube · rear</span><span>KR-BT-253</span></div><div class=\"r\"><span>Ceramic baffle insulation set</span><span>KR-IN-25</span></div><div class=\"r\"><span>Door glass (includes gasket), KA-DR-25-2 doors</span><span>KR-GL-25-2</span></div><div class=\"r\"><span>Gasket, 5/8\" fiberglass, 8 feet (doors, ash pans)</span><span>KR-GK-058</span></div><div class=\"r\"><span>Gasket, 3/4\" fiberglass tape, 5 feet (glass)</span><span>KR-GK-034</span></div><div class=\"r\"><span>Brick, standard 9\" x 4-1/2\"</span><span>KR-BR-01</span></div><div class=\"r\"><span>Brick, cut 7-1/2\" x 4-1/2\"</span><span>KR-BR-251</span></div></div><p>Burn tubes unbolt with a 7/16\" wrench; pull the tube to the right, then down and out. To change the baffle insulation, remove the burn tubes so the baffle comes down, note the tube order, and align the blanket cut-out with the bypass opening.</p><div class=\"note\"><b>Note:</b> p. 22 gives two burn tube counts for replacing the ceramic insulation: remove the 3 burn tubes, then re-install the 4 burn tubes; the parts list on p. 24 names front, middle front or middle rear, and rear tubes.</div><p>Parts and support: your dealer, or Kuma Stoves at 888-714-5294.</p>"
+  }
+ },
+ "pageref": {
+  "light": 13,
+  "controls": 18,
+  "reload": 15,
+  "firstfire": 12,
+  "wood": 12,
+  "glass": 21,
+  "ash": 20,
+  "chimney": 20,
+  "safety": 4,
+  "warranty": 27,
+  "specEPA": 3,
+  "specLiner": 11,
+  "specHeight": 10,
+  "specClear": 7,
+  "specFloor": 8,
+  "specFuel": 12,
+  "specCatalyst": 19,
+  "specParts": 24,
+  "step0": 7,
+  "step1": 8,
+  "step2": 11,
+  "step3": 11,
+  "step4": 9,
+  "step5": 9,
+  "step6": 9,
+  "step7": 9,
+  "step8": 9,
+  "step9": 12
+ },
+ "index_extra": [
+  {
+   "k": "h",
+   "id": "chimney",
+   "t": "creosote",
+   "p": "How it forms and keeping the chimney clean"
+  },
+  {
+   "k": "h",
+   "id": "safety",
+   "t": "over-firing",
+   "p": "Glowing parts: shut the air control off"
+  },
+  {
+   "k": "h",
+   "id": "firstfire",
+   "t": "paint smell",
+   "p": "Start small for the first 4 to 5 hours"
+  },
+  {
+   "k": "h",
+   "id": "controls",
+   "t": "burn time",
+   "p": "Low, medium and high air settings"
+  },
+  {
+   "k": "h",
+   "id": "controls",
+   "t": "catalyst",
+   "p": "Keep the thermometer in the active range"
+  },
+  {
+   "k": "h",
+   "id": "wood",
+   "t": "moisture meter",
+   "p": "20% moisture or less"
+  },
+  {
+   "k": "i",
+   "id": "specLiner",
+   "t": "chimney liner",
+   "p": "6\" type HT (2100°) per UL 1777"
+  },
+  {
+   "k": "i",
+   "id": "specCatalyst",
+   "t": "combustor",
+   "p": "Applied Catalysts ACI-5M · KR-CT-01"
+  }
+ ],
+ "review": {
+  "conflicts": [
+   {
+    "where": "reload",
+    "issue": "How long to run the air control fully open after reloading: 10-20 minutes in the reload steps (p. 15); 20-30 minutes, and 10-30 minutes for starting or reloading, in the tips on p. 15; 20 to 30 minutes on p. 18 and p. 21.",
+    "pages": [
+     [
+      1,
+      15
+     ],
+     [
+      1,
+      18
+     ],
+     [
+      1,
+      21
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "chimney",
+    "issue": "Chimney inspection interval: at least once every two months during the heating season (p. 20) vs checked and cleaned, if necessary, every few months (pp. 25-26).",
+    "pages": [
+     [
+      1,
+      20
+     ],
+     [
+      1,
+      25
+     ],
+     [
+      1,
+      26
+     ]
+    ],
+    "class": "substantive"
+   },
+   {
+    "where": "specParts",
+    "issue": "Ceramic insulation replacement says remove the 3 burn tubes, then re-install the 4 burn tubes (p. 22); the parts list names front, middle front or middle rear, and rear tubes (p. 24).",
+    "pages": [
+     [
+      1,
+      22
+     ],
+     [
+      1,
+      24
+     ]
+    ],
+    "class": "substantive"
+   }
+  ],
+  "catalog_mismatches": [
+   {
+    "model": "kuma-cascade-le-1",
+    "field": "efficiency_pct",
+    "catalog": "78",
+    "manual": "77.8% (High Heating Value)",
+    "page": [
+     1,
+     3
+    ],
+    "shown": "specEPA"
+   },
+   {
+    "model": "kuma-cascade-le-1",
+    "field": "btu_output_cordwood_max",
+    "catalog": "82,000 (30,612 EPA est.)*",
+    "manual": "11,219 to 30,612 Btu/hr (under specific test conditions)",
+    "page": [
+     1,
+     3
+    ],
+    "shown": "specEPA"
+   },
+   {
+    "model": "kuma-cascade-le-1",
+    "field": "burn_time_hr_max",
+    "catalog": "12 hours",
+    "manual": "10-12 hours (approximate burn time, low burn, air control fully closed)",
+    "page": [
+     1,
+     14
+    ],
+    "shown": "controls"
+   }
+  ],
+  "notes": "p. 5 (certification tag), p. 6 (dimensional drawings) and p. 23 (parts diagram) have no extractable text, so the guide gives no dimensions, weight or firebox volume; the catalog's height/width/depth, weight, firebox volume, cordwood BTU output, heating area, minimum fireplace opening, surround sizes and blower details could not be checked against the manual. The p. 7 mantel chart for mantels shallower than 12 in is graphic only. The p. 8 minimum hearth size is printed only as lettered drawing dimensions (G, H) without saying which edge each measures (extracted text: G 6 in, H 16 in; the catalog brochure reads them as side 6 in / front 16 in), so the guide points to the drawing instead of transcribing it. The p. 9 'Intake air requirements' heading has no text under it; outside air is not described. The p. 4 warnings are generic stove text (single-wall connector pipe, 103HT factory-built chimney, mobile homes); the insert-specific pp. 9 and 11 limit this insert to masonry fireplaces with a liner, which the guide follows. Ash-drawer steps on p. 20 are for freestanding models 'if equipped'; the guide tells owners to scoop ashes out through the loading door, which the manual allows. The manual's draft-restriction example cites an 8 in chimney (pp. 25-26) and a 6 in chimney (p. 25); not used. The same part is called flame diffuser (p. 9), flame deflector (p. 21) and flame guard (pp. 21, 24, 26). Catalog model number K-CAS-LE-1 does not appear in the manual (cover: Model # K-251). The cover prints the emissions standard as 'ASTM 3053-2017'; reproduced as printed. Inch marks are straight quotes in the guide where the manual uses curly ones."
+ }
+}

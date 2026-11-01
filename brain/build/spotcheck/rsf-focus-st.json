@@ -1,0 +1,48 @@
+{
+ "id": "rsf-focus-st",
+ "checked_pagerefs": 28,
+ "notes_checked": {"amber": 2, "correction": 0, "website": 2},
+ "findings": [
+  {
+   "severity": "minor",
+   "where": "detail.wood (Never burn list)",
+   "guide_says": "Never burn: \"Driftwood, treated wood, coal, garbage or plastic.\" and \"Construction scraps (like 2x4 or plywood) as your only fuel. They can overheat and seriously damage the fireplace.\" Scrap is left off the list, so the only scrap rule shown is p. 3's softer \"as your only fuel\", with no note.",
+   "manual_says": "p. 6: \"Never burn scrap, garbage, treated wood or driftwood as they produce much more pollution and can corrode the firebox and chimney as well.\" p. 3: \"Do not use construction scraps (e.g. 2x4 or plywood scraps) as your only supply of fuel as you can overheat and seriously damage the fireplace.\"",
+   "pages": [[1, 6], [1, 3]],
+   "fix": "Add scrap to the never-burn list (p. 6) and report both pages in an amber note, e.g. <div class=\"note\"><b>Note:</b> p. 6 says never to burn scrap; p. 3 says not to use construction scraps (such as 2x4 or plywood scraps) as your only supply of fuel.</div>. Record it in review.conflicts as substantive."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.safety bullet 1 (with detail.light steps 4-6 and detail.reload step 4)",
+   "guide_says": "safety: \"Operate the fireplace with the doors fully closed. A door left partly open can draw gas and flame out of the opening, creating fire and smoke hazards.\" light: \"Partially close one of the doors, but don't shut it completely ... Keep one door slightly open until the cordwood is lit.\" reload: \"Keep the door slightly ajar for about 3-10 minutes\". Nothing on the page ties these together. The writer mentions it only in review.notes (\"not flagged as a conflict\"), with no review.conflicts entry and no wording that reconciles the two.",
+   "manual_says": "p. 3: \"DO operate the fireplace with doors fully closed. If a door is left partly open, gas and flame can be drawn out of the fireplace opening, creating both fire and smoke hazards.\" p. 7: \"Continue to leave one of the doors slightly open until the cordwood is lit.\" and \"keep the door slightly ajar for about 3-10 minutes to get the fire going\".",
+   "pages": [[1, 3], [1, 7]],
+   "fix": "Add an amber note to the safety drawer (and the light and reload drawers): <div class=\"note\"><b>Note:</b> p. 3 says to operate the fireplace with the doors fully closed, because a partly open door can draw gas and flame out of the opening; p. 7's lighting and refuelling steps leave one door slightly open until the wood is lit (about 3-10 minutes when refuelling).</div> Alternatively, word the safety bullet so both statements are clear. Either way, record it in review.conflicts (substantive, or not_a_conflict with a reason)."
+  },
+  {
+   "severity": "minor",
+   "where": "specs.gaslog row 1 | detail.specGas row 1",
+   "guide_says": "Card: \"Max. input 40,000 BTU/h\". Drawer: \"Max. gas input 40,000 BTU/h\". review.notes also calls it \"the maximum gas log input\".",
+   "manual_says": "p. 19: \"You can use any gas log set up to a maximum of 40,000 BTU/h that is listed to ANSI Z21.60/CSA 2.26.\" and \"WARNING: THE MAXIMUM GAS OUTPUT ALLOWED IN THE FOCUS ST IS 40,000 BTU/H.\" The manual never calls the figure an input; the only place it says which it is, it says output.",
+   "pages": [[1, 19]],
+   "fix": "Use the manual's wording. Card: \"Max. gas log set 40,000 BTU/h\". Drawer: \"Gas log set, max. 40,000 BTU/h\", plus the warning's own words: \"The maximum gas output allowed in the Focus ST is 40,000 BTU/h.\""
+  },
+  {
+   "severity": "minor",
+   "where": "detail.safety (Signs of over-firing)",
+   "guide_says": "\"You're over-firing if you can't slow down the burn rate, or if the chimney connector behind the top louver glows red. Damage from over-firing isn't covered by the warranty.\" Nowhere does the guide tell the owner not to over-fire.",
+   "manual_says": "p. 3: \"9. DO NOT overfire the fireplace. If you are unable to slow down the burn rate of the fire or if the chimney connector behind the top louver glows red, you are overfiring the fireplace.\"",
+   "pages": [[1, 3]],
+   "fix": "Open the section with the manual's rule: \"Don't over-fire the fireplace. You're over-firing if you can't slow down the burn rate, or if the chimney connector behind the top louver glows red.\""
+  },
+  {
+   "severity": "minor",
+   "where": "detail.warranty (closing note)",
+   "guide_says": "\"Use only genuine RSF parts: substitutes void the warranty.\"",
+   "manual_says": "p. 23: \"Use only genuine RSF parts. The use of any substitutes will void the warranty and may put your safety at risk.\"",
+   "pages": [[1, 23]],
+   "fix": "\"Use only genuine RSF parts: substitutes void the warranty and may put your safety at risk.\""
+  }
+ ],
+ "verdict": "Yes: every clearance, chimney and offset limit, outside-air rule, gas-log requirement, warranty term and the lighting procedure matches the manual, all 28 page links are right and the one amber note (outside air lever) reports a real disagreement accurately, so the guide is safe to publish after these five minor wording fixes."
+}

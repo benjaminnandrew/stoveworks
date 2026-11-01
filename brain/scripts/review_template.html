@@ -1,0 +1,497 @@
+<title>Stoveworks Catalog Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: iron bar with the STOVE|WORKS mark → summary → four work tabs; a right-hand sheet shows one model's full record.
+   Palette and faces inherit the Stoveworks owner-guide system (cast iron, ember, pilot flame). */
+:root{
+  --bg:#f1ece2; --surface:#fbf8f2; --card:#ffffff; --ink:#23201b; --ink-soft:#6b6257; --hair:#e0d8c9;
+  --iron:#191512; --iron-ink:#f3ece2; --iron-soft:#b6ab9b; --iron-line:#3a322a; --iron-field:#0e0b09;
+  --ember:#b84a1a; --ember-fill:#e8682c; --pilot:#2f5a78; --pilot-fill:#5f93b8;
+  --ok:#2f6e45; --warn:#8f540b; --bad:#a3361a; --mark:#ffe7b3;
+  --shadow:0 1px 2px rgba(30,22,14,.06),0 8px 24px rgba(30,22,14,.07);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15110e; --surface:#1c1713; --card:#221d18; --ink:#efe7db; --ink-soft:#a99d8d; --hair:#372f28;
+    --iron:#0c0907; --iron-ink:#f3ece2; --iron-soft:#a99d8d; --iron-line:#2e2721; --iron-field:#1a1511;
+    --ember:#f39462; --ember-fill:#e8682c; --pilot:#94bddb; --pilot-fill:#5f93b8;
+    --ok:#86c896; --warn:#e6ab55; --bad:#f39479; --mark:#5c4512;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15110e; --surface:#1c1713; --card:#221d18; --ink:#efe7db; --ink-soft:#a99d8d; --hair:#372f28;
+  --iron:#0c0907; --iron-ink:#f3ece2; --iron-soft:#a99d8d; --iron-line:#2e2721; --iron-field:#1a1511;
+  --ember:#f39462; --ember-fill:#e8682c; --pilot:#94bddb; --pilot-fill:#5f93b8;
+  --ok:#86c896; --warn:#e6ab55; --bad:#f39479; --mark:#5c4512;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:var(--pilot)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ember-fill);outline-offset:2px}
+.mono{font-family:var(--mono)}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- top bar ---------- */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--iron);color:var(--iron-ink);border-bottom:1px solid #000}
+.bar-in{max-width:1180px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.mark{display:flex;align-items:baseline;gap:8px;font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.16em}
+.mark .s{color:var(--ember-fill)} .mark .w{color:var(--pilot-fill)} .mark .sep{color:var(--iron-line);letter-spacing:0}
+.bar small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--iron-soft)}
+.spacer{flex:1}
+.search{display:flex;align-items:center;gap:8px;background:var(--iron-field);border:1px solid var(--iron-line);border-radius:9px;padding:7px 11px;flex:0 1 320px;min-width:0}
+.search input{background:none;border:0;outline:0;color:var(--iron-ink);font:inherit;font-size:13px;width:100%;min-width:0}
+.search input::placeholder{color:#857a6d}
+.search svg{flex:none;opacity:.6}
+
+/* ---------- page ---------- */
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:26px 80px}
+.intro{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px 40px;align-items:end}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);display:flex;gap:9px;align-items:center}
+.eyebrow .pip{width:8px;height:8px;border-radius:50%;background:var(--ember-fill)}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,4.4vw,40px);letter-spacing:-.015em;line-height:1.05;margin:8px 0 0;text-wrap:balance}
+.lede{color:var(--ink-soft);max-width:60ch;margin:10px 0 0;font-size:14.5px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:12px;overflow:hidden}
+.stat{background:var(--surface);padding:11px 13px}
+.stat b{display:block;font-family:var(--mono);font-weight:700;font-size:19px;font-variant-numeric:tabular-nums}
+.stat span{font-size:11.5px;color:var(--ink-soft)}
+.stat.alert b{color:var(--bad)} .stat.fix b{color:var(--warn)}
+
+.tabs{display:flex;gap:4px;margin:28px 0 18px;border-bottom:1px solid var(--hair);overflow-x:auto;scrollbar-width:none}
+.tab{background:none;border:0;border-bottom:2px solid transparent;padding:10px 14px 11px;font-weight:600;font-size:13.5px;color:var(--ink-soft);cursor:pointer;white-space:nowrap;display:flex;gap:7px;align-items:center}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ember-fill)}
+.tab .ct{font-family:var(--mono);font-size:11px;background:var(--hair);color:var(--ink-soft);border-radius:999px;padding:1px 7px}
+
+.sec{margin:0 0 34px}
+.sec-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.sec-h h2{font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.01em;margin:0}
+.sec-h p{margin:0;color:var(--ink-soft);font-size:13px;max-width:70ch}
+.label{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+
+/* list rows */
+.list{background:var(--card);border:1px solid var(--hair);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.row{display:grid;gap:6px 16px;padding:12px 16px;border-top:1px solid var(--hair);color:inherit;text-decoration:none;align-items:center}
+.row:first-child{border-top:0}
+a.row:hover{background:var(--surface)}
+.row .nm{font-weight:600;min-width:0}
+.row .nm small{display:block;font-weight:400;color:var(--ink-soft);font-size:12px}
+.row .nm small.shp{color:var(--ink);font-size:11.5px;font-weight:500;margin-top:1px}
+.srcs{margin:6px 2px 0;font-size:12px;color:var(--ink-soft);line-height:1.5}
+.srcs a{color:inherit}
+.row .why{color:var(--ink-soft);font-size:13px;min-width:0}
+.r-avail{grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr) auto minmax(0,2.2fr)}
+.r-model{grid-template-columns:minmax(0,2fr) minmax(0,.9fr) minmax(0,.8fr) minmax(0,.95fr) minmax(0,.85fr) minmax(0,1.25fr) minmax(0,.55fr)}
+.r-head{background:var(--surface);font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);padding-block:9px}
+.cell small{display:block;color:var(--ink-soft);font-size:11px;line-height:1.3}
+.val{font-family:var(--mono);font-weight:700;font-size:13px;font-variant-numeric:tabular-nums}
+.dash{color:var(--ink-soft)}
+.files{font-family:var(--mono);font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+
+/* pills */
+.pills{display:flex;flex-wrap:wrap;gap:5px}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;white-space:nowrap;
+  background:color-mix(in srgb,var(--c) 13%,transparent);color:var(--c)}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.p-ok{--c:var(--ok)} .p-warn{--c:var(--warn)} .p-bad{--c:var(--bad)} .p-info{--c:var(--pilot)} .p-quiet{--c:var(--ink-soft)}
+.chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--hair);border-radius:6px;padding:2px 6px;color:var(--ink-soft);white-space:nowrap}
+
+/* corrections */
+.brand-block{margin-bottom:14px}
+.brand-block > .label{display:block;margin:0 0 6px 2px}
+.fix{padding:12px 16px;border-top:1px solid var(--hair)}
+.fix:first-child{border-top:0}
+.fix-t{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.fix-t a{font-weight:600;color:var(--ink);text-decoration:none}
+.fix-t a:hover{text-decoration:underline}
+.delta{display:grid;grid-template-columns:minmax(90px,.7fr) minmax(0,1fr) auto minmax(0,1.6fr);gap:4px 10px;margin-top:7px;font-size:12.5px;align-items:baseline}
+.delta .f{color:var(--ink-soft)}
+.delta .old{font-family:var(--mono);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--bad) 70%,transparent);color:var(--ink-soft);overflow-wrap:anywhere}
+.delta .arr{color:var(--ember)}
+.delta .new{font-family:var(--mono);overflow-wrap:anywhere}
+
+/* filters */
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.filters select,.filters label.tog{font:inherit;font-size:13px;background:var(--card);color:var(--ink);border:1px solid var(--hair);border-radius:8px;padding:6px 9px}
+.filters label.tog{display:inline-flex;gap:7px;align-items:center;cursor:pointer}
+.filters .count{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+.btn{background:var(--card);border:1px solid var(--hair);border-radius:8px;padding:6px 11px;font-size:13px;font-weight:600;cursor:pointer}
+.btn:hover{border-color:var(--ember-fill)}
+.empty{padding:28px 16px;text-align:center;color:var(--ink-soft)}
+
+/* brands */
+.bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.bcard{background:var(--card);border:1px solid var(--hair);border-radius:12px;padding:15px 16px;display:flex;flex-direction:column;gap:9px}
+.bcard h3{font-family:var(--display);font-weight:800;font-size:17px;margin:0;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.bcard h3 .val{font-size:13px;color:var(--ink-soft)}
+.bcard dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;font-size:12.5px}
+.bcard dt{color:var(--ink-soft)} .bcard dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.bcard details.bw{font-size:12.5px} .bcard details.bw summary{cursor:pointer;color:var(--ink);font-weight:600;padding:8px 0}
+.bcard details.bw dl{margin-top:4px} .bcard details.bw dt a{color:var(--ink);font-weight:600}
+
+/* ---------- drawer ---------- */
+.scrim{position:fixed;inset:0;background:rgba(20,14,8,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:40}
+.scrim.open{opacity:1;pointer-events:auto}
+.sheet{position:fixed;top:0;right:0;height:100%;width:min(600px,100%);background:var(--surface);z-index:50;transform:translateX(100%);
+  transition:transform .26s cubic-bezier(.4,0,.1,1),visibility 0s linear .26s;overflow-y:auto;overscroll-behavior:contain;visibility:hidden}
+.sheet.open{transform:none;visibility:visible;transition:transform .26s cubic-bezier(.4,0,.1,1);box-shadow:-18px 0 50px rgba(20,14,8,.28)}
+.sh{position:sticky;top:0;background:var(--iron);color:var(--iron-ink);padding:calc(16px + env(safe-area-inset-top,0px)) 18px 16px;display:flex;gap:12px;align-items:flex-start;z-index:1}
+.sh .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ember-fill)}
+.sh h2{font-family:var(--display);font-weight:800;font-size:22px;margin:4px 0 0;letter-spacing:-.01em;text-wrap:balance}
+.sh .sub{font-size:12px;color:var(--iron-soft);margin-top:3px}
+.x{margin-left:auto;flex:none;background:var(--iron-field);border:1px solid var(--iron-line);color:var(--iron-ink);width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:19px;line-height:1}
+.sb{padding:18px 18px calc(48px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:20px}
+.note{border-radius:10px;padding:11px 13px;font-size:13px;background:color-mix(in srgb,var(--c) 10%,var(--card));border:1px solid color-mix(in srgb,var(--c) 30%,transparent)}
+.note b{color:var(--c)}
+.heads{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.hcard{background:var(--card);border:1px solid var(--hair);border-left:3px solid var(--ember-fill);border-radius:10px;padding:10px 12px}
+.hcard .label{font-size:10px}
+.hcard .val{display:block;font-size:17px;margin-top:3px}
+.hcard small{color:var(--ink-soft);font-size:11px}
+.grp h4,.sb h4{font-family:var(--display);font-weight:800;font-size:15px;margin:0 0 8px}
+.kv{background:var(--card);border:1px solid var(--hair);border-radius:10px;overflow:hidden}
+.kv .r{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:10px;padding:7px 12px;border-top:1px solid var(--hair);font-size:13px}
+.kv .r:first-child{border-top:0}
+.kv .r span:first-child{color:var(--ink-soft)}
+.kv .r span:last-child{font-family:var(--mono);font-weight:500;text-align:right;overflow-wrap:anywhere}
+.checks{display:flex;flex-direction:column;gap:6px}
+.ck{background:var(--card);border:1px solid var(--hair);border-radius:10px;padding:9px 12px;font-size:12.5px}
+.ck-t{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.ck-t b{font-weight:600}
+.ck .vals{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;margin-top:5px}
+.ck .vals span:nth-child(odd){color:var(--ink-soft)}
+.ck .vals span:nth-child(even){font-family:var(--mono);overflow-wrap:anywhere}
+.links{display:flex;flex-direction:column;gap:5px}
+.links a,.links .item{display:flex;gap:9px;align-items:baseline;font-size:13px;text-decoration:none;color:var(--ink);padding:6px 10px;border:1px solid var(--hair);border-radius:8px;background:var(--card)}
+.links a:hover{border-color:var(--pilot-fill)}
+.links a .chip{flex:none}
+.links a span.t{min-width:0;overflow-wrap:anywhere}
+.links a .ext{margin-left:auto;color:var(--ink-soft);flex:none}
+.prose{font-size:13px;color:var(--ink);white-space:pre-line;background:var(--card);border:1px solid var(--hair);border-radius:10px;padding:11px 13px;overflow-wrap:anywhere}
+.sizes{overflow-x:auto;border:1px solid var(--hair);border-radius:10px;background:var(--card)}
+.sizes table{border-collapse:collapse;font-size:12.5px;min-width:100%}
+.sizes th,.sizes td{padding:7px 10px;text-align:left;border-top:1px solid var(--hair);white-space:nowrap}
+.sizes th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);border-top:0;background:var(--surface)}
+.sizes td{font-family:var(--mono);font-variant-numeric:tabular-nums}
+details summary{cursor:pointer;color:var(--ink-soft);font-size:12.5px}
+
+@media (max-width:860px){
+  .intro{grid-template-columns:minmax(0,1fr)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .r-model{grid-template-columns:minmax(0,1fr) auto}
+  .r-model .c-type,.r-model .c-heat,.r-model .c-btu,.r-model .c-eff,.r-model .c-files{grid-column:auto}
+  .r-model .c-type{grid-column:1/-1;order:2}
+  .r-model .c-status{grid-column:1/-1;order:3}
+  .r-model .c-heat,.r-model .c-btu,.r-model .c-eff{display:none}
+  .r-model .c-files{order:1}
+  .r-head{display:none}
+  .r-avail{grid-template-columns:minmax(0,1fr) auto}
+  .r-avail .why{grid-column:1/-1}
+  .r-avail .c-brand{display:none}
+  .delta{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
+  .delta .f{grid-column:1/-1;margin-top:4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+<header class="bar">
+  <div class="bar-in">
+    <div>
+      <div class="mark"><span class="s">STOVE</span><span class="sep">|</span><span class="w">WORKS</span></div>
+      <small>Brain · Brand &amp; Model store</small>
+    </div>
+    <div class="spacer"></div>
+    <label class="search" for="q">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Find a model, brand or model number" autocomplete="off">
+    </label>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <div>
+      <div class="eyebrow"><span class="pip"></span><span id="checked">Checked against manufacturer sources</span></div>
+      <h1>Brand &amp; Model store</h1>
+      <p class="lede">Every model Stoveworks can sell from its brands, with the manufacturer's own specs, product photos and manuals, and an owner &amp; installer guide for each. Nothing is marked as carried until Stoveworks decides.</p>
+    </div>
+    <div class="stats" id="stats"></div>
+  </section>
+
+  <nav class="tabs" role="tablist" aria-label="Review areas">
+    <button class="tab" role="tab" id="t-models" data-tab="models" aria-selected="true">All models <span class="ct" id="ct-models"></span></button>
+    <button class="tab" role="tab" id="t-diffs" data-tab="diffs" aria-selected="false">Website vs manual <span class="ct" id="ct-diffs"></span></button>
+    <button class="tab" role="tab" id="t-missing" data-tab="missing" aria-selected="false">Not in the catalog yet <span class="ct" id="ct-missing"></span></button>
+    <button class="tab" role="tab" id="t-brands" data-tab="brands" aria-selected="false">Brands <span class="ct" id="ct-brands"></span></button>
+  </nav>
+
+  <section id="p-diffs" role="tabpanel" aria-labelledby="t-diffs" hidden>
+    <div class="sec-h"><h2>Where a manufacturer's website and its manual disagree</h2><p>We report both. The catalog shows the website's figure; the owner &amp; installer guides show the manual's, so it matches the page the link opens, with the website's noted right beside it. Installation-safety values (clearances, gas input, venting, mobile-home approval, outside air) are marked.</p></div>
+    <div id="diff-list"></div>
+  </section>
+
+  <section id="p-models" role="tabpanel" aria-labelledby="t-models">
+    <div class="filters">
+      <select id="f-brand" aria-label="Brand"><option value="">All brands</option></select>
+      <select id="f-form" aria-label="Type"><option value="">All types</option></select>
+      <select id="f-fuel" aria-label="Fuel"><option value="">All fuels</option></select>
+      <select id="f-shape" aria-label="Shape"><option value="">Any shape</option></select>
+      <select id="f-avail" aria-label="Availability"><option value="">Any availability</option></select>
+      <label class="tog" for="f-diff"><input type="checkbox" id="f-diff"> Manual differs from website</label>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="list" id="model-list"></div>
+  </section>
+
+  <section id="p-missing" role="tabpanel" aria-labelledby="t-missing" hidden>
+    <div class="sec-h"><h2>Current models the catalog doesn't have</h2><p>Spotted on manufacturer sites in the same categories while checking. Not verified yet; add any Stoveworks can sell and they'll get the same treatment.</p></div>
+    <div id="missing-list"></div>
+  </section>
+
+  <section id="p-brands" role="tabpanel" aria-labelledby="t-brands" hidden>
+    <div class="bgrid" id="brand-grid"></div>
+  </section>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<aside class="sheet" id="sheet" aria-hidden="true" aria-labelledby="s-title">
+  <div class="sh">
+    <div style="min-width:0">
+      <div class="tag" id="s-tag"></div>
+      <h2 id="s-title"></h2>
+      <div class="sub" id="s-sub"></div>
+    </div>
+    <button class="x" id="s-close" type="button" aria-label="Close">×</button>
+  </div>
+  <div class="sb" id="s-body"></div>
+</aside>
+
+<script id="data" type="application/json">/*__DATA__*/null</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('data').textContent);
+const M = D.models;
+const byId = Object.fromEntries(M.map(m => [m.id, m]));
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = n => typeof n === 'number' ? n.toLocaleString('en-US', {maximumFractionDigits: 2}) : n;
+
+const FORM = {stove:'Stove', insert:'Insert', fireplace:'Fireplace', cook_stove:'Cook stove', outdoor_fireplace:'Outdoor fireplace'};
+const FUEL = {wood:'Wood', gas:'Gas', electric:'Electric', pellet:'Pellet'};
+const AV = {available:['Available','p-ok'], not_for_sale_us:['Not for sale in US','p-bad'], temporarily_unavailable_us:['Paused in US','p-warn'],
+  temporarily_unavailable:['Temporarily unavailable','p-warn'], discontinued:['Discontinued','p-bad'], unclear:['Status unclear','p-warn']};
+const BASIS = {'HHV':'HHV', 'LHV':'LHV', 'P.4.1':'CSA P.4.1', 'P.4':'CSA P.4', 'AFUE':'AFUE', 'steady_state':'steady state', 'EPA weighted':'EPA weighted', 'unspecified':'basis not stated'};
+const ROLE = {primary_cutout:'Main', cutout:'Cutout', lifestyle:'Room', detail:'Detail', line_drawing:'Drawing', other:'Photo'};
+const DOC = {installation_manual:'Install', owners_manual:"Owner's", spec_sheet:'Spec sheet', brochure:'Brochure', epa_report:'EPA report', parts_list:'Parts', warranty:'Warranty', other:'PDF'};
+const VENT = {chimney:'Chimney', direct_vent:'Direct vent', b_vent:'B-vent', vent_free:'Vent-free', none:'No vent pipe'};
+const SHAPE = {classic:'Classic', landscape:'Landscape', linear:'Linear', arch:'Arch', rumford:'Rumford'};
+const VIEW = {single_sided:'Single-sided', see_through:'See-through', corner:'Corner', three_sided:'3-sided bay', indoor_outdoor:'Indoor-outdoor'};
+const shapeLine = m => [m.sh ? m.sh.n : '', m.fl ? m.fl.n + ' flame' : '', m.vw ? m.vw.o.filter(o => o !== 'single_sided').map(o => VIEW[o] || o).join(', ') : ''].filter(Boolean).join(' · ');
+
+const pill = (map, k) => map[k] ? `<span class="pill ${map[k][1]}">${esc(map[k][0])}</span>` : '';
+const btuLabel = b => !b ? '' : b.replace('max input, natural gas','input · NG').replace('max input, propane','input · LP')
+  .replace('peak output, cord wood','peak · cord wood').replace('EPA test output','EPA output').replace('max output','output').replace('electric heater output','heater');
+
+/* ---------- summary ---------- */
+const count = (f) => M.filter(f).length;
+const activeBrands = D.brands.filter(b => b.status !== 'retired');
+const withDiff = M.filter(m => m.md.length);
+$('#checked').textContent = 'Checked against manufacturer sources ' + new Date(D.checked + 'T12:00:00').toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+$('#stats').innerHTML = [
+  [M.length, 'models', ''], [activeBrands.length, 'brands', ''], [D.stats.guides, 'owner & installer guides', ''],
+  [D.stats.photos, 'product photos', ''], [D.stats.manuals, 'install & owner manuals', ''], [D.stats.docs, 'PDFs in all', '']
+].map(([n, l, c]) => `<div class="stat ${c}"><b>${fmt(n)}</b><span>${esc(l)}</span></div>`).join('');
+$('#ct-models').textContent = M.length;
+$('#ct-diffs').textContent = withDiff.reduce((a, m) => a + m.md.length, 0);
+$('#ct-missing').textContent = D.cand.length;
+$('#ct-brands').textContent = activeBrands.length;
+
+/* ---------- website vs manual ---------- */
+const diffBrands = [...new Set(withDiff.map(m => m.b))];
+$('#diff-list').innerHTML = diffBrands.map(b => {
+  const ms = withDiff.filter(m => m.b === b);
+  return `<div class="brand-block"><span class="label">${esc(b)} · ${ms.length} model${ms.length > 1 ? 's' : ''}</span><div class="list">${ms.map(m => `
+    <div class="fix">
+      <div class="fix-t"><a href="#m-${m.id}">${esc(m.n)}</a><span class="files">${m.md.length} difference${m.md.length > 1 ? 's' : ''}</span></div>
+      ${m.md.map(d => `<div class="delta"><span class="f">${esc(d.f)}</span><span class="new">${esc(d.w)}</span><span class="arr">vs</span><span class="old" style="text-decoration:none">${esc(d.m)}${d.p ? ' · ' + esc(d.p) : ''}</span></div>${d.n ? `<p class="srcs">${esc(d.n)}</p>` : ''}`).join('')}
+    </div>`).join('')}</div></div>`;
+}).join('') || '<div class="empty">No differences recorded.</div>';
+
+/* ---------- models ---------- */
+const opts = (sel, values, label) => { values.forEach(v => { const o = document.createElement('option'); o.value = v; o.textContent = label(v); sel.appendChild(o); }); };
+opts($('#f-brand'), [...new Set(M.map(m => m.b))], v => v);
+opts($('#f-form'), Object.keys(FORM).filter(k => M.some(m => m.form === k)), v => FORM[v]);
+opts($('#f-fuel'), Object.keys(FUEL).filter(k => M.some(m => m.fuel === k)), v => FUEL[v]);
+opts($('#f-avail'), Object.keys(AV).filter(k => M.some(m => m.avail === k)), v => AV[v][0]);
+(() => {   // shape groups, then viewing options, each only if some model has it
+  const sel = $('#f-shape');
+  const add = (label, items) => { if (!items.length) return; const g = document.createElement('optgroup'); g.label = label;
+    items.forEach(([v, t]) => { const o = document.createElement('option'); o.value = v; o.textContent = t; g.appendChild(o); }); sel.appendChild(g); };
+  add('Shape', Object.keys(SHAPE).filter(k => M.some(m => m.sh && m.sh.g === k)).map(k => [k, `${SHAPE[k]} (${count(m => m.sh && m.sh.g === k)})`]));
+  add('Viewing', ['see_through','corner','three_sided','indoor_outdoor'].filter(k => M.some(m => m.vw && m.vw.o.includes(k))).map(k => ['v:' + k, `${VIEW[k]} (${count(m => m.vw && m.vw.o.includes(k))})`]));
+  add('Mendota flame pattern', [...new Set(M.filter(m => m.fl).map(m => m.fl.n))].map(n => ['f:' + n, `${n} (${count(m => m.fl && m.fl.n === n)})`]));
+})();
+const shapeMatch = (m, v) => !v || (v.startsWith('v:') ? !!(m.vw && m.vw.o.includes(v.slice(2))) : v.startsWith('f:') ? !!(m.fl && m.fl.n === v.slice(2)) : !!(m.sh && m.sh.g === v));
+function resetFilters(){ ['#f-brand','#f-form','#f-fuel','#f-shape','#f-avail'].forEach(s => $(s).value = ''); $('#f-diff').checked = false; }
+
+function headCells(m){
+  const h = m.h || {};
+  const heat = h.heating_area_sqft_max ? `<span class="val">${fmt(h.heating_area_sqft_max)}</span><small>sq ft</small>` : '<span class="dash">—</span>';
+  const btu = h.btu ? `<span class="val">${fmt(h.btu)}</span><small>BTU/hr ${esc(btuLabel(h.btu_basis))}</small>` : '<span class="dash">—</span>';
+  const eff = h.efficiency_pct ? `<span class="val">${fmt(h.efficiency_pct)}%</span><small>${esc(BASIS[h.efficiency_basis] || h.efficiency_basis || '')}${h.efficiency_fuel ? ' · ' + (h.efficiency_fuel === 'propane' ? 'LP' : 'NG') : ''}</small>` : '<span class="dash">—</span>';
+  return {heat, btu, eff};
+}
+function renderModels(){
+  const q = $('#q').value.trim().toLowerCase();
+  const fb = $('#f-brand').value, ff = $('#f-form').value, fu = $('#f-fuel').value, fs = $('#f-shape').value, fa = $('#f-avail').value, fd = $('#f-diff').checked;
+  const list = M.filter(m => (!fb || m.b === fb) && (!ff || m.form === ff) && (!fu || m.fuel === fu) && shapeMatch(m, fs) && (!fa || m.avail === fa) && (!fd || m.md.length)
+    && (!q || [m.n, m.on, m.b, ...(m.mn || []), m.sh ? m.sh.n : '', m.fl ? m.fl.n : ''].join(' ').toLowerCase().includes(q)));
+  $('#count').textContent = `${list.length} of ${M.length}`;
+  if (!list.length){ $('#model-list').innerHTML = '<div class="empty">No models match these filters.</div>'; return; }
+  $('#model-list').innerHTML = `<div class="row r-model r-head"><span>Model</span><span class="c-type">Type</span><span class="c-heat">Heats up to</span><span class="c-btu">Heat</span><span class="c-eff">Efficiency</span><span class="c-status">Status</span><span class="c-files">Files</span></div>` +
+    list.map(m => { const c = headCells(m); return `
+    <a class="row r-model" href="#m-${m.id}">
+      <span class="nm">${esc(m.n)}<small>${esc(m.b)}${m.mn && m.mn.length ? ' · ' + esc(m.mn.join(', ')) : ''}</small>${shapeLine(m) ? `<small class="shp">${esc(shapeLine(m))}</small>` : ''}</span>
+      <span class="cell c-type"><span class="chip">${esc(FORM[m.form] || m.form)}</span> <span class="chip">${esc(FUEL[m.fuel] || m.fuel)}</span></span>
+      <span class="cell c-heat">${c.heat}</span>
+      <span class="cell c-btu">${c.btu}</span>
+      <span class="cell c-eff">${c.eff}</span>
+      <span class="pills c-status">${m.avail !== 'available' ? pill(AV, m.avail) : ''}${m.g.length ? `<span class="pill p-ok">${m.g.length > 1 ? m.g.length + ' guides' : 'Guide'}</span>` : ''}</span>
+      <span class="files c-files" title="photos · PDFs">${m.imn}<small>photos</small></span>
+    </a>`; }).join('');
+}
+['#f-brand','#f-form','#f-fuel','#f-shape','#f-avail','#f-diff'].forEach(s => $(s).addEventListener('change', renderModels));
+$('#q').addEventListener('input', () => { if (currentTab !== 'models') openTab('models'); renderModels(); });
+
+/* ---------- missing ---------- */
+const cb = [...new Set(D.cand.map(c => c.b))];
+$('#missing-list').innerHTML = cb.map(b => { const cs = D.cand.filter(c => c.b === b); return `
+  <div class="brand-block"><span class="label">${esc(b)} · ${cs.length}</span><div class="list">${cs.map(c => `
+    <div class="row r-avail">
+      <span class="nm">${esc(c.n)}<small>${esc(c.c || '')}</small></span>
+      <span class="c-brand why"></span>
+      <span>${c.u ? `<a href="${esc(c.u)}" target="_blank" rel="noopener">Manufacturer page ↗</a>` : ''}</span>
+      <span class="why">${esc(c.nt || '')}</span>
+    </div>`).join('')}</div></div>`; }).join('') || '<div class="empty">Nothing missing in the checked categories.</div>';
+
+/* ---------- brands ---------- */
+$('#brand-grid').innerHTML = D.brands.map(b => {
+  const cats = Object.entries(b.cats).map(([k, n]) => { const [fuel, ...form] = k.split(' '); return `${FUEL[fuel] || fuel} ${(FORM[form.join(' ')] || form.join(' ')).toLowerCase()}s ${n}`; }).join(' · ');
+  return `<div class="bcard"><h3>${esc(b.name)} <span class="val">${b.n}</span></h3>
+    ${b.status === 'retired' ? '<div class="pills"><span class="pill p-bad">Retired</span></div>' : ''}
+    ${b.about ? `<p class="why" style="margin:0;font-size:12.5px">${esc(b.about)}</p>` : ''}
+    <dl><dt>In catalog</dt><dd>${esc(cats || '—')}</dd>
+    ${b.bw ? `<dt>Maker sorts by</dt><dd>${esc(b.bw.sorts_by)}${b.bw.shapes ? `<br><b>Shapes:</b> ${b.bw.shapes.map(s => esc(s.name)).join(', ')}` : ''}${b.bw.flame_patterns ? `<br><b>Flame patterns:</b> ${b.bw.flame_patterns.map(s => esc(s.name)).join(', ')}` : ''}</dd>` : ''}
+    <dt>Current site</dt><dd>${esc(b.site.join(', ') || '—')}</dd>
+    <dt>Website</dt><dd><a href="${esc(b.web)}" target="_blank" rel="noopener">${esc(b.web.replace(/^https?:\/\//, '').replace(/\/$/, ''))}</a></dd></dl>
+    ${b.bw && b.bw.shapes ? `<details class="bw"><summary>What each shape and flame pattern means</summary>
+      ${[['Shapes', b.bw.shapes], ['Flame patterns', b.bw.flame_patterns || []]].map(([t, xs]) => `<p class="srcs"><b>${esc(t)}</b></p><dl>${xs.map(s => `<dt><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a></dt><dd>${esc(s.about)}${s.group ? ` <span class="files">${esc(s.group)}</span>` : ''}</dd>`).join('')}</dl>`).join('')}
+      ${(b.bw.notes || []).map(n => `<p class="srcs">${esc(n)}</p>`).join('')}</details>` : ''}
+    ${b.n ? `<button class="btn" type="button" data-brand="${esc(b.name)}">Show ${esc(b.name)} models</button>` : ''}</div>`;
+}).join('');
+$('#brand-grid').addEventListener('click', e => { const b = e.target.closest('[data-brand]'); if (!b) return; resetFilters(); $('#f-brand').value = b.dataset.brand; openTab('models'); renderModels(); });
+
+/* ---------- tabs & routing ---------- */
+let currentTab = 'models';
+function openTab(t){
+  currentTab = t;
+  document.querySelectorAll('.tab').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === t)));
+  ['models','diffs','missing','brands'].forEach(p => { $('#p-' + p).hidden = p !== t; });
+  if (t === 'models') renderModels();
+}
+document.querySelectorAll('.tab').forEach(b => b.addEventListener('click', () => { openTab(b.dataset.tab); history.replaceState(null, '', '#' + b.dataset.tab); }));
+
+/* ---------- sheet ---------- */
+const SPEC_GROUPS = [
+  ['Heat', [['heating_area_sqft_max','Heats up to',' sq ft'],['heating_area_sqft_min','Heats from',' sq ft'],['btu_output_max','Output, max',' BTU/hr'],['btu_output_min','Output, min',' BTU/hr'],
+    ['btu_output_cordwood_max','Peak output, cord wood',' BTU/hr'],['btu_output_epa','EPA test output',' BTU/hr'],['btu_input_ng_max','Input NG, max',' BTU/hr'],['btu_input_ng_min','Input NG, min',' BTU/hr'],
+    ['btu_input_lp_max','Input LP, max',' BTU/hr'],['btu_input_lp_min','Input LP, min',' BTU/hr'],['btu_output_ng_max','Output NG, max',' BTU/hr'],['btu_output_lp_max','Output LP, max',' BTU/hr'],
+    ['efficiency_pct','Efficiency','%'],['efficiency_ng_pct','Efficiency NG','%'],['efficiency_lp_pct','Efficiency LP','%'],['efficiency_basis','Efficiency basis',''],['burn_time_hr_max','Burn time, max',' hr'],
+    ['electric_watts_max','Heater, max',' W'],['electric_btu_max','Heater output',' BTU/hr']]],
+  ['Firebox & emissions', [['firebox_cu_ft','Firebox',' cu ft'],['log_length_max_in','Log length, max','"'],['log_length_recommended_in','Log length, recommended','"'],['combustion_type','Combustion',''],
+    ['emissions_g_hr','Emissions',' g/hr'],['emissions_g_kg','Emissions',' g/kg'],['epa_certification','Certification','']]],
+  ['Venting & controls', [['flue_diameter_in','Flue','"'],['vent_size','Vent size',''],['ignition','Ignition',''],['blower','Blower',''],['outside_air','Outside air',''],['mobile_home_approved','Mobile home approved','']]],
+  ['Size', [['height_in','Height','"'],['width_in','Width','"'],['depth_in','Depth','"'],['weight_lb','Weight',' lb'],['view_area','View area',''],['glass_area_sq_in','Glass area',' sq in'],['clearances_note','Clearances (published)','']]]
+];
+const show = (k, v, unit) => k === 'efficiency_basis' ? (BASIS[v] || v) : typeof v === 'boolean' ? (v ? 'Yes' : 'No') : fmt(v) + unit;
+
+function openSheet(id){
+  const m = byId[id]; if (!m) return;
+  $('#s-tag').textContent = `${m.b} · ${FORM[m.form] || m.form} · ${FUEL[m.fuel] || m.fuel}`;
+  $('#s-title').textContent = m.n;
+  $('#s-sub').textContent = [m.on !== m.n ? 'Listed by the maker as ' + m.on : '', m.mn && m.mn.length ? 'Model ' + m.mn.join(', ') : '', VENT[m.vent] || ''].filter(Boolean).join(' · ');
+  const h = m.h || {}, c = headCells(m);
+  const parts = [];
+  parts.push(`<div class="pills">${pill(AV, m.avail)}${m.g.length ? `<span class="pill p-ok">${m.g.length > 1 ? m.g.length + ' guides' : 'Guide'}</span>` : ''}</div>`);
+  if (m.avail !== 'available' && m.an) parts.push(`<div class="note" style="--c:var(--bad)"><b>${esc(AV[m.avail][0])}.</b> ${esc(m.an)}</div>`);
+  parts.push(`<div class="heads">
+    <div class="hcard"><span class="label">Heats up to</span>${c.heat}</div>
+    <div class="hcard"><span class="label">Heat</span>${c.btu}</div>
+    <div class="hcard"><span class="label">Efficiency</span>${c.eff}</div>
+    ${h.log_length_max_in ? `<div class="hcard"><span class="label">Log length</span><span class="val">${fmt(h.log_length_max_in)}"</span><small>max</small></div>` : ''}
+    ${h.burn_time_hr_max ? `<div class="hcard"><span class="label">Burn time</span><span class="val">${fmt(h.burn_time_hr_max)} hr</span><small>max</small></div>` : ''}
+  </div>`);
+  if (m.sh || m.fl || m.vw){
+    const rows = [], src = [];
+    if (m.sh){ rows.push(['Shape', m.sh.n + (SHAPE[m.sh.g] && SHAPE[m.sh.g] !== m.sh.n ? ` (${SHAPE[m.sh.g].toLowerCase()} group)` : '')]); src.push([m.sh.b, m.sh.u]); }
+    if (m.fl){ rows.push(['Flame pattern', m.fl.n]); src.push([`Mendota flame pattern: ${m.fl.n}`, m.fl.u]); }
+    if (m.vw){ rows.push(['Viewing', m.vw.o.map(o => VIEW[o] || o).join(', ')]); src.push([m.vw.b, m.vw.u]); }
+    parts.push(`<div class="grp"><h4>Shape &amp; fire</h4><div class="kv">${rows.map(([k, v]) => `<div class="r"><span>${esc(k)}</span><span>${esc(v)}</span></div>`).join('')}</div>
+      ${m.fl && m.fl.nt ? `<p class="srcs">${esc(m.fl.nt)}</p>` : ''}
+      <p class="srcs">${src.map(([b, u]) => u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(b)} ↗</a>` : esc(b)).join('<br>')}</p></div>`);
+  }
+  SPEC_GROUPS.forEach(([title, keys]) => {
+    const rows = keys.filter(([k]) => m.s[k] !== undefined && m.s[k] !== null).map(([k, label, unit]) => `<div class="r"><span>${esc(label)}</span><span>${esc(show(k, m.s[k], unit))}</span></div>`);
+    if (rows.length) parts.push(`<div class="grp"><h4>${esc(title)}</h4><div class="kv">${rows.join('')}</div></div>`);
+  });
+  if (m.sz.length){
+    const keys = ['btu_input_ng_max','btu_input_lp_max','btu_output_max','efficiency_ng_pct','efficiency_pct','heating_area_sqft_max','view_area','width_in','height_in','depth_in','vent_size']
+      .filter(k => m.sz.some(z => z.s[k] !== undefined));
+    const lab = {btu_input_ng_max:'NG in',btu_input_lp_max:'LP in',btu_output_max:'Output',efficiency_ng_pct:'Eff NG',efficiency_pct:'Eff',heating_area_sqft_max:'Sq ft',view_area:'View',width_in:'W"',height_in:'H"',depth_in:'D"',vent_size:'Vent'};
+    parts.push(`<div class="grp"><h4>Sizes</h4><div class="sizes"><table><thead><tr><th>Size</th>${keys.map(k => `<th>${lab[k]}</th>`).join('')}</tr></thead><tbody>${
+      m.sz.map(z => `<tr><td>${esc(z.n)}</td>${keys.map(k => `<td>${z.s[k] === undefined ? '—' : esc(fmt(z.s[k]))}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div>`);
+  }
+  if (m.g.length) parts.push(`<div class="grp"><h4>Owner &amp; installer guide${m.g.length > 1 ? 's' : ''}</h4><div class="links">${m.g.map(g => `<div class="item"><span class="chip">${esc(g.c ? g.c.split(' (')[0] : 'Guide')}</span><span class="t">${esc(g.t)} · <span style="font-family:var(--mono)">brain/guides/${esc(g.id)}.html</span><br><small>Built from ${esc(g.d.join('; '))}</small></span></div>`).join('')}</div></div>`);
+  if (m.md.length){
+    parts.push(`<div class="grp"><h4>Where the manual differs from the website</h4><div class="checks">${m.md.map(d => `
+      <div class="ck"><div class="ck-t"><b>${esc(d.f)}</b><span class="pill ${d.s ? 'p-bad' : d.b ? 'p-ok' : 'p-quiet'}">${d.s ? 'Safety value' : d.b ? 'Both recorded' : 'Spec'}</span></div>
+      <div class="vals"><span>Website</span><span>${esc(d.w)}</span><span>Manual</span><span>${esc(d.m)}${d.p ? ' (' + esc(d.p) + ')' : ''}</span></div>${d.n ? `<p class="srcs">${esc(d.n)}</p>` : ''}</div>`).join('')}</div></div>`);
+  }
+  if (m.ev) parts.push(`<div class="grp"><h4>Availability evidence</h4><div class="prose">${esc(m.ev)}</div></div>`);
+  const links = [];
+  if (m.url) links.push(`<a href="${esc(m.url)}" target="_blank" rel="noopener"><span class="chip">Page</span><span class="t">Manufacturer product page</span><span class="ext">↗</span></a>`);
+  parts.push(`<div class="grp"><h4>Photos <span class="files">${m.imn}</span></h4>${m.im.length ? `<div class="links">${m.im.map(i => `<a href="${esc(i.u)}" target="_blank" rel="noopener"><span class="chip">${esc(ROLE[i.r] || 'Photo')}</span><span class="t">${esc(i.v || i.a || i.u.split('/').pop().split('?')[0])}</span><span class="ext">↗</span></a>`).join('')}</div>` : '<div class="prose">No product photos found on the manufacturer page.</div>'}${m.imn > m.im.length ? `<p class="files">${m.imn - m.im.length} more in the brain package.</p>` : ''}</div>`);
+  parts.push(`<div class="grp"><h4>Manuals &amp; PDFs <span class="files">${m.dcn}</span></h4>${m.dc.length ? `<div class="links">${m.dc.map(d => `<a href="${esc(d.u)}" target="_blank" rel="noopener"><span class="chip">${esc(DOC[d.t] || 'PDF')}</span><span class="t">${esc(d.ti || d.u.split('/').pop())}${d.l && d.l !== 'en' ? ' · ' + esc(d.l) : ''}</span><span class="ext">↗</span></a>`).join('')}</div>` : '<div class="prose">No manuals found on the manufacturer site yet.</div>'}${m.dcn > m.dc.length ? `<p class="files">${m.dcn - m.dc.length} more in the brain package.</p>` : ''}</div>`);
+  if (links.length) parts.push(`<div class="grp"><h4>Links</h4><div class="links">${links.join('')}</div></div>`);
+  parts.push(`<p class="files">Record id: ${esc(m.id)}</p>`);
+  $('#s-body').innerHTML = parts.join('');
+  $('#sheet').scrollTop = 0;
+  $('#sheet').classList.add('open'); $('#scrim').classList.add('open'); $('#sheet').setAttribute('aria-hidden', 'false');
+  $('#s-close').focus({preventScroll: true});
+}
+function closeSheet(){
+  $('#sheet').classList.remove('open'); $('#scrim').classList.remove('open'); $('#sheet').setAttribute('aria-hidden', 'true');
+  if (location.hash.startsWith('#m-')) history.replaceState(null, '', '#' + currentTab);
+}
+$('#s-close').addEventListener('click', closeSheet);
+$('#scrim').addEventListener('click', closeSheet);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+
+function route(){
+  const h = location.hash.slice(1);
+  if (h.startsWith('m-')) { openSheet(h.slice(2)); return; }
+  if (['models','diffs','missing','brands'].includes(h)) openTab(h);
+}
+window.addEventListener('hashchange', route);
+openTab('models');
+route();
+})();
+</script>

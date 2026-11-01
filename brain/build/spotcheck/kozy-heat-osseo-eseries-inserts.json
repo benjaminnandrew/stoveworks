@@ -1,0 +1,89 @@
+{
+ "id": "kozy-heat-osseo-eseries-inserts",
+ "checked_pagerefs": 27,
+ "notes_checked": {
+  "amber": 2,
+  "correction": 0,
+  "website": 4
+ },
+ "findings": [
+  {
+   "severity": "minor",
+   "where": "detail.safety",
+   "guide_says": "Keep furniture, pillows, bedding, papers, clothes and curtains at least 36\" from the front.",
+   "manual_says": "\"Keep combustible materials, such as furniture, pillows, bedding, papers, clothes, etc. and curtains at least 36” (914mm) from the front of the heater.\" (p. 7, item 2). The guide drops \"combustible materials, such as\" and \"etc.\", so the owner's 36\" rule reads as a closed list instead of applying to all combustibles.",
+   "pages": [
+    [
+     1,
+     7
+    ]
+   ],
+   "fix": "Keep combustible materials, such as furniture, pillows, bedding, papers, clothes and curtains, at least 36\" from the front."
+  },
+  {
+   "severity": "minor",
+   "where": "detail.specClear (website note)",
+   "guide_says": "<b>Maker's website:</b> the brochure lists top finishing edge to 12\" mantel 0\" and bottom finishing edge to unlimited hearth 0\". Install to the manual.",
+   "manual_says": "Table 2.1: \"Viewing Area Opening Top to 12” (305mm) mantel 0” (0 mm)\"; \"Viewing Area Opening Bottom to unlimited hearth 0” (0 mm)\" (p. 13). website.json has no clearance row. The wording comes from the catalog's brochure note (\"Brochure: ... top finishing edge to 12\\\" mantel 0\\\"; bottom finishing edge to unlimited hearth 0\\\"\"), so the 'Maker's website' label doesn't match website.json, and GUIDE_SPEC says to label brochure figures 'Maker's brochure:'. The quoted figures and the 'Install to the manual.' ending are correct.",
+   "pages": [
+    [
+     1,
+     13
+    ]
+   ],
+   "fix": "<div class=\"note small\"><b>Maker's brochure:</b> Top finishing edge to 12\" mantel 0\"; bottom finishing edge to unlimited hearth 0\". Install to the manual.</div>"
+  },
+  {
+   "severity": "minor",
+   "where": "detail.effects (Down LED, remote)",
+   "guide_says": "Down LED: up and down set the brightness, with 5 settings from maximum brightness to no light. (The manual's - / + figure is left out, and that is recorded only in review.notes.)",
+   "manual_says": "\"Press the “up” or “down” arrow to adjust the light brightness. There are 5 settings which range from maximum brightness or no light. Use the “-” and “+” button to adjust the light brightness from number 1 to 7.\" (p. 27); \"Pressing the down light button quickly changes the colors. There are seven different color settings.\" (p. 24). The manual gives two brightness scales for the down LED (5 settings and 1 to 7). The guide shows one with no note: a silent pick, and a dropped figure.",
+   "pages": [
+    [
+     1,
+     27
+    ],
+    [
+     1,
+     24
+    ]
+   ],
+   "fix": "Add after the Down LED bullet: <div class=\"note\"><b>Note:</b> p. 27 says the up and down arrows set the down LED's brightness in 5 settings, then says the - and + buttons \"adjust the light brightness from number 1 to 7\"; on the control panel the down light has seven colors (p. 24).</div>"
+  },
+  {
+   "severity": "minor",
+   "where": "detail.warranty",
+   "guide_says": "In new home construction, it starts at first occupancy or six months after the dealer sale, whichever is earlier. (The manual's next sentence is left out 'as unclear'.)",
+   "manual_says": "\"...whichever occurs earlier. The warranty shall commence no later than 24 months of the occupancy date.\" (p. 31). This warranty term and its figure were dropped. Under rule 3, warranty terms are reported, not judged.",
+   "pages": [
+    [
+     1,
+     31
+    ]
+   ],
+   "fix": "Add the sentence as printed after the new-construction line: The manual adds: \"The warranty shall commence no later than 24 months of the occupancy date.\""
+  },
+  {
+   "severity": "minor",
+   "where": "detail.batteries (pairing); same pattern in detail.specMantel",
+   "guide_says": "Press and hold the two control-panel buttons marked in the manual's Figure 5.1 for 5 seconds... The drawer gives no page, and its link (pageref.batteries) goes to p. 28. specMantel says the projection zone is 'drawn only in' Figure 3.2, and its link goes to p. 18.",
+   "manual_says": "p. 23: \"Press and hold the 2 buttons indicated for 5 seconds...\" with the caption \"Buttons to pair with remote / Figure 5.1 - Appliance Control Panel\". p. 28 covers only cleaning and battery replacement. \"Figure 3.2 - Hearth and Mantel Projections\" is on p. 19; p. 18 shows Figure 3.1. Rule 4 asks the guide to link the page of drawing-only content.",
+   "pages": [
+    [
+     1,
+     23
+    ],
+    [
+     1,
+     28
+    ],
+    [
+     1,
+     19
+    ]
+   ],
+   "fix": "\"...the two control-panel buttons marked in Figure 5.1 on p. 23 of the manual...\"; in specMantel: \"...shown in Figure 3.2 (p. 19)...\""
+  }
+ ],
+ "verdict": "Yes: every safety value and procedure (electrical rating, dedicated 15 A breaker, hardwiring for recessed installs, Table 2.1 clearances, 36\" rule, mantel/hearth limits, disconnect and malfunction steps) matches the manual, and after these five minor wording, note-label and omission fixes the guide is safe to publish."
+}
