@@ -679,7 +679,8 @@ export class StoneEngine {
       gl.uniform1i(L.uIrrMode, sc.irr.mode);
       gl.uniform2f(L.uIrrRange, sc.irr.range[0], sc.irr.range[1]);
       gl.activeTexture(gl.TEXTURE2); gl.bindTexture(gl.TEXTURE_2D, sc.fire || this.blank); gl.uniform1i(L.uFire, 2);
-      gl.uniform1i(L.uUseFire, sc.fire ? 1 : 0);
+      // an insert's front (steady) stands where the room's open fire was: that fire's flicker isn't on it
+      gl.uniform1i(L.uUseFire, sc.fire && !st.steady ? 1 : 0);
       gl.uniform4fv(L.uGlass, st.glass || [0, 0, 0, 0]);
       gl.uniform1f(L.uStudio, st.studio);
       gl.uniform1f(L.uEmis, st.emis);

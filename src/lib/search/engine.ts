@@ -147,7 +147,13 @@ function sitePages(words: string[], limit = 3): string[] {
           p.title,
           p.description ?? "",
           ...p.sections.map((s) =>
-            s.type === "prose" || s.type === "prose-aside" ? s.html : s.type === "brand" ? `${s.name} ${s.body}` : "",
+            s.type === "prose" || s.type === "prose-aside" || s.type === "intro"
+              ? s.html
+              : s.type === "brand"
+                ? `${s.name} ${s.body}`
+                : s.type === "fuels"
+                  ? (s.intro ?? "")
+                  : "",
           ),
         ]
           .join(" ")

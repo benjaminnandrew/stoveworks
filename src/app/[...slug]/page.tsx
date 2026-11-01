@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -9,7 +10,7 @@ import { brandBySlug, brandForName } from "@/content/brands";
 import { brandsForHref } from "@/content/nav-data";
 import { pageBySlug, pages } from "@/content/pages";
 import { business } from "@/content/site";
-import type { Page } from "@/content/types";
+import type { Page, Section } from "@/content/types";
 import { HUB_FORMS, LINEUP_GROUPS, LINEUP_TYPES, pageForType } from "@/content/lineup";
 import { listPublicLineup } from "@/lib/catalog";
 import { SHARE_IMAGE } from "@/lib/share-image";
@@ -125,6 +126,9 @@ export default async function ContentPage({ params }: Props) {
   if (!page) notFound();
 
   const trail = trailFor(page.slug);
+  // The page's opening line goes in its title, with its photo if it has one (Ben, 1 Nov 2026)
+  const intro = page.sections.find((s): s is Extract<Section, { type: "intro" }> => s.type === "intro");
+  const photo = intro?.image;
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -141,30 +145,50 @@ export default async function ContentPage({ params }: Props) {
     <>
       <JsonLd data={breadcrumbJsonLd} />
       <div className="page-title">
-        <div className="wrap">
-          <nav aria-label="Breadcrumb">
-            <ol className="breadcrumbs">
-              <li>
-                <Link href="/">Home</Link>
-              </li>
-              {trail.map((crumb, i) => (
-                <li key={crumb.href}>
-                  {i === trail.length - 1 ? (
-                    <span aria-current="page">{crumb.label}</span>
-                  ) : (
-                    <Link href={crumb.href}>{crumb.label}</Link>
-                  )}
+        <div className={photo ? "wrap hub-hero" : "wrap"}>
+          <div className="hub-head">
+            <nav aria-label="Breadcrumb">
+              <ol className="breadcrumbs">
+                <li>
+                  <Link href="/">Home</Link>
                 </li>
-              ))}
-            </ol>
-          </nav>
-          <h1>{page.title}</h1>
+                {trail.map((crumb, i) => (
+                  <li key={crumb.href}>
+                    {i === trail.length - 1 ? (
+                      <span aria-current="page">{crumb.label}</span>
+                    ) : (
+                      <Link href={crumb.href}>{crumb.label}</Link>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+            <h1>{page.title}</h1>
+          </div>
+          {/* Content HTML from src/content, not user input. */}
+          {intro ? <div className="hub-lede" dangerouslySetInnerHTML={{ __html: intro.html }} /> : null}
+          {photo ? (
+            <span className="print hub-hero-photo">
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                width={photo.width}
+                height={photo.height}
+                sizes="(max-width: 640px) 76px, 190px"
+                priority
+              />
+            </span>
+          ) : null}
         </div>
       </div>
 
       <div className="page-body">
         <div className="wrap">
-          <PageSections sections={page.sections} lineup={await lineupFor(page.slug)} fuels={await fuelsFor(page)} />
+          <PageSections
+            sections={page.sections.filter((s) => s.type !== "intro")}
+            lineup={await lineupFor(page.slug)}
+            fuels={await fuelsFor(page)}
+          />
         </div>
       </div>
     </>

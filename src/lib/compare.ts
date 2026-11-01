@@ -2,7 +2,8 @@ import "server-only";
 
 import { brandBySlug } from "@/content/brands";
 import { typeLabel } from "@/content/lineup";
-import { getCatalogModel, isPublicModel } from "@/lib/catalog";
+import { getCatalogModel, isPublicModel, type CatalogModel } from "@/lib/catalog";
+import { studioStoveFor } from "@/lib/hearth-studio";
 import { modelHref } from "@/lib/model-url";
 import { modelView } from "@/lib/model-view";
 import type { ShortItem } from "@/lib/shortlist";
@@ -16,7 +17,8 @@ import type { ShortItem } from "@/lib/shortlist";
 
 export type CompareCell = { text: string; href?: string; external?: boolean } | null;
 export type CompareRow = { key: string; label: string; hint?: string; group: "basics" | "stoveworks" };
-export type CompareColumn = { item: ShortItem; typeLine: string; cells: Record<string, CompareCell> };
+/** `studio`: Hearth Studio's id for it, where it can be shown in a room there ("See it in a room"). */
+export type CompareColumn = { item: ShortItem; typeLine: string; cells: Record<string, CompareCell>; studio: string | null };
 
 export const COMPARE_ROWS: CompareRow[] = [
   { key: "Type", label: "Type", group: "basics" },
@@ -49,10 +51,24 @@ const VENTING: Record<string, string> = {
   none: "None needed",
 };
 
+/** A model's entry in the compare tray and the saved list. */
+export function shortItemOf(m: CatalogModel): ShortItem {
+  const brand = brandBySlug(m.brand_slug)?.name ?? m.brand_name;
+  return { id: m.id, name: m.name, brand, type: typeLabel(m.form, m.fuel), href: modelHref(m), photo: m.hero_image };
+}
+
+/** One model's tray entry by catalog id, or null if the site doesn't show it (the tray's search). */
+export async function loadShortItem(id: string): Promise<ShortItem | null> {
+  const m = await getCatalogModel(id);
+  return m && isPublicModel(m) ? shortItemOf(m) : null;
+}
+
 /** Up to five models by catalog id, in the order given; ids the site doesn't show are dropped. */
 export async function loadComparison(ids: string[]): Promise<CompareColumn[]> {
   const models = await Promise.all(ids.slice(0, 5).map((id) => getCatalogModel(id)));
-  return models.flatMap((m) => {
+  // Hearth Studio's stove, fireplace or insert for each, where there is one (Ben, 1 Nov 2026)
+  const studios = await Promise.all(models.map((m) => (m ? studioStoveFor(m.id).catch(() => null) : null)));
+  return models.flatMap((m, i) => {
     if (!m || !isPublicModel(m)) return [];
     const brand = brandBySlug(m.brand_slug)?.name ?? m.brand_name;
     const view = modelView(m, brand);
@@ -66,19 +82,6 @@ export async function loadComparison(ids: string[]): Promise<CompareColumn[]> {
     };
     cells.Guide = m.guide_id ? { text: "Read the guide", href: `/guides/${m.guide_id}/` } : null;
     cells.Maker = m.product_url ? { text: `On ${brand}’s site`, href: m.product_url, external: true } : null;
-    return [
-      {
-        item: {
-          id: m.id,
-          name: m.name,
-          brand,
-          type: typeLabel(m.form, m.fuel),
-          href: modelHref(m),
-          photo: m.hero_image,
-        },
-        typeLine: view.typeLine,
-        cells,
-      },
-    ];
+    return [{ item: shortItemOf(m), typeLine: view.typeLine, cells, studio: studios[i] }];
   });
 }

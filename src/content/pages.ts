@@ -130,20 +130,19 @@ export const pages: Page[] = [
     "description": "Gas, wood and electric fireplaces in Hayward, WI, from 20 to 54 inches wide. We specialize in zero clearance fireplaces, open or closed with doors.",
     "sections": [
       {
-        "type": "prose-aside",
-        "html": "<h2>What is a fireplace?</h2>\n<p>A fireplace can vary in size from 20 inches wide to 54 inches wide.</p>\n<p>We specialize in zero clearance fireplaces, whether open or closed with doors. Your zero clearance fireplaces require a chimney, either air cooled or class A.</p>\n<p>Fireplaces can be either <a href=\"/fireplaces/gas-fireplaces/\">Gas</a>, <a href=\"/fireplaces/wood-fireplaces/\">Wood</a>, or <a href=\"/fireplaces/electric-fireplaces/\">Electric</a>.</p>",
-        "aside": [
-          {
-            "src": "/images/feature-fireplaces.jpg",
-            "alt": "A fireplace with a fieldstone surround and a wood mantel",
-            "width": 281,
-            "height": 281
-          }
-        ]
+        "type": "intro",
+        "html": "<p>We specialize in zero clearance fireplaces, whether open or closed with doors.</p>\n<p>Your zero clearance fireplaces require a chimney, either air cooled or class A. A fireplace can vary in size from 20 inches wide to 54 inches wide.</p>",
+        "image": {
+          "src": "/images/feature-fireplaces.jpg",
+          "alt": "A fireplace with a fieldstone surround and a wood mantel",
+          "width": 281,
+          "height": 281
+        }
       },
       {
         "type": "fuels",
-        "heading": "Choose a fuel"
+        "heading": "Choose a fuel",
+        "intro": "<p>Fireplaces can be either <a href=\"/fireplaces/gas-fireplaces/\">gas</a>, <a href=\"/fireplaces/wood-fireplaces/\">wood</a>, or <a href=\"/fireplaces/electric-fireplaces/\">electric</a>.</p>"
       }
     ]
   },
@@ -153,7 +152,7 @@ export const pages: Page[] = [
     "description": "Majestic electric fireplaces in Hayward, WI. No venting or gas lines needed, so they suit interior rooms where venting is difficult or impossible.",
     "sections": [
       {
-        "type": "prose",
+        "type": "intro",
         "html": "<p>With no venting or gas lines required, an electric fireplace is the perfect solution for interior rooms with difficult or no venting access.</p>"
       },
       {
@@ -490,20 +489,19 @@ export const pages: Page[] = [
     "description": "Gas and wood inserts for an existing masonry fireplace: insulated doors keep the fire efficient and the glass lets you watch it. In Hayward, WI.",
     "sections": [
       {
-        "type": "prose-aside",
-        "html": "<h2>What is an insert?</h2>\n<p>A fireplace insert is a device inserted into an existing masonry (real) fireplace.</p>\n<p>Fireplace inserts are made from cast iron or steel and now have self-cleaning glass doors that allow the flames of the fire to be viewed while the insulated doors remain closed, making the fire more efficient.</p>\n<p>We offer inserts in either <a href=\"/inserts/gas-inserts/\">Gas</a> or <a href=\"/inserts/wood-inserts/\">Wood</a>.</p>",
-        "aside": [
-          {
-            "src": "/images/feature-inserts.jpg",
-            "alt": "A fireplace insert set into a brick fireplace",
-            "width": 281,
-            "height": 281
-          }
-        ]
+        "type": "intro",
+        "html": "<p>A fireplace insert is a device inserted into an existing masonry (real) fireplace.</p>\n<p>Fireplace inserts are made from cast iron or steel and now have self-cleaning glass doors that allow the flames of the fire to be viewed while the insulated doors remain closed, making the fire more efficient.</p>",
+        "image": {
+          "src": "/images/feature-inserts.jpg",
+          "alt": "A fireplace insert set into a brick fireplace",
+          "width": 281,
+          "height": 281
+        }
       },
       {
         "type": "fuels",
-        "heading": "Choose a fuel"
+        "heading": "Choose a fuel",
+        "intro": "<p>We offer inserts in either <a href=\"/inserts/gas-inserts/\">gas</a> or <a href=\"/inserts/wood-inserts/\">wood</a>.</p>"
       }
     ]
   },
@@ -691,20 +689,19 @@ export const pages: Page[] = [
     "description": "Freestanding wood and gas stoves in many sizes, from Blaze King, Jøtul, HearthStone, Pacific Energy, Kuma and more. In Hayward, WI.",
     "sections": [
       {
-        "type": "prose-aside",
-        "html": "<h2>What is a stove?</h2>\n<p>A stove is a freestanding heating unit that can go just about anywhere in your home.</p>\n<p>We have a wide variety in stoves in either <a href=\"/stoves/gas-stoves/\">Gas</a> or <a href=\"/stoves/wood-stoves/\">Wood</a> in many different sizes to heat large or small spaces.</p>",
-        "aside": [
-          {
-            "src": "/images/feature-stoves.jpg",
-            "alt": "A wood stove burning on a stone hearth",
-            "width": 281,
-            "height": 281
-          }
-        ]
+        "type": "intro",
+        "html": "<p>A stove is a freestanding heating unit that can go just about anywhere in your home.</p>",
+        "image": {
+          "src": "/images/feature-stoves.jpg",
+          "alt": "A wood stove burning on a stone hearth",
+          "width": 281,
+          "height": 281
+        }
       },
       {
         "type": "fuels",
-        "heading": "Choose a fuel"
+        "heading": "Choose a fuel",
+        "intro": "<p>We have a wide variety of stoves in either <a href=\"/stoves/gas-stoves/\">gas</a> or <a href=\"/stoves/wood-stoves/\">wood</a>, in many different sizes to heat large or small spaces.</p>"
       }
     ]
   },
@@ -714,7 +711,7 @@ export const pages: Page[] = [
     "description": "Gas stoves from Jøtul, Kozy Heat, Blaze King and True North: the warmth of a fire without the upkeep of a wood stove. In Hayward, Wisconsin.",
     "sections": [
       {
-        "type": "prose",
+        "type": "intro",
         "html": "<p>It’s hard to beat gas for sheer convenience. Perfect for busy people who don’t have time to fuss with the maintenance of a woodstove but still want to appreciate the warmth and ambience a fire brings to your home.</p>"
       },
       {

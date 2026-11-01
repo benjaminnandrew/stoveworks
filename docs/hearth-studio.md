@@ -45,11 +45,46 @@ often").
     - **In the app:** the room `masonry`, with `inserts: true`. Our inserts are drawn flat over the
       opening, standing on the firebox floor (`fireSpot.anchor: "floor"` in `placeFace()`). Each has
       to cover the opening. The tab, card and panel say "Insert".
-    - **No inserts listed yet:** none of the photos checked so far matches its maker's published
-      size closely enough. On the GI 635 the glass opening is 4% off and on the Nordik 34i 6.5%;
-      the surrounds of the Kumas and the TN20 are 5–9% off. Their manuals' surround sizes are next.
-    - Until then, the den is a stone room with an open fire, and its Stove tab points to the
-      cabin.
+    - **Two inserts so far (1 Nov 2026, dev data only), sized by their surrounds.** An insert's
+      box is its surround's outer edges, and its size the manual's surround size. Their glass
+      didn't work: the overlay or frame hides part of it, so the photos were 4–7% off.
+      - **Pacific Energy Neo 1.6 Insert LE2:** the regular surround, 37″ × 26¾″ (manual p. 14).
+        The photo (maker's, transparent) is trimmed to 794 × 575. The surround is at 2.0, 3.6 to
+        791.0, 570.4, 0.64% off that shape. The glass is at 233, 233 to 564, 439.
+      - **Pacific Energy Vista Insert LE2:** the regular surround, 37″ × 28″ (manual p. 14; the
+        manual's "965mm" beside 37″ is 38″, and the photo fits 37″). Trimmed to 789 × 615, the
+        surround is at 0.7, 3.7 to 785.8, 601.3 (−0.58%). The glass is at 234, 276 to 558, 468,
+        inside the nickel door frame so the frame doesn't glow.
+      - **How they were measured:** the half-opacity edge, the median over many rows and columns.
+        The bottom is where the side panels end. The ash lip stands 5–7″ in front of the surround,
+        so it shows ½″ lower in the photo; the makers' drawings measure the height to the
+        surround's bottom.
+      - Both fit the den's fireplace by their manuals' minimum openings (30 × 21 × 17 and
+        24½ × 21 × 17 in), and both surrounds cover its 34 × 24 in opening.
+      - **Not yet:**
+        - Neo 2.5 Insert (1.4% off its 41″ × 28″, tilted photo) and Super Insert (4.5–7%).
+        - Alderlea T5 Insert (its surround table doesn't read clearly).
+        - TN20 (6% off its 38″ × 27″).
+        - Jøtul C 550 (the photo's surround is one of three, 0.7% or 1.6% off).
+        - Jøtul GI 535/545/635/645: the manuals give the overlay's largest opening, not its
+          size.
+        - Morsø 5660: the front (27.95″ × 23.07″) doesn't cover the den's opening.
+        - Kozy Heat, HearthStone and Blaze King: no straight-on photo on its own.
+    - **The light on an insert's front:** the opening isn't a zone. `post.py` used to fill it with
+      the nearest surface's light, so the hearth face's made a dark wedge on the front.
+      `opening_fill()` now carries the breast's light across it row by row. Only the den's two
+      `_irr.png` changed. The front also doesn't take the room's open-fire flicker
+      (`steady`: `uUseFire` off in the face pass); its own glass fire still flickers.
+    - **`placeFace()`** stands an insert's box bottom on the firebox floor (it was the photo's
+      lowest point, the ash lip). The card says "37″ × 28″ surround" (`makerSize()`), and
+      `scripts/set-stove-cutout.mjs face` takes inserts.
+    - **"See it in a room"** on an insert's model page and in its column on the compare page
+      (`studioStoveFor()` in `src/lib/hearth-studio.ts` takes inserts with a surround). It opens
+      the den with the insert in.
+  - **An easier way in** (1 Nov 2026, Ben). One **Stoves & fireplaces** tab lists everything, in
+    every room; picking one goes to the room that shows it, already in place. A first-visit
+    **"What would you like to see?"** goes straight to stone, a stove, a fireplace, an insert or
+    your own photo. See edit 3, "The easier way in".
   - Next here: 7d, the staff sizing step on the stove admin.
   - Notes for the chat from testing: `handoff/hearth-studio-notes-3/` (`MESSAGE.md` and a picture).
 - **The app's files stay in `public/hs/` and ship with the site's files on Replit** (Ben, 28 Oct
@@ -218,6 +253,42 @@ often").
        - The note "Ask us about the wood, gas and pellet models we carry" now reads "Ask us about
          the models we carry".
        - Send to the store's heat sources no longer list "Pellet stove".
+   - **The lake house den, for inserts (1 Nov 2026, rendered here):** the room `masonry` in
+     `ROOMS`, with `inserts: true`, and its pictures in `assets/scenes/masonry/`.
+     - **`js/stoves.js`:** inserts are `sized` and kept like fireplaces (`viewingBox`,
+       `viewingIn`), with insert words in `fuelWord()` and `kindWord()`. `placeFace()` stands an
+       insert on the opening's floor (`fireSpot.anchor: "floor"`).
+     - **`js/app.js`:** `faceRoom()` (fireplaces or inserts), `fitsRoom()` for inserts, and the
+       den in `S.variant`, `persist()` and the resets. An insert's front has to cover the opening,
+       since the den has no `open` picture.
+   - **The easier way in (1 Nov 2026; Ben: "if they just have a stove/fireplace/insert/etc in
+     mind, how they could just easily see an example … without having to dig around by going to
+     sample rooms").**
+     - **One Stoves & fireplaces tab, the same in every room.** It lists all of ours: stoves,
+       fireplaces and inserts, with a search box and a pill for each kind that has any. Each kind
+       says which room shows it, and the room on screen's kind comes first. Picking one from
+       another room goes to that room with it in place (`showInRoom()`, from `pickStove()`). Below
+       the list is the room's own: the cabin's No stove and sample stoves, the family room's
+       fireplace, the den's open fire.
+     - **"What would you like to see?"** (`openWelcome()`): stone on a fireplace or wall, a stove,
+       a fireplace, an insert (only when some are listed), or stone on your own photo. A kind
+       opens its room with the list showing that kind. It shows on a first visit to the website
+       (not from a stove's "See it in a room" link), after Start over (Undo closes it), at the
+       start of each showroom session, and from the Room tab's "What would you like to see?".
+     - **`js/app.js`:**
+       - `KINDS`, `kindRoom()`, `prodMatches()`, `stovePanel()` (now the one list),
+         `prodKinds()`, `prodResults()`, `refreshProducts()`, `roomOwn()` (replaces
+         `fireplacePanel()`), `showInRoom()`, `openWelcome()`, `welcomePick()`;
+       - `S.prodQ`, `S.prodKind`, and the actions `prodkind`, `prodclear`, `welcome`,
+         `welcomeopen`;
+       - the welcome's triggers in `boot()` (`hs.welcomed` in storage), `startOverWeb()` and
+         `exitAttract()`;
+       - `resetKiosk()` clears the search;
+       - the card's Change button scrolls to its kind.
+     - **Search folds accents** (`normQ()`, the stone search's too): "morso" finds Morsø, "jotul"
+       Jøtul, "decor" Décor.
+     - **`css/stoves.css`:** the chooser (`.wpicks`, `.wpick`), `.prodgroup .where`, and the
+       den's sample tiles (`.s-masonry`).
    - **Also in it:** `sceneEntry()` fetches the room's `scene.json` with `cache: "no-cache"`, so it
      always matches the app. A browser holding the copy from before update-2 drew no stove: Ben's
      own browser on 28 Oct, after the pane. That copy had been cached for a day under the old

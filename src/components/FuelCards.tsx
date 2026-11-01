@@ -80,12 +80,17 @@ function FuelCard({ fuel }: { fuel: HubFuel }) {
   );
 }
 
-export function FuelCards({ heading, fuels }: { heading: string; fuels: HubFuel[] }) {
+export function FuelCards({ heading, intro, fuels }: { heading: string; intro?: string; fuels: HubFuel[] }) {
   const own = fuels.filter((f) => f.own);
   const elsewhere = fuels.filter((f) => !f.own && f.models.length);
   return (
     <section className="fuel-picker" aria-label={heading}>
       <h2>{heading}</h2>
+      {/* The line's links go to the same pages as the cards under it, so they're left out here.
+          Content HTML from src/content, not user input. */}
+      {intro ? (
+        <div className="fuel-picker-lede" dangerouslySetInnerHTML={{ __html: intro.replace(/<\/?a\b[^>]*>/g, "") }} />
+      ) : null}
       <div className="fuel-cards">
         {own.map((f) => (
           <FuelCard key={f.href} fuel={f} />

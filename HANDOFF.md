@@ -160,11 +160,19 @@ Everything before it is committed as `b4c1682` on `redesign-up-north`.
   - **A third sample room, the lake house den (1 Nov):** a masonry fireplace (34 × 24 in opening,
     open wood fire) for catalog inserts, built and rendered here.
     - Inserts are drawn over its opening, standing on the firebox floor.
-    - None are listed yet: their photos haven't matched the makers' published sizes. Their manuals'
-      surround sizes are next.
-    - Ben also asked for a way to see a product without knowing the sample rooms. Proposed: one
-      stoves-and-fireplaces list that picks the room itself, and a first-visit "What do you want to
-      see?".
+    - Two are in (dev data only), sized by their manuals' surrounds: Pacific Energy's Neo 1.6
+      Insert LE2 (37″ × 26¾″) and Vista Insert LE2 (37″ × 28″). Their photos fit those shapes to
+      within 0.6%. The others' photos or manuals didn't allow it yet; the list is in
+      docs/hearth-studio.md.
+    - The den's light maps were rebuilt so an insert's front is lit like the breast round it, not
+      by the open firebox's light.
+  - **An easier way in (1 Nov, Ben: "without having to dig around by going to sample rooms"):**
+    - One **Stoves & fireplaces** tab in every room lists all of ours, with a search and a pill per
+      kind. Picking one goes to the room that shows it, already in place.
+    - A **"What would you like to see?"** chooser: stone, a stove, a fireplace, an insert (once any
+      are listed) or your own photo. It shows on a first website visit (not from "See it in a
+      room"), after Start over, at each showroom session's start, and from the Room tab.
+    - Search folds accents now, so "morso" finds Morsø.
   - **The round Morsøs' pipes, 31 Oct (Ben):**
     - The 6140 and 6148 pipes come out of the top opening.
       - Their photos show the top outlet's blanking plate. A new photo fact, `imageFlue`
@@ -293,11 +301,19 @@ on the home page; Ben chose these from mock-ups.
     live in the visitor's browser (no email, no account) and stay in step across tabs.
   - **The compare tray** along the bottom shows "N of 5 picked", the five slots, Clear and
     Compare. It refuses a sixth with a note.
+    - **Since 1 Nov an empty slot adds a model** (Ben: "we should be able to add to compare right
+      from this bottom bar"). "+ Add a model" opens a small search above the tray. It uses the
+      same `/api/search/suggest` as every search box, keeping the models (those with an `id`),
+      and marks ones already in. Picking one (click, or arrows and Enter) adds it.
+    - `/api/compare/item?id=…` gives the tray its entry (name, maker, type, page, photo) through
+      `shortItemOf()` in `src/lib/compare.ts`, which the compare page uses too.
   - **`/compare/?ids=…`** (noindex):
     - columns with photos;
     - "The basics" (makers' figures; efficiency always with its basis and a like-with-like
       hint);
     - "At Hayward Stoveworks" (showroom, guide, maker's page);
+    - "See it in a room →" in a model's column where Hearth Studio can show it (1 Nov, Ben),
+      from the same `studioStoveFor()` as the model pages, which takes inserts now too;
     - "Hide rows that match", Share, Print or save as PDF, Save all;
     - two at a time on a phone;
     - "Ask about these" (an email listing the models).
@@ -409,6 +425,25 @@ only a text link:
   of these": Stoves and Fireplaces).** The live site had nothing more to restore, so the rest
   comes from the catalog; Steve's intros are unchanged.
   - **Layout:** each intro now sits beside its photo (`prose-aside`).
+    - **Since 1 Nov** (Ben: the card "takes up a lot of space without too much added"), the
+      intro is in the title band, under the heading, with the photo as a small print beside it.
+      It's an `{ "type": "intro" }` section, which `src/app/[...slug]/page.tsx` lifts into the
+      title. The "Gas or Wood" line moved under "Choose a fuel" (the fuels section's `intro`;
+      its links show only when the cards can't).
+    - The "What is a stove?" headings are gone. On Fireplaces, "We specialize in zero clearance
+      fireplaces" leads now.
+    - Gas Stoves' and Electric Fireplaces' opening lines went into their title bands the same
+      way (an `intro` with no photo).
+    - **"Choose a maker"** on the product pages (`MakerJump` in `PageSections.tsx`). It was a
+      row of small tiles under a small "Jump to a maker", so the first maker's big card took the
+      eye (Ben: "it feels as though we're giving preference to Pacific").
+      - Now it's an h2 with a count ("54 models from 7 makers"), then a card per maker, all the
+        same size: logo, two of its models' photos, name and count. Each jumps to its section.
+      - Every maker is in one row on a wide screen (up to 8; the most on any page now is 8, Wood
+        Inserts). Narrower, it's two even rows (4 + 3, not 5 + 2), from `--row`/`--two` set by
+        the page. On a phone, two to a row without the photos.
+      - The makers keep the page's order (the brand cards' order in `pages.ts`, then catalog
+        makers without a card).
   - **"Choose a fuel":** a card per fuel page (Wood, Gas and Pellet stoves; Wood, Gas and
     Electric fireplaces; Wood and Gas inserts), with a model count, four photos
     (taken in turn from each maker, click to enlarge), the makers' logos (each jumps to that

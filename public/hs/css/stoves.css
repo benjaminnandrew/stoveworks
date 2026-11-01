@@ -19,7 +19,11 @@
 .stcard .sample.s-modern { background-image: url("../assets/scenes/cabin/modern_day.jpg"); }
 /* the family room's own fireplace (a built-in: wide and low) */
 .stcard .sample.s-linear { background-image: url("../assets/scenes/linear/linear_day.jpg"); background-size: 380% auto; background-position: 54.7% 58.6%; }
+/* the den's own fireplace (masonry, an open wood fire): the opening and the stone round it */
+.stcard .sample.s-masonry { background-image: url("../assets/scenes/masonry/masonry_day.jpg"); background-size: 310% auto; background-position: 66% 66.5%; }
 .stoves.samples .stcard .pic { aspect-ratio: 16 / 9; }
+/* the Stoves & fireplaces list: which room each kind is shown in */
+.prodgroup .where { font-weight: 500; }
 
 /* the chosen stove */
 .stdetail .stpic { width: 84px; height: 84px; border-radius: 10px; flex: none; display: grid; place-items: center; background: radial-gradient(circle at 50% 38%, #f3f1ec 0%, #dcd9d2 100%); }
@@ -58,6 +62,21 @@
 .acard .sample.s-trad { background-image: url("../assets/scenes/cabin/trad_day.jpg"); }
 .acard .sample.s-modern { background-image: url("../assets/scenes/cabin/modern_day.jpg"); }
 .acard .sample.s-linear { background-image: url("../assets/scenes/linear/linear_day.jpg"); background-size: 320% auto; background-position: 55% 62.7%; }
+.acard .sample.s-masonry { background-image: url("../assets/scenes/masonry/masonry_day.jpg"); background-size: 420% auto; background-position: 64.3% 68.7%; }
+
+/* "What would you like to see?": a few big choices, a picture each */
+.sheet.welcome { width: min(640px, 100%); }
+.wpicks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.wpick { display: flex; align-items: center; gap: 12px; min-height: 80px; padding: 10px 12px 10px 10px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-2); color: var(--fg); text-align: left; cursor: pointer; }
+.wpick:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.wpick .wpic { flex: none; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 10px; overflow: hidden; background: radial-gradient(circle at 50% 38%, #f3f1ec 0%, #dcd9d2 100%); color: #45423c; }
+.wpick .wpic img { width: 88%; height: 88%; object-fit: contain; display: block; }
+.wpick .wpic.stone img { width: 100%; height: 100%; object-fit: cover; }
+.wpick .wpic svg { width: 28px; height: 28px; }
+.wpick .wt { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.wpick .wt b { font-weight: 600; line-height: 1.2; }
+.wpick .wt span { font-size: .86em; color: var(--fg-3); }
+@media (max-width: 560px) { .wpicks { grid-template-columns: 1fr; } .wpick { min-height: 68px; } .wpick .wpic { width: 52px; height: 52px; } }
 
 /* showroom screen: bigger targets and type */
 .app[data-mode="kiosk"] .stcard .t b { font-size: 1.05em; }
@@ -74,3 +93,8 @@
 .app[data-mode="kiosk"] .stsize .fstep svg { width: 22px; height: 22px; }
 .app[data-mode="kiosk"] .stsize .fe { padding: 0 58px; font-size: 12.5px; }
 .app[data-mode="kiosk"] .stsize .drawn { font-size: 1em; }
+.app[data-mode="kiosk"] .sheet.welcome { width: min(820px, 100%); }
+.app[data-mode="kiosk"] .wpick { min-height: 112px; gap: 16px; }
+.app[data-mode="kiosk"] .wpick .wpic { width: 88px; height: 88px; }
+.app[data-mode="kiosk"] .wpick .wt b { font-size: 1.15em; }
+.app[data-mode="kiosk"] .wpick .wt span { font-size: .95em; }

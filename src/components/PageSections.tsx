@@ -72,37 +72,60 @@ function BrandModels({ brand, models }: { brand: Brand; models: CatalogModelSumm
   );
 }
 
-/** Logo tiles that jump to each brand on the page. */
+/**
+ * "Choose a maker": every maker on the page as a card of the same size, with its logo, two of its
+ * models and its count, first thing under the title. Each jumps to its maker's section. It was a
+ * row of small tiles under a small "Jump to a maker", so the first maker's big card took the eye
+ * (Ben, 1 Nov 2026: "so all brands are notable upon initial load").
+ */
 function MakerJump({ slugs, lineup }: { slugs: string[]; lineup: PageLineup }) {
   const items = slugs.map((slug) => ({
     slug,
     name: brandBySlug(slug)!.name,
     count: lineup.byBrand.get(slug)?.length ?? 0,
   }));
+  const total = items.reduce((sum, i) => sum + i.count, 0);
+  // columns: all in one row on a wide screen (two rows past 8), else two even rows (4 + 3, not 5 + 2)
+  const n = items.length;
+  const cols = { "--row": n > 8 ? Math.ceil(n / 2) : n, "--two": n > 4 ? Math.ceil(n / 2) : n } as React.CSSProperties;
   return (
     <>
       <MakerBar items={items} stripId="maker-strip" />
-      <nav className="maker-jump" id="maker-strip" aria-label="Makers on this page">
-        <p className="maker-jump-head">Jump to a maker</p>
-        <ul>
-          {slugs.map((slug) => {
-            const brand = brandBySlug(slug)!;
+      <nav className="maker-jump" id="maker-strip" aria-labelledby="maker-jump-title">
+        <h2 id="maker-jump-title">Choose a maker</h2>
+        <p className="maker-jump-lede">
+          {total} model{total === 1 ? "" : "s"} from {items.length} makers, in their current lineups
+        </p>
+        <ul style={cols}>
+          {items.map(({ slug, name, count }) => {
             const { logo } = brandContent(slug);
-            const n = lineup.byBrand.get(slug)?.length ?? 0;
+            const photos = (lineup.byBrand.get(slug) ?? []).filter((m) => m.hero_image).slice(0, 2);
             return (
               <li key={slug}>
                 <a href={`#maker-${slug}`}>
                   <span className="maker-jump-logo">
                     {logo ? (
-                      <Image src={logo.src} alt="" width={logo.width} height={logo.height} sizes="120px" />
+                      <Image src={logo.src} alt="" width={logo.width} height={logo.height} sizes="170px" />
                     ) : (
                       <span className="brand-wordmark" aria-hidden="true">
-                        {brand.name}
+                        {name}
                       </span>
                     )}
                   </span>
-                  <strong>{brand.name}</strong>
-                  <small>{n ? `${n} model${n === 1 ? "" : "s"}` : "Ask us"}</small>
+                  <span className="maker-jump-photos" aria-hidden="true">
+                    {photos.length ? (
+                      photos.map((m) => (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img key={m.id} src={m.hero_image!} alt="" loading="lazy" />
+                      ))
+                    ) : (
+                      <span className="maker-jump-ask">Ask us about these</span>
+                    )}
+                  </span>
+                  <span className="maker-jump-name">
+                    <strong>{name}</strong>
+                    <small>{count ? `${count} model${count === 1 ? "" : "s"}` : "Ask us"}</small>
+                  </span>
                 </a>
               </li>
             );
@@ -217,8 +240,14 @@ function SectionBlock({ section, fuels }: { section: Section; fuels?: HubFuel[] 
         </section>
       );
 
+    // shown in the page's title (src/app/[...slug]/page.tsx)
+    case "intro":
+      return null;
+
     case "fuels":
-      return fuels?.length ? <FuelCards heading={section.heading} fuels={fuels} /> : null;
+      if (fuels?.length) return <FuelCards heading={section.heading} intro={section.intro} fuels={fuels} />;
+      // without the catalog, the line and its links to the fuels' pages
+      return section.intro ? <Html className="prose" html={section.intro} /> : null;
 
     case "embed":
       return (

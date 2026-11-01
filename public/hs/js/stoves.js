@@ -45,7 +45,8 @@ export function normalize(raw) {
   s.imageFlue = fl && fl.length === 2 && fl[0] > 0 && fl[0] < 1 && fl[1] > 0 && fl[1] < 1 ? fl : null;
   // A built-in fireplace (the site's, 31 Oct 2026): its viewing area, the maker's published size of
   // what shows inside the front (inches, wide and tall), and where that is in the photo (fractions).
-  // It's drawn flat on the room's wall at that size (placeFace)
+  // It's drawn flat on the room's wall at that size (placeFace). An insert's box is its surround's
+  // outer edges, at the manual's surround size (1 Nov 2026)
   const vb = Array.isArray(s.viewingBox) ? s.viewingBox.map(Number) : null;
   s.viewingBox = vb && vb.length === 4 && vb.every((v) => v >= 0 && v <= 1) && vb[2] - vb[0] > 0.05 && vb[3] - vb[1] > 0.02 ? vb : null;
   const vi = Array.isArray(s.viewingIn) ? s.viewingIn.map(num) : null;
@@ -86,7 +87,7 @@ export function inches(v) {
 }
 export function makerSize(s) {
   if (!s.sized) return "";
-  if (s.kind === "fireplace" || s.kind === "insert") return `${inches(s.viewingIn[0])} × ${inches(s.viewingIn[1])} viewing area`;
+  if (s.kind === "fireplace" || s.kind === "insert") return `${inches(s.viewingIn[0])} × ${inches(s.viewingIn[1])} ${s.kind === "insert" ? "surround" : "viewing area"}`;
   return [`${inches(s.widthIn)} wide`, `${inches(s.heightIn)} tall`, s.depthIn ? `${inches(s.depthIn)} deep` : ""].filter(Boolean).join(" · ");
 }
 /** The size as drawn, in whole inches: what the customer checks against the real thing. */
@@ -303,8 +304,9 @@ export function placeInRoom(st, cut, sj, cam, k = 1, xIn = 0) {
  * Where a built-in fireplace's or an insert's front goes in a sample room with a fire spot: flat on the
  * wall, the photo straight on, its viewing area the maker's size (the site's, 31 Oct 2026).
  * - A fireplace (the family room): its viewing area centered where the room's own fireplace's is.
- * - An insert (the den, anchor "floor", 1 Nov 2026): centered across the opening, its photo's lowest
- *   point on the firebox floor, where an insert stands.
+ * - An insert (the den, anchor "floor", 1 Nov 2026): centered across the opening, its surround's
+ *   bottom (the box's) on the firebox floor, where the makers measure its height from. The photo's
+ *   lowest point is often the ash lip, which stands out in front and so shows a little lower.
  * Returns the map from scene px to the photo (fractions; for the engine, and for taps), the screen box
  * it covers, and whether its front covers the room's own fireplace or opening: one that doesn't would
  * show it round the front.
@@ -314,7 +316,7 @@ export function placeFace(st, cut, sj, cam) {
   const Wv = st.viewingIn[0] * IN, Hv = st.viewingIn[1] * IN;
   // world (x, z) on the wall -> photo fractions. The photo's left is the room's +x (screen left)
   const ax = (vx1 - vx0) / Wv, az = (vy1 - vy0) / Hv;
-  const xl = fs.x + Wv / 2, zt = fs.anchor === "floor" ? fs.z + ((cut.bot + 1) / cut.h - vy0) / az : fs.z + Hv / 2;
+  const xl = fs.x + Wv / 2, zt = fs.anchor === "floor" ? fs.z + Hv : fs.z + Hv / 2;
   const fu = (x) => vx0 + (xl - x) * ax, fv = (z) => vy0 + (zt - z) * az;
   const A = [[-ax, 0, vx0 + xl * ax], [0, -az, vy0 + zt * az], [0, 0, 1]];
   // world (x, z, 1) -> scene px: the camera on the wall's plane, y = fs.y

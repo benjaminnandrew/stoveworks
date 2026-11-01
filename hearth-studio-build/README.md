@@ -69,3 +69,8 @@ size go on it.
   (two runs keep each under ten minutes). Then
   `var/blendenv/Scripts/python.exe hearth-studio-build/post.py masonry masonry day,eve var/hs-renders public/hs/assets/scenes/masonry`
   (from `hearth-studio-build/`, with the paths adjusted).
+- **The light in the opening (`opening_fill()` in `post.py`, 1 Nov 2026):** no zone covers the
+  opening, so its light came from the nearest surface, the hearth face's at the bottom. That put
+  a dark wedge on an insert's front. For a `fire_spot` with `anchor: "floor"`, each row of the
+  opening now runs from the breast's light just left of it to just right of it, smoothed. Only
+  the `_irr.png` files change; the room's own picture doesn't use them there.

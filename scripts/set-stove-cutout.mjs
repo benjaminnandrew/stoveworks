@@ -27,6 +27,9 @@
  *     viewing area (the box inside the front, in pixels, and the maker's published size of it in
  *     inches) and the fire window's box. Hearth Studio draws the front at that size. The box's shape
  *     has to match the maker's figures, which catches a photo that isn't straight on.
+ *     For an insert (1 Nov 2026), the box is its surround's outer edges and the size the manual's
+ *     surround size (the bottom where the side panels end: an ash lip in front of the surround
+ *     shows lower in the photo).
  */
 
 import { randomUUID } from "node:crypto";
@@ -143,10 +146,10 @@ if (cmd === "trim") {
   if (![...viewing, ...glass].every((v) => v >= 0 && v <= 1) || viewing[2] <= viewing[0] || viewing[3] <= viewing[1] || glass[2] <= glass[0] || glass[3] <= glass[1]) {
     throw new Error("the boxes must lie inside the photo, left to right and top to bottom");
   }
-  if (!(wide > 0 && tall > 0)) throw new Error(`the viewing area's size is two numbers of inches, wide,tall (it is "${viewIn}")`);
+  if (!(wide > 0 && tall > 0)) throw new Error(`the box's size is two numbers of inches, wide,tall (it is "${viewIn}")`);
   const sx = (x1 - x0) / wide, sy = (y1 - y0) / tall;   // pixels per inch, across and up
   if (Math.abs(sx / sy - 1) > 0.03) {
-    throw new Error(`the box is ${(x1 - x0).toFixed(1)} x ${(y1 - y0).toFixed(1)} px, which isn't the shape of ${wide} x ${tall} in (${((sx / sy - 1) * 100).toFixed(1)}% off): is the photo straight on, and the box the viewing area?`);
+    throw new Error(`the box is ${(x1 - x0).toFixed(1)} x ${(y1 - y0).toFixed(1)} px, which isn't the shape of ${wide} x ${tall} in (${((sx / sy - 1) * 100).toFixed(1)}% off): is the photo straight on, and the box the viewing area (a fireplace) or the surround (an insert)?`);
   }
   console.log(`  the front comes to about ${(W / sx).toFixed(1)} x ${(H / sy).toFixed(1)} in (shape ${((sx / sy - 1) * 100).toFixed(2)}% off)`);
 
@@ -158,10 +161,10 @@ if (cmd === "trim") {
     `UPDATE products
         SET cutout_path = $2, cutout_view = 'front', viewing_box = $3, viewing_in = $4, glass_box = $5,
             cutout_span = NULL, cutout_width_in = NULL, cutout_top_front = NULL, cutout_flue = NULL, updated_at = now()
-      WHERE slug = $1 AND category = 'fireplace'
+      WHERE slug = $1 AND category IN ('fireplace', 'insert')
       RETURNING slug, name, cutout_path, viewing_box, viewing_in, glass_box`,
     [slug, `/files/media/products/${name}`, viewing, [wide, tall], glass],
-    "that's a built-in fireplace",
+    "that's a built-in fireplace or an insert",
   );
 } else {
   usage();

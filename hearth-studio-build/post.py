@@ -29,6 +29,45 @@ def nearest_fill(val, valid):
     return val[idx[0], idx[1]]
 
 
+def opening_fill(val, valid, geo, K, R, C):
+    """The light in a fireplace's opening, for an insert's front (meta fire_spot, anchor "floor";
+    1 Nov 2026). Nothing in the opening is a zone, so nearest_fill gave it the nearest surface's
+    light, and the hearth face's below made a dark wedge on the front. The front faces the room as
+    the breast round it does: across each row, from the breast just left of the opening to just
+    right of it, then smoothed."""
+    fs = geo["meta"].get("fire_spot")
+    if not fs or fs.get("anchor") != "floor":
+        return val
+    from PIL import ImageDraw
+    Hh, Ww = val.shape[:2]
+    x0, z0, x1, z1 = fs["cover"]
+    pts = [tuple(map(float, geom.project(K, R, C, np.array([x, fs["y"], z])))) for x, z in ((x0, z0), (x1, z0), (x1, z1), (x0, z1))]
+    im = Image.new("L", (Ww, Hh), 0)
+    ImageDraw.Draw(im).polygon(pts, fill=255)
+    hole = ndimage.binary_dilation(np.asarray(im) > 0, iterations=3)
+    ok = valid & ~hole
+    out = val.copy()
+    rows = {}
+    for r in np.nonzero(hole.any(1))[0]:
+        cols = np.nonzero(hole[r])[0]
+        lo, hi = cols.min(), cols.max()
+        L = [val[r, c] for c in range(max(0, lo - 12), lo) if ok[r, c]]
+        Rt = [val[r, c] for c in range(hi + 1, min(Ww, hi + 13)) if ok[r, c]]
+        if L and Rt:
+            rows[r] = (lo, hi, np.mean(L, 0), np.mean(Rt, 0))
+    if not rows:
+        return val
+    have = np.array(sorted(rows))
+    for r in np.nonzero(hole.any(1))[0]:
+        cols = np.nonzero(hole[r])[0]
+        lo, hi = cols.min(), cols.max()
+        _, _, a, b = rows[int(have[np.argmin(np.abs(have - r))])]   # rows with no breast beside them take the nearest that has
+        t = (np.arange(lo, hi + 1) - lo) / max(1, hi - lo)
+        out[r, lo:hi + 1] = a[None] + (b - a)[None] * t[:, None]
+    sm = ndimage.gaussian_filter(out, (3, 3, 0)) if out.ndim == 3 else ndimage.gaussian_filter(out, 3)
+    return np.where(hole[..., None] if out.ndim == 3 else hole, sm, out)
+
+
 def load_masks(variant):
     order, chans = [], []
     for mk in ("mask1", "mask2"):
@@ -98,6 +137,7 @@ for variant in VARIANTS:
             out[sel] = f[sel]
         # outside all zones: nearest of any interior
         out = np.where(anyz[..., None], out, nearest_fill(irr_e, allint))
+        out = opening_fill(out, allint, geo, K, R, C)
         lg = np.log2(np.clip(out, 1e-5, None))
         lo = float(np.floor((np.percentile(lg[anyz], 0.05) - 0.25) * 4) / 4)
         hi = float(np.ceil((np.percentile(lg[anyz], 99.95) + 0.25) * 4) / 4)

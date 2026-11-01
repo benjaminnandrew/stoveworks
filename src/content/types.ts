@@ -13,6 +13,12 @@ export type Section =
   /** Copy on the left, a stack of logos/images on the right. */
   | { type: "prose-aside"; html: string; aside: Media[] }
   /**
+   * A page's opening line (/stoves/: what a stove is). It's shown under the page's
+   * title, with its photo beside it as a print if it has one, not as a block of its
+   * own (Ben, 1 Nov 2026: it "takes up a lot of space without too much added").
+   */
+  | { type: "intro"; html: string; image?: Media }
+  /**
    * A manufacturer we carry: name, blurb, and linked logo. Without a logo file
    * yet, the name is shown as a text wordmark linking to `website`.
    */
@@ -29,8 +35,10 @@ export type Section =
    * On a hub page (/inserts/), a card for each fuel's page with a few of its
    * models and its makers, filled from the catalog. Fuels listed on another
    * hub's page (the electric insert, on Electric Fireplaces) follow as a short row.
+   * `intro` is a line under the heading. Its links to the fuels' pages show only when
+   * the cards can't (no catalog).
    */
-  | { type: "fuels"; heading: string }
+  | { type: "fuels"; heading: string; intro?: string }
   /** Trusted third-party embed (the Google Map). */
   | { type: "embed"; html: string };
 

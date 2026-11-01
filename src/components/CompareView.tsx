@@ -223,6 +223,12 @@ function Head({ column, onRemove }: { column: CompareColumn; onRemove: (id: stri
         {item.brand} {item.name}
       </Link>
       <span className="compare-meta">{column.typeLine}</span>
+      {/* Only where Hearth Studio can show this very model in its room, as on its page (Ben, 1 Nov 2026). */}
+      {column.studio ? (
+        <a className="compare-studio" href={`/hearth-studio/?stove=${encodeURIComponent(column.studio)}`}>
+          See it in a room &rarr;
+        </a>
+      ) : null}
       <button
         type="button"
         className="compare-remove"

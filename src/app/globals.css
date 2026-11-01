@@ -702,6 +702,29 @@ p:last-child { margin-bottom: 0; }
 .breadcrumbs a:hover { color: var(--ink); }
 .breadcrumbs li + li::before { content: "/"; margin-right: 0.35rem; color: var(--rule-dashed); }
 
+/* A hub page's opening (/stoves/, /inserts/, /fireplaces/): what the thing is, under the title, with
+   its photo as a print beside it. It had a card of its own before (Ben, 1 Nov 2026: it "takes up a
+   lot of space without too much added"). */
+.hub-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "head photo" "lede photo";
+  column-gap: clamp(1.5rem, 5vw, 4rem);
+}
+.hub-head { grid-area: head; }
+.hub-lede { grid-area: lede; max-width: 62ch; margin-top: 0.8rem; }
+.hub-lede p { margin: 0; font-family: var(--font-serif); font-size: 1.2rem; line-height: 1.5; color: var(--ink-soft); }
+.hub-lede p + p { margin-top: 0.55rem; font-size: 1.02rem; color: var(--ink-muted); }
+.hub-hero-photo { grid-area: photo; align-self: center; width: clamp(140px, 14vw, 190px); aspect-ratio: 1; transform: rotate(-1.2deg); }
+/* a phone: the photo small beside the title, the words the full width under them */
+@media (max-width: 640px) {
+  .hub-hero { grid-template-columns: minmax(0, 1fr) 76px; grid-template-areas: "head photo" "lede lede"; column-gap: 1rem; }
+  .hub-hero-photo { align-self: end; width: 76px; padding: 4px; }
+  .hub-lede p { font-size: 1.06rem; }
+  .hub-lede p + p { font-size: 0.98rem; }
+}
+
 /* ==========================================================================
    Content sections
    ========================================================================== */
@@ -2049,41 +2072,58 @@ a.brand-wordmark:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ---------- product pages: each brand with its models ---------- */
 
+/* "Choose a maker": a card per maker, all the same size, in one row on a desktop (Ben, 1 Nov 2026:
+   "so all brands are notable upon initial load"). */
 .maker-jump { margin: 2rem 0 0.5rem; }
-.maker-jump-head {
-  margin: 0 0 0.75rem;
-  font-family: var(--font-sans);
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--ink-soft);
-}
+/* first on the page (after the hidden bar): the body's own padding is gap enough */
+.page-body .wrap > .maker-bar:first-child + .maker-jump { margin-top: 0; }
+.maker-jump h2 { margin: 0; }
+.maker-jump-lede { margin: 0.15rem 0 1rem; font-family: var(--font-sans); font-size: 0.95rem; color: var(--ink-muted); }
+/* --row and --two come from the page (PageSections): every maker in one row on a wide screen,
+   else two even rows */
 .maker-jump ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  grid-template-columns: repeat(var(--row, 7), minmax(0, 14rem));
   gap: 0.75rem;
+}
+@media (max-width: 1279px) {
+  .maker-jump ul { grid-template-columns: repeat(var(--two, 4), minmax(0, 15rem)); }
 }
 .maker-jump a {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
   height: 100%;
-  padding: 0.5rem 0.5rem 0.6rem;
+  overflow: hidden;
   background: var(--birch);
   border: 1px solid var(--rule);
+  border-radius: 3px;
   color: var(--ink);
   text-decoration: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
 }
-.maker-jump a:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); }
-.maker-jump-logo { display: grid; place-items: center; height: 56px; margin-bottom: 0.35rem; background: #fff; }
-.maker-jump-logo img { max-width: 80%; max-height: 42px; width: auto; height: auto; }
+.maker-jump a:hover { border-color: var(--accent); box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+.maker-jump-logo { display: grid; place-items: center; height: 66px; background: #fff; border-bottom: 1px solid var(--rule); }
+.maker-jump-logo img { max-width: 80%; max-height: 44px; width: auto; height: auto; }
 .maker-jump-logo .brand-wordmark { font-size: 0.72rem; padding: 0.3rem 0.5rem; letter-spacing: 0.14em; }
+/* two of the maker's models, side by side on white */
+.maker-jump-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border-bottom: 1px solid var(--rule); }
+.maker-jump-photos img { display: block; width: 100%; height: auto; aspect-ratio: 1; padding: 0.4rem; object-fit: contain; background: #fff; }
+.maker-jump-photos img:only-child { grid-column: 1 / -1; aspect-ratio: 2 / 1; }
+.maker-jump-ask { grid-column: 1 / -1; aspect-ratio: 2 / 1; display: grid; place-items: center; background: #fff; font-family: var(--font-sans); font-size: 0.82rem; color: var(--ink-muted); }
+.maker-jump-name { display: flex; flex-direction: column; gap: 0.1rem; padding: 0.55rem 0.7rem 0.65rem; }
 .maker-jump strong { font-size: 1rem; font-weight: 600; line-height: 1.25; }
 .maker-jump a:hover strong { color: var(--accent); }
 .maker-jump small { font-family: var(--font-sans); font-size: 0.8rem; color: var(--ink-muted); }
+/* a phone: two to a row, logo and name only, so the makers stay one short scroll */
+@media (max-width: 560px) {
+  .maker-jump ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
+  .maker-jump-photos { display: none; }
+  .maker-jump-logo { height: 58px; }
+}
+@media (prefers-reduced-motion: reduce) { .maker-jump a:hover { transform: none; } }
 
 /* Clear of the sticky header and the maker bar when a maker link jumps here. */
 .brand-block { scroll-margin-top: calc(var(--header-h) + 4.25rem); }
@@ -2319,7 +2359,8 @@ a.brand-wordmark:hover { border-color: var(--accent); color: var(--accent); }
 .compare-tray-label { margin: 0; display: grid; font-family: var(--font-sans); line-height: 1.2; }
 .compare-tray-label strong { font-size: 1.05rem; }
 .compare-tray-label span { font-size: 0.82rem; color: var(--pine-ink); }
-.compare-tray-slots { list-style: none; margin: 0; padding: 0; display: flex; gap: 0.5rem; flex: 1; min-width: 0; }
+.compare-tray-pick { position: relative; flex: 1; min-width: 0; }
+.compare-tray-slots { list-style: none; margin: 0; padding: 0; display: flex; gap: 0.5rem; }
 .compare-slot {
   position: relative;
   display: flex;
@@ -2358,12 +2399,76 @@ a.brand-wordmark:hover { border-color: var(--accent); color: var(--accent); }
 }
 .compare-slot button:hover { color: #fff; }
 .compare-slot.is-empty { justify-content: center; padding: 0; border-style: dashed; color: rgba(255, 255, 255, 0.45); }
+/* An empty slot adds a model from the tray's own search (Ben, 1 Nov 2026). */
+.compare-slot .compare-slot-add {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  height: 100%;
+  font: 600 0.85rem/1 var(--font-sans);
+  color: rgba(255, 255, 255, 0.7);
+}
+.compare-slot .compare-slot-add > span:first-child { font-size: 1.2rem; font-weight: 400; }
+.compare-slot.is-empty:hover,
+.compare-slot.is-empty:focus-within { border-color: rgba(255, 255, 255, 0.55); background: rgba(255, 255, 255, 0.14); }
+.compare-slot .compare-slot-add:hover,
+.compare-slot .compare-slot-add[aria-expanded="true"] { color: #fff; }
+.compare-add {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 0.9rem);
+  z-index: 2;
+  width: min(26rem, calc(100vw - 2rem));
+  padding: 0.8rem;
+  background: var(--surface, #fff);
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+}
+.compare-add-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; font-family: var(--font-sans); }
+.compare-add-close { width: 30px; height: 30px; border: 0; background: none; color: var(--ink-muted); font-size: 1.3rem; cursor: pointer; }
+.compare-add-close:hover { color: var(--ink); }
+.compare-add-input {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--rule-strong, var(--rule));
+  border-radius: 3px;
+  font: 1rem var(--font-sans);
+  background: #fff;
+  color: var(--ink);
+}
+.compare-add-input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.compare-add-list { list-style: none; margin: 0.5rem 0 0; padding: 0; max-height: 18rem; overflow: auto; }
+.compare-add-list button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border: 0;
+  border-radius: 3px;
+  background: none;
+  color: var(--ink);
+  font: 600 0.95rem/1.25 var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+}
+.compare-add-list small { font-weight: 400; font-size: 0.82rem; color: var(--ink-muted); }
+.compare-add-list [aria-selected="true"] button:not(:disabled) { background: var(--paper-2); }
+.compare-add-list button:disabled { cursor: default; opacity: 0.6; }
+.compare-add-note { margin: 0.55rem 0.1rem 0.1rem; font-family: var(--font-sans); font-size: 0.88rem; color: var(--ink-muted); }
 .compare-tray-actions { display: flex; align-items: center; gap: 0.9rem; flex: none; }
 .compare-tray-actions .linklike { color: var(--pine-ink); }
 .compare-tray-actions .btn.is-waiting { opacity: 0.55; cursor: default; }
 @media (max-width: 760px) {
   .compare-tray-inner { flex-wrap: wrap; gap: 0.5rem 0.75rem; }
-  .compare-tray-slots { order: 3; flex-basis: 100%; }
+  .compare-tray-pick { order: 3; flex-basis: 100%; }
+  .compare-slot-addtext { display: none; }
   .compare-slot { height: 44px; padding-right: 1.4rem; }
   .compare-slot img,
   .compare-slot-none { width: 32px; height: 32px; }
@@ -2439,8 +2544,10 @@ body:has(.compare-tray.is-shown) .type-switch { bottom: 6.5rem; }
 .compare-table { width: 100%; min-width: 720px; border-collapse: collapse; table-layout: fixed; }
 .compare-table th,
 .compare-table td { padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+/* the heads line up at the top: photos and names level, though a name runs to two lines or a model
+   has "See it in a room" (1 Nov 2026) */
 .compare-table thead th,
-.compare-table thead td { vertical-align: bottom; border-bottom: 2px solid var(--rule-dashed); }
+.compare-table thead td { vertical-align: top; border-bottom: 2px solid var(--rule-dashed); }
 .compare-table tbody th { width: 11.5rem; font-family: var(--font-sans); font-weight: 600; color: var(--ink-soft); }
 .compare-table thead td { width: 11.5rem; }
 .compare-table tr.is-same td { color: var(--ink-muted); }
@@ -2463,6 +2570,8 @@ body:has(.compare-tray.is-shown) .type-switch { bottom: 6.5rem; }
 .compare-name { color: var(--ink); font-family: var(--font-head); font-size: 1.05rem; font-weight: 600; line-height: 1.2; text-decoration: none; }
 .compare-name:hover { color: var(--accent); text-decoration: underline; }
 .compare-meta { font-family: var(--font-sans); font-size: 0.82rem; font-weight: 400; color: var(--ink-muted); }
+.compare-studio { justify-self: start; font-family: var(--font-sans); font-size: 0.88rem; font-weight: 700; text-decoration: none; }
+.compare-studio:hover { text-decoration: underline; }
 .compare-remove {
   justify-self: start;
   padding: 0;
@@ -2597,6 +2706,10 @@ body:has(.compare-tray.is-shown) .type-switch { bottom: 6.5rem; }
 .fuel-makers img { max-width: 82%; max-height: 34px; width: auto; height: auto; }
 .fuel-makers .brand-wordmark { font-size: 0.62rem; padding: 0.25rem 0.4rem; letter-spacing: 0.1em; border-width: 1.5px; }
 .fuel-go { align-self: flex-start; margin-top: auto; }
+/* the line under "Choose a fuel", and no gap over it when it's first on the page (the intro is in the title) */
+.fuel-picker-lede { max-width: 62ch; margin: -0.35rem 0 1.25rem; }
+.fuel-picker-lede p { margin: 0; font-family: var(--font-serif); font-size: 1.08rem; line-height: 1.5; color: var(--ink-soft); }
+.page-body .section:first-child > .fuel-picker { margin-top: 0; }
 
 .fuel-also { margin-top: 1.75rem; }
 .fuel-also-head { margin: 0 0 0.75rem; font-family: var(--font-sans); font-size: 0.95rem; font-weight: 700; color: var(--ink-soft); }
