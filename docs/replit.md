@@ -1,7 +1,8 @@
 # Moving the site to Replit
 
-Written 12 Oct 2026, brought up to date 2 Nov 2026. Three things move, and each has its own home
-on Replit:
+Written 12 Oct 2026, brought up to date 2 Nov 2026. The site is complete and already set up for
+Replit (the `.replit` file), so nothing needs building or changing there: these steps install
+it, load its data and publish it. Three things move, and each has its own home on Replit:
 
 | What | Where it goes on Replit | Size |
 | --- | --- | --- |
@@ -38,12 +39,17 @@ throwaway test only.)
 ## 3. Upload the photos and PDFs to App Storage
 
 Open **App Storage** and create a bucket; it becomes the app's default bucket. Upload two
-folders from `var/brain-assets/` on the laptop, keeping their names, with the "upload folder"
-button or by dragging them in:
+folders from `C:\Users\b_wel\Projects\stoveworks\var\brain-assets\` on the laptop, keeping their
+names, with the "upload folder" button or by dragging them in:
 
-- `images` (1,058 photos, 0.47 GB)
-- `documents` (the 200 manuals the guides open and 14 other catalog PDFs, 1.2 GB, plus about
-  100 older PDFs, 0.6 GB, that nothing uses any more; uploading them does no harm)
+- `images` (1,058 photos in a folder per maker, 0.45 GB)
+- `documents` (317 PDFs in a folder per maker, 1.7 GB: the 200 manuals the guides open and 14
+  other catalog PDFs, plus about 100 older PDFs that nothing uses any more; uploading them does
+  no harm)
+
+Only those two. The other folders beside them (`images-named`, `_to_delete_images-named-old`,
+`_to_delete_images-named-old2`, `pages`) and the loose files are leftovers from building the
+catalog, and the site doesn't read them.
 
 Every object name must start with `images/` or `documents/`. Those are the storage keys
 the catalog and the guides use.
@@ -81,6 +87,10 @@ even if it drops out of the brain. It also keeps the products in step with the m
 touching what staff own there (cutouts, live or hidden, summary and sizes once set).
 
 ## 5. Check it
+
+To sign in on the workspace's preview, first add a Secret `SITE_URL` set to its address (the
+https://….replit.dev one): sign-in links are built from it, and without it they point at
+stoveworksinc.com. The links are written to the Console, since there's no email set up.
 
 Run the app (the Run button starts the dev server), then:
 - open `/guides/blaze-king-ashford-20-2/`, open any tile and tap the link at the bottom of its
