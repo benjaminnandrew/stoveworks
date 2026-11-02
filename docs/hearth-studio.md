@@ -85,6 +85,12 @@ often").
     every room; picking one goes to the room that shows it, already in place. A first-visit
     **"What would you like to see?"** goes straight to stone, a stove, a fireplace, an insert or
     your own photo. See edit 3, "The easier way in".
+  - **The sized products go live with the code** (2 Nov 2026, for the move to Replit). Until 7d
+    they were dev data: a row in the laptop's database and a file in `var/uploads/`.
+    `scripts/set-stove-cutout.mjs` now also writes `db/hearth-studio/` (`products.json` and
+    `cutouts/`) after each change, and `npm run studio:load`, part of `db:setup` and
+    `start:live`, puts that folder in a site's database and file store. A cutout staff change or
+    remove on the live site stays as they left it. Details: [replit.md](replit.md).
   - Next here: 7d, the staff sizing step on the stove admin.
   - Notes for the chat from testing: `handoff/hearth-studio-notes-3/` (`MESSAGE.md` and a picture).
 - **The app's files stay in `public/hs/` and ship with the site's files on Replit** (Ben, 28 Oct
@@ -466,10 +472,11 @@ own. A new `assets/scenes/linear/scene.json` without `camera` and `fireSpot` nee
     because the photo was taken from higher than the cabin's camera.
   - Glass box [0.364, 0.221, 0.843, 0.565].
   - Flue collar at the top edge, about 35–56% across.
-- **It's dev data only:** the file is in `var/uploads/media/products/` and the row is in local
-  PGlite. On the live site, upload the cutout again at `/admin/products/…` and set the four
-  facts. There's no admin field for them yet: that's 7d's sizing step, still to build, here on
-  the site side.
+- **It was dev data only:** the file is in `var/uploads/media/products/` and the row is in local
+  PGlite. There's no admin field for the four facts yet: that's 7d's sizing step, still to
+  build, here on the site side. Since 2 Nov 2026 it reaches the live site through
+  `db/hearth-studio/` and `npm run studio:load` (see "The sized products go live with the code"
+  above).
 
 **The Jøtul F 445 Holliday (the second stove, 28 Oct 2026, Ben's ask; dev data only, like the
 7110):**
@@ -536,6 +543,8 @@ their maker-size outline in the cabin:**
      the top's rim.
 3. Stop the dev server, run `set` with the product's slug (the top front is its last value), then
    start the server again. For a stove already set up, `top <slug> <row>` adds the top front.
+   Each command also rewrites `db/hearth-studio/`, which takes the stove to the live site with
+   the next commit.
 4. Pick a photo that's front-on, or from the left like the cabin's camera, or a round stove. A
    photo from the right shows the wrong side, and mirroring one would put the door's handle on the
    wrong side.

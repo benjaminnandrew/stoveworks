@@ -34,12 +34,13 @@ reference manual.
 ```bash
 npm install
 cp .env.example .env.local
-npm run db:migrate
-npm run db:seed        # the site's brands
-npm run db:seed:stone  # Cultured Stone profiles
-npm run brain:load     # the manufacturer catalog, its guides and the visualizer's products
+npm run db:setup       # tables, brands, stone profiles, the catalog and Hearth Studio's cutouts
 npm run dev            # http://localhost:3014
 ```
+
+`db:setup` is `db:migrate`, `db:seed` (the site's brands), the Cultured Stone profiles (first
+time only), `brain:load` (the manufacturer catalog, its guides and the products) and
+`studio:load` (Hearth Studio's cutouts and sizes, from `db/hearth-studio/`), each safe to re-run.
 
 Other scripts: `npm run build`, `npm start`, `npm run start:live` (the published site: brings
 the database up to date, then starts), `npm run typecheck`, `npm run lint`,
@@ -74,10 +75,13 @@ npm run db:grant -- you@example.com admin
 ```
 db/schema.sql               the site's tables, idempotent
 db/catalog.sql              the catalog's tables (filled by brain:load), idempotent
+db/hearth-studio/           Hearth Studio's sized products and their cutouts (studio:load)
 scripts/                    migrate, seed, seed-stone, reset, grant, tile + logo tooling,
                             load-brain (the catalog loader) + store-driver, set-stove-cutout
-                            (a stove, its pipe's top outlet, or a built-in fireplace into
-                            Hearth Studio locally, until the admin's sizing step)
+                            (a stove, its pipe's top outlet, a built-in fireplace or an insert
+                            into Hearth Studio locally, until the admin's sizing step; it also
+                            writes db/hearth-studio/), load-studio (puts that folder in a
+                            site's database and file store)
 brain/                      the manufacturer catalog: data, photo/PDF lists, guides
 src/
   app/
@@ -371,8 +375,8 @@ npm run start:live
 ```
 
 `start:live` is the published site's run command. It brings the tables up to date, starts the
-site on port 3014, then loads the brands, the stone profiles (first time only) and the
-manufacturer catalog. With Postgres those data steps run in the background once the site
+site on port 3014, then loads the brands, the stone profiles (first time only), the
+manufacturer catalog and Hearth Studio's cutouts. With Postgres those data steps run in the background once the site
 answers, because Replit marks an app live as soon as its homepage responds. Every step is safe
 to repeat. `npm start` starts the site without the database steps.
 

@@ -17,7 +17,9 @@ import { connect } from "./db-driver.mjs";
 
 const source = readFileSync(new URL("../src/content/pages.ts", import.meta.url), "utf8");
 const body = source.split("export const pages: Page[] = [")[1].split("\n];")[0];
-const pages = JSON.parse(`[${body}]`);
+// The list is JSON apart from whole-line comments and pages kept in their own module, listed by
+// name (servicePage, 27 Oct 2026). Both are dropped here: those pages name no brands.
+const pages = JSON.parse(`[${body.replace(/^\s*\/\/.*$/gm, "").replace(/^\s*[A-Za-z_$][\w$]*,\s*$/gm, "")}]`);
 
 /** The same manufacturer is spelled a few different ways across the pages. */
 const CANONICAL = {

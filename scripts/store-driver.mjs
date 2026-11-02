@@ -1,5 +1,5 @@
 /**
- * Standalone file-store helper for the CLI scripts (load-brain).
+ * Standalone file-store helper for the CLI scripts (load-brain, load-studio).
  *
  * Mirrors src/lib/file-store.ts, which the site uses, without Next's module
  * resolution or its `server-only` guard. Same rule in both: FILE_STORE picks
@@ -7,7 +7,7 @@
  * local folders everywhere else.
  */
 
-import { readdir, stat } from "node:fs/promises";
+import { mkdir, readdir, rename, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 export function onReplit() {
@@ -32,14 +32,7 @@ const CATALOG_TOPS = ["images", "documents"];
  */
 export async function listCatalogFiles() {
   if (storeKind() === "replit") {
-    let Client;
-    try {
-      ({ Client } = await import("@replit/object-storage"));
-    } catch {
-      throw new Error("The Replit file store needs the @replit/object-storage package. Run `npm install`.");
-    }
-    const bucketId = process.env.APP_STORAGE_BUCKET || undefined;
-    const client = new Client(bucketId ? { bucketId } : undefined);
+    const { client, bucketId } = await replitClient();
     const files = new Map();
     for (const top of CATALOG_TOPS) {
       let res;
@@ -65,6 +58,48 @@ export async function listCatalogFiles() {
   for (const top of CATALOG_TOPS) await walk(path.join(root, top), top, files);
   const shown = path.relative(process.cwd(), root) || root;
   return { label: `${shown.split(path.sep).join("/")} (local folder)`, files };
+}
+
+/**
+ * Writes a staff upload where the site reads it (file-store.ts's "media" area):
+ * var/uploads/media/<key> locally, uploads/media/<key> in App Storage. Returns
+ * where it went.
+ */
+export async function writeMedia(key, data) {
+  if (!key.split("/").every((seg) => /^[A-Za-z0-9_][A-Za-z0-9._-]*$/.test(seg))) {
+    throw new Error(`Unsafe file key: ${JSON.stringify(key)}`);
+  }
+  if (storeKind() === "replit") {
+    const { client } = await replitClient();
+    // Stored as-is: these are already-compressed images.
+    const res = await client.uploadFromBytes(`uploads/media/${key}`, data, { compress: false });
+    if (!res.ok) throw new Error(`App Storage upload failed: ${res.error?.message ?? res.error}`);
+    return `App Storage uploads/media/${key}`;
+  }
+  const root = path.resolve(process.env.UPLOAD_DIR || path.join("var", "uploads"), "media");
+  const file = path.join(root, ...key.split("/"));
+  await mkdir(path.dirname(file), { recursive: true });
+  // Write then rename, so the site never reads half a file.
+  const temp = `${file}.${process.pid}.part`;
+  await writeFile(temp, data);
+  await rename(temp, file);
+  return path.relative(process.cwd(), file).split(path.sep).join("/");
+}
+
+let replit; // one App Storage client per run
+
+function replitClient() {
+  replit ??= (async () => {
+    let Client;
+    try {
+      ({ Client } = await import("@replit/object-storage"));
+    } catch {
+      throw new Error("The Replit file store needs the @replit/object-storage package. Run `npm install`.");
+    }
+    const bucketId = process.env.APP_STORAGE_BUCKET || undefined;
+    return { client: new Client(bucketId ? { bucketId } : undefined), bucketId };
+  })();
+  return replit;
 }
 
 async function walk(dir, key, files) {

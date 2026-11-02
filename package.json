@@ -16,6 +16,8 @@
     "db:seed:stone": "node scripts/seed-stone.mjs",
     "stone:tiles": "node scripts/generate-stone-tiles.mjs",
     "brain:load": "node scripts/load-brain.mjs",
+    "studio:load": "node scripts/load-studio.mjs",
+    "db:setup": "npm run db:migrate && npm run db:seed && node scripts/seed-stone.mjs --if-empty && npm run brain:load && npm run studio:load",
     "test:search": "node --test --test-concurrency=1 \"tests/search/*.test.mjs\""
   },
   "dependencies": {

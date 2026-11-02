@@ -11,14 +11,15 @@
  *   3. db:seed         the site's brands (idempotent)
  *   4. db:seed:stone   the stone profiles, the first time only
  *   5. brain:load      the catalog, the guides and the visualizer's products
+ *   6. studio:load     Hearth Studio's cutouts and sizes, from db/hearth-studio/
  *
  * Replit marks a published app live once its homepage answers (within five
- * seconds), so steps 3–5 run in the background once the site is up. On the
+ * seconds), so steps 3–6 run in the background once the site is up. On the
  * very first start they take a minute or two; after that a few seconds, since
  * they only change what differs and never overwrite what staff own. If one of
  * them fails, the site keeps running with the data as last loaded.
  *
- * Without DATABASE_URL (PGlite, local only) steps 3–5 run before the site
+ * Without DATABASE_URL (PGlite, local only) steps 3–6 run before the site
  * starts instead, because two processes can't share a PGlite database.
  */
 
@@ -32,6 +33,7 @@ const DATA_STEPS = [
   ["the site's brands (db:seed)", ["scripts/seed.mjs"]],
   ["stone profiles, first time only (db:seed:stone)", ["scripts/seed-stone.mjs", "--if-empty"]],
   ["catalog, guides and products (brain:load)", ["scripts/load-brain.mjs"]],
+  ["Hearth Studio's cutouts and sizes (studio:load)", ["scripts/load-studio.mjs"]],
 ];
 
 function stepNow(label, args) {
@@ -93,7 +95,7 @@ site.on("exit", (code, signal) => {
   process.exit(code ?? (signal ? 1 : 0));
 });
 
-// 3–5. the data, in the background once the site answers
+// 3–6. the data, in the background once the site answers
 if (onPostgres && (await siteIsUp())) {
   for (const [label, args] of DATA_STEPS) {
     if (!(await stepInBackground(label, args))) {

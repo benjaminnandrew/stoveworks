@@ -8,7 +8,8 @@ channel = "stable-24_05"
 
 # Published site: a Reserved VM (always on, no cold starts). start:live brings
 # the database up to date, starts the site on 3014, then loads the brands, the
-# stone profiles and the catalog in the background. See docs/replit.md.
+# stone profiles, the catalog and Hearth Studio's cutouts in the background.
+# See docs/replit.md.
 [deployment]
 deploymentTarget = "vm"
 build = ["sh", "-c", "npm ci && npm run build"]

@@ -35,6 +35,24 @@ can live in Replit App Storage. The visualizer's products are now the catalog's 
 models; the placeholder rows are gone. The move to Replit is written up in
 [docs/replit.md](docs/replit.md).
 
+**2 Nov 2026: ready to move to Replit** (Ben: "we'll need the full database of info"). Every
+part of the database the site shows is rebuilt there from the repo, so nothing is copied from
+the laptop's database (its sign-ins, designs and searches are test data). The steps are in
+[docs/replit.md](docs/replit.md).
+- `npm run db:setup` does the whole load in one go: tables, brands, stone profiles, the catalog
+  (`brain:load`) and Hearth Studio's products (`studio:load`). It takes 36 seconds into an empty
+  database here, which was tested end to end with `PGLITE_DIR` and `UPLOAD_DIR` pointed at
+  scratch folders. The site on that copy served all 15 products, their cutouts, the guides and
+  the brand pages.
+- **Hearth Studio's sized products used to be dev data only.** `db/hearth-studio/` now carries
+  them (`products.json` and the 15 cutouts). `scripts/set-stove-cutout.mjs` rewrites it after
+  each change, and `scripts/load-studio.mjs` puts it in a site's database and file store, also
+  from `start:live`. A cutout that staff change or remove on the live site stays as they left
+  it; a re-measure or re-cut on the laptop carries through (rules tested).
+- **`db:seed` had been failing on a fresh database since the 27 Oct services page**: it reads
+  `pages.ts` as JSON, and that file gained a comment and `servicePage`. It skips both now.
+  `start:live` would have logged the failure on every start and left the site's brands unseeded.
+
 **28 Oct 2026 (branch `hearth-studio`, uncommitted): Hearth Studio.** Ben's stone and stove
 visualizer from a separate chat, the replacement for `/veneer/`, is on the site at `/hearth-studio/`
 and `/showroom/` (Phases 1 and 2 of its `INTEGRATION.md`). **Read [docs/hearth-studio.md](docs/hearth-studio.md)**:
@@ -665,7 +683,8 @@ Ordered by what blocks going live.
    customer can sign in**. Needs a provider — Resend, Postmark, or the business's own SMTP.
 2. **Deployment.** Never deployed. The target is a Replit Reserved VM: build with
    `npm run build`, run with `npm run start:live`, which brings the live database up to date
-   and then serves on port 3014 (the standalone build was dropped on 13 Oct). Customer photos
+   and then serves on port 3014 (the standalone build was dropped on 13 Oct). The workspace's
+   own database loads with `npm run db:setup` (2 Nov). Customer photos
    are not reconstructible: on Replit, `FILE_STORE=replit` (the default there) keeps them, the
    cutouts, the swatches and the catalog's files in App Storage. See
    [docs/replit.md](docs/replit.md).

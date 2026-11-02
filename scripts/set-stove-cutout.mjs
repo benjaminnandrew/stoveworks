@@ -30,10 +30,16 @@
  *     For an insert (1 Nov 2026), the box is its surround's outer edges and the size the manual's
  *     surround size (the bottom where the side panels end: an ash lip in front of the surround
  *     shows lower in the photo).
+ *
+ *   node scripts/set-stove-cutout.mjs export
+ *     Writes db/hearth-studio/ from this database: every product's cutout, and what Hearth Studio
+ *     reads with it. set, top, flue and face do this themselves after they write, so the folder
+ *     goes to the live site with the code, and `npm run studio:load` (part of start:live) puts it
+ *     in that site's database and file store (2 Nov 2026).
  */
 
 import { randomUUID } from "node:crypto";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readdir, readFile, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import { connect } from "./db-driver.mjs";
@@ -42,6 +48,7 @@ import { storeKind } from "./store-driver.mjs";
 const [cmd, ...args] = process.argv.slice(2);
 const pngSize = (png) => [png.readUInt32BE(16), png.readUInt32BE(20)];   // the PNG's IHDR
 const productsDir = path.resolve("var", "uploads", "media", "products");
+const seedDir = path.resolve("db", "hearth-studio");
 
 /** The row where the top meets the front, as a fraction of the photo's height, or null. */
 function topFrontOf(rowPx, H) {
@@ -64,6 +71,54 @@ async function update(sql, params, missing = "with the maker's width on file") {
   } finally {
     await db.close();
   }
+  if (!process.exitCode) await exportSeed();
+}
+
+/**
+ * db/hearth-studio/: products.json, one product a line (its slug, its cutout's file name and the
+ * columns set with it), and cutouts/ with those files. Rewritten whole each time.
+ */
+async function exportSeed() {
+  const db = await connect();
+  let rows;
+  try {
+    ({ rows } = await db.query(
+      `SELECT slug, cutout_path, cutout_view, cutout_span, cutout_width_in, glass_box, cutout_top_front,
+              cutout_flue, viewing_box, viewing_in
+         FROM products WHERE cutout_path LIKE '/files/media/products/%' ORDER BY slug`,
+    ));
+  } finally {
+    await db.close();
+  }
+  const cutoutsDir = path.join(seedDir, "cutouts");
+  await mkdir(cutoutsDir, { recursive: true });
+  const out = [];
+  for (const r of rows) {
+    const cutout = path.basename(r.cutout_path);
+    try {
+      await copyFile(path.join(productsDir, cutout), path.join(cutoutsDir, cutout));
+    } catch (err) {
+      if (err.code !== "ENOENT") throw err;
+      console.error(`! ${r.slug}: its cutout ${cutout} isn't in var/uploads/media/products, so it's left out`);
+      continue;
+    }
+    out.push({
+      slug: r.slug,
+      cutout,
+      cutout_view: r.cutout_view,
+      cutout_span: r.cutout_span,
+      cutout_width_in: r.cutout_width_in == null ? null : Number(r.cutout_width_in),
+      glass_box: r.glass_box,
+      cutout_top_front: r.cutout_top_front,
+      cutout_flue: r.cutout_flue,
+      viewing_box: r.viewing_box,
+      viewing_in: r.viewing_in,
+    });
+  }
+  const kept = new Set(out.map((p) => p.cutout));
+  for (const file of await readdir(cutoutsDir)) if (!kept.has(file)) await unlink(path.join(cutoutsDir, file));
+  await writeFile(path.join(seedDir, "products.json"), `[\n${out.map((p) => `  ${JSON.stringify(p)}`).join(",\n")}\n]\n`);
+  console.log(`✓ db/hearth-studio: ${out.length} products' cutouts and sizes, for the live site (studio:load)`);
 }
 
 if (cmd === "trim") {
@@ -166,6 +221,8 @@ if (cmd === "trim") {
     [slug, `/files/media/products/${name}`, viewing, [wide, tall], glass],
     "that's a built-in fireplace or an insert",
   );
+} else if (cmd === "export") {
+  await exportSeed();
 } else {
   usage();
 }
@@ -191,7 +248,8 @@ function usage() {
       "       node scripts/set-stove-cutout.mjs set <slug> <trimmed.png> <view> <spanL,spanR> <x0,y0,x1,y1> [topFront]\n" +
       "       node scripts/set-stove-cutout.mjs top <slug> <topFront>\n" +
       "       node scripts/set-stove-cutout.mjs flue <slug> <x,y>\n" +
-      "       node scripts/set-stove-cutout.mjs face <slug> <trimmed.png> <x0,y0,x1,y1> <wide,tall> <gx0,gy0,gx1,gy1>",
+      "       node scripts/set-stove-cutout.mjs face <slug> <trimmed.png> <x0,y0,x1,y1> <wide,tall> <gx0,gy0,gx1,gy1>\n" +
+      "       node scripts/set-stove-cutout.mjs export",
   );
   process.exit(2);
 }
